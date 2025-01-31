@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Readable Code 淺顯易懂的程式</title>
+    <meta name="keywords" content="Development" />
+    <meta name="description" content=" 如何寫一個大家都看得懂的程式呢? 最近讀了 「The Art of Readable Code 」與「Clean Code A Handbook of Agile Software Craftsmanshi」這本書，將書中提到的，整合我平常寫 Code 的習慣，記錄下程式的規範。Easy to Read, 如何讓整體的 Code 容易閱讀 複雜的 Function, meth" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-154-Readable-Code-淺顯易懂的程式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-154-Readable-Code-浅显易懂的程式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-154-Readable-Code-淺顯易懂的程式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-154-Readable-Code-淺顯易懂的程式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-154">
+                    <em><span>Readable Code 淺顯易懂的程式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-154-Readable-Code-\u6dfa\u986f\u6613\u61c2\u7684\u7a0b\u5f0f.html"},"headline":"Readable Code \u6dfa\u986f\u6613\u61c2\u7684\u7a0b\u5f0f","image":"","datePublished":"2012-12-25T23:44:53+08:00","dateModified":"2016-01-17T16:11:36+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5982\u4f55\u5beb\u4e00\u500b\u5927\u5bb6\u90fd\u770b\u5f97\u61c2\u7684\u7a0b\u5f0f\u5462? \u6700\u8fd1\u8b80\u4e86 \u300cThe Art of Readable Code \u300d\u8207\u300cClean Code A Handbook of Agile Software Craftsm"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Dec</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-154-Readable-Code-淺顯易懂的程式.html"><span>Readable Code 淺顯易懂的程式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Development">Development</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-154-Readable-Code-浅显易懂的程式.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>如何寫一個大家都看得懂的程式呢? 最近讀了 「<a href="http://shop.oreilly.com/product/9780596802301.do" target="_blank">The Art of Readable Code </a>」與「<a href="http://my.safaribooksonline.com/book/software-engineering-and-development/agile-development/9780136083238" target="_blank">Clean Code A Handbook of Agile Software Craftsmanshi</a>」這本書，將書中提到的，整合我平常寫 Code 的習慣，記錄下程式的規範。</p><h2>Easy to Read, 如何讓整體的 Code 容易閱讀</h2><ul class="list">  <li>複雜的 Function, method 請增加註解，但是注意註解不要影響程式的閱讀</li>  <li>適當的空白，空行。</li>  <li>不要過度使用文字的縮寫，如果不確定縮寫是否其他人看得懂，就寧願用很長的英文單字，也不要用沒有人看得懂的縮寫。</li>  <li>一個 function 的行數不要太多，大約 「 50 行」上限，並且保持 function 簡單容易閱讀。</li>  <li>不要用  小寫 L ,  大小寫 O, o 開頭的字母</li>  <li>使用 IDE 摺疊功能，將 function 摺起來縮成一行，如 vim 內建就有 folder 的功能。</li></ul><p>寫註解的時候要小心，透過修改變數 or function 命名來達到容易閱讀的方式為最佳，若不是萬不得以，不要寫註解。</p><h2>程式排版</h2><p>程式的排版非常的重要，一個好的排版，讀者才能順暢的看懂程式。</p><h3>條列式</h3><p>條列式的排版，比較適合大部分人的閱讀方式，舉個例好，下面這個程式就是沒有經過排版，程式碼的變數指定呈現鉅齒狀，不容易閱讀。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">nickname </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;nickname&#39;</span><span class="pun">];</span></li><li class="L1"><span class="pun">$</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">erson</span><span class="pun">[</span><span class="str">&#39;age&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pun">$</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L3"><span class="pun">$</span><span class="pln">address </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;zipCode&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;address&#39;</span><span class="pun">];</span></li></ol></pre></div><p>上面那段程式你是否有注意到 第二行的變數 <b>erson </b>打錯字了，接下來我們來幫程式碼好好的排版。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">nickname </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;nickname&#39;</span><span class="pun">];</span></li><li class="L1"><span class="pun">$</span><span class="pln">age      </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">erson</span><span class="pun">[</span><span class="str">&#39;age&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pun">$</span><span class="pln">name     </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L3"><span class="pun">$</span><span class="pln">address  </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;zipCode&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;address&#39;</span><span class="pun">];</span></li></ol></pre></div><p>經過排版後，第二行的錯字就可以很容易的被發現，因為程式碼的可讀性變高。</p><h3>程式碼區塊</h3><p>一個 function 的程式碼行數大約會在 10 ~ 50 行之間，讀懂 50 行程式碼也不算是一個簡單的事，如果我們將程式碼分成多個區塊，再對每一個區塊寫下一行簡短的註解，這樣讀程式碼就更容易了，區塊註解還有另一個功能，一般人沒辦法記住每一個區塊的程式碼邏輯，而註解能提醒讀者每個段落的內容，例如下面這個例子。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> request</span><span class="pun">($</span><span class="pln">url</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">params</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">header</span><span class="pun">)</span><span class="pln"> </span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">  </span><span class="com">// Handle http request.</span></li><li class="L3"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">preg_match</span><span class="pun">(/&#92;?/,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">url</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="str">"&amp;"</span><span class="pun">;</span></li><li class="L5"><span class="pln">  </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="str">"?"</span><span class="pun">;</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pln">  foreach </span><span class="pun">($</span><span class="pln">params as </span><span class="pun">$</span><span class="pln">key </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">$</span><span class="pln">val</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">key </span><span class="pun">.</span><span class="pln"> </span><span class="str">"="</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">val</span><span class="pun">;</span></li><li class="L0"><span class="pln">  </span><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="com">// Handle Curl</span></li><li class="L3"><span class="pln">  </span><span class="pun">$</span><span class="pln">tuCurl </span><span class="pun">=</span><span class="pln"> curl_init</span><span class="pun">();</span><span class="pln"> </span></li><li class="L4"><span class="pln">  curl_setopt</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">,</span><span class="pln"> CURLOPT_URL</span><span class="pun">,</span><span class="pln"> </span><span class="str">"https://example.com/xx/"</span><span class="pun">);</span><span class="pln"> </span></li><li class="L5"><span class="pln">  curl_setopt</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">,</span><span class="pln"> CURLOPT_PORT </span><span class="pun">,</span><span class="pln"> </span><span class="lit">443</span><span class="pun">);</span><span class="pln"> </span></li><li class="L6"><span class="pln">  </span><span class="pun">$</span><span class="pln">tuData </span><span class="pun">=</span><span class="pln"> curl_exec</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">);</span><span class="pln"> </span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">  </span><span class="com">//Handle response</span></li><li class="L9"><span class="pln">  </span><span class="pun">$</span><span class="pln">response </span><span class="pun">=</span><span class="pln"> json_decode</span><span class="pun">($</span><span class="pln">tuData</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L0"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">$</span><span class="pln">response</span><span class="pun">;</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>tmp 暫存的變數</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> tmp </span><span class="pun">=</span><span class="pln"> </span><span class="str">"file_"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">  </span><span class="pun">{</span></li><li class="L2"><span class="pln">   tmp </span><span class="pun">+=</span><span class="pln"> i</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> tmp </span><span class="pun">+</span><span class="pln"> </span><span class="str">".txt"</span><span class="pun">;</span></li></ol></pre></div><ul class="list">  <li>tmp_file</li>  <li>tmp_username</li></ul><h2>暫存的變數命名</h2><p>若是真的有些變數無法命名，那就用一般的變數方式來命名。</p><ul class="list">  <li>tmp    : 不知道如何命名的暫存變數，都用 tmp</li>  <li>retval :  return value，用途回傳值</li>  <li>it     :  iterator ， 用在 for each 的每一個 item。</li></ul><h2>明確的變數命名</h2><ul class="list">  <li>runLocal -->  useLocalDatabase</li>  <li>disallowMethod --> disallowCopyAndPaste</li>  <li>id = "2" , encodeId = "abefcbad****"</li>  <li>size -->sizeMB</li>  <li>time --> timeMS (Million Second)</li>  <li>length --> lenBytes  ,</li>  <li>mb_strlen(&#39;&#39;,&#39;&#39;, &#39;UTF8&#39;)   lenUTF8 ，當使用 UTF8 編碼來計算文字長度，一個中文字代表長度 1 ，一個英文字也代表長度 1</li>  <li>maxChars : 最大容納的字元</li>  <li>maxBytes : 最大 byte 數</li>  <li>maxMultipleBytes :  最多中文數</li>  <li>MAX_ITEMS_IN_BOX : 這個 box 的最大值</li></ul><h2>停止事件 , stop , pause, kill</h2><ul class="list">  <li>stop, start : 停止某一個行為，並可以使用 start 重新啟動一個全新的事件。</li>  <li>pause, resume : 暫停某個行為，但是可以重新恢復，繼續先前的進度。</li>  <li>kill : 強迫結束，不管是否會造成任何問題。</li></ul><h2>常用的縮寫單字</h2><p>除了一些常用的，大家都懂的縮寫單字之外，盡量不要使用其他的縮寫單字，使用過多的縮寫單字，會造成程式閱讀的困難，再加上每個人英文程度不同，很容易造成誤解。</p><ul class="list">  <li>str : string</li>  <li>len : length</li>  <li>eval : evaluation</li>  <li>doc : document</li>  <li>db : database</li>  <li>util : utility</li>  <li>ms : million second</li>  <li>us : 微秒</li>  <li>addr : address</li>  <li>來源 src ，目的地  dest</li></ul><h2>不好的範例</h2><ul class="list">  <li>backendManager => BEManager  ,  BEManager 很難看得懂</li>  <li>googleTranslator => GT</li>  <li>color: clr</li></ul><h2>不要使用反向意思,  un , dis, anti</h2><ul class="list">  <li>例如我曾經碰過有人命名 unFold = true ，代表打開這個節點 , unFold = false 代表關閉節點 ，那  if (empty($unFold)) 到底是開還是關呢?</li>  <li>use_encode , disable_encode</li></ul><h2>is, has, can,  should , use</h2><ul class="list">  <li>isAdmin = true ，代表 User 是 Admin</li>  <li>hasOrder = false  ，代表這個 User 有訂單，不好的寫法是使用 notEmpty 這種反意。</li>  <li>useMysql = true</li></ul><h2>Front-End 相關</h2><ul class="list">  <li>nodeName: 代表 div, span, body 等等。</li>  <li>elm:  element 的縮寫 ，代表 html 中某一個 node 的物件。</li></ul><h2>與他人合作</h2><p>如果你是單兵作戰部隊，那你想怎麼寫 code 都不會有人理你，但是當你在一個團隊中時，你寫的程式，未來將會有很多人幫你維護，修改，解 Bug ，所以寫 Code 的時候，必須想到接手的人是否能夠快速的理解你寫程式。</p><p>變數的名稱要能發音，請使用念得出來的英文字母來當變數，當我們必須使用縮寫或是自創文字，這時盡量組成一個容易發音的單字，這樣與其他工程師討論時會比較容易，或是對新人教學時也會方便很多。</p><p>重要變數的數值必須要可以被搜尋到 ，例如我定義訂單的 status = 5 時，代表這是一筆成功的訂單，並且我要更新訂單資訊 ,  我可以先定義一個常數變數 STATUS_OPEN = 5 , 這樣當我想查詢 status = 5 ，程式會執行那幾行  Code 時，這時我可以搜尋 STATUS_OPEN 這個字母，而不是搜尋 「5」這個數字 (你如果搜尋 5 的話，會搜尋到相當多的垃圾)。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> STATUS_CLOSE </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> STATUS_OPEN </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span></li><li class="L2"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">status </span><span class="pun">==</span><span class="pln"> STATUS_SUCCESS</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">      updateOrder</span><span class="pun">();</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><h2>其他相關</h2><ul class="list">  <li>begin , end  =>  first, last  ， end 代表最後一個，但是沒辦法說明是否包含最後一個，</li></ul><div class="codeBlock"><span class="title"> 一行不要太長，可以斷行就斷行</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">aaaaaaaa </span><span class="pun">==</span><span class="pln"> </span><span class="str">"bbbbbbbbb"</span><span class="pln"> </span><span class="pun">&amp;&amp;</span></li><li class="L1"><span class="pln">    ccccccc  </span><span class="pun">==</span><span class="pln"> </span><span class="str">"adddddddd"</span><span class="pln"> </span></li><li class="L2"><span class="pln">   </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">物件分類，類似的功能的 function 放在一起。</li>   </ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">class</span><span class="pln"> xx</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="com">//fetch data</span></li><li class="L3"><span class="pln">   function fetchJS</span><span class="pun">(){}</span></li><li class="L4"><span class="pln">   function fetchCSS</span><span class="pun">(){}</span></li><li class="L5"><span class="pln">   </span><span class="com">//save </span></li><li class="L6"><span class="pln">   function saveJS</span><span class="pun">(){}</span></li><li class="L7"><span class="pln">   function saveCSS</span><span class="pun">(){}</span></li><li class="L8"><span class="pln">   </span><span class="com">//convert encoding</span></li><li class="L9"><span class="pln">   function convertToUTF8</span><span class="pun">(){}</span></li><li class="L0"><span class="pln">   function convertToBig5</span><span class="pun">(){}</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>Function 的開頭與結尾括號</h2><p>不管那一種語言， function 都會有一個開頭與結尾大括號 "{}" ，建議括號都能自已獨立一行，例如下面這個範例，好處是，當我們使用 IDE 將 function 做折疊功能時，function 名稱與參數最好不要被折疊，這樣程式碼可讀性比較高。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">// 折疊前</span></li><li class="L1"><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span></li><li class="L2"><span class="pun">{</span></li><li class="L3"><span class="pln">     ret </span><span class="pun">=</span><span class="pln"> db</span><span class="pun">.</span><span class="pln">query</span><span class="pun">(</span><span class="str">"xxx"</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">}</span><span class="pln">  </span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">// 好讀的折疊結果</span></li><li class="L8"><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span></li><li class="L9"><span class="pun">+--</span><span class="pln">  </span><span class="lit">4</span><span class="pln"> lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{--------------------------------------------------------------------------------------------------------------</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">// 括號不斷行的話，程式碼會折疊成一行</span></li><li class="L2"><span class="pun">+--</span><span class="pln">  </span><span class="lit">4</span><span class="pln"> lines</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{------------------</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-01-17T16:11:36+08:00" class="article-modify-time">2016/01/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-154" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-154" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-157">程式變數命名方式</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Development 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-168-如何在-Win-,-Mac-,-Chrome-設定實用的-.screenrc.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_168&quot;}'>如何在 Win , Mac , Chrome 設定實用的 .screenrc </a></li>
+    
+        <li><a href="/docs-blog/article-157-程式變數命名方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_157&quot;}'>程式變數命名方式 </a></li>
+    
+        <li><a href="/docs-blog/article-148-軟體工程師必用字型-字體.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_148&quot;}'>軟體工程師必用字型/字體 </a></li>
+    
+        <li><a href="/docs-blog/article-114-VIM-16進位-,-.vimrc-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_114&quot;}'>VIM 16進位 , .vimrc 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-110-vim-配色.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_110&quot;}'>vim 配色 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

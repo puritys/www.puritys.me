@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Oracle 语法记录</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Oracle 並非免費軟體，平常沒什麼機會用到它，但在公司偶爾還是會需要直接用 Oracle 語法去 DB 拿一些資料，為了避免緊急時刻忘記如何下 Oracle SQL 語法，記錄一下平常用過的 SQL。取得所有的 table select * from cat; select * from tab;取得前十筆 select * from users where rownum " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-269-Oracle-语法记录.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-269-Oracle-语法记录.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-269-Oracle-語法記錄.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-269-Oracle-語法記錄.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Mysql" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Mysql</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-269">
+                    <em><span>Oracle 语法记录</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-269-Oracle-\u8a9e\u6cd5\u8a18\u9304.html"},"headline":"Oracle \u8a9e\u6cd5\u8a18\u9304","image":"","datePublished":"2014-07-08T12:44:56+08:00","dateModified":"2016-11-03T10:56:11+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Oracle \u4e26\u975e\u514d\u8cbb\u8edf\u9ad4\uff0c\u5e73\u5e38\u6c92\u4ec0\u9ebc\u6a5f\u6703\u7528\u5230\u5b83\uff0c\u4f46\u5728\u516c\u53f8\u5076\u723e\u9084\u662f\u6703\u9700\u8981\u76f4\u63a5\u7528  Oracle \u8a9e\u6cd5\u53bb DB  \u62ff\u4e00\u4e9b\u8cc7\u6599\uff0c\u70ba\u4e86\u907f\u514d\u7dca\u6025\u6642\u523b\u5fd8\u8a18\u5982\u4f55\u4e0b Oracle SQL \u8a9e\u6cd5\uff0c\u8a18\u9304\u4e00\u4e0b\u5e73\u5e38\u7528\u904e\u7684 "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jul</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-269-Oracle-語法記錄.html"><span>Oracle 语法记录</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-269-Oracle-語法記錄.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Oracle 并非免费软体，平常没什么机会用到它，但在公司偶尔还是会需要直接用  Oracle 语法去 DB  拿一些资料，为了避免紧急时刻忘记如何下 Oracle SQL 语法，记录一下平常用过的 SQL。</p><h2>取得所有的 table</h2><ul class="list">  <li>select * from cat;</li>  <li>select * from tab;</li></ul><h2>取得前十笔</h2><ul class="list">  <li>select * from users where rownum <=10 and rownum >=1;</li></ul><h2>依系统时间取资料</h2><ul class="list">  <li>select * from users where  endtime > SYSDATE-1;</li>  <li>select * from users where  createtime > TO_DATE(&#39;2015-07-15 09:02:00&#39;,&#39;YYYY-MM-DD HH24:MI:SS&#39;);</li></ul><h2>其它基本</h2><ul class="list">  <li>desc table</li></ul><h2>插入一笔资料</h2><ul class="list">  <li>insert into table(title, date) values(&#39;xxx&#39;, TO_DATE(&#39;2011/01/01 21:02:44&#39;, &#39;yyyy/mm/dd hh24:mi:ss&#39;));</li></ul><h2>Find indexex</h2><ul class="list">  <li>select INDEX_NAME, TABLE_OWNER, TABLE_NAME, UNIQUENESS from ALL_INDEXES</li></ul><h2>constraint</h2><ul class="list">  <li>select * from all_constraints where constraint_name=&#39;SYS_C007931&#39;;</li></ul><h2>explain: index 查询</h2><ul class="list">  <li>explain plan for select * from order where rownum<10;</li>  <li>select * from table(dbms_xplan.display);</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-03T10:56:11+08:00" class="article-modify-time">2016/11/03</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-269" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-269" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Mysql</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-269-Oracle-語法記錄.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_269&quot;}'>Oracle 語法記錄 </a></li>
+    
+        <li><a href="/docs-blog/article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_229&quot;}'>Mysql 啟動失敗： Can not open the mysql.plugin table </a></li>
+    
+        <li><a href="/docs-blog/article-76-Mysql-語法-基礎篇.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+        <li><a href="/docs-blog/article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>20萬筆資料，Mysql資料庫就跑不動囉! (排序相關) </a></li>
+    
+        <li><a href="/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>Mysql Index, Unique 效能提升 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

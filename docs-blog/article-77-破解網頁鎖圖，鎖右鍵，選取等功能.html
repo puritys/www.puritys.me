@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>破解網頁鎖圖，鎖右鍵，選取等功能</title>
+    <meta name="keywords" content="破解" />
+    <meta name="description" content="有些網站好的不學，專學那種鎖右鍵，防盜圖等等影響使用者操作的行為，造成正常使用者瀏覽的困擾，下面講解一些破解方式與原理，鎖右鍵不但防不了有心人的，又會使得網頁難以操作，也在此呼籲網頁的開發者，不要在使用這種影響使用者操作的設計，一個優良的網站，應該要盡量替使用者著想，而不是處處阻擋使用者，把使用者當成壞人。鎖右鍵破解一般網頁鎖右鍵的方式，會用這種語法，＜body onconte" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-77-破解網頁鎖圖，鎖右鍵，選取等功能.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-77-破解网页锁图，锁右键，选取等功能.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-77-破解網頁鎖圖，鎖右鍵，選取等功能.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-77-破解網頁鎖圖，鎖右鍵，選取等功能.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-77">
+                    <em><span>破解網頁鎖圖，鎖右鍵，選取等功能</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-77-\u7834\u89e3\u7db2\u9801\u9396\u5716\uff0c\u9396\u53f3\u9375\uff0c\u9078\u53d6\u7b49\u529f\u80fd.html"},"headline":"\u7834\u89e3\u7db2\u9801\u9396\u5716\uff0c\u9396\u53f3\u9375\uff0c\u9078\u53d6\u7b49\u529f\u80fd","image":"https:\/\/www.puritys.me\/filemanage\/blog\/right_1.jpg","datePublished":"2011-12-17T13:27:44+08:00","dateModified":"2022-03-04T19:01:22+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u6709\u4e9b\u7db2\u7ad9\u597d\u7684\u4e0d\u5b78\uff0c\u5c08\u5b78\u90a3\u7a2e\u9396\u53f3\u9375\uff0c\u9632\u76dc\u5716\u7b49\u7b49\u5f71\u97ff\u4f7f\u7528\u8005\u64cd\u4f5c\u7684\u884c\u70ba\uff0c\u9020\u6210\u6b63\u5e38\u4f7f\u7528\u8005\u700f\u89bd\u7684\u56f0\u64fe\uff0c\u4e0b\u9762\u8b1b\u89e3\u4e00\u4e9b\u7834\u89e3\u65b9\u5f0f\u8207\u539f\u7406\uff0c\u9396\u53f3\u9375\u4e0d\u4f46\u9632\u4e0d\u4e86\u6709\u5fc3\u4eba\u7684\uff0c\u53c8\u6703\u4f7f\u5f97\u7db2\u9801\u96e3\u4ee5\u64cd\u4f5c\uff0c\u4e5f\u5728\u6b64\u547c\u7c72\u7db2\u9801\u7684\u958b\u767c\u8005\uff0c\u4e0d\u8981\u5728\u4f7f"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-77-破解網頁鎖圖，鎖右鍵，選取等功能.html"><span>破解網頁鎖圖，鎖右鍵，選取等功能</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=破解">破解</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-77-破解网页锁图，锁右键，选取等功能.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>有些網站好的不學，專學那種鎖右鍵，防盜圖等等影響使用者操作的行為，造成正常使用者瀏覽的困擾，下面講解一些破解方式與原理，鎖右鍵不但防不了有心人的，又會使得網頁難以操作，也在此呼籲網頁的開發者，不要在使用這種影響使用者操作的設計，一個優良的網站，應該要盡量替使用者著想，而不是處處阻擋使用者，把使用者當成壞人。</p><h2>鎖右鍵破解</h2><p>一般網頁鎖右鍵的方式，會用這種語法，<code>＜body oncontextmenu="return false"></code>。</p><h3>1. 利用 Javascript 功能破解</h3><p>使用 IE 瀏覽器 並在網址列輸入下列內容，並按 enter，這句語法會使用網頁變成可編輯狀態，即然是可編輯，當然文字也可以圈選，複製。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">javascript</span><span class="pun">:</span><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">contentEditable</span><span class="pun">=</span><span class="str">&#39;true&#39;</span><span class="pun">;</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">designMode</span><span class="pun">=</span><span class="str">&#39;on&#39;</span><span class="pun">;</span><span class="pln"> </span></li><li class="L1"><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">oncontextmenu</span><span class="pun">=</span><span class="str">"return true;"</span><span class="pun">;</span><span class="kwd">void</span><span class="pun">(</span><span class="lit">0</span><span class="pun">)</span></li></ol></pre></div><p>所有的網頁內容都會變成可選取並可拖拉，當然右鍵也被解鎖了</p><p>! 要特別注意，如果你是使用瀏覽器 Chrome 的話，它預設會阻擋 <b>javascript:</b> 開頭的字串，如果你是用複製，貼上這串語法，最前面的 javascript 這幾個字會不見，必須再手動輸入 javascript: 到  URL 的開頭，Chrome 是為了安全性考量才會做這個阻擋機制，不過我們要用的語法並不含任何攻擊程式。</p><h3>2. 打開瀏覽器的 Console ，輸入以下列指令，也可以做到相同的事。</h3><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">contentEditable</span><span class="pun">=</span><span class="str">&#39;true&#39;</span><span class="pun">;</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">designMode</span><span class="pun">=</span><span class="str">&#39;on&#39;</span><span class="pun">;</span><span class="pln"> </span></li><li class="L1"><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">oncontextmenu</span><span class="pun">=</span><span class="str">"return true;"</span></li></ol></pre></div><h3>3. 利用瀏覽器本身的設定</h3><p>使用 FireFox 瀏覽器，在工具->選項->內容->進階->取消 停用或取代右鍵選單，按確定就ok囉</p><p>以上三個方式，你可以選擇任何一種來破解鎖右鍵。</p><h2>破解無法選取文字，無法複製文字</h2><h3>1. 讀取網頁原始碼</h3><ul class="list">  <li>FireFox 按檢視->頁面原始碼-> 按 ctrl+f 搜尋目標文字</li>  <li>IE 按檢視->原始檔-> 按 ctrl+f 搜尋目標文字</li></ul><h3>2. 利用瀏覽器的工程師開發工具</h3><p>FireFox: 安裝 plugin 的 firebug，打開 firebug 尋找目標文字</p><p>IE8 破解方式</p> <ul class="list">   <li class="indent1">按工具->開發者工具 ，或是按 F12</li> </ul><img src="/filemanage/blog/right_1.jpg" style="margin:0 auto;display:block;" /><ul class="list">  <li>點一下工具中的滑鼠游標</li></ul><img src="/filemanage/blog/right_2.jpg" style="margin:0 auto;display:block;" /><ul class="list">  <li>點選了上圖的游標後，再去點一下要複製的文字區塊</li>  <li>回到開發者工具，將目標文字的圖層打開，這樣就可以從開發者工具中選取並複製文字。</li></ul>   <img src="/filemanage/blog/right_3.jpg" style="margin:0 auto;display:block;" /><h2>破解圖片無法另存</h2><h3>1. Firefox 工具抓圖片</h3><p>使用 Firefox 瀏覽器，打開 工具->頁面資訊->媒體 ，在裡面找到你要的圖，然後另存新檔即可。</p><h3>2. 利用暫存檔來取得圖片</h3><p>打開原始碼：搜尋 img 、 jpg 、 gif 等字元，找出你要的圖，複製連結並貼上網址，不用擔心伺服器會鎖盜連，只要你事先看過這個頁面，瀏覽器就會自動存檔，所以看到的圖片是暫存檔。</p><p>同上的原理，你也可以從網頁暫存檔的資料夾去尋找你看過的圖片 ， 你可以參考這個<a href="http://windows.microsoft.com/zh-tw/windows/view-temporary-internet-files" target="_blank">網址</a> 就能找到網頁暫存的資料夾。</p><h3>3. 微軟工具，小畫家超好用的抓圖功能</h3><p>按鍵盤右上角的  <b>print screen</b> 印列螢幕功能，再打開小畫家，按 ctrl + v 貼上，最後將你要的部分裁切下來就行了，小畫家是一個 windows 內建小型的軟體，執行速度超快，非常方便。</p><br /><div id="ezTarget4"></div><h3>4. 利用瀏覽器 Chrome 的開發人員工具來下載圖片</h3><div class="notice" label="Warning">如果你還不是使用  Chrome 這個地球上最強的瀏覽器，請到此網址下載 <a href="https://www.google.com/chrome/browser/desktop/"  target="_blank">https://www.google.com/chrome/browser/desktop/</a></div><p>請先打開你的 chrome 瀏覽器，然後連上某個想抓圖的網址，再來打開 "<em>開發人員工具</em>"，如下圖所示。</p><a href="/filemanage/blog_files/file_193.gif" target="_blank" ><img src="/filemanage/blog_files/file_193.gif"   link="me"  style="width: 400px;"/></a><p>接著瀏覽器下方會自動打開一個小視窗，先點擊左邊一個搜尋的小按鈕  (P1)，然後再去點擊你想下載的圖片 (P2)，如下圖。</p><a href="/filemanage/blog_files/file_194.gif" target="_blank" ><img src="/filemanage/blog_files/file_194.gif"   link="me"  style="width: 400px;"/></a><p>完成後就會在下面那個視窗看到圖片的路徑，例如範例中的路徑如下</p><blockquote><a href="https://s1.yimg.com/uu/api/rxxxxxx"  target="_blank">https://s1.yimg.com/uu/api/rxxxxxx</a></blockquote><p>對這個路徑按右鍵->另開新視窗，就能成功下載那張圖片囉。</p><h2>破解 Google Docs 鎖複製</h2>先把整個頁面另存新檔，修改新檔刪除這個語法： <code>user-select: none;</code> ，可以使用全部取代變成空白，再打開修改過的 html 檔案即可以選取文字並複製。</div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2022-03-04T19:01:22+08:00" class="article-modify-time">2022/03/04</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-77" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-77" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">破解 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

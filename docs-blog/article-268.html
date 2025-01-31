@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="en" />
+    <meta name="author" content="Puritys" />
+    <title>How to write a php unit test  for private method</title>
+    <meta name="keywords" content="Unit Test" />
+    <meta name="description" content="Write a php unit test is not a hard work. I think you had already use phpunit before read this article. But sometimes, the expert engineer create a private method to prevent other engineers " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html"/>
+    
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-268-How-to-write-a-php-unit-test-for-private-method.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-268">
+                    <em><span>How to write a php u...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-268-How-to-write-a-php-unit-test-for-private-method.html"},"headline":"How to write a php unit test  for private method","image":"","datePublished":"2014-06-23T17:41:47+08:00","dateModified":"2015-02-07T17:40:00+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Write a php unit test is not a hard work. I think you had already use phpunit before read this artic"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jun</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html"><span>How to write a php unit test  for private method</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Unit Test">Unit Test</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Write a php unit test is not a hard work. I think you had already use phpunit before read this article. But sometimes, the expert engineer create a <em>private method</em> to prevent other engineers to call.</p><div class="notice" label="i">Sorry! I am not a expert engineer and seldom use private method.</div><p>Private method is a big problem for phpunit test. The phpunit could not call a private method so it will be failed to be tested.</p><p>I will show you how to test a private method later.</p><h2>A normal unit test</h2><p>Let&#39;s start a normal php code to be tested. The following is a php code name food.php and has a class call food, also has a <b>private function</b> getName</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">class food </span><span class="pun">{</span></li><li class="L3"><span class="pln">    private </span><span class="kwd">function</span><span class="pln"> getName</span><span class="pun">()</span></li><li class="L4"><span class="pln">    </span><span class="pun">{</span></li><li class="L5"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"chicken"</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="pun">}</span></li><li class="L7"><span class="pun">}</span></li></ol></pre></div><h3>How do you test a php method?</h3><p>If you don&#39;t know <b>getName</b> is a private method, maybe you will use the following sample code to test <b>food class</b>.</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">require_once </span><span class="str">"food.php"</span><span class="pun">;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">class FoodTest extends PHPUnit_Framework_TestCase</span></li><li class="L4"><span class="pun">{</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    public </span><span class="kwd">function</span><span class="pln"> testGetName</span><span class="pun">()</span></li><li class="L7"><span class="pln">    </span><span class="pun">{</span></li><li class="L8"><span class="pln">        </span><span class="pun">$</span><span class="pln">obj </span><span class="pun">=</span><span class="pln"> new food</span><span class="pun">();</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">        </span><span class="pun">$</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">obj</span><span class="pun">-&gt;</span><span class="pln">getName</span><span class="pun">();</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">        </span><span class="pun">$</span><span class="pln">this</span><span class="pun">-&gt;</span><span class="pln">assertEquals</span><span class="pun">(</span><span class="str">&#39;chicken&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">name</span><span class="pun">);</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><p>This a most simple unit test in php. But it is not the key point today.</p><p>When you run this unit test, you will get the fatal error below.</p><div class="notice" label="Error">PHP Fatal error:  Call to private method food::getName() from context &#39;FoodTest&#39;</div><h3>Using ReflectionClass to test.</h3><p>If you need to test a private method. You should study ReflectionClass from <a href="http://www.php.net/manual/en/class.reflectionclass.php" target="_blank">here</a>.</p><p>The first step is to new constructor ReflectionClass then we will get the method by <b>getMethod</b> method of ReflectionClass.</p><p>Then we should call <b>setAccessible</b> to set it to be <em>true</em>. Finally execute this method that we got from ReflectionClass.</p><div class="codeBlock"><span class="title"> phpunit test source code</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">require_once </span><span class="str">"food.php"</span><span class="pun">;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">class FoodTest extends PHPUnit_Framework_TestCase</span></li><li class="L4"><span class="pun">{</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    public </span><span class="kwd">function</span><span class="pln"> testGetName</span><span class="pun">()</span></li><li class="L7"><span class="pln">    </span><span class="pun">{</span></li><li class="L8"><span class="pln">        </span><span class="pun">$</span><span class="pln">obj </span><span class="pun">=</span><span class="pln"> new food</span><span class="pun">();</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">        </span><span class="pun">$</span><span class="pln">ref </span><span class="pun">=</span><span class="pln"> new ReflectionClass</span><span class="pun">(</span><span class="str">&#39;food&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pln">        </span><span class="pun">$</span><span class="pln">method </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">ref</span><span class="pun">-&gt;</span><span class="pln">getMethod</span><span class="pun">(</span><span class="str">&#39;getName&#39;</span><span class="pun">);</span></li><li class="L2"><span class="pln">        </span><span class="pun">$</span><span class="pln">method</span><span class="pun">-&gt;</span><span class="pln">setAccessible</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span></li><li class="L3"><span class="pln">        </span><span class="pun">$</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">method</span><span class="pun">-&gt;</span><span class="pln">invokeArgs</span><span class="pun">($</span><span class="pln">obj</span><span class="pun">,</span><span class="pln"> array</span><span class="pun">());</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">        </span><span class="pun">$</span><span class="pln">this</span><span class="pun">-&gt;</span><span class="pln">assertEquals</span><span class="pun">(</span><span class="str">&#39;chicken&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">name</span><span class="pun">);</span></li><li class="L6"><span class="pln">    </span><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><h3>Read the executing result of phpunit.</h3><div class="codeBlock"><span class="title"> Result</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">phpunit  test.php</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">PHPUnit 4.1.2 by Sebastian Bergmann.</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">.</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">Time: 64 ms, Memory: 2.00Mb</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">OK (1 test, 1 assertion)</span></li></ol></pre></div><div class="notice" label="Congratulation!">.... You pass the test.</div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-02-07T17:40:00+08:00" class="article-modify-time">2015/02/07</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-268" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-268" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Unit Test 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_230&quot;}'>過高的 Test Code Coverage 將摧毀一個新專案 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

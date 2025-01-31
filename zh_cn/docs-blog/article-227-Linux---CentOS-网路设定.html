@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Linux - CentOS 网路设定</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Linux 網站設定有點麻煩，不像 Window 設定很容易，這篇文章記錄一些常用的 Network 設定。Linux RedHat CentOS 中的網路設定，其檔案都是放在 /etc/sysconfig/network-scripts/ 這個資料夾內，如果我的網卡代號是 eth0 ，那麼設定檔的名稱就會是 ifcfg-eth0 。網卡代號會根據不同廠商，而有不同的代號，如 " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-227-Linux---CentOS-网路设定.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-227-Linux---CentOS-网路设定.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-227-Linux---CentOS-網路設定.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-227-Linux---CentOS-網路設定.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-227">
+                    <em><span>Linux - CentOS 网路设定</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-227-Linux---CentOS-\u7db2\u8def\u8a2d\u5b9a.html"},"headline":"Linux - CentOS \u7db2\u8def\u8a2d\u5b9a","image":"","datePublished":"2014-02-15T23:53:25+08:00","dateModified":"2014-02-17T00:36:14+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Linux \u7db2\u7ad9\u8a2d\u5b9a\u6709\u9ede\u9ebb\u7169\uff0c\u4e0d\u50cf Window \u8a2d\u5b9a\u5f88\u5bb9\u6613\uff0c\u9019\u7bc7\u6587\u7ae0\u8a18\u9304\u4e00\u4e9b\u5e38\u7528\u7684 Network \u8a2d\u5b9a\u3002\r\rLinux RedHat & CentOS \u4e2d\u7684\u7db2\u8def\u8a2d\u5b9a\uff0c\u5176\u6a94\u6848\u90fd\u662f\u653e\u5728  \/etc\/s"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Feb</div>
+            <div class="day">15</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-227-Linux---CentOS-網路設定.html"><span>Linux - CentOS 网路设定</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-227-Linux---CentOS-網路設定.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote vj-lv0" >Linux 网站设定有点麻烦，不像 Window 设定很容易，这篇文章记录一些常用的 Network 设定。</p><p class="vj-quote vj-lv0" >Linux <b>RedHat</b> & <b>CentOS</b> 中的网路设定，其档案都是放在 <b> /etc/sysconfig/network-scripts/ </b> 这个资料夹内，如果我的网卡代号是 <em>eth0</em> ，那么设定档的名称就会是   <em>ifcfg-eth0</em> 。</p><a name="vj-t0"></a><h2 class="vj-sub-title">透过 Router 上网</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >Router 已经是很常见的机器，现在连中华电信的小乌龟内建也有 Router 的功能，只要在 Router 上设定好上网的帐号、密码，其它的电脑就插上网路线，马上就能透过 DHCP 功能，取得一个动态 IP。</p><a name="vj-t1"></a><h2 class="vj-sub-title vj-lv1">DHCP</h2><p class="vj-quote vj-lv1" >使用 DHCP 功能的设定如下，电脑取得 IP 后，就会自动连上网，但是缺点是每次取得的 IP 都不同。</p><div class="codeBlock"><span class="title"> /etc/sysconfig/network-scripts/ifcfg-eth0</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">DEVICE</span><span class="pun">=</span><span class="pln">eth0</span></li><li class="L1"><span class="pln">BOOTPROTO</span><span class="pun">=</span><span class="pln">dhcp</span></li><li class="L2"><span class="pln">ONBOOT</span><span class="pun">=</span><span class="pln">yes</span></li><li class="L3"><span class="pln">NM_CONTROLLED</span><span class="pun">=</span><span class="pln">yes</span></li><li class="L4"><span class="pln">&nbsp;</span></li></ol></pre></div><a name="vj-t2"></a><h2 class="vj-sub-title vj-lv1">固定 IP</h2><p class="vj-quote vj-lv1" >当伺服器已经超过一台以上，这时我们会希望每台电脑都能有一个固定的内部 IP。</p><div class="codeBlock"><span class="title"> ifcfg-eth0</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">DEVICE</span><span class="pun">=</span><span class="pln">eth0</span></li><li class="L1"><span class="pln">ONBOOT</span><span class="pun">=</span><span class="pln">yes</span></li><li class="L2"><span class="pln">NM_CONTROLLED</span><span class="pun">=</span><span class="pln">yes</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">BOOTPROTO</span><span class="pun">=</span><span class="kwd">static</span></li><li class="L5"><span class="pln">IPADDR</span><span class="pun">=</span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">0.4</span></li><li class="L6"><span class="pln">GATEWAY</span><span class="pun">=</span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">0.10</span></li><li class="L7"><span class="typ">Netmask</span><span class="pun">=</span><span class="lit">255.255</span><span class="pun">.</span><span class="lit">255.0</span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title vj-lv1">DNS Search</h2><p class="vj-quote vj-lv1" >Linux CentOS 内建有个 Network Manager ，这个软体会控制 DNS  的设定，打开 /etc/resolv.conf 就可以知道设定有什么，如果这个档案的设定有错，那么机器就不能透过 Domain Name 的上网。</p><p class="vj-amazing vj-lv2"><b>resolv.conf</b> 的设定如果有错，我们还是可用使用 ping ip 的功能。</p><p class="vj-quote vj-lv1" >例如我可以用 telnet  120.54.1.x  80 连到外部的伺服器，可是却无法用 telnet www.google.com 80 的方式连上 Google ，解决方式就是修改 /etc/resolv.conf，然后将 <b>nameserver</b> 设定成 Router 的 IP ，设定成功后，你可以用 nslookup www.google.com 的指令，测试 DNS  Search 是否正常。 </p><div class="codeBlock"><span class="title"> /etc/resolv.conf </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="com"># Generated by NetworkManager</span></li><li class="L1"><span class="com">#search me</span></li><li class="L2"><span class="pln">nameserver </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">0.1</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title">网卡代号</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >网卡代号会根据不同厂商，而有不同的代号，如  Realtek =>  ra0 ,  Ethernet => eth0 ， 「0」代号第一张网卡，如果你有两张网卡，第二张就会变成 eth1。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-02-17T00:36:14+08:00" class="article-modify-time">2014/02/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-227" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-227" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

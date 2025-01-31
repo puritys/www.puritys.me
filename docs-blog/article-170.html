@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?yui-3.13/yui/yui-min.js" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>我討厭 YUI 3 .....第十天 attribute event</title>
+    <meta name="keywords" content="YUI3" />
+    <meta name="description" content=" YUI 3 中有一個最基本的 Module 叫 Attribute，主要功能是存取變數值，例如我想要設定一個變數，那我可以使用 Y.Attribute 的功能，建立一個 Attribute Object, 用他來管理我的變數設定 。Y.Attribute 可以在 new Object 時， Initialize 一些 attribute 進去。 Simple Attribut" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-170-我讨厌-YUI-3-.....第十天-attribute-event.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-170-我討厭-YUI-3-.....第十天-attribute-event.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-170">
+                    <em><span>我討厭 YUI 3 .....第十天 a...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-170-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u5341\u5929-attribute-event.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u5341\u5929 attribute event","image":"","datePublished":"2013-04-17T14:21:32+08:00","dateModified":"2016-09-25T16:28:26+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rYUI 3 \u4e2d\u6709\u4e00\u500b\u6700\u57fa\u672c\u7684 Module \u53eb Attribute\uff0c\u4e3b\u8981\u529f\u80fd\u662f\u5b58\u53d6\u8b8a\u6578\u503c\uff0c\u4f8b\u5982\u6211\u60f3\u8981\u8a2d\u5b9a\u4e00\u500b\u8b8a\u6578\uff0c\u90a3\u6211\u53ef\u4ee5\u4f7f\u7528 Y.Attribute \u7684\u529f\u80fd\uff0c\u5efa\u7acb\u4e00\u500b Attribute Obj"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Apr</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html"><span>我討厭 YUI 3 .....第十天 attribute event</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-170-我讨厌-YUI-3-.....第十天-attribute-event.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>YUI 3 中有一個最基本的 Module 叫 Attribute，主要功能是存取變數值，例如我想要設定一個變數，那我可以使用 <em>Y.Attribute</em> 的功能，建立一個 <span class="vj-cmd">Attribute Object</span>, 用他來管理我的變數設定 。</p><p>Y.Attribute 可以在 new Object 時， Initialize 一些 attribute 進去。</p><div class="codeBlock my_js"><span class="title"> Simple Attribute</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> GB </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Attribute</span><span class="pun">({</span></li><li class="L1"><span class="pln">   </span><span class="str">"maxWidth"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"1000px"</span><span class="pun">},</span></li><li class="L2"><span class="pln">   </span><span class="str">"maxHeight"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"800px"</span><span class="pun">}</span></li><li class="L3"><span class="pun">});</span></li><li class="L4"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">GB</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"maxWidth"</span><span class="pun">));</span><span class="com">// output 1000px</span></li><li class="L5"><span class="pln">GB</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">"maxWidth"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"900px"</span><span class="pun">);</span></li><li class="L6"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">GB</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"maxWidth"</span><span class="pun">));</span><span class="pln"> </span><span class="com">// output 900px</span></li></ol></pre></div><h2>Attribute event : value change</h2><p>YUI 3 的 attribute 還有個 event 的管理功能，當某一個變數的內容變更時，我可以指定它去觸發某一個事件，例如上一個範例中的 maxWidth 被變更時，我可能會希望視窗的尺寸也跟著改變。</p><p>講到 event ，就要先知道他的 event 名稱，假設我定義一個 Attribute 變數名稱為 attrName，則這個變數的內容變更時，它的 Event 名稱為 「attrName<em>Change</em>」，change 就是指變數被變更的意思，在 change 前面再加上 attribute 名稱，就是他的 event 了。</p><p>為了讓這個 Event 能夠順利觸發，我們必須先幫它綁定 function，綁定方式就是使用 YUI on 來完成。</p><div class="codeBlock my_js"><span class="title"> Bind attribute event 範例</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> A </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Attribute</span><span class="pun">({</span></li><li class="L1"><span class="pln">        </span><span class="str">"attrName"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">            value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test"</span><span class="pun">,</span></li><li class="L3"><span class="pln">            writeOnce</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span></li><li class="L4"><span class="pln">        </span><span class="pun">}</span></li><li class="L5"><span class="pln">    </span><span class="pun">});</span></li><li class="L6"><span class="pln">   A</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"attrNameChange"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Attribute name = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">attrName</span><span class="pun">);</span></li><li class="L8"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Original value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">prevVal </span><span class="pun">+</span><span class="pln"> </span><span class="str">", New value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">newVal</span><span class="pun">);</span></li><li class="L9"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"event trigger"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">data3</span><span class="pun">);</span><span class="pln">  Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);},</span><span class="pln"> </span><span class="pun">{</span><span class="pln">data3</span><span class="pun">:</span><span class="lit">2</span><span class="pun">}</span></li><li class="L0"><span class="pln">    </span><span class="pun">);</span></li></ol></pre></div><p>最後再透過 AttributeObject.set(key, value); 去修改 attribute 內容，這樣 YUI 就會自動去觸 attrChange 的 event 而執行我們指定的 function 。</p><h2>全部的程式範例</h2><div class="codeBlock my_js"><span class="title"> source code 範例</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">YUI</span><span class="pun">().</span><span class="pln">use</span><span class="pun">(</span><span class="str">"node"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"lang"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"base"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"attribute"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"attribute-observable"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">Y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> A </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Attribute</span><span class="pun">({</span></li><li class="L4"><span class="pln">        </span><span class="str">"attrName"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">            value</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test"</span><span class="pun">,</span></li><li class="L6"><span class="pln">            writeOnce</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span></li><li class="L7"><span class="pln">        </span><span class="pun">}</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    A</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"attrNameChange"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Attribute name = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">attrName</span><span class="pun">);</span></li><li class="L2"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Original value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">prevVal </span><span class="pun">+</span><span class="pln"> </span><span class="str">", New value = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">newVal</span><span class="pun">);</span></li><li class="L3"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"event trigger"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">data3</span><span class="pun">);</span><span class="pln">  Y</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);},</span><span class="pln"> </span><span class="pun">{</span><span class="pln">data3</span><span class="pun">:</span><span class="lit">2</span><span class="pun">}</span></li><li class="L4"><span class="pln">    </span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    </span><span class="com">//change it</span></li><li class="L7"><span class="pln">    A</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">"attrName"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"test2"</span><span class="pun">);</span></li><li class="L8"><span class="pun">});</span></li><li class="L9"><span class="tag">&lt;/script&gt;</span></li></ol></pre></div><p>其他相關</p><ul class="list">  <li>Attribute Event 的相關程式碼寫在 attribute-observable 裡。</li>  <li><a href="http://yuilibrary.com/yui/docs/api/files/attribute_js_AttributeObservable.js.html"  target="_blank">http://yuilibrary.com/yui/docs/api/files/attribute_js_AttributeObservable.js.html</a></li></ul><h2>實作範例</h2><div style="margin:0 auto;width:100px;">   <br /><a class="demo-link ezHTML-popup"  href="/filemanage/blog_files/yAttributeSample.html" data-info="%7B%22width%22%3A200%2C%22height%22%3A200%7D"><i class="glyphicon glyphicon-file"></i>點我看範例</a></div><!---<br />attribute event & lazy add<br />---><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T16:28:26+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-170" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-170" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-153">我討厭 YUI 3 .....第八天 Widget</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-177">我討厭 YUI 3 .....第十一天 Node Rotate Plugin</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-198-我討厭-YUI-3-.....第十三天-Radio.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="/docs-blog/article-196-我討厭-YUI-3-.....第十二天-Panel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="/docs-blog/article-177-我討厭-YUI-3-.....第十一天-Node-Rotate-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="/docs-blog/article-161-YUI3-yogi.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="/docs-blog/article-150-我討厭-YUI-3-.....第七天-FileUploader.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="/docs-blog/article-102-我討厭-YUI-3-.....第六天-Slider.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

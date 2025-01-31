@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Java Maven 安裝</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Maven 是一個 Java 的工具，可以用來幫你下載 Java LibrariesJava 已經存在非常多年，網路上有很多 Java 相關的 Libraries ，如果你手動一個一個下載回來安裝，再手動輸入長長的指令去載入這些 libraries ，這個做法會浪費太多的時間，而且一般人的記憶力也沒這麼好，記不下這麼多 libraries ，所以透過 Maven 就可以輕鬆的搞" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-335-Java-Maven-安裝.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-335-Java-Maven-安装.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-335-Java-Maven-安裝.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-335-Java-Maven-安裝.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Java" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Java</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-335">
+                    <em><span>Java Maven 安裝</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-335-Java-Maven-\u5b89\u88dd.html"},"headline":"Java Maven \u5b89\u88dd","image":"","datePublished":"2015-11-04T11:31:48+08:00","dateModified":"2017-03-20T23:51:57+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Maven \u662f\u4e00\u500b Java \u7684\u5de5\u5177\uff0c\u53ef\u4ee5\u7528\u4f86\u5e6b\u4f60\u4e0b\u8f09 Java LibrariesJava \u5df2\u7d93\u5b58\u5728\u975e\u5e38\u591a\u5e74\uff0c\u7db2\u8def\u4e0a\u6709\u5f88\u591a Java \u76f8\u95dc\u7684 Libraries \uff0c\u5982\u679c\u4f60\u624b\u52d5\u4e00\u500b\u4e00\u500b\u4e0b\u8f09\u56de\u4f86\u5b89\u88dd\uff0c\u518d"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Nov</div>
+            <div class="day">04</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-335-Java-Maven-安裝.html"><span>Java Maven 安裝</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-335-Java-Maven-安装.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Maven 是一個 Java 的工具，可以用來幫你下載 Java LibrariesJava 已經存在非常多年，網路上有很多 Java 相關的 Libraries ，如果你手動一個一個下載回來安裝，再手動輸入長長的指令去載入這些 libraries ，這個做法會浪費太多的時間，而且一般人的記憶力也沒這麼好，記不下這麼多 libraries ，所以透過 Maven 就可以輕鬆的搞定所有事情。</p><h2>安裝 Maven</h2><p>請到下面這個網址下載 Maven 原始檔。</p><ul class="list">  <li><a href="http://maven.apache.org/download.cgi"  target="_blank">http://maven.apache.org/download.cgi</a></li></ul><p>我的 Linux 系統安裝 Maven 方式如下：  (2015/11/16)</p><ul class="list">  <li>wget <a href="http://ftp.mirror.tw/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz"  target="_blank">http://ftp.mirror.tw/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz</a></li>  <li>tar -zxvf apache-maven-3.3.9-bin.tar.gz</li>  <li>cd apache-maven-3.3.9/</li>  <li>最後再將  apache-maven 中的 bin 資料夾，設定在環境變數中，例如我是使用 Linux 系統，所以我編輯我的個人目錄的檔案 .bash_profile，加下 <code> PATH=$PATH:~/apache-maven-3.3.3/bin/</code>，再執行 source ~/.bash_profile</li></ul><div class="notice" label="windows user">如果你是用 windows 系統，請參考下面這個官方教學網址 <a href="http://maven.apache.org/install.html"  target="_blank">http://maven.apache.org/install.html</a></div><p>到了這裡就算安裝完成了 ，你可以用 terminal 輸入 <code>mvn --version </code>來測試看看有沒有安裝成功，例如我輸入 mvn 就會看到  mvn 有正確執行。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">$ mvn --version</span></li><li class="L1"><span class="pln">source ~/.bash_profile  &amp;&amp; mvn --version</span></li><li class="L2"><span class="pln">Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T19:57:37+08:00)</span></li><li class="L3"><span class="pln">Maven home: /home/puritys/apache-maven-3.3.3</span></li><li class="L4"><span class="pln">Java version: 1.7.0_85, vendor: Oracle Corporation</span></li><li class="L5"><span class="pln">Java home: /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.85-2.6.1.2.el7_1.x86_64/jre</span></li><li class="L6"><span class="pln">Default locale: en_US, platform encoding: UTF-8</span></li><li class="L7"><span class="pln">OS name: "linux", version: "3.10.0-229.el7.x86_64", arch: "amd64", family: "unix"</span></li></ol></pre></div><h2>環境變數設定</h2><p>安裝 Maven 完成後，還要記得補一個環境變數叫 "M2" ，這個變數很重要，一定要設定，習慣上會直接設定成個人目錄下的 .m2，設定好之後，未來只要你用 Maven 安裝 Java Libraries ， Maven 就會自動裝到  ~/.m2 這個目錄裡面 。</p><div class="codeBlock html"><span class="title"> 增加 M2 環境變到檔案 .bash_profile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">export M2=~/.m2</span></li></ol></pre></div><h2>建立一個 Maven Project</h2><blockquote>mvn archetype:generate -DgroupId=com.example -DartifactId=example -DinteractiveMode=false</blockquote><p>執行上面這個指令， Maven 就會自動建立出  example 這個檔案夾，並且建立 pom.xml,  src, main, test, App.java 這些目錄與檔案，你要開發的 source code 是放在 src/main 底下，而測試程式很明顯的要放在 test 底下。</p><p>src/main/java/example/App.java 這個程式是 Maven 自動建立的，現在我們來使用 Maven 編譯並執行這支程式。</p><ul class="list">  <li>mvn compile</li>  <li>mvn exec:java -Dexec.mainClass="com.example.App"</li></ul><p>compile 為編譯程式，Maven 會自動裝 src/main 底下的程式所以拿出來編譯，然後放在 target 這個目錄底下，而  <code>mvn exec:java -Dexec.mainClass="com.example.App" </code>這個指令則是告訴 Maven 我們要執行的程式叫  "<em>com.example.App</em>" ，這是 App.java 這個檔案的 Package Name ，在 Java 的世界裡每支程式都有自已的 package 名稱，package 名稱要跟符合檔案的路徑，而且最後一個點後面的名稱一定要跟檔名一樣，所以 com.example.App 會指向 com/example/App.java 這個檔案。</p><h2>Unit test</h2><p>在 test/java/com/example/ 底下有一個 AppTest.java 的程式，這也是 Maven 預設幫我們建立好的 Unit test 範例，我們可以使用指令 <code> mvn test </code> 來直接執行測試程式。</p><ul class="list">  <li>mvn test</li></ul><h2>Maven project setting pom.xml</h2><p>pom.xml 是 Maven 專用的 project 設定檔，你可以在這個檔名加上你需要的 Libraries， Maven 就能夠自動下載你指定的 Libraries ，例如預設 Maven 已經幫我們在 pom.xml 中加入了 junit 這個  unit test 的 Library 。</p><p>我安裝的 Maven 是 3.3.3 版，它預設幫我們建的 junit 版本會是 3.8 版，這個版本太舊了，某些功能無法使用，請記得手動直接升上 4.12 。</p><div class="codeBlock xml"><span class="title"> pom.xml</span><pre class="prettyprint lang-xml linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;project</span><span class="pln"> </span><span class="atn">xmlns</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0"</span><span class="pln"> </span><span class="atn">xmlns:xsi</span><span class="pun">=</span><span class="atv">"http://www.w3.org/2001/XMLSchema-instance"</span></li><li class="L1"><span class="pln">  </span><span class="atn">xsi:schemaLocation</span><span class="pun">=</span><span class="atv">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;modelVersion&gt;</span><span class="pln">4.0.0</span><span class="tag">&lt;/modelVersion&gt;</span></li><li class="L3"><span class="pln">  </span><span class="tag">&lt;groupId&gt;</span><span class="pln">com.example</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L4"><span class="pln">  </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">maven</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L5"><span class="pln">  </span><span class="tag">&lt;packaging&gt;</span><span class="pln">jar</span><span class="tag">&lt;/packaging&gt;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;version&gt;</span><span class="pln">1.0-SNAPSHOT</span><span class="tag">&lt;/version&gt;</span></li><li class="L7"><span class="pln">  </span><span class="tag">&lt;name&gt;</span><span class="pln">maven</span><span class="tag">&lt;/name&gt;</span></li><li class="L8"><span class="pln">  </span><span class="tag">&lt;url&gt;</span><span class="pln">http://maven.apache.org</span><span class="tag">&lt;/url&gt;</span></li><li class="L9"><span class="pln">  </span><span class="tag">&lt;dependencies&gt;</span></li><li class="L0"><span class="pln">    </span><span class="tag">&lt;dependency&gt;</span></li><li class="L1"><span class="pln">      </span><span class="tag">&lt;groupId&gt;</span><span class="pln">junit</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">junit</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L3"><span class="pln">      </span><span class="tag">&lt;version&gt;</span><span class="pln">4.12</span><span class="tag">&lt;/version&gt;</span></li><li class="L4"><span class="pln">      </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;/dependency&gt;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;/dependencies&gt;</span></li><li class="L7"><span class="tag">&lt;/project&gt;</span></li></ol></pre></div><h2>載入 local 端 maven package</h2><p>有時候我們要在 A project 找另一個 library  B 的 bug ，但預設 Maven 只會去下載遠端的 library ，其實只要加入 systemPath 跟 scope 這兩個參數就行了。</p><ul class="list">  <li>官方文件 <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#System_Dependencies"  target="_blank">http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#System_Dependencies</a></li></ul><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;dependencies&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;dependency&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;groupId&gt;</span><span class="pln">javax.sql</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L3"><span class="pln">      </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">jdbc-stdext</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L4"><span class="pln">      </span><span class="tag">&lt;version&gt;</span><span class="pln">2.0</span><span class="tag">&lt;/version&gt;</span></li><li class="L5"><span class="pln">      </span><span class="tag">&lt;scope&gt;</span><span class="pln">system</span><span class="tag">&lt;/scope&gt;</span></li><li class="L6"><span class="pln">      </span><span class="tag">&lt;systemPath&gt;</span><span class="pln">${java.home}/lib/rt.jar</span><span class="tag">&lt;/systemPath&gt;</span></li><li class="L7"><span class="pln">    </span><span class="tag">&lt;/dependency&gt;</span></li><li class="L8"><span class="pln">  </span><span class="tag">&lt;/dependencies&gt;</span></li></ol></pre></div><p>先到  Library B 執行 mvn package ，目錄 target 就會出現 ***.jar 的檔案，然後再回到 A 專案，修改 pom.xml  在 dependency 加入 B 的設定，並指定 system Path 就行了。</p><h2>問題處理</h2><blockquote>mvn Error: Could not find or load main class org.codehaus.plexus.classworlds.launcher.Launcher</blockquote><p>我第一次安裝的時候有碰到這個問題，原因是因為我下載到 apache-maven-3.3.3-src.tar.gz 這個檔案，只要重新下載  apache-maven-3.x.x.bin.tar.gz 這個檔案就可以了。</p><h2>相關文章</h2><ul class="list">  <li><a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html"  target="_blank">http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-03-20T23:51:57+08:00" class="article-modify-time">2017/03/20</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-335" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-335" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-336">Java 安裝方式與其變數型態</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Java</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_442&quot;}'>How to do Dynamodb unit test </a></li>
+    
+        <li><a href="/docs-blog/article-409-Java-Best-Practice.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_409&quot;}'>Java Best Practice </a></li>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-349-Java-JVM-為何要先暖機，效能才會變好.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_349&quot;}'>Java JVM 為何要先暖機，效能才會變好 </a></li>
+    
+        <li><a href="/docs-blog/article-336-Java-安裝方式與其變數型態.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_336&quot;}'>Java 安裝方式與其變數型態 </a></li>
+    
+        <li><a href="/docs-blog/article-335-Java-Maven-安裝.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_335&quot;}'>Java Maven 安裝 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

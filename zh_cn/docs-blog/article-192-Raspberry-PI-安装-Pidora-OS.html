@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Raspberry PI 安装 Pidora OS</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="RaspBerry Pi 官網有提供各種 OS 給用戶安裝，而我選的 OS 是 Pidora， Pidora OS 是從 Fedora 演變來的，而 Fedora 又是從 Redhat 移植過來的，如果你是習慣 Redhat 系統的用戶，那麼會比較容易上手，這也是我選 Pidora 的原因。目前 Raspberry 使用的 cpu 都是 arm arch，所以只能裝有支援 ar" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-192-Raspberry-PI-安装-Pidora-OS.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-192-Raspberry-PI-安装-Pidora-OS.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-192-Raspberry-PI-安裝-Pidora-OS.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-192-Raspberry-PI-安裝-Pidora-OS.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-192">
+                    <em><span>Raspberry PI 安装 Pidora OS</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-192-Raspberry-PI-\u5b89\u88dd-Pidora-OS.html"},"headline":"Raspberry PI \u5b89\u88dd Pidora OS","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_78.jpg","datePublished":"2013-10-30T01:36:27+08:00","dateModified":"2015-07-11T15:51:38+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"RaspBerry Pi \u5b98\u7db2\u6709\u63d0\u4f9b\u5404\u7a2e OS \u7d66\u7528\u6236\u5b89\u88dd\uff0c\u800c\u6211\u9078\u7684 OS \u662f Pidora\uff0c Pidora OS \u662f\u5f9e Fedora \u6f14\u8b8a\u4f86\u7684\uff0c\u800c Fedora \u53c8\u662f\u5f9e Redhat \u79fb\u690d\u904e\u4f86\u7684\uff0c\u5982"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Oct</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-192-Raspberry-PI-安裝-Pidora-OS.html"><span>Raspberry PI 安装 Pidora OS</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-192-Raspberry-PI-安裝-Pidora-OS.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>RaspBerry Pi 官网有提供各种 OS 给用户安装，而我选的 OS 是 Pidora， Pidora OS 是从 Fedora 演变来的，而 Fedora 又是从 Redhat 移植过来的，如果你是习惯 Redhat 系统的用户，那么会比较容易上手，这也是我选 Pidora 的原因。</p><p>目前 Raspberry 使用的 cpu 都是 arm arch，所以只能装有支援 arm 的 OS ，而且不同 cpu arch 的软体是不能互装的，如果你已经有在 center OS ,RHEL 等等 OS 编译过的程式，到 Pidora 还要重新编译</p><p class=" indent1">先来看一张 Raspberry 的实体</p><a href="/filemanage/blog_files/file_78.jpg" target="_blank" ><img src="/filemanage/blog_files/file_78.jpg"   class="Raspberry" alt="Raspberry PI" link="me"  style="width: 250px;"/></a><h2>安装 Pidora</h2><ul class="list">  <li>下载页面 <a href="http://www.raspberrypi.org/downloads"  target="_blank">http://www.raspberrypi.org/downloads</a></li>  <li>选择 OS: pidora-18-r2c.zip</li></ul><p>下载好 Pidora 后，不要以为将资料夹 copy 到 SD Card 就能开机，必须透过软体将 image 的内容直接写入至 SD Card。</p><h2>使用 Windows 安装 OS</h2><ul class="list">  <li>下载 win32diskimager-v0.9-binary</li>  <li>启动 win32diskimager 将  pidora 写入至 SD Card。</li></ul><h2>使用 Linux 安装 OS</h2><p>在 Linux 中可以使用 dd 这个指令，将 OS 安装至 SD Card，可以先使用 df 或 lsusb 查询你 SD Card 的代号(/dev/sda1)。</p><ul class="list">  <li>dd -if pidora.image -of /dev/sda</li></ul><h2>开机预设关闭  xWindow</h2><div class="codeBlock"><span class="title"> Command</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo rm </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">systemd</span><span class="pun">/</span><span class="pln">system</span><span class="pun">/</span><span class="kwd">default</span><span class="pun">.</span><span class="pln">target</span></li><li class="L1"><span class="pln">   sudo ln </span><span class="pun">-</span><span class="pln">s </span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">systemd</span><span class="pun">/</span><span class="pln">system</span><span class="pun">/</span><span class="pln">multi</span><span class="pun">-</span><span class="pln">user</span><span class="pun">.</span><span class="pln">target </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">systemd</span><span class="pun">/</span><span class="pln">system</span><span class="pun">/</span><span class="kwd">default</span><span class="pun">.</span><span class="pln">target</span></li></ol></pre></div><h2>启用 xwindow</h2><div class="codeBlock"><span class="title"> Command</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo ln </span><span class="pun">-</span><span class="pln">s </span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">systemd</span><span class="pun">/</span><span class="pln">system</span><span class="pun">/</span><span class="pln">graphical</span><span class="pun">.</span><span class="pln">target </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">systemd</span><span class="pun">/</span><span class="pln">system</span><span class="pun">/</span><span class="kwd">default</span><span class="pun">.</span><span class="pln">target</span></li></ol></pre></div><h2>更新系统时间</h2><p>Raspberry 只要将 SD Card 拔掉再插入，系统时间就会出错，可以使用下列语法，跟网路上的伺服器同步时间</p><ul class="list">  <li>sudo ntpdate pool.ntp.org</li></ul><h2>网路重新启用</h2><ul class="list">  <li>ifconfig eth0 down && ifconfig eth0 up</li></ul><h2>安装 Package</h2><ul class="list">  <li>sudo yum install vim</li>  <li>sudo yum install screen</li></ul><h2>iptables</h2><p>预设 Pidora 是有启用 iptables ，所以部分 port 是会阻挡外部连线的，可以用下列的指令，开启 port 。</p><ul class="list">  <li>sudo service iptables restart</li>  <li>sudo iptables -F (清除 iptables 的所有规则)</li>  <li>sudo /sbin/iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to 127.0.0.1:80</li></ul><p>允许外部机器连到 Mysql 3306 port</p><ul class="list">  <li>sudo /sbin/iptables -t nat -A INPUT -p tcp --dport 3306 -j ACCEPT</li></ul><p>如果你上一步的设定有打错，例如 IP 绑错网卡，这时就会须要重新设定 iptables ，设定方式是先将 iptable rule 存成一个档案，编辑后，再重新写入。</p><ul class="list">  <li>sudo iptables-save >  iptables.rules</li>  <li>vim iptables.rules</li>  <li>sudo iptables-restore  < iptables.rules</li></ul><div class="notice" label="!">修改 iptables 后，要再执行 sudo iptables -F 才会生效喔!</div><h2>启用 crontab</h2><ul class="list">  <li>sudo service crond start</li></ul><h2>Sata 与 SD Card 写入，速度差别</h2><ul class="list">  <li>Sata 529 MB/s</li>  <li>SD Card  68.4 MB/s</li></ul><h2>Format USB and mount</h2><p>小型主机当然要搭配小型的 storage ，首面插上 USB， pidora 自动会读取到 USB ，不过如果你不是使用 EXT3 格式，当你要修改档案权限的时候，会被 OS 给中断掉，所以我得先格式化 USB。</p><p>输入 「sudo mkfs.ext3 /dev/sdb1 」 将 USB 格式化成 ext3 格式</p><p>最后 「sudo mount /dev/sdb1 /xxx」 将 USB 挂到 /xxx 目录</p><h2>Raspberry 安装过程</h2><a href="/filemanage/blog_files/file_114.JPG" target="_blank" ><img src="/filemanage/blog_files/file_114.JPG"   link="me"  style="width: 550px;"/></a><a href="/filemanage/blog_files/file_115.JPG" target="_blank" ><img src="/filemanage/blog_files/file_115.JPG"   link="me"  style="width: 550px;"/></a><a href="/filemanage/blog_files/file_117.JPG" target="_blank" ><img src="/filemanage/blog_files/file_117.JPG"   link="me"  style="width: 550px;"/></a><a href="/filemanage/blog_files/file_118.JPG" target="_blank" ><img src="/filemanage/blog_files/file_118.JPG"   link="me"  style="width: 550px;"/></a></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-07-11T15:51:38+08:00" class="article-modify-time">2015/07/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-192" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-192" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

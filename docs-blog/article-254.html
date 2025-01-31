@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="en" />
+    <meta name="author" content="Puritys" />
+    <title>How to set virutal box network</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="When I bought a new mac mini. The first thing what I had to do is install a linux operation system into Oracle Virtual Box. But it has a big problem to set the network in Virtual Box.I want " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-254-How-to-set-virutal-box-network.html"/>
+    
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-254-How-to-set-virutal-box-network.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-254">
+                    <em><span>How to set virutal b...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-254-How-to-set-virutal-box-network.html"},"headline":"How to set virutal box network","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_132.png","datePublished":"2014-05-05T23:27:09+08:00","dateModified":"2015-08-01T00:19:17+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"When I bought a new mac mini. The first thing what I had to do is install a linux operation system i"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">May</div>
+            <div class="day">05</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-254-How-to-set-virutal-box-network.html"><span>How to set virutal box network</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>When I bought a new mac mini. The first thing what I had to do is install a linux operation system into Oracle Virtual Box. But it has a big problem to set the network in Virtual Box.</p><p>I want to set two network adapter in the virtual box, the first one is NAT, the second one is "Host-only".</p><img src="/filemanage/blog_files/file_132.png"   class="Host-only" alt="Add Host-only in virtual box"  style="width: 400px;"/><h2>Let&#39;s start virtual box</h2><p>First thing to do is download "Virtual Box" and "Linux Center OS" then install all of them.</p><p>When you install a linux OS into virtual box, this OS you logged we will call it "<em>Guest</em>", and the Mac you are using we will call it "<em>Host</em>".</p><p>It is easy to distinguish both of them, "Guest" could be multiple and "Host" is the only one.</p><p>When you start to install a Guest, please must select the default network "NAT",  The "NAT" will let your guest use host&#39;s network, and it will be a easy beginnings for you.</p><div class="notice" label="Done">Congratulation I hope you done this!</div><h2>Network setting</h2><p>Then, let&#39;s login your linux and see the default setting of linux in <code>/etc/sysconfig/network-scripts/ifcfg-eth0</code>.</p><div class="codeBlock"><span class="title"> ifcfg-eth0</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">DEVICE</span><span class="pun">=</span><span class="pln">eth0</span></li><li class="L1"><span class="pln">HWADDR</span><span class="pun">=</span><span class="pln">xx</span><span class="pun">:??:??:??:??:??</span></li><li class="L2"><span class="pln">TYPE</span><span class="pun">=</span><span class="typ">Ethernet</span></li><li class="L3"><span class="pln">UUID</span><span class="pun">=</span><span class="pln">ca2ae</span><span class="pun">-</span><span class="pln">f405c</span><span class="pun">-???</span><span class="lit">2</span><span class="pun">-</span><span class="lit">232</span><span class="pun">-</span><span class="pln">xxxxxxxx</span></li><li class="L4"><span class="pln">ONBOOT</span><span class="pun">=</span><span class="kwd">no</span><span class="pln">  </span><span class="com">//change the value to be "yes"</span></li><li class="L5"><span class="pln">NM_CONTROLLED</span><span class="pun">=</span><span class="pln">yes</span></li><li class="L6"><span class="pln">BOOTPROTO</span><span class="pun">=</span><span class="pln">dhcp</span></li></ol></pre></div><p>Because the ONBOOT value is "no", so linux won&#39;t connect to internet rightnow. We should execute command "<code>ifup eth0</code>" to start the network.</p><p>Next step is to check your setting of DNS server. When you start the "<b>eth0</b>" network, linux will auto find the DNS server and set a value into /etc/resolv.conf. Check the setting inside file content. It should look like the following content.</p><div class="codeBlock"><span class="title"> vim /etc/resolv.conf</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pun">;</span><span class="pln"> generated </span><span class="kwd">by</span><span class="pln"> </span><span class="pun">/</span><span class="pln">sbin</span><span class="pun">/</span><span class="pln">dhclient</span><span class="pun">-</span><span class="pln">script </span></li><li class="L1"><span class="pln">nameserver </span><span class="lit">192.168</span><span class="pun">.?.?</span></li></ol></pre></div><p>Sometimes it will be setted a wrong ip. When that happen, you could change the ip by yourself. Usually the dns server is your <b>router ip</b>.</p> <br /><p>When you finish these setting, you could use command <code>ping www.google.com.tw</code> to test your network.</p><div class="codeBlock"><span class="title"> Result of ping </span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">ping www.google.com.tw</span></li><li class="L1"><span class="pln">PING www.google.com.tw (173.194.72.94) 56(84) bytes of data.</span></li><li class="L2"><span class="pln">64 bytes from tf-in-f94.1e100.net (173.194.72.94): icmp_seq=1 ttl=63 time=35.8 ms</span></li></ol></pre></div><p>If you was failed to ping www.google.com, you can use the other command <code>ping 173.194.72.94</code>. It will bypass DNS server and directly to test your network .</p><p>When you found directly ping ip is working, but ping hostname(www.google.com) is failed. You must having a wrong DNS server setting in /etc/resolv.conf.</p><h3>Set a Host only network</h3><p>The final step, I want to connect to "Guest machine" from my "<em>Host Mac</em>". But I don&#39;t know the IP of Guest machine, so we could create a "<em>Host-only Network</em>" in virtual box.</p><p>Open your virtual box and click "Preferences" of virtual box  then select the Network and Host-Only networks. It will create a virtual network interface, we set the ip 192.168.56.1 to be our network interface.</p><img src="/filemanage/blog_files/file_131.png"   class="Host" alt="Create Host only network"  style="width: 400px;"/><img src="/filemanage/blog_files/file_130.png"   class="only" alt="Host only network setting"  style="width: 400px;"/><p>We has new network segment now, then I want to set a ip to my Guest machine.</p><p>Open your virtual box and click "settings" of Guest then select the network. Add a new network adapter and choose the Host only network. Then save it!</p><img src="/filemanage/blog_files/file_134.png"   class="network" alt="New network adapter of Guest"  style="width: 400px;"/><p>Now restart Guest machine and login, edit file "/etc/sysconfig/network-scripts/ifcfg-eth1". Change the value of BOOTPROTO to be "static" and IPADDR to be "192.168.56.2".</p><div class="codeBlock"><span class="title"> sudo vim /etc/sysconfig/network-scripts/ifcfg-eth1</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">EVICE=eth1</span></li><li class="L1"><span class="pln">HWADDR=0?:x0:3?:X2:zS:?x</span></li><li class="L2"><span class="pln">TYPE=Ethernet</span></li><li class="L3"><span class="pln">#UUID=d3e8bexx-f4xx-46xx-2f81-739xxxx</span></li><li class="L4"><span class="pln">ONBOOT=yes</span></li><li class="L5"><span class="pln">NM_CONTROLLED=yes</span></li><li class="L6"><span class="pln">BOOTPROTO=static</span></li><li class="L7"><span class="pln">IPADDR=192.168.56.2</span></li></ol></pre></div><p>Let&#39;s restart the network of Guest. <code>ifdown eth1 && ifup eth1</code>.</p><p>Now I can connect to my Guest machine by using 192.168.56.2 from Mac.</p><h2>Network type of virtual box</h2><h3>NAT (Network Address Translation)</h3><p>This is the most common network setting of virtual box. Do not to bother anything, just confirm you host could connect to the internet. The virtual os will use your host&#39;s network.</p><h3>Host only</h3><p>This type will create a new network segment like "192.168.56." .  You could change the Guest  IP to be  192.168.56.2 and Host could connect to Guest by this IP.</p><h3>Internal Networking</h3><p>This type only let your Guest connect to the other Guest.</p> <br /><h2>Set Host IP</h2><p>I will give a static ip to my Host. The ip will be 192.168.56.3, Let my Guest machine connect to my Host.</p><p>It is not a hard setting, just edit your network of Mac and select what network which you used. In my case, I should select the Wi-Fi network. Choose the "Using DHCP with manual address" and type a ip that you want.</p><img src="/filemanage/blog_files/file_128.png"    style="width: 400px;"/><img src="/filemanage/blog_files/file_129.png"    style="width: 400px;"/><h2>How to use root to start VirtualBox on Mac machine</h2><blockquote>sudo /Applications/VirtualBox.app/Contents/Resources/VirtualBoxVM.app/Contents/MacOS/VirtualBoxVM</blockquote><blockquote>/Applications/VirtualBox.app/Contents/Resources/VirtualBoxVM.app/Contents/MacOS/VirtualBoxVM --comment WebService --startvm 302ea398-0178-7bc4-34xazxx --no-startvm-errormsgbox</blockquote><h2>Reference material</h2><ul class="list">  <li><a href="http://www.virtualbox.org/manual/ch06.html"  target="_blank">http://www.virtualbox.org/manual/ch06.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-08-01T00:19:17+08:00" class="article-modify-time">2015/08/01</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-254" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-254" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

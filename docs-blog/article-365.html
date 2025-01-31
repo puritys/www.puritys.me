@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Git checkout reset revert rebase 的差別</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="git checkoutcheckout 有兩種用途，第一種是切換 git branch ，另一種則是回復檔案修改。git checkout branch_name 這個指令會切換目前的工作路徑到 branch ，如果你想要建立一個新的 branch ，那麼你可以使用 git checkout -b new_branch_name。git checkout file_name " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-365-Git-checkout-reset-revert-rebase-的差別.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-365-Git-checkout-reset-revert-rebase-的差别.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-365-Git-checkout-reset-revert-rebase-的差別.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-365-Git-checkout-reset-revert-rebase-的差別.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-365">
+                    <em><span>Git checkout reset r...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-365-Git-checkout-reset-revert-rebase-\u7684\u5dee\u5225.html"},"headline":"Git checkout reset revert rebase \u7684\u5dee\u5225","image":"","datePublished":"2016-07-30T23:51:01+08:00","dateModified":"2018-02-17T23:29:30+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"git checkout\rcheckout \u6709\u5169\u7a2e\u7528\u9014\uff0c\u7b2c\u4e00\u7a2e\u662f\u5207\u63db git branch \uff0c\u53e6\u4e00\u7a2e\u5247\u662f\u56de\u5fa9\u6a94\u6848\u4fee\u6539\u3002\rgit checkout branch_name \u9019\u500b\u6307\u4ee4\u6703\u5207\u63db\u76ee\u524d\u7684\u5de5\u4f5c\u8def\u5f91\u5230"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Jul</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-365-Git-checkout-reset-revert-rebase-的差別.html"><span>Git checkout reset revert rebase 的差別</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-365-Git-checkout-reset-revert-rebase-的差别.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>git checkout</h2><p>checkout 有兩種用途，第一種是切換 git branch ，另一種則是回復檔案修改。</p><p><b>git checkout branch_name </b>這個指令會切換目前的工作路徑到 branch ，如果你想要建立一個新的 branch  ，那麼你可以使用 git checkout -b new_branch_name。</p><p><b>git checkout file_name</b> 這個指令會把指定的檔案，將其內容回復到該 branch 中最後一個 commit ，所以當你修改了某一個檔案，在你還沒有 commit 之前，都可以使用 git checkout file_name 來放棄你的修改，將檔案還原。</p><h2>git reset vs revert</h2><p>這兩個指令很像，兩個都可以將檔案還原到指定的 commit ，不同的是 revert 會保留 git commit log ，而 reset 會連 commit log 也一起被清除。</p><br /><blockquote>A → B → C →</blockquote><p>例如上圖是我的 git commit log ，如果我想要還原到 B 的狀態，那麼我使用 git reset B ，而我得到的結果會是 ：</p><blockquote>A → B →</blockquote><h3>revert</h3><p>若是我想要保留 git log 記錄，那麼我要用 git revert C ，最後我得到的結果是：</p><blockquote>A → B → C → B →</blockquote><h2>git rebase</h2><p>git rebase 的功能是與 git server 同步 git commit log，當 local 的 commit log  與 server 端不一致時，git 是不允許你將 local 的 commit push 到 server 端的，這時就要靠 git rebase 來與 server 端同步 commit log ，讓我來示範如何使用 git rebase ：</p><p>假設我本機有個 git repository ，我的 commit log 如下：</p><blockquote>A → B →</blockquote><p>而 Server 端剛好有其他人 push 了 C 這個 commit log。</p><blockquote>A → B → C →</blockquote><p>但是我不知道有別人已經先 push code 到  git server 端了，所以我繼續修改我的程式，並在 local 端 commit 了一個 D。</p><blockquote>A → B → D</blockquote><p>當我用 git push 後，就會看到下面這個訊息，git server 拒絕我這次的 push ，因為兩邊的 commit log 不一致， server 那邊的 commit 順序是 B → C，而我 local 端的 commit 順序是 B → D， git 不能接受這樣的 commit 順序，就算你把檔案內容修改到跟 C  一模一樣也是不行的，git 是認 commit log 而不是 檔案內容。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="typ">Warning</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Permanently</span><span class="pln"> added </span><span class="str">&#39;[github.com]&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">RSA</span><span class="pun">)</span><span class="pln"> to the list of known hosts</span><span class="pun">.</span></li><li class="L1"><span class="typ">To</span><span class="pln"> github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="str">/git/</span><span class="pln">test</span></li><li class="L2"><span class="pln"> </span><span class="pun">!</span><span class="pln"> </span><span class="pun">[</span><span class="pln">rejected</span><span class="pun">]</span><span class="pln">        master </span><span class="pun">-&gt;</span><span class="pln"> master </span><span class="pun">(</span><span class="pln">fetch first</span><span class="pun">)</span></li><li class="L3"><span class="pln">error</span><span class="pun">:</span><span class="pln"> failed to push some refs to </span><span class="str">&#39;github.com:/git/test&#39;</span></li><li class="L4"><span class="pln">hint</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Updates</span><span class="pln"> were rejected because the remote contains work that you </span><span class="kwd">do</span></li><li class="L5"><span class="pln">hint</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> have locally</span><span class="pun">.</span><span class="pln"> </span><span class="typ">This</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> usually caused </span><span class="kwd">by</span><span class="pln"> another repository pushing</span></li><li class="L6"><span class="pln">hint</span><span class="pun">:</span><span class="pln"> to the same </span><span class="kwd">ref</span><span class="pun">.</span><span class="pln"> </span><span class="typ">You</span><span class="pln"> may want to first integrate the remote changes</span></li><li class="L7"><span class="pln">hint</span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">g</span><span class="pun">.,</span><span class="pln"> </span><span class="str">&#39;git pull ...&#39;</span><span class="pun">)</span><span class="pln"> before pushing again</span><span class="pun">.</span></li><li class="L8"><span class="pln">hint</span><span class="pun">:</span><span class="pln"> </span><span class="typ">See</span><span class="pln"> the </span><span class="str">&#39;Note about fast-forwards&#39;</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> </span><span class="str">&#39;git push --help&#39;</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> details</span><span class="pun">.</span></li></ol></pre></div><p>這種狀態有好幾種解法，第一種比較正規的是用 git rebase ，也就是等一下會說明的方式，第二種是用 <code>git pull github.com:/xxx</code> 來拉 server 端最新的 code ，但是這個動作會變成你在 local 端 去 merge server 端的程式，然後再一起 commit ，所以你最後送出的 Pull Request  會包含 <b> C, D </b>的所有內容，從 commit 記錄上來看，會被人誤會成 C 的修改跟你這次的 Pull Request 有關，第三個方式最無腦，就是先備份 local repository ，然後砍掉原本的 local repository ，再重新 clone 一次。</p><h3>如何使用 git rebase</h3><p>在用 rebase 之前，我們要先把 D 這個 commit log 移除掉 ，所以我要先使用 reset 的功能，但是你可能不知道要 reset 到那一個 commit log ，可以先用 git reflog 來查詢目前的 commit log ，再用 reset B 回到 commit D 之前的狀態。</p><p>到這一步，你可以用 git status 確認，你新加的程式有沒有回到了 git add 之前的步驟，確定無誤後，再用 git stash ， git stash 會把你目前的所有修改先暫存起來，然後將你的工作目錄還原到最後的一次 commit (B)。</p><p>接著我們就可以用 git pull --rebase 來同步 git server 上的 commit log ，成功後你的 local repository 就跟 server 上的 commit 會完全一致，這時再用 git stash pop 將我們剛剛修改的內容弄回來，到這裡就差不多完成囉，你只要再重新做一次 git add, commit , push 就行了。</p><p>如果你在做 git stash pop 時，有出現 code conflict 的訊息，那麼不用害怕，只要打開有 conflict 的檔案，將 conflict 的地方修復就好。</p><p>Rebase 全部的步驟如下：</p><ul class="list">  <li>git reflog</li>  <li>git reset B</li>  <li>git stash</li>  <li>git pull --rebase github.com:/xxx/xxxx</li>  <li>git stash pop</li>  <li>git add files</li>  <li>git commit -m "commit new"</li>  <li>git push</li></ul><h2>Branch Rebase</h2><p>如果你的  code 已經 commit 並 push 到 personal forked repo ， 那麼就不能用上面那招 reset 跟 stash pop 的方式來更新 repo ，我的習慣是先在 forked repo 上開一個 branch 叫 "<code>dev</code>" ，平常都在 dev 上開發，完全不動 master ，保持 master 與 Main repo 同步。</p><p>當我遇到 Conflict 的時候，先開一個 branch "<code>dev2</code>" (from master) ，並且把  dev2 用 rebase 跟上的 Main repo commit "<code>git branch dev2 ; git pull --rebase github.com:/xxx/xxxx</code>".</p><p>接著再 pull dev 的 code "<code>git pull github.com:/xxx/xxxx dev</code>"，這時 dev2 的程式已經跟 main repo 同步，並且保有我在 dev 上 commit 的 code，最後重新做一個 push ，開 PR 即可。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-02-17T23:29:30+08:00" class="article-modify-time">2018/02/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-365" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-365" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Javascript Hoisting 與 Closure</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" Javascript 是一個很特別的程式語言，與傳統的 C 語言有很大的落差，這篇文章會介紹兩個 Javascript 獨有的特性 Hoisting 與 Closure ， Closure 也有人翻譯成閉包。ClosureClosure 很特別，目前在各種程式語言中，很少會支援這個特性的，一般來說變數的生命週期，只會生存在該 function ，一旦離開了 function " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-242-Javascript-Hoisting-與-Closure.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-242-Javascript-Hoisting-与-Closure.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-242-Javascript-Hoisting-與-Closure.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-242-Javascript-Hoisting-與-Closure.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-242">
+                    <em><span>Javascript Hoisting ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-242-Javascript-Hoisting-\u8207-Closure.html"},"headline":"Javascript Hoisting \u8207 Closure","image":"","datePublished":"2014-03-21T01:41:26+08:00","dateModified":"2016-03-27T21:49:52+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rJavascript \u662f\u4e00\u500b\u5f88\u7279\u5225\u7684\u7a0b\u5f0f\u8a9e\u8a00\uff0c\u8207\u50b3\u7d71\u7684 C \u8a9e\u8a00\u6709\u5f88\u5927\u7684\u843d\u5dee\uff0c\u9019\u7bc7\u6587\u7ae0\u6703\u4ecb\u7d39\u5169\u500b Javascript \u7368\u6709\u7684\u7279\u6027 Hoisting \u8207 Closure \uff0c Closure \u4e5f\u6709\u4eba"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Mar</div>
+            <div class="day">21</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html"><span>Javascript Hoisting 與 Closure</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-242-Javascript-Hoisting-与-Closure.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>Javascript 是一個很特別的程式語言，與傳統的 C 語言有很大的落差，這篇文章會介紹兩個 Javascript 獨有的特性 Hoisting 與 Closure ， Closure 也有人翻譯成<b>閉包</b>。</p><h2>Closure</h2><p>Closure 很特別，目前在各種程式語言中，很少會支援這個特性的，一般來說變數的生命週期，只會生存在該 function ，一旦離開了 function ，變數便會被回收，不能夠再被使用，而且每個在 function 中的變數，一定要事先宣告，在 function 中的變數，我們稱之為 Local Variable，function 只能使用自身的 <b>Local Variable</b> ，不能使用 function 外的變數，但是在 Javascript  中卻沒有這麼簡單，來看一個 function 使用外部變數的範例。</p><div class="codeBlock"><span class="title"> closure1.js</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">function</span><span class="pln"> closure1</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">a</span><span class="pun">)</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">closure1</span><span class="pun">();</span></li></ol></pre></div><p>上一段程式會印出 「1 」，然而在 function closure1 中沒有宣告 a 這個變數，但是 closure 的 parent 中宣告了 a 這個變數，所以 Javascript 會自動去取得  a =1 。</p><p>再來看一個使用暱名 function 的範例。</p><div class="codeBlock"><span class="title"> closure2.js</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> closure2</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span></li><li class="L2"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span></li><li class="L4"><span class="pln">   </span><span class="pun">}</span></li><li class="L5"><span class="pln">   s</span><span class="pun">();</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">closure2</span><span class="pun">();</span></li></ol></pre></div><p>這段程式會印出 「2」，原理跟第一個範例相同， closure2 中執行了 s() ，所以 s() 的 parent 是 closure2 ，根據 <em>closure</em> 的特性 s() 可以使用 closure2 的變數。</p><p>再來看一個奇怪的範例，你應該知道輸出的結果是什麼了吧。</p><div class="codeBlock"><span class="title"> closure3</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> closure3</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">         console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span></li><li class="L4"><span class="pln">   </span><span class="pun">}</span></li><li class="L5"><span class="pln">   s</span><span class="pun">();</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pln">closure3</span><span class="pun">();</span></li></ol></pre></div><div class="notice" Label="Result">Answer = 1 ,  s() -> parent (closure3) -> parent (global)</div><p>使用 Closure 時要特別小心，不好的 Closure 很容易造成 memory leak ，其實筆者我平常是不使用 Closure 這種寫法的。</p><h2>Hoisting</h2><p>Hoisting 跟變數的宣告有關系，一個 JS function 可以重覆定義相同的變數名稱，如果在 C 語言你重覆定義相同的變數的話，你連 Compile 都會過不了，但是這在 Javascript 中是完全合法的。</p><div class="codeBlock"><span class="title"> Hoisting1</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> hoisting1</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">a</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="pun">}</span></li><li class="L5"><span class="pln">   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">hoisting1</span><span class="pun">();</span></li></ol></pre></div><p>上一段程式，會印出 「2 」這個值，疑! 剛剛才說過 closure  的觀念， a 不是應該就自動去取得他的 parent 的值嗎 (a=1)。</p><p>Javascript 有另一個特性 Hoisting ，程式會將 function 中全部需要宣告的 <em>Local Variable </em>，提升到 function 的第一行來執行。</p><p>來看看 Javascript 真正的執行過程：</p><div class="codeBlock"><span class="title"> Hoisting1 in javascript engine</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> hoisting1</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> a</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">a</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">      a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">   </span><span class="pun">}</span></li><li class="L7"><span class="pln">   console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">hoisting1</span><span class="pun">();</span></li></ol></pre></div><p>看完真正 JS Engine 的執行碼，就可以很清楚的知道原因， Local Variable a 在 function 的第一行就已經被宣告了，這時 a 會等於「undefined」，所以才造成程式進入 <b>if (!a) </b> 的區塊。</p> <br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-03-27T21:49:52+08:00" class="article-modify-time">2016/03/27</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-242" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-242" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

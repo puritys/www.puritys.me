@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>在 IOS Xcode 中使用 c++ Library</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="如何在 Xcode 4.5.1 編譯 c++ 程式，並使用它。首先在 Xcode 中打開一個 project ，然後點擊左上角檔案管理中的第一個藍色資料夾。再來要選擇Build Settings，接著把捲軸往下拉，就會看到 Apple LLVM Compile 的區塊，點擊選項 compile source as， 並選擇「 Objective-C++」。選好之後， Xcode" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-238-在-IOS-Xcode-中使用-c++-Library.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Objective-C" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Objective-C</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-238">
+                    <em><span>在 IOS Xcode 中使用 c++ ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-238-\u5728-IOS-Xcode-\u4e2d\u4f7f\u7528-c++-Library.html"},"headline":"\u5728 IOS Xcode \u4e2d\u4f7f\u7528 c++ Library","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_110.png","datePublished":"2014-03-11T13:03:45+08:00","dateModified":"2014-03-16T00:46:36+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u5982\u4f55\u5728 Xcode 4.5.1 \u7de8\u8b6f c++ \u7a0b\u5f0f\uff0c\u4e26\u4f7f\u7528\u5b83\u3002\r\r\u9996\u5148\u5728 Xcode \u4e2d\u6253\u958b\u4e00\u500b project \uff0c\u7136\u5f8c\u9ede\u64ca\u5de6\u4e0a\u89d2\u6a94\u6848\u7ba1\u7406\u4e2d\u7684\u7b2c\u4e00\u500b\u85cd\u8272\u8cc7\u6599\u593e\u3002\r\r\r\r\u518d\u4f86\u8981\u9078\u64c7Build Setti"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Mar</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html"><span>在 IOS Xcode 中使用 c++ Library</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote vj-lv0" >如何在 Xcode 4.5.1 编译 c++ 程式，并使用它。</p><p class="vj-quote vj-lv0" >首先在 Xcode 中打开一个 project ，然后点击左上角档案管理中的第一个蓝色资料夹。</p><div ><a href="/filemanage/blog_files/file_110.png" target="_blank"><img src="/filemanage/blog_files/file_110.png" alt=" Xcode Build setting" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="300"/></a></div><p class="vj-quote vj-lv0" >再来要选择<em>Build Settings</em>，接著把卷轴往下拉，就会看到 <b>Apple LLVM Compile </b>的区块，点击选项 <b>compile source as</b>， 并选择「<em> Objective-C++</em>」。</p><div ><a href="/filemanage/blog_files/file_111.png" target="_blank"><img src="/filemanage/blog_files/file_111.png" alt=" Xcode Build setting" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="450"/></a></div><p class="vj-quote vj-lv0" >选好之后， Xcode 就能够正常 Compile C++ 程式语言，你也可以在 Objective-C 中直接 使用 C++ 的语法。</p><a name="vj-t0"></a><h2 class="vj-sub-title">C++ Sample </h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >这里我先建立一个 C++ Class  。</p><div class="codeBlock"><span class="title"> basic.h</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="kwd">class</span><span class="pln"> basic</span></li><li class="L4"><span class="pun">{</span></li><li class="L5"><span class="pln">    </span><span class="kwd">public</span><span class="pun">:</span></li><li class="L6"><span class="pln">    </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> basic</span><span class="pun">::</span><span class="pln">getString</span><span class="pun">();</span></li><li class="L7"><span class="pln">    </span></li><li class="L8"><span class="pun">};</span></li></ol></pre></div><div class="codeBlock"><span class="title"> basic.c</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">"basic.h"</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">char</span><span class="pun">*</span><span class="pln"> basic</span><span class="pun">::</span><span class="pln">getString</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">    </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">s</span><span class="pun">;</span></li><li class="L4"><span class="pln">    s </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">char</span><span class="pun">*)</span><span class="pln">malloc</span><span class="pun">(</span><span class="kwd">sizeof</span><span class="pun">(</span><span class="kwd">char</span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="lit">20</span><span class="pun">);</span></li><li class="L5"><span class="pln">    s </span><span class="pun">=</span><span class="pln"> </span><span class="str">"abcs"</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> s</span><span class="pun">;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">    </span></li></ol></pre></div><a name="vj-t1"></a><h2 class="vj-sub-title">在 Objective-C new C++ Object</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >在档案  AppDelegate.m 中加入第 8、9 行的程式，并记得要 <b> import "basic.h"</b>，这段程式会 Call getString method ，然后印出 abcs。</p><div class="codeBlock"><span class="title"> AppDelegate.m</span><pre class="prettyprint lang-cpp linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="com">#import "AppDelegate.h"</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="com">#import "basic.h"</span></li><li class="L3"><span class="lit">@implementation</span><span class="pln"> </span><span class="typ">AppDelegate</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">-</span><span class="pln"> </span><span class="pun">(</span><span class="pln">BOOL</span><span class="pun">)</span><span class="pln">application</span><span class="pun">:(</span><span class="typ">UIApplication</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">application didFinishLaunchingWithOptions</span><span class="pun">:(</span><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">launchOptions</span></li><li class="L6"><span class="pun">{</span></li><li class="L7"><span class="pln">    basic s </span><span class="pun">=</span><span class="pln"> basic</span><span class="pun">();</span></li><li class="L8"><span class="pln">    </span><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"%s"</span><span class="pun">,</span><span class="pln"> s</span><span class="pun">.</span><span class="pln">getString</span><span class="pun">());</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">    self</span><span class="pun">.</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UIWindow</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:[[</span><span class="typ">UIScreen</span><span class="pln"> mainScreen</span><span class="pun">]</span><span class="pln"> bounds</span><span class="pun">]];</span></li><li class="L3"><span class="pln">    self</span><span class="pun">.</span><span class="pln">window</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> whiteColor</span><span class="pun">];</span></li><li class="L4"><span class="pln">    </span><span class="pun">[</span><span class="pln">self</span><span class="pun">.</span><span class="pln">window makeKeyAndVisible</span><span class="pun">];</span></li><li class="L5"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> YES</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-03-16T00:46:36+08:00" class="article-modify-time">2014/03/16</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-238" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-238" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Objective-C</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-243-Objective-C-XML-Parse.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_243&quot;}'>Objective-C  XML Parse </a></li>
+    
+        <li><a href="/docs-blog/article-239-Objective-C-Request-:-NSURLConnection.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_239&quot;}'>Objective-C  Request : NSURLConnection </a></li>
+    
+        <li><a href="/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_238&quot;}'>在 IOS Xcode 中使用 c++ Library </a></li>
+    
+        <li><a href="/docs-blog/article-232-Objective-C-基本-function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_232&quot;}'>Objective-C  基本 function </a></li>
+    
+        <li><a href="/docs-blog/article-222-Objective-C-UIView-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_222&quot;}'>Objective-C UIView 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-221-Objective-C-UILabel-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_221&quot;}'>Objective-C  UILabel 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-220-Objective-C-建立-Class-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_220&quot;}'>Objective-C 建立 Class 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-218-IOS-建立按鈕與點擊事件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_218&quot;}'>IOS 建立按鈕與點擊事件 </a></li>
+    
+        <li><a href="/docs-blog/article-217-IOS-Hello-World-App-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_217&quot;}'>IOS  Hello World App 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-216-Objective-C-NSString-使用教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_216&quot;}'>Objective-C  NSString 使用教學 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

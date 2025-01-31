@@ -1,0 +1,46 @@
+.rotate .select-tag-test{
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute; 
+
+}
+.rotate-plugin {
+    width: 100%;
+    height: 100%;
+    margin: -12px 0 0 -12px;
+
+}
+.rotate-x .button-left, .rotate-x .button-right, .rotate-y .button-left, .rotate-y .button-right{
+/*    background: url("rotate3.png") transparent;*/
+    border-radius: 5px;
+    background: rgb(8, 18, 136);
+    cursor: row-resize;
+}
+
+.rotate-x{
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 100%;
+    height: 10px;
+    padding: 0 10px;
+    margin: -8px 0 0 0;
+
+}
+.rotate-x .button-left , .rotate-x .button-right {
+    width: 10px;
+    height: 10px;
+}
+.rotate-x .button-left {
+    margin: 0px 0 0 -12px
+}
+
+.rotate-x .button-right {
+    margin: -10px 0 0 100%
+}
+
+
+.rotate-y {
+    display: none;
+}

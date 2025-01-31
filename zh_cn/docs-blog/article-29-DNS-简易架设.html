@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>DNS  简易架设</title>
+    <meta name="keywords" content="DNS, Linux,Network" />
+    <meta name="description" content=" DNS 簡介 resolv.conf : /etc/resolv.conf ， 這個檔案可以指定DNS的伺服器IP，每當主機需要將Domain轉換成IP時，就會去DNS伺服器查詢。Example[puritys@www etc]$ cat /etc/resolv.confdomain mydomain.com.twsearch mydomain.com.orgnameserv" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-29-DNS-简易架设.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-29-DNS-简易架设.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-29-DNS-簡易架設.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-29-DNS-簡易架設.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-29">
+                    <em><span>DNS  简易架设</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-29-DNS-\u7c21\u6613\u67b6\u8a2d.html"},"headline":"DNS  \u7c21\u6613\u67b6\u8a2d","image":"","datePublished":"2011-08-30T02:16:32+08:00","dateModified":"2016-04-13T23:03:02+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rDNS \u7c21\u4ecb\r\r  resolv.conf : \/etc\/resolv.conf \uff0c \u9019\u500b\u6a94\u6848\u53ef\u4ee5\u6307\u5b9aDNS\u7684\u4f3a\u670d\u5668IP\uff0c\u6bcf\u7576\u4e3b\u6a5f\u9700\u8981\u5c07Domain\u8f49\u63db\u6210IP\u6642\uff0c\u5c31\u6703\u53bbDNS\u4f3a\u670d\u5668\u67e5\u8a62\u3002\r\rExa"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Aug</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-29-DNS-簡易架設.html"><span>DNS  简易架设</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=DNS">DNS</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Linux">Linux</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Network">Network</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-29-DNS-簡易架設.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><h2>DNS 簡介</h2><ul class="list">  <li>resolv.conf : /etc/resolv.conf ， 這個檔案可以指定DNS的伺服器IP，每當主機需要將Domain轉換成IP時，就會去DNS伺服器查詢。</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys@www etc</span><span class="pun">]</span><span class="pln">$ cat </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">resolv</span><span class="pun">.</span><span class="pln">conf</span></li><li class="L1"><span class="pln">domain mydomain</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L2"><span class="pln">search mydomain</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">org</span></li><li class="L3"><span class="pln">nameserver </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">1.2</span></li><li class="L4"><span class="pln">nameserver </span><span class="lit">168.95</span><span class="pun">.</span><span class="lit">1.1</span></li></ol></pre></div><ul class="list">  <li>nameserver 用戶端要求進行名稱解析的 nameserver IP位址。</li>  <li>search是指當查詢 domain失敗時，會將sub-domain的值導到search domain去查詢，如 www.mydomain.com.tw 查詢失敗，則會查詢www.mydomain.com.org。</li></ul><h2>DNS Bind 安裝</h2><p>我將DNS預設安裝的目錄，修改到/home/program/dns_server，DNS的指令就變成在/home/program/dns_server/bin , /home/program/dns_server/sbin , 設定檔位置在 /home/conf/named.conf</p><ul class="list">  <li>下載 bind-9.7.4.tar.gz</li>  <li>解壓 tar -zxvf bind-9.7.4.tar.gz</li>  <li>cd bind-9.7.4</li>  <li>./configure –prefix=/home/program/dns_server --bindir=/usr/bin  --sbindir=/usr/sbin --sysconfdir=/home/conf</li>  <li>make</li>  <li>make install</li></ul><h2>DNS File</h2><ul class="list">  <li>DNS TTL :  time to live , 當其他的DNS伺服器查詢到dns資料之後，cache 記錄存活的秒數。</li>  <li>TTL 寫法</li>  <ul class="list">    <li class="indent1">$TTL 86400</li>    <li class="indent1">$TTL 1440m</li>    <li class="indent1">$TTL 24h</li>    <li class="indent1">$TTL 1d</li>  </ul>  <li>DNS Zone file</li>  <ul class="list">    <li class="indent1">SOA : Start Of Authority , domain.com.tw是指主機 , admin.domain.com.tw是指管理信箱 (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbbabfb6b2b59bbfb4b6bab2b5f5b8b4b6f5afac">[email&#160;protected]</a>)</li>  </ul></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pun">@</span><span class="pln">    IN      SOA   domain</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span><span class="pun">.</span><span class="pln">  mail</span><span class="pun">.</span><span class="pln">domain</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span><span class="pun">.</span><span class="pln">  </span><span class="pun">(</span><span class="pln"> </span></li><li class="L1"><span class="pln">                              </span><span class="lit">2011081201</span><span class="pln">      </span><span class="pun">;</span><span class="pln"> </span><span class="typ">Serial</span><span class="pln"> </span></li><li class="L2"><span class="pln">                              </span><span class="lit">3600</span><span class="pln">            </span><span class="pun">;</span><span class="pln"> </span><span class="typ">Refresh</span><span class="pln"> </span></li><li class="L3"><span class="pln">                              </span><span class="lit">300</span><span class="pln">             </span><span class="pun">;</span><span class="pln"> </span><span class="typ">Retry</span><span class="pln"> </span></li><li class="L4"><span class="pln">                              </span><span class="lit">86400</span><span class="pln">         </span><span class="pun">;</span><span class="pln"> </span><span class="typ">Expire</span><span class="pln"> </span></li><li class="L5"><span class="pln">                              </span><span class="lit">3600</span><span class="pln"> </span><span class="pun">)</span><span class="pln">          </span><span class="pun">;</span><span class="pln"> </span><span class="typ">Minimum</span></li></ol></pre></div>      <ul class="list">        <li class="indent3">Seria : serial number , 流水號，當zone file有變動時，應增加流水號。</li>      </ul>  <ul class="list">    <li class="indent1">NS : DNS伺服器主機名稱，如ns1.domain.com.tw，另外需將 網址管理的轉址方式改為 DNS，並將 DNS Server 改到你設定的 Name。</li>    <li class="indent1">A : 將 Domain Name 指到對應的IP</li>  </ul><h2>DNS named.conf設定</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">options </span><span class="pun">{</span></li><li class="L1"><span class="pln">        directory </span><span class="str">"/home/program/dns_server/etc"</span><span class="pun">;</span></li><li class="L2"><span class="pln">        allow</span><span class="pun">-</span><span class="pln">query </span><span class="pun">{</span><span class="pln">any</span><span class="pun">;};</span></li><li class="L3"><span class="pln">        listen</span><span class="pun">-</span><span class="pln">on       </span><span class="pun">{</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">1.2</span><span class="pun">;</span><span class="pln"> </span><span class="pun">};</span></li><li class="L4"><span class="pln">        forwarders </span><span class="pun">{</span></li><li class="L5"><span class="pln">            </span><span class="lit">219.84</span><span class="pun">.</span><span class="lit">160.137</span><span class="pun">;</span></li><li class="L6"><span class="pln">            </span><span class="lit">168.95</span><span class="pun">.</span><span class="lit">1.1</span><span class="pun">;</span></li><li class="L7"><span class="pln">            </span><span class="lit">208.76</span><span class="pun">.</span><span class="lit">62.100</span><span class="pun">;</span></li><li class="L8"><span class="pln">        </span><span class="pun">};</span></li><li class="L9"><span class="pun">};</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">zone </span><span class="str">"ewebsite.com.tw"</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        type master</span><span class="pun">;</span></li><li class="L3"><span class="pln">        file </span><span class="str">"/home/program/dns_server/etc/ewebsite.zone"</span><span class="pun">;</span></li><li class="L4"><span class="pln">        allow</span><span class="pun">-</span><span class="pln">query</span><span class="pun">{</span><span class="pln">any</span><span class="pun">;};</span></li><li class="L5"><span class="pun">};</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">directory : zone 檔案的目錄。一定要設定正確</li>   </ul> <ul class="list">   <li class="indent1">allow-query {any;}; 充許其他DNS伺服器查詢，any代表充許任何dns伺服器查詢，你也可以用IP來做限制。</li> </ul><h2>DNS 啟動</h2><ul class="list">  <li>ln -s /home/program/dns_server/sbin/named  /usr/bin/named</li>  <li>sudo /home/program/dns_server/sbin/name 或 sudo /usr/bin/named</li>  <li>設定開機自動啟動：/etc/rc.d/rc.local 加入 /usr/bin/named</li>  <li>port:53 要開放給網外連進來， router 的port:53記得開</li></ul><h2>DNS 查詢工具</h2><ul class="list">  <li>host [hostname]</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">[puritys@www etc]$ host www.google.com.tw</span></li><li class="L1"><span class="pln">www.google.com.tw is an alias for www.google.com.</span></li><li class="L2"><span class="pln">www.google.com is an alias for www.l.google.com.</span></li><li class="L3"><span class="pln">www.l.google.com has address 74.125.153.103</span></li><li class="L4"><span class="pln">www.l.google.com has address 74.125.153.104</span></li><li class="L5"><span class="pln">www.l.google.com has address 74.125.153.105</span></li><li class="L6"><span class="pln">www.l.google.com has address 74.125.153.106</span></li><li class="L7"><span class="pln">www.l.google.com has address 74.125.153.147</span></li><li class="L8"><span class="pln">www.l.google.com has address 74.125.153.99</span></li></ol></pre></div>    <br />   <ul class="list">     <li class="indent2">dig [hostname] [dns server]</li>   </ul><p>第二個參數是指定 DNS Server，如果你才剛剛裝好 DNS Server ，而又不知道是否以開始作用時，可以加上這個參數來測試。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">[puritys@www etc]$ dig www.google.com.tw</span></li><li class="L1"><span class="pln">; DiG 9.2.4  www.google.com.tw</span></li><li class="L2"><span class="pln">;; global options:  printcmd</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">;; flags: qr rd ra; QUERY: 1, ANSWER: 8, AUTHORITY: 4, ADDITIONAL: 4</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">;; QUESTION SECTION:</span></li><li class="L7"><span class="pln">;www.google.com.tw.             IN      A</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">;; ANSWER SECTION:</span></li><li class="L0"><span class="pln">www.google.com.tw.      308692  IN      CNAME   www.google.com.</span></li><li class="L1"><span class="pln">www.google.com.         567890  IN      CNAME   www.l.google.com.</span></li><li class="L2"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.147</span></li><li class="L3"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.99</span></li><li class="L4"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.103</span></li><li class="L5"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.104</span></li><li class="L6"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.105</span></li><li class="L7"><span class="pln">www.l.google.com.       290     IN      A       74.125.153.106</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">;; AUTHORITY SECTION:</span></li><li class="L0"><span class="pln">google.com.             136507  IN      NS      ns4.google.com.</span></li><li class="L1"><span class="pln">google.com.             136507  IN      NS      ns3.google.com.</span></li><li class="L2"><span class="pln">google.com.             136507  IN      NS      ns2.google.com.</span></li><li class="L3"><span class="pln">google.com.             136507  IN      NS      ns1.google.com.</span></li><li class="L4"><span class="pln">;; AUTHORITY SECTION:</span></li><li class="L5"><span class="pln">google.com.             136507  IN      NS      ns4.google.com.</span></li><li class="L6"><span class="pln">google.com.             136507  IN      NS      ns3.google.com.</span></li><li class="L7"><span class="pln">google.com.             136507  IN      NS      ns2.google.com.</span></li><li class="L8"><span class="pln">google.com.             136507  IN      NS      ns1.google.com.</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">;; ADDITIONAL SECTION:</span></li><li class="L1"><span class="pln">ns1.google.com.         308886  IN      A       216.239.32.10</span></li><li class="L2"><span class="pln">ns2.google.com.         308719  IN      A       216.239.34.10</span></li><li class="L3"><span class="pln">ns3.google.com.         308764  IN      A       216.239.36.10</span></li><li class="L4"><span class="pln">ns4.google.com.         308723  IN      A       216.239.38.10</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">;; Query time: 19 msec</span></li><li class="L7"><span class="pln">;; SERVER: 168.95.1.1#53(168.95.1.1)</span></li><li class="L8"><span class="pln">;; WHEN: Tue Aug 30 02:39:07 2011</span></li><li class="L9"><span class="pln">;; MSG SIZE  rcvd: 315</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">nslookup [hostname]</li>   </ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys@www etc</span><span class="pun">]</span><span class="pln">$ nslookup www</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L1"><span class="typ">Server</span><span class="pun">:</span><span class="pln">         </span><span class="lit">168.95</span><span class="pun">.</span><span class="lit">1.1</span></li><li class="L2"><span class="typ">Address</span><span class="pun">:</span><span class="pln">        </span><span class="lit">168.95</span><span class="pun">.</span><span class="lit">1.1</span><span class="com">#53</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="typ">Non</span><span class="pun">-</span><span class="pln">authoritative answer</span><span class="pun">:</span></li><li class="L5"><span class="pln">www</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw       canonical name </span><span class="pun">=</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span></li><li class="L6"><span class="pln">www</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com  canonical name </span><span class="pun">=</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span></li><li class="L7"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L8"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.147</span></li><li class="L9"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L0"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.99</span></li><li class="L1"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L2"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.103</span></li><li class="L3"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L4"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.104</span></li><li class="L5"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L6"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.105</span></li><li class="L7"><span class="typ">Name</span><span class="pun">:</span><span class="pln">   www</span><span class="pun">.</span><span class="pln">l</span><span class="pun">.</span><span class="pln">google</span><span class="pun">.</span><span class="pln">com</span></li><li class="L8"><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">72.14</span><span class="pun">.</span><span class="lit">203.106</span></li></ol></pre></div><h2>DNS Server 小技巧</h2><p>DNS server 安裝還蠻簡單的，不過要能動，卻有點小困難，其中最大的原因是很難驗證設定檔是否正確，除了用DNS 查詢工具外，其實還可以去看看 dns log檔，看一下重啟 DNS 時，是否有 Error 訊息 ， log 檔位置在此 /var/log/message。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-04-13T23:03:02+08:00" class="article-modify-time">2016/04/13</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-29" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-29" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">DNS 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Linux 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-392-sudo-造成環境變數消失-:-sudo--E.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_392&quot;}'>sudo  造成環境變數消失 :  sudo -E </a></li>
+    
+        <li><a href="/docs-blog/article-290-Cygwin-:-在-windows-環境上使用-Linux-指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="/docs-blog/article-191-FreeBsd-安裝與設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_191&quot;}'>FreeBsd 安裝與設定 </a></li>
+    
+        <li><a href="/docs-blog/article-186-SSH-Tunnel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_186&quot;}'>SSH Tunnel </a></li>
+    
+        <li><a href="/docs-blog/article-133-apache-.htaccess-登入帳號，密碼機制.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_133&quot;}'>apache .htaccess 登入帳號，密碼機制 </a></li>
+    
+        <li><a href="/docs-blog/article-69-Linux-指令筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_69&quot;}'>Linux 指令筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-63-Linux-系統負荷量檢查程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_63&quot;}'>Linux 系統負荷量檢查程式 </a></li>
+    
+        <li><a href="/docs-blog/article-58-Linux-系統維護指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_58&quot;}'>Linux 系統維護指令 </a></li>
+    
+        <li><a href="/docs-blog/article-28-Linux-系統安裝-apache-+-mysql-+-php.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_28&quot;}'>Linux 系統安裝 apache + mysql + php </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Network 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_352&quot;}'>強迫 PHP Curl  使用  IPv4 ， 忽略 IPv6 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

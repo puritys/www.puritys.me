@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(../images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot');src:url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff') format('woff'),url('fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(../fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-270-AngularJS.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="//www.puritys.me/docs-blog/article-270" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">AngularJS</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-270-AngularJS.html"},"headline":"AngularJS","image":"","datePublished":"2014-07-14T19:19:56+08:00","dateModified":"2014-08-17T00:15:58+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"AngularJS \u662f\u4e00\u500b client-side \u7684  javascript framework\uff0c\u7531 Google \u5de5\u7a0b\u5e2b\u958b\u767c\uff0c\u4e26\u5206\u4eab\u51fa\u4f86\u8b8a\u6210\u4e00\u500b Open Source\uff0cAngular Devel"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jul</div>
+            <div class="day">14</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-270-AngularJS.html"><span>AngularJS</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-270-AngularJS.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="https://www.puritys.me/docs-blog/article-270-AngularJS.html">網頁好讀版</a></p><div class="ezHTML-content"><p>AngularJS 是一個 client-side 的 <em> javascript framework</em>，由 Google 工程師開發，並分享出來變成一個 Open Source，Angular Developer 稱它為一個  <a href="https://plus.google.com/+AngularJS/posts/aZNVhj355G2" target="_blank">MVW Framework</a>(Model-view-whatever) 而不是平常聽到的 MVC，至於什麼是 MVW 你就自已看看網址裡的解說吧。</p><p>Angular 是角的意思，就像三角形的一個角，在 HTML 中就代表「<em><</em>」這個角符號，那為什麼會叫做  Angular 呢? Angular 官網有一段話寫著「 AngularJS lets you extend HTML vocabulary for your application」，這句話的意思就是說 Angular 可以自定新的 HTML Tag, Attribute ，一個自定義的 HTML Tag 如</p><blockquote><xmp><customize></customize></xmp></blockquote><p>我想 Angular 就是因為 HTML 都是使用符號 「< 」開頭，因此而命名的吧~</p><p>Angular 跟一般的 JS Framework, Jquery , Backbone, YUI, Prototype 有什麼不同呢? 我個人試用的感覺是說， Angular 支援了很多功能，但是卻不太容易上手，開發架構也跟傳統的方式落差很大，加上使用起來沒有像 Jquery 這麼簡單! 所以你在使用 Angular 之前，最好先確定專案是否合適 AngularJS，以免反而適得其反。</p><p>AngularJS 最大的特色就是支援  Two Way Data Binding，如果你有看過官網的 Example ，一定會被它 <b>Form - View</b> 同步的功能所吸引住，這也是 Angular 與其它  JS Framework 最大的差別。</p><p>另外 AngularJS 支援 <em>Extend HTML </em>與 <em>Template Engine</em>，透過 Extend 的功能，強化 HTML 基本功能，這樣就能將 Javascript 迅速元件化，只要定義好新的 HTML Tag ，那麼下一次就能直接重覆使用這些新的 HTML 語法，Angular 將這個功能稱作 「<b>directive</b> 」，讓你直接在 HTML 上使用新定義的語法，HTML 將會更<b>語義化</b>，更容易讓別人看懂你寫的程式。</p><p>有了 Template Engine ，工程師可以將程式的 Logic 與 view 分開，通常我們會分成 MVC : Model - view - controller 三個部分來實作，AngularJS 也支援這個功能，並且使用  <b>{{ -- }} </b>的方式來分析 Template ， 剛好與 <a href="http://handlebarsjs.com/" target="_blank">Handlebar</a> 這個 JS Template Engine 一樣，如果你剛好有使用  Handlebar ，那麼就能夠很輕鬆的轉換到 AngularJS 囉。</p><p>先來看一個簡單的 Demo ，看看 Angular 如何不寫 Javascript Code 就能完成 Tab 功能。</p><a class="demo-link" target="_blank" href="/filemanage/files/tab.html#" data-info="%7B%22width%22%3A200%2C%22height%22%3A100%7D"><i class="glyphicon glyphicon-file"></i>View Demo</a><h2>如何使用 Angular</h2><p>首先你的程式必需先載入  JQuery 與 AngularJS 這兩個 Library，因為 AngularJS 有使用到Jquery 部分功能，所以你必需把  JQuery  放在 AngularJS 前面。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"angularScript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre></div> <br><p>接著你就可以使用 Angular Template 的功能， 首先我建立一個 input 再加上一個 h1 來綁定這兩個 element 之間的數值。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ng-app</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">      </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">ng-model</span><span class="pun">=</span><span class="atv">"name"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Enter a name here"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;h1&gt;</span><span class="pln">Hello {{name}}!</span><span class="tag">&lt;/h1&gt;</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><p>以下的 Demo ，是最簡單的 Two way data binding ，當你修改 Input 裡的數值後，就能夠立刻看到頁面的變化：</p><amp-iframe width="200" height="100"
+               sandbox="allow-scripts allow-same-origin"
+               layout="responsive"
+         src="/filemanage/files/ng-hello.html"   frameborder="no" scrolling="no"></amp-iframe> <br><h2>Angular 特色</h2><ul class="list">  <li>Directives</li>  <li>Modules</li>  <li>Expression (Template Engine)</li></ul><div class="notice" >官方網站描述 AngularJS 特色如下</div><blockquote>For performance and to enable innovation, our goal is that almost every piece of AngularJS should be optional, replaceable, and even used in other non-AngularJS frameworks.  You’ll be able to pick and choose the parts you like and write or select others that you like better.</blockquote><h2>Directives</h2><p>Angular Directive 可以讓你定義新的 Element, Attribute, classname 來執行相對應的 Javascript，例如我可以定義一個新的 element 名稱為  ngimage，然後希望這個新的 HTML Tag 輸出我指定的 HTML 結構，我希望可以用一個 div 包住一張圖片。</p><ul class="list">  <li>我先用  angular.module 宣告一個新的  module</li>  <li>接著用  controller("sample") 宣告一個 controller</li>  <li>最後使用 <em> directive(&#39;ngimage&#39;)</em> 定義新的 element 名稱。</li></ul><p>程式範例如下：</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="dec">&lt;!doctype html&gt;</span></li><li class="L1"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">ng-app</span><span class="pun">=</span><span class="atv">"myapp"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;head&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"jquery.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"angular.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;script&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,[])</span></li><li class="L8"><span class="pln">        </span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"sample"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">            $scope</span><span class="pun">.</span><span class="pln">image </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://angularjs.org/img/AngularJS-small.png"</span><span class="pun">;</span></li><li class="L0"><span class="pln">        </span><span class="pun">})</span></li><li class="L1"><span class="pln">       </span><span class="pun">.</span><span class="pln">directive</span><span class="pun">(</span><span class="str">&#39;ngimage&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">          restrict</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;E&#39;</span><span class="pun">,</span></li><li class="L5"><span class="pln">          replace</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span></li><li class="L6"><span class="pln">          template</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;&lt;div&gt;&lt;img src="{{image}}"/&gt;&lt;/div&gt;&#39;</span></li><li class="L7"><span class="pln">        </span><span class="pun">};</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    </span><span class="tag">&lt;/script&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;/head&gt;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">  </span><span class="tag">&lt;body</span><span class="pln"> </span><span class="atn">ng-controller</span><span class="pun">=</span><span class="atv">"sample"</span><span class="pln"> </span><span class="tag">&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;ngimage&gt;&lt;/ngimage&gt;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;/body&gt;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="tag">&lt;/html&gt;</span></li></ol></pre></div><div class="codeBlock"><span class="title"> 執行結果</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div&gt;&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://angularjs.org/img/AngularJS-small.png"</span><span class="tag">&gt;&lt;/div&gt;</span></li></ol></pre></div><p>在這個範例中，我將 Model 資料的部分寫在  controller 裡，在 $scope 中定義一個  image = "xxx"，view  的部分則是定義在  directive 裡面 ，  <em>template: &#39;〈div〉〈img src="{{image}}"/〉〈/div〉&#39; </em>，  當 Angular 看到 ngimage 這個 HTML Tag 之後，就會自動執行 directive 裡定義的 function ，並且回傳 Compile 過後的  Template ，然後插入至 ngimage element 裡，我的程式中有增加一個值  replace: true ，代表 ngimage 會被 template 整個取代。</p><h2>Modules</h2><p>AngularJS 支援將 JS 模組化，你可以把每一個功能都寫成一個 module ，並可以定義 module 之間的 dependency。</p><p>宣告一個  Module 的方式如下 :</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> newModule </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"module_name"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li></ol></pre></div><h3>Dependency</h3><p>宣告 module 的時候，第二個參數是一個 Array，你可以將會用到的其它 module 設定在這裡，例如我有一個功能是做<b> Tab 切換</b>，而這個功能需要用到核心的 Library 名為 core ，我可以在宣告 angular.module 時，將第二個參數補上 core。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> core </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"core"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> tabModule </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"tabModule"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">"core"</span><span class="pun">]);</span></li></ol></pre></div><h2>Expression</h2><p>expression 就是類似 Javascript 的 eval 功能，功能可以包含簡單的數學運算，例如 {{3 + 5}} 會輸出  8 ， 字串的處理 {{"Hello " + " World!"}}。</p><h2>services</h2><p>Service 就像是一個包裝過的物件，把相關的功能，組合在一起，Angular 中 $ 開頭的變數都是一種 service，使用方式跟一般的 Object 相同。</p><p>例如 AngularJS 有一個 Service 叫  $http ，它就如同 ajax , curl 等功能，專門用來發送 Request ，使用 $http 時，必需同時宣告接到  response 後的  success function。。</p><div class="codeBlock"><span class="title"> $http 範例</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">$http</span><span class="pun">({</span><span class="pln">method</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;GET&#39;</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;/xxxx.html&#39;</span><span class="pun">}).</span></li><li class="L1"><span class="pln"> success</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> status</span><span class="pun">,</span><span class="pln"> headers</span><span class="pun">,</span><span class="pln"> config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    $scope</span><span class="pun">.</span><span class="pln">data </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">;</span></li><li class="L3"><span class="pln"> </span><span class="pun">}).</span></li><li class="L4"><span class="pln"> error</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> status</span><span class="pun">,</span><span class="pln"> headers</span><span class="pun">,</span><span class="pln"> config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Got a error from request to xxx.html"</span><span class="pun">);</span></li><li class="L6"><span class="pln"> </span><span class="pun">});</span></li></ol></pre></div><p>其它的 AngularJS Service。</p><ul class="list">  <li>$http</li>  <li>$httpBackend</li>  <li>$log</li>  <li>$filter</li>  <li>$locale</li></ul><p>angularJS 的初始化會在 document ready 的時候執行，所有的 Module 都是這樣，如果你有用 JQuery 的  $(document).ready()  這個方式，那麼就會遇到 angularJS 與 JQuery 執行先後順序的問題，只要你先載入 angularJS 這個檔案，angularJS 初始化的程序就會在 JQuery document ready 前先執行。</p><h2>directive tag</h2><p>angularJS 內建已經提供了好多  directive tag 功能給我們使用，用這些已有的功能，就能快速的建立一個網站。</p><h3>ng-click</h3><p>ng-click 提供了滑鼠點擊事件處理，有點像  Javascript 的 onclick。</p><div class="codeBlock"><span class="title"> ng-click  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">a href</span><span class="pun">=</span><span class="str">""</span><span class="pln"> ng</span><span class="pun">-</span><span class="pln">click</span><span class="pun">=</span><span class="str">"angularClick()"</span><span class="pun">&gt;</span><span class="pln">anchor</span><span class="pun">&lt;/</span><span class="pln">a</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-model</h3><p>ng-model 是實現 two way data binding 的方式，如下的範例， input 裡的值可以與  {{name}} 同步化。</p><div class="codeBlock"><span class="title"> ng-model  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">input ng</span><span class="pun">-</span><span class="pln">model</span><span class="pun">=</span><span class="str">"name"</span><span class="pln"> value</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">&gt;</span></li><li class="L1"><span class="pun">{{</span><span class="pln">name</span><span class="pun">}}</span></li></ol></pre></div><h3>ng-show</h3><p>ng-show 像 <em> if</em> 功能，當某一個值等於 true 時，才顯示這段 html 。</p><div class="codeBlock"><span class="title"> ng-show  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">div ng</span><span class="pun">-</span><span class="pln">show</span><span class="pun">=</span><span class="str">"tab === 1"</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">  tab</span></li><li class="L2"><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li></ol></pre></div><div class="notice" >如果要判定 array 是否不是空白，則要使用 <b>ng-show="product.images.length"</b> 。</div><h3>ng-hide</h3><p>ng-hide 的功能跟  ng-show 完成相反，如果判斷式成立，則不顯示 HTML ， angularJS 會自動加上一個 class 「<em>ng-hide</em>」將 HTML 隱藏。</p><h3>ng-repeat</h3><p>ng-repeat 就是一個  for loop 功能，</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[])</span></li><li class="L1"><span class="pln">   </span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"productList"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        $scope</span><span class="pun">.</span><span class="pln">product </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span></li><li class="L3"><span class="pln">          </span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test 1"</span><span class="pun">},</span></li><li class="L4"><span class="pln">          </span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test 2"</span><span class="pun">}</span></li><li class="L5"><span class="pln">        </span><span class="pun">];</span></li><li class="L6"><span class="pln">    </span><span class="pun">});</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">&lt;</span><span class="pln">div ng</span><span class="pun">-</span><span class="pln">app</span><span class="pun">=</span><span class="str">"myapp"</span><span class="pln"> ng</span><span class="pun">-</span><span class="pln">controller</span><span class="pun">=</span><span class="str">"productList"</span><span class="pun">&gt;</span></li><li class="L9"><span class="pun">&lt;</span><span class="pln">ul ng</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">=</span><span class="str">"pro in product"</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">  </span><span class="pun">&lt;</span><span class="pln">li</span><span class="pun">&gt;{{</span><span class="pln">pro</span><span class="pun">.</span><span class="pln">name</span><span class="pun">}}&lt;/</span><span class="pln">li</span><span class="pun">&gt;</span></li><li class="L1"><span class="pun">&lt;/</span><span class="pln">ul</span><span class="pun">&gt;</span></li><li class="L2"><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-src</h3><p>如果你想用 angularJS 來顯示一張圖片，可能會想用這種寫法 <b>〈img src="{{image}}"〉</b>，但這是行不通的，因為 browser img tag 會比 angularJS 先執行，所以這種寫法，會因為 Browser 無法載入 {{image}} 而出現  error ，必需使用  <b>ng-src</b> 代替。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">img ng</span><span class="pun">-</span><span class="pln">src</span><span class="pun">=</span><span class="str">"{{image}}"</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-class</h3><p>ng-class 與 ng-src 存在的原因類似，Browser 也是會對 class 內的名稱，加入 CSS Style ，所以必需將 angularJS  class 的設定寫在 <b>ng-class</b></p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">a ng</span><span class="pun">-</span><span class="kwd">class</span><span class="pun">=</span><span class="str">"{ active: tab.isSet(1) }"</span><span class="pun">&gt;</span></li></ol></pre></div><h2>相關教學</h2><ul class="list">  <li>第一課 Beginner： <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/1/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/1/video/1</a></li>  <li>第二課 Controller： <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/2/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/2/video/1</a></li>  <li>第三課 <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/3/not-for-sale"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/3/not-for-sale</a></li>  <li>directive: <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/4/section/1/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/4/section/1/video/1</a></li>  <li>Apply: <a href="http://www.sitepoint.com/understanding-angulars-apply-digest/"  target="_blank">http://www.sitepoint.com/understanding-angulars-apply-digest/</a></li>  <li>什麼是 injection :  <a href="http://www.martinfowler.com/articles/injection.html"  target="_blank">http://www.martinfowler.com/articles/injection.html</a></li></ul></div><p class="amp-desktop-version"><a href="https://www.puritys.me/docs-blog/article-270-AngularJS.html">網頁好讀版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-17T00:15:58+08:00" class="article-modify-time">2014/08/17</time>
+        </p>
+
+        
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-273">自定義 AngularJS service</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="http://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

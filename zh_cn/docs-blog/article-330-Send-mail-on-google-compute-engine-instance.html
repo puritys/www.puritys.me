@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Send mail on google compute engine instance</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="2015 後，我把這個 Blog 從家裡的伺服器搬到 Google Compute Engine ，為的就是希望能夠有更穩定的網路環境，但是在 Compute Engine 碰到一個問題，就是 sendmail 功能被 Google 給強迫停用了，好在 Google 有提供另一個解決方案，你只要有一台 mail server ，就可以自已指定 mail server host " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-330-Send-mail-on-google-compute-engine-instance.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-330">
+                    <em><span>Send mail on google ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-330-Send-mail-on-google-compute-engine-instance.html"},"headline":"Send mail on google compute engine instance","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_200.png","datePublished":"2015-10-05T09:31:03+08:00","dateModified":"2015-10-12T23:07:55+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"2015 \u5f8c\uff0c\u6211\u628a\u9019\u500b Blog \u5f9e\u5bb6\u88e1\u7684\u4f3a\u670d\u5668\u642c\u5230 Google Compute Engine \uff0c\u70ba\u7684\u5c31\u662f\u5e0c\u671b\u80fd\u5920\u6709\u66f4\u7a69\u5b9a\u7684\u7db2\u8def\u74b0\u5883\uff0c\u4f46\u662f\u5728 Compute Engine \u78b0\u5230\u4e00\u500b\u554f\u984c\uff0c\u5c31\u662f sen"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Oct</div>
+            <div class="day">05</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html"><span>Send mail on google compute engine instance</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>2015 后，我把这个 Blog 从家里的伺服器搬到 Google Compute Engine ，为的就是希望能够有更稳定的网路环境，但是在 Compute Engine 碰到一个问题，就是 sendmail 功能被 Google 给强迫停用了，好在 Google 有提供另一个解决方案，你只要有一台 mail server ，就可以自已指定 mail server host ，帮自已的 service 寄信。</p><p>除了自已架 mail server 之外， Google 给予了另一个方案，就是每个 Compute Engine 的用户可以使用 <em>sendgrid.com</em> 这个服务，并且每个月有 2 万 5 千封免费的 email 服务，就是你可以寄出 2 万 5 千封 email，而不用多付任何费用，对於一些小网站来说 ， 25000 封信真的是够用了。</p> <br /><p>这里有 Google 提供的 sendmail 教学文件。</p><ul class="list">  <li><a href="https://cloud.google.com/compute/docs/tutorials/sending-mail/using-sendgrid#postfixcentos"  target="_blank">https://cloud.google.com/compute/docs/tutorials/sending-mail/using-sendgrid#postfixcentos</a></li></ul><p>文件有写了很多  postfix 的设定，但是我只需要用到 PHP 来寄信，根本就不会用到那些设定，如果你跟我一样，那么可以直接跳过  postfix 设定，只要申请好 sendgrid 的帐号，就能够直接透过 PHP curl 来送信。</p><h2>申请 sendgrid 帐号</h2><p>请先透过 Google 教学中给的连结 [Google partner page.] ，点击过去就会看到左下方有个 FREE 25,000 的选项。</p><a href="/filemanage/blog_files/file_200.png"  ><img src="/filemanage/blog_files/file_200.png"   link="me" target="this" width="300"  style="width: 300px;"/></a><p>点击 "Get Started" 就会自动连到注册页，注册的内容可以随便打没关系，但是 Email 一定要填真的，因为对方还会寄两封英文信给你，每封会问你五个问题，这些问题要如实回答，等到成功通过 sendgrid 的人工审核后，你的帐号就会被开通罗。</p><p>刚注册完成时，新帐号是不能寄信的，一定要等对方人工审核通过，我跟对方来回了几封 Email ，直到第三天才通过审核。</p><p>这里补上对方问我的问题：</p><div class="codeBlock"><span class="title"> Email Question</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">We’d like to know a little more about the email you’ll be sending through</span></li><li class="L1"><span class="pln">1. The nature of your business, the services you provide, and your potential customer base</span></li><li class="L2"><span class="pln">2. Your sending frequency and volume</span></li><li class="L3"><span class="pln">3. How you collect your recipient addresses</span></li><li class="L4"><span class="pln">4. How you will allow your recipients to opt out of your emails (whether you plan to use SendGrid’s one-click unsubscribe feature, or if you have your own method)</span></li><li class="L5"><span class="pln">5. The types of messages you will be sending (transactional or marketing)</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">Could you help us with an answer to the following questions also:</span></li><li class="L8"><span class="pln">1. Where did you acquire your recipient list?</span></li><li class="L9"><span class="pln">2. What kind of opt-in process do your recipients go through?</span></li><li class="L0"><span class="pln">3. How old is your recipient list?</span></li><li class="L1"><span class="pln">4. When was the last time you communicated with these recipients?</span></li><li class="L2"><span class="pln">5. How do you maintain your recipient list?</span></li></ol></pre></div><h3>用程式寄信</h3><p>通过审核后，就可以用你 sendgrid 的帐号、密码来寄信，下面是一个用 Curl 的方式来测试寄信功能，请先把 api_user 与 api_key 改成你自已在 sendgrid 的帐号、密码，以及修改收信人 Email。</p><blockquote>curl -k "https://api.sendgrid.com/api/mail.send.json" --data &#39;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85f1eab8efeaedebc5e2e8e4ece9abe6eae8">[email&#160;protected]</a><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ac8adfd9cec6c9cfd891d8c9dfd8f8c5d8c0c98ac4d8c1c091d8c9dfd8efc3c2d8c9c2d88acadec3c191cdc8c1c5c2ecdbdbdb82d4d4d4">[email&#160;protected]</a>&api_user=your_account&api_key=your_password&#39;</blockquote><p>另一个方式是先在 sendgrid 建立一个 API Key ，再用这个 API Key 来寄信，这个方式就不需要将帐号密码写在程式里面，比较安全。</p><div class="codeBlock"><span class="title"> Using PHP to send a mail from sendgrid.com </span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$url </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;https://api.sendgrid.com/&#39;</span><span class="pun">;</span></li><li class="L1"><span class="pln">$pass </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;AK.txxxxxxxxxxxxxxxix&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pln">$params </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L3"><span class="pln">    </span><span class="str">&#39;to&#39;</span><span class="pln">        </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="067e7e7e46616b676f6a2865696b287271">[email&#160;protected]</a>"</span><span class="pun">,</span></li><li class="L4"><span class="pln">    </span><span class="str">&#39;subject&#39;</span><span class="pln">   </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"test title"</span><span class="pun">,</span></li><li class="L5"><span class="pln">    </span><span class="str">&#39;html&#39;</span><span class="pln">      </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"test content"</span><span class="pun">,</span></li><li class="L6"><span class="pln">    </span><span class="str">&#39;from&#39;</span><span class="pln">      </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"admin"</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="str">&#39;&lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59491989c9bb5828282db8580879c818c86db9890">[email&#160;protected]</a>&gt;&#39;</span><span class="pun">,</span></li><li class="L7"><span class="pln">  </span><span class="pun">);</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">$header </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L0"><span class="pln">    </span><span class="str">&#39;Authorization: Bearer &#39;</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> $pass</span><span class="pun">,</span></li><li class="L1"><span class="pun">);</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">$request </span><span class="pun">=</span><span class="pln">  $url</span><span class="pun">.</span><span class="str">&#39;api/mail.send.json&#39;</span><span class="pun">;</span></li><li class="L4"><span class="pln">$session </span><span class="pun">=</span><span class="pln"> curl_init</span><span class="pun">(</span><span class="pln">$request</span><span class="pun">);</span></li><li class="L5"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_POST</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L6"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_POSTFIELDS</span><span class="pun">,</span><span class="pln"> $params</span><span class="pun">);</span></li><li class="L7"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_HEADER</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></li><li class="L8"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_SSLVERSION</span><span class="pun">,</span><span class="pln"> CURL_SSLVERSION_TLSv1_2</span><span class="pun">);</span></li><li class="L9"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_RETURNTRANSFER</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L0"><span class="pln">curl_setopt </span><span class="pun">(</span><span class="pln">$session</span><span class="pun">,</span><span class="pln"> CURLOPT_HTTPHEADER</span><span class="pun">,</span><span class="pln"> $header</span><span class="pun">);</span></li><li class="L1"><span class="pln">$response </span><span class="pun">=</span><span class="pln"> curl_exec</span><span class="pun">(</span><span class="pln">$session</span><span class="pun">);</span></li><li class="L2"><span class="pln">curl_close</span><span class="pun">(</span><span class="pln">$session</span><span class="pun">);</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-10-12T23:07:55+08:00" class="article-modify-time">2015/10/12</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-330" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-330" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

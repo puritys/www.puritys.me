@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>svn client &amp; svn server   安装</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="安裝 svn client 之前，有一些必要的軟體要先安裝，其中包含 neon, sqlite, apr。 neon-config: http://www.webdav.org/neon/doc/html/refconfig.html apr wiki: http://en.wikipedia.org/wiki/Apache_Portable_Runtime" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-54-svn-client-&-svn-server-安装.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-54-svn-client-&amp;-svn-server-安装.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-54-svn-client-&amp;-svn-server-安裝.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-54-svn-client-&-svn-server-安裝.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-54">
+                    <em><span>svn client &amp; svn ser...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-54-svn-client-&-svn-server-\u5b89\u88dd.html"},"headline":"svn client & svn server   \u5b89\u88dd","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_29.png","datePublished":"2011-10-25T01:47:17+08:00","dateModified":"2014-02-16T00:43:26+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\rneon \u5b89\u88dd\rSQLite \u5b89\u88dd\rAPR : Apache Portable Runtime\rSVN Client \u5b89\u88dd\rsvn \u6aa2\u67e5\u662f\u5426\u5b89\u88dd\u6210\u529f\r\u5176\u4ed6\u932f\u8aa4\u8a0a\u606f\rsvn server\r\u5b89\u88dd m"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Oct</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-54-svn-client-&-svn-server-安裝.html"><span>svn client &amp; svn server   安装</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-54-svn-client-&amp;-svn-server-安裝.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><div class="target_box"><ul><li ><a href="#vj-t0">neon 安装</a></li><li ><a href="#vj-t1">SQLite 安装</a></li><li ><a href="#vj-t2">APR : Apache Portable Runtime</a></li><li ><a href="#vj-t3">SVN Client 安装</a></li><li ><a href="#vj-t4">svn 检查是否安装成功</a></li><li ><a href="#vj-t5">其他错误讯息</a></li><li ><a href="#vj-t6">svn server</a></li><li class="vj-lv1"><a href="#vj-t7">安装 mod_dav</a></li><li class="vj-lv1"><a href="#vj-t8">安装 mod_dav_svn</a></li><li class="vj-lv1"><a href="#vj-t9">svn: Can&#39;t open file &#39;/repository/db/txn-current-lock&#39;: Permission denied</a></li><li class="vj-lv1"><a href="#vj-t10">svnserve.conf:19: Option expected</a></li><li ><a href="#vj-t11">相关资料</a></li></ul></div><p class="vj-quote vj-lv0" >安装 svn client 之前，有一些必要的软体要先安装，其中包含 neon, sqlite, apr。</p><a name="vj-t0"></a><h2 class="vj-sub-title">neon 安装</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >neon 是一个能够使得 svn 支援 http 下载网路资料的程式</p><ul class="vj-ul"><li class="vj-lv2"> 载点 <a href=" http://en.sourceforge.jp/projects/sfnet_buluoos/downloads/0.3/src/neon-0.29.6.tar.gz/"  target="_blank"> http://en.sourceforge.jp/projects/sfnet_buluoos/downloads/0.3/src/neon-0.29.6.tar.gz/</a></li><li class="vj-lv2"> ./configure --prefix=/usr/local/neon --bindir=/usr/local/bin --sbin=/usr/local/sbin --libdir=/usr/local/lib --includedir=/usr/local/include --mandir=/usr/local/share/man --with-ssl</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo make install</li></ul><p class="vj-amazing vj-lv2">--with-ssl 使 neon 可以支援 https 传输 </p><p class="vj-amazing vj-lv2">检查 neon 是否支援 ssl :  /usr/local/bin/neon-config --support ssl ，如果有支援的话，就不会跳出错误。</p><a name="vj-t1"></a><h2 class="vj-sub-title">SQLite 安装</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 载点 <a href=" http://www.sqlite.org/sqlite-autoconf-3070800.tar.gz"  target="_blank"> http://www.sqlite.org/sqlite-autoconf-3070800.tar.gz</a></li><li class="vj-lv2"> ./configure --prefix=/usr/local/sqlite --bindir=/usr/local/bin --sbin=/usr/local/sbin --libdir=/usr/local/lib --includedir=/usr/local/include --mandir=/usr/local/share/man</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo make install</li></ul>  <br /><ul class="vj-ul"><li class="vj-lv2"> vim ~/.bash_profile 加上 PATH=$PATH:/usr/local/bin</li></ul><a name="vj-t2"></a><h2 class="vj-sub-title">APR : Apache Portable Runtime</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 载点 <a href=" http://apr.apache.org/download.cgi"  target="_blank"> http://apr.apache.org/download.cgi</a></li><li class="vj-lv2"> ./configure --prefix=/usr/local/apr --bindir=/usr/local/bin  --sbindir /usr/local/sbin  --libdir=/usr/local/lib   --includedir=/usr/local/include --mandir=/usr/local/share/man --enable-shared --enable-threads</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo make install</li></ul><a name="vj-t3"></a><h2 class="vj-sub-title">SVN Client 安装</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 载点 <a href=" http://apache.cdpa.nsysu.edu.tw/subversion/"  target="_blank"> http://apache.cdpa.nsysu.edu.tw/subversion/</a></li><li class="vj-lv2"> 检查一下有那些configure 可以用</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">    </span><span class="str">[puritys]</span><span class="pln">subversion</span><span class="pun">-</span><span class="pln">1</span><span class="pun">.</span><span class="pln">7</span><span class="pun">.</span><span class="pln">0</span><span class="PR_KEYWORD2">$ ./configure --help |more</span></li><li class="L1"><span class="pln">    </span><span class="pun">`</span><span class="pln">configure</span><span class="str">&#39; configures subversion 1.7.0 to adapt to many kinds of systems.</span></li><li class="L2"><span class="str">    --bindir=DIR user executables [EPREFIX/bin]</span></li><li class="L3"><span class="str">    --sbindir=DIR system admin executables [EPREFIX/sbin]</span></li><li class="L4"><span class="str">    --libexecdir=DIR program executables [EPREFIX/libexec]</span></li><li class="L5"><span class="str">    --sysconfdir=DIR read-only single-machine data [PREFIX/etc]</span></li><li class="L6"><span class="str">    --sharedstatedir=DIR modifiable architecture-independent data [PREFIX/com]</span></li><li class="L7"><span class="str">    --localstatedir=DIR modifiable single-machine data [PREFIX/var]</span></li><li class="L8"><span class="str">    --libdir=DIR object code libraries [EPREFIX/lib]</span></li><li class="L9"><span class="str">    --includedir=DIR C header files [PREFIX/include]</span></li><li class="L0"><span class="str">&nbsp;</span></li></ol></pre></div><p class="vj-quote vj-lv0" >将安装目录指定到 /home/proogram/svn</p><p class="vj-quote vj-lv0" >bin执行档指定安装到 /usr/local/bin</p><p class="vj-quote vj-lv0" >sbin执行档指定安装到 /usr/local/sbin</p><p class="vj-quote vj-lv0" >library指定安装到 /usr/local/lib</p><p class="vj-quote vj-lv0" >sqlite 指定已安装的目录 /home/program/SQLite</p><p class="vj-quote vj-lv0" >neon 指定已安装的目录 /usr/local (PATH = $PREFIX/bin/neon-config , 因为 neon 执行档我装在 /usr/local/bin里，所以这里的路径要这样设)</p><ul class="vj-ul"><li class="vj-lv2"> ./configure --prefix=/usr/local/svn  --bindir=/usr/local/bin --sbin=/usr/local/sbin --libdir=/usr/local/lib --includedir=/usr/local/include --mandir=/usr/local/share/man --with-neon=/usr/local   --with-sqlite=/usr/local --with-apr/usr/local --with-apr-util=/usr/local </li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo make install</li><li class="vj-lv2"> vim ~/.bash_profile 加上 PATH=$PATH:/usr/local/bin</li></ul><p class="vj-quote vj-lv0" >等个几分钟就装好罗，试玩一下吧(有点....久)</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cc linenums" ><ol class="linenums"><li class="L0"><span class="pln">    svn co http</span><span class="pun">:</span><span class="com">//xx</span></li><li class="L1"><span class="pln">    svn up</span></li><li class="L2"><span class="pln">    svn ci </span><span class="pun">-</span><span class="pln">m </span><span class="str">"xx"</span></li><li class="L3"><span class="pln">    svn </span><span class="kwd">delete</span><span class="pln"> file</span></li><li class="L4"><span class="pln">    svn add file</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title">svn 检查是否安装成功</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >用 svn --version ，检查一下module是否都有装成功进去，刚刚我装了 ra_neon, ra_svn ,ra_local 三个modules。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="str">[puritys]</span><span class="pln">SQLite</span><span class="PR_KEYWORD2">$ svn --version</span></li><li class="L1"><span class="pln">svn</span><span class="pun">,</span><span class="pln"> version 1</span><span class="pun">.</span><span class="pln">7</span><span class="pun">.</span><span class="pln">0 </span><span class="pun">(</span><span class="pln">r1176462</span><span class="pun">)</span></li><li class="L2"><span class="pln">   </span><span class="pfunc">compiled Oct 25 2011, 23:51:</span><span class="pln">11</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">Copyright </span><span class="pun">(</span><span class="pln">C</span><span class="pun">)</span><span class="pln"> 2011 The Apache Software Foundation</span><span class="pun">.</span></li><li class="L5"><span class="pln">This software consists of contributions made by many people</span><span class="pun">;</span><span class="pln"> see the NOTICE</span></li><li class="L6"><span class="pln">file </span><span class="kwd">for</span><span class="pln"> more information</span><span class="pun">.</span></li><li class="L7"><span class="pfunc">Subversion is open source software, see http:</span><span class="com">//subversion.apache.org/</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pfunc">The following repository access (RA) modules are available:</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pfunc">* ra_neon :</span><span class="pln"> Module </span><span class="kwd">for</span><span class="pln"> accessing a repository via WebDAV protocol using Neon</span><span class="pun">.</span></li><li class="L2"><span class="pln">  </span><span class="pun">-</span><span class="pln"> handles </span><span class="str">&#39;http&#39;</span><span class="pln"> scheme</span></li><li class="L3"><span class="pfunc">* ra_svn :</span><span class="pln"> Module </span><span class="kwd">for</span><span class="pln"> accessing a repository using the svn network protocol</span><span class="pun">.</span></li><li class="L4"><span class="pln">  </span><span class="pun">-</span><span class="pln"> with Cyrus SASL authentication</span></li><li class="L5"><span class="pln">  </span><span class="pun">-</span><span class="pln"> handles </span><span class="str">&#39;svn&#39;</span><span class="pln"> scheme</span></li><li class="L6"><span class="pfunc">* ra_local :</span><span class="pln"> Module </span><span class="kwd">for</span><span class="pln"> accessing a repository on </span><span class="kwd">local</span><span class="pln"> disk</span><span class="pun">.</span></li><li class="L7"><span class="pln">  </span><span class="pun">-</span><span class="pln"> handles </span><span class="str">&#39;file&#39;</span><span class="pln"> scheme</span></li><li class="L8"><span class="pln">&nbsp;</span></li></ol></pre></div><a name="vj-t5"></a><h2 class="vj-sub-title">其他错误讯息</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >「svn: E170000: Unrecognized URL scheme forsvn: E170000: Unrecognized URL scheme for」 : neon,apr apr-util 其中之一没装成功</p><p class="vj-quote vj-lv0" >configure: error: Subversion requires SQLite ，残念!! 如果你看到这个讯息，就是你没有装 SQLite 喔，或是没有指定 SQLite 路径。</p><a name="vj-t6"></a><h2 class="vj-sub-title">svn server</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >在装 svn server 之前，你必须先装 web server ，也就是 apache ，因为svn server 是透过 https protocol 来传输资料， apache 的安装设定可以参考 「<a href="/docs-blog/article-28#vj-t6" title="apache 安装">这里</a>」。</p><p class="vj-quote vj-lv0" >svn server :其实和 svn client 差不多，只差在 apache module，在安装 svn server 之前，必须先把 svn client 装起来，然后再编译 apache module ，这样 svn server 就可以使用了。</p><p class="vj-quote vj-lv0" >svn server 所须要的资料，就是 svn client 所抓下来的档案，两边的程式是放在一起的，在装 apache svn module前，要先把 c 语言的 header 档复制到正确的地方。</p><p class="vj-quote vj-lv0" >另外必须先安装 apache mod_dav module ，这个 module 可以在 apache 下载的压缩解中找到。</p><a name="vj-t7"></a><h2 class="vj-sub-title vj-lv1">安装 mod_dav</h2><p class="vj-quote vj-lv0" >用 apxs 就可以简单的安装成功了，若安装时发生以下的错误，意思是说 module 的名称没有被定义，所以我们用 -n dav_mod ，给他一个名字就可以了。</p><p class="vj-amazing vj-lv2">apxs:Error: Sorry, cannot determine bootstrap symbol name.</p><p class="vj-amazing vj-lv2">apxs:Error: Please specify one with option `-n&#39;.</p><ul class="vj-ul"><li class="vj-lv2"> cd apache/dav/main</li><li class="vj-lv2"> apxs -c -n dav_mod -i mod_dav.c</li><li class="vj-lv2"> apache cond 加上 LoadModule dav_module modules/mod_dav.so</li></ul><p class="vj-quote vj-lv0" >如果上述的安装方式，在 restart apache 时有 error 的话，可以考虑另一种安装方式，就是使用 apache 的 configure 方式去安装。</p><ul class="vj-ul"><li class="vj-lv2"> cd apache</li><li class="vj-lv2"> ./configure --enable-dav=shared</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo cp modules/dav/main/.libs/mod_dav.so (apache_path)/modules/</li><li class="vj-lv2"> apache cond 加上 LoadModule dav_module modules/mod_dav.so</li></ul>  <br /><a name="vj-t8"></a><h2 class="vj-sub-title vj-lv1">安装 mod_dav_svn</h2><p class="vj-quote vj-lv0" >这个 apache module 在 svn 下载回来的档案中，就可以找到，路径在 「 svn/subversion/mod_dav_svn 」，这里重新再编译一次 svn 的资料，打开 svn server 的一些设定。</p><ul class="vj-ul"><li class="vj-lv2"> cd svn</li><li class="vj-lv2"> make clean</li><li class="vj-lv2"> ./configure --prefix=/home/program/svn --bindir=/usr/local/bin --sbin=/usr/local/sbin --libdir=/usr/local/lib --with-sqlite=/home/program/SQLite --with-neon=/usr/local --with-apr=/home/program/apache/bin/apr-1-config --with-apxs=/home/program/apache/bin/apxs --with-apr-util=/home/program/apache/bin/apu-1-config  --with-ssl --enable-mod-activation</li></ul><ul class="vj-ul"><li class="vj-lv2"> make</li></ul><p class="vj-quote vj-lv0" >按著跳过安装步骤 (make install)，我们直接把需要的档案复制到正确的位置即可，这里我们会用到两个 module : mod_dav_svn.so , mod_authz_svn.so ，以及一些 header 档。</p><ul class="vj-ul"><li class="vj-lv2"> cp -r svnpath/subversion/include /usr/include/ :复制 svn 会用到的 header 档到 /usr/include/</li><li class="vj-lv2"> sudo cp  subversion/mod_dav_svn/.libs/mod_dav_svn.so  /home/program/apache/modules/</li><li class="vj-lv2"> sudo cp subversion/mod_authz_svn/.libs/mod_authz_svn.so /home/program/apache/modules/</li><li class="vj-lv2"> apache cond 加上 LoadModule dav_svn_module modules/mod_dav_svn.so</li><li class="vj-lv2"> apache cond 加上 LoadModule authz_svn_module modules/mod_authz_svn.so</li></ul><p class="vj-quote vj-lv0" >安装完程后就可以开始使用 svn 的功能了。</p><ul class="vj-ul"><li class="vj-lv2"> svnadmin create /repository : 建立 server 的 svn 路径</li><li class="vj-lv2"> 编辑 /repository/conf/svnserve.conf ，将下列的资料 unmark，注意<em>开头不能有空白</em></li><ul class="vj-ul"><li class="vj-lv3"> anon-access = read</li><li class="vj-lv3"> auth-access = write</li><li class="vj-lv3"> password-db = passwd</li><li class="vj-lv3"> realm = My First Repository</li></ul><li class="vj-lv2"> 启动 svn : svnserve -t -r /repository</li></ul><p class="vj-quote vj-lv0" >这时你有了一空的 svn repository，使用 「svn import xxxdir svn+ssh://localhost/repository/xxxdir -m "Add new file"」将 xxxdir 新增到 svn server。 </p>   <br /><p class="vj-quote vj-lv0" >上传成功后，就能用 svn co 抓下刚刚 commit 的资料夹，因为我将 client 与 server 都装在 localhost ，所以我只要下指令 svn co svn+ssh://localhost/repository ，就可以抓下 svn server 的资料，接著我随便建立几个档案之后，再输入 svn ci -m " initial " ，将资料 commit 到 svn server。</p><p class="vj-quote vj-lv0" >虽然资料已经存到 svn server 了，不过去查看 /repository 的资料结构后，发现里面的内容还蛮复杂的，没办法轻松的管理，其实 svn 是有提供 web manager 线上查看资料夹的，所以我修改 apache conf 加上内容如下。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">LoadModule dav_module modules/mod_dav.so</span></li><li class="L1"><span class="pln">LoadModule dav_svn_module modules/mod_dav_svn.so</span></li><li class="L2"><span class="pln">LoadModule authz_svn_module modules/mod_authz_svn.so</span></li><li class="L3"><span class="tag">&lt;Location</span><span class="pln"> </span><span class="pun">/</span><span class="atn">svn</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">DAV svn</span></li><li class="L5"><span class="pln">SVNPath /repository</span></li><li class="L6"><span class="tag">&lt;/Location&gt;</span></li></ol></pre></div><p class="vj-amazing vj-lv2">加上上面的设定之后，再重启 apache ，然后就可以在 <a href=" http://localhost/svn"  target="_blank"> http://localhost/svn</a> 看到 svn server 的资料内容罗。</p><br /><div ><a href="/filemanage/blog_files/file_29.png" target="_blank"><img src="/filemanage/blog_files/file_29.png" alt="svn web manage" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" /></a></div><a name="vj-t9"></a><h2 class="vj-sub-title vj-lv1">svn: Can&#39;t open file &#39;/repository/db/txn-current-lock&#39;: Permission denied</h2><p class="vj-quote vj-lv0" >如果有这个错误讯息，代表你对资料夹没有读取的权限，使用 chmod 或是 chown 修改权限即可。</p><a name="vj-t10"></a><h2 class="vj-sub-title vj-lv1">svnserve.conf:19: Option expected</h2><p class="vj-quote vj-lv0" >svnserve.conf 中的设定有错误，每一行的最前面不能有空白</p><a name="vj-t11"></a><h2 class="vj-sub-title">相关资料</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> neon-config: <a href=" http://www.webdav.org/neon/doc/html/refconfig.html"  target="_blank"> http://www.webdav.org/neon/doc/html/refconfig.html</a></li><li class="vj-lv2"> apr wiki: <a href=" http://en.wikipedia.org/wiki/Apache_Portable_Runtime"  target="_blank"> http://en.wikipedia.org/wiki/Apache_Portable_Runtime</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-02-16T00:43:26+08:00" class="article-modify-time">2014/02/16</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-54" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-54" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

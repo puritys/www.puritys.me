@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>ez GUI </title>
+<style>
+body{
+	font-family: "Courier","新細明體",Arial;
+	letter-spacing: 1px;
+    line-height: 22px;
+}
+
+#codeEditorLeft .list-group-item {
+    padding: 0;
+}
+.list-group-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+}
+.list-group-item a:hover {
+    background: #eee;
+}
+textarea {
+    border: 1px #C5C3C3 solid;
+}
+</style>
+<link href='bootstrap/css/bootstrap.min.css' rel="stylesheet" type="text/css">
+
+<script src="jquery.js"></script>
+<script src="../lib/ezHTML_generator.js"></script>
+<script src="../lib/google-code-prettify/src/prettify.js"></script>
+<script src="../lib/google-code-prettify/src/lang-php.js"></script>
+
+<!--script src="../lib/textControl.js"></script-->
+<script src="ezHTML_GUI.js"></script>
+<body style="margin:20px;">
+
+<ul class="nav nav-tabs" style="margin: 0 0 20px 0;">
+  <li class="active"><a href="index.html">ezHTML Demo</a></li>
+  <li><a href="https://github.com/puritys/ezHTML" target="_blank">Source Code</a></li>
+  <li><a href="https://www.facebook.com/groups/530194803766392/" target="_blank">Discuss Group</a></li>
+
+</ul>
+
+
+
+<p style="margin: 20px 0;">ezHTML is a transformer of document editor, it will transform the code to be a pretty HTML.</p>
+
+<!--- editor -->
+<div id="codeEditorLeft" style="float:left;width:140px;margin:0px 20px 0 0;"></div>
+
+<div style="float:left;width:500px;margin: 0 0 30px 0;">
+
+<textarea style="width:700px;height:400px;padding: 10px; margin: 0 0 10px 0; font-size: 18px;" id="plain-text-source" >
+# The title of article
+
+
+
+#h2 Simple HTML Tag
+
+#p Start at 0, add `1000` for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for <code>#content</code>, 10 for .data, 10 for :hover, 1 for http://aaa.bbb/ccc.html body and 1 for img.
+
+#p[alt=test] test
+
+
+## Table
+| *Chrome | *Firefox | *IE    |
+| Yes     | Yes      | IE6+   |
+
+
+## Image
+
+#img[100,200,alt=test, title="the title", link="me", target="this"] ../data/HTML.png#
+
+## Image with content, and arrange image to the left side.
+
+#img[left,200,100,link="https://www.yahoo.com.tw/"] ../data/HTML.png#
+#div Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for #content, 10 for .data, 10 for :hover, 1 for body and 1 for img.
+#div content
+#span xxx
+#imgEnd#
+
+#div -----------------------------------------
+
+## Image is in the right side.
+
+
+#img[200,100, right] ../data/HTML.png#
+#div Start at 0, add 1000 for style attribute, add 100 for each ID, add 10 for each attribute, class or pseudo-class, add 1 for each element name or pseudo-element. So in the specificity value below would be 122 (0,1,2,2 or 0122): 100 for #content, 10 for .data, 10 for :hover, 1 for body and 1 for img.
+#span xxx
+#imgEnd#
+
+## List.
+
+
+* 註冊Yahoo API
+  * 你必需先到 https://developer.apps.yahoo.com/projects 註冊一個Project
+* 使用者登入，並取得 Token
+* 判定Response是否正確
+* Get WSSID and Cookie
+
+## Flow
+#p Simple Arrow Flow:  ##flow[arrow] A->B->C
+
+#h2 Notice
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo...
+#div[notice,label="Notice"] Start at 0, add 1000 for style attribute, add 100 fo...
+#div content
+
+#h2 Show PHP/CSS/JS/C++ Code
+#code[js]#
+var b="faw";
+var c="fawf";
+function test(){
+    var gseg="gseg";
+    var gseg="gseg";
+}
+#codeEnd#
+
+```js
+var b="code as markdown";
+var c="js";
+function test(){
+    var gseg="gseg";
+    var gseg="gseg";
+}
+
+```
+
+```term
+echo "code as markdown"
+echo "term"
+
+```
+
+#code[php]#
+<?php
+$test = "aaaa";
+function test($b) {
+    $b++;
+    $c = "s";
+    return $c;
+}
+function getHeader($socket) {
+
+    $revHeader = getResponse($socket, 5);
+    $b1 = substr($revHeader, 0, 1);
+    $type = hexdec(bin2hex($b1));
+    $b2 = substr($revHeader, 1, 2);
+    $version = bin2hex($b2);
+    $b3 = substr($revHeader, 3, 2);
+    $length = hexdec(bin2hex($b3));
+    return array(
+        "type" => $type,
+        "length" => $length,
+        "version" => $version,
+    );
+}
+?>
+
+#codeEnd#
+
+
+## HTML
+#html#
+<div style = "color: #a00;"> red color</div>
+#htmlEnd#
+
+## Quote
+#q quote content
+<br />
+
+  ## quote info 2
+  #q quote content
+
+#h2 demo
+#demo[popup,200,500] ezHTML_main.js
+
+#h2 demo open url in _blank
+#demo[target="_blank"] ezHTML_main.js 點我測試
+
+
+#h2 demo open url in self
+#demo ezHTML_main.js
+
+#iframe[100%,140,link=me] ezHTML_main.js
+
+#div aaa
+</textarea>
+<button onclick="editor.transform();return false;">Transform content from textarea</button>
+<button onclick="editor.transformAll();return false;">Transform all sections.</button>
+</div>
+<div style="clear:both;width: 100%; background:#eee; margin: 10px 0;padding: 5px 20px;">
+    <b>Transform Result Preview</b>
+</div>
+
+<div> &nbsp; </div>
+<div class="view" id="view" style="width: 90%;margin: 10px 0 0 10px;">
+
+</div>
+
+<iframe src="about:blank" id="preview" style="width:100%;height:2800px;margin:10px;" frameborder=0></iframe>
+<div style="clear:both;"></div>
+
+<textarea type="hidden" name="result" id="result" style="display: none;"></textarea>
+
+<script>
+var editor = new ezHTML_GUI({
+              "paragraphMenu": "codeEditorLeft",
+                     "source": "#plain-text-source",  //The textarea to write your document.
+         //"destination_view": "view",
+                "destination": "result",       // Set result into hidden textarea
+    "googleCodePerttyBaseUrl": "../lib/google-code-prettify/src/",
+                     "iframe": "preview",      //Show result in iframe [id=preview]
+                        "css": ["default.css"], //Auto load css file in iframe
+                         "js": ["jquery.js", "ezHTML_main.js"] // Auto load js file in iframe
+             //  "autoUpdateMs": 5000  // Auto update result iframe
+});
+editor.splitParagraph();
+editor.outputPieceTable();
+editor.transformAll();
+</script>
+
+
+
+</body>
+</html>

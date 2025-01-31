@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>sudo  造成环境变数消失 :  sudo -E</title>
+    <meta name="keywords" content="Linux, env" />
+    <meta name="description" content="Linux 環境裡有個 sudo 的指令，這個指令主要功能是用來提高 User 權限，讓 User 可以執行 root 才能做的事，當我們要用 vim 修改 root 的檔案時，會使用 sudo vim xxx.log ，這時原有的 vim syntax 與 bindkey 都會消失，又或者是我們要執行一個軟體 ， sudo sh /root/mysqld.sh ，結果卻收到路" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-392-sudo-造成环境变数消失-:-sudo--E.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-392-sudo-造成环境变数消失-:-sudo--E.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-392-sudo-造成環境變數消失-:-sudo--E.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-392-sudo-造成環境變數消失-:-sudo--E.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-392">
+                    <em><span>sudo  造成环境变数消失 :  sudo -E</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-392-sudo-\u9020\u6210\u74b0\u5883\u8b8a\u6578\u6d88\u5931-:-sudo--E.html"},"headline":"sudo  \u9020\u6210\u74b0\u5883\u8b8a\u6578\u6d88\u5931 :  sudo -E","image":"","datePublished":"2016-11-17T13:05:04+08:00","dateModified":"2016-11-25T00:38:43+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Linux \u74b0\u5883\u88e1\u6709\u500b sudo \u7684\u6307\u4ee4\uff0c\u9019\u500b\u6307\u4ee4\u4e3b\u8981\u529f\u80fd\u662f\u7528\u4f86\u63d0\u9ad8 User \u6b0a\u9650\uff0c\u8b93 User \u53ef\u4ee5\u57f7\u884c root \u624d\u80fd\u505a\u7684\u4e8b\uff0c\u7576\u6211\u5011\u8981\u7528 vim \u4fee\u6539 root \u7684\u6a94\u6848\u6642\uff0c\u6703\u4f7f\u7528 \"sudo v"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Nov</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-392-sudo-造成環境變數消失-:-sudo--E.html"><span>sudo  造成环境变数消失 :  sudo -E</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Linux">Linux</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=env">env</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-392-sudo-造成環境變數消失-:-sudo--E.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Linux 环境里有个 sudo 的指令，这个指令主要功能是用来提高 User 权限，让 User 可以执行 root 才能做的事，当我们要用 vim 修改 root 的档案时，会使用 "<em>sudo vim xxx.log</em>" ，这时原有的 vim syntax 与 bindkey 都会消失，又或者是我们要执行一个软体 ， sudo sh /root/mysqld.sh ，结果却收到路径不正确的讯息，不加 sudo 就没有这些问题，一般来说快速的解法是加上 "sudo <b>-E</b>" ， "-E" 代表我要系统载入 User 的环境变数。</p><p>有一天公司需要做系统的 Migration ，要求将自动化测试的程式码搬到米国人新建的环境，先不论这个工作会浪费多少生命，我们平常每天跑的指令如 "<code>node_modules/.bin/protractor protractor.conf</code>"，在新环境中抓不到登入帐号的密码，原来新环境使用的身分不是 root ，所以没办法取得密码，很自然的我就加上 "<code>sudo  node_modules/.bin/protractor protractor.conf</code>"，加完之后，成功的抓到登入密码了，但是原本的测试只会执行 10 个 Test Cases ，加了 sudo 之后却自动测试了超过一百个 Test Cases ，找了很久，才发现是环境变数不见了，本来有个环境变数 "group=captcha_api" ，少了这个环境变数 ，测试工具就会执行目录下的所有 Test Cases，解决方式也很简单，我直接把环境变数再重新 export 一次给 root  就搞定了 :</p><blockquote>sudo bash -c "export group=captcha_api && node_modules/.bin/protractor protractor.conf"</blockquote><h2>/etc/sudoers 设定</h2><p>sudo 到底是如何改变环境变数的呢，/etc/sudoers 这个档案有三个跟环境变数有关的设定 "env_reset", "env_check", "env_keep", "env_delete"，设定如下：</p><div class="codeBlock html"><span class="title"> /etc/sudoers</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">Defaults    env_reset</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS"</span></li><li class="L3"><span class="pln">Defaults    env_keep += "MAIL PS1 PS2 QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"</span></li></ol></pre></div><h3>env_reset</h3><p>如果在 /etc/sudoers 中有设定 env_reset ，那么当你执行 sudo 时，系统会清掉 User 的环境变数，只包含部分环境变数如： LOGNAME, SHELL, USER, USERNAME, SUDO_*  ，我们的系统就是因为这个设定而移除了 group 这个环境变数。</p> <br /><h3>env_keep</h3><p>如果有打开 env_reset 功能，那么 env_keep 才会有作用，它的功能是保留指定的 user 环境变数 ，例如我想保留 LC_CTYPE 这个环境变数，那么我可以用 <code>Defaults env_keep += "LC_TYPE"</code>。</p><h3>env_check</h3><p>env_check 是用来移除 user 环境变数用的，如果变数内容含有不安全的字元 &#39;%&#39; 或 &#39;/&#39; ，那么系统就会移除该变数 ，很明显的 env_check 跟系统安全性有关。</p><h3>env_delete</h3><p>env_delete 也是用来移除 user 环境变数用的，跟 env_check 有点像，但是 env_check 会去检查变数的内容，而 env_delete 是不管变数内容直接删除。</p> <br /><p>如果不管安全性，那么直接关掉 env_reset 就可以解决环境变数不见的问题，只要在 /etc/sudoers  加上 <code>Defaults    !env_reset</code> 。</p><p>另一个简单的解决方式是加上 -E ， sudo -E 可以要系统先载入 User 的环境变数，再执行后序的工作。</p> <br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-25T00:38:43+08:00" class="article-modify-time">2016/11/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-392" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-392" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Linux 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-290-Cygwin-:-在-windows-環境上使用-Linux-指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="/docs-blog/article-191-FreeBsd-安裝與設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_191&quot;}'>FreeBsd 安裝與設定 </a></li>
+    
+        <li><a href="/docs-blog/article-186-SSH-Tunnel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_186&quot;}'>SSH Tunnel </a></li>
+    
+        <li><a href="/docs-blog/article-133-apache-.htaccess-登入帳號，密碼機制.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_133&quot;}'>apache .htaccess 登入帳號，密碼機制 </a></li>
+    
+        <li><a href="/docs-blog/article-69-Linux-指令筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_69&quot;}'>Linux 指令筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-63-Linux-系統負荷量檢查程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_63&quot;}'>Linux 系統負荷量檢查程式 </a></li>
+    
+        <li><a href="/docs-blog/article-58-Linux-系統維護指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_58&quot;}'>Linux 系統維護指令 </a></li>
+    
+        <li><a href="/docs-blog/article-29-DNS-簡易架設.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_29&quot;}'>DNS  簡易架設 </a></li>
+    
+        <li><a href="/docs-blog/article-28-Linux-系統安裝-apache-+-mysql-+-php.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_28&quot;}'>Linux 系統安裝 apache + mysql + php </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

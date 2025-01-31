@@ -1,0 +1,38 @@
+<!DOCTYPE> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="zh-tw" />
+<META NAME="AUTHOR" CONTENT="ewebsite">
+<title>檔案上傳工具</title>
+<meta name="keywords" content="檔案上傳工具" />
+<meta name="description" content="檔案上傳工具" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="private" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="vjUI_fileUpload.js"></script>
+</head>
+<body >
+
+<div id="dragBox" style="min-height:100px;width:70%;border:1px solid #a00;padding:10px;margin:0 auto;" >
+	請從桌面拖曳圖片至此<br />
+</div>
+<br />
+<div class="t" style="width:100%;"></div>
+
+</body>
+<script>
+var file_upload=new vjUI_fileUpload({"dragInBox":"#dragBox,.test","loadCallback":previewImage});
+
+function previewImage(files){
+	var n=files.length;
+
+	for(var i=0;i<n;i++){
+		$("#dragBox").append("<img src='"+files[i]+"' width='150' style='margin:10px;border:1px solid #cecece;' />");
+	}
+	file_upload.clearFiles();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Mysql Index, Unique 效能提升</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="使用 Index與Unique 來提升Sql 語法效能的原理假設有個資料表 book id book_name price Index當你將 price設為 Index時，資料庫會自動將price的資料做排序，産生一個新的資料表，當你將book_name時，資料庫會自動以book_name的字母來排序，産生一個新的資料表，新資料表會應用在，當你在搜尋某個book_name 或是" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-13-Mysql-Index,-Unique-效能提升.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Mysql" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Mysql</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-13">
+                    <em><span>Mysql Index, Unique 效能提升</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-13-Mysql-Index,-Unique-\u6548\u80fd\u63d0\u5347.html"},"headline":"Mysql Index, Unique \u6548\u80fd\u63d0\u5347","image":"","datePublished":"2011-02-28T03:05:51+08:00","dateModified":"2011-02-28T03:16:18+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u4f7f\u7528 Index\u8207Unique \u4f86\u63d0\u5347Sql \u8a9e\u6cd5\u6548\u80fd\u7684\u539f\u7406\u5047\u8a2d\u6709\u500b\u8cc7\u6599\u8868 book\r\r  \r    id\r    book_name\r    price\r  \r\rIndex\u7576\r\u4f60\u5c07 price\u8a2d\u70ba "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Feb</div>
+            <div class="day">28</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html"><span>Mysql Index, Unique 效能提升</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h1 style="font-size: 18px;">使用 Index與Unique 來提升Sql 語法效能的原理<br /></h1><br /><p>假設有個資料表 book<br /></p><table border="1">  <tbody><tr>    <td>id</td>    <td>book_name</td>    <td>price</td>  </tr></tbody></table><p><span style="font-weight: bold;"><br /></span></p><p><span style="font-weight: bold;">Index</span><br /></p><p>當你將 price設為 Index時，資料庫會自動將price的資料做排序，産生一個新的資料表，當你將book_name時，資料庫會自動以book_name的字母來排序，産生一個新的資料表，新資料表會應用在，當你在搜尋某個book_name 或是搜尋某個price時，因為資料已經排序過，所以可以大大的減低搜尋時間，但是所産生的新資料表，會增加db的使用量，資料量太大時，反而增加系統的負擔。</p><br /><p>若是 book_name 與 price皆設為Index，並對這兩個欄位執行比對搜尋時，Mysql只會使用其中一個欄位的Index資料表。<br /></p><p>如： select * from book where&nbsp; book_name=&#39;abc&#39; and price between 500 and 800</p><br /><p><span style="font-weight: bold;">Unique</span></p><p>如果資料表中的某一欄位，資料是不可重複時，欄位必須 Unique，原因是除了保證資料欄位不會有重複性的資料外，在搜尋該欄位也會提升效率，若沒有使用Unique，Mysql就必須搜尋完所有的資料，才能判定符合的資料筆數。</p><p>測試在 3萬筆資料時，無使用Unique時，搜尋的時間為 0.0085&nbsp; ，使用Unique後，搜尋的時間為 0.0003，效能大大的提升了，資料量越大，效果就越明顯。</p><br /><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2011-02-28T03:16:18+08:00" class="article-modify-time">2011/02/28</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-13" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-13" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Mysql</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-269-Oracle-語法記錄.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_269&quot;}'>Oracle 語法記錄 </a></li>
+    
+        <li><a href="/docs-blog/article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_229&quot;}'>Mysql 啟動失敗： Can not open the mysql.plugin table </a></li>
+    
+        <li><a href="/docs-blog/article-76-Mysql-語法-基礎篇.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+        <li><a href="/docs-blog/article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>20萬筆資料，Mysql資料庫就跑不動囉! (排序相關) </a></li>
+    
+        <li><a href="/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>Mysql Index, Unique 效能提升 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

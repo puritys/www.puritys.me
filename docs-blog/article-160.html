@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Sync &amp; Async of JavaScript loading</title>
+    <meta name="keywords" content="javascript" />
+    <meta name="description" content="這兩個英文單字，中文翻譯分別是「同步」與「非同步」， 而同步是什麼意思呢，今天想作一個讓網頁中所有的 script 可以動態載入的功能 ， 一開始先嘗試使用 document.getElementByTagName(#39;head#39;)[0].appendChild() 寫入 script A,B,C 三個 tag 到 head 中，不過這個方式沒辦法讓 script 依" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-160-Sync-&-Async-of-JavaScript-loading.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-160-Sync-&-Async-of-JavaScript-loading.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-160">
+                    <em><span>Sync &amp; Async of Java...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-160-Sync-&-Async-of-JavaScript-loading.html"},"headline":"Sync & Async of JavaScript loading","image":"","datePublished":"2013-02-19T00:15:28+08:00","dateModified":"2013-02-19T01:05:55+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\u9019\u5169\u500b\u82f1\u6587\u55ae\u5b57\uff0c\u4e2d\u6587\u7ffb\u8b6f\u5206\u5225\u662f\u300c\u540c\u6b65\u300d\u8207\u300c\u975e\u540c\u6b65\u300d\uff0c \u800c\u540c\u6b65\u662f\u4ec0\u9ebc\u610f\u601d\u5462\uff0c\u4eca\u5929\u60f3\u4f5c\u4e00\u500b\u8b93\u7db2\u9801\u4e2d\u6240\u6709\u7684 script \u53ef\u4ee5\u52d5\u614b\u8f09\u5165\u7684\u529f\u80fd \uff0c \u4e00\u958b\u59cb\u5148\u5617\u8a66\u4f7f\u7528 document.getElement"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Feb</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-160-Sync-&-Async-of-JavaScript-loading.html"><span>Sync &amp; Async of JavaScript loading</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=javascript">javascript</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >這兩個英文單字，中文翻譯分別是「同步」與「非同步」， 而同步是什麼意思呢，今天想作一個讓網頁中所有的 script 可以動態載入的功能 ， 一開始先嘗試使用 <span class="vj-cmd">document.getElementByTagName(&#39;head&#39;)[0].appendChild()</span> 寫入 script A,B,C 三個 tag 到 head 中，不過這個方式沒辦法讓 script 依序執行，重覆 reload 後，常常會出現 B > A > C 這種錯誤的執行流程，後來改用 YUI3 Get 功能，發現 YUI3 有個 async options ，只要設定這個值為 false ，就能有正確的 script 執行流程。 </p><p class="vj-quote" >以下摘錄 YUI3 async 的說明。</p><p class="vj-amazing vj-lv2">Whether or not to load scripts asynchronously, meaning they&#39;re requested in parallel and execution order is not guaranteed. Has no effect on CSS, since CSS is always loaded asynchronously</p><p class="vj-quote" >中文胡亂翻譯應該是「<em>如果你使用非同步方式發送 Request，那所有的 Request 將會以平行方式，同時發送出去，而且無法保證執行的順序</em>」</p><p class="vj-quote" >看完就知道為什麼要加上 async = false 這個功能吧。</p><a name="vj-t0"></a><h2 class="vj-sub-title">blocking , nonblocking</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >sync & async 在網頁的世界理，是比較像 blocking & nonblocking 的觀念， sync(同步) 每一個 script 會依序載入與執行，後面的 script 會等待前一個 script 載入完成後，才開始執行，所以這是 <em>blocking</em>，一次只能載入一個 script</p><p class="vj-quote" >async(非同步) 則可以一次載入多個 script ，不過沒辦法控制每一個 script 的執行順序，所以這是 <em>nonblocking</em>。</p><a name="vj-t1"></a><h2 class="vj-sub-title">Dynamic load javascript (sync)</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >瀏覽器(Chrome, Firefox) 預設會將動態載入的 Script Tag 變成非同步處理，也就是 nonblocking ，最後會造成 script 執行的順序錯亂。</p><p class="vj-quote" >為了讓 script 可以按照我們的順序來執行，我們必須在每一個 script tag 加上 async=false。</p><div class="codeBlock"><span class="title"> Javascript loaded</span><pre class="prettyprint lang-js_my linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">scriptTag </span><span class="pun">=</span><span class="pln"> </span><span class="PR_KEYWORD2">document</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">&#39;script&#39;</span><span class="pun">);</span></li><li class="L2"><span class="pfunc">function loadJS</span><span class="pun">(){</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> head </span><span class="pun">=</span><span class="pln"> </span><span class="PR_KEYWORD2">document</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="str">&#39;head&#39;</span><span class="pun">)[</span><span class="lit">0</span><span class="pun">];</span></li><li class="L4"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> script </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="str">"scriptA.js"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"scriptB.js"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"scriptC.js"</span><span class="pun">];</span></li><li class="L5"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> stag</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> n </span><span class="pun">=</span><span class="pln"> script</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span></li><li class="L8"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&lt;</span><span class="pln">n</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">        scriptTag </span><span class="pun">=</span><span class="pln"> </span><span class="PR_KEYWORD2">document</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">&#39;script&#39;</span><span class="pun">);</span></li><li class="L0"><span class="pln">        scriptTag</span><span class="pun">.</span><span class="pln">async </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></li><li class="L1"><span class="pln">        scriptTag</span><span class="pun">.</span><span class="pln">src </span><span class="pun">=</span><span class="pln"> script</span><span class="pun">[</span><span class="pln">i</span><span class="pun">];</span></li><li class="L2"><span class="pln">        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">((</span><span class="pln">i</span><span class="lit">+1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> n</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">            scriptTag</span><span class="pun">.</span><span class="pln">onload </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">                console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"All script is loaded."</span><span class="pun">);</span></li><li class="L5"><span class="pln">            </span><span class="pun">}</span></li><li class="L6"><span class="pln">        </span><span class="pun">}</span></li><li class="L7"><span class="pln">        head</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln">scriptTag</span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span><span class="pun">}</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-02-19T01:05:55+08:00" class="article-modify-time">2013/02/19</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-160" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-160" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">javascript 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-130-安裝-v8-Javascript-engine-in-window.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="/docs-blog/article-123-Javascript-setTimeout-執行時間錯亂.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-79-Javascript-指標物件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="/docs-blog/article-66-Javascript-變數型態剖析.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="/docs-blog/article-64-Json-to-Array-格式轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-39-Javascript-換行字符.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="/docs-blog/article-14-JS-時間與日期運算.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

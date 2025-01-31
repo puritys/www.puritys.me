@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>使用 Docker 執行 Maven - mvn compile</title>
+    <meta name="keywords" content="Java, Maven, Docker" />
+    <meta name="description" content="我平均一年只會寫兩次 Java ，因為寫的頻率很低，每次輪到 Java 的工作時，總是找不到合適的環境來開發，後來我使用 Docker 的技術，將 Java + Maven 環境設定寫成 Docker 專用的 Dockerfile ，以後只要碰到 Java 的專案，就只要打開 Docker container 就行了。下面就是我使用的 Dockerfile ，重點要記得 mou" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-403-使用-Docker-执行-Maven---mvn-compile.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-403-使用-Docker-執行-Maven---mvn-compile.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Java" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Java</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-403">
+                    <em><span>使用 Docker 執行 Maven -...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-403-\u4f7f\u7528-Docker-\u57f7\u884c-Maven---mvn-compile.html"},"headline":"\u4f7f\u7528 Docker \u57f7\u884c Maven - mvn compile","image":"","datePublished":"2017-01-17T14:32:58+08:00","dateModified":"2017-05-29T00:44:34+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u6211\u5e73\u5747\u4e00\u5e74\u53ea\u6703\u5beb\u5169\u6b21 Java \uff0c\u56e0\u70ba\u5beb\u7684\u983b\u7387\u5f88\u4f4e\uff0c\u6bcf\u6b21\u8f2a\u5230 Java \u7684\u5de5\u4f5c\u6642\uff0c\u7e3d\u662f\u627e\u4e0d\u5230\u5408\u9069\u7684\u74b0\u5883\u4f86\u958b\u767c\uff0c\u5f8c\u4f86\u6211\u4f7f\u7528 Docker \u7684\u6280\u8853\uff0c\u5c07 Java + Maven \u74b0\u5883\u8a2d\u5b9a\u5beb\u6210 Docker"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Jan</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html"><span>使用 Docker 執行 Maven - mvn compile</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Java">Java</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Maven">Maven</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Docker">Docker</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-403-使用-Docker-执行-Maven---mvn-compile.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>我平均一年只會寫兩次 Java ，因為寫的頻率很低，每次輪到 Java 的工作時，總是找不到合適的環境來開發，後來我使用 Docker 的技術，將 Java + Maven 環境設定寫成 Docker 專用的 Dockerfile ，以後只要碰到 Java 的專案，就只要打開 Docker container 就行了。</p><p>下面就是我使用的 Dockerfile ，重點要記得  mount ~/.m2 這個目錄，因為 Maven 會下載 Java libraries 到 ~/.m2 這個目錄， Docker container 每次執行都會是一個全新乾淨的環境，所有下載過的 Java libraries 都會消失，你應該不想每次 compile 都要重新下載 Java libraries 吧。</p><div class="codeBlock docker"><span class="title"> Dockerfile for mvn</span><pre class="prettyprint lang-docker linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM openjdk</span><span class="pun">:</span><span class="lit">8</span><span class="pun">-</span><span class="pln">jdk</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">ARG MAVEN_VERSION</span><span class="pun">=</span><span class="lit">3.3</span><span class="pun">.</span><span class="lit">9</span></li><li class="L3"><span class="pln">ARG USER_HOME_DIR</span><span class="pun">=</span><span class="str">"/root"</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">RUN apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> update</span></li><li class="L6"><span class="pln">RUN apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install build</span><span class="pun">-</span><span class="pln">essential </span><span class="pun">-</span><span class="pln">y</span></li><li class="L7"><span class="pln">RUN ln </span><span class="pun">-</span><span class="pln">sf </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">make </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">gmake</span></li><li class="L8"><span class="pln">RUN mkdir </span><span class="pun">-</span><span class="pln">p </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">maven </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">maven</span><span class="pun">/</span><span class="kwd">ref</span><span class="pln"> &#92;</span></li><li class="L9"><span class="pln">  </span><span class="pun">&amp;&amp;</span><span class="pln"> curl </span><span class="pun">-</span><span class="pln">fsSL http</span><span class="pun">:</span><span class="com">//apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz &#92;</span></li><li class="L0"><span class="pln">    </span><span class="pun">|</span><span class="pln"> tar </span><span class="pun">-</span><span class="pln">xzC </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">maven </span><span class="pun">--</span><span class="pln">strip</span><span class="pun">-</span><span class="pln">components</span><span class="pun">=</span><span class="lit">1</span><span class="pln"> &#92;</span></li><li class="L1"><span class="pln">  </span><span class="pun">&amp;&amp;</span><span class="pln"> ln </span><span class="pun">-</span><span class="pln">s </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">maven</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">mvn </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">mvn</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">ENV MAVEN_HOME </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">share</span><span class="pun">/</span><span class="pln">maven</span></li><li class="L4"><span class="pln">ENV MAVEN_CONFIG </span><span class="str">"$USER_HOME_DIR/.m2"</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">VOLUME </span><span class="pun">[</span><span class="str">"/usr/src/mymaven"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"/root/.m2"</span><span class="pun">]</span></li></ol></pre></div><p>使用 <code>docker build -t my/my-mvn . </code>建立好 docker image 後，執行下面這個執令就能夠執行 Maven 了，這個指令在 Mac 上是可以運作的，請把帳號改成你自已的。</p><blockquote>docker run -it --rm -v /Users/account/.m2:/root/.m2 -v /my_dev/maven/project:/usr/src/mymaven -w /usr/src/mymaven my/my-mvn mvn compile</blockquote><p>這個指令的  <code>-v /Users/account/.m2:/root/.m2  -v /Users/account/.m2:/root/.m2 </code>  ，就是要 mount ~/.m2 這個目錄，這樣每次下載 Java Libraries 就會存在實體機的 ~/.m2 ，而不是存在 docker container ，  另外 <code>  -v /my_dev/maven/project:/usr/src/mymaven </code>這個是指我 Java 程式碼的路徑，我把程式碼掛載到 /usr/src/mymaven 這個目錄，   "-w /usr/src/mymaven" ：指定切換到  /usr/src/mymaven 這個目錄下。</p><h3>mount 目錄到 Docker machine</h3><p>如果你的 docker engine 是安裝在 linux 環境，那麼操作上是沒什麼問題，若是使用 Mac 或 Windows ，那麼你要先把本機的目錄掛載到 Docker machine 上，只有個人目錄不用特別手動掛載，像我平常習慣的程式開發路徑都放在 /dev 下， 所以我得先把 /dev 掛載到 docker machine 的  /dev ，Mac mount 的執令如下：</p><blockquote>VBoxManage sharedfolder add default --name /dev --hostpath /dev --automount</blockquote><p>Windows 要下這樣的指令：</p><blockquote>/c/Program&#92; Files/Oracle/VirtualBox/VBoxManage.exe sharedfolder add default --name /dev --hostpath &#39;d:&#92;dev&#39; --automount</blockquote><h2>設定 alias</h2><p>每次都打這麼長的指令，而且還要手動修改路徑，當然是不行的，我們可以簡單的寫一個 alias ，簡化指令， 請在 ~/.alias 這個檔案加入下面的設定。</p><div class="codeBlock html"><span class="title"> .alias</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">alias mvn="mvn_fn"</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">function mvn_fn() {</span></li><li class="L4"><span class="pln">    command=" $@ "</span></li><li class="L5"><span class="pln">    pwd=`pwd`</span></li><li class="L6"><span class="pln">    owner=`whoami`</span></li><li class="L7"><span class="pln">    if [ `uname` = "Darwin" ]; then</span></li><li class="L8"><span class="pln">        HOME="/Users/$owner"</span></li><li class="L9"><span class="pln">    else</span></li><li class="L0"><span class="pln">        HOME="/home/$owner"                                                                                                                                                    </span></li><li class="L1"><span class="pln">    fi </span></li><li class="L2"><span class="pln">    command="docker run -it --rm -v $HOME/.m2:/root/.m2 -v $(pwd):/usr/src/mymaven -w /usr/src/mymaven my/my-mvn $command"</span></li><li class="L3"><span class="pln">    echo $command</span></li><li class="L4"><span class="pln">    $command</span></li><li class="L5"><span class="pln">}</span></li></ol></pre></div><p>這個 alias 會自動找出你當前的目錄，並將這個目錄 mount 到 /usr/src/mymaven 如此我們就不用手動輸入程式碼目錄，你只要換掉到 Maven pom.xml 的目錄，執行 <code>mvn mvn compile 就行了，第一個 mvn 是我們的 alias ，告訴 docker 啟動 Maven container ，第二個 mvn compile</code> 才是真的執行 mvn 指令，如果你想要用 Java compile 程式，那麼可以輸入 mvn javac xxx.java</p><h2>執行兩行指令</h2><p>有時候，我們會需要執行二行以上的指令，例如先 mvn compile 再 mvn test ，而 docker 沒辦法讓我們這樣做(有可能是我自已不會)， 我的做法是的 ， 我將指令寫在 Makefile 裡 ，然後用 mvn gmake targe 來執行就好了。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">run:</span></li><li class="L1"><span class="pln">  mvn compile</span></li><li class="L2"><span class="pln">  mvn test</span></li></ol></pre></div><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">$ mvn gmake run</span></li><li class="L1"><span class="pln">docker run </span><span class="pun">-</span><span class="pln">it </span><span class="pun">--</span><span class="pln">rm </span><span class="pun">-</span><span class="pln">v </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">account</span><span class="pun">/.</span><span class="pln">m2</span><span class="pun">:</span><span class="str">/root/</span><span class="pun">.</span><span class="pln">m2 </span><span class="pun">-</span><span class="pln">v </span><span class="pun">/</span><span class="pln">my_test</span><span class="pun">/</span><span class="pln">maven</span><span class="pun">/</span><span class="pln">proj</span><span class="pun">:</span><span class="str">/usr/</span><span class="pln">src</span><span class="pun">/</span><span class="pln">mymaven </span><span class="pun">-</span><span class="pln">w </span><span class="pun">/</span><span class="pln">us</span></li><li class="L2"><span class="pln">r</span><span class="pun">/</span><span class="pln">src</span><span class="pun">/</span><span class="pln">mymaven </span><span class="kwd">my</span><span class="pun">/</span><span class="kwd">my</span><span class="pun">-</span><span class="pln">mvn gmake run</span></li><li class="L3"><span class="pln">mvn compile</span></li><li class="L4"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Scanning</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> projects</span><span class="pun">...</span></li><li class="L5"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln">                                                                         </span></li><li class="L6"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L7"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Building</span><span class="pln"> maven </span><span class="lit">1.0</span><span class="pun">-</span><span class="pln">SNAPSHOT</span></li><li class="L8"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L9"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span></li><li class="L0"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">---</span><span class="pln"> maven</span><span class="pun">-</span><span class="pln">resources</span><span class="pun">-</span><span class="pln">plugin</span><span class="pun">:</span><span class="lit">2.6</span><span class="pun">:</span><span class="pln">resources </span><span class="pun">(</span><span class="kwd">default</span><span class="pun">-</span><span class="pln">resources</span><span class="pun">)</span><span class="pln"> </span><span class="pun">@</span><span class="pln"> maven </span><span class="pun">---</span></li><li class="L1"><span class="pun">[</span><span class="pln">WARNING</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Using</span><span class="pln"> platform encoding </span><span class="pun">(</span><span class="pln">UTF</span><span class="pun">-</span><span class="lit">8</span><span class="pln"> actually</span><span class="pun">)</span><span class="pln"> to copy filtered resources</span><span class="pun">,</span><span class="pln"> i</span><span class="pun">.</span><span class="pln">e</span><span class="pun">.</span><span class="pln"> build </span><span class="kwd">is</span><span class="pln"> platform dependent</span><span class="pun">!</span></li><li class="L2"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Copying</span><span class="pln"> </span><span class="lit">116</span><span class="pln"> resources</span></li><li class="L3"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span></li><li class="L4"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">---</span><span class="pln"> maven</span><span class="pun">-</span><span class="pln">compiler</span><span class="pun">-</span><span class="pln">plugin</span><span class="pun">:</span><span class="lit">3.1</span><span class="pun">:</span><span class="pln">compile </span><span class="pun">(</span><span class="kwd">default</span><span class="pun">-</span><span class="pln">compile</span><span class="pun">)</span><span class="pln"> </span><span class="pun">@</span><span class="pln"> maven </span><span class="pun">---</span></li><li class="L5"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Nothing</span><span class="pln"> to compile </span><span class="pun">-</span><span class="pln"> all classes are up to date</span></li><li class="L6"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L7"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> BUILD SUCCESS</span></li><li class="L8"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L9"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> time</span><span class="pun">:</span><span class="pln"> </span><span class="lit">9.219</span><span class="pln"> s</span></li><li class="L0"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Finished</span><span class="pln"> at</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2017</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">19T16</span><span class="pun">:</span><span class="lit">30</span><span class="pun">:</span><span class="lit">19</span><span class="pun">+</span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span></li><li class="L1"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Final</span><span class="pln"> </span><span class="typ">Memory</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7M</span><span class="pun">/</span><span class="lit">17M</span></li><li class="L2"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L3"><span class="pln">mvn </span><span class="kwd">exec</span><span class="pun">:</span><span class="pln">java </span><span class="pun">-</span><span class="typ">Dexec</span><span class="pun">.</span><span class="pln">mainClass</span><span class="pun">=</span><span class="str">"com.dungame.Main"</span><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L4"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> BUILD SUCCESS</span></li><li class="L5"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L6"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> time</span><span class="pun">:</span><span class="pln"> </span><span class="lit">9.219</span><span class="pln"> s</span></li><li class="L7"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Finished</span><span class="pln"> at</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2017</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">19T16</span><span class="pun">:</span><span class="lit">30</span><span class="pun">:</span><span class="lit">19</span><span class="pun">+</span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span></li><li class="L8"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Final</span><span class="pln"> </span><span class="typ">Memory</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7M</span><span class="pun">/</span><span class="lit">17M</span></li><li class="L9"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L0"><span class="pln">mvn </span><span class="kwd">exec</span><span class="pun">:</span><span class="pln">java </span><span class="pun">-</span><span class="typ">Dexec</span><span class="pun">.</span><span class="pln">mainClass</span><span class="pun">=</span><span class="str">"com.dungame.Main"</span></li><li class="L1"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Scanning</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> projects</span><span class="pun">...</span></li><li class="L2"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln">                                                                         </span></li><li class="L3"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L4"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Building</span><span class="pln"> maven </span><span class="lit">1.0</span><span class="pun">-</span><span class="pln">SNAPSHOT</span></li><li class="L5"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L6"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span></li><li class="L7"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">---</span><span class="pln"> </span><span class="kwd">exec</span><span class="pun">-</span><span class="pln">maven</span><span class="pun">-</span><span class="pln">plugin</span><span class="pun">:</span><span class="lit">1.5</span><span class="pun">.</span><span class="lit">0</span><span class="pun">:</span><span class="pln">java </span><span class="pun">(</span><span class="kwd">default</span><span class="pun">-</span><span class="pln">cli</span><span class="pun">)</span><span class="pln"> </span><span class="pun">@</span><span class="pln"> maven </span><span class="pun">---</span></li><li class="L8"><span class="typ">Hello</span><span class="pln"> </span><span class="typ">World</span><span class="pun">!</span><span class="lit">2</span></li><li class="L9"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L0"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> BUILD SUCCESS</span></li><li class="L1"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li><li class="L2"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> time</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3.924</span><span class="pln"> s</span></li><li class="L3"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Finished</span><span class="pln"> at</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2017</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">19T16</span><span class="pun">:</span><span class="lit">30</span><span class="pun">:</span><span class="lit">25</span><span class="pun">+</span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span></li><li class="L4"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Final</span><span class="pln"> </span><span class="typ">Memory</span><span class="pun">:</span><span class="pln"> </span><span class="lit">8M</span><span class="pun">/</span><span class="lit">19M</span></li><li class="L5"><span class="pun">[</span><span class="pln">INFO</span><span class="pun">]</span><span class="pln"> </span><span class="pun">------------------------------------------------------------------------</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-05-29T00:44:34+08:00" class="article-modify-time">2017/05/29</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-403" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-403" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Java 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_160&quot;}'>Sync &amp; Async of JavaScript loading </a></li>
+    
+        <li><a href="/docs-blog/article-130-安裝-v8-Javascript-engine-in-window.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="/docs-blog/article-123-Javascript-setTimeout-執行時間錯亂.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-79-Javascript-指標物件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="/docs-blog/article-66-Javascript-變數型態剖析.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="/docs-blog/article-64-Json-to-Array-格式轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-39-Javascript-換行字符.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="/docs-blog/article-14-JS-時間與日期運算.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Docker 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_393&quot;}'>用 Docker 取代 VirtualBox - 建立  Linux 環境 </a></li>
+    
+        <li><a href="/docs-blog/article-363-Docker-vs-Virtual-Machine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_363&quot;}'>Docker vs Virtual Machine </a></li>
+    
+        <li><a href="/docs-blog/article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_362&quot;}'>如何用 Dockerfile 自製一個 Docker image / Container </a></li>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Java</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_442&quot;}'>How to do Dynamodb unit test </a></li>
+    
+        <li><a href="/docs-blog/article-409-Java-Best-Practice.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_409&quot;}'>Java Best Practice </a></li>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-349-Java-JVM-為何要先暖機，效能才會變好.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_349&quot;}'>Java JVM 為何要先暖機，效能才會變好 </a></li>
+    
+        <li><a href="/docs-blog/article-336-Java-安裝方式與其變數型態.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_336&quot;}'>Java 安裝方式與其變數型態 </a></li>
+    
+        <li><a href="/docs-blog/article-335-Java-Maven-安裝.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_335&quot;}'>Java Maven 安裝 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>CSS Selector</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" .selectorWrap { width: 300px; margin: 0 auto; font-size: 18px; padding: 8px;}.selectorWrap input { padding: 5px 10px;}CSS Selector 就是指 「#main」，「 .price」，「div」這種設定 style 的方式，下面是一個簡單的 CSS 寫法。" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-203-CSS-Selector.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-203-CSS-Selector.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-203-CSS-Selector.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-203-CSS-Selector.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/css" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">CSS</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-203">
+                    <em><span>CSS Selector</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-203-CSS-Selector.html"},"headline":"CSS Selector","image":"","datePublished":"2013-12-24T13:25:55+08:00","dateModified":"2015-07-11T00:01:17+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\r\r.selectorWrap {\r   width: 300px;\r   margin: 0 auto;\r   font-size: 18px;\r   padding: 8px;\r}\r.sele"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Dec</div>
+            <div class="day">24</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-203-CSS-Selector.html"><span>CSS Selector</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-203-CSS-Selector.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><style>.selectorWrap {   width: 300px;   margin: 0 auto;   font-size: 18px;   padding: 8px;}.selectorWrap input {   padding: 5px 10px;}</style><p>CSS Selector 就是指  「#main」，「 .price」，「div」這種設定 style 的方式，下面是一個簡單的 CSS 寫法。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pun">#</span><span class="pln">main </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">font-size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">18px</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">.</span><span class="pln">price </span><span class="pun">{</span></li><li class="L7"><span class="pln">   </span><span class="kwd">font-weight</span><span class="pun">:</span><span class="pln"> bold</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">div </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="kwd">text-align</span><span class="pun">:</span><span class="pln"> left</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="tag">&lt;/style&gt;</span></li></ol></pre></div><p>CSS Selector 不只是有 <b> id </b>, <b>class</b>, <b>tag name </b>這幾個寫法，隨著時代的進步，現在有了不少新的 selector  方式,，如<b> :first-child, :before, :after, +, ~, >,  =, ^=, ~= </b>等等，接下來就一一的說明這裡 selector 的用法。</p><h2>「>」比對  Element 下一層</h2><p>CSS 中常常會對 Parent  ， Child 下不同的 Style， 「> .class」這個會給下一層的  class 指定 style ，下面是一個簡單的範例， list 4 雖然也是用 span 包起來，但是 list 4 的 span 並不是在 「.e1」的下一層，而是 child 的 child 兩層，所以他的 style 不會被影響到。</p><div class="codeBlock"><span class="title"> parent > child </span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pun">.</span><span class="pln">e1 </span><span class="pun">&gt;</span><span class="pln"> span </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"e1"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">   </span><span class="tag">&lt;span&gt;</span><span class="pln"> list  1</span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L7"><span class="pln">   </span><span class="tag">&lt;span&gt;</span><span class="pln"> list  2</span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L8"><span class="pln">   </span><span class="tag">&lt;span&gt;</span><span class="pln"> list  3 </span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L9"><span class="pln">   </span><span class="tag">&lt;div&gt;</span><span class="pln"> </span><span class="tag">&lt;span&gt;</span><span class="pln">list   4</span><span class="tag">&lt;/span&gt;</span><span class="pln"> </span><span class="tag">&lt;/div&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L0"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「>」</div><style>.e1   > span {   color: red;}</style><div class="selectorWrap e1">   <span> list  1</span><br />   <span> list  2</span><br />   <span> list  3 </span><br />   <div> <span>list   4</span> </div><br /></div><h2>「+」比對  Element 下一個</h2><p>下面是一個簡單的範例，<b> .e2 </b>的下一個 div  是 <b>list 1</b>，而 list 3 的 tag name  是 span，並不是我們指定的 div 所以不受影響， list 4 則是因為在 .e2 的下兩個 element ，所以也不會被影響到。</p> <br /><div class="codeBlock"><span class="title"> div + next div</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pun">.</span><span class="pln">e2 </span><span class="pun">+</span><span class="pln"> div </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"e2"</span><span class="tag">&gt;&lt;/div&gt;</span></li><li class="L7"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 1</span><span class="tag">&lt;/div&gt;</span></li><li class="L8"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 2</span><span class="tag">&lt;/div&gt;</span></li><li class="L9"><span class="tag">&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L0"><span class="pln">   </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"e2"</span><span class="tag">&gt;&lt;/div&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;span&gt;</span><span class="pln"> list 3</span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 4</span><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「+」</div><style>.e2 + div {   color: red;}</style><div class="selectorWrap">   <div class="e2"></div>  <div> list 1</div>  <div> list 2</div><br />   <div class="e2"></div>  <span> list 3</span><br />  <div> list 4</div></div><h2>「~」比對  Element 的同一層</h2><p>「~」會去比對所有同一層的 element ，並且這些 element 必須在原 element 的後面，來看下面的範例， list 1 是在 <b>.e3</b> 的上面，所以不符合這個規則， 「list 2」, 「list 3」，「list 5」都與 .e3 同一個階層，並目在 .e3 後面。</p><p>「~」和上一個 「+」有一點類似，但還是有差別的，「div <b>+</b> span」這個只會比對 div 的下一個 span ，而 「div <b>~</b> span」則是比對 div 後面的全部 span。</p><div class="codeBlock"><span class="title"> div ~ span</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pun">.</span><span class="pln">e3 </span><span class="pun">~</span><span class="pln"> div </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="tag">&lt;/style&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 1</span><span class="tag">&lt;/div&gt;</span></li><li class="L8"><span class="pln">  </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"e3"</span><span class="tag">&gt;&lt;/div&gt;</span></li><li class="L9"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 2</span><span class="tag">&lt;/div&gt;</span></li><li class="L0"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 3</span><span class="tag">&lt;/div&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;span&gt;</span><span class="pln"> list 4</span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L3"><span class="pln">  </span><span class="tag">&lt;div&gt;</span><span class="pln"> list 5</span><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「~」</div><style>.e3 ~ div {   color: red;}</style><div class="selectorWrap">  <div> list 1</div>   <div class="e3"></div>  <div> list 2</div>  <div> list 3</div>  <span> list 4</span><br />  <div> list 5</div></div><h2>「=」 Element Attribute</h2><p>先定義一下 element 是指 「div」，「span」，「input」 這種 <b>HTML Tag Name</b>。</p><div class="codeBlock"><span class="title"> attribute = value</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">type</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"test"</span><span class="pln"> </span><span class="tag">/&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「=」</div><style>.a1 input[type="text"] {   color: red;}</style><div class="selectorWrap a1">   <input type="text" value="test" /></div><h2>「~=」Element Attribute  部分相同</h2><p><b>Attribute ~= word </b>，這個 selector 是指 attribute 中要存在 word 這個單字，上一個範例是要字串完全一樣，但是  「~= 」這個方式只要整個句子裡，其中一個單字相同即可，測試過中文後，發現中文也是有效果的。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">value </span><span class="pun">~=</span><span class="pln"> </span><span class="str">"string"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pun">.</span><span class="pln">word</span><span class="pun">[</span><span class="pln">data </span><span class="pun">~=</span><span class="pln"> </span><span class="str">"department"</span><span class="pun">]{</span></li><li class="L5"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pun">.</span><span class="pln">word</span><span class="pun">[</span><span class="pln">data </span><span class="pun">~=</span><span class="pln"> </span><span class="str">"中文"</span><span class="pun">]{</span></li><li class="L8"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="tag">&lt;/style&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"test string"</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L3"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"word"</span><span class="pln"> </span><span class="atn">data</span><span class="pun">=</span><span class="atv">"house department"</span><span class="tag">&gt;</span><span class="pln">a b c d</span><span class="tag">&lt;/div&gt;</span></li><li class="L4"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"word"</span><span class="pln"> </span><span class="atn">data</span><span class="pun">=</span><span class="atv">"中文 測試"</span><span class="tag">&gt;</span><span class="pln">中文也會有效果</span><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「~=」</div><style>.a2 input[value ~= "string"] {   color: red;}.a2 .word[data ~= "department"]{   color: red;}.a2 .word[data ~= "中文"]{   color: red;}</style><div class="selectorWrap a2">   <input type="text" value="test string" />   <div class="word" data="house department">a b c d</div>   <div class="word" data="中文 測試">中文也會有效果</div></div><h2>「^=」Element Attribute  比對開頭字母</h2><p><b>「^=」</b> 這個指比對開頭的字母，只要開頭的部分相同，這個 Selector 就成立，例如下面這個範例，「test」這個字因為開頭是 <b>te </b>所以 CSS Selector 會影響到這個 input ，而將文字變成紅色。</p><div class="codeBlock"><span class="title"> attribute ^= value</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">value</span><span class="pun">^=</span><span class="str">"te"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"test"</span><span class="pln"> </span><span class="tag">/&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「^=」</div><style>.a3 input[value^="te"] {   color: red;}</style><div class="selectorWrap a3">   <input type="text" value="test" /></div><h2>「$=」Element Attribute  結尾相同</h2><p><b>「$=」</b> 這個指比對結尾的字母，只要結尾的部分相同，這個 Selector 就成立，例如下面這個範例，「test」這個字因為結尾是 <b>st</b>所以 CSS Selector 會影響到這個 input ，而將文字變成紅色。</p><div class="codeBlock"><span class="title"> attribute $= value</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">value</span><span class="pun">$=</span><span class="str">"st"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"test"</span><span class="pln"> </span><span class="tag">/&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「$=」</div><style>.a4 input[value$="st"] {   color: red;}</style><div class="selectorWrap a4">   <input type="text" value="test" /></div><h2>「*=」Element Attribute  部分文字相同</h2><p><b>「*=」</b> 這個指比對片段的字母，只要部分字母相同，這個 Selector 就成立，例如下面這個範例，「itisalonglongstring」這個字因為有出現 <b>along</b> 所以 CSS Selector 會影響到這個 input ，而將文字變成紅色，若是我把文字切開成「It is a long long string."」，那這個比對就會失敗，因為比對的字串 「along」沒有「空白」。</p><div class="notice" label="Demo">Selector「*=」</div><div class="codeBlock"><span class="title"> attribute *= partial string</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">value</span><span class="pun">*=</span><span class="str">"along"</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"Itisalonglongstring"</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L7"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"It is a long long string."</span><span class="pln"> </span><span class="tag">/&gt;</span></li></ol></pre></div><style>.a5 input[value*="along"] {   color: red;}</style><div class="selectorWrap a5">   <input type="text" value="Itisalonglongstring" />   <input type="text" value="It is a long long string." /></div><h2>「|=」Element Attribute  內容用「-」 接起來</h2><p><b>[class|=test]</b> 代表 class 一定要是 test 或 prefix 為 <b>test-</b>。</p><div class="codeBlock"><span class="title"> class|=user</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pln">input</span><span class="pun">[</span><span class="pln">name</span><span class="pun">|=</span><span class="pln">user</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">       </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">[</span><span class="pln">class</span><span class="pun">|=</span><span class="pln">user</span><span class="pun">]</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    </span><span class="kwd">color</span><span class="pun">:</span><span class="pln">red</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="tag">&lt;/style&gt;</span></li><li class="L0"><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"user-firstName"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"John"</span><span class="tag">/&gt;</span><span class="pln"> </span><span class="tag">&lt;br</span><span class="pln"> </span><span class="tag">/&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"user-firstName"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">    John</span></li><li class="L4"><span class="tag">&lt;/div&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"user"</span><span class="tag">&gt;</span></li><li class="L7"><span class="pln">    John Chen</span></li><li class="L8"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「|=」</div><style>input[name|=user] {       color: red;}[class|=user] {    color:red;    }</style><div class="selectorWrap ea1">  <input name="user-firstName" value="John"/> <br /><br />  <div class="user-firstName">    John  </div>  <div class="user">    John Chen  </div></div><h2>「:empty」Element 完全空白</h2><p>:empty 是用在整個 element 中完全沒有任何其他的 Element ，也沒有任何的<b>文字</b>或是<b>空白</b>，像一般網站的搜尋結果頁面，如果搜尋出來的結果是空白，通常我們都會再掛上一個  className 來寫法空白頁的 style ，現在你只須要使用「<b>:empty</b>」，就能很簡單的做到這個效果。</p><p>下面範例，一個 div 是空的，另一個 div  有輸入一些文字，這兩個 div 就能看出，第一個空白的 div 背景色被改成了紅色。</p><div class="codeBlock"><span class="title"> div:empty</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="kwd">div</span><span class="pun">:</span><span class="pln">empty </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100px</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="kwd">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="kwd">background</span><span class="pun">:</span><span class="pln"> </span><span class="lit">#c00</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="tag">&lt;/style&gt;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">   </span><span class="tag">&lt;div&gt;&lt;/div&gt;</span></li><li class="L9"><span class="pln">   </span><span class="tag">&lt;div&gt;</span><span class="pln">Not Empty</span><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「:empty」</div><style>.ea1  div:empty {   width: 100px;   height: 20px;   background: #c00;}</style><div class="selectorWrap ea1">   <div></div>   <div>Not Empty</div></div><h2>「:first-child」第一個 Element</h2><p>:first-child 這個是指只取得第一個 Element ，例如我有 1 個  div，裡面有 1 個 span ，但是這個 span 一定要是 div 內的第一個 。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style&gt;</span></li><li class="L1"><span class="pun">.</span><span class="pln">ea2 </span><span class="kwd">div</span><span class="pun">:</span><span class="pln">first-child </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="tag">&lt;/style&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">   </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ea2"</span><span class="tag">&gt;</span></li><li class="L7"><span class="pln">      </span><span class="tag">&lt;div&gt;</span><span class="pln">list 1</span><span class="tag">&lt;/div&gt;</span></li><li class="L8"><span class="pln">   </span><span class="tag">&lt;/div&gt;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">   </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ea2"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">       </span><span class="tag">&lt;span&gt;</span><span class="pln">list 2</span><span class="tag">&lt;/span&gt;&lt;br</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L2"><span class="pln">       </span><span class="tag">&lt;div&gt;</span><span class="pln">list 3</span><span class="tag">&lt;/div&gt;</span></li><li class="L3"><span class="pln">   </span><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><div class="notice" label="Demo">Selector「:first-child」</div><style>.ea2 div:first-child {   color: red;}</style><div class="selectorWrap">   <div class="ea2">      <div>list 1</div>   </div><br />   <div class="ea2">       <span>list 2</span><br />       <div>list 3</div>   </div></div><h2>其他參考資料</h2><ul class="list">  <li><a href="http://www.w3schools.com/cssref/css_selectors.asp"  target="_blank">http://www.w3schools.com/cssref/css_selectors.asp</a></li>  <li><a href="http://net.tutsplus.com/tutorials/html-css-techniques/the-30-css-selectors-you-must-memorize/"  target="_blank">http://net.tutsplus.com/tutorials/html-css-techniques/the-30-css-selectors-you-must-memorize/</a></li>  <li><a href="http://www.w3.org/TR/CSS2/selector.html"  target="_blank">http://www.w3.org/TR/CSS2/selector.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-07-11T00:01:17+08:00" class="article-modify-time">2015/07/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-203" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-203" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-108">CSS Style 層級</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 CSS</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-354-CSS-實做-3D-立體正方形.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_354&quot;}'>CSS 實做  3D 立體正方形 </a></li>
+    
+        <li><a href="/docs-blog/article-353-CSS-3D-旋轉-rotate3d-與-translate3d.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_353&quot;}'>CSS 3D 旋轉 rotate3d 與 translate3d </a></li>
+    
+        <li><a href="/docs-blog/article-340-CSS-Transitions-動態展開圖層.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_340&quot;}'>CSS Transitions 動態展開圖層 </a></li>
+    
+        <li><a href="/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_322&quot;}'>Browser Reflow &amp; Repaint </a></li>
+    
+        <li><a href="/docs-blog/article-274-Chrome-do-not-allow-Cross-origin-resource-sharing-for-webfonts.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_274&quot;}'>Chrome do not allow  Cross-origin resource sharing for webfonts </a></li>
+    
+        <li><a href="/docs-blog/article-259-移除-CSS-inline-block-空白.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_259&quot;}'>移除 CSS inline-block 空白 </a></li>
+    
+        <li><a href="/docs-blog/article-208-CSS-font-size-about-pt,-px-,-em-and-percent.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_208&quot;}'>CSS font size about pt, px , em and percent </a></li>
+    
+        <li><a href="/docs-blog/article-207-CSS-特殊用法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_207&quot;}'>CSS 特殊用法 </a></li>
+    
+        <li><a href="/docs-blog/article-203-CSS-Selector.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_203&quot;}'>CSS Selector </a></li>
+    
+        <li><a href="/docs-blog/article-159-css-style-testing.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_159&quot;}'>css style testing </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

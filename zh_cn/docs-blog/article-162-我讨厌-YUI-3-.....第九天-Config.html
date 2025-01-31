@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第九天 Config</title>
+    <meta name="keywords" content="YUI3" />
+    <meta name="description" content=" YUI3 Instance一開始使用 YUI ，除了要先載入 yui-min.js 這支 JS 之外，還要建立 YUI Instance 這個物件，建立方式 「YUI()」，執行這個 function 會建立一個獨立的 context scope，每個 YUI Instance 中的變數，是不能相互溝通的。YUI3 ConfigYUI3 的 Config 設定，可以用來修改 " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-162-我讨厌-YUI-3-.....第九天-Config.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-162-我讨厌-YUI-3-.....第九天-Config.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-162-我討厭-YUI-3-.....第九天-Config.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-162">
+                    <em><span>我讨厌 YUI 3 .....第九天 Config</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-162-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u4e5d\u5929-Config.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u4e5d\u5929 Config","image":"","datePublished":"2013-03-09T16:32:09+08:00","dateModified":"2016-09-25T16:37:19+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rYUI3 Instance\r\u4e00\u958b\u59cb\u4f7f\u7528 YUI \uff0c\u9664\u4e86\u8981\u5148\u8f09\u5165 yui-min.js \u9019\u652f JS \u4e4b\u5916\uff0c\u9084\u8981\u5efa\u7acb YUI Instance \u9019\u500b\u7269\u4ef6\uff0c\u5efa\u7acb\u65b9\u5f0f \u300cYUI()\u300d\uff0c\u57f7\u884c\u9019\u500b funct"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Mar</div>
+            <div class="day">09</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html"><span>我讨厌 YUI 3 .....第九天 Config</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><h2>YUI3 Instance</h2><p>一开始使用 YUI ，除了要先载入 yui-min.js 这支 JS 之外，还要建立 YUI Instance 这个物件，建立方式 「<em>YUI()</em>」，执行这个 function 会建立一个独立的 <a href="/docs-blog/article-92"><span class="vj-cmd">context scope</span></a>，每个 YUI Instance 中的变数，是不能相互沟通的。</p><h2>YUI3 Config</h2><p>YUI3 的 Config 设定，可以用来修改 YUI 的预设行为。</p><div class="codeBlock my_js"><span class="title"> Sample</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">YUI</span><span class="pun">({</span><span class="pln">configKey</span><span class="pun">:</span><span class="pln"> value</span><span class="pun">}).</span><span class="kwd">use</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(){});</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">combine & comboBase</li>   </ul><p>combine 预设为 true ，也就是 YUI 预设去抓 multi JS module 时，会使用 combo 的功能，将多个 JS 合并后，再一次抓回来，如果不想要这个功能，可以指定为 false。</p><p>comboBase 则是指定 combo 功能的路径 ，例如我可以自已写一个 combo.php， 然后再指定 comboBase 到我的 combo.php 。</p> <ul class="list">   <li class="indent1">delayUtil</li> </ul><p>delayUtil 主要功能是指定 YUI Instance 程式执行的时间，平常 YUI().use(function (){}); 中 function 是会直接就执行的，但有时我们会希望他可以等到 <em>dom ready</em> 之后再执行，这样 delayUtil 就可以派上用场了，输入值「<em> domready </em>」就搞定了。</p> <ul class="list">   <li class="indent1">fetchCSS</li> </ul><p>YUI 的 JS Module 中有一些会包含 css style，而且这些 css style 是存在一个 css file 里，当你 include 了这个 JS Module，他的 CSS 就会自动被 YUI 抓回来，这样就有可能会破坏我们自订的 style ，所以你可以指定其值为 false，禁止 YUI 去抓 CSS Style。</p><p>另外还有一个值为 force ，这是指说就算 JS Module 已经存在，也要强迫 YUI 去重新抓一次 CSS Style 来取代现有的 Style 。</p> <ul class="list">   <li class="indent1">filter</li> </ul><p>取代预设的 JS Module 路径，例如范例中，取代成 debug 模式，或是取代成未压缩模式。</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">filter</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    searchExp </span><span class="pun">:</span><span class="pln"> </span><span class="str">"-min&#92;&#92;.js"</span><span class="pun">,</span></li><li class="L2"><span class="pln">    replaceStr</span><span class="pun">:</span><span class="pln"> </span><span class="str">"-debug.js"</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="kwd">or</span></li><li class="L5"><span class="pln">filter</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    searchExp </span><span class="pun">:</span><span class="pln"> </span><span class="str">"-min&#92;&#92;.js"</span><span class="pun">,</span></li><li class="L7"><span class="pln">    replaceStr</span><span class="pun">:</span><span class="pln"> </span><span class="str">".js"</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T16:37:19+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-162" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-162" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-73">我討厭 YUI 3  .....第一天 Node</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-198-我討厭-YUI-3-.....第十三天-Radio.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="/docs-blog/article-196-我討厭-YUI-3-.....第十二天-Panel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="/docs-blog/article-177-我討厭-YUI-3-.....第十一天-Node-Rotate-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="/docs-blog/article-161-YUI3-yogi.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="/docs-blog/article-150-我討厭-YUI-3-.....第七天-FileUploader.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="/docs-blog/article-102-我討厭-YUI-3-.....第六天-Slider.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(../images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot');src:url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff') format('woff'),url('fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(../fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-179-2013-JSDC.tw-参加心得与记录.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="//www.puritys.me/docs-blog/article-179" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">2013 JSDC.tw 参加心得与记录</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-179-2013-JSDC.tw-\u53c3\u52a0\u5fc3\u5f97\u8207\u8a18\u9304.html"},"headline":"2013 JSDC.tw \u53c3\u52a0\u5fc3\u5f97\u8207\u8a18\u9304","image":"","datePublished":"2013-05-19T21:45:20+08:00","dateModified":"2013-06-13T00:58:06+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\u6211\u9084\u883b\u5c11\u53c3\u52a0  conference \u7684\uff0c\u6240\u4ee5\u4e5f\u4e0d\u5e38\u64b0\u5beb\u985e\u4f3c\u7684\u5fc3\u5f97\uff0c\u9019\u6b21\u5c31\u7834\u4f8b\uff0c\u5c07\u8166\u4e2d\u9084\u4f9d\u7a00\u8a18\u5f97\u7684\u4e8b\u60c5\uff0c\u8a18\u9304\u4e0b\u4f86\uff0c\u9806\u4fbf\u5c07\u81ea\u5df2\u4e0d\u61c2\u7684\u6280\u8853\u5beb\u4e0b\uff0c\u671f\u8a31\u81ea\u5df2\u80fd\u5b78\u6703 JSDC \u5404\u4f4d\u5927\u5e2b\u6240\u5206\u4eab\u7684\u6280\u80fd\u3002\r\r\r "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">May</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-179-2013-JSDC.tw-參加心得與記錄.html"><span>2013 JSDC.tw 参加心得与记录</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-179-2013-JSDC.tw-參加心得與記錄.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="https://www.puritys.me/zh_cn/docs-blog/article-179-2013-JSDC.tw-參加心得與記錄.html">網頁好讀版</a></p><div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >我還蠻少參加  conference 的，所以也不常撰寫類似的心得，這次就破例，將腦中還依稀記得的事情，記錄下來，順便將自已不懂的技術寫下，期許自已能學會 JSDC 各位大師所分享的技能。</p><ul class="vj-ul"><li class="vj-lv2"> JSDC 議程 <a href=" http://jsdc.tw/schedule/"  target="_blank"> http://jsdc.tw/schedule/</a></li><li class="vj-lv2"> Video: <a href=" http://www.youtube.com/user/JSDCTW?feature=watch"  target="_blank"> http://www.youtube.com/user/JSDCTW?feature=watch</a></li></ul><a name="vj-t0"></a><h2 class="vj-sub-title">Amazon</h2><a href="#top" class="vj-btn_top2"></a>   <br><p class="vj-quote" >這次 Amazon 是來推廣他們的 web service 服務，總共有兩堂演講，有簡單的說明系統架構以及 Demo AWS 服務，現在申請 AWS 立刻就可以使用 Node.js 寫 Code ， AWS 服務內建就幫你裝好 Node.js ，另外如果你使用 GitHub 來管理程式， AWS 還可以自動幫你將程式 Deploy 到機器上，還附帶 Rollback 機制 。</p><p class="vj-quote" >最特別的功能是當你的系統流量爆炸的時候， AWS 可以自動建立多個 Instance 幫你處理大流量。</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://aws.amazon.com/ec2/"  target="_blank"> http://aws.amazon.com/ec2/</a> ： 這裡可以查 Auto Scaling 相關的說明。</li><li class="vj-lv2"> AWS： Amazon Web Service</li></ul><p class="vj-quote" >記得兩年前我曾經試用 EC2，那時還去翻過他們的付款機制說明，而因為英文實在是太多，當時我也很懶得看，於是就 Email 去跟 Amazon 靠邀一下，為什麼沒有中文文件，Amazon 到是很有心，隔天馬上回覆，而且還找了個大陸的業務跟我連絡，今天看一下他們的 Pricing 說明，已經有簡體中文版本了。</p><p class="vj-quote" >Amazon 真的是蠻有心的，這次又來參加 JSDC .tw，還給每一位與會者 $50 美金 ，讓我們可以試玩 AWS 服務。</p><a name="vj-t1"></a><h2 class="vj-sub-title vj-lv1"> Amazon web service 文件</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://aws.amazon.com/sdkfornodejs/"  target="_blank"> http://aws.amazon.com/sdkfornodejs/</a></li><li class="vj-lv2"> <a href=" http://bit.ly/awsjsdc"  target="_blank"> http://bit.ly/awsjsdc</a></li></ul><a name="vj-t2"></a><h2 class="vj-sub-title"> Web Game</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >使用 Cocos2D 來製做遊戲 ，  Cocos2D 有提供 cocos2d-html5 , cocos2d-iphone , cocos2d-x 等等 library ，可以支援 Mobile , html(WebGL)。</p><p class="vj-quote" >cocos2D 還要搭配 spider monkey 一起服用， spider monkey 為 JIT編譯器 。</p><p class="vj-quote" >除了 window phone 必須配合 phoneGap 之外，其他的主流 device ： iphone , android 都能正常使用。</p><p class="vj-quote" >講師 ： wangwenming (China)</p><ul class="vj-ul"><li class="vj-lv2"> 講師 github  <a href=" https://github.com/wangwenming"  target="_blank"> https://github.com/wangwenming</a></li></ul><a name="vj-t3"></a><h2 class="vj-sub-title">Frontend security  </h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> Click Jacking：透過 div, iframe 等等的堆疊，欺騙 User 去點擊頁面的隱藏按鈕，因為 User 透過 Browser 去點擊不正確的按鈕，所以系統會正確的執行。</li><li class="vj-lv2"> Browsr Password autoComplete，這個功能是指 Browser 會自動記錄 User submit form 的資料，等下次 User 再回到該頁面時，就不用再重填一次，若是網站有  XSS  漏洞，則駭客透過 XSS 即可輕易的取出 User 的密碼 (看到密碼都是星號，這只是個假像)。</li><li class="vj-lv2"> Twitter url pound sign vulnerability ，駭客可以透過 inject 這段程式 「javascript: xss code」 去執行 XSS 攻擊。</li><li class="vj-lv2"> 過瀘 User input ， 輸出資料到頁面時，必須先經過  Escape 過瀘。</li><li class="vj-lv2"> One Time Token：任何的認証碼，最好限制只能使用一次，並且加上時間限制，避免被駭客拿去利用，例如註冊 Email 驗証，發文 Captcha。</li><li class="vj-lv2"> Apache  trace ，這個功能可以將 Request 當成 Response ，而誤將 Cookie 漏出。</li></ul><div class="codeBlock"><span class="title"> Header TRACE 測試</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">telnet puritys.me 80</span></li><li class="L1"><span class="pln">Trying xx.xx.xxx.xxx...</span></li><li class="L2"><span class="pln">Connected to puritys.me.</span></li><li class="L3"><span class="pln">Escape character is &#39;^]&#39;.</span></li><li class="L4"><span class="pln">TRACE / HTTP/1.0</span></li><li class="L5"><span class="pln">Cookie: xxx</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">HTTP/1.1 200 OK</span></li><li class="L8"><span class="pln">Date: Sun, 19 May 2013 17:09:39 GMT</span></li><li class="L9"><span class="pln">Server: Apache/2.4.1</span></li><li class="L0"><span class="pln">Connection: close</span></li><li class="L1"><span class="pln">Content-Type: message/http</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">TRACE / HTTP/1.0</span></li><li class="L4"><span class="pln">Cookie: xxx</span></li></ol></pre></div><p class="vj-quote" >講師：Ant</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.slideshare.net/yftzeng/2013-0413-jstwsecurityforfrontendengineeringprequel"  target="_blank"> http://www.slideshare.net/yftzeng/2013-0413-jstwsecurityforfrontendengineeringprequel</a></li></ul><a name="vj-t4"></a><h2 class="vj-sub-title">樸實與浮華 (Plain and Vanity) / (Usability & Performance)</h2><a href="#top" class="vj-btn_top2"></a> <br><p class="vj-quote" >介紹 Yahoo! ServicePlus 使用的技術，包含 Pjax , mighty blue bar , accessibility , web storage, web worker, improve page render, on and off Line 。</p><p class="vj-quote" ><a href="http://tw.serviceplus.yahoo.com/" target="_blank">Yahoo! 服務+  連結</a></p><ul class="vj-ul"><li class="vj-lv2"> 一般坐捷運的時候，手機網路常常會不明原因斷線，造成 User 不好的使用經驗，『Y! 服務+』 會去偵測網路狀況，即時提醒 User 當前的網路狀況，並暫時 disable 不能用的按鈕，避免 User 因為沒有網路，造成頁面卡住、進度條載不停。</li><li class="vj-lv2"> 大多數的網站會因為使用過多的 AJAX 技術，而造成 Browser 上下頁按鈕失效，『Y! 服務+』 使用 PJAX 技術，keep 住上下頁功能，給予 User 最習慣的操作模式，</li><li class="vj-lv2"> 『Y! 服務+』使用 Web Storage 儲存 AJAX 的 Result ，減少 User 重覆發送相同的 Request ，以加速 User 操作網頁。</li><li class="vj-lv2"> 等 User 切換頁面時，系統自動暫停 Video 播放，但不停止 Video 下載，等待下一次 User 回到該頁面時，接續播放 Video。</li></ul><p class="vj-quote" >講師：Paul，及講師的 Slide</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://mei.homin.com.tw/Keynote_plain_and_vanity.html#!p=0"  target="_blank"> http://mei.homin.com.tw/Keynote_plain_and_vanity.html#!p=0</a></li><li class="vj-lv2"> video : <a href=" http://www.youtube.com/watch?v=dOooLyYAM0Y"  target="_blank"> http://www.youtube.com/watch?v=dOooLyYAM0Y</a></li></ul><a name="vj-t5"></a><h2 class="vj-sub-title">Performance</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >jsPerf.com 是一個效能測試的網站，可以在這裡填上你要測試的程式碼，然後這個網站會幫你大量的執行，並計算結果與比較。</p><p class="vj-quote" >效能優化</p><ul class="vj-ul"><li class="vj-lv2"> Array  不要漏空。</li><li class="vj-lv2"> 宣告 Array 時，就定義 Array 的數值，會比一個個 push 快。 </li><li class="vj-lv2"> Type check 很浪費時候，盡量使用相同型態的變數來操作。</li></ul><p class="vj-quote" >講師：Will 保哥，及他的 Slide</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.slideshare.net/WillHuangTW/java-script-jsdc2013"  target="_blank"> http://www.slideshare.net/WillHuangTW/java-script-jsdc2013</a></li><li class="vj-lv2"> Video: <a href=" http://www.youtube.com/watch?v=5FFQASbd7-c"  target="_blank"> http://www.youtube.com/watch?v=5FFQASbd7-c</a></li></ul><a name="vj-t6"></a><h2 class="vj-sub-title">Node.js to binary code</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >這位講師說他把 Node.js 包給 C++ 的一個 Module ，主要方式是將程式打散，加密，放進 binary code 裡面，程式有分三種 encoding 方式，從最簡單的移除空白、空行，到複雜的 binary code。</p><p class="vj-quote" >據說未來會透過 LLVM ，直接把 Node.js 真正變成 binary code。</p><p class="vj-quote" >c 語言的編譯出來的 Module ，無法呼叫 global.require 與 global.module，所以必須在 Node.js 中先設定這兩個 Global 參數。</p><ul class="vj-ul"><li class="vj-lv2"> global.require = require;</li><li class="vj-lv2"> global.module = module;</li></ul><p class="vj-quote" >Source Code</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" https://github.com/cfsghost/npk"  target="_blank"> https://github.com/cfsghost/npk</a></li></ul><p class="vj-quote" >stem Javascript OS ....</p><a name="vj-t7"></a><h2 class="vj-sub-title">Web worker</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >一般 Browser 為單執行緒(Thread)， Web Worker 可以打破傳統的模式，建立一套多執行緒的 Web 系統。</p><p class="vj-quote" >使用 Web worker 前，必須先用 PostMessage 的方式，將參數傳給 Worker ，這時 Worker 的工作原理，第一步是先將參數 Clone 下來，而 Clone  的過程會花一點時間，而造成 UI Blocking ， 可以使用 Split data or Transferable object ( ArrayBuffer) 的方式來解決。</p><p class="vj-quote" >其他Problem</p><ul class="vj-ul"><li class="vj-lv2"> 使用 Chrome 時，沒辦法在 worker 中再建立一個 worker。</li><li class="vj-lv2"> 建立太多的  worker  程式會當掉。</li><li class="vj-lv2"> JS 如果有相互 dependency ，維護上會很困難。</li><li class="vj-lv2"> Hard to debug：沒辦法使用 console 來除錯。</li></ul><p class="vj-quote" >講師： Bingo ，及講師的 Blog</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://blog.blackbing.net/2013/04/14/web-worker-intro1/"  target="_blank"> http://blog.blackbing.net/2013/04/14/web-worker-intro1/</a></li><li class="vj-lv2"> <a href=" http://blog.blackbing.net/2013/04/15/web-worker-intro2/"  target="_blank"> http://blog.blackbing.net/2013/04/15/web-worker-intro2/</a></li></ul><a name="vj-t8"></a><h2 class="vj-sub-title">Titanium  Tishadow</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >Tishadow 是一個加速開發的工具，當工程師修改 Titanium 程式碼後，手機可以即時看到頁面變更，不須要經過 Compile 與 reload 的動作。</p><p class="vj-quote" >講師：阿修</p><a name="vj-t9"></a><h2 class="vj-sub-title">WebGL</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >three.js 實做 web 3D 功能。</p><a name="vj-t10"></a><h2 class="vj-sub-title">工具分享</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> liveReload :  當程式被修改後，Browser 自動重新載入頁面。</li><li class="vj-lv2"> skitch： Mac 快速修圖工具。</li><li class="vj-lv2"> Webclip</li><li class="vj-lv2"> kuler ： 配色建議</li><li class="vj-lv2"> droplr : 快速上傳檔案與自動建立一個分享的連結</li><li class="vj-lv2"> clearly :  清除廣告</li><li class="vj-lv2"> esprima：literate program</li></ul><p class="vj-amazing vj-lv2">特別感謝 <a href="http://blog.caesarchi.com/" target="_blank">Caesar</a> 給我的 JSDC 邀請碼，不然我連進場的機會都沒有 QQ</p></div><p class="amp-desktop-version"><a href="https://www.puritys.me/zh_cn/docs-blog/article-179-2013-JSDC.tw-參加心得與記錄.html">網頁好讀版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-06-13T00:58:06+08:00" class="article-modify-time">2013/06/13</time>
+        </p>
+
+        
+
+
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="http://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

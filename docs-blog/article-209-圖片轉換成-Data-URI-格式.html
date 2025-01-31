@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>圖片轉換成 Data URI 格式</title>
+    <meta name="keywords" content="Tools" />
+    <meta name="description" content=" data URI 是一種將圖片轉換成 base64 encode 過的純文字，目前大部分先進的 Browser 已經支援這種格式，可以將格式轉換成正常圖片顯示。下面是一個轉換工具，你可以輸入一個網路上的圖片，或是上傳一張電腦的圖片，接著程式就會自動幫你將圖片轉換成 data URI 的 格式。Data URI 轉換工具 圖片路徑 URL ： 或是 上傳本機圖片： 確認上傳執行" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-209-圖片轉換成-Data-URI-格式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-209-图片转换成-Data-URI-格式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-209-圖片轉換成-Data-URI-格式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-209-圖片轉換成-Data-URI-格式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-209">
+                    <em><span>圖片轉換成 Data URI 格式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-209-\u5716\u7247\u8f49\u63db\u6210-Data-URI-\u683c\u5f0f.html"},"headline":"\u5716\u7247\u8f49\u63db\u6210 Data URI \u683c\u5f0f","image":"","datePublished":"2014-01-15T01:45:04+08:00","dateModified":"2015-06-03T23:44:18+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"  \rdata URI \u662f\u4e00\u7a2e\u5c07\u5716\u7247\u8f49\u63db\u6210 base64 encode \u904e\u7684\u7d14\u6587\u5b57\uff0c\u76ee\u524d\u5927\u90e8\u5206\u5148\u9032\u7684 Browser \u5df2\u7d93\u652f\u63f4\u9019\u7a2e\u683c\u5f0f\uff0c\u53ef\u4ee5\u5c07\u683c\u5f0f\u8f49\u63db\u6210\u6b63\u5e38\u5716\u7247\u986f\u793a\u3002\r\u4e0b\u9762\u662f\u4e00\u500b\u8f49\u63db\u5de5\u5177\uff0c\u4f60\u53ef\u4ee5\u8f38\u5165\u4e00"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jan</div>
+            <div class="day">15</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-209-圖片轉換成-Data-URI-格式.html"><span>圖片轉換成 Data URI 格式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Tools">Tools</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-209-图片转换成-Data-URI-格式.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content">  <br /><p>data URI 是一種將圖片轉換成 base64 encode 過的純文字，目前大部分先進的 Browser 已經支援這種格式，可以將格式轉換成正常圖片顯示。</p><p>下面是一個轉換工具，你可以輸入一個網路上的圖片，或是上傳一張電腦的圖片，接著程式就會自動幫你將圖片轉換成 data URI 的 格式。</p><h2>Data URI  轉換工具</h2><div class="form-data-uri"><form id="fo1" action="/switch.php?page=dataURI"  method="post" enctype="multipart/form-data">   <label>圖片路徑 URL ：<input type="text"  class="image-url" name="url"  /></label>   <div class="upload-wrap">或是  上傳本機圖片：<input type="file" name="file"  /></div>   <div class="button-co"><a href="#" class="postbtn" >確認上傳</a></div></form><p>執行結果 data URI 格式：</p>  <div class="result_text"></div>   <div class="image-result"></div></div><style>.form-data-uri {   width: 400px;   margin: 20px auto;}.upload-wrap {   margin: 30px 0;}.button-co {   margin: 20px 0;   text-align: center;}.postbtn {    border: 1px solid #666;   border-radius: 2px;   padding: 7px 12px;}.image-url {   width: 200px;}.fo1_result {   width: 450px;   height: 150px;}</style><script src="https://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script><script src="/filemanage/blog_files/easyYUI.js"></script><link href="/filemanage/blog_files/easyYUI.css" rel="stylesheet" type="text/css" /><script>YUI({lang: "zh-TW",         groups: {"myapp":{"base":"&#92;/..&#92;/js_noused&#92;/","modules":{"translator":{"path":"translator&#92;/no_used.js","lang":["zh-TW"]}}}}     }).use("easyYUI",function (Y) {   var tx = document.createElement("textarea");   tx.className= "fo1_result";   y.one(".result_text").append(tx);   var k = y.one(".postbtn");   k.on("click", f_20140109);  //y.one(".image-url").on("change", f_20140109);function f_20140109(E) {   E.halt();   var s = y.one("#fo1");   y.loading(s, "btn");   y.ajax("", s, callback_20140109);}function callback_20140109(text) {   //console.log(text);   if (text.dataURI) {      y.one(".fo1_result").set("value", text.dataURI);      var img = document.createElement("img");      img.src=text.dataURI;      y.one(".image-result").setHTML("");      y.one(".image-result").append(img);   }}});</script><h2>Data URI 可以用來什麼呢</h2><p>Data URI 可以用來當圖片一樣顯示，取代一般 img 的 src value，一般的網頁圖片會使用 http request 去取得，但是使用 http request 會使用 Browser 發出一個 request ，而當你的網頁圖片越多，Http Request 就會越多，這樣很容易拖慢網頁的載入進度，那我們就能使用 Data URI 的方式，將圖片的 URL 轉換成 Data URI 的格式，一次將全部的圖片下載回來。</p><div class="codeBlock"><span class="title"> Data URI 網頁使用範例</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"data: image/jpg;base64,wEAAAAAADYAAAAoAAAACAIAADkAAAABABgAAAAAAFhbAQAAAAAAAAAAAAAAAAAAAA"</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"data: image/jpg;base64,wEAAAAAADYAAAAoAAAACAIAADkAAAABABgAAAAAAFhbAQAAAAAAAAAAAAAAAAAAAA"</span><span class="pln"> </span><span class="tag">/&gt;</span></li></ol></pre></div><h2>CSS Background</h2><p>Data URI 還可以使用在 CSS style 裡面，平常使用 background: url("http://xxx.img") ，這種寫法也是會使 Browser 發出一個 Request ，所以用一樣的方式，透過 Data URI 將圖片轉成文字寫入到 background 中。</p><div class="codeBlock"><span class="title"> Data URI Background 使用範例</span><pre class="prettyprint lang-css linenums" ><ol class="linenums"><li class="L0"><span class="pln">div </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="kwd">background</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">url</span><span class="pun">(</span><span class="str">"data: image/jpg;base64,wEAAAAAADYAAAAoAAAACAIAADkA"</span><span class="pun">);</span></li><li class="L2"><span class="pun">}</span></li></ol></pre></div><p>Data-URI performance 分析</p><ul class="list">  <li><a href="https://plus.google.com/116237864387312784020/posts/S327kJKy6HG"  target="_blank">https://plus.google.com/116237864387312784020/posts/S327kJKy6HG</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-06-03T23:44:18+08:00" class="article-modify-time">2015/06/03</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-209" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-209" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Tools 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-215-Unicode-Decode-Tool.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_215&quot;}'>Unicode Decode Tool </a></li>
+    
+        <li><a href="/docs-blog/article-210-JSON-Encode-:-去掉-JSON-格式的空行.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_210&quot;}'>JSON Encode : 去掉 JSON 格式的空行 </a></li>
+    
+        <li><a href="/docs-blog/article-171-Webp-圖片壓縮.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_171&quot;}'>Webp  圖片壓縮 </a></li>
+    
+        <li><a href="/docs-blog/article-32-HTML-符號表-NCR.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_32&quot;}'>HTML  符號表 NCR </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

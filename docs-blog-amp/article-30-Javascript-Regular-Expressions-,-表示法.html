@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(../images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot');src:url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff') format('woff'),url('fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(../fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="//www.puritys.me/docs-blog/article-30" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript Regular E...</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-30-Javascript-Regular-Expressions-,-\u8868\u793a\u6cd5.html"},"headline":"Javascript Regular Expressions , \u8868\u793a\u6cd5","image":"","datePublished":"2011-09-03T00:49:25+08:00","dateModified":"2016-07-26T01:17:53+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u4f55\u8b02 Regular expression : RegExp\rRegular Expressions \u4e2d\u6587\u53c8\u53eb\u505a\u8868\u793a\u6cd5\uff0c\u82f1\u6587\u7c21\u5beb\u70ba RegExp\uff0c\u4e3b\u8981\u529f\u80fd\u662f\u7528\u4f86\u641c\u5c0b\u5b57\u4e32\uff0c\u5206\u6790\u5b57\u4e32\uff0c\u53d6\u4ee3\u5b57\u4e32\uff0c\u6bd4\u5c0d\u5b57\u4e32\uff0c"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Sep</div>
+            <div class="day">03</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html"><span>Javascript Regular Expressions , 表示法</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=javascript">javascript</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=regular expression">regular expression</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="https://www.puritys.me/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html">網頁好讀版</a></p><div class="ezHTML-content"><h2>何謂 Regular expression : RegExp</h2><p>Regular Expressions 中文又叫做<b>表示法</b>，英文簡寫為 RegExp，主要功能是用來搜尋字串，分析字串，取代字串，比對字串，透過 Regular Expression，你可以用很簡單的 <b>Pattern</b>，來分析一篇文章。</p><p>在大部分的程式語言中，如 perl , php, shell script，都有相關 Regular Expression 的功能，學會 Regular Expression ，絕對是一個工程師必備利器，以下就開始介紹Regular Expression。</p><h2>JS Regular expressions 簡易用法</h2><p>先介紹幾個簡單的 Expression 用法</p><div class="notice" >如果已經有基礎的同學，就直接往下看 Advance 吧。</div><p>RegExp 在 Javascript 中有兩種方式可以定義，用來比對的描述句子我們稱之為 pattern，使用不同的 pattern 來完成字串比對，而緊接在 pattern 後面的字母，我們稱做 modifiers 修飾符號，一個完整的 Regular Expression Pattern 會像這樣「/pattern/modifiers」。</p><div class="codeBlock my_js"><span class="title"> 定義 Regular Expression</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/test/</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RegExp</span><span class="pun">(</span><span class="str">&#39;test&#39;</span><span class="pun">);</span></li></ol></pre></div>   <br>  <br><p>我們可以使用 match 這個 Method 來實作簡單的字串比較，先來試一個搜尋大小寫字母吧。</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"ABCDefgIJK"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/([A-Z]+)([a-z]+)/</span><span class="pln"> </span><span class="pun">;</span></li><li class="L2"><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L3"><span class="pln">alert</span><span class="pun">(</span><span class="typ">RegExp</span><span class="pun">.</span><span class="pln">$1 </span><span class="pun">+</span><span class="pln"> </span><span class="str">"  "</span><span class="pun">+</span><span class="pln"> </span><span class="typ">RegExp</span><span class="pun">.</span><span class="pln">$2</span><span class="pun">);</span></li><li class="L4"><span class="com">// output ABCD efg</span></li></ol></pre></div><p>上面是一個很簡單的範例，我定義了一個字串 "ABCDefgHIJ" ，然後再定義分析的 Pattern 為 "<b>([A-Z]+)([a-z]+)</b>"，"[A-Z]"  是指比對大寫字母,  "[a-z]" 則是指比對小寫字母，第一個括號()，會把比對成功的字串存到 RegExp.$1，而第二個括號會把比對成功的字串存到 RegExp.$2 。</p><p>另外 match 這個 Method 也會將比對成功的字串以 Array 的格式回傳，所以我們也可以定義一個變數去接收 match 回傳的 array ，例如 var result=text.match(/pattern/);</p><h3>RegExp 相關 Method</h3><table class="table"><tr><th>Method</th><th>說明</th><th>範例</th></tr><tr><td>search</td><td>搜尋到 Regular Expressions 符合的字串，並回傳搜尋到的字串位置</td><td>"abc".search(/a/)</td></tr><tr><td>match</td><td>將比對成立的字串存到 Regexp ，並回傳 Array</td><td>"abc".match(/b/)</td></tr><tr><td>split</td><td>將字串切割成 Array</td><td>"a,b,c".split(/,/)</td></tr><tr><td>replace</td><td>取代字串內容</td><td>"aabc".replace(/a+/, b)</td></tr></table><p>以上四個 Javascript 字串的 Method 都可以使用 <b>RegExp </b>語法。</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="com">//定義一個字串</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"A apple a day keeps the doctor away"</span><span class="pun">;</span></li><li class="L2"><span class="com">//定義一個Regular Expression 比對方式</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/(apple)/</span></li><li class="L4"><span class="com">//搜尋字串位置</span></li><li class="L5"><span class="kwd">var</span><span class="pln"> position</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">search</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L6"><span class="pln">alert</span><span class="pun">(</span><span class="str">"position:"</span><span class="pun">+</span><span class="pln">position </span><span class="pun">+</span><span class="pln"> </span><span class="str">" result="</span><span class="pun">+</span><span class="pln">text</span><span class="pun">.</span><span class="pln">substr</span><span class="pun">(</span><span class="pln">position</span><span class="pun">,</span><span class="lit">5</span><span class="pun">));</span></li><li class="L7"><span class="com">//Output: position:2 result=apple</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="com">//搜尋字串內容</span></li><li class="L0"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/(apple) a (day)/</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L2"><span class="pln">alert</span><span class="pun">(</span><span class="str">"k[1]="</span><span class="pun">+</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]+</span><span class="str">"  k[2]="</span><span class="pun">+</span><span class="pln">k</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]);</span></li><li class="L3"><span class="com">//Output: k[1]=apple  k[2]=day</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="com">//k[0]是指比對成立的全部字串</span></li><li class="L7"><span class="com">//以apple來分割字串</span></li><li class="L8"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/apple/</span></li><li class="L9"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">split</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L0"><span class="pln">alert</span><span class="pun">(</span><span class="str">"k[0]="</span><span class="pun">+</span><span class="pln">k</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]+</span><span class="str">"  k[1]="</span><span class="pun">+</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L1"><span class="com">//Output: k[0]=A   k[1]= a day keeps the doctor away</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="com">//將apple 以banana取代var pattern=/apple/</span></li><li class="L5"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">,</span><span class="str">&#39;banana&#39;</span><span class="pun">);</span></li><li class="L6"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L7"><span class="com">//Output: A banana a day keeps the doctor away</span></li></ol></pre></div><h2>RegExp Pattern</h2><table class="table"><tr><th>語法</th><th>說明</th></tr><tr><td>[]</td><td>如果文字有存在 [xxx] 裡面的任一個字母，就算有符合這個規則，如 <span >[t]</span>:  test 這個字中就有 t 這個字母，所以符合規則。</td></tr><tr><td><div >[a-z]</div></td><td>表示有出現1個小寫字母就算是符合 ， <div > "43ar3" ,"b", "c", "f2323"</div>     這些都符合規則，而 "323" , "$232", "-3" ，  這些不符合規則</td></tr><tr><td><div >[0-9] </div></td><td>文字只要出現 1 個數字就算是符合</td></tr><tr><td><span>*</span></td><td>表示出現 0 次 或 多 次就算符合，如表示法 :「<span >a*</span>」，"aaa21" 前面三個字母符合規則  ， "222abba"    只有第一個 a 符合規則</td></tr><tr><td>+</td><td>表示出現 1 次 或 多 次就算符合，如表示法:「<span >a+</span>」 ， "bcdfg" 沒有出現a這個字母，所以不符合規則，"xxaaaxx"  ，中間三個a符合規則</td></tr></table><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"A apple a day keeps the doctor away"</span><span class="pun">;</span></li><li class="L1"><span class="com">// keeps 這個單字連續出現兩個e，所以表示法可以寫成 k[e]*ps 或 ke{2}ps 或 ke+ps</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/(k[e]*ps)/</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L4"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L5"><span class="com">//Output: keeps</span></li></ol></pre></div><ul class="list">  <li>? :表示出現 0 或 1 次，也就是說有出現就算符合，沒出現也算符合</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"I have apple"</span><span class="pun">;</span></li><li class="L1"><span class="com">//比對不管 apple 前面有沒有出現數字都要成功，這個範例並沒有出現數字，不過是會成功的。</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/([1-9]?apple)/</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L4"><span class="com">//Output: applevar text="I have 2 apple";</span></li><li class="L5"><span class="com">//比對不管 apple 前面有沒有出現數字都要成功，這個例子是有出現數字的，當然也是會比對成功。</span></li><li class="L6"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/([1-9]? apple)/</span></li><li class="L7"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L8"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L9"><span class="com">//Output: 2 apple</span></li></ol></pre></div><ul class="list">  <li>^ : 代表比對的開始，如 ^@([a-z]*) ，是指搜尋以@為開頭的字母</li>  <li>[^] : 如果^是在[]裡面的話，代表否定的意思。如[^a-z]，代表比對<span class="rm">非a-z</span>的字母</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="com">//要以@開頭</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"@apple baanan"</span><span class="pun">;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> text2</span><span class="pun">=</span><span class="str">"banan apple"</span><span class="pun">;</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/^@([a-z]*)/</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L5"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L6"><span class="com">//Output: apple</span></li><li class="L7"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text2</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L8"><span class="kwd">if</span><span class="pun">(</span><span class="pln">k </span><span class="pun">&amp;&amp;</span><span class="pln"> k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">])</span><span class="pln">  alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L9"><span class="com">//比對失敗:k is undefined</span></li></ol></pre></div>  <br><ul class="list">  <li>$ : 代表比對的結尾，如 ([a-z]*)$ ，是指搜尋文章的最後一個單字</li>  <li>&#92;d : 代表任何一個數字，同[0-9]</li>  <li>&#92;s : 代表一個空白</li>  <li>&#92;S : 代表任何一個非空白的字串</li>  <li>&#92;w : 代表任何一個ASCII字串，同[a-zA-Z0-9_]</li>  <li>&#92;W : 代表任何一個非ASCII字串，同[^a-zA-Z0-9_]</li>  <li>&#92;D : 代表任何一個非數字字串，同[^0-9]</li>  <li>{2,4} : 比對2 ~ 4 次，如 A{2.4}，是指 A這個字母出現2~4次。</li>  <li>{2, } : 比對2 ~ 無限次，如 A{2. }，是指 A這個字母要出現2~ 無限次。</li>  <li>&#92;b : 比對一個單字的結尾。也就是說 在單字的結尾要出現一個&#92;W的字母。</li>  <li>&#92;B : 比對一個非單字的結尾</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="com">//使用 &#92;b 比對apple這個單字</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"apple"</span><span class="pun">;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/&#92;bapple&#92;b/</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L4"><span class="com">//bapple!=apple 比對失敗</span></li><li class="L5"><span class="kwd">var</span><span class="pln"> text2</span><span class="pun">=</span><span class="str">"bapple"</span><span class="pun">;</span></li><li class="L6"><span class="kwd">var</span><span class="pln"> k2</span><span class="pun">=</span><span class="pln">text2</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L7"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k2</span><span class="pun">);</span><span class="pln">  </span></li><li class="L8"><span class="com">//使用 &#92;B apple前後要出現＼w才算符合</span></li><li class="L9"><span class="com">//比對失敗 apple前後沒有＼w字元</span></li><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"apple"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/&#92;Bapple&#92;B/</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L3"><span class="com">//比對成功var text2="bapple_";</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> k2</span><span class="pun">=</span><span class="pln">text2</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L5"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k2</span><span class="pun">);</span></li></ol></pre></div><h2>Ignore case 忽略大小寫</h2><p>如果你要比對的資料，不想因為英文字母大小寫的不同，而比對失敗的話，就要在表示法中加上 Ignore Case ，縮寫代碼是 「i」，例如 /[a-z]/i 、 /[A-Z]/i ，這兩個表示法的結果是相同的。</p><h2>Global search 全文比對</h2><p>在搜尋字串時，可以一次搜尋一筆，也可以一次搜尋多筆，這時就可以利用 global 的方式，進行全文搜尋，這樣不管文章內有多少文字，只要符合表示法的規則，就會被全部抓出來，語法縮寫代碼是「g」，例如 /design/g 。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"i like web design , you like web design , he likes web design"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> regexp</span><span class="pun">=</span><span class="str">/web design/</span><span class="pln">g</span><span class="pun">;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">regexp</span><span class="pun">);</span></li><li class="L3"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span><span class="pln"> </span><span class="com">// array(web design,web design,web design)</span></li><li class="L4"><span class="com">//總共抓到三次的 web design</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">var</span><span class="pln"> regexp</span><span class="pun">=</span><span class="str">/web design/</span><span class="pun">;</span></li><li class="L7"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">regexp</span><span class="pun">);</span></li><li class="L8"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span><span class="pln"> </span><span class="com">//array(web design)</span></li><li class="L9"><span class="com">//只抓到一次</span></li></ol></pre></div><h2>多行比對</h2><p>RegExp 也支援一次比對多行文字，你只要在 RegExp modifiers 中加上一個「m」，例如當你想要對一個文字檔案中，每一行的結尾加上一個分號。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text </span><span class="pun">=</span><span class="pln"> </span><span class="str">"a"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&#92;n"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"b"</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/([a-z])$/</span><span class="pln">gm</span><span class="pun">;</span></li><li class="L3"><span class="pln">text </span><span class="pun">=</span><span class="pln"> text</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">,</span><span class="pln"> </span><span class="str">"$1;"</span><span class="pun">);</span></li><li class="L4"><span class="com">// text =</span></li><li class="L5"><span class="com">//  a;</span></li><li class="L6"><span class="com">//  b;</span></li></ol></pre></div><h2>簡單的範例</h2><p>副檔名的判斷 Regular Expression Pattern : 「&#92;.[^&#92;.]{3,}$」</p><ul class="list">  <li>{3, }  這是指前面那個東西要出現  3 次以上</li>  <li>如果我寫  a{3, } 就是說 a 要出現三次以上</li>  <li>如果我寫  b{3, } 就是說 b 要出現三次以上</li>  <li>[^&#92;.]  這個是說  出現不是 點(.) 的字</li>  <li>[^&#92;.]{3, }  合起來就是， 出現不是點(.) 的字，三次以上</li>  <li>&#92;.[^&#92;.]{3, }  先出現一個  「. 」  ， 然後再出現三個不是點的字</li>  <li>a$ 代表最後一個文字「a」 之後就結束，不能再接任何文字。</li>  <li>&#92;.[^&#92;.]{3,}$ 一個點，之後接三個不是點的字以上，然後後面不能再接任何文字。</li></ul><h2>JS RegExp 進階用法 ( Advance)</h2><p>在小括號 () 裡面中，如果你使用「?」這個符號開頭，那麼 <i>? </i> 是有特別含義的，Javascript Match 這個 Method 不會把符合 Regular Expression 的字串取出來。</p><ul class="list">  <li>(?=pattern) : 比對字串，成功後，不會將 pattern 的字串取出來。</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="com">//將 function 的名稱抓出來，比對存在括號，但是不要抓到特殊符號</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"apple1-&gt;test(); apple2::test();"</span><span class="pun">;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/apple[0-9](?=&#92;:)/</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L4"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L5"><span class="com">//Output: apple1</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/apple[0-9](?=&#92;-)/</span></li><li class="L8"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L9"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L0"><span class="com">//Output: apple2</span></li></ol></pre></div><ul class="list">  <li>(?!pattern) : 比對字串，要求不能出現 pattern，若比對符合後，不會將 pattern 的字串擷取出來。</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"apple1-&gt;test(); apple2::test();"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/[^&#92;s]+(?!&#92;:)/</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L3"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L4"><span class="com">//Output: apple1-&gt;test();</span></li></ol></pre></div><h2>同時比對兩個資料， RegExp的「or」 。</h2><p>(?:pattern1|pattern2) : 同時比對 pattern1 與 pattern2，兩個 pattern 只要有一個符合，那麼就算是比對成功，比對到的 pattern 字串，在 Match 這個 Method  中是會被擷取出來的</p><p>另外有一個比較簡單的寫法 (pattern1|pattern2)</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="com">//兩種function宣告方式，都會比對成功</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> text</span><span class="pun">=</span><span class="str">"apple1-&gt;test(); </span></li><li class="L2"><span class="str">apple2::test();"</span><span class="pun">;</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> pattern</span><span class="pun">=</span><span class="str">/[a-z0-9]+(?:-&gt;|&#92;:&#92;:)/</span><span class="pln">g</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> k</span><span class="pun">=</span><span class="pln">text</span><span class="pun">.</span><span class="pln">match</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span></li><li class="L5"><span class="pln">alert</span><span class="pun">(</span><span class="pln">k</span><span class="pun">);</span></li><li class="L6"><span class="com">//Output: apple1-&gt;,apple2::</span></li></ol></pre></div><h2>Parse HTML table</h2><p>一個 HTML 中通常會有多個 table ，而每個 table 之間又存在各種文字，這時候就要用到 non-greedy 的寫法，就是在 * (星號)後面加一個  ? ，另外用 [&#92;s&#92;S] 來處理多行文字。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">var html = ` </span></li><li class="L1"><span class="tag">&lt;table&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;td&gt;</span><span class="pln">aaa</span><span class="tag">&lt;/td&gt;</span></li><li class="L3"><span class="tag">&lt;/table&gt;</span></li><li class="L4"><span class="tag">&lt;table&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;td&gt;</span><span class="pln">bbb</span><span class="tag">&lt;/td&gt;</span></li><li class="L6"><span class="tag">&lt;/table&gt;</span><span class="pln">                                                                                                </span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">`;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">var reg = /&lt;table[.&#92;n&#92;r&#92;s&#92;S]*?&lt;&#92;/table&gt;/g; </span></li><li class="L2"><span class="pln">var r = html.match(reg);</span></li><li class="L3"><span class="pln">console.log(r);</span></li></ol></pre></div><ul class="list">  <li><a href="http://regexr.com/"  target="_blank">http://regexr.com/</a> : 這是一個 Regular expression 好用的工具。</li></ul></div><p class="amp-desktop-version"><a href="https://www.puritys.me/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html">網頁好讀版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-07-26T01:17:53+08:00" class="article-modify-time">2016/07/26</time>
+        </p>
+
+        
+
+
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="http://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

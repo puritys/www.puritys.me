@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Yahoo! Mojito</title>
+    <meta name="keywords" content="Mojito,node.js" />
+    <meta name="description" content=" mojito 發音是「Mohito」，它是 Yahoo! 團隊開發的 node.js MVC Framework，底層還是使用 v8 engine 與 node.js，內建有多國語系、MVC、Detect Device 等等功能，mojito 本身使用 YUI3 的方式來開發，所以語法上，寫起來就跟 YUI3 沒什麼兩樣，如果你是 YUI3 愛用者的話，上手應該是非常的快，可" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-117-Yahoo!-Mojito.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-117-Yahoo!-Mojito.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-117-Yahoo!-Mojito.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-117-Yahoo!-Mojito.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/node.js" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">node.js</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-117">
+                    <em><span>Yahoo! Mojito</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-117-Yahoo!-Mojito.html"},"headline":"Yahoo! Mojito","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_31.png","datePublished":"2012-04-30T16:08:25+08:00","dateModified":"2015-01-11T00:58:53+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rmojito \u767c\u97f3\u662f\u300cMohito\u300d\uff0c\u5b83\u662f Yahoo! \u5718\u968a\u958b\u767c\u7684 node.js MVC Framework\uff0c\u5e95\u5c64\u9084\u662f\u4f7f\u7528 v8 engine \u8207 node.js\uff0c\u5167\u5efa\u6709\u591a\u570b\u8a9e\u7cfb\u3001MVC\u3001De"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Apr</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-117-Yahoo!-Mojito.html"><span>Yahoo! Mojito</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Mojito">Mojito</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=node.js">node.js</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-117-Yahoo!-Mojito.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>mojito 发音是「Mohito」，它是 Yahoo! 团队开发的 node.js MVC Framework，底层还是使用 v8 engine 与 node.js，内建有多国语系、MVC、Detect Device 等等功能，mojito 本身使用 YUI3 的方式来开发，所以语法上，写起来就跟 YUI3 没什么两样，如果你是 YUI3 爱用者的话，上手应该是非常的快，可惜我不是YUI爱用者呀!!!，使用 mojito 就等於是由 Yahoo 帮你维护一套 node.js library，加快你开发的时间，现在我们就开始安装吧。</p><h2>mojito 基本安装</h2><p>安装 mojito  前，请先确定你的电脑已经安装 node.js ，若是还没安装，请先参考<a href="/docs-blog/article-36">「node.js 安装方式」</a>。</p><p>mojito 已经整合到 node.js 的 npm 工具里，所以我们得先安装 npm ，然后再透过npm 安装 mojito ，第一步就是在 Linux 中执行下列的指令。</p><p><span class="vj-shell">curl <a href="http://npmjs.org/install.sh"  target="_blank">http://npmjs.org/install.sh</a> | sh</p><p>当你执行这个指令的时候，应该会看到一堆 error ，错误讯息「 Error: EACCES」 ，这是因为你没有 sudo 的权限，所以我们只好加 sudo ，使用 root 的权限。</p><p><span class="vj-shell">curl <a href="http://npmjs.org/install.sh"  target="_blank">http://npmjs.org/install.sh</a> | sudo sh</span></p><p>当你执行这句指令的时候，你可能又会碰到「cannot found /usr/bin/node」之类的错误讯息。</p>   ! 解决方式 1 ： sudo ln -s /usr/local/bin/node /usr/bin/node ，因为我把 node js 装到 /usr/local/ ，而 root 这个帐号并没有将 /usr/local/ 的 command 设定为预设路径，所以我只好建一个 symbolic link 连过去，最后再重新跑一次上个指令，就可以安装 npm 成功了。<br /><p>npm 预设安装的路径： /usr/lib/node_modules/npm</p><p>成功的安装 npm 之后，接下来就是安装 Yahoo! 的 mojito 软体，安装方式也很简单，执行下列的语法就行了。</p><p><span class="vj-shell">npm install mojito -g</span></p><p>最后! 我们要测试一下 mojito 是否安装成功，可以执行下列的指令，若是没有错误讯息，就是安装成功了。</p><p><span class="vj-shell">mojito test</span></p><p>mojito 预设安装的路径在 /usr/lib/node_modules/mojito ，这里有一堆 mojito 相关的 library ，有兴趣的人就自已打开来看吧。</p><h2>使用 mojito 制作我的第一个 mojito 网页</h2><a href="/filemanage/blog_files/file_31.png" target="_blank" ><img src="/filemanage/blog_files/file_31.png"   class="structure" alt="mojito structure 架构" link="me" /></a><p>mojito 的网页架构是，第一层先是一个 app，而每一个 app 又可以有多个 mojit ，mojit 你也可以把它简单的想成是一个小型的 module，或是把它当成一个页面(page) ，你可以藉由各种不同的 module ，去组成你想要的 Web 页面。</p><p>如上图，假设我想要写一个 聊天室的 APP，其中可能会包含 首页，聊天房，加好友，登入页，注册页等大大小小不同的页面，这时每一个 mojit(module) 我就可以把它当成是一个页面来制做。</p>   ! mojito 底下有很多个 <em>mojit</em> ，这里要注意的确少一个「o」。<p>测试 mojito ，首先第一步我们先建立一个 app ，我将新建的 app 命名为 test_app</p><p><span class="vj-shell">mojito create app test_app</span></p><p>这时你就会看到 test_app/<em>mojits</em>，test_app/assets 等目录，因为 mojit(module) 会有多个，所以命名上变成 mojits。</p><p>第二步，进入 test_app的路径，然后我们建立一个 mojit ，这里我就命名为 test_module</p><p><span class="vj-shell">cd test_app </span><span class="vj-shell">mojito create mojit test_module</span></p><p>这样预设的网页就已经完成了，接著我们要启动 mojito web server，在 test_app的目路下执行下列的指令。</p><p><span class="vj-shell">mojito start</span></p><p>试著使用浏览器，连结这个网址： <a href="http://localhost:8666/@test_module/index"  target="_blank">http://localhost:8666/@test_module/index</a> ，预设 mojito 是使用 port 8666。</p><a href="/filemanage/blog_files/file_30.png" target="_blank" ><img src="/filemanage/blog_files/file_30.png"   class="default" alt="mojito default page" link="me" /></a><p>一切正常的话，你就可以看到上面这个页面，index 是每一个 module 预设给的页面，而 test_module 就是我刚刚所建立的新 module，@test_module 是 mojito 提供的一个简捷呼叫 module 的方式，最好的方式还是必需透过 route 的方式，指定某个 url 对应的 module 名称 ，而 route 的部分我就留到下一篇文章啦...请期待!</p><h2>Mojito 更改 Port</h2><p>Mojito 预设使用 8666 port ，想要更改的话，可以直接使用 command ，只要在 mojito start 的后面加上 port 的数字即可，如果 port 小於1024的话，必须要有 root  的权限，就记得要加上 「sudo」。</p><p><span class="vj-shell">mojito start 8080</span></p><h2>相关资料</h2><ul class="list">  <li><a href="http://developer.yahoo.com/cocktails/mojito/docs/"  target="_blank">http://developer.yahoo.com/cocktails/mojito/docs/</a> : Yahoo! 官方 Mojito 文件</li>  <li><a href="http://developer.yahoo.com/forum/Yahoo-Mojito/"  target="_blank">http://developer.yahoo.com/forum/Yahoo-Mojito/</a> Mojito 讨论区</li>  <li><a href="/docs-blog/article-52"> v8 engine </a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-01-11T00:58:53+08:00" class="article-modify-time">2015/01/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-117" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-117" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Mojito 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">node.js 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-158-Node.js-mime-type-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-144-第二篇-Node.js-搭配-Apache---Header-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-142-第一篇-Node.js-搭配-Apache-CGI.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="/docs-blog/article-42-Node.js-第一課.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_42&quot;}'>Node.js 第一課 </a></li>
+    
+        <li><a href="/docs-blog/article-37-Node.js-addon-實作-(Node.js-version-0.10.x).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_37&quot;}'>Node.js addon 實作 (Node.js version 0.10.x) </a></li>
+    
+        <li><a href="/docs-blog/article-36-安裝-node.js.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_36&quot;}'>安裝 node.js </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 node.js</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-454-Node.js-big5-utf8-字串轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_454&quot;}'>Node.js  big5 / utf8 字串轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-302-Node.js-Canvas-畫圖.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_302&quot;}'>Node.js Canvas 畫圖 </a></li>
+    
+        <li><a href="/docs-blog/article-201-Node.js-使用-php-function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_201&quot;}'>Node.js 使用 php function </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-158-Node.js-mime-type-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-144-第二篇-Node.js-搭配-Apache---Header-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-142-第一篇-Node.js-搭配-Apache-CGI.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="/docs-blog/article-117-Yahoo!-Mojito.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

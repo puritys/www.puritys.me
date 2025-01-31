@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Linux 系統負荷量檢查程式</title>
+    <meta name="keywords" content="Linux Command" />
+    <meta name="description" content=" 安裝 systat , 檢查 input, output 載點 http://pagesperso-orange.fr/sebastien.godard/sysstat-9.0.6.1.tar.gz ./configure --prefix=/home/program/sysstat --bindir=/usr/local/bin --sbin=/usr/local/sbin" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-63-Linux-系統負荷量檢查程式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-63-Linux-系统负荷量检查程式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-63-Linux-系統負荷量檢查程式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-63-Linux-系統負荷量檢查程式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-63">
+                    <em><span>Linux 系統負荷量檢查程式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-63-Linux-\u7cfb\u7d71\u8ca0\u8377\u91cf\u6aa2\u67e5\u7a0b\u5f0f.html"},"headline":"Linux \u7cfb\u7d71\u8ca0\u8377\u91cf\u6aa2\u67e5\u7a0b\u5f0f","image":"","datePublished":"2011-11-06T13:19:12+08:00","dateModified":"2017-04-25T11:22:45+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5b89\u88dd systat  , \u6aa2\u67e5 input, output\r\r  \u8f09\u9ede http:\/\/pagesperso-orange.fr\/sebastien.godard\/sysstat-9.0.6.1.t"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Nov</div>
+            <div class="day">06</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-63-Linux-系統負荷量檢查程式.html"><span>Linux 系統負荷量檢查程式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Linux Command">Linux Command</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-63-Linux-系统负荷量检查程式.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <h2>安裝 systat  , 檢查 input, output</h2><ul class="list">  <li>載點 <a href="http://pagesperso-orange.fr/sebastien.godard/sysstat-9.0.6.1.tar.gz"  target="_blank">http://pagesperso-orange.fr/sebastien.godard/sysstat-9.0.6.1.tar.gz</a></li>  <li>./configure --prefix=/home/program/sysstat   --bindir=/usr/local/bin --sbin=/usr/local/sbin --libdir=/usr/local/lib --sysconfdir=/home/conf</li>  <li>sudo make</li>  <li>sudo make install</li></ul><p>yum安裝方式</p><ul class="list">  <li>yum install sysstat</li></ul><div class="codeBlock linux"><span class="title">Example</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">system</span><span class="pun">]@</span><span class="pln"> sysstat</span><span class="pun">-</span><span class="lit">9.0</span><span class="pun">.</span><span class="lit">6.1</span><span class="pln">$ iostat</span></li><li class="L1"><span class="typ">Linux</span><span class="pln"> xxxx</span><span class="pun">.</span><span class="pln">xx </span><span class="pun">(</span><span class="pln">www</span><span class="pun">.</span><span class="pln">xxxxx</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span><span class="pun">)</span><span class="pln">        </span><span class="pun">西元</span><span class="lit">2011</span><span class="pun">年</span><span class="lit">11</span><span class="pun">月</span><span class="lit">06</span><span class="pun">日</span><span class="pln">      _i686_ </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> CPU</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">avg</span><span class="pun">-</span><span class="pln">cpu</span><span class="pun">:</span><span class="pln">  </span><span class="pun">%</span><span class="pln">user   </span><span class="pun">%</span><span class="pln">nice </span><span class="pun">%</span><span class="pln">system </span><span class="pun">%</span><span class="pln">iowait  </span><span class="pun">%</span><span class="pln">steal   </span><span class="pun">%</span><span class="pln">idle</span></li><li class="L4"><span class="pln">           </span><span class="lit">0.69</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">2.13</span><span class="pln">    </span><span class="lit">0.18</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">   </span><span class="lit">97.00</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="typ">Device</span><span class="pun">:</span><span class="pln">            tps   </span><span class="typ">Blk_read</span><span class="pun">/</span><span class="pln">s   </span><span class="typ">Blk_wrtn</span><span class="pun">/</span><span class="pln">s   </span><span class="typ">Blk_read</span><span class="pln">   </span><span class="typ">Blk_wrtn</span></li><li class="L7"><span class="pln">hda               </span><span class="lit">2.43</span><span class="pln">        </span><span class="lit">27.16</span><span class="pln">        </span><span class="lit">53.90</span><span class="pln">    </span><span class="lit">5474822</span><span class="pln">   </span><span class="lit">10866812</span></li></ol></pre></div><h2>IOPS (io/per second)</h2><ul class="list">  <li>指令 iostat -x  -c</li>  <ul class="list">    <li class="indent1">-c 檢查 cpu 狀態</li>    <li class="indent1">-x 檢查 每秒 io 讀取狀態</li>    <li class="indent1">-d 檢查每秒硬碟讀取多少 bytes</li>    <li class="indent1">-k 檢查每秒硬碟讀取多少 Kbytes</li>    <li class="indent1">-m 檢查每秒硬碟讀取多少 Mbytes</li>    <li class="indent1">-t 顯示時間</li>  </ul></ul><div class="codeBlock linux"><span class="title">Example</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">system</span><span class="pun">]@</span><span class="pln"> sysstat</span><span class="pun">-</span><span class="lit">9.0</span><span class="pun">.</span><span class="lit">6.1</span><span class="pln">$ iostat </span><span class="pun">-</span><span class="pln">x  </span><span class="pun">-</span><span class="pln">c</span></li><li class="L1"><span class="typ">Linux</span><span class="pln"> xx</span><span class="pun">.</span><span class="pln">xx </span><span class="pun">(</span><span class="pln">www</span><span class="pun">.</span><span class="pln">xxx</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span><span class="pun">)</span><span class="pln">        </span><span class="pun">西元</span><span class="lit">2011</span><span class="pun">年</span><span class="lit">11</span><span class="pun">月</span><span class="lit">01</span><span class="pun">日</span><span class="pln">      _i686_ </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> CPU</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">avg</span><span class="pun">-</span><span class="pln">cpu</span><span class="pun">:</span><span class="pln">  </span><span class="pun">%</span><span class="pln">user   </span><span class="pun">%</span><span class="pln">nice </span><span class="pun">%</span><span class="pln">system </span><span class="pun">%</span><span class="pln">iowait  </span><span class="pun">%</span><span class="pln">steal   </span><span class="pun">%</span><span class="pln">idle</span></li><li class="L4"><span class="pln">           </span><span class="lit">0.69</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">2.12</span><span class="pln">    </span><span class="lit">0.18</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">   </span><span class="lit">97.01</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="typ">Device</span><span class="pun">:</span><span class="pln">   rrqm</span><span class="pun">/</span><span class="pln">s   wrqm</span><span class="pun">/</span><span class="pln">s     r</span><span class="pun">/</span><span class="pln">s     w</span><span class="pun">/</span><span class="pln">s     </span><span class="pun">...</span></li><li class="L7"><span class="pln">hda        </span><span class="lit">0.05</span><span class="pln">     </span><span class="lit">5.19</span><span class="pln">      </span><span class="lit">0.90</span><span class="pln">    </span><span class="lit">1.52</span><span class="pln">    </span><span class="pun">...</span></li><li class="L8"><span class="pln">dm</span><span class="pun">-</span><span class="lit">0</span><span class="pln">       </span><span class="lit">0.00</span><span class="pln">     </span><span class="lit">0.00</span><span class="pln">      </span><span class="lit">0.94</span><span class="pln">    </span><span class="lit">6.71</span><span class="pln">    </span><span class="pun">...</span></li><li class="L9"><span class="pln">dm</span><span class="pun">-</span><span class="lit">1</span><span class="pln">       </span><span class="lit">0.00</span><span class="pln">     </span><span class="lit">0.00</span><span class="pln">      </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">0.01</span><span class="pln">    </span><span class="pun">...</span></li></ol></pre></div><p>r/s : 每秒讀取次數</p><p>w/s : 每秒寫入次數</p><ul class="list">  <li>指令:<span class="vj-cmd">iostat -x interval</span> [秒數]，每 n 秒檢查一次狀態，這個指令可以即時看到硬碟讀取的負荷。</li>  <li>iostat -t -c interval 5</li></ul><div class="codeBlock linux"><span class="title">iostat -t -c interval 5</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">system</span><span class="pun">]@</span><span class="pln"> sysstat</span><span class="pun">-</span><span class="lit">9.0</span><span class="pun">.</span><span class="lit">6.1</span><span class="pln">$ iostat </span><span class="pun">-</span><span class="pln">t </span><span class="pun">-</span><span class="pln">c interval </span><span class="lit">5</span></li><li class="L1"><span class="typ">Linux</span><span class="pln"> xxxx </span><span class="pun">(</span><span class="pln">www</span><span class="pun">.</span><span class="pln">xxxe</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span><span class="pun">)</span><span class="pln">        </span><span class="pun">西元</span><span class="lit">2011</span><span class="pun">年</span><span class="lit">11</span><span class="pun">月</span><span class="lit">02</span><span class="pun">日</span><span class="pln">      _i686_ </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> CPU</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pun">西元</span><span class="lit">2011</span><span class="pun">年</span><span class="lit">11</span><span class="pun">月</span><span class="lit">02</span><span class="pun">日</span><span class="pln"> </span><span class="lit">13</span><span class="pun">時</span><span class="lit">43</span><span class="pun">分</span><span class="lit">49</span><span class="pun">秒</span></li><li class="L4"><span class="pln">avg</span><span class="pun">-</span><span class="pln">cpu</span><span class="pun">:</span><span class="pln">  </span><span class="pun">%</span><span class="pln">user   </span><span class="pun">%</span><span class="pln">nice </span><span class="pun">%</span><span class="pln">system </span><span class="pun">%</span><span class="pln">iowait  </span><span class="pun">%</span><span class="pln">steal   </span><span class="pun">%</span><span class="pln">idle</span></li><li class="L5"><span class="pln">           </span><span class="lit">0.69</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">2.11</span><span class="pln">    </span><span class="lit">0.18</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">   </span><span class="lit">97.02</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="typ">Device</span><span class="pun">:</span><span class="pln">            tps   </span><span class="typ">Blk_read</span><span class="pun">/</span><span class="pln">s   </span><span class="typ">Blk_wrtn</span><span class="pun">/</span><span class="pln">s   </span><span class="typ">Blk_read</span><span class="pln">   </span><span class="typ">Blk_wrtn</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pun">西元</span><span class="lit">2011</span><span class="pun">年</span><span class="lit">11</span><span class="pun">月</span><span class="lit">02</span><span class="pun">日</span><span class="pln"> </span><span class="lit">13</span><span class="pun">時</span><span class="lit">43</span><span class="pun">分</span><span class="lit">54</span><span class="pun">秒</span></li><li class="L0"><span class="pln">avg</span><span class="pun">-</span><span class="pln">cpu</span><span class="pun">:</span><span class="pln">  </span><span class="pun">%</span><span class="pln">user   </span><span class="pun">%</span><span class="pln">nice </span><span class="pun">%</span><span class="pln">system </span><span class="pun">%</span><span class="pln">iowait  </span><span class="pun">%</span><span class="pln">steal   </span><span class="pun">%</span><span class="pln">idle</span></li><li class="L1"><span class="pln">           </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">0.41</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">    </span><span class="lit">0.00</span><span class="pln">   </span><span class="lit">99.59</span></li></ol></pre></div><h2>檢查硬碟讀寫速度</h2><p>使用指令 <span class="vj-cmd">hdparm</span> 可以檢測硬碟讀取的速度，這個指令後面必須接硬碟名稱，可以先使用 df 查看硬碟名稱。</p><ul class="list">  <li><span class="vj-cmd">sudo hdparm -t /dev/sda1</span> (第一顆硬碟的名稱)</li></ul><div class="codeBlock linux"><span class="title">Example</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pln">system$ sudo hdparm </span><span class="pun">-</span><span class="pln">t </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">sda1</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">sda</span><span class="pun">:</span></li><li class="L3"><span class="pln"> </span><span class="typ">Timing</span><span class="pln"> buffered disk reads</span><span class="pun">:</span><span class="pln">  </span><span class="lit">208</span><span class="pln"> MB </span><span class="kwd">in</span><span class="pln">  </span><span class="lit">3.02</span><span class="pln"> seconds </span><span class="pun">=</span><span class="pln">  </span><span class="lit">68.85</span><span class="pln"> MB</span><span class="pun">/</span><span class="pln">sec</span></li></ol></pre></div><p>使用指令 dd  ，實際測試寫入速度</p><div class="codeBlock linux"><span class="title">Example</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">system</span><span class="pun">]@</span><span class="pln">  time sh </span><span class="pun">-</span><span class="pln">c </span><span class="str">"dd if=/dev/zero of=/tmp/test bs=1024k count=100; sync"</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> rm </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">test</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="lit">100</span><span class="pun">+</span><span class="lit">0</span><span class="pln"> records </span><span class="kwd">in</span></li><li class="L3"><span class="lit">100</span><span class="pun">+</span><span class="lit">0</span><span class="pln"> records </span><span class="kwd">out</span></li><li class="L4"><span class="lit">104857600</span><span class="pln"> bytes </span><span class="pun">(</span><span class="lit">105</span><span class="pln"> MB</span><span class="pun">)</span><span class="pln"> copied</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.188125</span><span class="pln"> seconds</span><span class="pun">,</span><span class="pln"> </span><span class="lit">557</span><span class="pln"> MB</span><span class="pun">/</span><span class="pln">s</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">real    </span><span class="lit">0m1.310s</span></li><li class="L7"><span class="pln">user    </span><span class="lit">0m0.002s</span></li><li class="L8"><span class="pln">sys     </span><span class="lit">0m0.257s</span></li></ol></pre></div><h2>記憶體檢查</h2> <ul class="list">   <li class="indent1">vmstat 2 10 : 每 2 秒 記錄一次，共記 10 次。</li> </ul><div class="codeBlock shell"><span class="title"> Result</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">procs </span><span class="pun">-----</span><span class="pln">memory</span><span class="pun">--</span><span class="pln"> </span><span class="pun">---</span><span class="pln">swap</span><span class="pun">--</span><span class="pln"> </span><span class="pun">--</span><span class="pln">io</span><span class="pun">---</span><span class="pln">system</span><span class="pun">--</span><span class="pln"> </span><span class="pun">-</span><span class="pln">cpu</span><span class="pun">-</span></li><li class="L1"><span class="pln"> r  b   swpd   free   buff  cache   si   so    bi    bo   </span><span class="kwd">in</span><span class="pln">   cs us sy id wa</span></li><li class="L2"><span class="pln"> </span><span class="lit">0</span><span class="pln">  </span><span class="lit">0</span><span class="pln">  </span><span class="lit">20792</span><span class="pln">  </span><span class="lit">83180</span><span class="pln">  </span><span class="lit">26008</span><span class="pln"> </span><span class="lit">190576</span><span class="pln">    </span><span class="lit">0</span><span class="pln">    </span><span class="lit">0</span><span class="pln">     </span><span class="lit">6</span><span class="pln">     </span><span class="lit">7</span><span class="pln">   </span><span class="lit">45</span><span class="pln">   </span><span class="lit">23</span><span class="pln">  </span><span class="lit">7</span><span class="pln">  </span><span class="lit">1</span><span class="pln"> </span><span class="lit">92</span><span class="pln">  </span><span class="lit">0</span></li><li class="L3"><span class="pln"> </span><span class="lit">0</span><span class="pln">  </span><span class="lit">0</span><span class="pln">  </span><span class="lit">20792</span><span class="pln">  </span><span class="lit">83180</span><span class="pln">  </span><span class="lit">26008</span><span class="pln"> </span><span class="lit">190576</span><span class="pln">    </span><span class="lit">0</span><span class="pln">    </span><span class="lit">0</span><span class="pln">     </span><span class="lit">0</span><span class="pln">     </span><span class="lit">0</span><span class="pln">  </span><span class="lit">299</span><span class="pln">   </span><span class="lit">73</span><span class="pln">  </span><span class="lit">0</span><span class="pln">  </span><span class="lit">1</span><span class="pln"> </span><span class="lit">99</span><span class="pln">  </span><span class="lit">0</span></li></ol></pre></div><ul class="list">  <li>vmstat -s : 印出所有 memory 資訊</li>  <li>vmstat -f : 顯示所有從開機到現在，總共有建立多少個  task。</li></ul><div class="codeBlock shell"><span class="title"> Result</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">$ vmstat </span><span class="pun">-</span><span class="pln">f </span><span class="pun">;</span><span class="pln"> ls </span><span class="pun">&gt;</span><span class="pln"> </span><span class="str">/dev/</span><span class="kwd">null</span><span class="pln"> </span><span class="pun">;</span><span class="pln"> vmstat </span><span class="pun">-</span><span class="pln">f</span></li><li class="L1"><span class="pln">       </span><span class="lit">264542</span><span class="pln"> forks</span></li><li class="L2"><span class="pln">       </span><span class="lit">264544</span><span class="pln"> forks</span></li></ol></pre></div><p>找出使用最多 memory 的  process</p><blockquote>ps -e -o pid,vsz,%mem,comm= | sort -n -k 2</blockquote><ul class="list">  <li>vsz: virtual size in Kbytes</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-04-25T11:22:45+08:00" class="article-modify-time">2017/04/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-63" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-63" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Linux Command 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-69-Linux-指令筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_69&quot;}'>Linux 指令筆記 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>文字编码、解码与反组译工具</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="網路上常見的編碼技術有 urlEncode, base64Encode, base32, md5, sha1, 等等，這些技術大部分的程式語言都內建已經支援了，例如 PHP 語言可以使用 base64_encode() , urlencode()，來對文字進行編碼。下面提供一些線上工具，方便快速執行解碼的動作，這樣不用每次想要解碼時，就得打開 IDE 寫一小段程式。 http:" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-172-文字编码、解码与反组译工具.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-172-文字编码、解码与反组译工具.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-172-文字編碼、解碼與反組譯工具.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-172-文字編碼、解碼與反組譯工具.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-172">
+                    <em><span>文字编码、解码与反组译工具</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-172-\u6587\u5b57\u7de8\u78bc\u3001\u89e3\u78bc\u8207\u53cd\u7d44\u8b6f\u5de5\u5177.html"},"headline":"\u6587\u5b57\u7de8\u78bc\u3001\u89e3\u78bc\u8207\u53cd\u7d44\u8b6f\u5de5\u5177","image":"","datePublished":"2013-05-11T15:28:26+08:00","dateModified":"2013-08-10T12:44:33+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\u7db2\u8def\u4e0a\u5e38\u898b\u7684\u7de8\u78bc\u6280\u8853\u6709 urlEncode, base64Encode, base32, md5, sha1, \u7b49\u7b49\uff0c\u9019\u4e9b\u6280\u8853\u5927\u90e8\u5206\u7684\u7a0b\u5f0f\u8a9e\u8a00\u90fd\u5167\u5efa\u5df2\u7d93\u652f\u63f4\u4e86\uff0c\u4f8b\u5982 PHP \u8a9e\u8a00\u53ef\u4ee5\u4f7f\u7528 base"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">May</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-172-文字編碼、解碼與反組譯工具.html"><span>文字编码、解码与反组译工具</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-172-文字編碼、解碼與反組譯工具.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >网路上常见的编码技术有 urlEncode, base64Encode, base32, md5, sha1, 等等，这些技术大部分的程式语言都内建已经支援了，例如 PHP 语言可以使用 base64_encode() , urlencode()，来对文字进行编码。</p><p class="vj-quote" >下面提供一些线上工具，方便快速执行解码的动作，这样不用每次想要解码时，就得打开 IDE 写一小段程式。</p><a name="vj-t0"></a><h2 class="vj-sub-title">加解密工具</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" ><b>Online urlEncode , urlDenode</b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://meyerweb.com/eric/tools/dencoder/"  target="_blank"> http://meyerweb.com/eric/tools/dencoder/</a></li></ul><hr /><p class="vj-quote" ><b>Online base64_encode, base64_decode</b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.base64decode.org/"  target="_blank"> http://www.base64decode.org/</a></li></ul><hr /><p class="vj-quote" ><b>这个网站有各种的 Encode, Decode 工具 </b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.yellowpipe.com/yis/tools/encrypter/index.php"  target="_blank"> http://www.yellowpipe.com/yis/tools/encrypter/index.php</a></li></ul><hr /><p class="vj-quote" ><b>sha decode</b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.stringfunction.com/sha1-decrypter.html"  target="_blank"> http://www.stringfunction.com/sha1-decrypter.html</a></li></ul><p class="vj-quote" ><b>Unicode to ASCII</b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.ifreesite.com/unicode-ascii-ansi.htm"  target="_blank"> http://www.ifreesite.com/unicode-ascii-ansi.htm</a></li></ul><hr /><p class="vj-quote" ><b>ROT47</b></p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://rot47.net/"  target="_blank"> http://rot47.net/</a>   </li></ul><a name="vj-t1"></a><h2 class="vj-sub-title">Decompiler tool</h2><a href="#top" class="vj-btn_top2"></a><a name="vj-t2"></a><h2 class="vj-sub-title vj-lv1">Flash Decompiler</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.flash-decompiler.com/"  target="_blank"> http://www.flash-decompiler.com/</a></li></ul><p class="vj-quote" >一个 Flash 反组译工具，起级好用，不过这并非免费软体，你可以下载试用版回来使用。</p><a name="vj-t3"></a><h2 class="vj-sub-title vj-lv1">Java Decompiler</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://java.decompiler.free.fr/?q="  target="_blank"> http://java.decompiler.free.fr/?q=</a></li></ul><p class="vj-quote" >这是一个小型的 Java 反组译工具，我自已有写一小段 Java 来测试，结果这个工具真的把我写的程式码，一模一样的破解出来，功能真的是非常的强大。</p><a name="vj-t4"></a><h2 class="vj-sub-title vj-lv1">Decompile  exe to assembly code</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.ollydbg.de/"  target="_blank"> http://www.ollydbg.de/</a></li></ul><a name="vj-t5"></a><h2 class="vj-sub-title vj-lv1">ExeToC Decompiler</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://sourceforge.net/projects/exetoc/?source=dlp"  target="_blank"> http://sourceforge.net/projects/exetoc/?source=dlp</a></li></ul><a name="vj-t6"></a><h2 class="vj-sub-title vj-lv1">Flash exe to swf</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.northcode.com/blog.php/2007/08/02/Extract-SWF-files-from-Flash-Executables"  target="_blank"> http://www.northcode.com/blog.php/2007/08/02/Extract-SWF-files-from-Flash-Executables</a></li></ul><a name="vj-t7"></a><h2 class="vj-sub-title vj-lv1"> .Net Decompiler</h2><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.red-gate.com/products/dotnet-development/reflector/"  target="_blank"> http://www.red-gate.com/products/dotnet-development/reflector/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-08-10T12:44:33+08:00" class="article-modify-time">2013/08/10</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-172" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-172" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

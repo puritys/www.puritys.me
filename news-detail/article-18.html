@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Snowden 使用最偉大的駭客武器 (wget) 下載 NSA 檔案 </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+
+
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li class="active">
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/news/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路新聞</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+<div class="entry" itemscope itemtype="http://schema.org/Article">
+   <div class="entry-header">
+
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">01</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="#" itemprop="about">Snowden 使用最偉大的駭客武器 (wget) 下載 NSA 檔案</a></h1>
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content">   <br /><p>這週末， 紐約時報有一則新報導，內容是介紹史諾登 ( <b>Snowden</b>) 使用一個超廉價的工具，刮出 NSA 內部系統的所有 <b>Wiki</b> 文件， Wiki 系統內總共有一百七十萬份機密檔案，這個消息是來自於一個資深的情報官員。</p><p>Snowden 使用的下載工具仍未被證實是 「wget」，該名情報官只說 Snowden 用程式搜尋 NSA Wiki 文件，並有特定的目標，他運用搜尋關鍵字取得有用的文件，並且程式會自動下載文件內的相關連結，除此之外，程式有深度搜尋的限制設定，一但下載的階層大於某個數字，即會自動停止不再繼續往下刮連結。</p><p>軟體 "web crawler" 是專門用來備取網站的工具，這個軟體可以將網站上的所有連結，全部下載回來本機端備份，Snowden 先生在離開美國 NSA 之後，即開始搜刮 NSA 的系統文件，情報官還親口說：「我不信相單純一個人，有辦法下這麼網頁，並且有順序性的依續下載，這一定是使用自動化軟體來完成這項傑作」。</p><p>來看一個曾經發生過的案例，"曼寧"士兵在審訊時提交的資料，該檢查官(<b>prosecutors</b>) 寫道，曼寧當時曾使用 wget 下載大量的外交電報，相同的 Snowden 也可以使用 wget  或是類似 Googlebot 的工具，再加上 Snowden 曾經在 NSA 工作，擁有網站的帳號、密碼，這樣就能下載大量的 NSA 網站資訊。</p><p>本質上來看，自動下載網站並不需要強大的技術，也不用是一個專業的駭客，其實大部分的程式設計師或是網管都會這樣的技術，市面上有大量類似的工具可以用來將一整個網站鏡像下來， <b>HTTrack </b> 就是一個相當有名的軟體，這個軟體只能在 Windows 上運行，另外 UNIX 系統也有如  Pavuk 鏡像軟體 。</p><p>上述的幾個軟體都是比較偏大型的工具，其實 Linux 系統中，內建就會支援一個叫 wget 的軟體，單靠它就可以將一個網站下載回來 ，如下就是一個簡單的下載執令。</p><div class="notice" label="notice">wget --mirror -k <a href="http://www.yahoo.com/"  target="_blank">http://www.yahoo.com/</a></div><ul class="list">  <li>-k : 相同檔名不重複下載</li>  <li>--mirror : 打開鏡像備份</li></ul><p>當你在備份整個網站時，這個指令可以會讓你的系統間控軟體出現警告訊息，因為上述的指令，少了一個等待時間，沒有設定等待時間，<b>wget</b> 就會同時發出大量的 Request ，並同時回寫到你的檔案系統，有可能會造成系統當機，可以試著加上  「-w 3」 的參數，每下載一個網頁就等待 3 秒。</p><p>紐約時報指出，就在 Snowden 搜集 NSA 的文件的同時，有位調查員查覺異狀，並檢視了 Snowden 的網路行為，以及他讀取了那一些機密資料，後來也詢問在 Snowden 做了什麼事， 但是 Snowden 說明他身為一個系統管理員，平常必須維護電腦網路，也包含了備份電腦系統文件，再將備份的資料，儲存到自已的電腦。</p><p>NSA 犯了大部分公司都會犯的錯，他們只擔公司外面的駭客，針對外部的網路連線有嚴謹間控，但卻對內部員工沒有任何一點防備。</p><p>政府官員的隨便的態度又再度出現，就在曼寧的洩密案之後， NSA  仍然不重視保護公司的機密資料，才會讓 Snowden 有機可趁。</p><h2>資料來源</h2><ul class="list">  <li><a href="http://blogs.csoonline.com/network-security/2982/snowden-accused-using-hackings-greatest-weapon-access-nsa-files-wget"  target="_blank">http://blogs.csoonline.com/network-security/2982/snowden-accused-using-hackings-greatest-weapon-access-nsa-files-wget</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        
+
+    </div>
+
+    
+
+    
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=160015347378316";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-comments" data-href="https://www.puritys.me/news-detail/article-18" data-num-posts="10"></div>
+    
+</div> 
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">新聞分類</h4>
+    <ul>
+    
+        <li><a href="/news/normal" >一般新聞 </a></li>
+    
+        <li><a href="/news/web_security" >網路安全 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li class="active">
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+</html>

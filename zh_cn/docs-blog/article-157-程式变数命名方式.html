@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>程式变数命名方式</title>
+    <meta name="keywords" content="Development" />
+    <meta name="description" content=" 寫程式第一件事，就是命名，不管是變數，檔名，函數...等，有一堆等著你命名，對於非英語系國家的軟體工程師就更辛苦了。這裡整理一些命名規則，方便未來使用，以免每次寫程式第一步就卡住。駝峰式命名法 camel case駝峰式命名法就是指變數第一個字母會小寫，而變數第二個以上的單字，其第一個字母為大為，例如： 「getData」，「removeProduct」。constant 變" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-157-程式变数命名方式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-157-程式变数命名方式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-157-程式變數命名方式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-157-程式變數命名方式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-157">
+                    <em><span>程式变数命名方式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-157-\u7a0b\u5f0f\u8b8a\u6578\u547d\u540d\u65b9\u5f0f.html"},"headline":"\u7a0b\u5f0f\u8b8a\u6578\u547d\u540d\u65b9\u5f0f","image":"","datePublished":"2013-02-12T22:10:02+08:00","dateModified":"2014-05-18T14:58:14+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5beb\u7a0b\u5f0f\u7b2c\u4e00\u4ef6\u4e8b\uff0c\u5c31\u662f\u547d\u540d\uff0c\u4e0d\u7ba1\u662f\u8b8a\u6578\uff0c\u6a94\u540d\uff0c\u51fd\u6578...\u7b49\uff0c\u6709\u4e00\u5806\u7b49\u8457\u4f60\u547d\u540d\uff0c\u5c0d\u65bc\u975e\u82f1\u8a9e\u7cfb\u570b\u5bb6\u7684\u8edf\u9ad4\u5de5\u7a0b\u5e2b\u5c31\u66f4\u8f9b\u82e6\u4e86\u3002\r\u9019\u88e1\u6574\u7406\u4e00\u4e9b\u547d\u540d\u898f\u5247\uff0c\u65b9\u4fbf\u672a\u4f86\u4f7f\u7528\uff0c\u4ee5\u514d\u6bcf\u6b21\u5beb\u7a0b\u5f0f\u7b2c\u4e00\u6b65\u5c31\u5361\u4f4f\u3002\r\u99dd\u5cf0\u5f0f\u547d\u540d\u6cd5"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Feb</div>
+            <div class="day">12</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-157-程式變數命名方式.html"><span>程式变数命名方式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Development">Development</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-157-程式變數命名方式.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>写程式第一件事，就是命名，不管是变数，档名，函数...等，有一堆等著你命名，对於非英语系国家的软体工程师就更辛苦了。</p><p>这里整理一些命名规则，方便未来使用，以免每次写程式第一步就卡住。</p><h2>驼峰式命名法 camel case</h2><p>驼峰式命名法就是指变数第一个字母会小写，而变数第二个以上的单字，其第一个字母为大为，例如： 「getData」，「removeProduct」。</p><h2>constant 变数命名方式</h2><p>实体目录开头使用 PATH</p><ul class="list">  <li>档案根目录 PATH_ROOT</li></ul><p>网路目录开头使用 URL</p><ul class="list">  <li>URL 根目录 URL_ROOT</li></ul><p>绝对路径 URL_ABS</p><ul class="list">  <li>URL_ABS_ROOT</li></ul><h2>透过 function 取得资料</h2><p>取得资料代表的英文单字有 get、fetch、seize</p><ul class="list">  <li>透过网路方式，使用 fetch 这个字母，例如： fetchProductHtml，fetchInfo</li>  <li>一般取得 Object 中的 property ，使用 get 这个字母， 例如： getProductId， getTitle</li></ul><h2>建立新资料</h2><p>可以使用的英字单字有： add、create、insert。</p><ul class="list">  <li>insert :  新增一笔资料进 database</li>  <ul class="list">    <li class="indent1">insertOrder</li>    <li class="indent1">insertItem</li>  </ul>  <li>add : 新增一笔资料进 object, array</li>  <ul class="list">    <li class="indent1">addItem</li>    <li class="indent1">addProduct</li>  </ul>  <li>create : 建立连线，档案</li>  <ul class="list">    <li class="indent1">createClient</li>    <li class="indent1">createFile</li>  </ul></ul><h2>删除资料</h2><p>删除这个 method 几乎每个 class 都会有，可用来表达这件事的英文有 「delete」，「remove」。</p><ul class="list">  <li>delete ：删除整个阵列。</li>  <li>remove ： 使用 Remove 的时机，我给他下一个定义，也就是当我要移除整个阵列中的一个物件时，我会将这个 method 命名为 Remove。</li></ul><h2>完成一件事情 complete</h2><p>从网路上下载一件资料完成。fetchContent -> fetchComplete</p><p>Frontend 开发常常会使用一些动画来导引使用者，例如删除一个物件时，这个物件会有淡出的效果，慢慢的消失，等到透明度变成 0 % 时，这个物件才会真真的被移除。</p><p>这里可以表达这件事的英文有 complete、finish、done、end。</p><ul class="list">  <li>complete</li>  <li>finish</li>  <li>done</li>  <li>end : 用在动态效果，如物件移动 (Animation) ， 有 start 才有 end 。</li></ul><h2>For Loop</h2><p>一个 for loop 最见常的变数是用 I, j , k ,n ，而这个命名方式虽然常见，但是并不容易看懂，这时可以使用另一种命名方式。</p><ul class="list">  <li>len: 长度</li>  <li>index</li></ul><p>假设有一个订单资讯的  for loop，命名如下</p><ul class="list">  <li>orderLen</li>  <li>orderIndex</li>  <li>itemLen</li>  <li>itemIndex</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> orderLen </span><span class="pun">=</span><span class="pln"> order</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> orderInde</span><span class="pun">,</span><span class="pln"> itemLen</span><span class="pun">,</span><span class="pln"> itemIndex</span><span class="pun">;</span></li><li class="L2"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> orderIndex </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">;</span><span class="pln"> orderIndex </span><span class="pun">&lt;</span><span class="pln"> orderLen</span><span class="pun">;</span><span class="pln"> orderIndex</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">   itemLen </span><span class="pun">=</span><span class="pln"> order</span><span class="pun">[</span><span class="pln">orderIndex</span><span class="pun">][</span><span class="str">&#39;items&#39;</span><span class="pun">].</span><span class="pln">length</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">itemIndex </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> itemIndex </span><span class="pun">&lt;</span><span class="pln"> itemLen</span><span class="pun">;</span><span class="pln"> itemIndex</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">      alert </span><span class="pun">(</span><span class="pln"> order</span><span class="pun">[</span><span class="pln">orderIndex</span><span class="pun">][</span><span class="str">&#39;items&#39;</span><span class="pun">][</span><span class="pln">itemIndex</span><span class="pun">]</span><span class="pln"> </span><span class="pun">);</span></li><li class="L6"><span class="pln">   </span><span class="pun">}</span></li><li class="L7"><span class="pun">}</span></li></ol></pre></div><!--<br />grep find <br />get fetch<br />add create <br />update edit<br />Base<br />--><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-05-18T14:58:14+08:00" class="article-modify-time">2014/05/18</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-157" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-157" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-154">Readable Code 淺顯易懂的程式</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Development 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-168-如何在-Win-,-Mac-,-Chrome-設定實用的-.screenrc.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_168&quot;}'>如何在 Win , Mac , Chrome 設定實用的 .screenrc </a></li>
+    
+        <li><a href="/docs-blog/article-154-Readable-Code-淺顯易懂的程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_154&quot;}'>Readable Code 淺顯易懂的程式 </a></li>
+    
+        <li><a href="/docs-blog/article-148-軟體工程師必用字型-字體.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_148&quot;}'>軟體工程師必用字型/字體 </a></li>
+    
+        <li><a href="/docs-blog/article-114-VIM-16進位-,-.vimrc-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_114&quot;}'>VIM 16進位 , .vimrc 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-110-vim-配色.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_110&quot;}'>vim 配色 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

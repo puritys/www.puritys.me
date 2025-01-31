@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Docker toolbox 取代方案 - 支援 VPN</title>
+    <meta name="keywords" content="docker" />
+    <meta name="description" content="docker toolbox 的功能是整合 Virtualbox (以下簡稱 VM) ，自動幫你裝好一個小型的 linux 並安裝 docker server ，在 Mac / Windows 你可以使用 docker 指令直接操作 linux 裡的 docker，但是 2020 年 docker toolbox 就不再維護， 新電腦也無法再裝 toolbox ，而只能用 do" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-457-Docker-toolbox-取代方案---支援-VPN.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-457">
+                    <em><span>Docker toolbox 取代方案 ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-457-Docker-toolbox-\u53d6\u4ee3\u65b9\u6848---\u652f\u63f4-VPN.html"},"headline":"Docker toolbox \u53d6\u4ee3\u65b9\u6848 - \u652f\u63f4 VPN","image":"","datePublished":"2021-09-10T09:12:22+08:00","dateModified":"2022-01-07T08:38:51+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"docker toolbox \u7684\u529f\u80fd\u662f\u6574\u5408 Virtualbox (\u4ee5\u4e0b\u7c21\u7a31 VM) \uff0c\u81ea\u52d5\u5e6b\u4f60\u88dd\u597d\u4e00\u500b\u5c0f\u578b\u7684 linux \u4e26\u5b89\u88dd docker server \uff0c\u5728 Mac \/ Windows \u4f60\u53ef\u4ee5"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2021</div>
+            <div class="month">Sep</div>
+            <div class="day">10</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html"><span>Docker toolbox 取代方案 - 支援 VPN</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=docker">docker</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>docker toolbox 的功能是整合 Virtualbox (<code>以下简称 VM</code>) ，自动帮你装好一个小型的 linux 并安装 docker server ，在 Mac / Windows 你可以使用 docker 指令直接操作 linux 里的 docker，但是 <code>2020</code> 年  docker toolbox 就不再维护， 新电脑也无法再装 toolbox ，而只能用 docker Team 提供的 <code>docker desktop</code> ，使用 docker desktop 的经验很不好，尤其是常常遇到 <code>cpu 使用率</code>超过 100%，电脑风扇转到快爆炸，这里问题已经发生好多年了，可以在网路上查到很多人反应这个问题, 但一直没有解决。</p><p>免费版的 docker destop 又会自动强迫更新，好不容易设定好可以正常运作的 docker destop ，很可能因为自动更新又发生 cpu 爆表的状况。</p><h2>docker toolbox</h2><p>先说明一下 docker toolbox 的原理，它会自动帮你安装 VirtualBox 跟一个小型的 unix os，并在 os 上面安装 docker engine，提供 docker-machine 跟 docker 两种 command 来控制 VirtualBox and docker，了解 toolbox 的运作原理，我们就可以手动完成上面的软体安装，实现从 Mac docker command 直接操作 unix docker engine。</p>- VirtualBox : 安装 unix os 并可以用 docker-machine command 操作<br />- Unix os: 安装 docker engine ，并可以用  docker command 操作 <br /><p>下面将说明如何自已安装  VirtualBox / Linux / Docker  ，并且让 Mac docker 与 VM docker 直接沟通</p><h3>安装 VirtualBox 跟 Linux</h3><ul class="list">  <li>安装 VirtualBox <a href="https://www.virtualbox.org/"  target="_blank">https://www.virtualbox.org/</a></li>  <li>下载  unix 并安装 <a href="https://www.centos.org/download/"  target="_blank">https://www.centos.org/download/</a></li></ul><blockquote>我是选择安装 Centos 8</blockquote><ul class="list">  <li>在 VM 中安装 Docker & Docker-compose <a href="https://docs.docker.com/compose/installs"  target="_blank">https://docs.docker.com/compose/installs</a></li></ul><blockquote>dnf install -y docker-ce</blockquote><blockquote>sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</blockquote><ul class="list">  <li>在 VM 安装 Guest Addition <a href="https://www.tecmint.com/install-virtualbox-guest-additions-in-centos-rhel-fedora/"  target="_blank">https://www.tecmint.com/install-virtualbox-guest-additions-in-centos-rhel-fedora/</a></li></ul><blockquote>Guest Addition 目的是要在 VM mount Mac 上的资料夹</blockquote><blockquote>在无 UI linux 上安装 Guest Addition 比较麻烦，如果你有遇到问题可以在下方留言问我</blockquote><ul class="list">  <li>在 VM 启动 docker daemon 并绑 localhost port 2375</li></ul><blockquote>sudo  dockerd -H tcp://localhost:2375 &</blockquote><ul class="list">  <li>在 VM 建 SSH Tunnel 解决 VPN 环境无法连进 vm local ip (192.168.x.x 是你的 Mac IP)</li></ul><blockquote>ssh -vv -N -R 8882:localhost:22 192.168.x.x &</blockquote><blockquote>ssh -vv -N -R 2375:localhost:2375 192.168.x.x &</blockquote><ul class="list">  <li>mount 个人目录 ，我的个人开发档案全部放个人目录，所以只要 mount 个人目录就可以了，如果你习惯挡案放别的路径，可以自已多 mount 几个，注意 Mac 与 VM 的<code>路径要一模一样</code>，不然 VM 中的 docker 会找不到档案</li></ul><blockquote>Mac  /User/yourName</blockquote><blockquote>VM /User/yourName</blockquote><ul class="list">  <li>修改 VM user 权限，资料夹 mount 需要先从 Mac mount 到 VM ，再从 VM mount 到 docker container ，很容易会发生权限问题，解法是去修改 VM /etc/group ，把你的个人帐号加进  <code>vboxsf</code> 后面</li></ul><blockquote>vboxsf:x:991:${your account}</blockquote><ul class="list">  <li>Mac 设定环境变数 <code>DOCKER_HOST="tcp://0.0.0.0:2375"</code></li></ul><blockquote>export DOCKER_HOST="tcp://0.0.0.0:2375"</blockquote><blockquote>docker 有支援 UNIX Domain socket (/var/run/docker.sock)，我们可以透过  socket 来直接跟 docker engine 沟通</blockquote><blockquote>另外 docker 还支援 tcp socket ，我们可以透过 ip / port 跟 docker engine 沟通，这里我是选择使用 tcp socket</blockquote><ul class="list">  <li>Mac 直接下 <code>docker ps</code> command 就可以操作 VM 中的 docker engine，你的 Mac 也要装 docker  command ，不然就没有 docker 这个指令</li></ul><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">brew install docker docker</span><span class="pun">-</span><span class="pln">compose</span></li></ol></pre></div><p>以下是我的 VM start script 范例</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="com"># start agent</span></li><li class="L1"><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">ssh</span><span class="pun">-</span><span class="pln">agent</span></li><li class="L2"><span class="pln">ssh</span><span class="pun">-</span><span class="pln">add </span><span class="pun">.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">your_key</span><span class="pun">.</span><span class="kwd">local</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="com"># start docker</span></li><li class="L5"><span class="com">#sudo service docker start</span></li><li class="L6"><span class="pln">sudo  dockerd </span><span class="pun">-</span><span class="pln">H tcp</span><span class="pun">:</span><span class="com">//localhost:2375 &amp;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="com"># to create tunnel</span></li><li class="L0"><span class="pln">ssh </span><span class="pun">-</span><span class="pln">vv </span><span class="pun">-</span><span class="pln">N </span><span class="pun">-</span><span class="pln">R </span><span class="lit">8882</span><span class="pun">:</span><span class="pln">localhost</span><span class="pun">:</span><span class="lit">22</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x </span><span class="pun">&amp;</span></li><li class="L1"><span class="pln">ssh </span><span class="pun">-</span><span class="pln">vv </span><span class="pun">-</span><span class="pln">N </span><span class="pun">-</span><span class="pln">R </span><span class="lit">2375</span><span class="pun">:</span><span class="pln">localhost</span><span class="pun">:</span><span class="lit">2375</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x </span><span class="pun">&amp;</span></li></ol></pre></div><h1>VPN</h1><p>前面的步骤中，有一步是建立 Linux Tunnel，为的就是解决 VPN 环境的问题，在 VPM 环境中，Mac 所有的 routing rule 都会被 VPN 软体控制，预设大多数的 Requests 都会经由 VPN 连线出去 (<code>这跟公司 IT VPN 设定有关系</code>) ，造成我无法在 MAC 直接用 local ip 连到 VM docker，我的解决方式是从 VM 建一条 Reverse SSH tunnel 到 MAC ， VM 的网路连到 Mac local ip 并不会受到 VPN 影响。</p><div class="codeBlock ssh"><span class="title">Example</span><pre class="prettyprint lang-ssh linenums" ><ol class="linenums"><li class="L0"><span class="pln">ssh </span><span class="pun">-</span><span class="pln">vv </span><span class="pun">-</span><span class="pln">N </span><span class="pun">-</span><span class="pln">R </span><span class="lit">8882</span><span class="pun">:</span><span class="pln">localhost</span><span class="pun">:</span><span class="lit">22</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x </span><span class="pun">&amp;</span></li><li class="L1"><span class="pln">ssh </span><span class="pun">-</span><span class="pln">vv </span><span class="pun">-</span><span class="pln">N </span><span class="pun">-</span><span class="pln">R </span><span class="lit">2375</span><span class="pun">:</span><span class="pln">localhost</span><span class="pun">:</span><span class="lit">2375</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x </span><span class="pun">&amp;</span></li></ol></pre></div><h1>其它参考</h1><p>docker 支援同时建立多种 socket ，我们可以同时建立 unix domain socket (/var/run/docker.sock) 跟多个 tcp socket</p><blockquote>sudo dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 -H tcp://10.10.10.2</blockquote></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2022-01-07T08:38:51+08:00" class="article-modify-time">2022/01/07</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-457" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-457" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-51">Windows 連接 VPN 後，如何使用內部網路</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">docker 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_393&quot;}'>用 Docker 取代 VirtualBox - 建立  Linux 環境 </a></li>
+    
+        <li><a href="/docs-blog/article-363-Docker-vs-Virtual-Machine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_363&quot;}'>Docker vs Virtual Machine </a></li>
+    
+        <li><a href="/docs-blog/article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_362&quot;}'>如何用 Dockerfile 自製一個 Docker image / Container </a></li>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Poison Null Byte Web Security</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Poison Null Byte就是指使用 Null 字元，造成程式執行錯誤，本來指定要讀取的檔案，變成駭客想要讀取的檔案， Null 在 c語言中就是以「#92;0」來表示，這個字元代表者一個字串的結尾，如 string = abc; ， 這個 string 在 memory 中會用掉四個 bytes ，內容是「abc#92;0」，而假設我故意將 Null 插在 a 與 b " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-10-Poison-Null-Byte-Web-Security.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-10-Poison-Null-Byte-Web-Security.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-10-Poison-Null-Byte-Web-Security.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-10-Poison-Null-Byte-Web-Security.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-10">
+                    <em><span>Poison Null Byte Web...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-10-Poison-Null-Byte-Web-Security.html"},"headline":"Poison Null Byte Web Security","image":"","datePublished":"2011-02-02T17:56:12+08:00","dateModified":"2013-06-01T17:23:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\rPoison Null Byte\u5c31\u662f\u6307\u4f7f\u7528  Null \u5b57\u5143\uff0c\u9020\u6210\u7a0b\u5f0f\u57f7\u884c\u932f\u8aa4\uff0c\u672c\u4f86\u6307\u5b9a\u8981\u8b80\u53d6\u7684\u6a94\u6848\uff0c\u8b8a\u6210\u99ed\u5ba2\u60f3\u8981\u8b80\u53d6\u7684\u6a94\u6848\uff0c Null \u5728 c\u8a9e\u8a00\u4e2d\u5c31\u662f\u4ee5\u300c&#92;0\u300d\u4f86\u8868\u793a\uff0c\u9019\u500b\u5b57\u5143\u4ee3\u8868\u8005\u4e00"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Feb</div>
+            <div class="day">02</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-10-Poison-Null-Byte-Web-Security.html"><span>Poison Null Byte Web Security</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-10-Poison-Null-Byte-Web-Security.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >Poison Null Byte就是指使用 <em> Null </em>字元，造成程式执行错误，本来指定要读取的档案，变成骇客想要读取的档案， Null 在 c语言中就是以「&#92;0」来表示，这个字元代表者一个字串的结尾，如 string = "abc"; ， 这个 string 在 memory 中会用掉四个 bytes ，内容是「<em>abc&#92;0</em>」，而假设我故意将 Null 插在 a 与 b 的中间，那么 string 就会变成 「<em>a&#92;0bc&#92;0</em>」，这时再将 string 印出来到萤幕上时，就会印出 「a」，因为当程式碰到 「<em>&#92;0</em>」，就认定字串已经结束了。</p><p class="vj-quote" >「<em>&#92;0</em>」是程式使用的，在浏览器要生出一个 Null Byte 的方式是使用 <em>%00</em>，只要在 url 中输入 %00 ，浏览器会自动将 %00 转换成 <em>Null Byte</em></p><p class="vj-quote" >以 php 为例来说，poison null byte 的用法如下</p><p class="vj-quote" >在 <em>include, require, file_get_contents,readfile,fopen </em> 等等， 都有相同的漏洞</p><p class="vj-quote" >例如有些网站为了避免 End User 随意输入参数，而在 require 档案的时候，会自动带上副档名 「.html」，强迫程式一定要读取一个 html 档。</p> <br /><div class="codeBlock"><span class="title">require html 范例 : nullByte.php</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">$filename</span><span class="pun">=</span><span class="pln">$_GET</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pln">require_once</span><span class="pun">(</span><span class="str">&#39;/var/www/&#39;</span><span class="pun">.</span><span class="pln">$filename</span><span class="pun">.</span><span class="str">&#39;.html&#39;</span><span class="pun">);</span></li></ol></pre></div><p class="vj-quote" >程式看起来没有多大的问题，伺服器里的 html 档，本来就是要给 End User 来浏览的，就算被乱填档名，似乎也没多大的伤害。</p><p class="vj-quote" >但骇客只要使用 「nullByte.php<em>?name=../../etc/passwd%00</em>」 ，当传入的变数 name = ../../etc/passwd%00， 这时 php 就会读取  /var/www/../../etc/passwd<em>%00</em>.html  的档案内容，刚刚有说 <em>%00 </em>代表字串的结尾，所以最后会 require 到 /etc/passwd ，而把系统帐号资料印出来。</p><p class="vj-quote" >若是使用file_get_contents：</p><div class="codeBlock"><span class="title">file_get_contents.php</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">$file </span><span class="pun">=</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pln">$r</span><span class="pun">=</span><span class="pln">file_get_contents</span><span class="pun">(</span><span class="str">&#39;/var/www/&#39;</span><span class="pun">.</span><span class="pln">$file</span><span class="pun">.</span><span class="str">&#39;.php&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">echo $r</span><span class="pun">;</span></li></ol></pre></div><p class="vj-quote" >其他如：readfile($_GET[&#39;file&#39;].&#39;.php&#39;);  $f=fopen($_GET[&#39;file&#39;].&#39;.php&#39;, &#39;r&#39;);</p><p class="vj-quote" >以上这些碰到Null字元，都会出错。</p><p class="vj-quote" ><b>PHP程式解决 poison null byte 的办法</b></p><div class="codeBlock"><span class="title"> solution.php</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">$filename </span><span class="pun">=</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pln">$filename </span><span class="pun">=</span><span class="pln"> preg_replace</span><span class="pun">(</span><span class="pln">chr</span><span class="pun">(</span><span class="lit">0</span><span class="pun">),</span><span class="str">&#39;&#39;</span><span class="pun">,</span><span class="pln">$filename</span><span class="pun">);</span></li></ol></pre></div><br /><p class="vj-quote" ><b>或是升级至 php 5.3.4 以上版本</b></p><br /><br /><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-06-01T17:23:10+08:00" class="article-modify-time">2013/06/01</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-10" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-10" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Browser Reflow &amp; Repaint</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Reflow 與 Repaint 這兩個東西跟瀏覽器有著密切的關系， Repaint 是指瀏覽器重新繪出一張新的頁面，通常發生在網頁中的 HTML Element Style 遇到變更；而 Reflow 則是指瀏覽器重新計算 HTML Element 的坐標位置。以網頁效能的觀點來看，Reflow 必需重新計算 Elements 的相對座標位置與長寬，然後再觸發 Repaint" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-322-Browser-Reflow-&-Repaint.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-322-Browser-Reflow-&-Repaint.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/css" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">CSS</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-322">
+                    <em><span>Browser Reflow &amp; Repaint</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-322-Browser-Reflow-&-Repaint.html"},"headline":"Browser Reflow & Repaint","image":"","datePublished":"2015-08-29T17:39:21+08:00","dateModified":"2015-08-31T11:35:07+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Reflow \u8207 Repaint \u9019\u5169\u500b\u6771\u897f\u8ddf\u700f\u89bd\u5668\u6709\u8457\u5bc6\u5207\u7684\u95dc\u7cfb\uff0c Repaint \u662f\u6307\u700f\u89bd\u5668\u91cd\u65b0\u7e6a\u51fa\u4e00\u5f35\u65b0\u7684\u9801\u9762\uff0c\u901a\u5e38\u767c\u751f\u5728\u7db2\u9801\u4e2d\u7684 HTML Element Style \u9047\u5230\u8b8a\u66f4\uff1b\u800c Reflo"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Aug</div>
+            <div class="day">29</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-322-Browser-Reflow-&-Repaint.html"><span>Browser Reflow &amp; Repaint</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Reflow 與 Repaint 這兩個東西跟瀏覽器有著密切的關系， Repaint 是指瀏覽器重新繪出一張新的頁面，通常發生在網頁中的 HTML Element Style 遇到變更；而 Reflow 則是指瀏覽器重新計算 HTML Element 的坐標位置。</p><p>以網頁效能的觀點來看，Reflow 必需重新計算 Elements 的相對座標位置與長寬，然後再觸發 Repaint 行為，所以會比單純的 Repaint 用掉更多的效能。</p><h2>Repaint</h2><p>Repaint 事件發生於 HTML Element 外觀有變化，但是寬、高、坐標沒有變更，例如 color (文字顏色)，background-color (背影色)，visibility 等 CSS 屬性。</p><p>以下是會觸發 Repaint  的行為：</p><ul class="list">  <li>Scrolling - 移動視窗捲軸</li>  <li>修改 CSS 屬性 - visibility, color, background-color</li></ul> <br /><h2>Reflow</h2><p>Reflow 是指瀏覽器重新計算 HTML Element 的坐標位置與寬，高，當下一次的 re-rendering 發生，就能夠重新定位頁面上的 HTML Element，當 Reflow 發生時，它會中斷 Browser 的所有行為，有利於工程師了解如何優化 Reflow 時間與 Reflow 對頁面操作的影響。</p><p>當一個 HTML Element 發生 Reflow 事件時，它的 "Parent Element" 以及 "Parent&#39;s Parent Element" 或是 "Child Element" 都有可能會一併發生 Reflow 事件來重新計算坐標，所以 Reflow 次數太多，會嚴重影響效能。</p><p>大部分 User 的操作行為與 HTML Element 的變更，都會觸發 Reflow  事件，例如下列幾種：</p><ul class="list">  <li>Window Resizing - 變更 window 的尺寸</li>  <li>用 JavaScript 修改 CSS computed styles or inline styles</li>  <li>在 DOM 中新增、移除 HTML Element</li>  <li>修改 Element 的 className，並包含下列其中一種 style 變更</li>  <ul class="list">    <li class="indent1">display</li>    <li class="indent1">padding</li>    <li class="indent1">margin</li>    <li class="indent1">width</li>    <li class="indent1">height</li>    <li class="indent1">font-size</li>  </ul></ul><h2>優化網頁效能</h2><p>Reflow 與 Repaint 太多會影響效能，那麼我們就要想辦法減少 Reflow & Repaint 的發生機會。</p><ul class="list">  <li>減少 HTML Element 的深度</li>  <li>減少 CSS 規則</li>  <li>不要一行一行的設定 css style ，改用 CSS ruleset (<b>className</b>) 取代 inline styles.</li>  <li>針對 Animation 的使用，建議用絕對座標來定位如 position: absolute, fixed</li>  <li>使用 JS 建立 Element 時，一定要用 documentFragment</li>  <li>不要使用太大型的 Table ， 因為 Table 中的任何一個 Element 被修改，都會導致整個 Table 重新 render</li></ul> <br /><h2>備註</h2><ul class="list">  <li>DOM : Document Object Model</li>  <li><a href="http://erik.eae.net/archives/2007/07/27/18.54.15/" target="_blank">Computed styles & inline styles</a></li></ul><h2>參考資料</h2><ul class="list">  <li><a href="https://developers.google.com/speed/articles/reflow?hl=en"  target="_blank">https://developers.google.com/speed/articles/reflow?hl=en</a></li>  <li><a href="http://javascript.tutorialhorizon.com/2015/06/06/what-are-reflows-and-repaints-and-how-to-avoid-them/"  target="_blank">http://javascript.tutorialhorizon.com/2015/06/06/what-are-reflows-and-repaints-and-how-to-avoid-them/</a></li>  <li><a href="http://www-archive.mozilla.org/newlayout/doc/reflow.html"  target="_blank">http://www-archive.mozilla.org/newlayout/doc/reflow.html</a></li>  <li><a href="http://csstriggers.com/"  target="_blank">http://csstriggers.com/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-08-31T11:35:07+08:00" class="article-modify-time">2015/08/31</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-322" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-322" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 CSS</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-354-CSS-實做-3D-立體正方形.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_354&quot;}'>CSS 實做  3D 立體正方形 </a></li>
+    
+        <li><a href="/docs-blog/article-353-CSS-3D-旋轉-rotate3d-與-translate3d.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_353&quot;}'>CSS 3D 旋轉 rotate3d 與 translate3d </a></li>
+    
+        <li><a href="/docs-blog/article-340-CSS-Transitions-動態展開圖層.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_340&quot;}'>CSS Transitions 動態展開圖層 </a></li>
+    
+        <li><a href="/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_322&quot;}'>Browser Reflow &amp; Repaint </a></li>
+    
+        <li><a href="/docs-blog/article-274-Chrome-do-not-allow-Cross-origin-resource-sharing-for-webfonts.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_274&quot;}'>Chrome do not allow  Cross-origin resource sharing for webfonts </a></li>
+    
+        <li><a href="/docs-blog/article-259-移除-CSS-inline-block-空白.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_259&quot;}'>移除 CSS inline-block 空白 </a></li>
+    
+        <li><a href="/docs-blog/article-208-CSS-font-size-about-pt,-px-,-em-and-percent.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_208&quot;}'>CSS font size about pt, px , em and percent </a></li>
+    
+        <li><a href="/docs-blog/article-207-CSS-特殊用法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_207&quot;}'>CSS 特殊用法 </a></li>
+    
+        <li><a href="/docs-blog/article-203-CSS-Selector.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_203&quot;}'>CSS Selector </a></li>
+    
+        <li><a href="/docs-blog/article-159-css-style-testing.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_159&quot;}'>css style testing </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

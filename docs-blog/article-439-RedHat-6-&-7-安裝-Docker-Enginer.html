@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>RedHat 6 &amp; 7 安裝 Docker Enginer</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="RHEL 7直接用 yum 就可以安裝 docker : sudo yum install docker 安裝最新版 docker-ce上面的安裝方式，只會裝到舊版 docker-1.7.x，如果想要最新版本的 docker 可以參考下面的指令：編輯 /etc/yum.conf 加上 exclude=*.i386 *.i686 sudo yum-config-manager -" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-439-RedHat-6-&-7-安裝-Docker-Enginer.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-439-RedHat-6-&amp;-7-安装-Docker-Enginer.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-439-RedHat-6-&-7-安裝-Docker-Enginer.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-439">
+                    <em><span>RedHat 6 &amp; 7 安裝 Dock...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-439-RedHat-6-&-7-\u5b89\u88dd-Docker-Enginer.html"},"headline":"RedHat 6 & 7 \u5b89\u88dd Docker Enginer","image":"","datePublished":"2018-10-15T14:26:52+08:00","dateModified":"2018-12-24T11:51:17+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"RHEL 7\r\u76f4\u63a5\u7528 yum \u5c31\u53ef\u4ee5\u5b89\u88dd docker : sudo yum install docker\r \u5b89\u88dd\u6700\u65b0\u7248 docker-ce\r\u4e0a\u9762\u7684\u5b89\u88dd\u65b9\u5f0f\uff0c\u53ea\u6703\u88dd\u5230\u820a\u7248 docker-1.7.x\uff0c\u5982"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2018</div>
+            <div class="month">Oct</div>
+            <div class="day">15</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-439-RedHat-6-&-7-安裝-Docker-Enginer.html"><span>RedHat 6 &amp; 7 安裝 Docker Enginer</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-439-RedHat-6-&amp;-7-安装-Docker-Enginer.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h3>RHEL 7</h3><p>直接用 yum 就可以安裝 docker : <code>sudo yum install docker</code></p><b> 安裝最新版 docker-ce</b><p>上面的安裝方式，只會裝到舊版 docker-1.7.x，如果想要最新版本的 docker 可以參考下面的指令：</p><p>編輯 /etc/yum.conf 加上 <code>exclude=*.i386 *.i686</code></p><ul class="list">  <li>sudo yum-config-manager --add-repo <a href="https://download.docker.com/linux/centos/docker-ce.repo"  target="_blank">https://download.docker.com/linux/centos/docker-ce.repo</a></li></ul><div class="codeBlock html"><span class="title"> 安裝 docker-ce 與相關 packages</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo yum install -y   docker-ce-18.09.0-3.el7.x86_64 http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.74-1.el7.noarch.rpm   http://mirror.centos.org/centos/7/os/x86_64/Packages/policycoreutils-2.5-29.el7.x86_64.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/libselinux-utils-2.5-14.1.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libsemanage-2.5-14.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libsepol-2.5-10.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libselinux-2.5-14.1.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/policycoreutils-python-2.5-29.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libsemanage-python-2.5-14.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/setools-libs-3.3.8-4.el7.x86_64.rpm  http://mirror.centos.org/centos/7/updates/x86_64/Packages/selinux-policy-targeted-3.13.1-229.el7_6.6.noarch.rpm  http://mirror.centos.org/centos/7/updates/x86_64/Packages/selinux-policy-3.13.1-229.el7_6.6.noarch.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libselinux-devel-2.5-14.1.el7.x86_64.rpm http://mirror.centos.org/centos/7/os/x86_64/Packages/libsepol-devel-2.5-10.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libselinux-python-2.5-14.1.el7.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/libsepol-devel-2.5-10.el7.x86_64.rpm   http://mirror.centos.org/centos/7/updates/x86_64/Packages/device-mapper-libs-1.02.149-10.el7_6.2.x86_64.rpm http://mirror.centos.org/centos/7/updates/x86_64/Packages/device-mapper-1.02.149-10.el7_6.2.x86_64.rpm  http://mirror.centos.org/centos/7/updates/x86_64/Packages/device-mapper-event-1.02.149-10.el7_6.2.x86_64.rpm  http://mirror.centos.org/centos/7/updates/x86_64/Packages/device-mapper-event-libs-1.02.149-10.el7_6.2.x86_64.rpm  http://mirror.centos.org/centos/7/updates/x86_64/Packages/lvm2-libs-2.02.180-10.el7_6.2.x86_64.rpm http://mirror.centos.org/centos/7/updates/x86_64/Packages/lvm2-2.02.180-10.el7_6.2.x86_64.rpm  http://mirror.centos.org/centos/7/os/x86_64/Packages/device-mapper-persistent-data-0.7.3-3.el7.x86_64.rpm</span></li></ol></pre></div><h3>RHEL 6</h3><p>先指定 docker yum repo</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo tee /etc/yum.repos.d/docker.repo &lt;&lt;-EOF</span></li><li class="L1"><span class="pln">[dockerrepo]</span></li><li class="L2"><span class="pln">name=Docker Repository</span></li><li class="L3"><span class="pln">baseurl=https://yum.dockerproject.org/repo/main/centos/6</span></li><li class="L4"><span class="pln">enabled=1</span></li><li class="L5"><span class="pln">gpgcheck=1</span></li><li class="L6"><span class="pln">gpgkey=https://yum.dockerproject.org/gpg</span></li><li class="L7"><span class="pln">EOF</span></li></ol></pre></div><p>sudo yum install docker-engine</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-12-24T11:51:17+08:00" class="article-modify-time">2018/12/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-439" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-439" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

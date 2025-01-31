@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第五天 Ajax IO</title>
+    <meta name="keywords" content="YUI3 ,  Javascript" />
+    <meta name="description" content=" Ajax 這麼火紅，當然 YUI 是一定有支援 Ajax 功能的啦，而且還支援用 Flash Crossdomain 的方式跨網域，不過跨網域一定要在對方的伺服器上，加上 crossdomain.xml ，並寫上允許的網域才行，所以還是有限制的，不要異想天開喔，這是安全性因素，不太可能會被修改的(跨網域備註)。綁Ajax事件第一步當然是要知道，我們必需載入的 YUI libr" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-101-我讨厌-YUI-3-.....第五天-Ajax-IO.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-101-我讨厌-YUI-3-.....第五天-Ajax-IO.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-101">
+                    <em><span>我讨厌 YUI 3 .....第五天 A...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-101-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u4e94\u5929-Ajax-IO.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u4e94\u5929 Ajax IO","image":"","datePublished":"2012-01-10T01:55:28+08:00","dateModified":"2016-09-25T17:16:16+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"  \rAjax \u9019\u9ebc\u706b\u7d05\uff0c\u7576\u7136 YUI \u662f\u4e00\u5b9a\u6709\u652f\u63f4 Ajax \u529f\u80fd\u7684\u5566\uff0c\u800c\u4e14\u9084\u652f\u63f4\u7528 Flash Crossdomain \u7684\u65b9\u5f0f\u8de8\u7db2\u57df\uff0c\u4e0d\u904e\u8de8\u7db2\u57df\u4e00\u5b9a\u8981\u5728\u5c0d\u65b9\u7684\u4f3a\u670d\u5668\u4e0a\uff0c\u52a0\u4e0a crossdomain"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Jan</div>
+            <div class="day">10</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html"><span>我讨厌 YUI 3 .....第五天 Ajax IO</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Javascript">Javascript</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content">  <br /><p>Ajax 这么火红，当然 YUI 是一定有支援 Ajax 功能的啦，而且还支援用 Flash Crossdomain 的方式跨网域，不过跨网域一定要在对方的伺服器上，加上 crossdomain.xml ，并写上允许的网域才行，所以还是有限制的，不要异想天开喔，这是安全性因素，不太可能会被修改的(<a href="#remark-crossdomain">跨网域备注</a>)。</p><h2>绑Ajax事件</h2><p>第一步当然是要知道，我们必需载入的 YUI library (io-base)，YUI().use("io-base",function(){}); ，接下来先开始设定 Ajax Event的 function ，下列的设定中，第一个参数值，代表 YUI 定义的处理内容，第二个参数值，代表处理的 function ，第三个参数值，就是传入 YUI 自已，第四个参数值代表额外传给处理 function的变数。</p><ul class="list">  <li><span style="color:#a00;">Y.on(&#39;io:start&#39;, beforeSend, Y, { start: [&#39;arguments&#39;,&#39;argu2&#39;]});</span> 雷同 JQuery 的 beforeSend : 在抓取页面的之前，指定预先要执行的工作，如显示 Loading 图片。</li>  <li><span style="color:#a00;">Y.on(&#39;io:failure&#39;, failure, Y, { start: [&#39;foo&#39;,&#39;bar&#39;]});</span> : 如果抓取网页失败后，要执行的 function。</li>  <li><span style="color:#a00;">Y.on(&#39;io:complete&#39;, success, Y, [&#39;lorem&#39;, &#39;ipsum&#39;]);</span> : 雷同 JQuery 的 success ，成功抓取到的网页后，要执行的 function</li></ul><div class="notice" label="notice">有以上三个 event 后，就可以写出一个简单的 Ajax工作内容罗，看范例如下。</div><ul class="list">  <li>YUI IO Example</li></ul><a class="demo-link ezHTML-popup"  href="/filemanage/blog_files/file_9.html" data-info="%7B%22width%22%3A350%2C%22height%22%3A250%7D"><i class="glyphicon glyphicon-file"></i>Demo</a><h2>使用 config 的方式</h2><p>Ajax的使用方式，也可以像 JQuery一样，全部写在 config里就好了，这样写程式就干净多，也好懂很多。</p><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> conf</span><span class="pun">={</span></li><li class="L1"><span class="pln">    method</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;POST&#39;</span><span class="pun">,</span></li><li class="L2"><span class="pln">    data</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;key=value&amp;key2=value&#39;</span><span class="pun">,</span></li><li class="L3"><span class="pln">    headers</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">        </span><span class="str">&#39;Content-Type&#39;</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;application/json&#39;</span><span class="pun">,</span></li><li class="L5"><span class="pln">    </span><span class="pun">},</span></li><li class="L6"><span class="pln">   on</span><span class="pun">:{</span></li><li class="L7"><span class="pln">      complete</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">id</span><span class="pun">,</span><span class="pln">res</span><span class="pun">){</span></li><li class="L8"><span class="pln">         </span><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> res</span><span class="pun">.</span><span class="pln">responseText</span><span class="pun">;</span><span class="pln"> </span><span class="com">// Response data.</span></li><li class="L9"><span class="pln">         Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">&#39;.result&#39;</span><span class="pun">).</span><span class="pln">setContent</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span></li><li class="L0"><span class="pln">      </span><span class="pun">},</span></li><li class="L1"><span class="pln">      start</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">o</span><span class="pun">){</span></li><li class="L2"><span class="pln">         Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">&#39;.result&#39;</span><span class="pun">).</span><span class="pln">setContent</span><span class="pun">(</span><span class="str">"loading"</span><span class="pun">);</span></li><li class="L3"><span class="pln">      </span><span class="pun">},</span></li><li class="L4"><span class="pln">      failure</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">o</span><span class="pun">){</span></li><li class="L5"><span class="pln">         alert</span><span class="pun">(</span><span class="str">"fail"</span><span class="pun">);</span></li><li class="L6"><span class="pln">      </span><span class="pun">}</span></li><li class="L7"><span class="pln">   </span><span class="pun">}</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="kwd">var</span><span class="pln"> url</span><span class="pun">=</span><span class="str">"xxx.html"</span><span class="pun">;</span></li><li class="L0"><span class="pln">Y</span><span class="pun">.</span><span class="pln">io</span><span class="pun">(</span><span class="pln">url</span><span class="pun">,</span><span class="pln"> conf</span><span class="pun">);</span></li></ol></pre></div><div class="notice" label="notice">接著还是看个范例吧</div><ul class="list">  <li>YUI IO conf Exampled</li></ul><a class="demo-link ezHTML-popup"  href="/filemanage/blog_files/file_11.html" data-info="%7B%22width%22%3A350%2C%22height%22%3A250%7D"><i class="glyphicon glyphicon-file"></i> Demo</a><h2>JQuery Ajax</h2><p>讲完 YUI Ajax 的用法，现在轮到 JQuery 罗，jQuery 只有一种写法，就是用 config 的方式， 注意Jquery 也是不能跨网域的喔</p>   type:"get",<br />   url:"xxx.html", //抓取的网页连结<br />   data:"submit=true" , //传送的参数<br />   beforeSend:function(){  //资料传输中处理<br />   },<br />   success:function(res_text){  //回应处理<br />      alert("response="+res_text);<br />   }<br />});<br /><codeEnd>#</codeEnd><h2>纯 Javascript Ajax</h2><p>看完 YUI 简单的用法，现在就来复习一下传统 Javascript 怎么实作 Ajax 的功能吧，实现的方式会比较麻烦一点，主要的原因是 IE ，Firefox 写法不太一样， IE 是使用 ActiveXObject的物件去实现 Ajax ，而 Firefox 可以使用 XMLHttpRequest 来完成</p><p class=" indent1">下面的 Ajax makeRequest :这是一个传送 request 的范例 ，并指定接收 response 的function为 alertContents。</p><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> makeRequest</span><span class="pun">(</span><span class="pln">url</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">   http_request </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></li><li class="L2"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">window</span><span class="pun">.</span><span class="typ">XMLHttpRequest</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">// Mozilla, Safari,...</span></li><li class="L3"><span class="pln">      http_request </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">XMLHttpRequest</span><span class="pun">();</span></li><li class="L4"><span class="pln">      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">http_request</span><span class="pun">.</span><span class="pln">overrideMimeType</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">         http_request</span><span class="pun">.</span><span class="pln">overrideMimeType</span><span class="pun">(</span><span class="str">&#39;text/xml&#39;</span><span class="pun">);</span></li><li class="L6"><span class="pln">      </span><span class="pun">}</span></li><li class="L7"><span class="pln">   </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">window</span><span class="pun">.</span><span class="typ">ActiveXObject</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="com">// IE</span></li><li class="L8"><span class="pln">      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">         http_request </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Msxml2.XMLHTTP"</span><span class="pun">);</span></li><li class="L0"><span class="pln">         </span></li><li class="L1"><span class="pln">      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">         </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">            http_request </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ActiveXObject</span><span class="pun">(</span><span class="str">"Microsoft.XMLHTTP"</span><span class="pun">);</span></li><li class="L4"><span class="pln">         </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{}</span></li><li class="L5"><span class="pln">      </span><span class="pun">}</span></li><li class="L6"><span class="pln">   </span><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(!</span><span class="pln">http_request</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">      alert</span><span class="pun">(</span><span class="str">&#39;Giving up :( Cannot create an XMLHTTP instance&#39;</span><span class="pun">);</span></li><li class="L0"><span class="pln">      </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></li><li class="L1"><span class="pln">   </span><span class="pun">}</span></li><li class="L2"><span class="pln">   </span></li><li class="L3"><span class="pln">   http_request</span><span class="pun">.</span><span class="pln">onreadystatechange </span><span class="pun">=</span><span class="pln">alertContents</span><span class="pun">;</span></li><li class="L4"><span class="pln">   http_request</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">&#39;GET&#39;</span><span class="pun">,</span><span class="pln">url</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">   http_request</span><span class="pun">.</span><span class="pln">setRequestHeader</span><span class="pun">(</span><span class="str">&#39;Content-Type&#39;</span><span class="pun">,</span><span class="str">&#39;application/x-www-form-urlencoded&#39;</span><span class="pun">);</span></li><li class="L7"><span class="pln">   http_request</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">);</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><p>接收 Response的function要判断 TCP 传输的状态，readyStatus : 1 代表 initial ， 2 是传输入， 3 是接收资料中， 4 是资料接收完成，判断完 readyStatus 后，还要再判断另一个 status ，这是 HTTP 的 Status: 200代表成功抓取到网页， status的意思可以参考<a href="/docs-blog/article-45" target="_blank">[Http Status]</a> 。</p><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> alertContents</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">http_request</span><span class="pun">.</span><span class="pln">readyState </span><span class="pun">==</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">http_request</span><span class="pun">.</span><span class="pln">status </span><span class="pun">==</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> http_request</span><span class="pun">.</span><span class="pln">status </span><span class="pun">==</span><span class="pln"> </span><span class="lit">200</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">         document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">&#39;result&#39;</span><span class="pun">).</span><span class="pln">innerHTML</span><span class="pun">=</span><span class="pln">http_request</span><span class="pun">.</span><span class="pln">responseText</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span></li><li class="L6"><span class="pln">   </span></li><li class="L7"><span class="pln">         alert</span><span class="pun">(</span><span class="str">&#39;There was a problem with the request.&#39;</span><span class="pun">);</span></li><li class="L8"><span class="pln">      </span><span class="pun">}</span></li><li class="L9"><span class="pln">   </span><span class="pun">}</span><span class="kwd">else</span><span class="pun">{</span></li><li class="L0"><span class="pln">   </span><span class="pun">}</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>跨网域备注</h2><div id="remark-crossdomain"></div><p>所谓的跨网域就是说 A 网站使用 AJAX 功能，试图去 B 网站撷取资料回来，这个行为会构成安全性上的漏洞，辟如说，假设你今天已经登入 Yahoo 拍卖网站，接著又去 Hack 网站看了一篇文章，接著 Hack 网站自动执行了一个 AJAX， 到 Yahoo 拍卖购买了一件商品，因为是透过你的 Browser 去执行，所以 Cookie 会自动带给 Yahoo 拍卖，於是就完成了交易，当然这个行为是不允许的，所以 Browser 会阻止跨网域的行为。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T17:16:16+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-101" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-101" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-84">我討厭 YUI 3 .....第三天 Node  Plugin</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-153">我討厭 YUI 3 .....第八天 Widget</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-198-我討厭-YUI-3-.....第十三天-Radio.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="/docs-blog/article-196-我討厭-YUI-3-.....第十二天-Panel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="/docs-blog/article-177-我討厭-YUI-3-.....第十一天-Node-Rotate-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="/docs-blog/article-161-YUI3-yogi.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="/docs-blog/article-150-我討厭-YUI-3-.....第七天-FileUploader.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="/docs-blog/article-102-我討厭-YUI-3-.....第六天-Slider.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Javascript 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_160&quot;}'>Sync &amp; Async of JavaScript loading </a></li>
+    
+        <li><a href="/docs-blog/article-130-安裝-v8-Javascript-engine-in-window.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="/docs-blog/article-123-Javascript-setTimeout-執行時間錯亂.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-79-Javascript-指標物件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="/docs-blog/article-66-Javascript-變數型態剖析.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="/docs-blog/article-64-Json-to-Array-格式轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-39-Javascript-換行字符.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="/docs-blog/article-14-JS-時間與日期運算.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

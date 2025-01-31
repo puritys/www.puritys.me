@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失</title>
+    <meta name="keywords" content="Mac, Chrome" />
+    <meta name="description" content="自從換了最新有 Touch Bar 的 MacBook 後 ， Google Chrome 瀏覽器 (版本 63.x) 就變得怪怪的，打開某些網站會整個卡住，滑鼠游標不見，整個畫面也不能動，總是要等個幾十秒左右才能正常操作。關掉 use hardware acceleration when available試了幾個方式，如把 Extension 全部砍掉，清掉 Browser" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-425-MacBook-Sierra-使用-Chrome-浏览器慢慢卡卡的，游标消失.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-425">
+                    <em><span>MacBook Sierra 使用  C...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-425-MacBook-Sierra-\u4f7f\u7528-Chrome-\u700f\u89bd\u5668\u6162\u6162\u5361\u5361\u7684\uff0c\u6e38\u6a19\u6d88\u5931.html"},"headline":"MacBook Sierra \u4f7f\u7528  Chrome \u700f\u89bd\u5668\u6162\u6162\u5361\u5361\u7684\uff0c\u6e38\u6a19\u6d88\u5931","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_357.png","datePublished":"2017-12-17T22:33:48+08:00","dateModified":"2017-12-17T22:58:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u81ea\u5f9e\u63db\u4e86\u6700\u65b0\u6709 Touch Bar \u7684 MacBook \u5f8c \uff0c Google Chrome \u700f\u89bd\u5668 (\u7248\u672c 63.x) \u5c31\u8b8a\u5f97\u602a\u602a\u7684\uff0c\u6253\u958b\u67d0\u4e9b\u7db2\u7ad9\u6703\u6574\u500b\u5361\u4f4f\uff0c\u6ed1\u9f20\u6e38\u6a19\u4e0d\u898b\uff0c\u6574\u500b\u756b\u9762\u4e5f\u4e0d\u80fd\u52d5\uff0c\u7e3d\u662f\u8981\u7b49\u500b"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Dec</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html"><span>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Mac">Mac</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Chrome">Chrome</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-425-MacBook-Sierra-使用-Chrome-浏览器慢慢卡卡的，游标消失.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>自從換了最新有 Touch Bar 的 MacBook 後 ， Google Chrome 瀏覽器 (版本 63.x) 就變得怪怪的，打開某些網站會整個卡住，滑鼠游標不見，整個畫面也不能動，總是要等個幾十秒左右才能正常操作。</p><h2>關掉 "use hardware acceleration when available"</h2><p>試了幾個方式，如把 Extension 全部砍掉，清掉 Browser cache data ，更新 Chrome 到最新版 等都無效，後來在 Advance setting 中看到一個設定 " use hardware acceleration when available" 這個功能預設是打開的。</p><p>把這個選項關掉，並且重開 Google Chrome 就恢復正常囉，不再卡卡!!</p><img src="/filemanage/blog_files/file_357.png"   /><h2>GPU acceleration</h2><ul class="list">  <li>chrome://gpu/</li></ul><p>查了一個 Chrome hardware acceleration 是幹麻的，原來它是 GPU 加速功能，可以將原本 CPU 對 UI 的運算轉到 GPU 來處理，你可以在網址列輸入 chrome://gpu/ 看 hardware acceleration 的資訊 ，我打開這個頁面，看到所有的選項都是 unavailable。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">Canvas: Software only, hardware acceleration unavailable</span></li><li class="L1"><span class="pln">CheckerImaging: Disabled</span></li><li class="L2"><span class="pln">Flash: Software only, hardware acceleration unavailable</span></li><li class="L3"><span class="pln">Flash Stage3D: Software only, hardware acceleration unavailable</span></li><li class="L4"><span class="pln">Flash Stage3D Baseline profile: Software only, hardware acceleration unavailable</span></li><li class="L5"><span class="pln">Compositing: Software only, hardware acceleration unavailable</span></li><li class="L6"><span class="pln">Multiple Raster Threads: Unavailable</span></li><li class="L7"><span class="pln">Native GpuMemoryBuffers: Software only, hardware acceleration unavailable</span></li><li class="L8"><span class="pln">Rasterization: Software only, hardware acceleration unavailable</span></li><li class="L9"><span class="pln">Video Decode: Software only, hardware acceleration unavailable</span></li><li class="L0"><span class="pln">Video Encode: Software only, hardware acceleration unavailable</span></li><li class="L1"><span class="pln">WebGL: Unavailable</span></li><li class="L2"><span class="pln">WebGL2: Unavailable</span></li></ol></pre></div><h2>相關問題</h2><p>打開 GPU 加速功能有可能會造成以下功能變慢：</p><ul class="list">  <li>鍵盤 lag</li>  <li>滑鼠消失</li>  <li>Browser scroll lag</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-12-17T22:58:10+08:00" class="article-modify-time">2017/12/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-425" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-425" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Mac 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+        <li><a href="/docs-blog/article-168-如何在-Win-,-Mac-,-Chrome-設定實用的-.screenrc.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_168&quot;}'>如何在 Win , Mac , Chrome 設定實用的 .screenrc </a></li>
+    
+        <li><a href="/docs-blog/article-167-第一次使用-MacBook.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_167&quot;}'>第一次使用 MacBook </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Chrome 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-435-下載舊版-Google-Chrome-(保證無毒).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_435&quot;}'>下載舊版 Google Chrome (保證無毒) </a></li>
+    
+        <li><a href="/docs-blog/article-151-Chrome-SSH-Client-取代-putty.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_151&quot;}'>Chrome SSH Client 取代 putty </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

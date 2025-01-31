@@ -1,0 +1,88 @@
+.vjUI_overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background:#000000;
+	filter:alpha(opacity=80);
+	opacity:0.8;
+	width: 100%;
+	height: 100%;
+}
+
+.vjUI_lightbox_loading{
+	background:url(images/11_cyrcle_one_24.gif);
+	width:24px;
+	height:24px;
+	margin:80px auto;
+}
+
+.lightBox{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	text-align:center;
+}
+.lightBox .vjUI_lightbox_container{
+	border:9px solid white;
+	background:white;
+	margin:10px auto;
+	width:430px;
+}
+.vjUI_lightbox_dataBox{
+	width:100%;
+	height:100%;
+	border:12px solid black;
+	background:black;
+	color:#cfa86f;
+	font-size:12px;
+}
+
+.lightBox .imageText{
+	padding:5px 0 0 0;
+	text-align:left;
+}
+.lightBox .btnBox{
+	 position:absolute;
+	 z-index:1001;
+	 height:850px;
+}
+.lightBox .light_prev{
+	float:left;
+	margin:70px 0 0 0;
+	width:33px;
+	height:100%;
+}
+.lightBox  .light_next{
+	float:right;
+	margin:70px 0px 0 0;
+	width:33px;
+	height:100%;
+}
+.lightBox .light_prev a,.lightBox  .light_next a{
+	height:100%;
+	text-decoration:none;
+	width:33px;
+	display:block;
+	background-image:url("data:image/gif;base64,AAAA");
+} 
+.lightBox .light_prev a:hover{
+	background:url(images/btn-left-on.jpg) no-repeat;
+	text-decoration:none;
+}
+
+.lightBox  .light_next a:hover{
+	background:url(images/btn-right-on.jpg) no-repeat;
+}
+
+
+#lightHrefData{
+	overflow:auto;
+	background:white;
+	text-align:left;
+	padding:5px;
+	color:#7a7a7a;
+}

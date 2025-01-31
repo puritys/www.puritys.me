@@ -1,0 +1,59 @@
+
+/***multiple select****/
+.multipleSelect .top_title{
+	background:#efefef;
+	padding:5px 0px;
+	margin:0 0 3px 0;
+}
+.multipleSelect .title{
+	font-size:13px;
+	
+}
+.multipleSelect .search{
+	text-align:left;
+}
+.multipleSelect td{
+	border:0px !important;
+	vertical-align:top;
+}
+.multipleSelect .rightBtnBox , .multipleSelect .leftBtnBox {
+	vertical-align:middle;
+}
+
+.multipleSelect #s2down,.multipleSelect #add,.multipleSelect #remove,.multipleSelect #removeAll,.multipleSelect #addAll,.multipleSelect #s2up{
+	display:block;
+	text-indent:-9999px;
+	width:15px;height:15px;
+	border:0px;
+	background:url(images/arrow_down.jpg);
+	margin:10px 0 0 10px;
+	overflow:hidden;
+}
+
+.multipleSelect #s2up{
+	background:url(images/arrow_up.jpg);
+	margin:0 0 0 10px;
+}
+
+.multipleSelect #add{
+
+	background:url(images/arrow_right.jpg);
+	margin:0px 5px 0 5px;
+}
+
+.multipleSelect #remove{
+	background:url(images/arrow_left.jpg);
+	margin:10px 5px 0 5px;
+}
+.multipleSelect #removeAll{
+	background:url(images/arrow_left_db.jpg);
+	margin:10px 5px 0 5px;
+}
+.multipleSelect #addAll{
+	background:url(images/arrow_right_db.jpg);
+	margin:10px 5px 0 5px;
+}
+
+.multipleSelect{
+	text-align:center;
+}

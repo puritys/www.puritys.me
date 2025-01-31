@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>使用 Splunk 观查网站运作情况</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Splunk 是一套的 Log 監控軟體，它可以分析任何格式的 Log 資料，透過 Splunk ，我們可以分析頁面或 API的使用率，找到未知的 Bug ，自訂搜尋條件快速找到各種資料，並產出報表與畫出各式各瓶的圖表，最棒的是，當系統有問題的時候可以自動透過 Email 即時通知維護人員。這套軟體有提供免費的版本，免費版上限是一天最多只能有 500MB ， 對於一版普通的網站" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-446-使用-Splunk-观查网站运作情况.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-446-使用-Splunk-观查网站运作情况.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-446-使用-Splunk-觀查網站運作情況.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-446">
+                    <em><span>使用 Splunk 观查网站运作情况</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-446-\u4f7f\u7528-Splunk-\u89c0\u67e5\u7db2\u7ad9\u904b\u4f5c\u60c5\u6cc1.html"},"headline":"\u4f7f\u7528 Splunk \u89c0\u67e5\u7db2\u7ad9\u904b\u4f5c\u60c5\u6cc1","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_368.png","datePublished":"2019-11-20T13:09:58+08:00","dateModified":"2019-12-15T00:08:56+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Splunk \u662f\u4e00\u5957\u7684 Log \u76e3\u63a7\u8edf\u9ad4\uff0c\u5b83\u53ef\u4ee5\u5206\u6790\u4efb\u4f55\u683c\u5f0f\u7684 Log \u8cc7\u6599\uff0c\u900f\u904e Splunk \uff0c\u6211\u5011\u53ef\u4ee5\u5206\u6790\u9801\u9762\u6216 API\u7684\u4f7f\u7528\u7387\uff0c\u627e\u5230\u672a\u77e5\u7684 Bug \uff0c\u81ea\u8a02\u641c\u5c0b\u689d\u4ef6\u5feb\u901f\u627e\u5230\u5404\u7a2e\u8cc7\u6599\uff0c\u4e26\u7522\u51fa\u5831\u8868\u8207"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2019</div>
+            <div class="month">Nov</div>
+            <div class="day">20</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html"><span>使用 Splunk 观查网站运作情况</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Splunk 是一套的 Log 监控软体，它可以分析任何格式的 Log 资料，透过 Splunk ，我们可以分析页面或 API的使用率，找到未知的 Bug ，自订搜寻条件快速找到各种资料，并产出报表与画出各式各瓶的图表，最棒的是，当系统有问题的时候可以自动透过 Email 即时通知维护人员。</p><p>这套软体有提供免费的版本，免费版上限是一天最多只能有 500MB ， 对於一版普通的网站来说是够了，像我自已的部落格根本就用不完!!</p> <br /><h2>如何快速安装 Splunk</h2><p>我是使用 Docker compose 来安装 Splunk，使用 Docker 十分钟内就可以安装完成，可以说是非常的轻松， docker-compose.yml 设定如下，<code>SPLUNL_PASSWORD</code> 跟 <code>SPLUNK_START_ARGS</code> 是必填，管理员帐号预设是 <code>admin</code> ，密码就是 <code>SPLUNL_PASSWORD</code> 这个环境变数填的值。</p><div class="codeBlock cpp"><span class="title"> splunk docker-compose.yml</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">version</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;3&#39;</span><span class="pln"> </span></li><li class="L1"><span class="pln">services</span><span class="pun">:</span></li><li class="L2"><span class="pln">  splunk</span><span class="pun">:</span><span class="pln">  </span></li><li class="L3"><span class="pln">    image</span><span class="pun">:</span><span class="pln"> splunk</span><span class="pun">/</span><span class="pln">splunk</span><span class="pun">:</span><span class="pln">latest</span></li><li class="L4"><span class="pln">    container_name</span><span class="pun">:</span><span class="pln"> splunk</span></li><li class="L5"><span class="pln">    environment</span><span class="pun">:</span></li><li class="L6"><span class="pln">      </span><span class="pun">-</span><span class="pln"> SPLUNK_START_ARGS</span><span class="pun">=--</span><span class="pln">accept</span><span class="pun">-</span><span class="pln">license</span></li><li class="L7"><span class="pln">      </span><span class="pun">-</span><span class="pln"> SPLUNK_PASSWORD</span><span class="pun">=</span><span class="pln">yourpassword                                                          </span></li><li class="L8"><span class="pln">    ports</span><span class="pun">:</span></li><li class="L9"><span class="pln">      </span><span class="pun">-</span><span class="pln"> </span><span class="lit">8000</span><span class="pun">:</span><span class="lit">8000</span></li><li class="L0"><span class="pln">    volumes</span><span class="pun">:</span></li><li class="L1"><span class="pln">      </span><span class="pun">-</span><span class="pln"> </span><span class="pun">/</span><span class="pln">var</span><span class="pun">/</span><span class="pln">logs</span><span class="pun">:/</span><span class="pln">var</span><span class="pun">/</span><span class="pln">logs</span></li></ol></pre></div><p>装好后启动 splunk: <code>docker-compose up</code>，再登入 <code>http://localhost:8000/</code> 就会出现登入页面，输入 admin 跟 password 后就可以开始使用。</p><h3>设定 local log file</h3><p>登入 Splunk 后，第一个步骤是要新增 log file ，这里我是使用 local log file ，先选右上角 <span class="flow-item">settings (设定) </span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item"></span> Data inputs (资料输入) ，点击 <code>Files & Directories</code>右边的 <code>add new</code> 按钮，你就会看到下图这个页面，在档案的地方输入 local 档案路径即可，如 "/var/log/apache.log" 。</p><a href="/filemanage/blog_files/file_368.png" target="_blank" ><img src="/filemanage/blog_files/file_368.png"   link="me"  style="width: 700px;"/></a><h2>搜寻关键字</h2><p>在输入 log file 之后，你就可以进入 Splunk Search UI 开始搜寻 Log， 它使用的搜寻语法是 Splunk 公司自订的 <code>SPL</code> (search processing language)，SPL 语法可读性还不错，可以说是一种易读易写的语法，也支援 Regular Expression，Splunk SPL 语法简介： <a href="https://www.puritys.me/docs-blog/article-415-Splunk-%E8%AA%9E%E6%B3%95.html"  target="_blank">https://www.puritys.me/docs-blog/article-415-Splunk-%E8%AA%9E%E6%B3%95.html</a> ， 如果你第一次使用不知道要搜寻什么，使用万用字元 <code>*</code> 就对了，另外SPL 也支援 linux system pipe 的语法，透过 <code>|</code> pipe 把上一个 Command 拿到的结果丢给下个 Command 处理。</p><div class="codeBlock spl"><span class="title">Example</span><pre class="prettyprint lang-spl linenums" ><ol class="linenums"><li class="L0"><span class="pln">source</span><span class="pun">=</span><span class="str">"/var/logs/ats/squid.log"</span><span class="pln">  </span></li><li class="L1"><span class="pln"> </span><span class="pun">|</span><span class="pln"> rex field</span><span class="pun">=</span><span class="pln">_raw </span><span class="str">"[0-9&#92;.]+ (?&lt;duration_ms&gt;[0-9]+) (?&lt;remote_ip&gt;[0-9&#92;.]+) (?&lt;status&gt;[^&#92;s]+) (?&lt;size&gt;[0-9]+) (?&lt;method&gt;[A-Z]+) (?&lt;url&gt;[^&#92;s]+)"</span><span class="pln"> </span></li><li class="L2"><span class="pun">|</span><span class="pln"> table _time</span><span class="pun">,</span><span class="pln">remote_ip</span><span class="pun">,</span><span class="pln">status</span><span class="pun">,</span><span class="pln">duration_ms</span><span class="pun">,</span><span class="pln">method</span><span class="pun">,</span><span class="pln">url</span><span class="pun">,</span><span class="pln">size</span><span class="pun">,</span><span class="pln">_raw</span></li></ol></pre></div><h3>建立警示 (Alert)</h3><p>警示是 Splunk 很重要的一项功能，我们可以透过警示让 Splunk 即时通知线上系统的情况，例如我想要当系统出现大量 errors 时 (<code>http status = 500</code>) ，能够立即通知维护人员。</p>语法如下，这个 SPL 语法可以算出 status=500  的总数。<br /><div class="codeBlock spl"><span class="title">Example</span><pre class="prettyprint lang-spl linenums" ><ol class="linenums"><li class="L0"><span class="pln">source</span><span class="pun">=</span><span class="str">"/var/logs/access.log"</span><span class="pln">  </span></li><li class="L1"><span class="pln"> </span><span class="pun">|</span><span class="pln"> rex </span><span class="str">"&#92;"(GET|POST|PUT|DELETE) (?&lt;url&gt;[^&#92;"]+) (?&lt;http&gt;[^&#92;s]+)&#92;" (?&lt;status&gt;[0-9]+)"</span><span class="pln"> </span></li><li class="L2"><span class="pln"> </span><span class="pun">|</span><span class="pln"> search status</span><span class="pun">=</span><span class="lit">500</span></li><li class="L3"><span class="pln"> </span><span class="pun">|</span><span class="pln"> stats count</span></li></ol></pre></div><p>有一个 error 就送通知的话，可能会太困扰人，你可以设定当 10 分钟内 error 数超过 100 再寄通知。</p><h3>避免 Splunk Alert 变成放羊的小孩</h3><p>某些情况下系统会因网路问题，或是系统不明原因重启(<code>oom process auto restart</code>)，使得某个服务突然停止运作，而造成其它服务产生大量的 500 error ，但是过了几秒后网路恢复正常了，或是系统已重启完成， Error 数又降下来，若每天发生个几次，久而久之 Alert 就会变成放羊的小孩，没有人再想要去理它，这种问题在超大型系统架构下还蛮常会发生的，你只能顾好自已开发的服务，没办法要求其它工程师把他们的服务也弄稳定，通常我会用 Splunk 来抓出持续性的不稳定，而忽略突发且短暂的不稳定，作法是每 2 分钟计算一次 Error 数，如果连续出现 5 次 Errors 数过多，代表问题已持续发生 10 分钟，这时再寄通知，这个方法可以大大的减少这种无解的 Alert (<code>自已没有权限 or 时间去解别人的问题</code>)。</p><p>语法是这样写的，另外在 Splunk alert UI 填上当 count 数大於 4 才寄通知 ( <code>有超过 4 次 Error 数大於 1000 </code>)。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">| bucket _time span=2m | count by _time  | search count &gt; 1000</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2019-12-15T00:08:56+08:00" class="article-modify-time">2019/12/15</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-446" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-446" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-415">Splunk 語法</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

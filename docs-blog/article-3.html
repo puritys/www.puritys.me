@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Lightbox 燈箱效果</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 這個燈箱共有四種效果，分別是圖片，影片，純文字與ifrane，下列是範例與可以修改的屬性。.table th a{ color: #ACCDF4;} 功能 圖片燈箱效果 iframe連結燈箱效果 純文字燈箱效果 影片燈箱效果 寬度 widthIframe widthText widthText widthVideo 高度 heightIframe 與上方的間距 topStar" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-3-Lightbox-燈箱效果.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-3-Lightbox-灯箱效果.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-3-Lightbox-燈箱效果.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-3-Lightbox-燈箱效果.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/UI_DESIGN" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">UI_Design</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-3">
+                    <em><span>Lightbox 燈箱效果</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-3-Lightbox-\u71c8\u7bb1\u6548\u679c.html"},"headline":"Lightbox \u71c8\u7bb1\u6548\u679c","image":"","datePublished":"2010-12-22T22:06:00+08:00","dateModified":"2014-01-23T23:27:47+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r  \r\r\r\u9019\u500b\u71c8\u7bb1\u5171\u6709\u56db\u7a2e\u6548\u679c\uff0c\u5206\u5225\u662f\u5716\u7247\uff0c\u5f71\u7247\uff0c\u7d14\u6587\u5b57\u8207ifrane\uff0c\u4e0b\u5217\u662f\u7bc4\u4f8b\u8207\u53ef\u4ee5\u4fee\u6539\u7684\u5c6c\u6027\u3002\r\r\r\r.table th a{\r   color: #ACCDF4;\r}\r\r\r\t\r\t\t\r\t\t\t"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2010</div>
+            <div class="month">Dec</div>
+            <div class="day">22</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-3-Lightbox-燈箱效果.html"><span>Lightbox 燈箱效果</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-3-Lightbox-灯箱效果.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a>  <script src="/teach/jsui/lightBox/1.0/vjUI_Lightbox.js"></script><script src="/teach/jsui/lightBox/1.0/swfobject.js"></script><link href="/teach/jsui/lightBox/1.0/vjUI_Lightbox.css" rel="stylesheet" type="text/css" /><p class="vj-quote" >這個燈箱共有四種效果，分別是圖片，影片，純文字與ifrane，下列是範例與可以修改的屬性。</p><div style="margin:0 20px;"><style>.table th a{   color: #ACCDF4;}</style><div id="child" >	<table  class="table" style="width:95%;margin:0 auto">		<tr>			<th class="itemList">功能</th>			<th><a href="https://www.puritys.me/teach/jsui/lightBox/1.0/demo.jpg" class="lightbox-image" sn="Coffee 001" title="焦糖拿鐵">圖片燈箱效果</a></th>			<th>				<a href="https://www.puritys.me/teach/jsui/lightBox/1.0/pop.html" class="lightbox-iframe">iframe連結燈箱效果</a>			</th>			<th>				<a href="https://www.puritys.me/teach/jsui/lightBox/1.0/pop.html" class="lightbox-href">純文字燈箱效果</a>			</th>			<th>				<a href="https://www.youtube.com/v/qtzjzMsJiO8" class="lightbox-video">影片燈箱效果</a>			</th>		</tr>	 		<tr>			<td class="itemList">寬度</td>			<td>widthIframe</td>			<td>widthText</td>			<td>widthText</td>			<td>widthVideo</td>		</tr>		<tr>			<td class="itemList">高度</td>			<td>heightIframe</td>			<td> </td>			<td> </td><td> </td>		</tr>		<tr>			<td class="itemList">與上方的間距</td>			<td colspan=4>topStart</td>		</tr>	</table></div><a name="vj-t0"></a><h2 class="vj-sub-title">1.圖片燈箱效果</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >圖片燈箱語法範例 -<a href="/teach/jsui/lightBox/1.0/demo.jpg" class="lightbox-image" sn="Coffee 001" title="焦糖拿鐵">預覽結果</a></p><ul class="vj-ul"><li class="vj-lv2"> 需要的JS檔案有：vjUI_Lightbox.js</li><li class="vj-lv2"> 需要的CSS檔案有：vjUI_Lightbox.css</li><li class="vj-lv2"> class名稱設定為: <b>lightbox-image</b> ，如<xmp><a class="lightbox-image"></a></xmp></li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"demo.jpg"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"lightbox-image"</span><span class="pln"> </span><span class="atn">sn</span><span class="pun">=</span><span class="atv">"Coffee 001"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"焦糖拿鐵"</span><span class="tag">&gt;</span><span class="pln">圖片燈箱效果</span><span class="tag">&lt;/a&gt;</span><span class="pln">  </span></li><li class="L1"><span class="tag">&lt;script&gt;</span><span class="pln">  </span></li><li class="L2"><span class="kwd">var</span><span class="pln"> s</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">  vjUI_LightBox</span><span class="pun">();</span><span class="pln">  </span></li><li class="L3"><span class="tag">&lt;/script&gt;</span><span class="pln">  </span></li><li class="L4"><span class="pln">&nbsp;</span></li></ol></pre></div><a name="vj-t1"></a><h2 class="vj-sub-title">2.iframe連結燈箱效果</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> class名稱設定為:lightbox-iframe，如<xmp><a class="lightbox-iframe"></a></xmp></li></ul><p class="vj-quote" >iframe連結燈箱語法範例 -<a href="https://www.puritys.me/teach/jsui/lightBox/1.0/pop.html" class="lightbox-iframe">預覽結果</a></p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"demo.jpg"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"lightbox-image"</span><span class="pln"> </span><span class="atn">sn</span><span class="pun">=</span><span class="atv">"Coffee 001"</span><span class="pln"> </span><span class="atn">title</span><span class="pun">=</span><span class="atv">"焦糖拿鐵"</span><span class="tag">&gt;</span><span class="pln">圖片燈箱效果</span><span class="tag">&lt;/a&gt;</span><span class="pln">  </span></li><li class="L1"><span class="tag">&lt;script&gt;</span><span class="pln">  </span></li><li class="L2"><span class="kwd">var</span><span class="pln"> s</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">  vjUI_LightBox</span><span class="pun">();</span><span class="pln">  </span></li><li class="L3"><span class="tag">&lt;/script&gt;</span><span class="pln">  </span></li></ol></pre></div><a name="vj-t2"></a><h2 class="vj-sub-title">3.純文字燈箱效果</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> class名稱設定為:lightbox-href，如<xmp><a class="lightbox-href"></a></xmp></li></ul><p class="vj-quote" >純文字燈箱語法範例-<a href="https://www.puritys.me/teach/jsui/lightBox/1.0/pop.html" class="lightbox-href">預覽結果</a></p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"pop.html"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"lightbox-href"</span><span class="tag">&gt;</span><span class="pln">純文字燈箱效果</span><span class="tag">&lt;/a&gt;</span><span class="pln">  </span></li><li class="L1"><span class="tag">&lt;script&gt;</span><span class="pln">  </span></li><li class="L2"><span class="kwd">var</span><span class="pln"> s</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">  vjUI_LightBox</span><span class="pun">();</span><span class="pln">  </span></li><li class="L3"><span class="tag">&lt;/script&gt;</span><span class="pln">  </span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title">4.影片燈箱效果</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 需要的JS檔案有：vjUI_Lightbox.js</li><li class="vj-lv2"> 需要的CSS檔案有：<b>vjUI_Lightbox.css</b>,  <b>swfobject.js</b></li><li class="vj-lv2"> class名稱設定為:  <b>lightbox-video</b> ，如<xmp><a class="lightbox-video"></a></xmp></li></ul><p class="vj-quote" >純文字燈箱語法範例-<a href="https://www.youtube.com/v/qtzjzMsJiO8" class="lightbox-video">預覽結果</a></p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"http://www.youtube.com/v/qtzjzMsJiO8"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"lightbox-video"</span><span class="tag">&gt;</span><span class="pln">影片燈箱效果</span><span class="tag">&lt;/a&gt;</span><span class="pln">  </span></li><li class="L1"><span class="tag">&lt;script&gt;</span><span class="pln">  </span></li><li class="L2"><span class="kwd">var</span><span class="pln"> s</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">  vjUI_LightBox</span><span class="pun">();</span><span class="pln">  </span></li><li class="L3"><span class="tag">&lt;/script&gt;</span><span class="pln">  </span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title">Source Code 下載</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> <a href="/teach/jsui/lightBox/1.0/example.html" target="_blank">html Sample</a></li><li class="vj-lv2"> <a href="/teach/jsui/lightBox/1.0/vjUI_Lightbox.js" target="_blank">vjUI_Lightbox.js</a></li><li class="vj-lv2"> <a href="/teach/jsui/lightBox/1.0/swfobject.js" target="_blank">swfobject.js</a></li><li class="vj-lv2"> <a href="/teach/jsui/lightBox/1.0/vjUI_Lightbox.css" target="_blank">vjUI_Lightbox.css</a></li></ul><script>var s=new  vjUI_LightBox({widthIframe:600}); </script></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-01-23T23:27:47+08:00" class="article-modify-time">2014/01/23</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-3" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-3" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 UI_Design</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-169-多層選單(國家，縣市，鄉鎮選擇).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_169&quot;}'>多層選單(國家，縣市，鄉鎮選擇) </a></li>
+    
+        <li><a href="/docs-blog/article-48-拖拉圖片至瀏覽器上傳-Example.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_48&quot;}'>拖拉圖片至瀏覽器上傳 Example </a></li>
+    
+        <li><a href="/docs-blog/article-12-Form-表單檢查.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_12&quot;}'>Form 表單檢查 </a></li>
+    
+        <li><a href="/docs-blog/article-8-CSS-自訂-input-file-檔案上傳按鈕.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_8&quot;}'>CSS 自訂 input file 檔案上傳按鈕 </a></li>
+    
+        <li><a href="/docs-blog/article-7-Google-Docs-編輯器離線版.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_7&quot;}'>Google Docs 編輯器離線版 </a></li>
+    
+        <li><a href="/docs-blog/article-5-Javascript-select-複選功能含搜尋功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_5&quot;}'>Javascript select 複選功能含搜尋功能 </a></li>
+    
+        <li><a href="/docs-blog/article-3-Lightbox-燈箱效果.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_3&quot;}'>Lightbox 燈箱效果 </a></li>
+    
+        <li><a href="/docs-blog/article-2-自訂捲軸效果，圖片捲軸.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_2&quot;}'>自訂捲軸效果，圖片捲軸 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>在 Mac 中使用 Docker</title>
+    <meta name="keywords" content="Docker, Mac" />
+    <meta name="description" content="Docker 是什麼呢，他是一個虛擬機器的軟體，可以在一個虛擬的環境下執行 Application，例如我可以在 Linux 系統中，透過 Docker 虛擬出好幾台的 Linux 系統，那為什麼我要這麼多台 Linux 系統，假設我寫一個 C/C++ 的程式碼，但是我必須在各種不同的 OS 上做測試，例如 Ubuntu, CentOS, debain 等等，那麼我不用同時安裝" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-309-在-Mac-中使用-Docker.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-309-在-Mac-中使用-Docker.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-309-在-Mac-中使用-Docker.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-309-在-Mac-中使用-Docker.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/software" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">實用軟體</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-309">
+                    <em><span>在 Mac 中使用 Docker</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-309-\u5728-Mac-\u4e2d\u4f7f\u7528-Docker.html"},"headline":"\u5728 Mac \u4e2d\u4f7f\u7528 Docker","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_216.png","datePublished":"2015-05-02T00:35:42+08:00","dateModified":"2018-03-10T15:18:07+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Docker \u662f\u4ec0\u9ebc\u5462\uff0c\u4ed6\u662f\u4e00\u500b\u865b\u64ec\u6a5f\u5668\u7684\u8edf\u9ad4\uff0c\u53ef\u4ee5\u5728\u4e00\u500b\u865b\u64ec\u7684\u74b0\u5883\u4e0b\u57f7\u884c Application\uff0c\u4f8b\u5982\u6211\u53ef\u4ee5\u5728 Linux \u7cfb\u7d71\u4e2d\uff0c\u900f\u904e Docker \u865b\u64ec\u51fa\u597d\u5e7e\u53f0\u7684 Linux \u7cfb\u7d71\uff0c\u90a3\u70ba\u4ec0\u9ebc\u6211\u8981"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">May</div>
+            <div class="day">02</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html"><span>在 Mac 中使用 Docker</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Docker">Docker</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Mac">Mac</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-309-在-Mac-中使用-Docker.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Docker 是什麼呢，他是一個虛擬機器的軟體，可以在一個虛擬的環境下執行 Application，例如我可以在 Linux 系統中，透過 Docker 虛擬出好幾台的 Linux 系統，那為什麼我要這麼多台 Linux 系統，假設我寫一個 C/C++ 的程式碼，但是我必須在各種不同的 OS 上做測試，例如 Ubuntu, CentOS, debain 等等，那麼我不用同時安裝這麼多系統，只要透過 Docker 就能輕鬆的摸擬各種環境。</p><p>那 Docker 跟 VirtualBox (VMware) 有什麼不同呢? VirtualBox 虛擬機器會建立一個獨立的 CPU, Memory 與 Network 網路 ，就像是摸擬出一台跟真的一樣的機器，因為摸擬的部分很大，所以VirtualBox 的執行效能會比較差，而且 CPU 與 Memory 的用量很多； 而 Docker 只是單純的使用 LXC 來模擬出 Linux File System ， 當你在 Docker 執行一個程式時，會直接使用主機的 CPU, Memory 來運作，所以我們也可以把 Docker 稱為一個 VE System : Virtualization Environment</p><h2>如何在 Mac 安裝 Docker</h2><p>因為 Docker 只能在 Linux kernel 下執行，所以我們不能直接將 Docker 安裝在 Mac OS 上。</p><p>Docker 在 Mac 環境上不斷的更新，目前已經出了三個版本，分別是 boot2docker,  docker-machine, docker xhyve ，其中 boot2docker, docker-machine 都會用到 virtual box ，主要是為了在 Mac 上安裝一個 Linux 環境，剛剛有說過， Docker 目前只能在 Linux 上運作，所以最簡單的解決方式，就是裝一個 Linux OS  到 Mac 裡，當然這樣 Performance 一定不會太好，不過對於開發&測試&學習環境來說，這仍然是一個不錯的選擇。</p><p>Docker xhyve 是目前最新的 Docker on Mac 的工具，他可以在 Mac 摸擬 Linux kernel ，所以省去了安裝 Virtual box 的動作 (xhyve 安裝方式可以看這裡 <a href="https://github.com/zchee/docker-machine-driver-xhyve"  target="_blank">https://github.com/zchee/docker-machine-driver-xhyve</a> )。</p><ul class="list">  <li>Docker for Mac 官方教學 <a href="https://docs.docker.com/engine/installation/mac/"  target="_blank">https://docs.docker.com/engine/installation/mac/</a></li></ul><p>接下來我會用第二個版本 "docker-machine" 來做示範。</p><h3>下載 Docker</h3><p>在官方的教學網址中，有兩個安裝 Docker 的方式 ，一個是新的 Docker for Mac : xhyve ， 另一個是 Docker toolbox ，這裡我選擇的是 docker toolbox ，並下載的 Docker 版本是 1.10.3 ，下載網址如下。</p><ul class="list">  <li><a href="https://www.docker.com/products/docker-toolbox"  target="_blank">https://www.docker.com/products/docker-toolbox</a></li></ul><h2>安裝並建立 Docker OS</h2><p>下載完成後，點擊兩下檔案就可以安裝了，注意它可能會要求你先裝好 virtualbox ，這個是免費軟體，Google 搜尋就可以找到了。</p><img src="/filemanage/blog_files/file_216.png"   /><br /><br /><p>安裝完成後，Docker toolbox 提供了一個快速建立 Linux 含 Docker 的方式，這裡我是選擇左邊的選項 Docker Quickstart Terminal ，它會幫我們建立一個 Linux ，並在上面安裝 Docker ，很容易吧~。</p><img src="/filemanage/blog_files/file_215.png"   /><div class="codeBlock term"><span class="title"> init</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="typ">Creating</span><span class="pln"> CA</span><span class="pun">:</span><span class="pln"> </span><span class="str">/Users/</span><span class="pln">puritys</span><span class="pun">/.</span><span class="pln">docker</span><span class="pun">/</span><span class="pln">machine</span><span class="pun">/</span><span class="pln">certs</span><span class="pun">/</span><span class="pln">ca</span><span class="pun">.</span><span class="pln">pem</span></li><li class="L1"><span class="typ">Creating</span><span class="pln"> client certificate</span><span class="pun">:</span><span class="pln"> </span><span class="str">/Users/</span><span class="pln">puritys</span><span class="pun">/.</span><span class="pln">docker</span><span class="pun">/</span><span class="pln">machine</span><span class="pun">/</span><span class="pln">certs</span><span class="pun">/</span><span class="pln">cert</span><span class="pun">.</span><span class="pln">pem</span></li><li class="L2"><span class="typ">Running</span><span class="pln"> pre</span><span class="pun">-</span><span class="pln">create checks</span><span class="pun">...</span></li><li class="L3"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Default</span><span class="pln"> </span><span class="typ">Boot2Docker</span><span class="pln"> ISO </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">out</span><span class="pun">-</span><span class="pln">of</span><span class="pun">-</span><span class="pln">date</span><span class="pun">,</span><span class="pln"> downloading the latest release</span><span class="pun">...</span></li><li class="L4"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Latest</span><span class="pln"> release </span><span class="kwd">for</span><span class="pln"> github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">/</span><span class="pln">boot2docker</span><span class="pun">/</span><span class="pln">boot2docker </span><span class="kwd">is</span><span class="pln"> v1</span><span class="pun">.</span><span class="lit">11.2</span></li><li class="L5"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Downloading</span><span class="pln"> </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">puritys</span><span class="pun">/.</span><span class="pln">docker</span><span class="pun">/</span><span class="pln">machine</span><span class="pun">/</span><span class="pln">cache</span><span class="pun">/</span><span class="pln">boot2docker</span><span class="pun">.</span><span class="pln">iso </span><span class="kwd">from</span><span class="pln"> https</span><span class="pun">:</span><span class="com">//github.com/boot2docker/boot2docker/releases/download/v1.11.2/boot2docker.iso...(default) 0%....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%</span></li><li class="L6"><span class="typ">Creating</span><span class="pln"> machine</span><span class="pun">...</span></li><li class="L7"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Copying</span><span class="pln"> </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">puritys</span><span class="pun">/.</span><span class="pln">docker</span><span class="pun">/</span><span class="pln">machine</span><span class="pun">/</span><span class="pln">cache</span><span class="pun">/</span><span class="pln">boot2docker</span><span class="pun">.</span><span class="pln">iso to </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">puritys</span><span class="pun">/.</span><span class="pln">docker</span><span class="pun">/</span><span class="pln">machine</span><span class="pun">/</span><span class="pln">machines</span><span class="pun">/</span><span class="kwd">default</span><span class="pun">/</span><span class="pln">boot2docker</span><span class="pun">.</span><span class="pln">iso</span><span class="pun">...</span></li><li class="L8"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">VirtualBox</span><span class="pln"> VM</span><span class="pun">...</span></li><li class="L9"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> SSH key</span><span class="pun">...</span></li><li class="L0"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Starting</span><span class="pln"> the VM</span><span class="pun">...</span></li><li class="L1"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Check</span><span class="pln"> network to re</span><span class="pun">-</span><span class="pln">create </span><span class="kwd">if</span><span class="pln"> needed</span><span class="pun">...</span></li><li class="L2"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Found</span><span class="pln"> a </span><span class="kwd">new</span><span class="pln"> host</span><span class="pun">-</span><span class="pln">only adapter</span><span class="pun">:</span><span class="pln"> </span><span class="str">"vboxnet1"</span></li><li class="L3"><span class="pun">(</span><span class="kwd">default</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Waiting</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> an IP</span><span class="pun">...</span></li><li class="L4"><span class="typ">Waiting</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> machine to be running</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> may take a few minutes</span><span class="pun">...</span></li><li class="L5"><span class="typ">Detecting</span><span class="pln"> operating system of created instance</span><span class="pun">...</span></li><li class="L6"><span class="typ">Waiting</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> SSH to be available</span><span class="pun">...</span></li><li class="L7"><span class="typ">Detecting</span><span class="pln"> the provisioner</span><span class="pun">...</span></li><li class="L8"><span class="typ">Provisioning</span><span class="pln"> </span><span class="kwd">with</span><span class="pln"> boot2docker</span><span class="pun">...</span></li><li class="L9"><span class="typ">Copying</span><span class="pln"> certs to the </span><span class="kwd">local</span><span class="pln"> machine directory</span><span class="pun">...</span></li><li class="L0"><span class="typ">Copying</span><span class="pln"> certs to the remote machine</span><span class="pun">...</span></li><li class="L1"><span class="typ">Setting</span><span class="pln"> </span><span class="typ">Docker</span><span class="pln"> configuration on the remote daemon</span><span class="pun">...</span></li><li class="L2"><span class="typ">Checking</span><span class="pln"> connection to </span><span class="typ">Docker</span><span class="pun">...</span></li><li class="L3"><span class="typ">Docker</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> up </span><span class="kwd">and</span><span class="pln"> running</span><span class="pun">!</span></li><li class="L4"><span class="typ">To</span><span class="pln"> see how to connect your </span><span class="typ">Docker</span><span class="pln"> </span><span class="typ">Client</span><span class="pln"> to the </span><span class="typ">Docker</span><span class="pln"> </span><span class="typ">Engine</span><span class="pln"> running on </span><span class="kwd">this</span><span class="pln"> </span><span class="kwd">virtual</span><span class="pln"> machine</span><span class="pun">,</span><span class="pln"> run</span><span class="pun">:</span><span class="pln"> </span><span class="str">/usr/</span><span class="kwd">local</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">docker</span><span class="pun">-</span><span class="pln">machine env </span><span class="kwd">default</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">                        </span><span class="pun">==</span><span class="pln">         </span><span class="pun">.</span></li><li class="L7"><span class="pln">                  </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln">        </span><span class="pun">==</span></li><li class="L8"><span class="pln">               </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="pun">==</span><span class="pln">    </span><span class="pun">===</span></li><li class="L9"><span class="pln">           </span><span class="str">/"""""""""""""""""&#92;___/</span><span class="pln"> </span><span class="pun">===</span></li><li class="L0"><span class="pln">      </span><span class="pun">~~~</span><span class="pln"> </span><span class="pun">{~~</span><span class="pln"> </span><span class="pun">~~~~</span><span class="pln"> </span><span class="pun">~~~</span><span class="pln"> </span><span class="pun">~~~~</span><span class="pln"> </span><span class="pun">~~~</span><span class="pln"> </span><span class="pun">~</span><span class="pln"> </span><span class="pun">/</span><span class="pln">  </span><span class="pun">===-</span><span class="pln"> </span><span class="pun">~~~</span></li><li class="L1"><span class="pln">           &#92;______ o           __</span><span class="pun">/</span></li><li class="L2"><span class="pln">             &#92;    &#92;         __</span><span class="pun">/</span></li><li class="L3"><span class="pln">              &#92;____&#92;_______</span><span class="pun">/</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">docker </span><span class="kwd">is</span><span class="pln"> configured to </span><span class="kwd">use</span><span class="pln"> the </span><span class="kwd">default</span><span class="pln"> machine </span><span class="kwd">with</span><span class="pln"> IP </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span></li><li class="L7"><span class="typ">For</span><span class="pln"> help getting started</span><span class="pun">,</span><span class="pln"> check </span><span class="kwd">out</span><span class="pln"> the docs at https</span><span class="pun">:</span><span class="com">//docs.docker.com</span></li></ol></pre></div><p>執行成功後，Docker toolbox 會建立一個名叫 default 的 Linux 系統，而上面已經裝好了 docker 的軟體，接下來我就簡稱他為 Docker Host，另外系統訊息告訴我們說，Docker container 的 ip 是 192.168.99.100 , 它溝通的 port 預設是 2376 ，所以我可以用  "telnet 192.168.99.100 2376" 這個指令測試一下， Docker Container 是否正常運作，看到下面這個訊息就代表 docker 已經成功建立起來囉。</p><div class="codeBlock term"><span class="title"> telnet docker</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">telnet </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pln"> </span><span class="lit">2376</span></li><li class="L1"><span class="typ">Trying</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pun">...</span></li><li class="L2"><span class="typ">Connected</span><span class="pln"> to </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pun">.</span></li><li class="L3"><span class="typ">Escape</span><span class="pln"> character </span><span class="kwd">is</span><span class="pln"> </span><span class="str">&#39;^]&#39;</span><span class="pun">.</span></li><li class="L4"><span class="pun">]</span></li></ol></pre></div><p>檢查 Docker OS</p><p>如果你不知道 Docker Host 的 IP 與 port ，那麼你可以用 <b>docker-machine ls </b>，這個指令來檢查，又或者你可以在 Mac 裡打開 Virtual Box 。</p><div class="codeBlock term"><span class="title"> docker-machine ls</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS</span></li><li class="L1"><span class="kwd">default</span><span class="pln">   </span><span class="pun">-</span><span class="pln">        virtualbox   </span><span class="typ">Running</span><span class="pln">   tcp</span><span class="pun">:</span><span class="com">//192.168.99.100:2376           v1.11.2</span></li></ol></pre></div><p>這個指令 "<b>docker-machine env</b>" 也可以取得 Docker 相關的訊息。</p><div class="codeBlock term"><span class="title"> docker-machine env</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">docker</span><span class="pun">-</span><span class="pln">machine env</span></li><li class="L1"><span class="kwd">export</span><span class="pln"> DOCKER_TLS_VERIFY</span><span class="pun">=</span><span class="str">"1"</span></li><li class="L2"><span class="kwd">export</span><span class="pln"> DOCKER_HOST</span><span class="pun">=</span><span class="str">"tcp://192.168.99.100:2376"</span></li><li class="L3"><span class="kwd">export</span><span class="pln"> DOCKER_CERT_PATH</span><span class="pun">=</span><span class="str">"/Users/www/.docker/machine/machines/default"</span></li><li class="L4"><span class="kwd">export</span><span class="pln"> DOCKER_MACHINE_NAME</span><span class="pun">=</span><span class="str">"default"</span></li><li class="L5"><span class="com"># Run this command to configure your shell: </span></li><li class="L6"><span class="com"># eval $(docker-machine env)</span></li></ol></pre></div><h2>建立一個 ubuntu container</h2><p>你可以輸入 <code>$ docker run -t -i ubuntu:12.04 /bin/bash</code> 來建立一個 container ，但是你會收到這個訊息 "docker: Cannot connect to the Docker daemon. Is the docker daemon running on this host?". 原因是 docker 不知道 default docker OS 的系統是裝在那一台 virtual machine ，IP 是什麼 ，你必須先把環境變數設定正確，可以用指令 "docket-machine env default " 來檢查 default docker 的設定，再把下面這個指令將環境變數寫入。</p><ul class="list">  <li>eval "$(docker-machine env default)"</li></ul><ul class="list">  <li>docker run -t -i ubuntu:12.04 /bin/bash</li></ul><div class="codeBlock term"><span class="title"> docker run</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">docker run </span><span class="pun">-</span><span class="pln">t </span><span class="pun">-</span><span class="pln">i ubuntu</span><span class="pun">:</span><span class="lit">12.04</span><span class="pln"> </span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">bash</span></li><li class="L1"><span class="typ">Unable</span><span class="pln"> to find image </span><span class="str">&#39;ubuntu:12.04&#39;</span><span class="pln"> locally</span></li><li class="L2"><span class="lit">12.04</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Pulling</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> library</span><span class="pun">/</span><span class="pln">ubuntu</span></li><li class="L3"><span class="pln">cc99613160bd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Pull</span><span class="pln"> complete </span></li><li class="L4"><span class="lit">7b4fddeacb94</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Pull</span><span class="pln"> complete </span></li><li class="L5"><span class="lit">25455fa86fcc</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Pull</span><span class="pln"> complete </span></li><li class="L6"><span class="lit">087ee67bc4a3</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Pull</span><span class="pln"> complete </span></li><li class="L7"><span class="typ">Digest</span><span class="pun">:</span><span class="pln"> sha256</span><span class="pun">:</span><span class="pln">ab81ef94fcfbec335c8a528f90f3dbb627830556f55c31cd720198534b44370f</span></li><li class="L8"><span class="typ">Status</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Downloaded</span><span class="pln"> newer image </span><span class="kwd">for</span><span class="pln"> ubuntu</span><span class="pun">:</span><span class="lit">12.04</span></li><li class="L9"><span class="pln">root@bb230bd64efa</span><span class="pun">:/#</span></li></ol></pre></div><p>啟動  container 成功後，你會看到上面這個訊息，而且系統已經幫你登入新建好的 ubuntu ，你可以使用任何 ubuntu 上的相關指令。</p><h3>container 相關指令</h3><ul class="list">  <li>docker run -d -P --name web nginx : 建立一個裝好 nginx service ，名為 web 的 Linux Machine。</li>  <li>docker run -d -P -v /www/site:/usr/share/nginx/html --name mysite nginx</li>  <li>docker port mysite</li>  <li>docker cp xxx.file  20e8aa9f9a53:/   : 傳送一個檔案到 container 。</li></ul><h2>手動建立 Docker OS</h2><p>如果你在使用 Docker  過程中，有碰到太奇怪，無法解決的問題，那麼你可以選擇手動移除 Docker  Host (預設叫 default )，再重新建立一個新的 Docker Host。</p><p>首先我們要停用 default 這個預設 Docker toolbox 幫我們建好的 Docker Host 。</p><ul class="list">  <li>docker-machine stop default</li></ul><p>再來移除他，請注意這個動作會移除 Docker 的所有資料，請先確定你的重要資料都已備份。</p><ul class="list">  <li>docker-machine rm  default</li></ul> <br /><p>最後下這個指令，就可以重新建立一個新的 Docker Host 囉 ， docker 預設只有 20GB 硬碟容量，建議加大到 40 GB 以上。</p><p>docker-machine create --driver virtualbox --virtualbox-disk-size "40000" default</p><h2>volume - mount</h2><p>如果你想要在 docker container 掛載根目錄的資料夾，例如 /my_dev ，我使用 -v /my_dev:/my_dev 這個方式是無效的，原因是 Docker 在 Mac 中是一個 VitualBox Machine ，這個 machine 本身沒有 /my_dev 目錄，簡單的做法是先手動將 Mac 的 /my_dev mount 到 virtual machine 中。</p><p>VirtualBox Machine 必需先安裝 GuestAdditions ，先用 VirtualBox UI 介面，掛載 VBoxGuestAdditions.iso ，在選單中的 <span class="flow-item">Device</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Insert</span> Guest Addition CD Image，掛載好再執行下面的指令，掛載的時候要特別注意，第一顆 CD Rom 一定要是 boot2docker.iso 不然 VirtualBox 會打不開，我的解法是先用第一顆 CD Rom 開機，開機成功後，再強迫移除 CD Rom iso ，重新點擊一次 "Insert Guest Addition CD Image" ，這時就可以安裝 Guest Addition ，安裝成功後再把 boot2docker.iso 重新掛載到第一顆 CD Rom。</p><ul class="list">  <li>docker-machine ssh : 登入 virtual machine</li>  <li>mkdir d</li>  <li>sudo mount /dev/sr1 d</li>  <li>cd d</li>  <li>sudo sh ./VBoxLinuxAdditions.run  : 裝完就可以退出了。</li></ul><p>再來執行  mount 執令</p><ul class="list">  <li>docker-machine stop : 先停掉 virtual machine</li>  <li>VBoxManage sharedfolder add default --name my_dev --hostpath /my_dev --automount</li>  <li>docker-machine start</li></ul><p>移除方式</p><ul class="list">  <li>docker-machine stop</li>  <li>VBoxManage sharedfolder remove default --name /my_dev</li></ul><h3>Docker 指令</h3>    <br /><table class="table"><tr><th>指令</th><th>說明</th></tr><tr><td>docker ps</td><td>顯示所有 containers</td></tr><tr><td>docker images</td><td>顯示所有的 images</td></tr><tr><td>docker rmi -f db7e8a0d84e3</td><td>移除一個 image</td></tr><tr><td>docker pause bb230bd64efa</td><td>停止 container 中的所有 processes</td></tr><tr><td>docker unpause bb230bd64efa</td><td>取消停止 container 中的所有 processes</td></tr><tr><td>docker logs bb230bd64efa</td><td>查看 container 的 log</td></tr><tr><td>docker stop bb230bd64efa</td><td>停止 container 運作</td></tr><tr><td>docker start bb230bd64efa</td><td>啟用 container</td></tr><tr><td>docker commit bb230bd64efa ubuntu:12.04</td><td>commit container 中的修改， bb230bd64efa 是 container id， ubuntu:12.04 是 image 名稱</td></tr><tr><td>docker run -t -i ubuntu:12.04 /bin/bash</td><td>啟動 container  ，並登入</td></tr></table><h2>參考文章</h2><ul class="list">  <li><a href="https://docs.docker.com/"  target="_blank">https://docs.docker.com/</a></li>  <li><a href="http://www.scriptrock.com/articles/docker-vs-lxc"  target="_blank">http://www.scriptrock.com/articles/docker-vs-lxc</a></li>  <li><a href="https://github.com/docker/docker"  target="_blank">https://github.com/docker/docker</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-03-10T15:18:07+08:00" class="article-modify-time">2018/03/10</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-309" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-309" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-362">如何用 Dockerfile 自製一個 Docker image / Container</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Docker 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_393&quot;}'>用 Docker 取代 VirtualBox - 建立  Linux 環境 </a></li>
+    
+        <li><a href="/docs-blog/article-363-Docker-vs-Virtual-Machine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_363&quot;}'>Docker vs Virtual Machine </a></li>
+    
+        <li><a href="/docs-blog/article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_362&quot;}'>如何用 Dockerfile 自製一個 Docker image / Container </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Mac 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-168-如何在-Win-,-Mac-,-Chrome-設定實用的-.screenrc.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_168&quot;}'>如何在 Win , Mac , Chrome 設定實用的 .screenrc </a></li>
+    
+        <li><a href="/docs-blog/article-167-第一次使用-MacBook.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_167&quot;}'>第一次使用 MacBook </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 實用軟體</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-455-Gboard-好用的-Android-輸入法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_455&quot;}'>Gboard 好用的 Android 輸入法 </a></li>
+    
+        <li><a href="/docs-blog/article-450-Mac-+-Chrome-解決健保卡讀不到的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_450&quot;}'>Mac + Chrome 解決健保卡讀不到的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-435-下載舊版-Google-Chrome-(保證無毒).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_435&quot;}'>下載舊版 Google Chrome (保證無毒) </a></li>
+    
+        <li><a href="/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="/docs-blog/article-396-Sublime-前端工程師必裝外掛-:-Browser-Refresh.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_396&quot;}'>Sublime 前端工程師必裝外掛 : Browser Refresh </a></li>
+    
+        <li><a href="/docs-blog/article-395-別再找破解版了，免費下載-Win-10-Windows-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_395&quot;}'>別再找破解版了，免費下載  Win 10 / Windows 10 </a></li>
+    
+        <li><a href="/docs-blog/article-326-FFMPEG-:-免費影音轉檔工具.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_326&quot;}'>FFMPEG : 免費影音轉檔工具 </a></li>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+        <li><a href="/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_303&quot;}'>我為什麼愛用 VIM 編輯器來寫程式 </a></li>
+    
+        <li><a href="/docs-blog/article-291-USB，硬碟救援，檔案刪除還原.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_291&quot;}'>USB，硬碟救援，檔案刪除還原 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

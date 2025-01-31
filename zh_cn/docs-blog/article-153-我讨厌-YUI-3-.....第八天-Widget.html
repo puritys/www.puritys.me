@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第八天 Widget</title>
+    <meta name="keywords" content="YUI3" />
+    <meta name="description" content=" YUI Widget 是一個包含 html+css+js 三個部分組成的小工具，咦這好像是廢話，網頁的制作，本來就是這三個基本語言組成，似乎 YUI 又多過了一手，建立 html前面有提到 Widget 組成的元素有三個，現在就先建立其中的一項 HTML。我要制作一個命名為 sample 的 widget ，其中 widget 包含了 header、body、footer 三" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-153-我讨厌-YUI-3-.....第八天-Widget.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-153-我讨厌-YUI-3-.....第八天-Widget.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-153-我討厭-YUI-3-.....第八天-Widget.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-153">
+                    <em><span>我讨厌 YUI 3 .....第八天 Widget</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-153-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u516b\u5929-Widget.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u516b\u5929 Widget","image":"","datePublished":"2012-12-23T23:31:11+08:00","dateModified":"2016-09-25T16:46:16+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rYUI Widget \u662f\u4e00\u500b\u5305\u542b html+css+js \u4e09\u500b\u90e8\u5206\u7d44\u6210\u7684\u5c0f\u5de5\u5177\uff0c\u54a6\r\u9019\u597d\u50cf\u662f\u5ee2\u8a71\uff0c\u7db2\u9801\u7684\u5236\u4f5c\uff0c\u672c\u4f86\u5c31\u662f\u9019\u4e09\u500b\u57fa\u672c\u8a9e\u8a00\u7d44\u6210\uff0c\u4f3c\u4e4e YUI \u53c8\u591a\u904e\u4e86\u4e00\u624b\uff0c\r\u5efa\u7acb html\r\u524d\u9762\u6709\u63d0\u5230 "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Dec</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html"><span>我讨厌 YUI 3 .....第八天 Widget</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-153-我討厭-YUI-3-.....第八天-Widget.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>YUI Widget 是一個包含 html+css+js 三個部分組成的小工具，咦</p><div class="notice" label="notice">這好像是廢話，網頁的制作，本來就是這三個基本語言組成，似乎 YUI 又多過了一手，</div><h2>建立 html</h2><p>前面有提到 Widget 組成的元素有三個，現在就先建立其中的一項 HTML。</p><p>我要制作一個命名為 sample 的 widget ，其中 widget 包含了 <em>header</em>、<em>body</em>、<em>footer</em> 三個區塊，這個 html 將會是 YUI Widget 未來要操作的 html node ，之後所有 widget 的 event 也都會在這些 node 裡發生。</p><div class="codeBlock html"><span class="title">YUI Widget html</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"sample"</span><span class="pln"> </span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"hd"</span><span class="tag">&gt;</span><span class="pln">sample Header</span><span class="tag">&lt;/div&gt;</span></li><li class="L2"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"bd"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">        </span><span class="tag">&lt;h5&gt;</span><span class="pln">sample body</span><span class="tag">&lt;/h5&gt;</span></li><li class="L4"><span class="pln">        </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"#"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"hideBtn"</span><span class="tag">&gt;</span><span class="pln">hide me!</span><span class="tag">&lt;/a&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;/div&gt;</span></li><li class="L6"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ft"</span><span class="tag">&gt;</span><span class="pln">sample Footer</span><span class="tag">&lt;/div&gt;</span></li><li class="L7"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><h2>建立 css</h2><p>widget 的第二個部分就是 css ， YUI widget 對 UI 的顯示上，都是藉由 css style 來控制，除了會動態修改 style 之外， Widget 還會增加、修改 css className ，所以我們必須事先設定好 css style ，這裡先介紹一個 Widget 常見的 class： hidden ， hidden 的意思就是希望 html node 可以消失，不出現在螢幕上，所以我對這個 className 下 style :display:none;。</p><div class="codeBlock css"><span class="title">YUI Widget css</span><pre class="prettyprint lang-css linenums" ><ol class="linenums"><li class="L0"><span class="pun">.</span><span class="pln">yui3</span><span class="pun">-</span><span class="pln">sample</span><span class="pun">-</span><span class="pln">hidden </span><span class="pun">{</span></li><li class="L1"><span class="pln">    display</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li></ol></pre></div><p>當你使用 YUI3 Widget 內建的 method：hide，這時 JS 就會自動對 Widget 加上 yui3-{name}-hidden 這個 className ，所以我們得先對這個 className 定義好正確的 style。</p><p>因為 sample 是我建立 widget 的名稱，所以 YUI 自動産生的 className 會以 yui3-sample 為開頭。</p><h2>建立 javascript widget</h2><p>有了 HTML 、css 這兩份資料之後，我們就可以開始寫 Widget js 的部分囉，這裡我宣告一個 Y.sample 的物件，並繼承 Widget 的所有 <em>method</em> 與 <em>attribute</em>， 另外我增加了一個 method: initializer ，當我 <em>new sample widget</em> 時，Widget 會自動對 <em>.hideBtn</em> 綁定 click 事件 ( 7 ~ 9 行)。</p><div class="codeBlock js"><span class="title">sampleWidget.js</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">YUI</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"sample"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">){</span></li><li class="L1"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> method </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln"> </span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> sample</span><span class="pun">={};</span></li><li class="L3"><span class="pln">    sample</span><span class="pun">.</span><span class="pln">NAME </span><span class="pun">=</span><span class="pln"> </span><span class="str">"sample"</span><span class="pun">;</span></li><li class="L4"><span class="pln">    sample</span><span class="pun">.</span><span class="pln">ATTRS </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span></li><li class="L5"><span class="pln">    </span></li><li class="L6"><span class="pln">    method</span><span class="pun">.</span><span class="pln">initializer </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">        Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">"#sample .hideBtn"</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">hide</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">);</span></li><li class="L8"><span class="pln">    </span><span class="pun">}</span><span class="pln">   </span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    Y</span><span class="pun">.</span><span class="pln">sample </span><span class="pun">=</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Base</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="str">"sample"</span><span class="pun">,</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Widget</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[],</span><span class="pln"> method</span><span class="pun">,</span><span class="pln"> sample</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="kwd">delete</span><span class="pln"> method</span><span class="pun">,</span><span class="pln">sample</span><span class="pun">;</span></li><li class="L2"><span class="pun">},</span><span class="str">&#39;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">requires</span><span class="pun">:[</span><span class="str">"base"</span><span class="pun">,</span><span class="str">"widget"</span><span class="pun">]});</span></li></ol></pre></div><p>有了以上三個部分，這樣就算完成了一個簡單的 Widget 了，這個 widget 會産生一個按鈕，而在點了按鈕之後，widget 將會被隱藏。</p><h2>使用 widget & Demo</h2><p>接下來要開始使用剛剛寫好的 Widget ， 我們只要 new sample ，然後傳入 <em>srcNode</em> 這個參數即可，  <em>srcNode</em> 是指 widget js 要與 html 連結的 id ， 我在一開始就已經在 html 中定義 id="sample" ，所以 用 #sample ，代表 widget 會去連結 sample 這個 html node。</p><div class="codeBlock js"><span class="title">widget.html</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">script</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">YUI</span><span class="pun">().</span><span class="pln">use</span><span class="pun">(</span><span class="str">"node"</span><span class="pun">,</span><span class="str">"sample"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">){</span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="pln">sample</span><span class="pun">({</span></li><li class="L3"><span class="pln">        srcNode</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#sample"</span><span class="pun">,</span></li><li class="L4"><span class="pln">    </span><span class="pun">});</span></li><li class="L5"><span class="pln">    s</span><span class="pun">.</span><span class="pln">render</span><span class="pun">();</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">})</span></li><li class="L8"><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></li></ol></pre></div><a class="demo-link ezHTML-popup"  href="/filemanage/blog_files/file_61.html" data-info="%7B%22width%22%3A300%2C%22height%22%3A500%7D"><i class="glyphicon glyphicon-file"></i>View Demo</a><h2>render</h2><p>YUI Widget 一開始都必須執行 render 這個 function， render 的主要功能，是為了幫 html 補上一些基本的 className ，這樣才方便 YUI 的操作，render 前要先設定 attribute srcNode (source node)，這個  srcNode 要給他一個獨立的 id ，如 #widget，執行 render 後，YUI 會自動去找出 srcNode 指定的 html tag，並給 html tag 預設的 className, event。</p><h2>執行 render 前的 html</h2><p>這裡我建立一個簡單的 html tag ，命名為  sample ，並分成三個區塊，分別是 head, body, foot。</p><h2>Widget 預設 Method</h2><p>YUI Widget 預設已經宣告了一些 Method ，並定義執行的時間點。</p><h2>init Method</h2><ul class="list">  <li>new Widget Object 時，會自動執行 initializer。</li>  <li>YUI 會自動 register 一個 Object ，並記錄在 YUI 自定的 Array 裡，並且 YUI 會自動産生一個 unique id 存在 _instances 的變數中。</li>  <li>執行 parse html ， YUI 為了能夠新增 className  Before Widget Render</li></ul><div id="sample">    <div class="hd">Widget Header</div>    <div class="bd">Widget Body</div>    <div class="ft">Widget Footer</div></div><codeEnd>#</codeEnd><h2>執行 render 後的 html</h2><div class="codeBlock html"><span class="title">After YUI Widget Render</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"yui_3_7_2_1_1358786231445_13"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"yui3-widget yui3-sample"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">   </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"sample"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"yui3-sample-content yui3-widget-content-expanded"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">       </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"hd"</span><span class="tag">&gt;</span><span class="pln">Widget Header</span><span class="tag">&lt;/div&gt;</span></li><li class="L3"><span class="pln">       </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"bd"</span><span class="tag">&gt;</span><span class="pln">Widget Body</span><span class="tag">&lt;/div&gt;</span></li><li class="L4"><span class="pln">       </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"ft"</span><span class="tag">&gt;</span><span class="pln">Widget Footer</span><span class="tag">&lt;/div&gt;</span></li><li class="L5"><span class="pln">   </span><span class="tag">&lt;/div&gt;</span></li><li class="L6"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><p>從html 的變化中，可以知道，YUI 替我建立的 html 最外層加上一個 <em>bunding box</em> ，並自動産生一個 id = yui_3_7_2_1_1358786231445_13 ， 另外又新增一個 className [yui3-widget] ， style 的部分，則是因為我 new sampleWidget 這個物件的時候，指定了 height = 50px ，YUI 也會在 render 的時候，一起産生。</p><h2>其它 Method</h2><ul class="list">  <li>widget.render() ,  fire event: RENDER</li>  <li>widget.hide() : 增加 classname: yui3-<em>sample</em>-hidden (widget name = sample)</li>  <li>renderer : call _renderUI(), renderUI() , _bindUI(), bindUI()</li>  <li>_renderUI : call  _renderBoxClassNames , _renderBox</li></ul> <br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T16:46:16+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-153" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-153" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-101">我討厭 YUI 3 .....第五天 Ajax IO</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-102">我討厭 YUI 3 .....第六天  Slider</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-198-我討厭-YUI-3-.....第十三天-Radio.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="/docs-blog/article-196-我討厭-YUI-3-.....第十二天-Panel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="/docs-blog/article-177-我討厭-YUI-3-.....第十一天-Node-Rotate-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-170-我討厭-YUI-3-.....第十天-attribute-event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="/docs-blog/article-162-我討厭-YUI-3-.....第九天-Config.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="/docs-blog/article-161-YUI3-yogi.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="/docs-blog/article-150-我討厭-YUI-3-.....第七天-FileUploader.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="/docs-blog/article-102-我討厭-YUI-3-.....第六天-Slider.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

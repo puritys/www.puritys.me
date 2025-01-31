@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>React Native</title>
+    <meta name="keywords" content="IOS, Android, APP" />
+    <meta name="description" content=" http://facebook.github.io/react-native/Facebook Team 在 React.js Conf 2015 發表了 React Native，一個在行動裝置上開發 APP 的 Framework， React Native 可以讓工程師使用 Javascript 來開發 Apps，並且修改 Javascript 時，不用重新 Compi" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-297-React-Native.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-297-React-Native.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-297-React-Native.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-297-React-Native.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/ReactNative" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">React-Native</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-297">
+                    <em><span>React Native</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-297-React-Native.html"},"headline":"React Native","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_156.png","datePublished":"2015-02-15T12:41:44+08:00","dateModified":"2015-07-11T00:38:55+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r  http:\/\/facebook.github.io\/react-native\/\r\rFacebook Team \u5728 React.js Conf 2015 \u767c\u8868\u4e86 React Native\uff0c\u4e00\u500b\u5728\u884c"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Feb</div>
+            <div class="day">15</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-297-React-Native.html"><span>React Native</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=IOS">IOS</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Android">Android</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=APP">APP</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-297-React-Native.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><ul class="list">  <li><a href="http://facebook.github.io/react-native/"  target="_blank">http://facebook.github.io/react-native/</a></li></ul><p>Facebook Team 在 React.js Conf 2015 發表了 <b>React Native</b>，一個在行動裝置上開發 APP 的 Framework，<b> React Native 可以讓工程師使用 Javascript 來開發 Apps，並且修改 Javascript 時，不用重新 Compile Obj-C !!</b>。</p><p>目前市前上已經有不少類似的 Framework ，像是  PhoneGap, Titanium 等等， PhoneGap, Titainium 強調的功能是你可以寫一遍程式，然後同時在 IOS, Android 上運作，能夠減少一半的開發時間，<code>Write once, run anywhere</code>。</p><p>這兩套 Framework 都是使用 Javascript 語言來開發，但是 PhoneGap 是在 webview 的基礎上執行，所以執行的效能會比 Native 的方式慢很多，React Native 雖然也是使用 Javascript ，但是它是直接在 Native Rendering ， React Native 的 Javascript Engine 是在 App <b>Background Thread </b>上執行，等到 javascript 被 parse 完後，會再丟給 App main thread 去做 render 的動作，所以最後 render 時，是在 native -- react native，而不是透過 webview ，所以效能上會快非常多，Mobile 的效能問題，一直都是被關注的重點，所以能夠用 Native Code 寫 App ，是目前的趨勢，而 Titanium 也是會將程式轉譯成 Native Code，最後就能在 App 上用 Native 的方式執行 ，從這一點來看， React Native 與 Titanium 有一點相似。</p><p>React.js Conf 總共有兩場是講 React Native，第一場主要是講 React 是為了解決什麼問題，而第二場才較著重於 React Native，還有 Video 最後幾分鐘有強大的 Demo。</p><ul class="list">  <li>第一場： <a href="https://www.youtube.com/watch?v=KVZ-P-ZI6W4"  target="_blank">https://www.youtube.com/watch?v=KVZ-P-ZI6W4</a></li>  <li>第二場： <a href="https://www.youtube.com/watch?v=7rDsRXj9-cU"  target="_blank">https://www.youtube.com/watch?v=7rDsRXj9-cU</a></li></ul><p>這是 React.js Conf 第二場  React Native 的錄影。</p><iframe style="display:block; margin: 0 auto;width: 600px" height="515" src="https://www.youtube.com/embed/7rDsRXj9-cU" frameborder="0"  ></iframe><h2>Learn once, write anywhere</h2><p>在 React Native sharing 中，講者有特別強調  React Native 不是 <code>Write once, run anywhere</code>，而是 <code>  Learn once, write anywhere</code>，這代表你只要學會 React Native ，就能同時學會在  IOS 與 Android 上開發，但是你必須根據這兩個作業系統的特性，寫不同的程式。</p><p>例如在  IOS 中，你必須使用  View, Image, Text 這些 Tag 來實作 React Native UI 。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="com">//web  -&gt; IOS</span></li><li class="L1"><span class="pun">&lt;</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln">    </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L2"><span class="pun">&lt;</span><span class="pln">img</span><span class="pun">&gt;</span><span class="pln">    </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">Image</span><span class="pun">&gt;</span></li><li class="L3"><span class="pun">&lt;</span><span class="pln">span</span><span class="pun">&gt;</span><span class="pln">   </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">var</span><span class="pln"> mobileUi </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L7"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L9"><span class="pln">      </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pun">&gt;{</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">text</span><span class="pun">}&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Image</span><span class="pln"> source</span><span class="pun">=</span><span class="str">"getImageSource(this.image)"</span><span class="pun">&gt;&lt;/</span><span class="typ">Image</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">    </span><span class="pun">);</span></li><li class="L4"><span class="pln">  </span><span class="pun">}</span></li><li class="L5"><span class="pun">});</span></li></ol></pre></div><p>React Native 在 IOS 的部分，開發了一個  RKUIView 去 Extend Obj-c 原本內建的 UIView，而 Javascript 是透過  Async 的方式，傳送給 Background Thread 的 Javascript Engine 來執行，Javascript 被編譯後，就會乎叫 RKUIView 來執行 UI Render ，所以 React-Native 中的 View 最後會去執行 RKUIView ，也因為  Async 的關系， React-Native 可以讓我們在修改 Javascript 後，即時在 App 摸擬器中顯示，省去了 xcode 編譯 Obj-c 時間，大大的縮短了 Mobile App 開發時間。</p><div class="notice" label="!">React has been designed to replace any view system</div><p>這是 Video 中說的一句話， React 已經被使用在許多的 Web 開發，而 React Native 也即將可以被大量的應該用 App 上，或許未來真的到處都是 <b>React </b>。</p><h2>Write CSS in Javascript</h2><p>React Native 引進 web 開發中的 CSS 功能，支援使用 CSS 的方式來設定 APP 樣式，非常方便有 Web 開發經驗的工程師 ，在 web 開發中，通常我們會建議將 Style 寫在一個獨立的檔案中，再用 link 連結 CSS 檔案與 HTML ，而 React native 則是要將 Style 直接寫在 Javascript 。</p><p>你可以從這篇投影片看到 React Native 將 CSS 寫在 Javascript 原因。</p><ul class="list">  <li><a href="https://speakerdeck.com/vjeux/react-css-in-js"  target="_blank">https://speakerdeck.com/vjeux/react-css-in-js</a></li></ul><div class="codeBlock"><span class="title"> Example: style in react native</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> styles </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">  text</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    marginTop</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span></li><li class="L3"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">200</span><span class="pun">,</span></li><li class="L4"><span class="pln">  </span><span class="pun">}</span></li><li class="L5"><span class="pun">};</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">text</span><span class="pun">}&gt;&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li></ol></pre></div><h2>Flexbox Layout</h2><p>React Native 支援 CSS style <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank"> flexbox</a>，這是用來處理  UI flow 的排列方式。</p><p>為了在 Mobile App 中實作 flexbox 的功能， Facebook 寫了另一套  library 叫  css-layout  <a href="https://github.com/facebook/css-layout"  target="_blank">https://github.com/facebook/css-layout</a> ，這個 library 可以計算出每個 layer 的定位 (x, y)、寬度、高度，我們就能使用 css-layout 算出來的結果來排版。</p><img src="/filemanage/blog_files/file_156.png"   /><h3>Source Code</h3><ul class="list">  <li><a href="https://github.com/facebook/react-native"  target="_blank">https://github.com/facebook/react-native</a></li>  <li><a href="https://github.com/facebook/css-layout"  target="_blank">https://github.com/facebook/css-layout</a></li></ul><h3>相關文章</h3><ul class="list">  <li><a href="http://www.infoq.com/news/2015/02/facebook-announces-react-native"  target="_blank">http://www.infoq.com/news/2015/02/facebook-announces-react-native</a></li>  <li><a href="http://www.railslove.com/stories/fresh-on-our-radar-react-native"  target="_blank">http://www.railslove.com/stories/fresh-on-our-radar-react-native</a></li>  <li><a href="http://jlongster.com/First-Impressions-using-React-Native"  target="_blank">http://jlongster.com/First-Impressions-using-React-Native</a></li>  <li><a href="https://speakerdeck.com/vjeux/react-css-in-js"  target="_blank">https://speakerdeck.com/vjeux/react-css-in-js</a></li>  <li><a href="http://red-badger.com/blog/2015/03/04/react-native-the-killer-feature-that-nobody-talks-about/"  target="_blank">http://red-badger.com/blog/2015/03/04/react-native-the-killer-feature-that-nobody-talks-about/</a></li></ul><p>React Native Demo openGL</p><a href="https://www.youtube.com/watch?v=OPFf53fdUmQ"  target="_blank">https://www.youtube.com/watch?v=OPFf53fdUmQ</a><br /><p>What is the diffenent between main thread and background thread,</p><a href="https://www.udacity.com/course/viewer#!/c-ud853/l-1469948762/e-1530568562/m-1484928604"  target="_blank">https://www.udacity.com/course/viewer#!/c-ud853/l-1469948762/e-1530568562/m-1484928604</a><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-07-11T00:38:55+08:00" class="article-modify-time">2015/07/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-297" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-297" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-319">我的第一個 React-Native IOS App</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">IOS 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-151-Chrome-SSH-Client-取代-putty.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_151&quot;}'>Chrome SSH Client 取代 putty </a></li>
+    
+        <li><a href="/docs-blog/article-104-PHP-Regular-Expression.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_104&quot;}'>PHP Regular Expression </a></li>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">APP 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-298-如何傳送檔案至-iPhone,-iPad.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_298&quot;}'>如何傳送檔案至 iPhone, iPad </a></li>
+    
+        <li><a href="/docs-blog/article-223-Mac-打開-terminal-超級慢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_223&quot;}'>Mac 打開 terminal 超級慢 </a></li>
+    
+        <li><a href="/docs-blog/article-167-第一次使用-MacBook.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_167&quot;}'>第一次使用 MacBook </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 React-Native</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-328-如何在-React-Native-使用迴圈來-Render.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_328&quot;}'>如何在 React-Native 使用迴圈來 Render </a></li>
+    
+        <li><a href="/docs-blog/article-327-React-Native-基本元件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_327&quot;}'>React-Native 基本元件 </a></li>
+    
+        <li><a href="/docs-blog/article-319-我的第一個-React-Native-IOS-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_319&quot;}'>我的第一個 React-Native IOS App </a></li>
+    
+        <li><a href="/docs-blog/article-297-React-Native.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_297&quot;}'>React Native </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

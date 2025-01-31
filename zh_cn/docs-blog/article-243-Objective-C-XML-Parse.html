@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Objective-C  XML Parse</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 要 Parse xml 之前，要先下載別人寫好的 XMLParser Library，這裡我使用的是「xml parse」，使用方式還算簡單，這裡我先定義一個 XML String ，然後用 dictionaryForXMLString 將 XML 讀進來，範例如下。 xml parse#import xmlReader.h;nbsp;NSString *xmlContent" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-243-Objective-C-XML-Parse.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-243-Objective-C-XML-Parse.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-243-Objective-C-XML-Parse.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-243-Objective-C-XML-Parse.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Objective-C" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Objective-C</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-243">
+                    <em><span>Objective-C  XML Parse</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-243-Objective-C-XML-Parse.html"},"headline":"Objective-C  XML Parse","image":"","datePublished":"2014-03-22T23:21:22+08:00","dateModified":"2014-06-07T16:10:28+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u8981 Parse xml \u4e4b\u524d\uff0c\u8981\u5148\u4e0b\u8f09\u5225\u4eba\u5beb\u597d\u7684 XMLParser Library\uff0c\u9019\u88e1\u6211\u4f7f\u7528\u7684\u662f\u300cxml parse\u300d\uff0c\u4f7f\u7528\u65b9\u5f0f\u9084\u7b97\u7c21\u55ae\uff0c\u9019\u88e1\u6211\u5148\u5b9a\u7fa9\u4e00\u500b XML String \uff0c\u7136\u5f8c\u7528 di"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Mar</div>
+            <div class="day">22</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-243-Objective-C-XML-Parse.html"><span>Objective-C  XML Parse</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-243-Objective-C-XML-Parse.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>要 Parse xml 之前，要先下载别人写好的 XMLParser Library，这里我使用的是「<a href="/filemanage/blog_files/file_112.cpp" target="_blank">xml parse</a>」，使用方式还算简单，这里我先定义一个 XML String ，然后用 <em>dictionaryForXMLString </em> 将 XML 读进来，范例如下。</p><div class="codeBlock"><span class="title"> xml parse</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#import "xmlReader.h";</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">xmlContent </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">NSString</span><span class="pln"> stringWithFormat</span><span class="pun">:@</span><span class="str">"&lt;?xml version="1.0" encoding="UTF-8" ?&gt;"</span></li><li class="L3"><span class="pln">                        </span><span class="str">"&lt;xml&gt;"</span></li><li class="L4"><span class="pln">                        </span><span class="str">"&lt;title&gt;IOS Tutorial&lt;/title&gt;"</span></li><li class="L5"><span class="pln">                        </span><span class="str">"&lt;desc&gt;IOS desc&lt;/desc&gt;"</span></li><li class="L6"><span class="pln">                        </span><span class="str">"&lt;/xml&gt;"</span><span class="pun">];</span></li><li class="L7"><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*</span><span class="pln">dics</span><span class="pun">=[[</span><span class="typ">NSDictionary</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> </span></li><li class="L8"><span class="pln">     initWithDictionary</span><span class="pun">:[</span><span class="typ">XMLReader</span><span class="pln"> dictionaryForXMLString</span><span class="pun">:</span><span class="pln">xmlContent error</span><span class="pun">:</span><span class="pln">nil</span><span class="pun">]</span></li><li class="L9"><span class="pun">];</span></li><li class="L0"><span class="pln">    </span></li><li class="L1"><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"dics is %@"</span><span class="pun">,</span><span class="pln">dics</span><span class="pun">);</span></li></ol></pre></div><p>将 dics 物件输出的结果如下，可以清楚的看到其资料结构。</p><div class="codeBlock"><span class="title"> result</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">dics </span><span class="kwd">is</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    xml </span><span class="pun">=</span><span class="pln">     </span><span class="pun">{</span></li><li class="L2"><span class="pln">        desc </span><span class="pun">=</span><span class="pln">         </span><span class="pun">{</span></li><li class="L3"><span class="pln">            text </span><span class="pun">=</span><span class="pln"> </span><span class="str">"IOS desc"</span><span class="pun">;</span></li><li class="L4"><span class="pln">        </span><span class="pun">};</span></li><li class="L5"><span class="pln">        title </span><span class="pun">=</span><span class="pln">         </span><span class="pun">{</span></li><li class="L6"><span class="pln">            text </span><span class="pun">=</span><span class="pln"> </span><span class="str">"IOS Tutorial"</span><span class="pun">;</span></li><li class="L7"><span class="pln">        </span><span class="pun">};</span></li><li class="L8"><span class="pln">    </span><span class="pun">};</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><p>上述的范例，只是直接将 NSDictionary 输出至萤幕，接下来我要取得 titile  的这个 tag 的值。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">tableDicsArray</span><span class="pun">=[</span><span class="pln">dics valueForKey</span><span class="pun">:@</span><span class="str">"xml"</span><span class="pun">];</span><span class="pln">        </span></li><li class="L1"><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"data =  %@"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[[</span><span class="pln">tableDicsArray valueForKey</span><span class="pun">:@</span><span class="str">"title"</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"text"</span><span class="pun">]);</span></li><li class="L2"><span class="com">//output: IOS Tutorial</span></li></ol></pre></div><p>接著来试一下 Array 的处理，假如我的 XML 格式包含多项的 List，我们一样可以用 Array[0], Array[1]  的方式取得资料。</p><div class="codeBlock"><span class="title"> XML Array </span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">xmlContent </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">NSString</span><span class="pln"> stringWithFormat</span><span class="pun">:@</span><span class="str">"&lt;?xml version="1.0" encoding="UTF-8" ?&gt;"</span></li><li class="L1"><span class="pln">                            </span><span class="str">"&lt;xml&gt;"</span></li><li class="L2"><span class="pln">                            </span><span class="str">"&lt;item&gt;&lt;title&gt;IOS Tutorial&lt;/title&gt;"</span></li><li class="L3"><span class="pln">                            </span><span class="str">"&lt;desc&gt;IOS desc&lt;/desc&gt;&lt;/item&gt;"</span></li><li class="L4"><span class="pln">                            </span><span class="str">"&lt;item&gt;&lt;title&gt;IOS Tutorial2&lt;/title&gt;"</span></li><li class="L5"><span class="pln">                            </span><span class="str">"&lt;desc&gt;IOS desc2&lt;/desc&gt;&lt;/item&gt;"</span></li><li class="L6"><span class="pln">                            </span><span class="str">"&lt;/xml&gt;"</span><span class="pun">];</span></li><li class="L7"><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*</span><span class="pln">dics</span><span class="pun">=[[</span><span class="typ">NSDictionary</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln">initWithDictionary</span><span class="pun">:[</span><span class="typ">XMLReader</span><span class="pln"> dictionaryForXMLString</span><span class="pun">:</span><span class="pln">xmlContent error</span><span class="pun">:</span><span class="pln">nil</span><span class="pun">]];</span></li><li class="L8"><span class="pln">    </span></li><li class="L9"><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">tableDicsArray</span><span class="pun">=[[</span><span class="pln">dics valueForKey</span><span class="pun">:@</span><span class="str">"xml"</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"item"</span><span class="pun">];</span></li><li class="L0"><span class="pln">    </span></li><li class="L1"><span class="typ">NSLog</span><span class="pun">(@</span><span class="str">"data =  %@"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[[</span><span class="pln">tableDicsArray</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"title"</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"text"</span><span class="pun">]);</span></li></ol></pre></div><h2>RSS Content Parse</h2><p>这是一个简单的 RSS 格式，与 Parse 范例。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">xmlContent </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">NSString</span><span class="pln"> stringWithFormat</span><span class="pun">:@</span><span class="str">"&lt;?xml version="1.0" encoding="UTF-8" ?&gt;"</span></li><li class="L1"><span class="pln">    </span><span class="str">"&lt;rss version="2.0"&gt;"</span></li><li class="L2"><span class="pln">    </span><span class="str">"&lt;title&gt;Puritys Program Blog&lt;/title&gt;"</span></li><li class="L3"><span class="pln">    </span><span class="str">"&lt;channel&gt;"</span></li><li class="L4"><span class="pln">    </span><span class="str">"&lt;title&gt;Puritys Program Blog&lt;/title&gt;"</span></li><li class="L5"><span class="pln">    </span><span class="str">"&lt;link&gt;http://www.puritys.me/rss/blog&lt;/link&gt;"</span></li><li class="L6"><span class="pln">    </span><span class="str">"&lt;description&gt;&lt;/description&gt;"</span></li><li class="L7"><span class="pln">    </span><span class="str">"&lt;language&gt;zh-tw&lt;/language&gt;"</span></li><li class="L8"><span class="pln">    </span><span class="str">"&lt;pubDate&gt;Sat, 22 Mar 2014 23:10:03 +0800&lt;/pubDate&gt;"</span></li><li class="L9"><span class="pln">    </span><span class="str">"&lt;copyright&gt;www.ewebsite.com.tw&lt;/copyright&gt;"</span></li><li class="L0"><span class="pln">    </span><span class="str">"&lt;generator&gt;Puritys&lt;/generator&gt;"</span></li><li class="L1"><span class="pln">    </span><span class="str">"&lt;item&gt;"</span></li><li class="L2"><span class="pln">    </span><span class="str">"&lt;title&gt;Javascript Hoisting 与 Closure&lt;/title&gt;"</span></li><li class="L3"><span class="pln">    </span><span class="str">"&lt;link&gt;http://www.puritys.me/docs-blog/article-242&lt;/link&gt;"</span></li><li class="L4"><span class="pln">    </span><span class="str">"&lt;description&gt;content&lt;/description&gt;"</span></li><li class="L5"><span class="pln">    </span><span class="str">"&lt;pubDate&gt;Sat, 22 Mar 2014 00:23:18 +0800&lt;/pubDate&gt;"</span></li><li class="L6"><span class="pln">    </span><span class="str">"&lt;guid&gt;&lt;/guid&gt;"</span></li><li class="L7"><span class="pln">    </span><span class="str">"&lt;/item&gt;"</span></li><li class="L8"><span class="pln">    </span><span class="str">"&lt;item&gt;"</span></li><li class="L9"><span class="pln">    </span><span class="str">"&lt;title&gt;PHP 判断是否为 Command Line 的方式&lt;/title&gt;"</span></li><li class="L0"><span class="pln">    </span><span class="str">"&lt;link&gt;http://www.puritys.me/docs-blog/article-241&lt;/link&gt;"</span></li><li class="L1"><span class="pln">    </span><span class="str">"&lt;description&gt;content&lt;/description&gt;"</span></li><li class="L2"><span class="pln">    </span><span class="str">"&lt;pubDate&gt;Sat, 22 Mar 2014 00:23:18 +0800&lt;/pubDate&gt;"</span></li><li class="L3"><span class="pln">    </span><span class="str">"&lt;guid&gt;&lt;/guid&gt;"</span></li><li class="L4"><span class="pln">    </span><span class="str">"&lt;/item&gt;"</span></li><li class="L5"><span class="pln">    </span><span class="str">"&lt;/channel&gt;"</span></li><li class="L6"><span class="pln">    </span><span class="str">"&lt;/rss&gt;"</span><span class="pun">];</span></li><li class="L7"><span class="pln">    </span></li><li class="L8"><span class="pln">    </span><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*</span><span class="pln">dics</span><span class="pun">=[[</span><span class="typ">NSDictionary</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln">initWithDictionary</span><span class="pun">:[</span><span class="typ">XMLReader</span><span class="pln"> dictionaryForXMLString</span><span class="pun">:</span><span class="pln">xmlContent error</span><span class="pun">:</span><span class="pln">nil</span><span class="pun">]];</span></li><li class="L9"><span class="pln">    </span></li><li class="L0"><span class="pln">    </span><span class="typ">NSArray</span><span class="pln"> </span><span class="pun">*</span><span class="pln">tableDicsArray</span><span class="pun">=[[[</span><span class="pln">dics valueForKey</span><span class="pun">:@</span><span class="str">"rss"</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"channel"</span><span class="pun">]</span><span class="pln"> valueForKey</span><span class="pun">:@</span><span class="str">"item"</span><span class="pun">];</span></li></ol></pre></div><h2>相关档案下载</h2><ul class="list">  <li><a href="/filemanage/blog_files/file_112.cpp" target="_blank">xmlReader.m</a></li>  <li><a href="/filemanage/blog_files/file_113.h" target="_blank">xmlReader.h</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-06-07T16:10:28+08:00" class="article-modify-time">2014/06/07</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-243" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-243" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Objective-C</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-243-Objective-C-XML-Parse.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_243&quot;}'>Objective-C  XML Parse </a></li>
+    
+        <li><a href="/docs-blog/article-239-Objective-C-Request-:-NSURLConnection.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_239&quot;}'>Objective-C  Request : NSURLConnection </a></li>
+    
+        <li><a href="/docs-blog/article-238-在-IOS-Xcode-中使用-c++-Library.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_238&quot;}'>在 IOS Xcode 中使用 c++ Library </a></li>
+    
+        <li><a href="/docs-blog/article-232-Objective-C-基本-function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_232&quot;}'>Objective-C  基本 function </a></li>
+    
+        <li><a href="/docs-blog/article-222-Objective-C-UIView-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_222&quot;}'>Objective-C UIView 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-221-Objective-C-UILabel-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_221&quot;}'>Objective-C  UILabel 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-220-Objective-C-建立-Class-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_220&quot;}'>Objective-C 建立 Class 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-218-IOS-建立按鈕與點擊事件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_218&quot;}'>IOS 建立按鈕與點擊事件 </a></li>
+    
+        <li><a href="/docs-blog/article-217-IOS-Hello-World-App-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_217&quot;}'>IOS  Hello World App 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-216-Objective-C-NSString-使用教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_216&quot;}'>Objective-C  NSString 使用教學 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

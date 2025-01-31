@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Linux 自動化指令</title>
+    <meta name="keywords" content="Makefile, Command" />
+    <meta name="description" content="Hudson, Jenkins, Gulp, Grunt 這些都是用來寫自動化的工具，網路已經有很多相關的教學，使用這些工具的公司更是不勝枚舉，而就算沒有這些工具，我們仍然可以用 Linux Command 來做自動化的工作，用起來也不會輸給那些工具，反而省去了復雜的設定，還更簡單維護。檢查多台機器的 Log在寫自動化程式前，我先來說明如果遠端呼叫 Linux 機器做事。如果我" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-361-Linux-自動化指令.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-361-Linux-自动化指令.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-361-Linux-自動化指令.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-361-Linux-自動化指令.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-361">
+                    <em><span>Linux 自動化指令</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-361-Linux-\u81ea\u52d5\u5316\u6307\u4ee4.html"},"headline":"Linux \u81ea\u52d5\u5316\u6307\u4ee4","image":"","datePublished":"2016-05-23T12:39:03+08:00","dateModified":"2016-05-30T00:32:21+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Hudson, Jenkins, Gulp, Grunt \u9019\u4e9b\u90fd\u662f\u7528\u4f86\u5beb\u81ea\u52d5\u5316\u7684\u5de5\u5177\uff0c\u7db2\u8def\u5df2\u7d93\u6709\u5f88\u591a\u76f8\u95dc\u7684\u6559\u5b78\uff0c\u4f7f\u7528\u9019\u4e9b\u5de5\u5177\u7684\u516c\u53f8\u66f4\u662f\u4e0d\u52dd\u679a\u8209\uff0c\u800c\u5c31\u7b97\u6c92\u6709\u9019\u4e9b\u5de5\u5177\uff0c\u6211\u5011\u4ecd\u7136\u53ef\u4ee5\u7528 Linux Comm"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">May</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-361-Linux-自動化指令.html"><span>Linux 自動化指令</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Makefile">Makefile</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Command">Command</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-361-Linux-自动化指令.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Hudson, Jenkins, Gulp, Grunt 這些都是用來寫自動化的工具，網路已經有很多相關的教學，使用這些工具的公司更是不勝枚舉，而就算沒有這些工具，我們仍然可以用 Linux Command 來做自動化的工作，用起來也不會輸給那些工具，反而省去了復雜的設定，還更簡單維護。</p><h2>檢查多台機器的 Log</h2><p>在寫自動化程式前，我先來說明如果遠端呼叫 Linux 機器做事。</p><p>如果我有個線上機器 hostname 是 www.puritys.me，當線上機器發生問題時，我會需要檢查 /var/log/messages 檔案內的 Log 訊息，但是我不用真的登入線上機器，我只要使用<b> ssh host "command" </b> 這個指令，就可以遠端呼叫線上機器把 log 印出來看。</p><div class="codeBlock term"><span class="title"> ssh command</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www</span><span class="pun">]</span><span class="pln">$ ssh www</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me </span><span class="str">"tail -n 5 /var/log/messages"</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="typ">May</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="lit">12</span><span class="pun">:</span><span class="lit">30</span><span class="pun">:</span><span class="lit">01</span><span class="pln"> localhost systemd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Starting</span><span class="pln"> </span><span class="typ">Session</span><span class="pln"> </span><span class="lit">5094</span><span class="pln"> of user root</span><span class="pun">.</span></li><li class="L3"><span class="typ">May</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="lit">12</span><span class="pun">:</span><span class="lit">30</span><span class="pun">:</span><span class="lit">01</span><span class="pln"> localhost systemd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Started</span><span class="pln"> </span><span class="typ">Session</span><span class="pln"> </span><span class="lit">5094</span><span class="pln"> of user root</span><span class="pun">.</span></li><li class="L4"><span class="typ">May</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="lit">12</span><span class="pun">:</span><span class="lit">38</span><span class="pun">:</span><span class="lit">04</span><span class="pln"> localhost systemd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Starting</span><span class="pln"> </span><span class="typ">Session</span><span class="pln"> </span><span class="lit">5095</span><span class="pln"> of user www</span><span class="pun">.</span></li><li class="L5"><span class="typ">May</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="lit">12</span><span class="pun">:</span><span class="lit">38</span><span class="pun">:</span><span class="lit">04</span><span class="pln"> localhost systemd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Started</span><span class="pln"> </span><span class="typ">Session</span><span class="pln"> </span><span class="lit">5095</span><span class="pln"> of user www</span><span class="pun">.</span></li><li class="L6"><span class="typ">May</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="lit">12</span><span class="pun">:</span><span class="lit">38</span><span class="pun">:</span><span class="lit">04</span><span class="pln"> localhost systemd</span><span class="pun">-</span><span class="pln">logind</span><span class="pun">:</span><span class="pln"> </span><span class="typ">New</span><span class="pln"> session </span><span class="lit">5095</span><span class="pln"> of user www</span><span class="pun">.</span></li></ol></pre></div><p>上面這個範例是當線上機器只有一台的時候，但若我們線上機器不只一台，例如 www1.puritys.me ~ www4.puritys.me 共四台機器，那麼單單靠上面這個指令，就得執行四次 。</p><p>這裡我要用 shell script 的 forloop 語法，一次執行呼叫四台機器印出我要的 Log 。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www</span><span class="pun">]</span><span class="pln">$ </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">seq </span><span class="lit">1</span><span class="pln"> </span><span class="lit">4</span><span class="pun">);</span><span class="pln"> </span><span class="kwd">do</span><span class="pln"> ssh www$i</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me </span><span class="str">"tail -n 1 /var/log/messages"</span><span class="pun">;</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">;</span></li></ol></pre></div><p>為了更清楚呈現 每一台機器的 Log ，我們可以在 shell script 中加入 <b>echo "in $host"</b> ，先印出機器名稱。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www</span><span class="pun">]</span><span class="pln">$ </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">seq </span><span class="lit">1</span><span class="pln"> </span><span class="lit">4</span><span class="pun">);</span><span class="pln"> </span><span class="kwd">do</span><span class="pln"> host</span><span class="pun">=</span><span class="pln">www$i</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me </span><span class="pun">;</span><span class="pln"> echo </span><span class="str">"In $host:"</span><span class="pun">;</span><span class="pln"> ssh $host  </span><span class="str">"tail -n 1 /var/log/messages"</span><span class="pun">;</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="typ">In</span><span class="pln"> www1</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me</span><span class="pun">:</span></li><li class="L3"><span class="typ">Warning</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Permanently</span><span class="pln"> added </span><span class="str">&#39;www1.puritys.me&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">RSA</span><span class="pun">)</span><span class="pln"> to the list of known hosts</span><span class="pun">.</span></li><li class="L4"><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">20</span><span class="pun">:</span><span class="lit">01</span><span class="pun">:</span><span class="lit">55</span><span class="pln"> website systemd</span><span class="pun">-</span><span class="pln">logind</span><span class="pun">:</span><span class="pln"> </span><span class="typ">New</span><span class="pln"> session </span><span class="lit">30270</span><span class="pln"> of user www</span><span class="pun">.</span></li><li class="L5"><span class="typ">In</span><span class="pln"> www2</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me</span><span class="pun">:</span></li><li class="L6"><span class="typ">Warning</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Permanently</span><span class="pln"> added </span><span class="str">&#39;www2.puritys.me&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">RSA</span><span class="pun">)</span><span class="pln"> to the list of known hosts</span><span class="pun">.</span></li><li class="L7"><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">20</span><span class="pun">:</span><span class="lit">01</span><span class="pun">:</span><span class="lit">55</span><span class="pln"> website systemd</span><span class="pun">-</span><span class="pln">logind</span><span class="pun">:</span><span class="pln"> </span><span class="typ">New</span><span class="pln"> session </span><span class="lit">30270</span><span class="pln"> of user www</span><span class="pun">.</span></li><li class="L8"><span class="typ">In</span><span class="pln"> www3</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me</span><span class="pun">:</span></li><li class="L9"><span class="typ">Warning</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Permanently</span><span class="pln"> added </span><span class="str">&#39;www3.puritys.me&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">RSA</span><span class="pun">)</span><span class="pln"> to the list of known hosts</span><span class="pun">.</span></li><li class="L0"><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">20</span><span class="pun">:</span><span class="lit">01</span><span class="pun">:</span><span class="lit">55</span><span class="pln"> website systemd</span><span class="pun">-</span><span class="pln">logind</span><span class="pun">:</span><span class="pln"> </span><span class="typ">New</span><span class="pln"> session </span><span class="lit">30270</span><span class="pln"> of user www</span><span class="pun">.</span></li><li class="L1"><span class="typ">In</span><span class="pln"> www4</span><span class="pun">.</span><span class="pln">puritys</span><span class="pun">.</span><span class="pln">me</span><span class="pun">:</span></li><li class="L2"><span class="typ">Warning</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Permanently</span><span class="pln"> added </span><span class="str">&#39;www4.puritys.me&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">RSA</span><span class="pun">)</span><span class="pln"> to the list of known hosts</span><span class="pun">.</span></li><li class="L3"><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">20</span><span class="pun">:</span><span class="lit">01</span><span class="pun">:</span><span class="lit">55</span><span class="pln"> website systemd</span><span class="pun">-</span><span class="pln">logind</span><span class="pun">:</span><span class="pln"> </span><span class="typ">New</span><span class="pln"> session </span><span class="lit">30270</span><span class="pln"> of user www</span><span class="pun">.</span></li></ol></pre></div><h2>如何使用 Makefile</h2><p>剛剛的指令太長了，如果每次都要手動輸入的話就太累了，我們可以用 Linux 內建的 Gnu Make ，將指令寫在 Makefile 裡面，然後再用簡短的 command 來呼叫。</p><p>我建一個檔案檔名為 Makefile ，然後寫入我們要的指令：</p><ul class="list">  <li>注意每一行前面的空白必須是一個 tab</li>  <li>Makefile 中如果要在使用有 $ 字串的指令，必須使用兩個 $ ，因為一個 $ 代表讀取某一個變數 。</li></ul> <br /><div class="codeBlock html"><span class="title"> Makefile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">log:</span></li><li class="L1"><span class="pln">  for i in $$(seq 1 4); do host=www$$i.puritys.me ; echo "In $$host:"; ssh $$host  "tail -n 1 /var/log/messages"; done;</span></li></ol></pre></div><p>這個檔案建好之後，我就可以輸入  <code>make log </code>，執行我剛寫入的指令。</p><p>另外有可能我們的機器名稱沒有一定的規則，那麼我們可以先把機器名稱寫入一個檔案：</p><div class="codeBlock html"><span class="title"> hosts</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">www1.puritys.me</span></li><li class="L1"><span class="pln">www2.puritys.me</span></li><li class="L2"><span class="pln">kkk.jjjj.com.tw</span></li></ol></pre></div><p>再使用 `cat hosts` 跟 forloop ，來對每一台機器傳送指令。</p><div class="codeBlock html"><span class="title"> Makefile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">log:</span></li><li class="L1"><span class="pln">  for host in `cat hosts`; do echo "In $$host:"; ssh $$host  "tail -n 1 /var/log/messages"; done;</span></li></ol></pre></div><h2>線上機器 Release</h2><p>如何快速的將新版程式，安裝到線上的所有機器呢? 這裡用 rpm package 來示範，首先用上面教的方式，讀取 hosts 內的所有機器 hostname ，再用 scp 指令，將 rpm 檔傳送到線上機器，最後再用 rpm -ivh 來安裝。</p><div class="codeBlock html"><span class="title"> Makefile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">release:</span></li><li class="L1"><span class="pln">    for host in `cat hosts`; &#92;</span></li><li class="L2"><span class="pln">        do &#92;</span></li><li class="L3"><span class="pln">            scp test-1.0-1.x86_64.rpm $$host:~/ &#92;</span></li><li class="L4"><span class="pln">            &amp;&amp; ssh $$host "sudo rpm -ivh test-1.0-1.x86_64.rpm"; &#92;</span></li><li class="L5"><span class="pln">    done</span></li></ol></pre></div><p>寫好指令後，以後我只要輸入 make release 就可以快速的將程式 release 出去。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www</span><span class="pun">]</span><span class="pln">$ make release</span></li><li class="L1"><span class="kwd">for</span><span class="pln"> host </span><span class="kwd">in</span><span class="pln"> </span><span class="str">`cat hosts`</span><span class="pun">;</span><span class="pln"> &#92;</span></li><li class="L2"><span class="pln">        </span><span class="kwd">do</span><span class="pln"> &#92;</span></li><li class="L3"><span class="pln">                scp test</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">-</span><span class="lit">1.x86</span><span class="pln">_64</span><span class="pun">.</span><span class="pln">rpm $host</span><span class="pun">:~/</span><span class="pln"> &#92;</span></li><li class="L4"><span class="pln">                </span><span class="pun">&amp;&amp;</span><span class="pln"> ssh $host </span><span class="str">"sudo rpm -ivh test-1.0-1.x86_64.rpm"</span><span class="pun">;</span><span class="pln"> &#92;</span></li><li class="L5"><span class="kwd">done</span></li><li class="L6"><span class="pln">test</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">-</span><span class="lit">1.x86</span><span class="pln">_64</span><span class="pun">.</span><span class="pln">rpm                                              </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="lit">1508</span><span class="pln">     </span><span class="lit">1.5KB</span><span class="pun">/</span><span class="pln">s   </span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span><span class="pln">    </span></li><li class="L7"><span class="typ">Preparing</span><span class="pun">...</span><span class="pln">                          </span><span class="com">########################################</span></li><li class="L8"><span class="typ">Updating</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> installing</span><span class="pun">...</span></li><li class="L9"><span class="pln">test</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">-</span><span class="lit">1</span><span class="pln">                         </span><span class="com">########################################</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-05-30T00:32:21+08:00" class="article-modify-time">2016/05/30</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-361" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-361" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-246">Makefile 的寫法與用途</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Makefile 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Command 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-357-Linux-基本指令教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_357&quot;}'>Linux 基本指令教學 </a></li>
+    
+        <li><a href="/docs-blog/article-69-Linux-指令筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_69&quot;}'>Linux 指令筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-63-Linux-系統負荷量檢查程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_63&quot;}'>Linux 系統負荷量檢查程式 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>How to do Dynamodb unit test</title>
+    <meta name="keywords" content="AWS, DynamoDB" />
+    <meta name="description" content="Create a Table with global secondary index on local dynamodb Unit test Create TableAmazonDynamoDB ddb = DynamoDBEmbedded.create().amazonDynamoDB();nbsp;String tableName = users;String hashKe" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-442-How-to-do-Dynamodb-unit-test.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Java" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Java</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-442">
+                    <em><span>How to do Dynamodb u...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-442-How-to-do-Dynamodb-unit-test.html"},"headline":"How to do Dynamodb unit test","image":"","datePublished":"2019-07-09T14:17:28+08:00","dateModified":"2022-03-28T10:40:35+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Create a Table with global secondary index on local dynamodb\r Unit test Create Table\rAmazonDynamoDB "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2019</div>
+            <div class="month">Jul</div>
+            <div class="day">09</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html"><span>How to do Dynamodb unit test</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=AWS">AWS</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=DynamoDB">DynamoDB</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>Create a Table with global secondary index on local dynamodb</h2><div class="codeBlock java"><span class="title"> Unit test Create Table</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="typ">AmazonDynamoDB</span><span class="pln"> ddb </span><span class="pun">=</span><span class="pln"> </span><span class="typ">DynamoDBEmbedded</span><span class="pun">.</span><span class="pln">create</span><span class="pun">().</span><span class="pln">amazonDynamoDB</span><span class="pun">();</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="typ">String</span><span class="pln"> tableName </span><span class="pun">=</span><span class="pln"> </span><span class="str">"users"</span><span class="pun">;</span></li><li class="L3"><span class="typ">String</span><span class="pln"> hashKeyName </span><span class="pun">=</span><span class="pln"> </span><span class="str">"id"</span><span class="pun">;</span></li><li class="L4"><span class="typ">String</span><span class="pln"> gsiIndexName </span><span class="pun">=</span><span class="pln"> </span><span class="str">"usersIndex"</span><span class="pun">;</span></li><li class="L5"><span class="typ">String</span><span class="pln"> gsiIndexHashKeyName </span><span class="pun">=</span><span class="pln"> </span><span class="str">"id2"</span><span class="pun">;</span></li><li class="L6"><span class="typ">CreateTableResult</span><span class="pln"> res </span><span class="pun">=</span><span class="pln"> createTable</span><span class="pun">(</span><span class="pln">ddb</span><span class="pun">,</span><span class="pln"> tableName</span><span class="pun">,</span><span class="pln"> hashKeyName</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="kwd">public</span><span class="pln"> </span><span class="typ">CreateTableResult</span><span class="pln"> createTable</span><span class="pun">(</span><span class="typ">AmazonDynamoDB</span><span class="pln"> ddb</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> tableName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> hashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> rangeKeyName</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">   </span><span class="typ">TableDescription</span><span class="pln"> tableDesc </span><span class="pun">=</span><span class="pln"> res</span><span class="pun">.</span><span class="pln">getTableDescription</span><span class="pun">();</span></li><li class="L1"><span class="pln">   </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">AttributeDefinition</span><span class="pun">&gt;</span><span class="pln"> attributeDefinitions </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">AttributeDefinition</span><span class="pun">&gt;();</span></li><li class="L2"><span class="pln">   attributeDefinitions</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">AttributeDefinition</span><span class="pun">(</span><span class="pln">hashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ScalarAttributeType</span><span class="pun">.</span><span class="pln">S</span><span class="pun">));</span></li><li class="L3"><span class="pln">   attributeDefinitions</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">AttributeDefinition</span><span class="pun">(</span><span class="pln">gsiIndexHashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ScalarAttributeType</span><span class="pun">.</span><span class="pln">S</span><span class="pun">));</span></li><li class="L4"><span class="pln">   </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">KeySchemaElement</span><span class="pun">&gt;</span><span class="pln"> ks </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">KeySchemaElement</span><span class="pun">&gt;();</span></li><li class="L5"><span class="pln">   ks</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">KeySchemaElement</span><span class="pun">(</span><span class="pln">hashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">KeyType</span><span class="pun">.</span><span class="pln">HASH</span><span class="pun">));</span></li><li class="L6"><span class="pln">   </span><span class="typ">ProvisionedThroughput</span><span class="pln"> provisionedthroughput </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ProvisionedThroughput</span><span class="pun">(</span><span class="lit">1000L</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000L</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">   </span><span class="pun">#</span><span class="pln"> add global secondary index</span></li><li class="L0"><span class="pln">   </span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">GlobalSecondaryIndex</span><span class="pun">&gt;</span><span class="pln"> gsi </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">GlobalSecondaryIndex</span><span class="pun">&gt;();</span></li><li class="L1"><span class="pln">   gsi</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">GlobalSecondaryIndex</span><span class="pun">()</span></li><li class="L2"><span class="pln">           </span><span class="pun">.</span><span class="pln">withIndexName</span><span class="pun">(</span><span class="pln">gsiIndexName</span><span class="pun">)</span></li><li class="L3"><span class="pln">           </span><span class="pun">.</span><span class="pln">withKeySchema</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">KeySchemaElement</span><span class="pun">(</span><span class="pln">gsiIndexHashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">KeyType</span><span class="pun">.</span><span class="pln">HASH</span><span class="pun">))</span></li><li class="L4"><span class="pln">           </span><span class="pun">.</span><span class="pln">withProjection</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Projection</span><span class="pun">().</span><span class="pln">withProjectionType</span><span class="pun">(</span><span class="typ">ProjectionType</span><span class="pun">.</span><span class="pln">ALL</span><span class="pun">))</span></li><li class="L5"><span class="pln">           </span><span class="pun">.</span><span class="pln">withProvisionedThroughput</span><span class="pun">(</span><span class="pln">provisionedthroughput</span><span class="pun">)</span></li><li class="L6"><span class="pln">   </span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">   </span><span class="typ">CreateTableRequest</span><span class="pln"> request </span><span class="pun">=</span></li><li class="L9"><span class="pln">       </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">CreateTableRequest</span><span class="pun">()</span></li><li class="L0"><span class="pln">           </span><span class="pun">.</span><span class="pln">withTableName</span><span class="pun">(</span><span class="pln">tableName</span><span class="pun">)</span></li><li class="L1"><span class="pln">           </span><span class="pun">.</span><span class="pln">withAttributeDefinitions</span><span class="pun">(</span><span class="pln">attributeDefinitions</span><span class="pun">)</span></li><li class="L2"><span class="pln">           </span><span class="pun">.</span><span class="pln">withKeySchema</span><span class="pun">(</span><span class="pln">ks</span><span class="pun">)</span></li><li class="L3"><span class="pln">           </span><span class="pun">.</span><span class="pln">withProvisionedThroughput</span><span class="pun">(</span><span class="pln">provisionedthroughput</span><span class="pun">);</span></li><li class="L4"><span class="pln">   request</span><span class="pun">.</span><span class="pln">setGlobalSecondaryIndexes</span><span class="pun">(</span><span class="pln">gsi</span><span class="pun">);</span></li><li class="L5"><span class="pln">   ddb</span><span class="pun">.</span><span class="pln">createTable</span><span class="pun">(</span><span class="pln">request</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">}</span></li></ol></pre></div><h2>Add local secondary index</h2><div class="codeBlock java"><span class="title"> local secondary index</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">LocalSecondaryIndex</span><span class="pun">&gt;</span><span class="pln"> lsi </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">LocalSecondaryIndex</span><span class="pun">&gt;();</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">lsi</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">LocalSecondaryIndex</span><span class="pun">()</span></li><li class="L3"><span class="pln">        </span><span class="pun">.</span><span class="pln">withIndexName</span><span class="pun">(</span><span class="pln">lsiIndexName</span><span class="pun">)</span></li><li class="L4"><span class="pln">        </span><span class="pun">.</span><span class="pln">withKeySchema</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">KeySchemaElement</span><span class="pun">(</span><span class="pln">lsiIndexHashKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">KeyType</span><span class="pun">.</span><span class="pln">HASH</span><span class="pun">,</span><span class="pln"> lsiRangeKeyName</span><span class="pun">,</span><span class="pln"> </span><span class="typ">KeyType</span><span class="pun">.</span><span class="pln">RANGE</span><span class="pun">))</span></li><li class="L5"><span class="pln">        </span><span class="pun">.</span><span class="pln">withProjection</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Projection</span><span class="pun">().</span><span class="pln">withProjectionType</span><span class="pun">(</span><span class="typ">ProjectionType</span><span class="pun">.</span><span class="pln">ALL</span><span class="pun">));</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">createTableRequest</span><span class="pun">.</span><span class="pln">setLocalSecondaryIndexes</span><span class="pun">(</span><span class="pln">lsi</span><span class="pun">);</span></li></ol></pre></div><h2>Insert new data into local dynamodb</h2><div class="codeBlock java"><span class="title"> Insert </span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="typ">DynamoDB</span><span class="pln"> dynamoDB </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DynamoDB</span><span class="pun">(</span><span class="pln">ddb</span><span class="pun">);</span></li><li class="L1"><span class="typ">Table</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> dynamoDB</span><span class="pun">.</span><span class="pln">getTable</span><span class="pun">(</span><span class="pln">tableName</span><span class="pun">);</span></li><li class="L2"><span class="typ">String</span><span class="pln"> userId </span><span class="pun">=</span><span class="pln"> </span><span class="str">"user0001"</span><span class="pun">;</span></li><li class="L3"><span class="typ">String</span><span class="pln"> userName </span><span class="pun">=</span><span class="pln"> </span><span class="str">"puritys"</span><span class="pun">;</span></li><li class="L4"><span class="typ">UpdateItemSpec</span><span class="pln"> updateItemSpec </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">UpdateItemSpec</span><span class="pun">()</span></li><li class="L5"><span class="pln">    </span><span class="pun">.</span><span class="pln">withPrimaryKey</span><span class="pun">(</span><span class="str">"id"</span><span class="pun">,</span><span class="pln"> userId</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="typ">StringBuilder</span><span class="pln"> updateStr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StringBuilder</span><span class="pun">(</span><span class="str">"set #userName = :userName"</span><span class="pun">);</span></li><li class="L8"><span class="typ">ValueMap</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ValueMap</span><span class="pun">();</span></li><li class="L9"><span class="typ">NameMap</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">NameMap</span><span class="pun">();</span></li><li class="L0"><span class="pln">name</span><span class="pun">.</span><span class="pln">with</span><span class="pun">(</span><span class="str">"#userName"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"userName"</span><span class="pun">);</span></li><li class="L1"><span class="pln">value</span><span class="pun">.</span><span class="pln">withString</span><span class="pun">(</span><span class="str">":userName"</span><span class="pun">,</span><span class="pln"> userName</span><span class="pun">);</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">updateItemSpec</span><span class="pun">.</span><span class="pln">withUpdateExpression</span><span class="pun">(</span><span class="pln">updateStr</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">())</span></li><li class="L5"><span class="pln">    </span><span class="pun">.</span><span class="pln">withNameMap</span><span class="pun">(</span><span class="pln">name</span><span class="pun">)</span></li><li class="L6"><span class="pln">    </span><span class="pun">.</span><span class="pln">withValueMap</span><span class="pun">(</span><span class="pln">value</span><span class="pun">)</span></li><li class="L7"><span class="pln">    </span><span class="pun">.</span><span class="pln">withReturnValues</span><span class="pun">(</span><span class="typ">ReturnValue</span><span class="pun">.</span><span class="pln">UPDATED_NEW</span><span class="pun">);</span></li></ol></pre></div><h2>Package version use gradle</h2><div class="codeBlock java"><span class="title"> build.gradle</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="pln">repositories </span><span class="pun">{</span></li><li class="L1"><span class="pln">      mavenLocal</span><span class="pun">()</span></li><li class="L2"><span class="pln">      mavenCentral</span><span class="pun">()</span></li><li class="L3"><span class="pln">      maven </span><span class="pun">{</span></li><li class="L4"><span class="pln">             url </span><span class="str">"https://s3-us-west-2.amazonaws.com/dynamodb-local/release"</span></li><li class="L5"><span class="pln">             content </span><span class="pun">{</span></li><li class="L6"><span class="pln">                 includeModule </span><span class="str">"com.amazonaws"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"DynamoDBLocal"</span></li><li class="L7"><span class="pln">             </span><span class="pun">}</span></li><li class="L8"><span class="pln">      </span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">dependencies </span><span class="pun">{</span></li><li class="L3"><span class="pln">    compile </span><span class="pun">(</span></li><li class="L4"><span class="pln">        </span><span class="str">"org.slf4j:slf4j-api:1.7.25"</span><span class="pun">,</span></li><li class="L5"><span class="pln">    </span><span class="pun">)</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    testCompile </span><span class="pun">(</span></li><li class="L8"><span class="pln">        </span><span class="str">"junit:junit:4.8.1"</span><span class="pun">,</span></li><li class="L9"><span class="pln">        </span><span class="str">"org.mockito:mockito-all:1.9.5"</span><span class="pun">,</span></li><li class="L0"><span class="pln">        </span><span class="str">"com.almworks.sqlite4java:sqlite4java:1.0.392"</span><span class="pun">,</span></li><li class="L1"><span class="pln">        </span><span class="str">"com.almworks.sqlite4java:libsqlite4java-linux-amd64:1.0.392"</span><span class="pun">,</span></li><li class="L2"><span class="pln">        </span><span class="str">"com.amazonaws:DynamoDBLocal:1.11.119"</span></li><li class="L3"><span class="pln">    </span><span class="pun">)</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><h2>import class</h2><div class="codeBlock java"><span class="title"> import</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="typ">AmazonDynamoDB</span><span class="pun">;</span></li><li class="L1"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="typ">DynamoDB</span><span class="pun">;</span></li><li class="L2"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="pln">spec</span><span class="pun">.</span><span class="typ">UpdateItemSpec</span><span class="pun">;</span></li><li class="L3"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="typ">Table</span><span class="pun">;</span></li><li class="L4"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="pln">utils</span><span class="pun">.</span><span class="typ">NameMap</span><span class="pun">;</span></li><li class="L5"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">document</span><span class="pun">.</span><span class="pln">utils</span><span class="pun">.</span><span class="typ">ValueMap</span><span class="pun">;</span></li><li class="L6"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">local</span><span class="pun">.</span><span class="pln">embedded</span><span class="pun">.</span><span class="typ">DynamoDBEmbedded</span><span class="pun">;</span></li><li class="L7"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">AttributeDefinition</span><span class="pun">;</span></li><li class="L8"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">CreateTableRequest</span><span class="pun">;</span></li><li class="L9"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">CreateTableResult</span><span class="pun">;</span></li><li class="L0"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">KeySchemaElement</span><span class="pun">;</span></li><li class="L1"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">KeyType</span><span class="pun">;</span></li><li class="L2"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">ListTablesResult</span><span class="pun">;</span></li><li class="L3"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">ProvisionedThroughput</span><span class="pun">;</span></li><li class="L4"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">ReturnValue</span><span class="pun">;</span></li><li class="L5"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">ScalarAttributeType</span><span class="pun">;</span></li><li class="L6"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">TableDescription</span><span class="pun">;</span></li><li class="L7"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">GlobalSecondaryIndex</span><span class="pun">;</span></li><li class="L8"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">Projection</span><span class="pun">;</span></li><li class="L9"><span class="kwd">import</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">.</span><span class="pln">services</span><span class="pun">.</span><span class="pln">dynamodbv2</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="typ">ProjectionType</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="typ">System</span><span class="pun">.</span><span class="pln">setProperty</span><span class="pun">(</span><span class="str">"sqlite4java.library.path"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"native-libs"</span><span class="pun">);</span></li></ol></pre></div><h2>pom.xml</h2><div class="codeBlock java"><span class="title"> pom</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">com</span><span class="pun">.</span><span class="pln">amazonaws</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="typ">DynamoDBLocal</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">version</span><span class="pun">&gt;</span><span class="lit">1.11</span><span class="pun">.</span><span class="lit">86</span><span class="pun">&lt;/</span><span class="pln">version</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">scope</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">&lt;/</span><span class="pln">scope</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">exclusions</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">exclusion</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">                  </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">org</span><span class="pun">.</span><span class="pln">eclipse</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L8"><span class="pln">                  </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">jetty</span><span class="pun">-</span><span class="pln">util</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">              </span><span class="pun">&lt;/</span><span class="pln">exclusion</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">exclusion</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">                  </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">org</span><span class="pun">.</span><span class="pln">eclipse</span><span class="pun">.</span><span class="pln">jetty</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">                  </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">jetty</span><span class="pun">-</span><span class="pln">server</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                </span><span class="pun">&lt;/</span><span class="pln">exclusion</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">           </span><span class="pun">&lt;/</span><span class="pln">exclusions</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">       </span><span class="pun">&lt;/</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">       </span><span class="pun">&lt;</span><span class="pln">dependency</span><span class="pun">&gt;</span><span class="pln">                                                      </span></li><li class="L7"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">com</span><span class="pun">.</span><span class="pln">almworks</span><span class="pun">.</span><span class="pln">sqlite4java</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">                  </span></li><li class="L8"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">sqlite4java</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">version</span><span class="pun">&gt;</span><span class="lit">1.0</span><span class="pun">.</span><span class="lit">392</span><span class="pun">&lt;/</span><span class="pln">version</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">scope</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">&lt;/</span><span class="pln">scope</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">       </span><span class="pun">&lt;/</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">        </span><span class="pun">&lt;</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">com</span><span class="pun">.</span><span class="pln">almworks</span><span class="pun">.</span><span class="pln">sqlite4java</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">libsqlite4java</span><span class="pun">-</span><span class="pln">linux</span><span class="pun">-</span><span class="pln">amd64</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">version</span><span class="pun">&gt;</span><span class="lit">1.0</span><span class="pun">.</span><span class="lit">392</span><span class="pun">&lt;/</span><span class="pln">version</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">type</span><span class="pun">&gt;</span><span class="pln">so</span><span class="pun">&lt;/</span><span class="pln">type</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">scope</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">&lt;/</span><span class="pln">scope</span><span class="pun">&gt;</span></li><li class="L8"><span class="pln">        </span><span class="pun">&lt;/</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">        </span><span class="pun">&lt;</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">com</span><span class="pun">.</span><span class="pln">almworks</span><span class="pun">.</span><span class="pln">sqlite4java</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">libsqlite4java</span><span class="pun">-</span><span class="pln">osx</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">version</span><span class="pun">&gt;</span><span class="lit">1.0</span><span class="pun">.</span><span class="lit">392</span><span class="pun">&lt;/</span><span class="pln">version</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">type</span><span class="pun">&gt;</span><span class="pln">dylib</span><span class="pun">&lt;/</span><span class="pln">type</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">scope</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">&lt;/</span><span class="pln">scope</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">        </span><span class="pun">&lt;/</span><span class="pln">dependency</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">    </span><span class="pun">&lt;</span><span class="pln">repositories</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">        </span><span class="pun">&lt;</span><span class="pln">repository</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">id</span><span class="pun">&gt;</span><span class="pln">dynamodb</span><span class="pun">-</span><span class="pln">local</span><span class="pun">-</span><span class="pln">oregon</span><span class="pun">&lt;/</span><span class="pln">id</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">name</span><span class="pun">&gt;</span><span class="typ">DynamoDB</span><span class="pln"> </span><span class="typ">Local</span><span class="pln"> </span><span class="typ">Release</span><span class="pln"> </span><span class="typ">Repository</span><span class="pun">&lt;/</span><span class="pln">name</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">           </span><span class="pun">&lt;</span><span class="pln">url</span><span class="pun">&gt;</span><span class="pln">https</span><span class="pun">:</span><span class="com">//s3-us-west-2.amazonaws.com/dynamodb-local/release&lt;/url&gt;</span></li><li class="L3"><span class="pln">        </span><span class="pun">&lt;/</span><span class="pln">repository</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">    </span><span class="pun">&lt;/</span><span class="pln">repositories</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">            </span><span class="pun">&lt;</span><span class="pln">plugin</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">groupId</span><span class="pun">&gt;</span><span class="pln">org</span><span class="pun">.</span><span class="pln">apache</span><span class="pun">.</span><span class="pln">maven</span><span class="pun">.</span><span class="pln">plugins</span><span class="pun">&lt;/</span><span class="pln">groupId</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">artifactId</span><span class="pun">&gt;</span><span class="pln">maven</span><span class="pun">-</span><span class="pln">dependency</span><span class="pun">-</span><span class="pln">plugin</span><span class="pun">&lt;/</span><span class="pln">artifactId</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">version</span><span class="pun">&gt;</span><span class="lit">2.10</span><span class="pun">&lt;/</span><span class="pln">version</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">                </span><span class="pun">&lt;</span><span class="pln">executions</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                    </span><span class="pun">&lt;</span><span class="pln">execution</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">id</span><span class="pun">&gt;</span><span class="pln">copy</span><span class="pun">&lt;/</span><span class="pln">id</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">phase</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">-</span><span class="pln">compile</span><span class="pun">&lt;/</span><span class="pln">phase</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">goals</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">                            </span><span class="pun">&lt;</span><span class="pln">goal</span><span class="pun">&gt;</span><span class="pln">copy</span><span class="pun">-</span><span class="pln">dependencies</span><span class="pun">&lt;/</span><span class="pln">goal</span><span class="pun">&gt;</span></li><li class="L8"><span class="pln">                        </span><span class="pun">&lt;/</span><span class="pln">goals</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">                        </span><span class="pun">&lt;</span><span class="pln">configuration</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">                            </span><span class="pun">&lt;!--</span><span class="pln"> copy sqlite binary to correct dir </span><span class="kwd">for</span><span class="pln"> unit tests  </span><span class="pun">--&gt;</span></li><li class="L1"><span class="pln">                            </span><span class="pun">&lt;</span><span class="pln">includeScope</span><span class="pun">&gt;</span><span class="pln">test</span><span class="pun">&lt;/</span><span class="pln">includeScope</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">                            </span><span class="pun">&lt;</span><span class="pln">includeTypes</span><span class="pun">&gt;</span><span class="pln">so</span><span class="pun">,</span><span class="pln">dll</span><span class="pun">,</span><span class="pln">dylib</span><span class="pun">&lt;/</span><span class="pln">includeTypes</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                            </span><span class="pun">&lt;</span><span class="pln">outputDirectory</span><span class="pun">&gt;</span><span class="pln">$</span><span class="pun">{</span><span class="pln">project</span><span class="pun">.</span><span class="pln">basedir</span><span class="pun">}/</span><span class="kwd">native</span><span class="pun">-</span><span class="pln">libs</span><span class="pun">&lt;/</span><span class="pln">outputDirectory</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">                        </span><span class="pun">&lt;/</span><span class="pln">configuration</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">                    </span><span class="pun">&lt;/</span><span class="pln">execution</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                </span><span class="pun">&lt;/</span><span class="pln">executions</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">            </span><span class="pun">&lt;/</span><span class="pln">plugin</span><span class="pun">&gt;</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2022-03-28T10:40:35+08:00" class="article-modify-time">2022/03/28</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-442" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-442" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">AWS 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">DynamoDB 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Java</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_442&quot;}'>How to do Dynamodb unit test </a></li>
+    
+        <li><a href="/docs-blog/article-409-Java-Best-Practice.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_409&quot;}'>Java Best Practice </a></li>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-349-Java-JVM-為何要先暖機，效能才會變好.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_349&quot;}'>Java JVM 為何要先暖機，效能才會變好 </a></li>
+    
+        <li><a href="/docs-blog/article-336-Java-安裝方式與其變數型態.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_336&quot;}'>Java 安裝方式與其變數型態 </a></li>
+    
+        <li><a href="/docs-blog/article-335-Java-Maven-安裝.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_335&quot;}'>Java Maven 安裝 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

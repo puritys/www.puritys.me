@@ -1,0 +1,45 @@
+#div p {
+  margin: 0 20px 10px 20px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #000;
+  line-height: 1.4em;
+}
+
+ 
+.News  {
+  position:relative;
+  overflow: hidden;
+  width:400px;
+  height:180px;
+ 
+}
+.Scrollbar-Up {
+  position: absolute;
+  width: 49px; height: 44px;
+  background-color: #CCC;
+  font-size: 0px;
+  background-image:url(images/arrow_up.jpg);
+}
+.Scrollbar-Track {
+  width: 49px; height: 10px;
+  position: absolute;
+  top: 20px;
+  background-color: #EEE;
+  background-image:url(images/scrollbar_track.jpg);
+}
+.Scrollbar-Handle {
+  width: 49px; height: 21px;
+  position: absolute;
+  background-color: #CCC;
+  background-image:url(images/scrollbar_handle.jpg);
+}
+.Scrollbar-Down {
+  position: absolute;
+  top: 190px;
+  width: 49px; height: 44px;
+  background-color: #CCC;
+  font-size: 0px;
+  background-image:url(images/arrow_down.jpg);
+}
+ 

@@ -223,7 +223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     
     <div class="entry-body">
-        <div class="ezHTML-content"> <br /><p><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en" target="_blank" >Chrome SSH 下載點</a></p><p>Google 幾年前發表了 chrome extension: SSH client，這個 extension 就相當於 putty ，主要是為了 chrome OS 開發的連線工具 ， 等同一個  putty 直接內建於 Chrome Browser 裡，用起來感覺還蠻不錯的，我平常在公司是使用 Mac Retina 開發，而回到家會換成使用 Windows 或是 Mac Air ，每個不同的作業系統，都有不同的 SSH 工具，設定也不一樣 ，所以我選擇用 Chrome SSH client  ，就可以在不同作業系統中使用同一種工具，不用再適應兩種不同環境。</p><h3>如何連線 ptt (BBS)</h3><ul class="list">  <li>host: ptt.cc</li>  <li>account: bbsu</li>  <li>port: 22</li></ul><h3>SSH Client demo</h3><iframe style="width:100%; min-height: 400px; margin:0 auto;" src="https://www.youtube.com/embed/6wygEEF8mDc" frameborder="0" allowfullscreen></iframe><p>從 Chrome Apps 中點擊 Chrome Secure Shell，就會在 Chrome 分頁中自動開啟一個 SSH 頁面，一切操作就像 Putty 一樣，下圖是用 Chrome Secure Shell 連上我自已的伺服器範例 (我有將配色換成白底黑字)。</p><a href="/filemanage/blog_files/file_57.png" target="_blank" ><img src="/filemanage/blog_files/file_57.png"   class="secure" alt="chrome secure shell client setting" link="me" /></a><h2>畫面設定</h2><p>Chrome SSH 還提供了一些基本設定，修改的途徑有兩種。</p><p>第一個方式比較簡單，在開啟 SSH Client 之前，先對著 Chrome SSH 的 Icon 按右鍵，然後點選「選項」，Chrome 就會自動開啟設定的視窗。</p><p>可以設定文字，背景色，以及字型大小，字體等等，另外打開 extension 中的 options 裡面有一個屬性是 <b>user-css</b> 可以讓你載入個人化的 CSS 。</p><p>第二個方式， 要先打開 console ，然後鍵入指令，就可以變更設定，打開 console 前 ，要先修改 Chrome SSH 成用一般視窗開啟，然後點擊「工具」->「開發人員工具」， 這樣 console 就會出現了。</p><h2>用指令修改 SSH 設定的方式</h2><ul class="list">  <li>修改文字顏色 : term_.prefs_.set(&#39;foreground-color&#39;, &#39;#000000&#39;)</li>  <li>修改背景色  : term_.prefs_.set(&#39;background-color&#39;, &#39;black&#39;)</li>  <li>cursor 閃動: term_.prefs_.set(&#39;cursor-blink&#39;, true);</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;audible-bell-sound&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;foreground-color&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;#000000&#39;</span><span class="pun">);</span></li><li class="L2"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;background-color&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;white&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-family&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;monaco&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-size&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="lit">15</span><span class="pun">);</span></li><li class="L5"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-smoothing&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;none&#39;</span><span class="pun">);</span></li><li class="L6"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;cursor-blink&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li></ol></pre></div><p>設定環境變數 term_.prefs_.set(&#39;environment&#39;, {TERM: &#39;hterm&#39;})</p><h2>Import Public/Private key</h2><p>打開 SSH Tools 後，在 Identity 右邊點擊 「Import...」，然後要選擇兩個檔案，Public key [id_dsa.pub]，以及 Private key [id_dsa]。</p><p><b>移除 chrome 中的 Private/Public key 的方式。</b></p><p>先打開 chrome console ，再打開 ssh tools ，接著輸入下列的指令</p><ul class="list">  <li>term_.command.removeDirectory(&#39;/.ssh/&#39;)</li></ul><h2>重要的選項</h2><p>Chrome SSH 提供了一些個人化的選項，讓我們可以依個人嗜好來做設定。</p><table class="table"><tr><th>option</th><th>說明</th></tr><tr><td>pass-ctrl-number</td><td>設定成 "1" : 這樣才能使用 "ctrl+n(數字)" 來切換至 Chrome 的視窗</td></tr><tr><td>ctrl-v-paste</td><td>打勾後才能使用 "ctrl+v" 貼上文字，這個會影響到 vim 操作，所以我個人是不會打開這個選項。</td></tr><tr><td>cursor-blink</td><td>遊標閃爍</td></tr><tr><td>ctrl-plus-minus-zero-zoom</td><td>使用 ctrl 與"加"、"減" 符號來放大與縮小文字。</td></tr></table><h2>傳送指令給 Terminal</h2><p>打開 Google Chrome console ，就可以用 JavaScript 來傳送文字給 Terminal ，例如下面這個範例，我傳送 "aaa" 三個字進 Terminal，還有為了調整一些熱鍵，我想要設定其它熱鍵來當 ctrl+c ，  ctrl+c 的代碼為  "03"，所以我可以用 JS 送出 "03" 的  ASCII 字元 。</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">term_</span><span class="pun">.</span><span class="pln">command</span><span class="pun">.</span><span class="pln">sendString_</span><span class="pun">(</span><span class="str">"aaa"</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="com">// Send [Ctrl+c]</span></li><li class="L3"><span class="pln">term_</span><span class="pun">.</span><span class="pln">command</span><span class="pun">.</span><span class="pln">sendString_</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">fromCharCode</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));</span></li></ol></pre></div><h2>目前碰到的一些問題</h2><ul class="list">  <li>官方版本是不能輸入中文的 (可以安裝我自已改的 Secure shell 來解決這個問題，詳下文 )。</li>  <ul class="list">    <li class="indent1">2017/06 Chrome SSH client 已經可以支援中文，不過打字還是有 bug  ( <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=738172"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=738172</a> ) 。</li>  </ul>  <li>能夠修改的熱鍵不多 。</li></ul><h2>Vim 與 Chrome 熱鍵衝突設定</h2><p>我平常都用 Vim 這個 IDE 來編碼程式碼，但是 vim 的熱鍵與 chrome 會有些衝突，所以我修改了一些 Vim 熱鍵來讓自已操作能夠順蝪一些。</p><h3>Split 切換</h3><p>第一件事就是使用 vim split 功能，平常都是使用 Ctrl+w+方向右鍵 , Ctrl+w+<方向左鍵> 來切換，但是 Ctrl+w 已經被 chrome 用掉了，而且又沒辦法停用他，所以只好改成用 Ctrl+<方向鍵> 來控制，修改方式如下。</p><div class="codeBlock linux"><span class="title"> 增加 ~/.vimrc 的內容</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5C</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">l</span></li><li class="L1"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5D</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">h</span></li><li class="L2"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5A</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">k</span></li><li class="L3"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5B</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">j</span></li></ol></pre></div><h3>vim tab 切換</h3><p>平常使用 vim7.2 內建就有 tab 的功能用，這裡我增加 Shift+<方向鍵> 來切換 vim Tab，另外加也可以使用 "Tab 鍵"來切換。</p><div class="codeBlock linux"><span class="title"> 增加 ~/.vimrc 的內容</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">2D</span><span class="pln"> </span><span class="pun">:</span><span class="pln">tabp</span><span class="pun">&lt;</span><span class="pln">CR</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">2C</span><span class="pln"> </span><span class="pun">:</span><span class="pln">tabn</span><span class="pun">&lt;</span><span class="pln">CR</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="typ">Tab</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">w</span></li></ol></pre></div><h3>numpad 數字鍵 (新版 SSH Client 已經修好)</h3><p>chrome SSH tool 的數字鍵有點小 bug ，在 tab 模示下，進入 screen 後，數字鍵就無法使用了，得輸入指令設定 applicationKeypad = false 才行，而且每次打開 ssh client 都要重新設定</p><ul class="list">  <li>term_.keyboard.applicationKeypad = false</li></ul><h2>自已修改 Chrome Secure Shell !</h2><p>因為個人習慣，我把 Mac 的 command 鍵改成 ctrl ，原先的 ctrl 改成 command 鍵，而 Chrome SSH 預設 "ctrl+c" 是中斷指令，我的這個修改剛好與 Chrome SSH 有衝突，造成 ctrl+c 不能中斷指令，command+v 不能貼上，所以我只好直接複製一份 Chrome SSH extension ，加入自已想要的功能，並且也加入了記憶密碼的功能，修改後的原始碼如下。</p><ul class="list">  <li><a href="https://github.com/puritys/chromeSecureShell"  target="_blank">https://github.com/puritys/chromeSecureShell</a></li></ul><br /><p>如果你安裝我自已改的 Chrome SSH ，就會多出以下幾個選項可以使用。</p><table class="table"><tr><th>option</th><th>說明</th></tr><tr><td>meta-as-ctrl</td><td>將 Mac 的 command 鍵對應到 ctrl</td></tr><tr><td>ctrl-v-paste-hacky</td><td>強迫將 "ctrl+v" 改成貼上的指令 <br /> (因為我習慣將 Mac 的 Ctrl 與 Cmd 交換熱鍵，所以要 hack 成 ctrl +v 也會貼上，負負得正)</td></tr><tr><td>meta-plus-arrow-switch-tab</td><td>使用 Mac command+ [方向鍵] 來左右切換視窗 <br /> ( window 也可以使用，先安裝 AutoHotkey 這套軟體，將熱鍵 map 成 #Left::!^Left   )</td></tr><tr><td>ctrl-plus-arrow-switch-tab</td><td>使用 ctrl+ [方向鍵] 來左右切換視窗</td></tr><tr><td>enable-input-method</td><td>啟用輸入中文的功能</td></tr></table> <br /><p>安裝方式如下：</p><ul class="list">  <li>git clone <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0a7a9b480a7a9b4a8b5a2eea3afad">[email&#160;protected]</a>:puritys/chromeSecureShell.git</li>  <li>打開 Chrome 瀏覽器，並在網址輸入 "chrome://extensions/" 。</li>  <li>接著打開 "開發者模式(Developer mode)"</li>  <li>點擊按鈕： 載入未封裝程式 (Load unpacked extension)</li>  <li>選擇資料夾 chromeSecureShell  ，這樣就安裝完成囉。</li></ul><h3>儲存登入密碼或 Private Key PassPhrase</h3><p>Chrome SSH 並沒有儲存密碼的功能，如果你要一次打開好幾個 Terminal ，那麼你就得輸入很多次密碼，我自已修改的這一套 Chrome SSH 增加了密碼的欄位，當你輸入密碼後，程式就會將密碼加密後，儲存在 Local 端，下次登入 SSH 就不用在輸入密碼囉，這個功能也支援 Private Key Passphrase 所以你也可以在密碼欄位輸入 Passphrase 。</p><p>安全性方面：所有的密碼都會加密過，再儲存在本機的 Local Storage 上，並沒有上傳到 Google Cloud Storage ，所以不用擔心密碼外漏。</p><p>範例如下圖多了一個 password 的欄位.</p><img src="/filemanage/blog_files/file_212.png"   /><h2>Developer guide line</h2><ul class="list">  <li><a href="http://git.chromium.org/gitweb/?p=chromiumos/platform/assets.git;a=blob_plain;f=chromeapps/hterm/doc/hack.txt;hb=HEAD"  target="_blank">http://git.chromium.org/gitweb/?p=chromiumos/platform/assets.git;a=blob_plain;f=chromeapps/hterm/doc/hack.txt;hb=HEAD</a></li></ul><p>這個連結裡的說明，包含了 Google Chrome ssh developer guide，有興趣的話，就可以自行研究 Google 是怎麼寫出這個工具的。</p><h2>參考資料</h2><ul class="list">  <li><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en"  target="_blank">https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en</a>  : chrome SSH extension</li>  <li><a href="https://chromium.googlesource.com/apps/libapps/+/master/nassh/doc/FAQ.md"  target="_blank">https://chromium.googlesource.com/apps/libapps/+/master/nassh/doc/FAQ.md</a> chrome SSH FAQ</li>  <li><a href="https://chromium.googlesource.com/apps/libapps/+/master/hterm/"  target="_blank">https://chromium.googlesource.com/apps/libapps/+/master/hterm/</a>  Chrome SSH前端原始碼</li>  <li><a href="https://chromium.googlesource.com/chromiumos/platform/assets/+/master/chromeapps/ssh_client"  target="_blank">https://chromium.googlesource.com/chromiumos/platform/assets/+/master/chromeapps/ssh_client</a> Portable Native SSH Client</li>  <li>中文輸入法 Bug</li>  <ul class="list">    <li class="indent1"><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=218382"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=218382</a></li>    <li class="indent1"><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=738172"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=738172</a></li>  </ul></ul></div>
+        <div class="ezHTML-content"> <br /><p><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en" target="_blank" >Chrome SSH 下載點</a></p><p>Google 幾年前發表了 chrome extension: SSH client，這個 extension 就相當於 putty ，主要是為了 chrome OS 開發的連線工具 ， 等同一個  putty 直接內建於 Chrome Browser 裡，用起來感覺還蠻不錯的，我平常在公司是使用 Mac Retina 開發，而回到家會換成使用 Windows 或是 Mac Air ，每個不同的作業系統，都有不同的 SSH 工具，設定也不一樣 ，所以我選擇用 Chrome SSH client  ，就可以在不同作業系統中使用同一種工具，不用再適應兩種不同環境。</p><h3>如何連線 ptt (BBS)</h3><ul class="list">  <li>host: ptt.cc</li>  <li>account: bbsu</li>  <li>port: 22</li></ul><h3>SSH Client demo</h3><iframe style="width:100%; min-height: 400px; margin:0 auto;" src="https://www.youtube.com/embed/6wygEEF8mDc" frameborder="0" allowfullscreen></iframe><p>從 Chrome Apps 中點擊 Chrome Secure Shell，就會在 Chrome 分頁中自動開啟一個 SSH 頁面，一切操作就像 Putty 一樣，下圖是用 Chrome Secure Shell 連上我自已的伺服器範例 (我有將配色換成白底黑字)。</p><a href="/filemanage/blog_files/file_57.png" target="_blank" ><img src="/filemanage/blog_files/file_57.png"   class="secure" alt="chrome secure shell client setting" link="me" /></a><h2>畫面設定</h2><p>Chrome SSH 還提供了一些基本設定，修改的途徑有兩種。</p><p>第一個方式比較簡單，在開啟 SSH Client 之前，先對著 Chrome SSH 的 Icon 按右鍵，然後點選「選項」，Chrome 就會自動開啟設定的視窗。</p><p>可以設定文字，背景色，以及字型大小，字體等等，另外打開 extension 中的 options 裡面有一個屬性是 <b>user-css</b> 可以讓你載入個人化的 CSS 。</p><p>第二個方式， 要先打開 console ，然後鍵入指令，就可以變更設定，打開 console 前 ，要先修改 Chrome SSH 成用一般視窗開啟，然後點擊「工具」->「開發人員工具」， 這樣 console 就會出現了。</p><h2>用指令修改 SSH 設定的方式</h2><ul class="list">  <li>修改文字顏色 : term_.prefs_.set(&#39;foreground-color&#39;, &#39;#000000&#39;)</li>  <li>修改背景色  : term_.prefs_.set(&#39;background-color&#39;, &#39;black&#39;)</li>  <li>cursor 閃動: term_.prefs_.set(&#39;cursor-blink&#39;, true);</li></ul><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;audible-bell-sound&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;foreground-color&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;#000000&#39;</span><span class="pun">);</span></li><li class="L2"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;background-color&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;white&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-family&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;monaco&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-size&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="lit">15</span><span class="pun">);</span></li><li class="L5"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;font-smoothing&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;none&#39;</span><span class="pun">);</span></li><li class="L6"><span class="pln">term_</span><span class="pun">.</span><span class="pln">prefs_</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">&#39;cursor-blink&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li></ol></pre></div><p>設定環境變數 term_.prefs_.set(&#39;environment&#39;, {TERM: &#39;hterm&#39;})</p><h2>Import Public/Private key</h2><p>打開 SSH Tools 後，在 Identity 右邊點擊 「Import...」，然後要選擇兩個檔案，Public key [id_dsa.pub]，以及 Private key [id_dsa]。</p><p><b>移除 chrome 中的 Private/Public key 的方式。</b></p><p>先打開 chrome console ，再打開 ssh tools ，接著輸入下列的指令</p><ul class="list">  <li>term_.command.removeDirectory(&#39;/.ssh/&#39;)</li></ul><h2>重要的選項</h2><p>Chrome SSH 提供了一些個人化的選項，讓我們可以依個人嗜好來做設定。</p><table class="table"><tr><th>option</th><th>說明</th></tr><tr><td>pass-ctrl-number</td><td>設定成 "1" : 這樣才能使用 "ctrl+n(數字)" 來切換至 Chrome 的視窗</td></tr><tr><td>ctrl-v-paste</td><td>打勾後才能使用 "ctrl+v" 貼上文字，這個會影響到 vim 操作，所以我個人是不會打開這個選項。</td></tr><tr><td>cursor-blink</td><td>遊標閃爍</td></tr><tr><td>ctrl-plus-minus-zero-zoom</td><td>使用 ctrl 與"加"、"減" 符號來放大與縮小文字。</td></tr></table><h2>傳送指令給 Terminal</h2><p>打開 Google Chrome console ，就可以用 JavaScript 來傳送文字給 Terminal ，例如下面這個範例，我傳送 "aaa" 三個字進 Terminal，還有為了調整一些熱鍵，我想要設定其它熱鍵來當 ctrl+c ，  ctrl+c 的代碼為  "03"，所以我可以用 JS 送出 "03" 的  ASCII 字元 。</p><div class="codeBlock my_js"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln">term_</span><span class="pun">.</span><span class="pln">command</span><span class="pun">.</span><span class="pln">sendString_</span><span class="pun">(</span><span class="str">"aaa"</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="com">// Send [Ctrl+c]</span></li><li class="L3"><span class="pln">term_</span><span class="pun">.</span><span class="pln">command</span><span class="pun">.</span><span class="pln">sendString_</span><span class="pun">(</span><span class="typ">String</span><span class="pun">.</span><span class="pln">fromCharCode</span><span class="pun">(</span><span class="lit">3</span><span class="pun">));</span></li></ol></pre></div><h2>目前碰到的一些問題</h2><ul class="list">  <li>官方版本是不能輸入中文的 (可以安裝我自已改的 Secure shell 來解決這個問題，詳下文 )。</li>  <ul class="list">    <li class="indent1">2017/06 Chrome SSH client 已經可以支援中文，不過打字還是有 bug  ( <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=738172"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=738172</a> ) 。</li>  </ul>  <li>能夠修改的熱鍵不多 。</li></ul><h2>Vim 與 Chrome 熱鍵衝突設定</h2><p>我平常都用 Vim 這個 IDE 來編碼程式碼，但是 vim 的熱鍵與 chrome 會有些衝突，所以我修改了一些 Vim 熱鍵來讓自已操作能夠順蝪一些。</p><h3>Split 切換</h3><p>第一件事就是使用 vim split 功能，平常都是使用 Ctrl+w+方向右鍵 , Ctrl+w+<方向左鍵> 來切換，但是 Ctrl+w 已經被 chrome 用掉了，而且又沒辦法停用他，所以只好改成用 Ctrl+<方向鍵> 來控制，修改方式如下。</p><div class="codeBlock linux"><span class="title"> 增加 ~/.vimrc 的內容</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5C</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">l</span></li><li class="L1"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5D</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">h</span></li><li class="L2"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5A</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">k</span></li><li class="L3"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">5B</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">j</span></li></ol></pre></div><h3>vim tab 切換</h3><p>平常使用 vim7.2 內建就有 tab 的功能用，這裡我增加 Shift+<方向鍵> 來切換 vim Tab，另外加也可以使用 "Tab 鍵"來切換。</p><div class="codeBlock linux"><span class="title"> 增加 ~/.vimrc 的內容</span><pre class="prettyprint lang-linux linenums" ><ol class="linenums"><li class="L0"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">2D</span><span class="pln"> </span><span class="pun">:</span><span class="pln">tabp</span><span class="pun">&lt;</span><span class="pln">CR</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="pln">ESC</span><span class="pun">&gt;[</span><span class="lit">1</span><span class="pun">;</span><span class="lit">2C</span><span class="pln"> </span><span class="pun">:</span><span class="pln">tabn</span><span class="pun">&lt;</span><span class="pln">CR</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">nmap </span><span class="pun">&lt;</span><span class="typ">Tab</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">C</span><span class="pun">-</span><span class="pln">w</span><span class="pun">&gt;</span><span class="pln">w</span></li></ol></pre></div><h3>numpad 數字鍵 (新版 SSH Client 已經修好)</h3><p>chrome SSH tool 的數字鍵有點小 bug ，在 tab 模示下，進入 screen 後，數字鍵就無法使用了，得輸入指令設定 applicationKeypad = false 才行，而且每次打開 ssh client 都要重新設定</p><ul class="list">  <li>term_.keyboard.applicationKeypad = false</li></ul><h2>自已修改 Chrome Secure Shell !</h2><p>因為個人習慣，我把 Mac 的 command 鍵改成 ctrl ，原先的 ctrl 改成 command 鍵，而 Chrome SSH 預設 "ctrl+c" 是中斷指令，我的這個修改剛好與 Chrome SSH 有衝突，造成 ctrl+c 不能中斷指令，command+v 不能貼上，所以我只好直接複製一份 Chrome SSH extension ，加入自已想要的功能，並且也加入了記憶密碼的功能，修改後的原始碼如下。</p><ul class="list">  <li><a href="https://github.com/puritys/chromeSecureShell"  target="_blank">https://github.com/puritys/chromeSecureShell</a></li></ul><br /><p>如果你安裝我自已改的 Chrome SSH ，就會多出以下幾個選項可以使用。</p><table class="table"><tr><th>option</th><th>說明</th></tr><tr><td>meta-as-ctrl</td><td>將 Mac 的 command 鍵對應到 ctrl</td></tr><tr><td>ctrl-v-paste-hacky</td><td>強迫將 "ctrl+v" 改成貼上的指令 <br /> (因為我習慣將 Mac 的 Ctrl 與 Cmd 交換熱鍵，所以要 hack 成 ctrl +v 也會貼上，負負得正)</td></tr><tr><td>meta-plus-arrow-switch-tab</td><td>使用 Mac command+ [方向鍵] 來左右切換視窗 <br /> ( window 也可以使用，先安裝 AutoHotkey 這套軟體，將熱鍵 map 成 #Left::!^Left   )</td></tr><tr><td>ctrl-plus-arrow-switch-tab</td><td>使用 ctrl+ [方向鍵] 來左右切換視窗</td></tr><tr><td>enable-input-method</td><td>啟用輸入中文的功能</td></tr></table> <br /><p>安裝方式如下：</p><ul class="list">  <li>git clone <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="81e6e8f5c1e6e8f5e9f4e3afe2eeec">[email&#160;protected]</a>:puritys/chromeSecureShell.git</li>  <li>打開 Chrome 瀏覽器，並在網址輸入 "chrome://extensions/" 。</li>  <li>接著打開 "開發者模式(Developer mode)"</li>  <li>點擊按鈕： 載入未封裝程式 (Load unpacked extension)</li>  <li>選擇資料夾 chromeSecureShell  ，這樣就安裝完成囉。</li></ul><h3>儲存登入密碼或 Private Key PassPhrase</h3><p>Chrome SSH 並沒有儲存密碼的功能，如果你要一次打開好幾個 Terminal ，那麼你就得輸入很多次密碼，我自已修改的這一套 Chrome SSH 增加了密碼的欄位，當你輸入密碼後，程式就會將密碼加密後，儲存在 Local 端，下次登入 SSH 就不用在輸入密碼囉，這個功能也支援 Private Key Passphrase 所以你也可以在密碼欄位輸入 Passphrase 。</p><p>安全性方面：所有的密碼都會加密過，再儲存在本機的 Local Storage 上，並沒有上傳到 Google Cloud Storage ，所以不用擔心密碼外漏。</p><p>範例如下圖多了一個 password 的欄位.</p><img src="/filemanage/blog_files/file_212.png"   /><h2>Developer guide line</h2><ul class="list">  <li><a href="http://git.chromium.org/gitweb/?p=chromiumos/platform/assets.git;a=blob_plain;f=chromeapps/hterm/doc/hack.txt;hb=HEAD"  target="_blank">http://git.chromium.org/gitweb/?p=chromiumos/platform/assets.git;a=blob_plain;f=chromeapps/hterm/doc/hack.txt;hb=HEAD</a></li></ul><p>這個連結裡的說明，包含了 Google Chrome ssh developer guide，有興趣的話，就可以自行研究 Google 是怎麼寫出這個工具的。</p><h2>參考資料</h2><ul class="list">  <li><a href="https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en"  target="_blank">https://chrome.google.com/webstore/detail/secure-shell/pnhechapfaindjhompbnflcldabbghjo?hl=en</a>  : chrome SSH extension</li>  <li><a href="https://chromium.googlesource.com/apps/libapps/+/master/nassh/doc/FAQ.md"  target="_blank">https://chromium.googlesource.com/apps/libapps/+/master/nassh/doc/FAQ.md</a> chrome SSH FAQ</li>  <li><a href="https://chromium.googlesource.com/apps/libapps/+/master/hterm/"  target="_blank">https://chromium.googlesource.com/apps/libapps/+/master/hterm/</a>  Chrome SSH前端原始碼</li>  <li><a href="https://chromium.googlesource.com/chromiumos/platform/assets/+/master/chromeapps/ssh_client"  target="_blank">https://chromium.googlesource.com/chromiumos/platform/assets/+/master/chromeapps/ssh_client</a> Portable Native SSH Client</li>  <li>中文輸入法 Bug</li>  <ul class="list">    <li class="indent1"><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=218382"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=218382</a></li>    <li class="indent1"><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=738172"  target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=738172</a></li>  </ul></ul></div>
     </div>
     <div class="entry-footer">
         <p class="article-modify-author">This post was last modified by
@@ -266,187 +266,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
 
 </div>
-
-        
-                
-
-<div class="comment-group clearfix" >
-    <h2>目前回應 Comments<em>(5 comments)</em></h2>
-    <ul class="media-list media-list-comment">
-        
-        <li class="media clearfix">
-            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-            <div class="media-body clearfix">
-                <h4 class="media-heading">
-                    <a href="#">wei</a>
-                    <span class="media-sub">2018/11/20</span>
-                </h4>
-                <p>請問你知道如何讓big5編碼的檔案正常顯示嗎?<br /></p>
-                
-                <a class="btn pull-right" href="#">Reply</a>
-                <div class="media">
-                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-                    <div class="media-body clearfix">
-                        <h4 class="media-heading">
-                            <a href="#">Admin</a>
-                            <span class="media-sub"></span>
-                        </h4>
-                        <p><p>	使用&nbsp; vim&nbsp; 的話，.vimrc 要加入以下設定。</p><p>	set encoding=utf-8</p><p>	set fileencodings=utf-8,big5,cp936,latin1</p><p>	set termencoding=utf-8</p><p>	&nbsp;</p><p>	Linux 環境變數加入以下設定</p><p>	LC_ALL=en_US.UTF-8</p><p>	LC_CTYPE=en_US.UTF-8</p></p>
-                    </div>
-                </div>
-                
-            </div>
-        </li>
-        
-        <li class="media clearfix">
-            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-            <div class="media-body clearfix">
-                <h4 class="media-heading">
-                    <a href="#">iLinux</a>
-                    <span class="media-sub">2016/09/22</span>
-                </h4>
-                <p>0.8.34和chrom54不兼容，能不能更新一下？</p>
-                
-                <a class="btn pull-right" href="#">Reply</a>
-                <div class="media">
-                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-                    <div class="media-body clearfix">
-                        <h4 class="media-heading">
-                            <a href="#">Admin</a>
-                            <span class="media-sub"></span>
-                        </h4>
-                        <p><p>	感謝提醒，我已經更新一版可以在 chrome 54 正常使用，請執行 git pull 即可。</p></p>
-                    </div>
-                </div>
-                
-            </div>
-        </li>
-        
-        <li class="media clearfix">
-            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-            <div class="media-body clearfix">
-                <h4 class="media-heading">
-                    <a href="#">andy</a>
-                    <span class="media-sub">2016/09/07</span>
-                </h4>
-                <p>為何不用terminal 自带的 ssh</p>
-                
-                <a class="btn pull-right" href="#">Reply</a>
-                <div class="media">
-                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-                    <div class="media-body clearfix">
-                        <h4 class="media-heading">
-                            <a href="#">Admin</a>
-                            <span class="media-sub"></span>
-                        </h4>
-                        <p><p>	我除了使用 Mac 之外，還有再使用 Windows ，兩個環境都需要用到 SSH ，以前 Windows 我都是裝 putty 或 cygwin ， Mac 會使用 iterm2 &nbsp;，面對不同軟體就有不同的設定，例如 &nbsp;[Ctrl + 方向鍵] 在不同環境會有不同的輸出值。</p><p>	&nbsp;</p><p>	會改用 Chrome SSH Client &nbsp;，是為了統一設定，不管在 Windows 或是 Mac 都有一致的使用者體驗，另外文字配色也可以一致，如果我今天突然心血來潮，想要把 ssh terminal 改成紅色背景，那麼我只要在 Mac 環境改一次，然後將配色表輸出，複製到 Windows 環境即可。</p><p>	&nbsp;</p></p>
-                    </div>
-                </div>
-                
-            </div>
-        </li>
-        
-        <li class="media clearfix">
-            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-            <div class="media-body clearfix">
-                <h4 class="media-heading">
-                    <a href="#">evoup</a>
-                    <span class="media-sub">2016/07/30</span>
-                </h4>
-                <p>感谢，支持简体中文输入</p>
-                
-            </div>
-        </li>
-        
-        <li class="media clearfix">
-            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-            <div class="media-body clearfix">
-                <h4 class="media-heading">
-                    <a href="#">Chan</a>
-                    <span class="media-sub">2014/08/06</span>
-                </h4>
-                <p>剛用了一下還不錯，請問一下他可以記憶密碼，另外是能貼上文字嗎？</p>
-                
-                <a class="btn pull-right" href="#">Reply</a>
-                <div class="media">
-                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
-                    <div class="media-body clearfix">
-                        <h4 class="media-heading">
-                            <a href="#">Admin</a>
-                            <span class="media-sub"></span>
-                        </h4>
-                        <p><div>	<div>		1. 我有把 Chrome SSH 原始碼拿來修改，加上了一些我想要的功能，另外也加上了記憶密碼的功能，你可以參考本篇文章中的方式安裝，或是直接參考我&nbsp;<a href="https://github.com/puritys/chromeSecureShell">github</a>&nbsp;的說明。</div>	<div>		&nbsp;</div></div><div>	2. Windows 貼上文字方式，可以按 Ctrl + v &nbsp;或是 &nbsp;shift + insert 貼上就可以了，另外 Chrome SSH Options 中有兩個選項&nbsp;<span style="color: rgb(48, 57, 66); font-family: &#39;Chrome Droid Sans&#39;, &#39;Droid Sans Fallback&#39;, &#39;Lucida Grande&#39;, sans-serif;">ctrl-v-paste 與 &nbsp;shift-insert-paste ，必須先打開，貼上的功能才能生效 。</span></div><div>	&nbsp;</div><div>	3. Mac 則是用 Command + v 來貼上文字，一樣 Chrome SSH Options 中的選項&nbsp;<span style="color: rgb(48, 57, 66); font-family: &#39;Chrome Droid Sans&#39;, &#39;Droid Sans Fallback&#39;, &#39;Lucida Grande&#39;, sans-serif;">ctrl-v-paste &nbsp;必須打開。</span></div><div>	&nbsp;</div><div>	&nbsp;</div><div>	&nbsp;</div><div id="simple_newqq1">	&nbsp;</div></p>
-                    </div>
-                </div>
-                
-            </div>
-        </li>
-        
-    </ul>
-</div>
-
-
-
-    <div class="comment-group">
-        <h2>回應 (Leave a comment)</h2>
-        <form class="form form-comment" method="post">
-            <input type="hidden" name="act" value="reply">
-            <input type="hidden" name="parentId" value="eDB2zEtWZg50DDWz/IH0NgQ7/mhg0adx9VjFBoxKQLNStLlt98eOoArSZNKWFA1DqYKt1qeMv+UFrIAQzathRZ" />
-            <a class="form-thumb" href="#"><img src="//www.puritys.me/templates/static/images/thumb_nobody.png"></a>
-            <div class="form-body">
-                <div class="form-row ">
-                    <label class="form-label" for="name">Name</label>
-                    <div class="form-input">
-                        <input id="name" class="form-control" name="name" type="text" value="">
-                        <span class="form-message">
-                            
-                        </span>
-                    </div>
-                </div>
-                <div class="form-row ">
-                    <label class="form-label" for="email">E-mail</label>
-                    <div class="form-input">
-                        <input id="email" class="form-control" name="email" type="text" value="">
-                        <span class="form-message">
-                            
-                        </span>
-                    </div>
-                </div>
-                <div class="form-row ">
-                    <label class="form-label" for="message">Message</label>
-                    <div class="form-input">
-                        <textarea id="message" name="message" class="form-control"></textarea>
-                        <span class="form-message">
-                            
-                        </span>
-                    </div>
-                </div>
-                
-
-                
-
-                
-                <div class="form-row security_codeBox">
-                    <label class="form-label">
-                    </label>
-                    <div class="form-input">
-                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAABkD-WnGwGW7PRq"></div>
-                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-                        <span class="form-message">
-                            
-                        </span>
-                    </div>
-                </div>
-                
-
-                <div class="form-action">
-                    <button class="btn">Submit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
 
         
             

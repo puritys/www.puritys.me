@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>[Java]  PowerMock 单元测试 : mock private method</title>
+    <meta name="keywords" content="Unit Test, Java" />
+    <meta name="description" content="這篇文章說明如果 Mock private Method ，幫助你減化 unit test 範圍，進而提升寫測試的意願與讓測試碼更好維護。假如你想測試 class 中的 Method A ，而這個 Method A 分別又去 call Method B / C ，為了降低測試的範圍，我們會希望 Mock Method B 和 C 的 return 值 (mock 是指模擬物件的" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-458-[Java]-PowerMock-单元测试-:-mock-private-method.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-458-[Java]-PowerMock-单元测试-:-mock-private-method.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Java" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Java</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-458">
+                    <em><span>[Java]  PowerMock 单元...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-458-[Java]-PowerMock-\u55ae\u5143\u6e2c\u8a66-:-mock-private-method.html"},"headline":"[Java]  PowerMock \u55ae\u5143\u6e2c\u8a66 : mock private method","image":"","datePublished":"2022-01-01T23:32:52+08:00","dateModified":"2022-01-16T14:22:13+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u9019\u7bc7\u6587\u7ae0\u8aaa\u660e\u5982\u679c Mock private Method \uff0c\u5e6b\u52a9\u4f60\u6e1b\u5316 unit test \u7bc4\u570d\uff0c\u9032\u800c\u63d0\u5347\u5beb\u6e2c\u8a66\u7684\u610f\u9858\u8207\u8b93\u6e2c\u8a66\u78bc\u66f4\u597d\u7dad\u8b77\u3002\r\u5047\u5982\u4f60\u60f3\u6e2c\u8a66 class \u4e2d\u7684 Method A \uff0c\u800c\u9019\u500b "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2022</div>
+            <div class="month">Jan</div>
+            <div class="day">01</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html"><span>[Java]  PowerMock 单元测试 : mock private method</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Unit Test">Unit Test</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Java">Java</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>这篇文章说明如果 Mock private Method ，帮助你减化 unit test 范围，进而提升写测试的意愿与让测试码更好维护。</p><p>假如你想测试 class 中的 Method A ，而这个 Method A 分别又去 call Method B / C ，为了降低测试的范围，我们会希望 Mock Method B 和 C 的 return 值 (<code>mock 是指模拟物件的行为</code>)。</p><p>B / C 如果是 public 或是 protected method ，我们只要使用 <code>mockito</code> or <code>spock</code> 就能轻松做 到 mock，困难的是如果想 mock 的对象是 private method ， private method 只有 object  自已可以 access ，其它 test framework 都没办法对 private method 下手，目前唯有 <code>PowerMock</code> ，它直接修改了 java class byte-code ，把 private 改成 public accessible，让测试码能直接操作 private method 。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="typ">Method</span><span class="pln"> A </span></li><li class="L1"><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="typ">Call</span><span class="pln"> </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Method</span><span class="pln"> B</span></li><li class="L2"><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="typ">Call</span><span class="pln"> </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Method</span><span class="pln"> C</span></li></ol></pre></div><h2>powerMock 使用范例</h2><ul class="list">  <li>我有一个 class App.java，其中 log 是 public ， logInternal 是我想 mock 的 private method</li></ul><div class="codeBlock java"><span class="title"> App.java</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="kwd">package</span><span class="pln"> com</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">App</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">App</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    </span><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> log</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"run log"</span><span class="pun">);</span></li><li class="L0"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">logInternal</span><span class="pun">();</span></li><li class="L1"><span class="pln">    </span><span class="pun">}</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> logInternal</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"run logInternal"</span><span class="pun">);</span></li><li class="L5"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"internal"</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><ul class="list">  <li>class AppTest.java: 需要使用 PowerMock 中的 createPartialMock / expectPrivate / replay 这 3 个</li></ul><div class="codeBlock java"><span class="title"> AppTest.java</span><pre class="prettyprint lang-java linenums" ><ol class="linenums"><li class="L0"><span class="kwd">package</span><span class="pln"> com</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">junit</span><span class="pun">.</span><span class="typ">Test</span><span class="pun">;</span></li><li class="L3"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">junit</span><span class="pun">.</span><span class="pln">runner</span><span class="pun">.</span><span class="typ">RunWith</span><span class="pun">;</span></li><li class="L4"><span class="kwd">import</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">junit</span><span class="pun">.</span><span class="typ">Assert</span><span class="pun">.</span><span class="pln">assertEquals</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">powermock</span><span class="pun">.</span><span class="pln">api</span><span class="pun">.</span><span class="pln">easymock</span><span class="pun">.</span><span class="typ">PowerMock</span><span class="pun">;</span></li><li class="L7"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">powermock</span><span class="pun">.</span><span class="pln">core</span><span class="pun">.</span><span class="pln">classloader</span><span class="pun">.</span><span class="pln">annotations</span><span class="pun">.</span><span class="typ">PrepareForTest</span><span class="pun">;</span></li><li class="L8"><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">powermock</span><span class="pun">.</span><span class="pln">modules</span><span class="pun">.</span><span class="pln">junit4</span><span class="pun">.</span><span class="typ">PowerMockRunner</span><span class="pun">;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="lit">@RunWith</span><span class="pun">(</span><span class="typ">PowerMockRunner</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">)</span></li><li class="L1"><span class="lit">@PrepareForTest</span><span class="pun">(</span><span class="typ">App</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">)</span></li><li class="L2"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">AppTest</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="lit">@Test</span></li><li class="L5"><span class="pln">    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="typ">TestLog</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">        </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">            </span><span class="typ">App</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> </span><span class="typ">PowerMock</span><span class="pun">.</span><span class="pln">createPartialMock</span><span class="pun">(</span><span class="typ">App</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">,</span><span class="pln"> </span><span class="str">"logInternal"</span><span class="pun">);</span></li><li class="L8"><span class="pln">            </span><span class="typ">PowerMock</span><span class="pun">.</span><span class="pln">expectPrivate</span><span class="pun">(</span><span class="pln">app</span><span class="pun">,</span><span class="pln"> </span><span class="str">"logInternal"</span><span class="pun">).</span><span class="pln">andReturn</span><span class="pun">(</span><span class="str">"mock_result"</span><span class="pun">);</span></li><li class="L9"><span class="pln">            </span><span class="typ">PowerMock</span><span class="pun">.</span><span class="pln">replay</span><span class="pun">(</span><span class="pln">app</span><span class="pun">);</span></li><li class="L0"><span class="pln">            </span><span class="typ">String</span><span class="pln"> ret </span><span class="pun">=</span><span class="pln"> app</span><span class="pun">.</span><span class="pln">log</span><span class="pun">();</span></li><li class="L1"><span class="pln">            assertEquals</span><span class="pun">(</span><span class="str">"Result is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> ret</span><span class="pun">,</span><span class="pln"> ret</span><span class="pun">,</span><span class="pln"> </span><span class="str">"mock_result"</span><span class="pun">);</span></li><li class="L2"><span class="pln">        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Exception</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">            e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span></li><li class="L4"><span class="pln">        </span><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    </span><span class="pun">}</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><ul class="list">  <li>pom.xml dependency</li></ul><div class="codeBlock xml"><span class="title">Example</span><pre class="prettyprint lang-xml linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;dependency&gt;</span></li><li class="L1"><span class="pln">            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.powermock</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L2"><span class="pln">            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">powermock-module-junit4</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L3"><span class="pln">            </span><span class="tag">&lt;version&gt;</span><span class="pln">2.0.9</span><span class="tag">&lt;/version&gt;</span></li><li class="L4"><span class="pln">            </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;/dependency&gt;</span></li><li class="L6"><span class="pln">        </span><span class="tag">&lt;dependency&gt;</span></li><li class="L7"><span class="pln">            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.powermock</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L8"><span class="pln">            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">powermock-api-mockito2</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L9"><span class="pln">            </span><span class="tag">&lt;version&gt;</span><span class="pln">2.0.9</span><span class="tag">&lt;/version&gt;</span></li><li class="L0"><span class="pln">            </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span></li><li class="L1"><span class="pln">        </span><span class="tag">&lt;/dependency&gt;</span></li><li class="L2"><span class="pln">        </span><span class="tag">&lt;dependency&gt;</span></li><li class="L3"><span class="pln">            </span><span class="tag">&lt;groupId&gt;</span><span class="pln">org.powermock</span><span class="tag">&lt;/groupId&gt;</span></li><li class="L4"><span class="pln">            </span><span class="tag">&lt;artifactId&gt;</span><span class="pln">powermock-api-easymock</span><span class="tag">&lt;/artifactId&gt;</span></li><li class="L5"><span class="pln">            </span><span class="tag">&lt;version&gt;</span><span class="pln">2.0.9</span><span class="tag">&lt;/version&gt;</span></li><li class="L6"><span class="pln">            </span><span class="tag">&lt;scope&gt;</span><span class="pln">test</span><span class="tag">&lt;/scope&gt;</span></li><li class="L7"><span class="pln">        </span><span class="tag">&lt;/dependency&gt;</span></li></ol></pre></div><h2>build.gradle</h2><p>使用 gradle 的话，build config 可以参考这份</p><div class="codeBlock json"><span class="title">Example</span><pre class="prettyprint lang-json linenums" ><ol class="linenums"><li class="L0"><span class="pln">plugins </span><span class="pun">{</span></li><li class="L1"><span class="pln">    id </span><span class="str">"application"</span></li><li class="L2"><span class="pln">    id </span><span class="str">"java"</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">application </span><span class="pun">{</span></li><li class="L6"><span class="pln">    mainClassName </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;com.App&#39;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">allprojects </span><span class="pun">{</span></li><li class="L1"><span class="pln">    repositories </span><span class="pun">{</span></li><li class="L2"><span class="pln">        mavenCentral</span><span class="pun">()</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">dependencies </span><span class="pun">{</span></li><li class="L7"><span class="pln">    def powerMockVersion</span><span class="pun">=</span><span class="str">"2.0.9"</span></li><li class="L8"><span class="pln">    implementation </span><span class="pun">(</span></li><li class="L9"><span class="pln">        </span><span class="str">"org.powermock:powermock-module-junit4:${powerMockVersion}"</span><span class="pun">,</span></li><li class="L0"><span class="pln">        </span><span class="str">"org.powermock:powermock-api-mockito2:${powerMockVersion}"</span><span class="pun">,</span></li><li class="L1"><span class="pln">        </span><span class="str">"org.powermock:powermock-api-easymock:${powerMockVersion}"</span></li><li class="L2"><span class="pln">    </span><span class="pun">)</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div><h2>参考资料</h2><ul class="list">  <li>PowerMock: <a href="https://github.com/powermock/powermock/wiki/Motivation"  target="_blank">https://github.com/powermock/powermock/wiki/Motivation</a></li>  <li><a href="https://github.com/powermock/powermock-examples-maven/blob/master/DocumentationExamples/src/test/java/powermock/examples/privatemocking/DataServiceTest.java"  target="_blank">https://github.com/powermock/powermock-examples-maven/blob/master/DocumentationExamples/src/test/java/powermock/examples/privatemocking/DataServiceTest.java</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2022-01-16T14:22:13+08:00" class="article-modify-time">2022/01/16</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-458" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-458" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Unit Test 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_230&quot;}'>過高的 Test Code Coverage 將摧毀一個新專案 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Java 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-160-Sync-&amp;-Async-of-JavaScript-loading.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_160&quot;}'>Sync &amp; Async of JavaScript loading </a></li>
+    
+        <li><a href="/docs-blog/article-130-安裝-v8-Javascript-engine-in-window.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="/docs-blog/article-123-Javascript-setTimeout-執行時間錯亂.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="/docs-blog/article-101-我討厭-YUI-3-.....第五天-Ajax-IO.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="/docs-blog/article-100-我討厭-YUI-3-.....第四天-Skin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="/docs-blog/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-81-我討厭-YUI-3-.....第二天-Event.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="/docs-blog/article-79-Javascript-指標物件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="/docs-blog/article-73-我討厭-YUI-3-.....第一天-Node.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="/docs-blog/article-66-Javascript-變數型態剖析.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="/docs-blog/article-64-Json-to-Array-格式轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-39-Javascript-換行字符.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="/docs-blog/article-14-JS-時間與日期運算.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Java</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-442-How-to-do-Dynamodb-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_442&quot;}'>How to do Dynamodb unit test </a></li>
+    
+        <li><a href="/docs-blog/article-409-Java-Best-Practice.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_409&quot;}'>Java Best Practice </a></li>
+    
+        <li><a href="/docs-blog/article-404-如何測試-Java-Private-Method-Property.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_404&quot;}'>如何測試 Java Private Method / Property </a></li>
+    
+        <li><a href="/docs-blog/article-403-使用-Docker-執行-Maven---mvn-compile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="/docs-blog/article-349-Java-JVM-為何要先暖機，效能才會變好.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_349&quot;}'>Java JVM 為何要先暖機，效能才會變好 </a></li>
+    
+        <li><a href="/docs-blog/article-336-Java-安裝方式與其變數型態.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_336&quot;}'>Java 安裝方式與其變數型態 </a></li>
+    
+        <li><a href="/docs-blog/article-335-Java-Maven-安裝.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_335&quot;}'>Java Maven 安裝 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>PHP Regular Expression</title>
+    <meta name="keywords" content="regular expression" />
+    <meta name="description" content=" Regular Expression 是一種文字的搜尋語法，可以用很簡短的語法，去搜尋文章內容的相關資料，例如我要搜尋 ＜div class=xx＞開頭的 html 內容，就可以使用簡短的 Regular Expression 來實現，簡易的 Reg 使用方式，在之前我寫的 JS 表示法就已經介紹過了，Javascript Rrgular Expression，基本上 php" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-104-PHP-Regular-Expression.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-104-PHP-Regular-Expression.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-104-PHP-Regular-Expression.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-104-PHP-Regular-Expression.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-104">
+                    <em><span>PHP Regular Expression</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-104-PHP-Regular-Expression.html"},"headline":"PHP Regular Expression","image":"","datePublished":"2012-01-28T17:44:41+08:00","dateModified":"2015-02-01T23:15:09+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rRegular Expression \u662f\u4e00\u7a2e\u6587\u5b57\u7684\u641c\u5c0b\u8a9e\u6cd5\uff0c\u53ef\u4ee5\u7528\u5f88\u7c21\u77ed\u7684\u8a9e\u6cd5\uff0c\u53bb\u641c\u5c0b\u6587\u7ae0\u5167\u5bb9\u7684\u76f8\u95dc\u8cc7\u6599\uff0c\u4f8b\u5982\u6211\u8981\u641c\u5c0b \uff1cdiv class=\"xx\"\uff1e\u958b\u982d\u7684 html \u5167\u5bb9\uff0c\u5c31\u53ef\u4ee5\u4f7f\u7528\u7c21\u77ed\u7684 R"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Jan</div>
+            <div class="day">28</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-104-PHP-Regular-Expression.html"><span>PHP Regular Expression</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=regular expression">regular expression</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-104-PHP-Regular-Expression.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>Regular Expression 是一種文字的搜尋語法，可以用很簡短的語法，去搜尋文章內容的相關資料，例如我要搜尋 ＜div class="xx"＞開頭的 html 內容，就可以使用簡短的 Regular Expression 來實現，簡易的 Reg 使用方式，在之前我寫的 JS 表示法就已經介紹過了，<a href="/docs-blog/article-30">Javascript Rrgular Expression</a>，基本上 php  與 JS 的使用方式是大同小異，這裡要介紹一些特殊的 PHP Regular Expression 使用方式。</p><h2>preg_match</h2><p>preg_match 的功能很像 Javascript 的 match，不同於 Javascript 是直接回傳結果， PHP preg_match 的回傳值是 <b>true or false</b> ，而比對的結果是存在<em>第三個參數</em>，所以要記得傳入第三個參數。</p><ul class="list">  <li>第一個參數是 「表示法的規則」</li>  <li>第二個參數是比對的文字內容</li>  <li>第三個參數是比對結果</li></ul><p>下面的範例，是比對一個簡單的英文單字，比對成功後，字串會存入 $result</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"php Regular express"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/express/&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">k</span><span class="pun">=</span><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L3"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span><span class="pln"> </span><span class="com">// output Array ( [0] =&gt; express )</span></li></ol></pre></div><p>下面的範例，則是將「部分比對成功」的字串存進 array，我們在 [a-z]+的兩邊加上括號 「(」「)」，這樣就代表這個字串要獨立存進array中，執行結果，array[0]存的是總比對成功的字串，而 array[1] 就是存入我們自已指定要擷取的字串了。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"php Regular express"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/php&#92;s([a-z]+)/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">k</span><span class="pun">=</span><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L3"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li><li class="L4"><span class="com">//output Array ( [0] =&gt; php Regular [1] =&gt; Regular )</span></li></ol></pre></div><h2>preg_match_all</h2><p>preg_match_all 代表全文比對，類同 Javascript的 「g」:global search ，可以一次將所有比對成功的字串存到 array 。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"a:get b:Regular c:express"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/([a-z]):([a-z]+)/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">k</span><span class="pun">=</span><span class="pln">preg_match_all</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L3"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L4"><span class="com">//印出第一組比對成功的字串</span></li><li class="L5"><span class="com">//output Array ( [0] =&gt; a [1] =&gt; b [2] =&gt; c ) </span></li><li class="L6"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]);</span></li><li class="L7"><span class="com">//印出第二組比對成功的字串</span></li><li class="L8"><span class="com">//output Array ( [0] =&gt; get [1] =&gt; Regular [2] =&gt; express )</span></li></ol></pre></div><h2>preg_split</h2><p>切割字串，依表示法的規則，將字串切割成 array。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"a:get b:Regular c:express"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/&#92;s/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">result</span><span class="pun">=</span><span class="pln">preg_split</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">);</span></li><li class="L3"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li><li class="L4"><span class="com">//Array ( [0] =&gt; a:get [1] =&gt; b:Regular [2] =&gt; c:express )</span></li></ol></pre></div><h2>特殊用法</h2><h2>多行，空行比對</h2><p>一般在比對字串的時候，如果碰到空行，就比對失敗，這時可以使用 「/pattern/<span style="color:#a00;">s</span>」，代表比對多行文字。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"Regular</span></li><li class="L1"><span class="str">php"</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/.+/&#39;</span><span class="pun">;</span></li><li class="L3"><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L4"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li><li class="L5"><span class="com">//只比對到 Regular 就等了，output  Array ( [0] =&gt; Regular ) </span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/.+/s&#39;</span><span class="pun">;</span></li><li class="L8"><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L9"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li><li class="L0"><span class="com">//加了 s ，成功比對正確的文字，Array ( [0] =&gt; Regular php ) </span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/(.+|&#92;n|&#92;r)+/&#39;</span><span class="pun">;</span></li><li class="L3"><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L4"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li><li class="L5"><span class="com">//或是使用 「|」 ，用 or 的方式也可以取得正確的字串。</span></li></ol></pre></div><h2>Email 信箱比對</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c58495f586c414d4540024f434102585b">[email&#160;protected]</a>"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/^[&#92;_a-z&#92;d]+(&#92;.[&#92;_a-z&#92;d]+)*@([&#92;da-z](-[&#92;da-z])?)+(&#92;.[a-z]+)+$/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pln">echo </span><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">);</span></li></ol></pre></div><h2>Url 網址比對</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">text</span><span class="pun">=</span><span class="str">"http://www.domain.com.tw/a.php?search=test1"</span><span class="pun">;</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/^(https?:&#92;/&#92;/)?([&#92;da-z&#92;.-]+)(:[0-9]+)?([&#92;/&#92;w&#92;d&#92;-_&#92;.&#92;%]+)([&#92;w&#92;d&#92;.&#92;-_&#92;%&#92;;]+)?(&#92;?[^&#92;?]+)?$/&#39;</span><span class="pun">;</span></li><li class="L2"><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,$</span><span class="pln">text</span><span class="pun">,$</span><span class="pln">result</span><span class="pun">);</span></li><li class="L3"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">result</span><span class="pun">);</span></li></ol></pre></div><h2>Script 過瀘</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">RegExp</span><span class="pun">=</span><span class="str">&#39;/&lt;[&#92;s]*script[^&gt;]*&gt;.*(&lt;[&#92;s]*&#92;/[&#92;s]*script[&#92;s]*&gt;)?/si&#39;</span><span class="pun">;</span></li></ol></pre></div><h2>PHP RegExp 密技</h2><p>其實 RegExp 是可以斷行的，不過很少有人使用這種寫法，我覺得這種寫法還不錯使用，加上註解說明文字之後，未來會比較方便維護，其它同事也容易看得懂。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pun">$</span><span class="pln">RegExp </span><span class="pun">=</span><span class="pln"> </span><span class="pun">&lt;&lt;&lt;</span><span class="pln">REG</span></li><li class="L2"><span class="pun">{</span></li><li class="L3"><span class="pln">    http</span><span class="pun">:&#92;/&#92;/</span><span class="pln"> </span><span class="pun">#</span><span class="pln">http</span><span class="com">://</span></li><li class="L4"><span class="pln">    </span><span class="pun">([</span><span class="pln">a</span><span class="pun">-</span><span class="pln">z0</span><span class="lit">-9</span><span class="pun">&#92;.]+)</span><span class="pln"> </span><span class="pun">#</span><span class="pln">get domain</span></li><li class="L5"><span class="pln">    </span><span class="pun">&#92;/</span></li><li class="L6"><span class="pln">    </span><span class="pun">([^&#92;?]+)</span><span class="pln"> </span><span class="pun">#</span><span class="pln">get path</span></li><li class="L7"><span class="pun">}</span><span class="pln">x</span></li><li class="L8"><span class="pln">REG</span><span class="pun">;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pun">$</span><span class="pln">link </span><span class="pun">=</span><span class="pln"> </span><span class="str">"http://www.yahoo.com.tw/path/category/2012/index.php"</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">RegExp</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">link</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">REGres</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">print_r</span><span class="pun">($</span><span class="pln">REGres</span><span class="pun">);</span></li></ol></pre></div><h2>參考資料</h2><ul class="list">  <li><a href="http://php.net/manual/en/reference.pcre.pattern.modifiers.php"  target="_blank">http://php.net/manual/en/reference.pcre.pattern.modifiers.php</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-02-01T23:15:09+08:00" class="article-modify-time">2015/02/01</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-104" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-104" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">regular expression 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-30-Javascript-Regular-Expressions-,-表示法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

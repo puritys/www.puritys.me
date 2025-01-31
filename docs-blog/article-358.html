@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>解決 Client/Server 在 32/64 Bit 中的不相容</title>
+    <meta name="keywords" content="Coredump" />
+    <meta name="description" content="公司 OS 要全面升級至 64 Bit 環境，其中包含了超過 20 個機器群組，一時間無法做完，只好先將部分機器升上 64 Bit ，其它舊的機器就保留為 32 Bit ，這代表有些 32 Bit 機器會傳資料給 64 Bit，而問題就來了， 32 Bit 的變數長度跟 64 Bit 是不同的，例如我在 32 Bit 中寫入一個 size_t 4 Bytes 長度的數字， 再把" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-358-解决-Client-Server-在-32-64-Bit-中的不相容.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-358">
+                    <em><span>解決 Client/Server 在 3...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-358-\u89e3\u6c7a-Client-Server-\u5728-32-64-Bit-\u4e2d\u7684\u4e0d\u76f8\u5bb9.html"},"headline":"\u89e3\u6c7a Client\/Server \u5728 32\/64 Bit \u4e2d\u7684\u4e0d\u76f8\u5bb9","image":"","datePublished":"2016-05-08T15:15:36+08:00","dateModified":"2016-05-09T00:33:42+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u516c\u53f8 OS \u8981\u5168\u9762\u5347\u7d1a\u81f3 64 Bit \u74b0\u5883\uff0c\u5176\u4e2d\u5305\u542b\u4e86\u8d85\u904e 20 \u500b\u6a5f\u5668\u7fa4\u7d44\uff0c\u4e00\u6642\u9593\u7121\u6cd5\u505a\u5b8c\uff0c\u53ea\u597d\u5148\u5c07\u90e8\u5206\u6a5f\u5668\u5347\u4e0a 64 Bit \uff0c\u5176\u5b83\u820a\u7684\u6a5f\u5668\u5c31\u4fdd\u7559\u70ba 32 Bit \uff0c\u9019\u4ee3\u8868\u6709\u4e9b 32 Bit \u6a5f"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">May</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html"><span>解決 Client/Server 在 32/64 Bit 中的不相容</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Coredump">Coredump</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-358-解决-Client-Server-在-32-64-Bit-中的不相容.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>公司 OS 要全面升級至 64 Bit 環境，其中包含了超過 20 個機器群組，一時間無法做完，只好先將部分機器升上 64 Bit ，其它舊的機器就保留為 32 Bit ，這代表有些 32 Bit 機器會傳資料給 64 Bit，而問題就來了， 32 Bit  的變數長度跟 64 Bit 是不同的，例如我在 32 Bit 中寫入一個 size_t 4 Bytes 長度的數字， 再把這個變數傳給 64 Bit Server ，這時 Server 會試著去讀取一個 8 Bytes 長度的數字，結果取得的資料就跟 32 Bit 傳給來的值不同。</p><h2>基本變數長度</h2><p>以下是各種變數型態的長度</p><table class="table"><tr><th>Variable</th><th>32 Bit (bytes)</th><th>64 Bit (bytes)</th></tr><tr><td>short</td><td>2</td><td>2</td></tr><tr><td>float</td><td>4</td><td>4</td></tr><tr><td>int</td><td>4</td><td>4</td></tr><tr><td>double</td><td>8</td><td>8</td></tr><tr><td>long</td><td>4</td><td>8</td></tr><tr><td>long  long</td><td>8</td><td>8</td></tr><tr><td>size_t</td><td>4</td><td>8</td></tr></table><p>為了 32/64 Bit 相容性，第一件事就是將 int 修改成 int32_t ，雖然 32/64 Bit 的環境中宣告的 int 長度是一致的，不過為了容易了解，我還是將 int 改成 int32_t ，再將 size_t 與 long 改成 int64_t。</p><p>int32_t 與 int64_t 代表強迫指定 int 的長度 ， int32_t 的長度為 32 Bit, 4 Bytes ， int64_t 的長度為 64 Bit , 8 Bytes 。</p><p>修改完後，兩個境環的變數長度就一致了，而且這次的修改 ，不用重新編譯 64 Bit 的環境，因為 size_t 改成 int64_t ，對 64 Bit 的環境來說，變數的長度是一樣的，所以就算不重新編譯也不會有問題。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;inttypes.h&gt;</span><span class="pln">                                                                                                      </span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="typ">int</span><span class="pln">    </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="typ">int32_t</span><span class="pln"> a</span><span class="pun">;</span></li><li class="L4"><span class="typ">size_t</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="typ">int64_t</span><span class="pln"> b</span><span class="pun">;</span></li></ol></pre></div><h2>Struct 長度</h2><p>在解決了 integer 長度之後，本來想說就搞定下班了，但是沒想到，程式還是有問題， client 傳給 server 的資料還是有錯， server 仍然出現 segmentation fault ，追查了一陣子，發現 struct 的長度有點問題， client 傳出來的 struct 長度為 12 Bytes ，而 server 要接收的 struct 長度為 16 Bytes，兩個環境對 struct 的長度定義不同。</p><p>程式中 struct 的結構如下：</p><div class="codeBlock"><span class="title"> struct</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="typ">int</span><span class="pln"> status</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> length</span><span class="pun">;</span></li><li class="L4"><span class="pun">};</span></li></ol></pre></div><p>這個 struct 中有一個 static int ，這種靜態變數是不會增加 struct 的長度， static 在程序中只能存在一個，每個 struct resHeader 都會取存到同一個 static 數值，所以 struct resHeader 中只有 int status 與 unsigned long long length 會影響到 resHeader  的長度， int 的長度在 32/64 Bit 環境中都是 4 bytes ，而 long long 的長度在 32/64 Bit 環境中也都是 8 bytes， 兩個總合起來，struct  resHeader 的長度為 12 bytes。</p><p>但是我實際測試的結果， struct resHeader 在 64 Bit 環境中的長度是 16 bytes，下面這段是我的測試程式。</p><div class="codeBlock"><span class="title"> 64 Bit struct</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span><span class="pln">                                                                                                      </span></li><li class="L1"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="typ">int</span><span class="pln"> status</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> length</span><span class="pun">;</span></li><li class="L5"><span class="pun">};</span></li><li class="L6"><span class="typ">int</span><span class="pln"> main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">    printf</span><span class="pun">(</span><span class="str">"size = %d"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">sizeof</span><span class="pun">(</span><span class="pln">resHeader</span><span class="pun">));</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="com">// g++  size.cc &amp;&amp; ./a.out</span></li><li class="L0"><span class="com">// size = 16</span></li></ol></pre></div><p>追查了很久之後，才知道原來 64 Bit 編譯器，為了優化 Performance ，每次讀取 memory 的時候，一定要讀一個固定 bytes 的倍數，也就是一次讀取 8 bytes, 16 bytes, 24 bytes，所以 struct 的長度也會被自動優化成某一個值的倍數。</p><p>首先 Compiler 會先在這個 struct resHeader 中找一個需要最多 memory 的基本變數，在我的例子中 long long 會最大的變數值，它需要的長度為 8 bytes ，所以這個 struct 中的所有變數後面都會被自動補上 Null 湊成 8 bytes 的倍數， 例如 status 為 int 需要 4 個 bytes ，後面會被接上 4 個 Null，再來 length 為 long long 需要 8 bytes， 8 bytes 就是 8 的倍數，所以不用補 Null ，最後在 64-Bit 環境中 ，這個 structure 就會變成 16 bytes。</p><div class="codeBlock"><span class="title"> 64-bit</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span><span class="pln"> </span><span class="com">// static </span></li><li class="L2"><span class="pln">    </span><span class="typ">int</span><span class="pln"> status</span><span class="pun">;</span><span class="pln">       </span><span class="com">// Memory 位置 0 - 3</span></li><li class="L3"><span class="pln">    </span><span class="kwd">char</span><span class="pln"> pad</span><span class="pun">[</span><span class="lit">4</span><span class="pun">];</span><span class="pln">      </span><span class="com">//  自動補上 4 個 null， Memory 位置  4 - 7</span></li><li class="L4"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> length</span><span class="pun">;</span><span class="pln"> </span><span class="com">// Memory 位置 8 - 15</span></li><li class="L5"><span class="pln">    </span><span class="com">// Total 16 bytes</span></li><li class="L6"><span class="pun">};</span></li></ol></pre></div><p>那麼 32-bit 的環境中這個 struct memory address 會是怎樣的呢? 同上的邏輯，Compiler 先找到一個最大的變數 length(8 bytes) ，但是 32-bit 的環境中一次讀取的最大 memory 為 4 bytes (32 bits) ， 8 bytes 已經超過這個值，所以 Compiler 會將最大的 memory 讀取自動調整為 4 bytes ，代表每個變數只要是 4 的倍數即可。</p><div class="codeBlock"><span class="title"> 32-bit</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span><span class="pln"> </span><span class="com">// static </span></li><li class="L2"><span class="pln">    </span><span class="typ">int</span><span class="pln"> status</span><span class="pun">;</span><span class="pln">       </span><span class="com">// Memory 位置 0 - 3 , 剛好為 4 的倍數，不用補 Null</span></li><li class="L3"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> length</span><span class="pun">;</span><span class="pln"> </span><span class="com">// Memory 位置 4 - 11</span></li><li class="L4"><span class="pln">    </span><span class="com">// Total 12 bytes</span></li><li class="L5"><span class="pun">};</span></li></ol></pre></div><p>32-Bit 環境的 struct 長度是 12 bytes ，而 64-Bit 的環境被自動補上了 4 bytes 的 null 形成 16 bytes，這個問題就是造成 32/64 Bit 環境不相容的原因。</p><p>解決方法也不難，上述兩個情形的最大公倍數為 8 ，所以我們只要把 struct 的長度弄成 8 bytes 的倍數，然後將 C/C++ 重新 compile ，分別裝到 client/server 的機器就搞定收工囉。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="typ">int64_t</span><span class="pln"> status</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="typ">int64_t</span><span class="pln"> length</span><span class="pun">;</span></li><li class="L4"><span class="pun">};</span></li></ol></pre></div><h2>No Downtime</h2><p>以上的解法，還有個小問題， 因為 server 目前已經有兩組機器，一組是 32 Bit ，一組是 64 Bit 如果要將 client 機器裝上新版相容 64 Bit 的程式，那麼代表 64 Bit 的 server 也要一併裝上新版的程式，而且還要同時 restart 伺服器，但是我們公司的機器數可不是普通的多，一時半刻是無法將全部的機器安裝完畢的，再加上公司平常 Release 都是追求 No Downtime 的目標在做，所以再來要想想是否能夠單獨安裝新的 package 到 client 的機器，而且不影響線上的運作。</p><p>第一步我先來測試舊的 struct resHeader 在 64 Bit 環境中，struct resHeader memory 儲存的格式是什麼， <code>g++   old_struct.cc && ./a.out </code>。</p><div class="codeBlock"><span class="title"> old_struct.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;inttypes.h&gt;</span></li><li class="L2"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L3"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="typ">int</span><span class="pln"> status</span><span class="pun">;</span></li><li class="L5"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> length</span><span class="pun">;</span></li><li class="L6"><span class="pun">};</span></li><li class="L7"><span class="pln">                                                                             </span></li><li class="L8"><span class="typ">int</span><span class="pln"> main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="kwd">struct</span><span class="pln"> resHeader k </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="lit">2</span><span class="pun">,</span><span class="lit">4</span><span class="pun">};</span></li><li class="L0"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">p </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">k</span><span class="pun">;</span></li><li class="L1"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="kwd">sizeof</span><span class="pun">(</span><span class="kwd">struct</span><span class="pln"> resHeader</span><span class="pun">);</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        printf</span><span class="pun">(</span><span class="str">"%02x "</span><span class="pun">,</span><span class="pln"> p</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]);</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span></li><li class="L4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><p>將 memory 印出來之後如下，前 4 個 bytes 存的是 status，接著會有 4 個 bytes 的 null 值 ，後 8 個 bytes 存的是 length，剛好加起來是 16 bytes 。</p><blockquote>02 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00</blockquote><p>這個格式看起來跟我們改的 struct resHeader 是一致的， 來測試一下新改的 struct 在 32 Bit 環境下的執行結果，<code> g++ -m32 new_struct.cc &&  ./a.out </code> 。</p><div class="codeBlock"><span class="title"> new_struct.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;inttypes.h&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="kwd">struct</span><span class="pln"> resHeader </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> code</span><span class="pun">;</span></li><li class="L5"><span class="pln">    </span><span class="typ">int64_t</span><span class="pln"> status</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="typ">int64_t</span><span class="pln"> length</span><span class="pun">;</span><span class="pln">                                                                                   </span></li><li class="L7"><span class="pun">};</span></li><li class="L8"><span class="typ">int</span><span class="pln"> main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="kwd">struct</span><span class="pln"> resHeader k </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="lit">2</span><span class="pun">,</span><span class="lit">4</span><span class="pun">};</span></li><li class="L0"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">p </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">k</span><span class="pun">;</span></li><li class="L1"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="kwd">sizeof</span><span class="pun">(</span><span class="kwd">struct</span><span class="pln"> resHeader</span><span class="pun">);</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        printf</span><span class="pun">(</span><span class="str">"%02x "</span><span class="pun">,</span><span class="pln"> p</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]);</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span></li><li class="L4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><p>執行結果如下，memory 存的方式跟舊程式在 64 Bit 上執行的結果一樣，這代表了我只要將新程式安裝到 client 的機器上， client (32 Bit) 與 server (64 Bit) 的機器就能相容了。</p><blockquote>02 00 00 00 00 00 00 00 04 00 00 00 00 00 00 00</blockquote><p>最後實際在 Beta 環境上測試成功，終於可以下班了...</p><h2>參考資料</h2><ul class="list">  <li>Data structure alignment : <a href="https://en.wikipedia.org/wiki/Data_structure_alignment"  target="_blank">https://en.wikipedia.org/wiki/Data_structure_alignment</a></li>  <li>structure padding : <a href="http://www.catb.org/esr/structure-packing/"  target="_blank">http://www.catb.org/esr/structure-packing/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-05-09T00:33:42+08:00" class="article-modify-time">2016/05/09</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-358" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-358" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Coredump 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

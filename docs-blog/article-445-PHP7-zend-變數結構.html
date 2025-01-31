@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>PHP7 zend 變數結構</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="zend_string zend_stringtypedef struct _zend_string zend_string;nbsp;struct _zend_string {struct _zend_string { zend_refcounted_h gc; zend_ulong h; /* hash value */ size_t len; char val[1];};" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-445-PHP7-zend-變數結構.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-445-PHP7-zend-变数结构.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-445-PHP7-zend-變數結構.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-445-PHP7-zend-變數結構.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-445">
+                    <em><span>PHP7 zend 變數結構</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-445-PHP7-zend-\u8b8a\u6578\u7d50\u69cb.html"},"headline":"PHP7 zend \u8b8a\u6578\u7d50\u69cb","image":"","datePublished":"2019-11-12T11:29:22+08:00","dateModified":"2019-11-20T13:04:16+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"zend_string\r zend_string\rtypedef struct _zend_string     zend_string;&nbsp;struct _zend_string {stru"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2019</div>
+            <div class="month">Nov</div>
+            <div class="day">12</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-445-PHP7-zend-變數結構.html"><span>PHP7 zend 變數結構</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-445-PHP7-zend-变数结构.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h3>zend_string</h3><div class="codeBlock cpp"><span class="title"> zend_string</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> _zend_string     zend_string</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">struct</span><span class="pln"> _zend_string </span><span class="pun">{</span></li><li class="L3"><span class="kwd">struct</span><span class="pln"> _zend_string </span><span class="pun">{</span></li><li class="L4"><span class="pln">   zend_refcounted_h gc</span><span class="pun">;</span></li><li class="L5"><span class="pln">   zend_ulong        h</span><span class="pun">;</span><span class="pln">                </span><span class="com">/* hash value */</span></li><li class="L6"><span class="pln">   </span><span class="typ">size_t</span><span class="pln">            len</span><span class="pun">;</span></li><li class="L7"><span class="pln">   </span><span class="kwd">char</span><span class="pln">              val</span><span class="pun">[</span><span class="lit">1</span><span class="pun">];</span></li><li class="L8"><span class="pun">};</span></li></ol></pre></div><h3>zend_array</h3><div class="codeBlock cpp"><span class="title"> zend_array</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> _zend_array     zend_array</span><span class="pun">;</span></li><li class="L1"><span class="kwd">struct</span><span class="pln"> _zend_array </span><span class="pun">{</span></li><li class="L2"><span class="pln">   zend_refcounted_h gc</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="kwd">union</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">      </span><span class="kwd">struct</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">         ZEND_ENDIAN_LOHI_4</span><span class="pun">(</span></li><li class="L6"><span class="pln">            zend_uchar    flags</span><span class="pun">,</span></li><li class="L7"><span class="pln">            zend_uchar    nApplyCount</span><span class="pun">,</span></li><li class="L8"><span class="pln">            zend_uchar    nIteratorsCount</span><span class="pun">,</span></li><li class="L9"><span class="pln">            zend_uchar    consistency</span><span class="pun">)</span></li><li class="L0"><span class="pln">      </span><span class="pun">}</span><span class="pln"> v</span><span class="pun">;</span></li><li class="L1"><span class="pln">      </span><span class="typ">uint32_t</span><span class="pln"> flags</span><span class="pun">;</span></li><li class="L2"><span class="pln">   </span><span class="pun">}</span><span class="pln"> u</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">          nTableMask</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="typ">Bucket</span><span class="pln">           </span><span class="pun">*</span><span class="pln">arData</span><span class="pun">;</span></li><li class="L5"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">          nNumUsed</span><span class="pun">;</span></li><li class="L6"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">          nNumOfElements</span><span class="pun">;</span></li><li class="L7"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">          nTableSize</span><span class="pun">;</span></li><li class="L8"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">          nInternalPointer</span><span class="pun">;</span></li><li class="L9"><span class="pln">   zend_long         nNextFreeElement</span><span class="pun">;</span></li><li class="L0"><span class="pln">   </span><span class="typ">dtor_func_t</span><span class="pln">       pDestructor</span><span class="pun">;</span></li><li class="L1"><span class="pun">};</span></li></ol></pre></div><h3>zval</h3><div class="codeBlock cpp"><span class="title"> zval</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> _zval_struct     zval</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">struct</span><span class="pln"> _zval_struct </span><span class="pun">{</span></li><li class="L3"><span class="pln">    zend_value        value</span><span class="pun">;</span><span class="pln">            </span><span class="com">/* value */</span></li><li class="L4"><span class="pln">    </span><span class="kwd">union</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">        </span><span class="kwd">struct</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">            ZEND_ENDIAN_LOHI_4</span><span class="pun">(</span></li><li class="L7"><span class="pln">                zend_uchar    type</span><span class="pun">,</span><span class="pln">         </span><span class="com">/* active type */</span></li><li class="L8"><span class="pln">                zend_uchar    type_flags</span><span class="pun">,</span></li><li class="L9"><span class="pln">                zend_uchar    const_flags</span><span class="pun">,</span></li><li class="L0"><span class="pln">                zend_uchar    reserved</span><span class="pun">)</span><span class="pln">     </span><span class="com">/* call info for EX(This) */</span></li><li class="L1"><span class="pln">        </span><span class="pun">}</span><span class="pln"> v</span><span class="pun">;</span></li><li class="L2"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln"> type_info</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span><span class="pln"> u1</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="kwd">union</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     next</span><span class="pun">;</span><span class="pln">                 </span><span class="com">/* hash collision chain */</span></li><li class="L6"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     cache_slot</span><span class="pun">;</span><span class="pln">           </span><span class="com">/* literal cache slot */</span></li><li class="L7"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     lineno</span><span class="pun">;</span><span class="pln">               </span><span class="com">/* line number (for ast nodes) */</span></li><li class="L8"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     num_args</span><span class="pun">;</span><span class="pln">             </span><span class="com">/* arguments number for EX(This) */</span></li><li class="L9"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     fe_pos</span><span class="pun">;</span><span class="pln">               </span><span class="com">/* foreach position */</span></li><li class="L0"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     fe_iter_idx</span><span class="pun">;</span><span class="pln">          </span><span class="com">/* foreach iterator index */</span></li><li class="L1"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     access_flags</span><span class="pun">;</span><span class="pln">         </span><span class="com">/* class constant access flags */</span></li><li class="L2"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     property_guard</span><span class="pun">;</span><span class="pln">       </span><span class="com">/* single property guard */</span></li><li class="L3"><span class="pln">        </span><span class="typ">uint32_t</span><span class="pln">     extra</span><span class="pun">;</span><span class="pln">                </span><span class="com">/* not further specified */</span></li><li class="L4"><span class="pln">    </span><span class="pun">}</span><span class="pln"> u2</span><span class="pun">;</span></li><li class="L5"><span class="pun">};</span></li></ol></pre></div><h3>zend_value</h3><div class="codeBlock cpp"><span class="title"> zend_value</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">union</span><span class="pln"> _zend_value </span><span class="pun">{</span></li><li class="L1"><span class="pln">   zend_long         lval</span><span class="pun">;</span><span class="pln">            </span><span class="com">/* long value */</span></li><li class="L2"><span class="pln">   </span><span class="kwd">double</span><span class="pln">            dval</span><span class="pun">;</span><span class="pln">            </span><span class="com">/* double value */</span></li><li class="L3"><span class="pln">   zend_refcounted  </span><span class="pun">*</span><span class="pln">counted</span><span class="pun">;</span></li><li class="L4"><span class="pln">   zend_string      </span><span class="pun">*</span><span class="pln">str</span><span class="pun">;</span></li><li class="L5"><span class="pln">   zend_array       </span><span class="pun">*</span><span class="pln">arr</span><span class="pun">;</span></li><li class="L6"><span class="pln">   zend_object      </span><span class="pun">*</span><span class="pln">obj</span><span class="pun">;</span></li><li class="L7"><span class="pln">   zend_resource    </span><span class="pun">*</span><span class="pln">res</span><span class="pun">;</span></li><li class="L8"><span class="pln">   zend_reference   </span><span class="pun">*</span><span class="pln">ref</span><span class="pun">;</span></li><li class="L9"><span class="pln">   zend_ast_ref     </span><span class="pun">*</span><span class="pln">ast</span><span class="pun">;</span></li><li class="L0"><span class="pln">   zval             </span><span class="pun">*</span><span class="pln">zv</span><span class="pun">;</span></li><li class="L1"><span class="pln">   </span><span class="kwd">void</span><span class="pln">             </span><span class="pun">*</span><span class="pln">ptr</span><span class="pun">;</span></li><li class="L2"><span class="pln">   zend_class_entry </span><span class="pun">*</span><span class="pln">ce</span><span class="pun">;</span></li><li class="L3"><span class="pln">   zend_function    </span><span class="pun">*</span><span class="pln">func</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="kwd">struct</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">      </span><span class="typ">uint32_t</span><span class="pln"> w1</span><span class="pun">;</span></li><li class="L6"><span class="pln">      </span><span class="typ">uint32_t</span><span class="pln"> w2</span><span class="pun">;</span></li><li class="L7"><span class="pln">   </span><span class="pun">}</span><span class="pln"> ww</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span><span class="pln"> zend_value</span><span class="pun">;</span></li></ol></pre></div><h3>zend_refcounted</h3><div class="codeBlock cpp"><span class="title"> zend_refcounted</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> _zend_refcounted_h </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="typ">uint32_t</span><span class="pln">         refcount</span><span class="pun">;</span><span class="pln">         </span><span class="com">/* reference counter 32-bit */</span></li><li class="L2"><span class="pln">   </span><span class="kwd">union</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">      </span><span class="kwd">struct</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">         ZEND_ENDIAN_LOHI_3</span><span class="pun">(</span></li><li class="L5"><span class="pln">            zend_uchar    type</span><span class="pun">,</span></li><li class="L6"><span class="pln">            zend_uchar    flags</span><span class="pun">,</span><span class="pln">    </span><span class="com">/* used for strings &amp; objects */</span></li><li class="L7"><span class="pln">            </span><span class="typ">uint16_t</span><span class="pln">      gc_info</span><span class="pun">)</span><span class="pln">  </span><span class="com">/* keeps GC root number (or 0) and color */</span></li><li class="L8"><span class="pln">      </span><span class="pun">}</span><span class="pln"> v</span><span class="pun">;</span></li><li class="L9"><span class="pln">      </span><span class="typ">uint32_t</span><span class="pln"> type_info</span><span class="pun">;</span></li><li class="L0"><span class="pln">   </span><span class="pun">}</span><span class="pln"> u</span><span class="pun">;</span></li><li class="L1"><span class="pun">}</span><span class="pln"> zend_refcounted_h</span><span class="pun">;</span></li></ol></pre></div><h3>string to zend_string</h3><div class="codeBlock cpp"><span class="title"> string to zend_string </span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">// static zend_always_inline zend_string *zend_string_init(const char *str, size_t len, int persistent)</span></li><li class="L1"><span class="com">// #define pemalloc(size, persistent) ((persistent)?__zend_malloc(size):emalloc(size))</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">std</span><span class="pun">::</span><span class="pln">string str </span><span class="pun">=</span><span class="pln"> </span><span class="str">"abc"</span><span class="pun">;</span></li><li class="L4"><span class="pln">zend_string </span><span class="pun">*</span><span class="pln">zstr </span><span class="pun">=</span><span class="pln"> zend_string_init</span><span class="pun">((</span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> str</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">(),</span><span class="pln"> str</span><span class="pun">.</span><span class="pln">size</span><span class="pun">(),</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2019-11-20T13:04:16+08:00" class="article-modify-time">2019/11/20</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-445" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-445" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

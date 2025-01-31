@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>如何在 Windows 编译 GH60 键位程式 - 使用 Docker</title>
+    <meta name="keywords" content="GH60, 机械式键盘" />
+    <meta name="description" content="這篇文章會介紹如何編譯 GH60 鍵位程式，至於如何刷鍵位可以參考我的上一篇文章 。編譯鍵位程式：是指自已修改鍵盤每個按鍵設定後，再編譯成鍵位檔 Hex 格式，這個檔案可以用來更新鍵盤韌體，達到自訂熱鍵的功能，這個動作英文叫 Build Firmware。刷鍵位也可以叫刷機，中國用語叫刷固件，英文叫 Program Controller：是指將鍵位檔寫入鍵盤的主控板，主控板就是" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-402-如何在-Windows-编译-GH60-键位程式---使用-Docker.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-402-如何在-Windows-编译-GH60-键位程式---使用-Docker.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-402-如何在-Windows-編譯-GH60-鍵位程式---使用-Docker.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-402-如何在-Windows-編譯-GH60-鍵位程式---使用-Docker.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-402">
+                    <em><span>如何在 Windows 编译 GH60 ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-402-\u5982\u4f55\u5728-Windows-\u7de8\u8b6f-GH60-\u9375\u4f4d\u7a0b\u5f0f---\u4f7f\u7528-Docker.html"},"headline":"\u5982\u4f55\u5728 Windows \u7de8\u8b6f GH60 \u9375\u4f4d\u7a0b\u5f0f - \u4f7f\u7528 Docker","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_336.png","datePublished":"2017-01-13T00:54:05+08:00","dateModified":"2017-02-06T23:58:23+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u9019\u7bc7\u6587\u7ae0\u6703\u4ecb\u7d39\u5982\u4f55\u7de8\u8b6f GH60 \u9375\u4f4d\u7a0b\u5f0f\uff0c\u81f3\u65bc\u5982\u4f55\u5237\u9375\u4f4d\u53ef\u4ee5\u53c3\u8003\u6211\u7684\u4e0a\u4e00\u7bc7\u6587\u7ae0 \u3002\r\u7de8\u8b6f\u9375\u4f4d\u7a0b\u5f0f\uff1a\u662f\u6307\u81ea\u5df2\u4fee\u6539\u9375\u76e4\u6bcf\u500b\u6309\u9375\u8a2d\u5b9a\u5f8c\uff0c\u518d\u7de8\u8b6f\u6210\u9375\u4f4d\u6a94 Hex \u683c\u5f0f\uff0c\u9019\u500b\u6a94\u6848\u53ef\u4ee5\u7528\u4f86\u66f4\u65b0\u9375\u76e4\u97cc\u9ad4\uff0c\u9054\u5230\u81ea\u8a02"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Jan</div>
+            <div class="day">13</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-402-如何在-Windows-編譯-GH60-鍵位程式---使用-Docker.html"><span>如何在 Windows 编译 GH60 键位程式 - 使用 Docker</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=GH60">GH60</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=機械式鍵盤">機械式鍵盤</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-402-如何在-Windows-編譯-GH60-鍵位程式---使用-Docker.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>这篇文章会介绍如何编译 GH60 键位程式，至於如何刷键位可以参考我的<a href="/docs-blog/article-399" target="_blank">上一篇文章 </a>。</p><p>编译键位程式：是指自已修改键盘每个按键设定后，再编译成键位档 Hex 格式，这个档案可以用来更新键盘韧体，达到自订热键的功能，这个动作英文叫 "Build Firmware"。</p><p>刷键位也可以叫刷机，中国用语叫"刷固件"，英文叫 Program Controller：是指将键位档写入键盘的主控板，主控板就是电子用品背面常常看到扁扁黑黑的那一块东西。</p><p>之所以要提各国 GH60 相关的名词，是因为如果你在编译的过程中有任何问题，也可以用英文或简中去网路上搜寻看看有没有解法，毕竟台湾在玩 GH60 DIY 键盘的人真的不多，所以繁体中文的文章会比较少。</p><p>这篇文章会提到很多跟程式相关的行为，如果你不是软体工程师，看这篇文章可能会有一点辛苦，不过我会尽量将编译 GH60 键位方式写得白话一点。</p><p>首先 GH60 韧体开发已经是很开放的 open source ，每个人都可以下载回来自已修改使用，它的名称叫 tmk_keyboard ，下面两个都是 tmk keyboard ，其中 tmk_keyboard_custom 支援 GH60 较新的板子 REV. C ，功能也比较强，我个人就是使用 tmk_keyboard_custom 来改。</p><ul class="list">  <li><a href="https://github.com/tmk/tmk_keyboard"  target="_blank">https://github.com/tmk/tmk_keyboard</a></li>  <li><a href="https://github.com/kairyu/tmk_keyboard_custom"  target="_blank">https://github.com/kairyu/tmk_keyboard_custom</a></li></ul><h2>安装编译环境 - Docker</h2><p>先教大家如何编译程式码，要编译程式码之前，我们得先安装编译的环境，但是这个动作太麻烦了，就连我本身是软体工程师，安装一堆有的没的，就只是为了编译程式码，所以我使用 Docker 这个虚拟环境来安装我们的编译用虚拟机。</p><p>请下载 docker toolbar 并安装</p><ul class="list">  <li><a href="https://docs.docker.com/docker-for-windows/"  target="_blank">https://docs.docker.com/docker-for-windows/</a></li></ul><p>安装的过程中请勾选 VirtualBox, Kitematic (Alpha) 跟 git gui  ，如果你对 GIT 很熟，也请一定要勾选 git gui ，不然会无法启动 Docker quickstart  terminal.</p><a href="/filemanage/blog_files/file_336.png" target="_blank" ><img src="/filemanage/blog_files/file_336.png"   link="me"  style="width: 400px;"/></a><p>安装完成后，点两下 Docker Quickstart terminal ，它会自动安装一个虚拟的 Unix 环境，安装的过程大约 1 分钟，请等他跑完，跑完后会留下一个黑色的 terminal，这个就是我们等一下要输入指令的地方，</p><a href="/filemanage/blog_files/file_337.png" target="_blank" ><img src="/filemanage/blog_files/file_337.png"   link="me"  style="width: 400px;"/></a><p>跑完如下图所示，你会进入 Docker Terminal ，这个 Terminal 让你可以输入指令操控 Docker 虚拟机。</p><a href="/filemanage/blog_files/file_338.png" target="_blank" ><img src="/filemanage/blog_files/file_338.png"   link="me"  style="width: 400px;"/></a><p>请你在 D 槽建一个目录叫  Docker ，然后在这个目录建一个档案叫 Dockerfile  -  D:&#92;Docker&#92;Dockerfile ，这个档案的内容如下：</p><div class="codeBlock html"><span class="title"> Dockerfile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM debian</span></li><li class="L1"><span class="pln">LABEL Description="This image is used to be a simple linux machine" </span></li><li class="L2"><span class="pln">RUN apt-get update &amp;&amp; apt-get install -y sudo wget telnet  vim git ncurses-term                     </span></li><li class="L3"><span class="pln">RUN apt-get install make &amp;&amp; ln -sf /usr/bin/make /usr/bin/gmake</span></li><li class="L4"><span class="pln">RUN apt-get install -y gcc-avr binutils-avr gdb-avr avr-libc avrdude dfu-programmer</span></li><li class="L5"><span class="pln">VOLUME ["/test"]</span></li></ol></pre></div><p>这个 Dockerfile 定义我们编译环境的所有软体 ，请一定要复制一模一样的内容，接著回到 Docker terminal ，输入以下指令：</p><ul class="list">  <li>cd /d/Docker</li>  <li>docker build -t keyboard .</li></ul><p>这时 docker 就会开始安装虚拟的 debian OS ，并自动安装所有的软体，大约 1 ~ 2 分钟就安装完毕， Docker 可是非常的快速，安装好的 debian OS 会有一个名字叫 "keyboard"。</p><a href="/filemanage/blog_files/file_339.png" target="_blank" ><img src="/filemanage/blog_files/file_339.png"   link="me"  style="width: 400px;"/></a><p>下图为安装完成的画面</p><a href="/filemanage/blog_files/file_340.png" target="_blank" ><img src="/filemanage/blog_files/file_340.png"   link="me"  style="width: 400px;"/></a><p>Debian 安装完成后，你可以输入 docker images ，有看到 Images 资料的话，这样就代表安装成功罗。</p><h2>下载与挂载刷键位原始码</h2><p>下一步是要把 windows 资料夹挂载到 Docker machine 上，因为 Docker 本身是装在 VirtualBox 上的一台 unix 系统，这台系统没有 Windows 上的档案资料，为了让 Docker 可以顺利的读到  Windows 上的档案，我们要先打开  virtualBox ，点两下 VirtualBox 程式，在 VirtualBox 介面会看到一个叫 default  的机器名称，点它<span class="flow-item">按右键</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">选择设定值，再挂载</span> D:/Docker 这个目录。</p><p>你可以参考下图的设定方式，先选择<span class="flow-item">共用资料夹</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">右上角的增加</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">选取</span> D:&#92;Docker 这个资料夹。</p><a href="/filemanage/blog_files/file_341.jpg" target="_blank" ><img src="/filemanage/blog_files/file_341.jpg"   link="me"  style="width: 600px;"/></a><p>挂载好之后在 Docker terminal  输入下面这个指令，Docker OS 就会重启，资料夹才会正确挂载上去， 如果你有使用 cygwin 的话，那么你也可以用这个指令来挂载目录 <code>/cygdrive/c/Program&#92; Files/Oracle/VirtualBox/VBoxManage sharedfolder add default --name aaa--hostpath c:/cygwin64/aaa --automount </code>。</p><ul class="list">  <li>docker-machine restart</li></ul><p>输入下面这个指令，你应该要看到一个 Dockerfile 的档案。</p><ul class="list">  <li>docker run  -ti -v /Docker:/Docker  -w /test keyboard ls /</li></ul><p>再来先下载我的 tmk_keyboard_custom 版本，因为我的 tml_keyboard_custom 没事不会改版，所以编译一定会过，另补充说明我的 win10 有碰到 permission denied 的错误，这是因为 Docker 这个资料夹预设只有管理员可以修改，如果你也遇到这个问题，就先去修改资料夹权限即可。</p><p>下载方式，先在 Docker terminal 输入这个指令：</p><ul class="list">  <li>git clone --recursive  <a href="https://github.com/puritys/tmk_keyboard_custom"  target="_blank">https://github.com/puritys/tmk_keyboard_custom</a> pure_gh60 -b pure_gh60</li></ul><p>接下来就可以编译看看是否可以产生 hex 键位设定档，请依序执行下列二个指令，第一个指令是为了进入 gh60 资料夹，第二个指令则是在 Docker 虚拟机中编译程式。</p><ul class="list">  <li>cd tmk_keyboard_custom/keyboard/gh60/</li>  <li>docker run  -ti -v /Docker:/Docker  -w /Docker/tmk_keyboard_custom/keyboard/gh60 keyboard gmake</li></ul><br /><a href="/filemanage/blog_files/file_342.png" target="_blank" ><img src="/filemanage/blog_files/file_342.png"   link="me"  style="width: 480px;"/></a><br /><br /><a href="/filemanage/blog_files/file_343.png" target="_blank" ><img src="/filemanage/blog_files/file_343.png"   link="me"  style="width: 480px;"/></a><p>顺序跑完的话 ， D:/Docker/tmk_keyboard_custom/keyboard/gh6 会产生这个档案 gh60_lufa.hex ，这个档案就可以拿来刷键盘韧体罗，刷韧体可以参考这篇文章：<a href="/docs-blog/article-399" target="_blank">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统 </a>。</p><br /><br /><br /><ul class="list">  <li><a href="https://www.puritys.me/docs-blog/article-398">DIY 组装 GH60 机械式键盘</a></li>  <li><a href="https://www.puritys.me/docs-blog/article-401">如何使用对 GH 60 PCB 刷键位、刷机 - Mac 系统</a></li>  <li><a href="https://www.puritys.me/docs-blog/article-399">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</a></li>  <li><a href="https://www.puritys.me/docs-blog/article-402">如何在 Windows 编译 GH60 键位程式 - 使用 Docker</a></li>  <li><a href="https://www.puritys.me/docs-blog/article-400">gh60 刷键位 - tmk 如何设定三组合键 Remap</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-02-06T23:58:23+08:00" class="article-modify-time">2017/02/06</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-402" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-402" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-399">如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-400">gh60 刷鍵位  - tmk 如何設定三組合鍵 Remap</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">GH60 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-401-GH60-如何刷鍵位、刷機---Mac-系統.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_401&quot;}'>GH60  如何刷鍵位、刷機 - Mac 系統 </a></li>
+    
+        <li><a href="/docs-blog/article-400-gh60-刷鍵位---tmk-如何設定三組合鍵-Remap.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_400&quot;}'>gh60 刷鍵位  - tmk 如何設定三組合鍵 Remap </a></li>
+    
+        <li><a href="/docs-blog/article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_399&quot;}'>如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統 </a></li>
+    
+        <li><a href="/docs-blog/article-398-DIY-組裝-GH60-機械式鍵盤.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_398&quot;}'>DIY 組裝 GH60 機械式鍵盤 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

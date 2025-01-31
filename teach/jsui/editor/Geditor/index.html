@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<title> Google Docs Editor</title>
+<script src="jquery.js"></script>
+<script>
+function getData(){
+	var re=/(<div[^>]+>)/gi;
+	var re_class=/class="[^"]+"/gi;
+	var html=$('.kix-appview-editor .kix-boxview').eq(1).html();
+	var k=html.match(re);
+	var n=k.length,v='';
+	for(i=0;i<n;i++){
+		v=k[i].replace(re_class,"");
+		html=html.replace(k[i],v);
+	}
+	$('#g_editor_content').val(html);	
+	$('.g_contentBox').show();
+	var t=$(document.body).scrollTop();
+	$(document.body).scrollTop(t+70);
+	//alert($("button[name='cancel']").mouseup());
+}
+/*
+kix-overlay-selection = [object Object] 
+
+*/
+function pasteData(){
+	var s="test";
+	Go(ca,10,10);
+	//Ala(ca,1,s.length);
+}
+function G_dialogClose(){
+	$('.modal-dialog').remove();
+	$('.modal-dialog-bg').remove();
+}
+var G_config={
+	contentHeight:280,
+	innerWidth:340,
+	innerLG:25,
+	editPaddingTop:16,
+	editPaddingBottom:15
+};
+</script>
+
+<link href="G_editor.css" rel="stylesheet" type="text/css" />
+<link href="some.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">var KX_timing={};KX_timing['sl']=new Date().getTime();</script>
+<script src="rewrite.js"></script>
+<script src="some.js"></script>
+<style>
+	.gBox{
+	 overflow:hidden;
+	}
+ 
+</style>
+</head>
+
+<body dir="ltr" role="application"  >
+<!--
+style="width:600px;height:550px;overflow:hidden;border:solid #bbccff 1px;margin:0 0 0 50px;"
+-->
+<div class="gBox" style="width:600px;height:550px;border:solid #bbccff 1px;margin:0 0 0 50px;" >
+
+
+<div id="showCheckData"></div>
+<div id="docs-chrome">
+<div id="docs-bars">
+<div id="docs-menubar" role="menubar" class="docs-menubar goog-container goog-container-horizontal" tabIndex="0">
+  
+
+ <div id="docs-edit-menu" role="menuitem" class="menu-button goog-control goog-control-disabled goog-inline-block">Edit</div>
+<div id="docs-insert-menu" role="menuitem" class="menu-button goog-control goog-control-disabled goog-inline-block">Insert</div><div id="docs-format-menu" role="menuitem" class="menu-button goog-control goog-control-disabled goog-inline-block">Format</div> <div id="docs-table-menu" role="menuitem" class="menu-button goog-control goog-control-disabled goog-inline-block">Table</div>
+<div id="docs-presence" style="display:none"></div></div>
+
+<div id="docs-toolbar" class="goog-toolbar" tabIndex=0>
+
+
+
+
+<div id="undoButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-undo">&nbsp;</div>
+</div></div></div></div>
+
+<div id="redoButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-redo">&nbsp;</div></div></div></div></div>
+
+
+
+
+<div id="headingStyleSelect" class="goog-toolbar-select goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block">&nbsp;</div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div><div id="fontFamilySelect" class="goog-toolbar-select goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block">&nbsp;</div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div><div id="fontSizeSelect" class="goog-toolbar-select goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block">&nbsp;</div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div><div id="boldButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-bold">&nbsp;</div></div></div></div></div><div id="italicButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-italic">&nbsp;</div></div></div></div></div><div id="underlineButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-underline">&nbsp;</div></div></div></div></div><div id="foregroundColorButton" class="goog-toolbar-color-menu-button goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block"><div class="goog-color-menu-button-indicator"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-text-color">&nbsp;</div></div></div></div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div><div id="backgroundColorButton" class="goog-toolbar-color-menu-button goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block"><div class="goog-color-menu-button-indicator"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-text-bgcolor">&nbsp;</div></div></div></div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div><div class="goog-toolbar-separator goog-inline-block">&nbsp;</div><div id="insertLinkButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container kix-icon-accessible-img kix-icon-insert-link">&nbsp;</div></div></div></div></div><div id="insertImageButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-image">&nbsp;</div></div></div></div></div><div class="goog-toolbar-separator goog-inline-block">&nbsp;</div><div id="addNumberedBulletButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-list-number">&nbsp;</div></div></div></div></div><div id="addBulletButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-list-bullet">&nbsp;</div></div></div></div></div><div id="outdentButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-outdent">&nbsp;</div></div></div></div></div><div id="indentButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-indent">&nbsp;</div></div></div></div></div><div id="alignLeftButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-align-left">&nbsp;</div></div></div></div></div><div id="alignCenterButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-align-center">&nbsp;</div></div></div></div></div><div id="alignRightButton" class="goog-toolbar-toggle-button goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-align-right">&nbsp;</div></div></div></div></div><div id="lineSpacingMenuButton" class="goog-toolbar-menu-button goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block "><div class="goog-toolbar-menu-button-inner-box goog-inline-block"><div class="goog-toolbar-menu-button-caption goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container kix-icon-accessible-img kix-icon-line-spacing">&nbsp;</div></div></div><div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div></div></div></div>
+
+ 
+	<div id="printButton" class="goog-toolbar-button goog-toolbar-button-disabled goog-inline-block"><div class="goog-toolbar-button-outer-box goog-inline-block "><div class="goog-toolbar-button-inner-box goog-inline-block"><div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-print">&nbsp;</div></div></div></div></div>
+
+	<div id="cloudboardMenuButton"  class="goog-toolbar-menu-button goog-toolbar-menu-button goog-toolbar-menu-button-disabled goog-inline-block"><div class="goog-toolbar-menu-button-outer-box goog-inline-block ">
+	<div class="goog-toolbar-menu-button-inner-box goog-inline-block">
+
+	<div class="goog-toolbar-menu-button-caption goog-inline-block">
+
+	<div class="docs-icon goog-inline-block"><div class="docs-icon-img-container docs-icon-img docs-icon-clipboard">&nbsp;</div></div></div>
+	<div class="goog-toolbar-menu-button-dropdown goog-inline-block ">&nbsp;</div>
+	</div></div>
+
+	</div>
+ 
+</div>
+
+</div></div>
+<!--  
+Tool bar end
+-->
+
+<script>
+_docs_flag_initialData={"scotty_upload_url":"\/upload\/document\/resumable","buildLabel":"20101111-53-RC3-625","buildClNumber":"1","debugTask":"ic_199","onePickImportDocumentUrl":"http","enable_anonymous_photo_creation":true,"share_ui":"stjw","server_time_ms":1291036413284,"cloud_print":"OFF","gaia_session_id":"0","enable_iframed_embed_api":false,"ens":false};</script>
+
+<div id="docs-editor-container">
+	<div id="docs-editor" tabindex="1">
+	<script type="text/javascript">
+		KX_timing['chv'] = new Date().getTime(); KX_resize = function() {if (KX_kixApp) {KX_kixApp.resize();}};
+	</script>
+		<div id="kix-appview" class="kix-appview">
+			<div class="kix-ruler kix-unprintable"><div class="kix-ruler-inner"></div></div>
+			<div class="kix-appview-editor-container"><div class="kix-appview-editor" ></div></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">KX_timing['sjl'] = new Date().getTime();</script>
+<script type="text/javascript" src="core.js"></script>
+ 
+ <div id="docs-editor-container">
+	 <div id="docs-editor" tabindex="1">
+	 <script type="text/javascript">KX_timing['chv'] = new Date().getTime(); KX_resize = function() {if (KX_kixApp) {KX_kixApp.resize();}};</script><div id="kix-appview" class="kix-appview"><div class="kix-ruler kix-unprintable"><div class="kix-ruler-inner"></div></div><div class="kix-appview-editor-container">
+	 <div class="kix-appview-editor" ></div></div>
+	 </div>
+	 </div>
+ </div>
+ 
+</div>
+<br />
+<center>
+ <button onclick="getData();return false;">顯示原始碼</button>
+<div class="g_contentBox" style="display:none;">
+	<textarea id="g_editor_content" style="width:500px;height:100px;"></textarea>
+</div>
+ </center>
+<br /><br />
+
+
+ <script type="text/javascript">KX_timing['sjl'] = new Date().getTime();</script>
+ 
+
+<script type="text/javascript">
+(function(){var g="",i="&srt=",l="&tran=",m="&p=s",n="&npn=1",o="&apa=1",r="&",s="start",t="_",u=".",v="=",w="http:/",x="?v=3",y="&s=",z="kix",A="&action=",B="&it=",C=",",D="&rt=";
+if(window.jstiming){window.jstiming.a={};window.jstiming.c=1;var E=function(b,c,e){var a=b.t[c],h=b.t.start;if(a&&(h||e)){a=b.t[c][0];h=e!=undefined?e:h[0];return a-h}},G=function(b,c,e){var a=g;if(window.jstiming.pt){a+=i+window.jstiming.pt;delete window.jstiming.pt}try{if(window.external&&window.external.tran)a+=l+window.external.tran;else if(window.gtbExternal&&window.gtbExternal.tran)a+=l+window.gtbExternal.tran();else if(window.chrome&&window.chrome.csi)a+=l+window.chrome.csi().tran}catch(h){}var d=
+window.chrome;if(d)if(d=d.loadTimes){if(d().wasFetchedViaSpdy)a+=m;if(d().wasNpnNegotiated)a+=n;if(d().wasAlternateProtocolAvailable)a+=o}if(b.b)a+=r+b.b;d=b.t;var F=d.start,p=[],j=[],f;for(f in d)if(f!=s)if(f.indexOf(t)!=0){var k=d[f][1];if(k)d[k]&&j.push(f+u+E(b,f,d[k][0]));else F&&p.push(f+u+E(b,f))}delete d.start;if(c)for(var q in c)a+=r+q+v+c[q];return[e?e:w,x,y+(window.jstiming.sn||z)+A,b.name,j.length?B+j.join(C):g,g,a,D,p.join(C)].join(g)};
+window.jstiming.report=function(b,c,e){
+	
+	b=G(b,c,e);
+	if(!b)return g;c=new Image;var a=window.jstiming.c++;window.jstiming.a[a]=c;c.onload=c.onerror=function(){delete window.jstiming.a[a]};c.src=b;c=null;return b
+}
+};})()
+</script>
+	
+	<input type='hidden' name='kix-history-input' id='kix-history-input' style='display:none'/>
+	
+	<script type="text/javascript">
+	
+	
+function KX_startKix() {
+	
+	KX_disposeFn = function() {KX_kixApp = null;};
+	_initializeModules({"kix_core":[],"kix_app":["kix_core"],"kix_a11y":["kix_app"],"kix_jstex":["kix_app"],"kix_tertiary":["kix_app"]},{"kix_core":["core.js"],"kix_app":["app.js"],"kix_a11y":["a11y.js"],"kix_jstex":["jstex.js"],"kix_tertiary":["tertiary.js"]}, 'kix_core'); 
+	
+var config = {'am': 3, 'bl': 'null', 'cpn': 28, 'crn': 28, 'csie': [], 'docid': 'none', 'domain': '', 'eaa': false, 'eaalf': false, 'ear': true, 'eac': true, 'eacl': true, 'easr' : true, 'ebc': false, 'ebk': true, 'ecl': false, 'ec': true, 'ecm': true, 'ecb': true, 'ecqs' : false, 'ecer': true, 'ecsc': true, 'ecso': false, 'ecd': true, 'ecdbc': false, 'ecsi': true, 'edm': false, 'edc2': true, 'ed': true, 'edo': false, 'edr': true, 'eeq': true, 'eeqac': true, 'eex': true, 'eedd': true, 'eeidd': true, 'efr': true, 'ef': true, 'efcr': false, 'ehf': true, 'eis': true, 'eia': false, 'eidc': false, 'eimg': true, 'eipad': false, 'ej': true, 'element': document.getElementById('docs-editor'), 'el': true, 'els': false, 'elis': false, 'eld': true, 'email': 'p', 'em': false, 'enst': false, 'ensui' : false, 'ep': true, 'epa': false, 'epb': true, 'epcol': true, 'epset': true, 'epc': false, 'epf': false, 'epps': false, 'eps': true, 'epub': true, 'epudc': true, 'erts': true, 'erh': true, 'erd': true, 'ertl': true, 'erti': false, 'esco': true, 'esvcm': true, 'esc': true, 'est': false, 'esud': true, 'etoc': true, 'et': true, 'etm': true, 'etr': true, 'eupc': true, 'ewc': true, 'ewd': false, 'map': 29, 'mip': 27,  'psi': 'kix', 'rtl': false, 'ud': '', 'up': '', 'un': 'pip ', 'wfsl': ["en"]};
+//'iiu': 'picker.htm',
+config['er'] = true;
+config['ak'] = '';
+config['ewf'] = true; 
+config['ci'] = true;
+	var imageUrls = {};
+	//載入編輯器
+	KX_kixApp = _createKixApplication('', config, document.body, KX_disposeFn, '測試編輯器', false, imageUrls);
+
+}
+KX_startKix(); //設定編輯器 並在此function載入
+
+KX_timing['al'] = KX_timing['eac'] = new Date().getTime();</script>
+<script type="text/javascript">KX_timing['scf'] = new Date().getTime();</script>
+<script type="text/javascript">KX_timing['ecf'] = new Date().getTime();</script>
+<script type="text/javascript">KX_timing['ml'] = 0; KX_timing['mp'] = 0; var KX_modelChunkLoadStart; var KX_modelChunkParseStart; var KX_mutations;</script>
+	<script type="text/javascript">KX_modelChunkParseStart = new Date().getTime();</script>
+	
+	<script type="text/javascript">
+	 
+	KX_mutations = {"sid":"","editedBy":"","editedAt":1,"mutations":[{"ty":"is","ibi":1,"s":"The editor Content 請在此填入資料 \n"},{"ty":"as","st":"document","si":0,"ei":0,"sm":{"ds_pw":G_config.innerWidth,"ds_b":{},"ds_ml":G_config.innerLG,"ds_mt":G_config.editPaddingTop,"ds_ph":G_config.contentHeight,"ds_mr":G_config.innerLG,"ds_mb":G_config.editPaddingBottom}}	
+],"rev":208,"startRev":208}; 
+
+
+
+KX_modelChunkLoadStart = new Date().getTime(); 
+KX_timing['mp'] += KX_modelChunkLoadStart - KX_modelChunkParseStart; 
+KX_kixApp.loadInitialModel(KX_mutations);
+
+/*KX_timing['ml'] += new Date().getTime() - KX_modelChunkLoadStart; KX_mutations = undefined;
+KX_timing['cov'] = KX_timing['coe'] = new Date().getTime();
+*/
+</script>
+<script type="text/javascript">
+/*
+var KX_userPreferences = {};KX_userPreferences['kix-uDi'] =[]
+;KX_userPreferences['kix-sr'] =true;KX_userPreferences['kix-ssc'] =true;KX_userPreferences['kix-aC'] =[]
+;KX_kixApp.loadPreferences(KX_userPreferences);
+*/
+</script>
+
+<script type="text/javascript">
+KX_timing['sasl'] = new Date().getTime();
+KX_kixApp.setLoaded();
+KX_timing['el'] = KX_timing['easl'] = new Date().getTime();
+KX_kixApp.getPerformanceManager().saveInitialLoadStats(KX_timing); 
+KX_getLatencyStats = function() {
+	return KX_kixApp.getPerformanceManager().getInitialLoadStats();
+};
+
+</script>
+
+</body>

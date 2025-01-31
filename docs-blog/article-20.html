@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>cron jobs crontab 排程教學</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 在linux系統中，如 freebsd，cron 排程的資料是存在/etc/crontab中，我們可以直接輸入 vi /etc/crontab進行編輯。Linux Cron 指令 crontab -e 編輯排程 (edit cron) crontab -r 移除排程 (remove cron) crontab -l 顯示目前排程 (list cron) crontab -u " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-20-cron-jobs-crontab-排程教學.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-20-cron-jobs-crontab-排程教学.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-20-cron-jobs-crontab-排程教學.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-20-cron-jobs-crontab-排程教學.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-20">
+                    <em><span>cron jobs crontab 排程教學</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-20-cron-jobs-crontab-\u6392\u7a0b\u6559\u5b78.html"},"headline":"cron jobs crontab \u6392\u7a0b\u6559\u5b78","image":"","datePublished":"2011-04-18T23:54:24+08:00","dateModified":"2017-12-18T12:32:22+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5728linux\u7cfb\u7d71\u4e2d\uff0c\u5982 freebsd\uff0ccron \u6392\u7a0b\u7684\u8cc7\u6599\u662f\u5b58\u5728\/etc\/crontab\u4e2d\uff0c\u6211\u5011\u53ef\u4ee5\u76f4\u63a5\u8f38\u5165 vi \/etc\/crontab\u9032\u884c\u7de8\u8f2f\u3002\rLinux Cron \u6307\u4ee4\r\r  cron"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Apr</div>
+            <div class="day">18</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-20-cron-jobs-crontab-排程教學.html"><span>cron jobs crontab 排程教學</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-20-cron-jobs-crontab-排程教学.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>在linux系統中，如 freebsd，cron 排程的資料是存在/etc/<span style="font-weight: bold;">crontab</span>中，我們可以直接輸入 vi /etc/crontab進行編輯。</p><h2>Linux Cron 指令</h2><ul class="list">  <li><span style="color: rgb(248, 129, 129);">crontab -e</span> 編輯排程 (edit cron)<br /></li>  <li><span style="color: rgb(248, 129, 129);">crontab -r</span>  移除排程 (remove cron)</li>  <li><span style="color: rgb(248, 129, 129);">crontab -l</span>  顯示目前排程 (list cron)</li>  <li><span style="color: rgb(248, 129, 129);">crontab -u</span> 改變排程的執行身分: crontab -u user filename</li></ul><h2>Cron 語法介紹</h2><div >  <table class="table">      <thead>       <tr>      <th style="font-weight: bold;">        分鐘<br />      </th>      <th style="font-weight: bold;">        小時<br />      </th>      <th style="font-weight: bold;">        日<br />      </th>      <th style="font-weight: bold;">        月<br />      </th>      <th style="font-weight: bold;">        星期<br />      </th>      <th style="font-weight: bold;">        執行身份<br />      </th>      <th style="font-weight: bold;">        指令<br />      </th>    </tr>   </thead>    <tbody><tr>    <br />      <td>        0~59<br />      </td>      <td>        0~23<br />      </td>      <td>        1~31 (29,30)<br />      </td>      <td>        1~12<br />      </td>      <td>        0~6<br />        0是星期日，6是星期六<br />      </td>      <td>       帳號<br /></td>      <td>        /usr/bin/xxxx<br /></td>    </tr>  </tbody>  </table></div><h2>Cron 範例 ( Example )</h2><p>每5分鐘執行一次</p><blockquote><span style="color: rgb(192, 2, 2);"> */5 * * * *  root    /usr/libexec/atrun</span></blockquote><p>每5小時執行一次</p><blockquote><span style="color: rgb(192, 2, 2);"> *   */5 * * *  root    /usr/libexec/atrun</span></blockquote><p>1至20號每天執行一次</p><blockquote><span style="color: rgb(192, 2, 2);">0   1   1-20  * *  root    /usr/libexec/atrun</span></blockquote><p>當分針移到第5分時，執行此 cron</p><blockquote><span style="color: rgb(192, 2, 2);"> 5 * * * *  root    /usr/libexec/atrun </span></blockquote><p>當時針移到1點 1 分時，執行此 cron</p><blockquote><div><span style="color: rgb(192, 2, 2);">1   1 * * *  root    /usr/libexec/atrun</span></div></blockquote><p>每週一的1點1分，執行</p><blockquote><span style="color: rgb(192, 2, 2);">1   1 * *   1  root    /usr/libexec/atrun</span></blockquote><p>2月29日時針到1點1分，執行 <br /></p><blockquote><div><span style="color: rgb(192, 2, 2);">1   1   29    2 *  root    /usr/libexec/atrun</span></div></blockquote><p>8點到16點每5分鐘執行一次 cron</p><blockquote><span style="color: rgb(192, 2, 2);"> */5   8-16 * * *   root    /usr/libexec/atrun</span></blockquote><h2>start cron</h2><p>在 Linux 中，有個程式叫 crond ，意思是 cron daemon，大部分的 Linux 系統都會自動背景啟開這個程式，但是有時候會碰到 cron 沒有啟動的狀態，啟動方式如下：</p>   ! sudo service crond start<br /><p>啟動之後，我會使用 <code>tail -f  /var/log/cron</code> 這個指令來檢查 /etc/crontab 中的程式，是否有正確的被執行。</p><h2>如何讓 cron job 自動 SCP 備份資料</h2><p>首先我們要啟用 SSH Agent，有了 SSH Agent ，就能夠執行 scp 指令，並且自動通過輸入密碼的過程。</p><p>先在個人目錄下新增  .bash_profile ，並加入以下的內容，加入完成後得重新載入 .bash_profile ， 使用指令「source ~/.bash_profile」，之後我們就可以用 start_agent 啟動 SSH Agent。</p><div class="codeBlock shell"><span class="title"> .bash_profile</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">SSH_ENV</span><span class="pun">=</span><span class="pln">$HOME</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">environment</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> start_agent </span><span class="pun">{</span></li><li class="L2"><span class="pln">     echo </span><span class="str">"Initialising new SSH agent..."</span></li><li class="L3"><span class="pln">     </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">ssh</span><span class="pun">-</span><span class="pln">agent </span><span class="pun">|</span><span class="pln"> sed </span><span class="str">&#39;s/^echo/#echo/&#39;</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> $</span><span class="pun">{</span><span class="pln">SSH_ENV</span><span class="pun">}</span></li><li class="L4"><span class="pln">     echo succeeded</span></li><li class="L5"><span class="pln">     chmod </span><span class="lit">600</span><span class="pln"> $</span><span class="pun">{</span><span class="pln">SSH_ENV</span><span class="pun">}</span></li><li class="L6"><span class="pln">     </span><span class="pun">.</span><span class="pln"> $</span><span class="pun">{</span><span class="pln">SSH_ENV</span><span class="pun">}</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="str">/dev/</span><span class="kwd">null</span></li><li class="L7"><span class="pln">     ssh</span><span class="pun">-</span><span class="pln">add id_rsa</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><p>接下來修改 /etc/crontab ，將備份的指令輸入就可以了，如果想看執行的 Log ，可以在指令的最後補上 「 2>&1 &> ~/cronLog」，這樣程式就會將結果存到 ~/cronLog。</p><div class="codeBlock shell"><span class="title">/etc/crontab  auto scp</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="lit">1</span><span class="pln">  </span><span class="lit">1</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> userxx  </span><span class="pun">.</span><span class="pln"> </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">userxx</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">environment </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="str">/usr/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">scp puritys</span><span class="pun">.</span><span class="pln">me</span><span class="pun">:~</span><span class="str">/var/</span><span class="pln">backup</span><span class="com">/* ~/</span></li></ol></pre></div><p>這個範例是每天自動備份另一台機器的資料，但是時間一久 ，備份的資料會越來越多，最後硬碟會撐不住，所以又要加一個<b>自動刪除舊檔</b>的 cron job，下面這個範例會自動刪除五天前的 gz 備份檔。</p><div class="codeBlock shell"><span class="title">/etc/crontab auto rm </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="lit">40</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> userxx </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">rm </span><span class="str">`date  --date="-5 day"  +&#92;%Y-&#92;%m-&#92;%d`</span><span class="pun">*.</span><span class="pln">gz</span></li></ol></pre></div><blockquote>日期運算另一種寫法  date  -d "-1 day"  +"%Y-%m-%d"</blockquote><h2>sleep 一段時間</h2><p>Cronjob 最短只能設定到每分鐘執行，如果你想要設定就某幾秒可以執行，那麼可以用 perl sleep 來達成。</p><blockquote>40 1 * * * userxx perl -e &#39;sleep(int(rand(60 * 60 * 24)));&#39; && run xx</blockquote></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-12-18T12:32:22+08:00" class="article-modify-time">2017/12/18</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-20" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-20" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

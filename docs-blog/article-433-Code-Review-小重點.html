@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Code Review  小重點</title>
+    <meta name="keywords" content="Code Review" />
+    <meta name="description" content="Code Review 是一件很重要的事，很多 Bugs 都可以經由 Code Review 而發現，學會怎麼 Review 別人的程式更是一門學問， 每個專案大小與未來性不同，不能永遠都使用同一套標準，小專案或是暫時的 Script ，不需要看得太細，只能程式能動就好，而目標是跑 5 年以上的大專案，就得多花點眼力來檢查，除了 review 程式邏輯之外，其它還有很多地方要特" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-433-Code-Review-小重點.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-433-Code-Review-小重点.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-433-Code-Review-小重點.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-433-Code-Review-小重點.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-433">
+                    <em><span>Code Review  小重點</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-433-Code-Review-\u5c0f\u91cd\u9ede.html"},"headline":"Code Review  \u5c0f\u91cd\u9ede","image":"","datePublished":"2018-04-16T20:43:52+08:00","dateModified":"2018-04-27T22:38:48+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Code Review \u662f\u4e00\u4ef6\u5f88\u91cd\u8981\u7684\u4e8b\uff0c\u5f88\u591a Bugs \u90fd\u53ef\u4ee5\u7d93\u7531 Code Review \u800c\u767c\u73fe\uff0c\u5b78\u6703\u600e\u9ebc Review \u5225\u4eba\u7684\u7a0b\u5f0f\u66f4\u662f\u4e00\u9580\u5b78\u554f\uff0c \u6bcf\u500b\u5c08\u6848\u5927\u5c0f\u8207\u672a\u4f86\u6027\u4e0d\u540c\uff0c\u4e0d\u80fd\u6c38\u9060\u90fd\u4f7f\u7528\u540c\u4e00\u5957\u6a19"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2018</div>
+            <div class="month">Apr</div>
+            <div class="day">16</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-433-Code-Review-小重點.html"><span>Code Review  小重點</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Code Review">Code Review</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-433-Code-Review-小重点.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Code Review 是一件很重要的事，很多 Bugs 都可以經由 Code Review 而發現，學會怎麼 Review 別人的程式更是一門學問， 每個專案大小與未來性不同，不能永遠都使用同一套標準，小專案或是暫時的 Script ，不需要看得太細，只能程式能動就好，而目標是跑 5 年以上的大專案，就得多花點眼力來檢查，除了 review 程式邏輯之外，其它還有很多地方要特別留意，以下是我多年來 code review 的經驗。</p><ul class="list">  <li>Beta / Production 環境：一般軟體開發都會有區分多個環境，最少有 Beta(staging) ， production 兩個環境 ，工程師很容易只針對其中一個環境來開發測試， Commit 的程式也只測過 Beta，並沒有想到 production 的部分 ，所以 review 時要看看新增的程式是否有處理不同環境的設定，最常見的就是加了一個 Beta 測試用的設定值，而少加了 production 所需的設定。</li>  <li>是否有 Require library, Import lib path，有些工程師寫程式都不測試的，程式邏輯寫完了，卻沒有載入對應的 library ，一執行就直接掛點，建議要求所有 RD 寫 unit test or Integration test 來避免這種問題，若是公司內沒有這些規定，那麼 review 時就多看兩眼。</li>  <li>Package dependency：如果有升級 Library / Package 要記得改版號，工程師很常自已的環境測試完，就忘了改 pom.xml / package.json 等版號。</li>  <li>Reuse function： 想想看是否有其它工程師曾經實作過相同的程式邏輯，盡可能重複使用同一段程式，不要寫一模一樣的 code。</li>  <li>極端值： 程式是否能夠處理各式各樣奇怪的數值，例如負數，0 ，big number ，null，空字串，undefined，large array。</li>  <li>可讀性：保持程式簡單易懂，如果程式邏輯著實複雜得誇張，可以把複雜而且不常更動的部分打包藏進 Library 裡，讓外部程式執行流程乾淨好懂 (<a href="https://en.wikipedia.org/wiki/Facade_pattern" target="_blank">Facade pattern</a>)。</li>  <li>程式是否會影響到其它的 service ，input / output 改變或是底層 library 變更，有可能會產生其它服務 Bugs 。</li>  <li>程式一致性：不要創造新的變數名稱，保持原來程式的命名，但是如果原程式命名有很大的問題，那就把有問題的變數全部改掉，不要只改你有動到的地方。</li>  <li>把自已當成一個測試工程師，測試一下程式邏輯是否有 Bug。</li>  <li>想一想是否有機會提升效能，雖然程式不一定有效能問題，但是多研究效能方面的知識，可以提升自已的能力，以應付未來流量更大的系統。</li>  <li>是否有安全性漏洞，例如 SQL Injection, XSS, File Injection, Buffer overflow。</li>  <li>前置作業： 新程式是否需要搭配修改 DB Schema，或是必需先修改 production settings，是否需要多增加一個開關設定上線日，時間到才自動啟用新功能，如果沒有事先設定好這些，程式 release 當天很可能就立馬倒站，以下幾種狀況都會造成系統出錯。</li>  <ul class="list">    <li class="indent1">修改 Code SQL 語法，但是 DB Schema 沒有改。</li>    <li class="indent1">程式需搭配 DB table index，如果沒有先建好 index 會造成 Slow Query 。</li>    <li class="indent1">Production 需增加新的設定，而設定與程式邏輯分別在不同的 Repositories，甚至是安裝在不同的機器，無法同時 Release 。</li>  </ul>  <li>Release：程式是否能夠 release ，有些功能還在開發當中，不能公開給外部的 User 使用，如果 merge 這段程式，是否會造成提前 release 。</li>  <li>Rollback 機制：如果新版程式在線上運作一段時間後，出現問題要如何 rollback。</li>  <li>Release 流程：一般線上機器不會只有一台，一般來說至少有 3 台以上，在 Release 的過程中，會一台一台慢慢安裝，造成線上有一部分機器是舊的程式，一部分機器已經安裝新的程式，新機器建立的資料格式，舊版的程式無法正確處理，而造成系統 crash。</li>  <li>資料格式改變：移除即有欄位，很可能會造成系統錯誤。</li>  <ul class="list">    <li class="indent1">Cache 內容變更：memcached, redis, http cache, browser cache, session cache 以上 cache 都會存在系統一段時間，資料格式改變時，並不會把即有的 cache 一並更新，這時線上會同時存在新舊兩種 cache，需確定程式讀取 cache 時，不會因格式改變而出錯，另外在測試的過程中就有可能因為新版的 cache 資料造成線上環境出錯，很可能在 review 的當下就已經有新版的 cache 格式出現在線上環境。</li>    <li class="indent1">回傳格式改變，前端是否有相對應的變更，Release 流程是否要調整。</li>    <li class="indent1">是否需要 On the fly data migration</li>  </ul>  <li>Merge 順序：如果同時有多個 Pull Request，每個 PR 相依性是否有正確設定，底層 Library 優先 Merge 。</li></ul><p>良好的 Code Review ，可以讓系統更加穩定，不會因為突發性的 Bug 而被 Call 上來緊急修復。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-04-27T22:38:48+08:00" class="article-modify-time">2018/04/27</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-433" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-433" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-434">為什麼要  Code Review</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Code Review 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

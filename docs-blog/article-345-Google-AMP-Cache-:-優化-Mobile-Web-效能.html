@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Google AMP  Cache : 優化 Mobile Web 效能</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="AMP (Accelerated Mobile Pages Project ) 是一個加快 Mobile web 的一個計劃，起啟這個計劃的原因是，當一個 Mobile 的頁面超過三秒沒有出現，那就有 40% 的 User 就會直接關掉該頁面。AMP 會先將純 HTML 資料暫存在 AMP Server ，當 user 進入 Google Mobile Search 頁並輸入關" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-345-Google-AMP-Cache-:-優化-Mobile-Web-效能.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-345-Google-AMP-Cache-:-优化-Mobile-Web-效能.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-345-Google-AMP-Cache-:-優化-Mobile-Web-效能.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-345-Google-AMP-Cache-:-優化-Mobile-Web-效能.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-345">
+                    <em><span>Google AMP  Cache : ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-345-Google-AMP-Cache-:-\u512a\u5316-Mobile-Web-\u6548\u80fd.html"},"headline":"Google AMP  Cache : \u512a\u5316 Mobile Web \u6548\u80fd","image":"https:\/\/amphtml.files.wordpress.com\/2016\/02\/f0787-amp_v6_phone_cropped-mov.gif?w=576&h=960","datePublished":"2016-03-16T00:42:07+08:00","dateModified":"2018-04-24T01:23:19+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"AMP (Accelerated Mobile Pages Project ) \u662f\u4e00\u500b\u52a0\u5feb Mobile web \u7684\u4e00\u500b\u8a08\u5283\uff0c\u8d77\u555f\u9019\u500b\u8a08\u5283\u7684\u539f\u56e0\u662f\uff0c\u7576\u4e00\u500b Mobile \u7684\u9801\u9762\u8d85\u904e\u4e09\u79d2\u6c92\u6709\u51fa\u73fe\uff0c\u90a3\u5c31\u6709"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Mar</div>
+            <div class="day">16</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-345-Google-AMP-Cache-:-優化-Mobile-Web-效能.html"><span>Google AMP  Cache : 優化 Mobile Web 效能</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-345-Google-AMP-Cache-:-优化-Mobile-Web-效能.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>AMP (Accelerated Mobile Pages Project ) 是一個加快 Mobile web 的一個計劃，起啟這個計劃的原因是，當一個 Mobile 的頁面超過三秒沒有出現，那就有  40% 的 User 就會直接關掉該頁面。</p><p>AMP 會先將純 HTML 資料暫存在 AMP Server ，當 user 進入 Google Mobile Search 頁並輸入關鍵字之後，Search Result 便會出現 AMP Cache 的結果，這個 AMP 的結果會出現在一個新的區塊，只有支援 AMP 的網頁才會出現，所以支援 AMP 等同多了一次機會出現在 Google search result 。</p><p>看看下面這段影片 Google 的AMP Demo</p><img src="https://amphtml.files.wordpress.com/2016/02/f0787-amp_v6_phone_cropped-mov.gif?w=576&h=960"   /><h2>如何讓網頁支援 AMP</h2><p>想要支援 AMP 功能，那麼我們就要為 AMP 客製化一個 HTML 頁面，下面這是一個最簡單的 AMP 範例：</p><div class="codeBlock html"><span class="title"> AMP HTML</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="dec">&lt;!DOCTYPE html&gt;</span></li><li class="L1"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">amp</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln"> </span><span class="tag">&lt;head&gt;</span></li><li class="L3"><span class="pln">   </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">   </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"canonical"</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"hello-world.html"</span><span class="tag">&gt;</span></li><li class="L5"><span class="pln">   </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span><span class="pln"> </span><span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width,minimum-scale=1,initial-scale=1"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">   </span><span class="tag">&lt;style</span><span class="pln"> </span><span class="atn">amp-boilerplate</span><span class="tag">&gt;</span><span class="pln">body</span><span class="pun">{-</span><span class="kwd">webkit-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;-</span><span class="kwd">moz-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;-</span><span class="kwd">ms-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;</span><span class="kwd">animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">}@-</span><span class="pln">webkit-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">moz-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">ms-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">o-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@</span><span class="pln">keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}</span><span class="tag">&lt;/style&gt;&lt;noscript&gt;&lt;style</span><span class="pln"> </span><span class="atn">amp-boilerplate</span><span class="tag">&gt;</span><span class="pln">body</span><span class="pun">{-</span><span class="kwd">webkit-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;-</span><span class="kwd">moz-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;-</span><span class="kwd">ms-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;</span><span class="kwd">animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">}</span><span class="tag">&lt;/style&gt;&lt;/noscript&gt;</span></li><li class="L7"><span class="pln">   </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">async</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://cdn.ampproject.org/v0.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L8"><span class="pln"> </span><span class="tag">&lt;/head&gt;</span></li><li class="L9"><span class="pln"> </span><span class="tag">&lt;body&gt;</span><span class="pln">Hello World!</span><span class="tag">&lt;/body&gt;</span></li><li class="L0"><span class="tag">&lt;/html&gt;</span></li></ol></pre></div><p>從範例中可以很清楚的看到 ，AMP 的頁面必需載入一支 AMP 專用的 JavaScript，而且 CSS Style 只能夠使用 <b>Internal style sheet </b>的方式，官方說不能使用 inline style， canonical URL 也是一個必填欄位，這個 url 必須指向 non-amp 的原始網址。</p><div class="codeBlock html"><span class="title"> head 必填的 AMP JavaScript </span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">async</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://cdn.ampproject.org/v0.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre></div><p>以下 CSS 不能使用</p><table class="table"><tr><th>Inline style attributes</th><td>所有的 css styles 必須定議在 head 裡面的 "style amp-custom" tag.</td></tr><tr><th>important</th><td>不能使用 important</td></tr><tr><th>Custom fonts</th><td>不能使用客製化字型</td></tr><tr><th>*</th><td>CSS Selector 不能使用星號 *</td></tr><tr><th>:not</th><td>不能使用 :not</td></tr><tr><th>Pseudo-selectors</th><td>Pseudo-selectors 不能使用 amp 開頭，如 amp-link:hover 為不合法屬性</td></tr><tr><th>-amp-  i-amp- </th><td>不能使用 -amp- 跟  i-amp- 開頭的 class name</td></tr><tr><th>behavior, -moz-binding</th><td>因為安全性因素，不能使用這兩個屬性</td></tr><tr><th>filter</th><td>filter 會影響效能，故不能使用</td></tr></table><h2>修改 non-amp 頁面</h2><p>為了讓 Google Search Engine 知道你有實做了 AMP page ，你必需在原來的 HTML 頁面加入一行 Html Tag  link  指向 AMP 網址。</p><div class="codeBlock html"><span class="title"> amphtml</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"amphtml"</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://www.example.com/url/to/amp/document.html"</span><span class="tag">&gt;</span></li></ol></pre></div><h2>測試 AMP 頁面</h2><p>當你製作完成一個 AMP 頁面之後， 在 AMP Url 後面加上 "<b>#development=1</b>"，就可以從 Chrome console 中看到 AMP Validate 的結果。</p><p>如何測試你的 AMP 頁面是否有通過 Google 檢查呢，將 url= 後面的連結換成你要測試的網址即可看到結果。</p><ul class="list">  <li><a href="https://search.google.com/test/amp?url=https%3A%2F%2Fwww.puritys.me%2Fdocs-blog-amp%2Farticle-345-Google-AMP-Cache-%3A-%E5%84%AA%E5%8C%96-Mobile-Web-%E6%95%88%E8%83%BD.html"  target="_blank">https://search.google.com/test/amp?url=https%3A%2F%2Fwww.puritys.me%2Fdocs-blog-amp%2Farticle-345-Google-AMP-Cache-%3A-%E5%84%AA%E5%8C%96-Mobile-Web-%E6%95%88%E8%83%BD.html</a></li></ul><img src="/filemanage/blog_files/file_367.jpg"   /><img src="/filemanage/blog_files/file_366.jpg"   /><h2>AMP HTML 規格</h2><p>一個 AMP 頁面的 HTML Tag 跟一般網頁是不同的，以下幾個規定我們一定要遵守。</p><ul class="list">  <li>網頁起始一定要有 <code>&lt;!doctype html></code></li>  <li>html 一定要含 amp attribute <code>&lt;html amp></code></li>  <li>head 一定要段 canonical 指向 non-amp 原始網頁</li>  <li>要有 character setting <code>&lt;meta charset="utf-8"> </code></li>  <li>Mobile device 的 viewport 要這樣寫 <code>&lt;meta name="viewport" content="width=device-width,minimum-scale=1"></code></li>  <li>head 一定要載入這支 JavsScript <code>&lt;script async src="https://cdn.ampproject.org/v0.js"></script></code></li>  <li>head 一定要有這段 CSS Style:</li></ul><div class="codeBlock html"><span class="title"> AMP CSS style</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;style</span><span class="pln"> </span><span class="atn">amp-boilerplate</span><span class="tag">&gt;</span><span class="pln">body</span><span class="pun">{-</span><span class="kwd">webkit-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;-</span><span class="kwd">moz-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;-</span><span class="kwd">ms-animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">;</span><span class="kwd">animation</span><span class="pun">:</span><span class="pln">-amp-start </span><span class="lit">8s</span><span class="pln"> steps</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="pln">end</span><span class="pun">)</span><span class="pln"> </span><span class="lit">0s</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> normal both</span><span class="pun">}@-</span><span class="pln">webkit-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">moz-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">ms-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@-</span><span class="pln">o-keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}@</span><span class="pln">keyframes -amp-start</span><span class="pun">{</span><span class="pln">from</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">hidden</span><span class="pun">}</span><span class="pln">to</span><span class="pun">{</span><span class="kwd">visibility</span><span class="pun">:</span><span class="pln">visible</span><span class="pun">}}</span><span class="tag">&lt;/style&gt;</span></li><li class="L1"><span class="tag">&lt;noscript&gt;&lt;style</span><span class="pln"> </span><span class="atn">amp-boilerplate</span><span class="tag">&gt;</span><span class="pln">body</span><span class="pun">{-</span><span class="kwd">webkit-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;-</span><span class="kwd">moz-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;-</span><span class="kwd">ms-animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;</span><span class="kwd">animation</span><span class="pun">:</span><span class="pln">none</span><span class="pun">}</span><span class="tag">&lt;/style&gt;&lt;/noscript&gt;</span></li></ol></pre></div><ul class="list">  <li>不能使用 form</li></ul><p>除了以上提到的部分，其它如 img, ifarme 等等也都要改成 amp-img , amp-iframe，而且 amp-img 一定要給寬跟高，不能任由瀏覽器自已決定 ，這幾個要求都很麻煩，要改的地方滿多的。</p><h2>加入 Google Analysis</h2><p>目前 AMP 頁面沒有很直接的方式可以得知到底有多少成效，所以我們一定要使用 Google Analysis ，只要在 AMP 頁面的 head 加入下面這段 script 。</p><div class="codeBlock js"><span class="title"> Add google analysis</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">script async custom</span><span class="pun">-</span><span class="pln">element</span><span class="pun">=</span><span class="str">"amp-analytics"</span></li><li class="L1"><span class="pln">    src</span><span class="pun">=</span><span class="str">"https://cdn.ampproject.org/v0/amp-analytics-0.1.js"</span><span class="pun">&gt;&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></li></ol></pre></div><p>除了在 head 加一段 js 外，你還要在 HTML body 的地方，加入一段 amp-analytics ，並說明你要追蹤的功能有哪些，例如我的 AMP 頁面只想要有 pageview 的功能，所以我在下面這個範例中加入了 "trackPageview" 這個欄位。</p><p>AMP 頁面是直接在 Google Search Result 中顯示，它必須要由 JS 送出  GA Beacon 到 GA Server ，所以我們一定要在 AMP 頁面加上 GA 設定才行。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;amp-analytics</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"googleanalytics"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"analytics1"</span><span class="tag">&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"application/json"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pun">{</span></li><li class="L3"><span class="pln">  </span><span class="str">"vars"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="str">"account"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UA-2887357-7"</span></li><li class="L5"><span class="pln">  </span><span class="pun">},</span></li><li class="L6"><span class="pln">  </span><span class="str">"triggers"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="str">"trackPageview"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">      </span><span class="str">"on"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"visible"</span><span class="pun">,</span></li><li class="L9"><span class="pln">      </span><span class="str">"request"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"pageview"</span></li><li class="L0"><span class="pln">    </span><span class="pun">}</span></li><li class="L1"><span class="pln">  </span><span class="pun">}</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="tag">&lt;/script&gt;</span></li><li class="L4"><span class="tag">&lt;/amp-analytics&gt;</span></li></ol></pre></div><p>其它 Google Analysis 功能可以參考官方說明 <a href="https://developers.google.com/analytics/devguides/collection/amp-analytics/"  target="_blank">https://developers.google.com/analytics/devguides/collection/amp-analytics/</a> 。</p><h2>Google Search Result 看到結果</h2><p>2016/11/10 終於在  google search result 看到我的 AMP 頁面了，首先你要用手機打開瀏覽器，我使用的瀏覽器是  chrome ，接著連到 google search 然後輸入關鍵字，有被 google 收錄的 AMP 頁面，它左邊會出現 "閃電符號" + 上 AMP。</p><a  href="https://www.flickr.com/photos/23481497@N05/30258489884/in/dateposted-public/" target="_blank" title="amp_pages"><img src="https://c5.staticflickr.com/6/5347/30258489884_19f0e34036_b.jpg" width="532" height="829" alt="amp_pages"></a><h2>相關文章</h2><ul class="list">  <li><a href="https://amphtml.wordpress.com/2016/02/24/amping-up-in-google-search/"  target="_blank">https://amphtml.wordpress.com/2016/02/24/amping-up-in-google-search/</a></li>  <li>Document: <a href="https://www.ampproject.org/docs/get_started/about-amp.html"  target="_blank">https://www.ampproject.org/docs/get_started/about-amp.html</a></li>  <li>Specification: <a href="https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md"  target="_blank">https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md</a></li>  <li>AMP 測試： <a href="https://www.ampproject.org/docs/guides/validate.html"  target="_blank">https://www.ampproject.org/docs/guides/validate.html</a></li>  <li>CSS Style: <a href="https://www.ampproject.org/docs/guides/responsive/style_pages.html"  target="_blank">https://www.ampproject.org/docs/guides/responsive/style_pages.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-04-24T01:23:19+08:00" class="article-modify-time">2018/04/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-345" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-345" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

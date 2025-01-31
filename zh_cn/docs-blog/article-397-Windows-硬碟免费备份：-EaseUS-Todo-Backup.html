@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Windows 硬碟免费备份： EaseUS Todo Backup</title>
+    <meta name="keywords" content="rescue, windows" />
+    <meta name="description" content="多年以前我都是用 Ghost 這套軟體來備份整顆硬碟，最近又需要備份硬碟的功能，於是拿出了這個陳年的產品，卻發現 Ghost 一定要使用磁碟片才能回復系統，現在都 2016 年了，哪有電腦還裝著磁碟片，說不定正在讀這篇文章的你根本就沒看過磁碟片吧，後來我試著把 Ghost 弄到光碟片上，但是一直搞不定開機檔 (bootable image)，就在此時，我在網路上看到了 Ease" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-397-Windows-硬碟免费备份：-EaseUS-Todo-Backup.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-397-Windows-硬碟免费备份：-EaseUS-Todo-Backup.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/software" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">實用軟體</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-397">
+                    <em><span>Windows 硬碟免费备份： Ease...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-397-Windows-\u786c\u789f\u514d\u8cbb\u5099\u4efd\uff1a-EaseUS-Todo-Backup.html"},"headline":"Windows \u786c\u789f\u514d\u8cbb\u5099\u4efd\uff1a EaseUS Todo Backup","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_312.png","datePublished":"2016-12-07T01:03:00+08:00","dateModified":"2016-12-14T00:33:02+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u591a\u5e74\u4ee5\u524d\u6211\u90fd\u662f\u7528 Ghost \u9019\u5957\u8edf\u9ad4\u4f86\u5099\u4efd\u6574\u9846\u786c\u789f\uff0c\u6700\u8fd1\u53c8\u9700\u8981\u5099\u4efd\u786c\u789f\u7684\u529f\u80fd\uff0c\u65bc\u662f\u62ff\u51fa\u4e86\u9019\u500b\u9673\u5e74\u7684\u7522\u54c1\uff0c\u537b\u767c\u73fe Ghost \u4e00\u5b9a\u8981\u4f7f\u7528\u78c1\u789f\u7247\u624d\u80fd\u56de\u5fa9\u7cfb\u7d71\uff0c\u73fe\u5728\u90fd 2016 \u5e74\u4e86\uff0c\u54ea\u6709\u96fb\u8166\u9084\u88dd\u8457\u78c1\u789f\u7247"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Dec</div>
+            <div class="day">07</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html"><span>Windows 硬碟免费备份： EaseUS Todo Backup</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=rescue">rescue</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=windows">windows</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>多年以前我都是用 Ghost 这套软体来备份整颗硬碟，最近又需要备份硬碟的功能，於是拿出了这个陈年的产品，却发现 Ghost 一定要使用磁碟片才能回复系统，现在都 2016 年了，哪有电脑还装著磁碟片，说不定正在读这篇文章的你根本就没看过磁碟片吧，后来我试著把 Ghost 弄到光碟片上，但是一直搞不定开机档 (bootable image)，就在此时，我在网路上看到了 <em>EaseUS Todo Backup </em> 这个软体，先不管功能好不好用，重点是 "免费"，免钱的就先顶著先，没想到它的功能这么强大，各位一定要下载回去试用看看。</p><ul class="list">  <li>官方下载： <a href="http://tw.easeus.com/backup-software/todo-backup-free.html"  target="_blank">http://tw.easeus.com/backup-software/todo-backup-free.html</a></li></ul><h2>为什么要备份?</h2><p>我朋友曾经被骇客安装绑架软体，恶意锁住他整个系统档案，包含个人照片，影片，文件，他哭著来找我帮忙，但是我是一点也帮不上忙，毕竟骇客软体又不是我写的，想要反破解也不是一天两天的事，我只能跟他说，以后要记得时常备份，尤其是你越看重的照片，更应该常常备份。</p><p>电脑硬体坏掉也是很突然的，显示卡、主机版，记忆体这些硬体设备很坚强，用个十年可能也不会坏，但是说不定你就是那个到楣鬼，别人碰不到的，被你碰到，一旦硬体设备出现状况，而你又对电脑不熟析，也只能把电脑拿去给电脑公司维修，电脑搬运的过程也有机会把硬碟给撞坏掉，你的个人照片很可能在一瞬间就全没了。</p><p>其它还有很多种因素会造成资料遗移，总之多备份就对了，但现要介绍的这个软体叫 EaseUS ，它是我用过最强大的备份软体。</p><h3>EaseUS 免费版可以帮我们做什么呢?</h3><ul class="list">  <li>硬碟/磁碟区镜像备份与还原</li>  <li>系统镜像备份，包含所有的应用程式，帐户资料。</li>  <li>OS 复制，将 A 机器的环境复制到 B 机器，有点像借尸还魂</li>  <li>设固定时间，自动备份</li>  <li>最大支援 16 TB 硬碟</li>  <li>支援 Windows 10/8/7/Vista/XP</li></ul><h3>付了钱之后有什么好处呢?</h3><p>如果你的备份需求异於常人，或是你是公司行号，那么你可以考虑付费来获得以下更好的服务：</p><ul class="list">  <li>备份速度快两倍</li>  <li>支援 outlook 备份/还原</li>  <li>Event-base schedule</li>  <li>Email 提醒你备份结果</li>  <li>EaseUS 技术支援</li>  <li>其它请看官网或询问官方</li></ul><p>其实免费版的功能就已经很强了，这家公司真的佛心，付费版的功能大概只有公司等级才有这些需求，对我们小老百姓来说，免费版功能就非常的足够。</p><h2>镜像备份硬碟</h2><p>EaseUs Todo Backup 这套软体最重要的功能就是备份整颗硬碟，首先你要下载并安装 EaseUS ，打开它之后，你就会先到下面这个 EaseUS 首页。</p><a href="/filemanage/blog_files/file_312.png" target="_blank" ><img src="/filemanage/blog_files/file_312.png"   class="win" alt="Windows / win 备份" link="me" /></a><p>再来就选择上方选单的系统备份，接著它就会要你选择备份哪一个系统，因为我只装一个 Windows 系统，所以页面上只会有 Windows 7 可以选。</p><a href="/filemanage/blog_files/file_314.png" target="_blank" ><img src="/filemanage/blog_files/file_314.png"   alt="EaseUS 系统备份" link="me" /></a><p>接著选择 "目标路径"，修改备份档储存的地方，这里我是直接存到我的行动硬碟。</p><a href="/filemanage/blog_files/file_313.png" target="_blank" ><img src="/filemanage/blog_files/file_313.png"   alt="EaseUS 取代 Ghosh" link="me" /></a><p>再点击 "备份选项"，里面有压缩比率，加密，性能的进阶功能，我个人是没有特别修改这些设定值，一般的压缩比率约为  43%，我的作业系统  32.9 GB ，备份完成后，档案只有  14.4 GB，虽然镜像备份整个硬碟档案会很大，无法存在一片光碟里面，但是现在行动硬碟很方便，直接存在行动硬碟上即可。</p><a href="/filemanage/blog_files/file_315.png" target="_blank" ><img src="/filemanage/blog_files/file_315.png"   alt="EaseUS 备份选项" link="me" /></a><p>最后按下执行，EaseUS 就会开始镜像备份，备份时间依系统大小而定，我大约等了 50 分钟，最好的办法是电脑开著人去睡觉，隔天就备份完成罗，EaseUS 也有提供备份完成后自动关机的功能非常方便。</p><a href="/filemanage/blog_files/file_316.png" target="_blank" ><img src="/filemanage/blog_files/file_316.png"   link="me" /></a><h2>如何还原系统</h2><p>EaseUS 的还原过程都是图形化介面，操作非常简单，首先你要制作一个还原光碟，打开 EaseUS Todo Backup ，里面有个选项 工具 →建立开机碟 ，打开这个选项直接执行，就会得到一个 iso 档，把这个档案烧光碟就是了。</p><p>还原光碟的档案我已经制作好了，你也可以直接从这里下载：</p><ul class="list">  <li>本地还原光碟下载： <a href="https://download.puritys.me/EaseUS_restore.iso"  target="_blank">https://download.puritys.me/EaseUS_restore.iso</a></li></ul><p>放入还原光碟重开机后，你会看到 EaseUS 的还原选单，我们要选 EaseUS Todo Backup。</p><a href="/filemanage/blog_files/file_303.png" target="_blank" ><img src="/filemanage/blog_files/file_303.png"   link="me" /></a><p>进入还原功能页后，我们要选 "Browser to Recover"</p><a href="/filemanage/blog_files/file_304.png" target="_blank" ><img src="/filemanage/blog_files/file_304.png"   link="me" /></a><p>再来 EaseUS 会要求我们选择备份档，就是上一段文章中介绍的备份档 (我的有 14.4GB) ，如果你是把备份档存在行动硬碟或 USB ，记得先把 USB 插上电脑。</p><a href="/filemanage/blog_files/file_305.png" target="_blank" ><img src="/filemanage/blog_files/file_305.png"   link="me" /></a><p>选择要还原的系统槽，通常就直接选择 C 槽就行了。</p><a href="/filemanage/blog_files/file_307.png" target="_blank" ><img src="/filemanage/blog_files/file_307.png"   link="me" /></a><p>再来又要选一次硬碟，通常会是 Hard Disk 0 ，把这一颗硬碟打勾就行了，如果你的电脑有多颗硬碟，那么可以用硬碟容量来区分。</p><a href="/filemanage/blog_files/file_308.png" target="_blank" ><img src="/filemanage/blog_files/file_308.png"   link="me" /></a><p>这样就开始还原罗，还原完开机 Windows 就会回到上次备份的状态。</p><a href="/filemanage/blog_files/file_309.png" target="_blank" ><img src="/filemanage/blog_files/file_309.png"   link="me" /></a></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-12-14T00:33:02+08:00" class="article-modify-time">2016/12/14</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-397" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-397" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">rescue 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-394-超大容量照片備份.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_394&quot;}'>超大容量照片備份 </a></li>
+    
+        <li><a href="/docs-blog/article-291-USB，硬碟救援，檔案刪除還原.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_291&quot;}'>USB，硬碟救援，檔案刪除還原 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">windows 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_399&quot;}'>如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統 </a></li>
+    
+        <li><a href="/docs-blog/article-382-Win-10-光碟機無法打開.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_382&quot;}'>Win 10 光碟機無法打開 </a></li>
+    
+        <li><a href="/docs-blog/article-372-加速-Windows-10-WIN-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_372&quot;}'>加速 Windows 10 /  WIN 10 </a></li>
+    
+        <li><a href="/docs-blog/article-314-Win8-修改系統預設字型.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_314&quot;}'>Win8 修改系統預設字型 </a></li>
+    
+        <li><a href="/docs-blog/article-290-Cygwin-:-在-windows-環境上使用-Linux-指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="/docs-blog/article-235-解決讀卡機偵測不到.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_235&quot;}'>解決讀卡機偵測不到 </a></li>
+    
+        <li><a href="/docs-blog/article-34-USB-插插拔拔，造成-USB-無法讀取.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_34&quot;}'>USB 插插拔拔，造成 USB 無法讀取 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 實用軟體</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-455-Gboard-好用的-Android-輸入法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_455&quot;}'>Gboard 好用的 Android 輸入法 </a></li>
+    
+        <li><a href="/docs-blog/article-450-Mac-+-Chrome-解決健保卡讀不到的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_450&quot;}'>Mac + Chrome 解決健保卡讀不到的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-435-下載舊版-Google-Chrome-(保證無毒).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_435&quot;}'>下載舊版 Google Chrome (保證無毒) </a></li>
+    
+        <li><a href="/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="/docs-blog/article-396-Sublime-前端工程師必裝外掛-:-Browser-Refresh.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_396&quot;}'>Sublime 前端工程師必裝外掛 : Browser Refresh </a></li>
+    
+        <li><a href="/docs-blog/article-395-別再找破解版了，免費下載-Win-10-Windows-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_395&quot;}'>別再找破解版了，免費下載  Win 10 / Windows 10 </a></li>
+    
+        <li><a href="/docs-blog/article-326-FFMPEG-:-免費影音轉檔工具.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_326&quot;}'>FFMPEG : 免費影音轉檔工具 </a></li>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+        <li><a href="/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_303&quot;}'>我為什麼愛用 VIM 編輯器來寫程式 </a></li>
+    
+        <li><a href="/docs-blog/article-291-USB，硬碟救援，檔案刪除還原.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_291&quot;}'>USB，硬碟救援，檔案刪除還原 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

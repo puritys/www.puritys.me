@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>AngularJS</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="AngularJS 是一個 client-side 的 javascript framework，由 Google 工程師開發，並分享出來變成一個 Open Source，Angular Developer 稱它為一個 MVW Framework(Model-view-whatever) 而不是平常聽到的 MVC，至於什麼是 MVW 你就自已看看網址裡的解說吧。Angular " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-270-AngularJS.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-270-AngularJS.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-270-AngularJS.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-270-AngularJS.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-270">
+                    <em><span>AngularJS</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-270-AngularJS.html"},"headline":"AngularJS","image":"","datePublished":"2014-07-14T19:19:56+08:00","dateModified":"2014-08-17T00:15:58+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"AngularJS \u662f\u4e00\u500b client-side \u7684  javascript framework\uff0c\u7531 Google \u5de5\u7a0b\u5e2b\u958b\u767c\uff0c\u4e26\u5206\u4eab\u51fa\u4f86\u8b8a\u6210\u4e00\u500b Open Source\uff0cAngular Devel"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jul</div>
+            <div class="day">14</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-270-AngularJS.html"><span>AngularJS</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-270-AngularJS.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>AngularJS 是一个 client-side 的 <em> javascript framework</em>，由 Google 工程师开发，并分享出来变成一个 Open Source，Angular Developer 称它为一个  <a href="https://plus.google.com/+AngularJS/posts/aZNVhj355G2" target="_blank">MVW Framework</a>(Model-view-whatever) 而不是平常听到的 MVC，至於什么是 MVW 你就自已看看网址里的解说吧。</p><p>Angular 是角的意思，就像三角形的一个角，在 HTML 中就代表「<em><</em>」这个角符号，那为什么会叫做  Angular 呢? Angular 官网有一段话写著「 AngularJS lets you extend HTML vocabulary for your application」，这句话的意思就是说 Angular 可以自定新的 HTML Tag, Attribute ，一个自定义的 HTML Tag 如</p><blockquote><xmp><customize></customize></xmp></blockquote><p>我想 Angular 就是因为 HTML 都是使用符号 「< 」开头，因此而命名的吧~</p><p>Angular 跟一般的 JS Framework, Jquery , Backbone, YUI, Prototype 有什么不同呢? 我个人试用的感觉是说， Angular 支援了很多功能，但是却不太容易上手，开发架构也跟传统的方式落差很大，加上使用起来没有像 Jquery 这么简单! 所以你在使用 Angular 之前，最好先确定专案是否合适 AngularJS，以免反而适得其反。</p><p>AngularJS 最大的特色就是支援  Two Way Data Binding，如果你有看过官网的 Example ，一定会被它 <b>Form - View</b> 同步的功能所吸引住，这也是 Angular 与其它  JS Framework 最大的差别。</p><p>另外 AngularJS 支援 <em>Extend HTML </em>与 <em>Template Engine</em>，透过 Extend 的功能，强化 HTML 基本功能，这样就能将 Javascript 迅速元件化，只要定义好新的 HTML Tag ，那么下一次就能直接重覆使用这些新的 HTML 语法，Angular 将这个功能称作 「<b>directive</b> 」，让你直接在 HTML 上使用新定义的语法，HTML 将会更<b>语义化</b>，更容易让别人看懂你写的程式。</p><p>有了 Template Engine ，工程师可以将程式的 Logic 与 view 分开，通常我们会分成 MVC : Model - view - controller 三个部分来实作，AngularJS 也支援这个功能，并且使用  <b>{{ -- }} </b>的方式来分析 Template ， 刚好与 <a href="http://handlebarsjs.com/" target="_blank">Handlebar</a> 这个 JS Template Engine 一样，如果你刚好有使用  Handlebar ，那么就能够很轻松的转换到 AngularJS 罗。</p><p>先来看一个简单的 Demo ，看看 Angular 如何不写 Javascript Code 就能完成 Tab 功能。</p><a class="demo-link" target="_blank" href="/filemanage/files/tab.html#" data-info="%7B%22width%22%3A200%2C%22height%22%3A100%7D"><i class="glyphicon glyphicon-file"></i>View Demo</a><h2>如何使用 Angular</h2><p>首先你的程式必需先载入  JQuery 与 AngularJS 这两个 Library，因为 AngularJS 有使用到Jquery 部分功能，所以你必需把  JQuery  放在 AngularJS 前面。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L1"><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"angularScript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.15/angular.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li></ol></pre></div> <br /><p>接著你就可以使用 Angular Template 的功能， 首先我建立一个 input 再加上一个 h1 来绑定这两个 element 之间的数值。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">ng-app</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">      </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">ng-model</span><span class="pun">=</span><span class="atv">"name"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"Enter a name here"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="tag">&lt;h1&gt;</span><span class="pln">Hello {{name}}!</span><span class="tag">&lt;/h1&gt;</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><p>以下的 Demo ，是最简单的 Two way data binding ，当你修改 Input 里的数值后，就能够立刻看到页面的变化：</p><iframe src="/filemanage/files/ng-hello.html" style="width: 100%; height: 200px; border: 0"  frameborder="no" scrolling="no"></iframe> <br /><h2>Angular 特色</h2><ul class="list">  <li>Directives</li>  <li>Modules</li>  <li>Expression (Template Engine)</li></ul><div class="notice" label="!">官方网站描述 AngularJS 特色如下</div><blockquote>For performance and to enable innovation, our goal is that almost every piece of AngularJS should be optional, replaceable, and even used in other non-AngularJS frameworks.  You’ll be able to pick and choose the parts you like and write or select others that you like better.</blockquote><h2>Directives</h2><p>Angular Directive 可以让你定义新的 Element, Attribute, classname 来执行相对应的 Javascript，例如我可以定义一个新的 element 名称为  ngimage，然后希望这个新的 HTML Tag 输出我指定的 HTML 结构，我希望可以用一个 div 包住一张图片。</p><ul class="list">  <li>我先用  angular.module 宣告一个新的  module</li>  <li>接著用  controller("sample") 宣告一个 controller</li>  <li>最后使用 <em> directive(&#39;ngimage&#39;)</em> 定义新的 element 名称。</li></ul><p>程式范例如下：</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="dec">&lt;!doctype html&gt;</span></li><li class="L1"><span class="tag">&lt;html</span><span class="pln"> </span><span class="atn">ng-app</span><span class="pun">=</span><span class="atv">"myapp"</span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;head&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"jquery.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L4"><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"angular.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;script&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,[])</span></li><li class="L8"><span class="pln">        </span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"sample"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">            $scope</span><span class="pun">.</span><span class="pln">image </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://angularjs.org/img/AngularJS-small.png"</span><span class="pun">;</span></li><li class="L0"><span class="pln">        </span><span class="pun">})</span></li><li class="L1"><span class="pln">       </span><span class="pun">.</span><span class="pln">directive</span><span class="pun">(</span><span class="str">&#39;ngimage&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">          restrict</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;E&#39;</span><span class="pun">,</span></li><li class="L5"><span class="pln">          replace</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span></li><li class="L6"><span class="pln">          template</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;&lt;div&gt;&lt;img src="{{image}}"/&gt;&lt;/div&gt;&#39;</span></li><li class="L7"><span class="pln">        </span><span class="pun">};</span></li><li class="L8"><span class="pln">    </span><span class="pun">});</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    </span><span class="tag">&lt;/script&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;/head&gt;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">  </span><span class="tag">&lt;body</span><span class="pln"> </span><span class="atn">ng-controller</span><span class="pun">=</span><span class="atv">"sample"</span><span class="pln"> </span><span class="tag">&gt;</span></li><li class="L5"><span class="pln">        </span><span class="tag">&lt;ngimage&gt;&lt;/ngimage&gt;</span></li><li class="L6"><span class="pln">  </span><span class="tag">&lt;/body&gt;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="tag">&lt;/html&gt;</span></li></ol></pre></div><div class="codeBlock"><span class="title"> 执行结果</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div&gt;&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://angularjs.org/img/AngularJS-small.png"</span><span class="tag">&gt;&lt;/div&gt;</span></li></ol></pre></div><p>在这个范例中，我将 Model 资料的部分写在  controller 里，在 $scope 中定义一个  image = "xxx"，view  的部分则是定义在  directive 里面 ，  <em>template: &#39;〈div〉〈img src="{{image}}"/〉〈/div〉&#39; </em>，  当 Angular 看到 ngimage 这个 HTML Tag 之后，就会自动执行 directive 里定义的 function ，并且回传 Compile 过后的  Template ，然后插入至 ngimage element 里，我的程式中有增加一个值  replace: true ，代表 ngimage 会被 template 整个取代。</p><h2>Modules</h2><p>AngularJS 支援将 JS 模组化，你可以把每一个功能都写成一个 module ，并可以定义 module 之间的 dependency。</p><p>宣告一个  Module 的方式如下 :</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> newModule </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"module_name"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li></ol></pre></div><h3>Dependency</h3><p>宣告 module 的时候，第二个参数是一个 Array，你可以将会用到的其它 module 设定在这里，例如我有一个功能是做<b> Tab 切换</b>，而这个功能需要用到核心的 Library 名为 core ，我可以在宣告 angular.module 时，将第二个参数补上 core。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> core </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"core"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> tabModule </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"tabModule"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">"core"</span><span class="pun">]);</span></li></ol></pre></div><h2>Expression</h2><p>expression 就是类似 Javascript 的 eval 功能，功能可以包含简单的数学运算，例如 {{3 + 5}} 会输出  8 ， 字串的处理 {{"Hello " + " World!"}}。</p><h2>services</h2><p>Service 就像是一个包装过的物件，把相关的功能，组合在一起，Angular 中 $ 开头的变数都是一种 service，使用方式跟一般的 Object 相同。</p><p>例如 AngularJS 有一个 Service 叫  $http ，它就如同 ajax , curl 等功能，专门用来发送 Request ，使用 $http 时，必需同时宣告接到  response 后的  success function。。</p><div class="codeBlock"><span class="title"> $http 范例</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">$http</span><span class="pun">({</span><span class="pln">method</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;GET&#39;</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;/xxxx.html&#39;</span><span class="pun">}).</span></li><li class="L1"><span class="pln"> success</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> status</span><span class="pun">,</span><span class="pln"> headers</span><span class="pun">,</span><span class="pln"> config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    $scope</span><span class="pun">.</span><span class="pln">data </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">;</span></li><li class="L3"><span class="pln"> </span><span class="pun">}).</span></li><li class="L4"><span class="pln"> error</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> status</span><span class="pun">,</span><span class="pln"> headers</span><span class="pun">,</span><span class="pln"> config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Got a error from request to xxx.html"</span><span class="pun">);</span></li><li class="L6"><span class="pln"> </span><span class="pun">});</span></li></ol></pre></div><p>其它的 AngularJS Service。</p><ul class="list">  <li>$http</li>  <li>$httpBackend</li>  <li>$log</li>  <li>$filter</li>  <li>$locale</li></ul><p>angularJS 的初始化会在 document ready 的时候执行，所有的 Module 都是这样，如果你有用 JQuery 的  $(document).ready()  这个方式，那么就会遇到 angularJS 与 JQuery 执行先后顺序的问题，只要你先载入 angularJS 这个档案，angularJS 初始化的程序就会在 JQuery document ready 前先执行。</p><h2>directive tag</h2><p>angularJS 内建已经提供了好多  directive tag 功能给我们使用，用这些已有的功能，就能快速的建立一个网站。</p><h3>ng-click</h3><p>ng-click 提供了滑鼠点击事件处理，有点像  Javascript 的 onclick。</p><div class="codeBlock"><span class="title"> ng-click  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">a href</span><span class="pun">=</span><span class="str">""</span><span class="pln"> ng</span><span class="pun">-</span><span class="pln">click</span><span class="pun">=</span><span class="str">"angularClick()"</span><span class="pun">&gt;</span><span class="pln">anchor</span><span class="pun">&lt;/</span><span class="pln">a</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-model</h3><p>ng-model 是实现 two way data binding 的方式，如下的范例， input 里的值可以与  {{name}} 同步化。</p><div class="codeBlock"><span class="title"> ng-model  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">input ng</span><span class="pun">-</span><span class="pln">model</span><span class="pun">=</span><span class="str">"name"</span><span class="pln"> value</span><span class="pun">=</span><span class="str">"text"</span><span class="pun">&gt;</span></li><li class="L1"><span class="pun">{{</span><span class="pln">name</span><span class="pun">}}</span></li></ol></pre></div><h3>ng-show</h3><p>ng-show 像 <em> if</em> 功能，当某一个值等於 true 时，才显示这段 html 。</p><div class="codeBlock"><span class="title"> ng-show  使用方式</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">div ng</span><span class="pun">-</span><span class="pln">show</span><span class="pun">=</span><span class="str">"tab === 1"</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">  tab</span></li><li class="L2"><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li></ol></pre></div><div class="notice" label="!">如果要判定 array 是否不是空白，则要使用 <b>ng-show="product.images.length"</b> 。</div><h3>ng-hide</h3><p>ng-hide 的功能跟  ng-show 完成相反，如果判断式成立，则不显示 HTML ， angularJS 会自动加上一个 class 「<em>ng-hide</em>」将 HTML 隐藏。</p><h3>ng-repeat</h3><p>ng-repeat 就是一个  for loop 功能，</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[])</span></li><li class="L1"><span class="pln">   </span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">"productList"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        $scope</span><span class="pun">.</span><span class="pln">product </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span></li><li class="L3"><span class="pln">          </span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test 1"</span><span class="pun">},</span></li><li class="L4"><span class="pln">          </span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"test 2"</span><span class="pun">}</span></li><li class="L5"><span class="pln">        </span><span class="pun">];</span></li><li class="L6"><span class="pln">    </span><span class="pun">});</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">&lt;</span><span class="pln">div ng</span><span class="pun">-</span><span class="pln">app</span><span class="pun">=</span><span class="str">"myapp"</span><span class="pln"> ng</span><span class="pun">-</span><span class="pln">controller</span><span class="pun">=</span><span class="str">"productList"</span><span class="pun">&gt;</span></li><li class="L9"><span class="pun">&lt;</span><span class="pln">ul ng</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">=</span><span class="str">"pro in product"</span><span class="pun">&gt;</span></li><li class="L0"><span class="pln">  </span><span class="pun">&lt;</span><span class="pln">li</span><span class="pun">&gt;{{</span><span class="pln">pro</span><span class="pun">.</span><span class="pln">name</span><span class="pun">}}&lt;/</span><span class="pln">li</span><span class="pun">&gt;</span></li><li class="L1"><span class="pun">&lt;/</span><span class="pln">ul</span><span class="pun">&gt;</span></li><li class="L2"><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-src</h3><p>如果你想用 angularJS 来显示一张图片，可能会想用这种写法 <b>〈img src="{{image}}"〉</b>，但这是行不通的，因为 browser img tag 会比 angularJS 先执行，所以这种写法，会因为 Browser 无法载入 {{image}} 而出现  error ，必需使用  <b>ng-src</b> 代替。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">img ng</span><span class="pun">-</span><span class="pln">src</span><span class="pun">=</span><span class="str">"{{image}}"</span><span class="pun">&gt;</span></li></ol></pre></div><h3>ng-class</h3><p>ng-class 与 ng-src 存在的原因类似，Browser 也是会对 class 内的名称，加入 CSS Style ，所以必需将 angularJS  class 的设定写在 <b>ng-class</b></p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">a ng</span><span class="pun">-</span><span class="kwd">class</span><span class="pun">=</span><span class="str">"{ active: tab.isSet(1) }"</span><span class="pun">&gt;</span></li></ol></pre></div><h2>相关教学</h2><ul class="list">  <li>第一课 Beginner： <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/1/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/1/video/1</a></li>  <li>第二课 Controller： <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/2/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/2/video/1</a></li>  <li>第三课 <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/3/not-for-sale"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/1/section/3/not-for-sale</a></li>  <li>directive: <a href="http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/4/section/1/video/1"  target="_blank">http://campus.codeschool.com/courses/shaping-up-with-angular-js/level/4/section/1/video/1</a></li>  <li>Apply: <a href="http://www.sitepoint.com/understanding-angulars-apply-digest/"  target="_blank">http://www.sitepoint.com/understanding-angulars-apply-digest/</a></li>  <li>什么是 injection :  <a href="http://www.martinfowler.com/articles/injection.html"  target="_blank">http://www.martinfowler.com/articles/injection.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-17T00:15:58+08:00" class="article-modify-time">2014/08/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-270" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-270" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-273">自定義 AngularJS service</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

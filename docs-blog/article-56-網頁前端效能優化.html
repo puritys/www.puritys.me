@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>網頁前端效能優化</title>
+    <meta name="keywords" content="http" />
+    <meta name="description" content=" 一個end user 下載html通常只佔總時間的 10~20%，其他80~90%的時間，都在下載相關的library,component,image，所以我們要想辦法減少這些 library 的下載與載入時間 。Http RequestHttp request類型有 GET,POST,HEAD,DELETE,PUT,OPTIOS,TRACE，其中最常用到的就是 Get an" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-56-網頁前端效能優化.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-56-网页前端效能优化.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-56-網頁前端效能優化.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-56-網頁前端效能優化.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-56">
+                    <em><span>網頁前端效能優化</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-56-\u7db2\u9801\u524d\u7aef\u6548\u80fd\u512a\u5316.html"},"headline":"\u7db2\u9801\u524d\u7aef\u6548\u80fd\u512a\u5316","image":"","datePublished":"2011-11-01T00:17:04+08:00","dateModified":"2016-10-24T00:36:59+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u4e00\u500bend user \u4e0b\u8f09html\u901a\u5e38\u53ea\u4f54\u7e3d\u6642\u9593\u7684 10~20%\uff0c\u5176\u4ed680~90%\u7684\u6642\u9593\uff0c\u90fd\u5728\u4e0b\u8f09\u76f8\u95dc\u7684library,component,image\uff0c\u6240\u4ee5\u6211\u5011\u8981\u60f3\u8fa6\u6cd5\u6e1b\u5c11\u9019\u4e9b library \u7684"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Nov</div>
+            <div class="day">01</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-56-網頁前端效能優化.html"><span>網頁前端效能優化</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=http">http</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-56-网页前端效能优化.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>一個end user 下載html通常只佔總時間的 10~20%，其他80~90%的時間，都在下載相關的library,component,image，所以我們要想辦法減少這些 library 的下載與載入時間 。</p><h2>Http Request</h2><p>Http request類型有 GET,POST,HEAD,DELETE,PUT,OPTIOS,TRACE，其中最常用到的就是 Get and POST，這裡就給一個 Http Get Request 的範例。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">//Http request example</span></li><li class="L1"><span class="typ">Get</span><span class="pln"> </span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">html HTTP</span><span class="pun">/</span><span class="lit">1.1</span></li><li class="L2"><span class="typ">Host</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">yahoo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L3"><span class="typ">User</span><span class="pun">-</span><span class="typ">Agent</span><span class="pln"> </span><span class="typ">Mozilla</span><span class="pun">/</span><span class="lit">5.0</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Windows</span><span class="pln"> NT </span><span class="lit">5.1</span><span class="pun">;</span><span class="pln"> rv</span><span class="pun">:</span><span class="lit">7.0</span><span class="pun">.</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Gecko</span><span class="pun">/</span><span class="lit">20100101</span><span class="pln"> </span><span class="typ">Firefox</span><span class="pun">/</span><span class="lit">7.0</span><span class="pun">.</span><span class="lit">1</span></li><li class="L4"><span class="typ">Accept</span><span class="pun">-</span><span class="typ">Encoding</span><span class="pln">   gzip</span><span class="pun">,</span><span class="pln"> deflate</span></li></ol></pre></div><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">//Http response example</span></li><li class="L1"><span class="pln">HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK</span></li><li class="L2"><span class="typ">Content</span><span class="pun">-</span><span class="typ">Type</span><span class="pun">:</span><span class="pln"> application</span><span class="pun">/</span><span class="pln">x</span><span class="pun">-</span><span class="pln">javascript</span></li><li class="L3"><span class="typ">Last</span><span class="pun">-</span><span class="typ">Modified</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Wed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="typ">Jan</span><span class="pln"> </span><span class="lit">2011</span><span class="pln"> </span><span class="lit">05</span><span class="pun">:</span><span class="lit">05</span><span class="pun">:</span><span class="lit">15</span><span class="pln"> GMT</span></li><li class="L4"><span class="typ">Content</span><span class="pun">-</span><span class="typ">Length</span><span class="pun">:</span><span class="pln"> </span><span class="lit">255</span></li><li class="L5"><span class="typ">Content</span><span class="pun">-</span><span class="typ">Encoding</span><span class="pun">:</span><span class="pln"> gzip</span></li></ol></pre></div><ul class="list">  <li>http request & response 壓縮</li>  <li>Accept-Encoding: 代表 browser 可接收的壓縮方式</li>  <li>Content-Encoding: 代表Web伺服器的壓縮方式</li></ul><h2>Cache (http status : 304 Not Modified)</h2><p>Browser會自動檢查目前要 Request 的 file 是否已有cache，若是已經有cache file，而且尚未過期，Browser 就會詢問伺服器， Request file是否需要更新，這裡有兩個比對是否需要更新的機制，Expired Date 和 Etag ，我們先來看看 check Cache 的Request and Respose吧。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">// Request Example</span></li><li class="L1"><span class="pln">GET </span><span class="pun">/</span><span class="pln">xxx</span><span class="pun">.</span><span class="pln">css HTTP</span><span class="pun">/</span><span class="lit">1.1</span></li><li class="L2"><span class="typ">Host</span><span class="pun">:</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">yahoo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L3"><span class="typ">User</span><span class="pun">-</span><span class="typ">Agent</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Mozilla</span><span class="pun">/</span><span class="lit">5.0</span><span class="pln"> </span><span class="pun">...</span></li><li class="L4"><span class="typ">If</span><span class="pun">-</span><span class="typ">Modified</span><span class="pun">-</span><span class="typ">Since</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Sun</span><span class="pun">,</span><span class="pln"> </span><span class="lit">23</span><span class="pln"> </span><span class="typ">Oct</span><span class="pln"> </span><span class="lit">2011</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">32</span><span class="pun">:</span><span class="lit">39</span><span class="pln"> GMT</span></li><li class="L5"><span class="typ">If</span><span class="pun">-</span><span class="kwd">None</span><span class="pun">-</span><span class="typ">Match</span><span class="pun">:</span><span class="pln"> </span><span class="str">"60034-24c6-4aff3fcc2382d"</span></li><li class="L6"><span class="typ">Cache</span><span class="pun">-</span><span class="typ">Control</span><span class="pun">:</span><span class="pln"> max</span><span class="pun">-</span><span class="pln">age</span><span class="pun">=</span><span class="lit">0</span></li></ol></pre></div><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">// Response Example</span></li><li class="L1"><span class="pln">HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">304</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Modified</span></li><li class="L2"><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Mon</span><span class="pun">,</span><span class="pln"> </span><span class="lit">31</span><span class="pln"> </span><span class="typ">Oct</span><span class="pln"> </span><span class="lit">2011</span><span class="pln"> </span><span class="lit">15</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">07</span><span class="pln"> GMT</span></li><li class="L3"><span class="typ">Server</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Apache</span><span class="pun">/</span><span class="lit">2.2</span><span class="pun">.</span><span class="lit">19</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Unix</span><span class="pun">)</span><span class="pln"> PHP</span><span class="pun">/</span><span class="lit">5.2</span><span class="pun">.</span><span class="lit">17</span></li><li class="L4"><span class="typ">Etag</span><span class="pun">:</span><span class="pln"> </span><span class="str">"60034-24c6-4aff3fcc2382d"</span></li><li class="L5"><span class="typ">Expires</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="typ">Nov</span><span class="pln"> </span><span class="lit">2011</span><span class="pln"> </span><span class="lit">15</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">07</span><span class="pln"> GMT</span></li><li class="L6"><span class="typ">Cache</span><span class="pun">-</span><span class="typ">Control</span><span class="pun">:</span><span class="pln"> max</span><span class="pun">-</span><span class="pln">age</span><span class="pun">=</span><span class="lit">864000</span></li></ol></pre></div><ul class="list">  <li>Expires : Browser 會送出 If-Modified-Since 時間，去伺服器比對是否要有過期，若是時間沒有過期，伺服器會回傳 「304 Not Modified  和 新的 Expires」，代表檔案沒有更新，Browser就會直接讀取本機端的暫存檔。</li>  <li>Etag : 這是一個不重覆的字串，就相當於 url 的版本，當版本未更新，Browser就不需要下載新的 file 。當 Request 發生，Browser會先送出目前url 的 Etag，並使用 If-Modified-Since方式傳給伺服器，伺服器比對後，若是檔案沒有更新，就會回傳「304 Not Modified」，Browser就會直接讀取本機端的暫存檔，</li></ul><h2>keep-alive : Persistent Connections</h2><p>Http Request 有一個語法是 Connection:keep-alive ，因為早期的Browser 一 Http Request 必須建立一個 Socket Connection，後來發展一個比較有效率的Request方式，可以讓多個 Request 透過同一個 Socket來傳輸，這就是connection keep-alive。</p><ul class="list">  <li>Connection:keep-alive 可以告訢server保持永久連線，直到timeout。</li>  <li>Browser 可以傳送Connection: close 指令，close socket connection。</li>  <li>Pipelining : 是指多個 Http request同時在一個socket 上傳輸，並且沒有先來後到的順序， request 和 response 同時進行，不過通常伺服器會有限制一個 connections的 request上限。</li></ul><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">//連續傳送多個 Request</span></li><li class="L1"><span class="pln">GET </span><span class="pun">/</span><span class="pln">image1</span><span class="pun">.</span><span class="pln">jpg HTTP</span><span class="pun">/</span><span class="lit">1.1</span></li><li class="L2"><span class="typ">Host</span><span class="pun">:</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">yahoo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L3"><span class="typ">Connection</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Keep</span><span class="pun">-</span><span class="typ">Alive</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">GET </span><span class="pun">/</span><span class="pln">image2</span><span class="pun">.</span><span class="pln">jpg HTTP</span><span class="pun">/</span><span class="lit">1.1</span></li><li class="L6"><span class="typ">Host</span><span class="pun">:</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">yahoo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw</span></li><li class="L7"><span class="typ">Connection</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Keep</span><span class="pun">-</span><span class="typ">Alive</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">GET </span><span class="pun">/</span><span class="pln">image3</span><span class="pun">.</span><span class="pln">jpg HTTP</span><span class="pun">/</span><span class="lit">1.1</span></li><li class="L0"><span class="typ">Host</span><span class="pun">:</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">networkerror</span><span class="pun">.</span><span class="pln">org</span></li><li class="L1"><span class="typ">Connection</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Keep</span><span class="pun">-</span><span class="typ">Alive</span></li><li class="L2"><span class="typ">Connection</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Close</span></li></ol></pre></div><h2>把Scripts放在網頁html最下方</h2><p>brower 下載 script時，動作和下載圖片不一樣，圖片可以一次下載很多張，因為沒有順序的問題，但是script必須按照順序一個一個下載並執行，所以當browser碰到script時，網頁就得停下來等他，解決辦法就是把 script 語法放在網頁的最下面顯示。</p><h2>手動壓縮 JS , css</h2><p>Javascript 與 CSS 這兩種檔案都是純文字檔，因為是單純的文字檔，所以這是可以事先壓縮的，縮小後的檔案有利於線上傳輸，可以減少網路傳輸的時間，不過若你是使用自我解縮的方式，壓縮 Javascript 的話，解壓的時間也要算到效能喔，目前網頁的瓶頸，大多是網路傳輸最慢，所以不太需要考慮解壓的時間，到是 JQuery 不知他加壓的方式為何，竟然碰到解壓時間大於傳輸時間。</p><p>Javascript & CSS 壓縮工具如下</p><ul class="list">  <li>YUI Compressor: <a href="http://yui.github.io/yuicompressor/"  target="_blank">http://yui.github.io/yuicompressor/</a></li>  <li>Google Closure : <a href="https://developers.google.com/closure/"  target="_blank">https://developers.google.com/closure/</a></li></ul><p>只能對 Javascript 壓縮的工具</p><ul class="list">  <li>Packer: <a href="http://jscompress.com/"  target="_blank">http://jscompress.com/</a></li></ul><p>只能對 CSS 壓縮的工具</p><ul class="list">  <li>cssmin: <a href="http://cssminifier.com/"  target="_blank">http://cssminifier.com/</a></li></ul><h2>伺服器 GZip , deflate</h2><p>大部分的網頁伺服器都有支搜 GZip 檔案壓縮工具，每次伺服器將網頁內容回應給 Browser 時，都會先進行壓縮，然後 Browser 再解壓縮。</p><p>Browser 在發出 Request 時，在 HTTP Header 會加上 「accept-encoding: gzip,deflate」，這句的意思是代表說，Browser 可以支援的壓縮模式有 gzip 與 deflate ，而伺服器看到這個 Header 之後，就會選擇一個最佳的方式來壓縮。</p><p>如果你是使用 Apache Web Server ，又想要支援 gzip , deflate 等等的壓縮方式的話，你必需先確認有安裝以下的 Module 。</p><ul class="list">  <li>mod_gzip</li>  <li>mod_deflate</li></ul><h2>DNS resolve</h2><p>前端頁面需要去下載 CSS., JS, 圖片還有  AJAX Request ，這些網址的 Domain 如果不同於主網站，那麼瀏覽器就會先去對各個不同的 Domain 做一次 DNS Resolve，去取得每個 Domain 的 IP ，這個動作也是很花時間的，我們可以在 HTML Head 加上 dns-prefetch ，讓瀏覽器提早做 DNS Resolve 這件事。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-10-24T00:36:59+08:00" class="article-modify-time">2016/10/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-56" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-56" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

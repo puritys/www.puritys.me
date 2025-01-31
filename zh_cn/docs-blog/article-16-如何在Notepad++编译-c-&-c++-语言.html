@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>如何在Notepad++编译 c &amp; c++ 语言</title>
+    <meta name="keywords" content="IDE" />
+    <meta name="description" content="這篇文章將介紹如何在 notepad++ 中編輯 cc++語言，你要準備的程式有 Notepad++ 與 Dev-c++NppExec設定 首先選取 Plugins -&gt; NppExec ，將Follow $(CURRENT_DIRECTORY)打勾 第二步是點擊 Execute (F6) 然後在欄位中填入： F:#92;Dev-Cpp#92;bin#92;gcc.exe $(" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-16-如何在Notepad++编译-c-&-c++-语言.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-16-如何在Notepad++编译-c-&amp;-c++-语言.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-16-如何在Notepad++編譯-c-&-c++-語言.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-16">
+                    <em><span>如何在Notepad++编译 c &amp; c++ 语言</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-16-\u5982\u4f55\u5728Notepad++\u7de8\u8b6f-c-&-c++-\u8a9e\u8a00.html"},"headline":"\u5982\u4f55\u5728Notepad++\u7de8\u8b6f c & c++ \u8a9e\u8a00","image":"https:\/\/www.puritys.me\/filemanage\/webPhoto\/blog\/c\/img_25.jpg","datePublished":"2011-03-23T16:20:31+08:00","dateModified":"2016-09-25T17:47:39+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u9019\u7bc7\u6587\u7ae0\u5c07\u4ecb\u7d39\u5982\u4f55\u5728 notepad++ \u4e2d\u7de8\u8f2f c&c++\u8a9e\u8a00\uff0c\u4f60\u8981\u6e96\u5099\u7684\u7a0b\u5f0f\u6709 Notepad++ \u8207 Dev-c++\rNppExec\u8a2d\u5b9a\r\r  \u9996\u5148\u9078\u53d6 Plugins -> NppExec \uff0c"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Mar</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-16-如何在Notepad++編譯-c-&-c++-語言.html"><span>如何在Notepad++编译 c &amp; c++ 语言</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=IDE">IDE</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>这篇文章将介绍如何在 notepad++ 中编辑 c&c++语言，你要准备的程式有 <a href="http://notepad-plus-plus.org/">Notepad++</a> 与 <a href="http://www.bloodshed.net/dev/devcpp.html">Dev-c++</a><br /></p><h2>NppExec设定</h2><ul class="list">  <li>首先选取 Plugins -> NppExec ，将Follow $(CURRENT_DIRECTORY)打勾</li></ul><img style="border: 2px solid rgb(206, 206, 206);margin:auto;display:block;" src="/filemanage/webPhoto/blog/c/img_24.jpg"  /> <ul class="list">   <li class="indent1">第二步是点击 Execute (F6)</li> </ul><p>然后在栏位中填入：</p><ul class="list">  <li>F:&#92;Dev-Cpp&#92;bin&#92;gcc.exe "$(FULL_CURRENT_PATH)" -o $(NAME_PART)</li></ul>$(CURRENT_DIRECTORY)&#92;$(NAME_PART).exe<br /><ul class="list">  <li>F:&#92;Dev-Cpp&#92;bin&#92;gcc.exe 要修改成你的Dev-c++路径，或是你有其他的c语言编辑程式也可以用，输入完成后，点确定就行了。</li>  <li>F:&#92;Dev-Cpp&#92;bin&#92;gcc.exe ->改成 <span style="color: rgb(250, 76, 76);">F:&#92;Dev-Cpp&#92;bin&#92;g++.exe</span> 就可以编辑c++语言</li></ul>        <br /><img src="/filemanage/webPhoto/blog/c/img_25.jpg" style="margin:auto;display:block;" /><h2>用Notepad++ 编译 C & C++ 语言测试</h2><ul class="list">  <li>第三步建立一个简单的程式 : 如范例</li></ul><div class="codeBlock cc"><span class="title">Example</span><pre class="prettyprint lang-cc linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdio.h&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdlib.h&gt;</span></li><li class="L2"><span class="typ">int</span><span class="pln"> main</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">){</span></li><li class="L3"><span class="pln">    printf</span><span class="pun">(</span><span class="str">"测试资料"</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><div class="notice" label="notice">当然要记得存档罗</div> <ul class="list">   <li class="indent1">第四步点击 Plugins ->NppExc -> Execute ->确定 ，或是按快捷键 [ F6 ]</li> </ul>     <br /><p>执行结果如下图：</p>      <img style="border: 2px solid rgb(206, 206, 206);margin:auto;display:block;" src="/filemanage/webPhoto/blog/c/img_26.jpg"  /><ul class="list">  <li>有没有发现你的console内的文字特别小呢? 你可以在此 Plugins ->NppExc -> Change Console Font 修改console的字型大小。</li>  <li>如果发现输出结果有乱码的话，可以在此 Plugins ->NppExc ->console output 指定编码，我习惯都是指定UTF-8编码。</li></ul><h2>相关问题与NppExec指令</h2><p>其他NppExec指令</p><ul class="list">  <li>npp_save : 储存目前执行的档案</li>  <li>npp_console off (npp_console on) : 打开console与关闭console</li></ul><p>问题1:如何在执行程式时，游标跳到 Console 呢?</p><div class="notice" label="notice">解法： 在 NppExec 指令的栏位中加入下列两行</div><div class="codeBlock cc"><span class="title">Example</span><pre class="prettyprint lang-cc linenums" ><ol class="linenums"><li class="L0"><span class="pln">npp_console off</span></li><li class="L1"><span class="pln">npp_console on</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T17:47:39+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-16" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-16" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">IDE 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_303&quot;}'>我為什麼愛用 VIM 編輯器來寫程式 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

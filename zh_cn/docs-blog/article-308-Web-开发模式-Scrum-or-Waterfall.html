@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Web 开发模式  Scrum or Waterfall</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Waterfall一般瀑布式(Waterfall) 是最常見的開發模式，開發流程是由 PM 先規劃完整的功能與細節，然後再交由 Designer 來做畫面的設計，接著交給 Frontend Engineer 開發出前端的 Templates ，也就是 HTML, CSS, JavaScript .. 等，最後由 Backend Engineer 來開發後端功能，並整合前端的 T" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-308-Web-开发模式-Scrum-or-Waterfall.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-308-Web-开发模式-Scrum-or-Waterfall.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-308-Web-開發模式-Scrum-or-Waterfall.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-308-Web-開發模式-Scrum-or-Waterfall.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-308">
+                    <em><span>Web 开发模式  Scrum or W...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-308-Web-\u958b\u767c\u6a21\u5f0f-Scrum-or-Waterfall.html"},"headline":"Web \u958b\u767c\u6a21\u5f0f  Scrum or Waterfall","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_181.png","datePublished":"2015-04-29T00:25:07+08:00","dateModified":"2018-04-09T00:51:39+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Waterfall\r\u4e00\u822c\u7011\u5e03\u5f0f(Waterfall) \u662f\u6700\u5e38\u898b\u7684\u958b\u767c\u6a21\u5f0f\uff0c\u958b\u767c\u6d41\u7a0b\u662f\u7531 PM \u5148\u898f\u5283\u5b8c\u6574\u7684\u529f\u80fd\u8207\u7d30\u7bc0\uff0c\u7136\u5f8c\u518d\u4ea4\u7531 Designer \u4f86\u505a\u756b\u9762\u7684\u8a2d\u8a08\uff0c\u63a5\u8457\u4ea4\u7d66 Frontend Engi"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Apr</div>
+            <div class="day">29</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-308-Web-開發模式-Scrum-or-Waterfall.html"><span>Web 开发模式  Scrum or Waterfall</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-308-Web-開發模式-Scrum-or-Waterfall.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>Waterfall</h2><p>一般瀑布式(Waterfall) 是最常见的开发模式，开发流程是由 PM 先规划完整的功能与细节，然后再交由 Designer 来做画面的设计，接著交给 Frontend Engineer 开发出前端的 Templates ，也就是 HTML, CSS, JavaScript .. 等，最后由 Backend Engineer 来开发后端功能，并整合前端的 Templates。</p><p>这个开发过程可以用下面简单的甘特图来表示：</p><a href="/filemanage/blog_files/file_181.png" target="_blank" ><img src="/filemanage/blog_files/file_181.png"   target="_blank" link="me" /></a><h2>Scrum</h2><p>另一个最近很流行的开发模式为敏捷式  <em>Scrum</em>， 首先我们会把专案相关的人员集合在一起，大约 5 ~ 8 个人左右，这一群成员中包含了 PM , 前后端工程师，设计师，测试人员等，并且把开发时间切分成两周一个单位，每个单位称之为一个 <em> Sprint </em>，而每个 Sprint  都算是一个小小的 Waterfall ，其中包含了需求定义，设计，开发，测试等工作，在每个 Sprint  一开始时，要先规划本次 Sprint 的工作内容，结束的时候要 Demo 成果，以及每个成员要分享这次 Sprint 的心得，改善方式等。</p><div class="media media-image"><div class="pull-left"><a href="/filemanage/blog_files/file_184.png" target="_blank" ><img src="/filemanage/blog_files/file_184.png"   class="left" target="_blank" link="me" left="true" /></a></div><div class="media-body"><p>如左图所示，开发流程会分成多个 Sprint ，每 14  天为一个周期，在每个 Sprint 结束时都会有成果发表</p></div></div><div class="media media-image"><div class="pull-left"><a href="/filemanage/blog_files/file_183.png" target="_blank" ><img src="/filemanage/blog_files/file_183.png"   class="left" target="_blank" link="me" left="true" /></a></div><div class="media-body"><p>左图则是每个 Sprint 要做的事。</p><ul class="list">  <li>Planning ： Sprint 一开始 PM 会跟所有成员讨论这次 Sprint  的工作项目与范围。</li>  <li>StandUp ： Sprint 当中，每天要花十分钟让所有成员说明<em>重要</em>的事。</li>  <li>Demo： 跟 PM 展现这次 Sprint 的成果。</li>  <li>Review：讨论这次 Sprint 的优点与缺点，是否有哪些地方可以改善。</li></ul></div></div><p>两种开发模式都各有优缺点， Waterfall 的最主要缺点是开发时间长，一个大型专案从需求定义完成到测试结束上线，有时候甚至会超过两年，另外 FrontEnd Engineer 开发完第一个专案后，马上就得进入下一个专案，但这时，第一个专案还尚未结束，Backend Engineer 也还在开发与整合中，一旦有测到 Bug， FrontEnd Engineer 又得立刻下海来帮忙，变成同时处理两个专案。；不过 Waterfall 有个最大的优点，就是分工清楚，干净，开发模式简单，不用学习也知道这个开发流程。</p><h3>Waterfall 优点</h3><ul class="list">  <li>专案的架构、需求，在开工前就制定完成，细节清楚明白，工程师在开发的过程会很顺畅。</li>  <li>不用花太多时间来沟通，只要需求写得够清楚，工程师就能很快的完成工作。</li>  <li>不用学就会的开发方式。</li>  <li>分工清楚，工作起来也比 Scrum 单纯。</li></ul><h3>Waterfall 缺点</h3><ul class="list">  <li>开发时间很长，中间没有任何断点，只能一直死命的做到专案结束。</li>  <li>PM 能力不能太差，因为专案规划是越完整越好，时程安排也要流畅，如果 PM 做得不好，在开发的过程中不断修改需求，厘不清楚需求，这会卡死专案时程，工程师则是做完了又改，改了再重做，工作效率会变得很差。</li>  <li>同 Team 的成员没办法同时开发，同时结束，有些成员会同时处理多个专案，例如设计师完成第一个专案的设计后，会马上接著做第二个专案，若这时第一个专案要补页面，Icon 等等需求，会造成设计师得分心来同时兼顾两个专案。</li>  <li>越底层的人员，越没有发言权，因为你接到的工作，都是高层讨论完的结果，你唯一要做的就是尽快完成它。</li></ul> <br /><h3>Scrum 优点</h3><ul class="list">  <li>专案分阶段完成，完成一小部分就立刻推出产品，产品可以快速上线。</li>  <li>Scrum 可以解决这种需求不明确，或是功能变动幅度大的专案， Scrum 本来就是诉求边做边设计，一步一步完成，完成的部分就可以先上线。</li>  <li>PM 不用很专业，需求不用说得很清楚，因为每个 Sprint 都会大家一起讨论功能，Scrum 这个开发模式，很适合用在团队中的 PM 没什么经验 ，因为没有经验的 PM 无法制定出完整清楚的需求，这时就可以透过  Scrum 的精神，在 Sprint 当中，每个成员都能够对该专案提出建议并确定功能。</li>  <li>团队内的成员都有机会发表意见，工程师可以提出对 UI 的看法，设计师也可以提出需求的意见。</li>  <li>Scrum 可以解决这种需求不明确，或是功能变动幅度大的专案， Scrum 本来就是诉求边做边想，一步一步完成，完成的部分就可以先上线，所以很适合还没有完整规划的专案，或是不懂得规划的团队。</li>  <li>团队内同时存在不同领域的人才，很方便讨论各种跨领域的需求，例如前后端工程师，可以一起讨论如何开发一个新  Feature ， QA 与 RD 也能一起讨论测试的方式与工具，有些大公司分工太细，各领域人才没有良好的沟通管道，这时一个聚集各方面人才的 Scrum Team ，可以加快沟通的时效性。</li></ul><h3>Scrum 缺点</h3><ul class="list">  <li>Scrum 精神不容易在传统公司中实作出来，每一个阶段完成的工作，根本就上不了线，因为大部分的老板都希望专案做得很完整，一推出就大受好评，不愿意做一半的产品就推出去。</li>  <li>需求变动大，程式改动的幅度也很大，所以不适合一开始就写太完整的 Unit Test，而在未来也很难找到机会回来补 Unit Test 。</li>  <li>花太多时间在开会， Review，影响工作情绪，每天早上都会花十分钟快速说明有什么状况，根据经验常常都会超过十分钟(个人建议可以直接取消每天的 Stand Up)。</li>  <li>Scrum 模式有点梦想化，实际上根本就做不太到。</li></ul><p>我觉得 Scrum 开发模式可以让团队中的每一个成员，「<em>一起开始，一起结束</em>」，这是非常好的想法，每个人的工作目标是一致的，进度也是一致的，成员的向心力远大於 Waterfall 开发方式，但是成员的能力跟  scrum 的运作有很大的关系，例如 PM 只能参与规划，设计，测试，当专案进度已经到的程式撰写，那么 PM 会没有事情做，同样的状况也会发生在设计师，所以 Scrum 开发比较适合团队内每一个成员能力相似，例如 Backend Engineer 都是  Full Stack Engineer ， PM 本身也懂得写技术文件，能够帮忙写 Library or API Document ，设计师也要懂得 Front-End 的开发或是自动化测试工具，而且每个人要愿意去学一点不同领域的知识，如果团队的成员编制没办法达成能力一致，那 Scrum 的开发最后还是会变成 Waterfall，这就一点意义也没有了。</p><div class="notice" label="Notice">以上是我对这两种开发模式的一点点经验与心得</div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-04-09T00:51:39+08:00" class="article-modify-time">2018/04/09</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-308" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-308" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

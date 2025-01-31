@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>安装与编译 Javascript V8 Engine</title>
+    <meta name="keywords" content="V8 Engine,Javascript Engine" />
+    <meta name="description" content=" 安裝 gclientgclient 是一個可以同時支援　SVN 與　GIT 的工具，因為編輯　V8 Engine　時，必須用到這個小工具，所以我們得先安裝它，安裝的方式如下： git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git export PATH=$PATH:depot_to" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-189-安装与编译-Javascript-V8-Engine.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-189-安装与编译-Javascript-V8-Engine.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-189-安裝與編譯-Javascript-V8-Engine.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/node.js" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">node.js</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-189">
+                    <em><span>安装与编译 Javascript V8 ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-189-\u5b89\u88dd\u8207\u7de8\u8b6f-Javascript-V8-Engine.html"},"headline":"\u5b89\u88dd\u8207\u7de8\u8b6f Javascript V8 Engine","image":"","datePublished":"2013-08-31T22:35:18+08:00","dateModified":"2015-03-07T14:05:16+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5b89\u88dd gclient\rgclient \u662f\u4e00\u500b\u53ef\u4ee5\u540c\u6642\u652f\u63f4\u3000SVN \u8207\u3000GIT \u7684\u5de5\u5177\uff0c\u56e0\u70ba\u7de8\u8f2f\u3000V8 Engine\u3000\u6642\uff0c\u5fc5\u9808\u7528\u5230\u9019\u500b\u5c0f\u5de5\u5177\uff0c\u6240\u4ee5\u6211\u5011\u5f97\u5148\u5b89\u88dd\u5b83\uff0c\u5b89\u88dd\u7684\u65b9\u5f0f\u5982\u4e0b\uff1a\r  \r\r  git"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2013</div>
+            <div class="month">Aug</div>
+            <div class="day">31</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html"><span>安装与编译 Javascript V8 Engine</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=V8 Engine">V8 Engine</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Javascript Engine">Javascript Engine</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><h2>安装 gclient</h2><p>gclient 是一个可以同时支援　SVN 与　GIT 的工具，因为编辑　V8 Engine　时，必须用到这个小工具，所以我们得先安装它，安装的方式如下：</p>  <br /><ul class="list">  <li>git clone <a href="https://chromium.googlesource.com/chromium/tools/depot_tools.git"  target="_blank">https://chromium.googlesource.com/chromium/tools/depot_tools.git</a></li>  <li>export PATH=$PATH:depot_tools</li></ul><p>安装好后，输入 <b>gclient</b> ，测试看看这个指令能不能使用。</p><h2>安装 Javascript V8 Engine</h2><p>安装 V8 需要先知道自已的 cpu 是 32 位元，还是 64 位元， 我的电脑是 32 位元，所以我指定 <b> ia32.release</b> ， release 也可以改成 debug，如果你是使用　64 位元的系统，那么你可以用　<b>x64.release</b>。</p><ul class="list">  <li>git clone git://github.com/v8/v8.git src</li>  <li>cd src && make dependencies && make ia32.release  library=shared soname_version=1.0  console=readline snapshot=off werror=no</li></ul><p>我会用到 d8 这个 v8 command 程式，所以多加了 console=readline ，另外 v8 预设编译的时候会自动将 warning 转到 error ，这样会导致一点点小小的 warning 就造成编译失败，加上 werror=no 就可以解决这个问题。</p><p>上两步执行成功后，out/ia32.release/ 资料夹就会出现 libv8.so.1.0 这个重要的 v8 shared object ，接下来，就把这个档案装到系统 lib 资料夹下，而因为我还要开发 v8 extension ，所以还必需要将 header 档搬到 inlcude 底下。</p><ul class="list">  <li>cd  src && cp out/ia32.release/lib.target/libv8.so.1.0 /usr/local/lib/ && cp out/ia32.release/d8 /usr/local/bin/</li>  <li>ln -sf /usr/local/lib/libv8.so.1.0  /usr/local/lib/libv8.so</li>  <li>cd  src && if [</li></ul><div class="notice" label="notice">-d /usr/local/include/v8 ]; then mkdir /usr/local/include/v8; fi;</div><ul class="list">  <li>cd src && cp include/*.h /usr/local/include/v8/</li></ul><h2>编译问题处理</h2><h2>问题一： archives - ar 版本太旧</h2><blockquote>错误讯息：  error: ar crT libutils.a base64.o common.o ip_addr.o radiotap.o trace.o uuid.o wpa_debug.o wpabuf.o os_unix.o eloop.o <br /> ar: illegal option -- T</blockquote><p>这个问题发生的原因是 /usr/bin/ar 不支援这个功能 -T 这个参数，有可能是因为 binutil 版本太旧，所以只要升级到 binutils-2.23.1 即可。</p> <ul class="list">   <li class="indent1"><a href="https://code.google.com/p/reaver-wps/issues/detail?id=18"  target="_blank">https://code.google.com/p/reaver-wps/issues/detail?id=18</a></li>   <li class="indent1">binutils 下载点: <a href="http://www.gnu.org/software/binutils/"  target="_blank">http://www.gnu.org/software/binutils/</a></li> </ul><h2>问题二： 未指定 link libcurses</h2><blockquote>错误讯息： LINK(target) xxx/v8/src/out/ia32.release/d8 <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tgetnum&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tgetent&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tgetstr&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tgoto&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `UP&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `BC&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tputs&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `PC&#39; <br />/usr/lib/gcc/i386-redhat-linux/4.1.2/../../../libreadline.so: undefined reference to `tgetflag&#39;</blockquote><div class="notice" label="notice">解决方式就要在 v8 编译的时候，指定 link libcurse</div><p>修改档案： trunk/out/src/d8.target.ia32.mk ， 将 -lcurse 加入至 LIBS 这个参数。</p><div class="codeBlock"><span class="title"> d8.target.ia32.mk</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">LIBS := &#92;</span></li><li class="L1"><span class="pln">  -lreadline&#92; </span></li><li class="L2"><span class="pln">  -lcurses</span></li></ol></pre></div><h2>相关资料</h2><ul class="list">  <li><a href="https://developers.google.com/v8/build"  target="_blank">https://developers.google.com/v8/build</a></li>  <li><a href="http://dev.chromium.org/developers/how-tos/install-depot-tools"  target="_blank">http://dev.chromium.org/developers/how-tos/install-depot-tools</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-03-07T14:05:16+08:00" class="article-modify-time">2015/03/07</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-189" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-189" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-55">安裝 Javascript V8 Engine</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-52">Google V8 Engine Tutorial 1</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">V8 Engine 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-138-V8cgi-make-Socket-Extension.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_138&quot;}'>V8cgi make Socket Extension </a></li>
+    
+        <li><a href="/docs-blog/article-137-安裝-v8cgi-搭配-apache.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_137&quot;}'>安裝 v8cgi 搭配 apache </a></li>
+    
+        <li><a href="/docs-blog/article-92-V8-JavaScript-Engine-Context-Scope.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_92&quot;}'>V8 JavaScript Engine Context Scope </a></li>
+    
+        <li><a href="/docs-blog/article-91-Javascript-connect-mysql-use-c++.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_91&quot;}'>Javascript  connect mysql use c++ </a></li>
+    
+        <li><a href="/docs-blog/article-88-Google-V8-Engine-file-handle.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_88&quot;}'>Google V8 Engine file handle </a></li>
+    
+        <li><a href="/docs-blog/article-86-Google-V8-Engine-FunctionTemplate-And-ObjectTemplate.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_86&quot;}'>Google V8 Engine  FunctionTemplate And ObjectTemplate </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-52-Google-V8-Engine-Tutorial-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_52&quot;}'>Google V8 Engine Tutorial 1 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Javascript Engine 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-130-安裝-v8-Javascript-engine-in-window.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 node.js</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-454-Node.js-big5-utf8-字串轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_454&quot;}'>Node.js  big5 / utf8 字串轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-302-Node.js-Canvas-畫圖.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_302&quot;}'>Node.js Canvas 畫圖 </a></li>
+    
+        <li><a href="/docs-blog/article-201-Node.js-使用-php-function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_201&quot;}'>Node.js 使用 php function </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-158-Node.js-mime-type-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-144-第二篇-Node.js-搭配-Apache---Header-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-142-第一篇-Node.js-搭配-Apache-CGI.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="/docs-blog/article-117-Yahoo!-Mojito.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

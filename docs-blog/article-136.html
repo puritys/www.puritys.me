@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>C/C++ 常用 function 筆記</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 大部分的 C++ 用法，可以參考以下的網站。 http://www.cplusplus.com/reference/字串相關將字串轉成大寫Example#include lt;iostreamgt;#include lt;string.hgt;#include lt;algorithmgt;nbsp;int main () { string method = http; st" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-136-C-C++-常用-function-筆記.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-136-C-C++-常用-function-笔记.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-136-C-C++-常用-function-筆記.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-136-C-C++-常用-function-筆記.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-136">
+                    <em><span>C/C++ 常用 function 筆記</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-136-C-C++-\u5e38\u7528-function-\u7b46\u8a18.html"},"headline":"C\/C++ \u5e38\u7528 function \u7b46\u8a18","image":"","datePublished":"2012-06-12T23:27:00+08:00","dateModified":"2016-07-12T00:16:15+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5927\u90e8\u5206\u7684 C++ \u7528\u6cd5\uff0c\u53ef\u4ee5\u53c3\u8003\u4ee5\u4e0b\u7684\u7db2\u7ad9\u3002\r\r  http:\/\/www.cplusplus.com\/reference\/\r\r\u5b57\u4e32\u76f8\u95dc\r\u5c07\u5b57\u4e32\u8f49\u6210\u5927\u5beb\rExample\r#include &lt;i"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Jun</div>
+            <div class="day">12</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html"><span>C/C++ 常用 function 筆記</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-136-C-C++-常用-function-笔记.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>大部分的 C++ 用法，可以參考以下的網站。</p><ul class="list">  <li><a href="http://www.cplusplus.com/reference/"  target="_blank">http://www.cplusplus.com/reference/</a></li></ul><h2>字串相關</h2><h3>將字串轉成大寫</h3><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string.h&gt;</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;algorithm&gt;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="typ">int</span><span class="pln"> main </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">  string method </span><span class="pun">=</span><span class="pln"> </span><span class="str">"http"</span><span class="pun">;</span></li><li class="L6"><span class="pln">  std</span><span class="pun">::</span><span class="pln">transform</span><span class="pun">(</span><span class="pln">method</span><span class="pun">.</span><span class="pln">begin</span><span class="pun">(),</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">end</span><span class="pun">(),</span><span class="pln"> method</span><span class="pun">.</span><span class="pln">begin</span><span class="pun">(),</span><span class="pln"> </span><span class="pun">::</span><span class="pln">toupper</span><span class="pun">);</span></li><li class="L7"><span class="pun">}</span></li></ol></pre></div><h3>將字串 string 轉成數字 int</h3><div class="codeBlock cpp"><span class="title"> string to int</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">string s </span><span class="pun">=</span><span class="pln"> </span><span class="str">"1"</span><span class="pun">;</span></li><li class="L1"><span class="typ">int</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> atoi</span><span class="pun">(</span><span class="pln">s</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">());</span></li></ol></pre></div><h3>將字串串接 , sprintf</h3><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">char</span><span class="pun">*</span><span class="pln"> buff </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">200</span><span class="pun">];</span></li><li class="L1"><span class="pln">sprintf</span><span class="pun">(</span><span class="pln">buff </span><span class="pun">,</span><span class="pln"> </span><span class="str">"%s.%s"</span><span class="pun">,</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">);</span></li><li class="L2"><span class="com">//  %# %s 接的值不能用 string ，需轉換 string.c_str()</span></li></ol></pre></div><h3>Memory locate and free</h3><p>有一次想用 C 語言寫個小功能，在寫程式的途中有用到一些字串的 buff，於是我定義了 char* buff = new char(12)，想說來個 12 bytes 的字串，最後再加一句 delete[] buff，來移除 memory，結果出錯了，錯誤訊息:「free(): invalid next size (fast)」，gcc 也算貼心了，幫你寫出問題，不過我看來看去，完全找不到任何邏輯有錯的地字，一直過了幾天，才發現小括號是直接給值的意思，不是分配記憶體呀!!! 所以我一直在指定 buff 這個變數等於字串(12)，總個超傻眼，正確的分配記憶體方式，請用中括號。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">//char* buff = new char(12) // wrong !</span></li><li class="L1"><span class="kwd">char</span><span class="pun">*</span><span class="pln"> buff </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span></li><li class="L2"><span class="kwd">delete</span><span class="pun">[]</span><span class="pln"> buff</span></li></ol></pre></div><h3>string to char</h3><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">res </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">500</span><span class="pun">];</span></li><li class="L1"><span class="pln">    strcpy</span><span class="pun">(</span><span class="pln">resr</span><span class="pun">,</span><span class="pln"> header</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">());</span></li></ol></pre></div><h2>Throw Exception</h2><p>如果你想在 c 語言中使用  exception ，Compile 時的指令要加上 <em>-fexceptions</em> 才能 compile 成功。</p><div class="notice" label="!">binding.gyp:  "cflags_cc": ["-fexceptions"]</div><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;stdexcept&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;exception&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln"> </span><span class="kwd">throw</span><span class="pln"> std</span><span class="pun">::</span><span class="pln">runtime_error</span><span class="pun">(</span><span class="str">"exception message"</span><span class="pun">);</span></li></ol></pre></div><h2>windows string to TCHAR</h2><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">string paramStr </span><span class="pun">=</span><span class="pln"> </span><span class="str">"xxxxxxxxxxxxx"</span><span class="pun">;</span></li><li class="L1"><span class="pln">TCHAR </span><span class="pun">*</span><span class="pln">postData</span><span class="pun">;</span></li><li class="L2"><span class="pln">postData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">TCHAR</span><span class="pun">*)</span><span class="pln">paramStr</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">();</span></li></ol></pre></div><h2>const char* 裁字</h2><p>如果我想擷取 bc 這兩個字。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">char</span><span class="pun">*</span><span class="pln"> tx </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">char</span><span class="pun">*)</span><span class="pln"> malloc </span><span class="pun">(</span><span class="kwd">sizeof</span><span class="pun">(</span><span class="kwd">char</span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">3</span><span class="pun">);</span></li><li class="L1"><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">"abcde"</span><span class="pln"> </span><span class="pun">};</span></li><li class="L2"><span class="pln">memcpy</span><span class="pun">(</span><span class="pln">tx</span><span class="pun">,</span><span class="pln"> p </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">);</span></li><li class="L3"><span class="pun">*(</span><span class="pln">tx </span><span class="pun">+</span><span class="pln"> </span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;&#92;0&#39;</span><span class="pun">;</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-07-12T00:16:15+08:00" class="article-modify-time">2016/07/12</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-136" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-136" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

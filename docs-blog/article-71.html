@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>使用 RPM Build ，在Linux 打包 Package</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="最近機器一直出問題，一下家裡的 Virtual PC 掛點，一下是 Amazon EC2 硬體炸掉，害我一直在make package ， install package ， 其中 make apache 和 mysql 最花時間，總是要跑好幾個小時，於是我決定使用 RPM Build ，將所有要安裝的檔案打包成package ，以後只要安裝就好囉!在使用 RPM 之前，先簡單" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-71-使用-RPM-Build-，在Linux-打包-Package.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-71-使用-RPM-Build-，在Linux-打包-Package.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-71-使用-RPM-Build-，在Linux-打包-Package.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-71-使用-RPM-Build-，在Linux-打包-Package.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-71">
+                    <em><span>使用 RPM Build ，在Linux...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-71-\u4f7f\u7528-RPM-Build-\uff0c\u5728Linux-\u6253\u5305-Package.html"},"headline":"\u4f7f\u7528 RPM Build \uff0c\u5728Linux \u6253\u5305 Package","image":"","datePublished":"2011-12-10T03:22:53+08:00","dateModified":"2013-04-04T12:00:48+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\u6700\u8fd1\u6a5f\u5668\u4e00\u76f4\u51fa\u554f\u984c\uff0c\u4e00\u4e0b\u5bb6\u88e1\u7684 Virtual PC \u639b\u9ede\uff0c\u4e00\u4e0b\u662f Amazon EC2 \u786c\u9ad4\u70b8\u6389\uff0c\u5bb3\u6211\u4e00\u76f4\u5728make package \uff0c install package \uff0c \u5176\u4e2d make apa"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">10</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-71-使用-RPM-Build-，在Linux-打包-Package.html"><span>使用 RPM Build ，在Linux 打包 Package</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-71-使用-RPM-Build-，在Linux-打包-Package.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote" >最近機器一直出問題，一下家裡的 Virtual PC 掛點，一下是 Amazon EC2 硬體炸掉，害我一直在make package ， install package ， 其中 make apache 和 mysql 最花時間，總是要跑好幾個小時，於是我決定使用 RPM Build ，將所有要安裝的檔案打包成package ，以後只要安裝就好囉!</p><p class="vj-quote" >在使用 RPM 之前，先簡單的描述一下軟體，我在還不懂事的時候，一直認為軟體安裝是一件很困難的事情，因為不懂軟體安裝的過程中，到底軟體會做什麼? 後來開始寫一些 library 之後，發現軟體安裝，不過是把程式搬到指定的目錄之下而已，就是這麼簡單的事!!</p><p class="vj-quote" >所以接下來我要做的事，就是把我的程式用 RPM 封裝成一個軟體，然後再透過 RPM 的方式安裝到我的 Linux 電腦。</p><a name="vj-t0"></a><h2 class="vj-sub-title"> RPM Build 資料夾結構</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >一個 RPM Package 的目錄結構如下，一開始要先建立好這個目錄，每個目錄都會放RPM 指定的內容。</p><ul class="vj-ul"><li class="vj-lv2"> BUILD : RPM 安裝內容自動建立的位置</li><li class="vj-lv2"> RPMS : 最後建立成功的RPM Package</li><li class="vj-lv2"> SOURCES : 要安裝的檔案，需用 tar ball 的方式包起來(如 example.tar)</li><li class="vj-lv2"> SPECS : RPM 建立規格檔</li><li class="vj-lv2"> SRPMS : source RPM ，原始檔案的意思(我不會用到!!)。 </li></ul><a name="vj-t1"></a><h2 class="vj-sub-title">RPM Build 前置作業</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> mkdir -p /home/software/myrpm : 先建立我的RPM Builder 資料夾</li><li class="vj-lv2"> cd /home/software/myrpm</li><li class="vj-lv2"> mkdir RPMS  SOURCES  SPECS  SRPMS BUILD : 建立RPM相關資料夾</li></ul><a name="vj-t2"></a><h2 class="vj-sub-title vj-lv1"> 建立安裝檔</h2><p class="vj-quote" >接著將我要安裝的檔案放置在 SOURCE 裡</p><ul class="vj-ul"><li class="vj-lv2"> cd /home/software/myrpm/SOURCES</li><li class="vj-lv2"> mkdir mypackage-1.0 : 建立 package 的資料夾與版號</li><li class="vj-lv2"> cd mypackage-1.0</li><li class="vj-lv2"> vim mytest : 建立一個要安裝的檔案，內容就輸入:</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">echo </span><span class="str">"Auto install New File , sucess!"</span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title vj-lv1"> 用 Tar -zcvf 打包安裝檔</h2><ul class="vj-ul"><li class="vj-lv2"> cd /home/software/myrpm/SOURCES :回到SOURCE打包 tar 檔</li><li class="vj-lv2"> tar -zcvf mypackage.tar.gz mypackage-1.0</li></ul><p class="vj-quote" >結果如下</p><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="str">[puritys]</span><span class="pln">SOURCES</span><span class="PR_KEYWORD2">$ tar -zcvf mypackage.tar.gz mypackage-1.0</span></li><li class="L1"><span class="pln">mypackage</span><span class="pun">-</span><span class="pln">1</span><span class="pun">.</span><span class="pln">0</span><span class="pun">/</span></li><li class="L2"><span class="pln">mypackage</span><span class="pun">-</span><span class="pln">1</span><span class="pun">.</span><span class="pln">0</span><span class="pun">/</span><span class="pln">mytest</span></li><li class="L3"><span class="str">[puritys]</span><span class="pln">SOURCES</span><span class="PR_KEYWORD2">$ ls</span></li><li class="L4"><span class="pln">mypackage</span><span class="pun">-</span><span class="pln">1</span><span class="pun">.</span><span class="pln">0  mypackage</span><span class="pun">.</span><span class="pln">tar</span><span class="pun">.</span><span class="pln">gz</span></li><li class="L5"><span class="str">[puritys]</span><span class="pln">SOURCES</span><span class="pun">$</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title"> 建立安裝規格檔 (SPEC)</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> cd /home/software/myrpm/SPECS : 進入SPEC目錄</li><li class="vj-lv2"> vim example.spec :內容如下</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pun">#將設定的</span><span class="pln">RPM</span><span class="pun">名稱、版號、路徑，以變數的方式指定</span></li><li class="L1"><span class="pun">%</span><span class="pln">define _topdir </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">software</span><span class="pun">/</span><span class="pln">myrpm</span><span class="pun">/</span></li><li class="L2"><span class="pun">%</span><span class="pln">define Version 1</span><span class="pun">.</span><span class="pln">0</span></li><li class="L3"><span class="pun">%</span><span class="pln">define RPM_BUILD_ROOT _topdir</span></li><li class="L4"><span class="pun">%</span><span class="pln">define Name mypackage</span></li><li class="L5"><span class="pun">%</span><span class="pln">define BuildRoot </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/%{</span><span class="pln">Name</span><span class="pun">}-</span><span class="pln">buildroot</span></li><li class="L6"><span class="pun">#</span><span class="pln">RPM</span><span class="pun">相關資料</span></li><li class="L7"><span class="pfunc">Summary:</span><span class="pln">        My First RPM Package</span></li><li class="L8"><span class="pfunc">Name:</span><span class="pln">           </span><span class="pun">%{</span><span class="pln">Name</span><span class="pun">}</span><span class="pln"> </span><span class="pun">#</span><span class="pln"> Package </span><span class="pun">名稱</span></li><li class="L9"><span class="pfunc">Version:</span><span class="pln">        </span><span class="pun">%{</span><span class="pln">Version</span><span class="pun">}</span><span class="pln"> </span><span class="pun">#版號</span></li><li class="L0"><span class="pfunc">Release:</span><span class="pln">        1</span></li><li class="L1"><span class="pfunc">Vendor:</span><span class="pln">         no </span><span class="pun">&lt;</span><span class="pln">cxx</span><span class="kwd">and</span><span class="pun">@</span><span class="pln">gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln"> </span></li><li class="L2"><span class="pfunc">Packager:</span><span class="pln">       myName </span><span class="pun">&lt;</span><span class="pln">mail</span><span class="pun">@</span><span class="pln">gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">#開發者資料</span></li><li class="L3"><span class="pfunc">License:</span><span class="pln">        GPL</span></li><li class="L4"><span class="pfunc">Group:</span><span class="pln">          develope</span></li><li class="L5"><span class="pfunc">Source :</span><span class="pln">        mypackage</span><span class="pun">.</span><span class="pln">tar</span><span class="pun">.</span><span class="pln">gz </span><span class="pun">#</span><span class="pln">tar ball</span><span class="pun">檔案</span></li><li class="L6"><span class="pfunc">BuildRoot:</span><span class="pln">      </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}</span><span class="pln"> </span><span class="pun">#</span><span class="pln"> RPM Build </span><span class="pun">的暫存目錄</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">%</span><span class="pln">description</span></li><li class="L9"><span class="pun">其他相關說明</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pun">%</span><span class="pln">prep</span></li><li class="L2"><span class="pun">%</span><span class="pln">setup </span><span class="pun">-</span><span class="pln">q</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pun">%</span><span class="pln">build</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">%</span><span class="pln">install</span></li><li class="L7"><span class="pun">#設定安裝的實際路徑與檔案</span></li><li class="L8"><span class="pln">install </span><span class="pun">-</span><span class="pln">d </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mypackage</span><span class="pun">/</span></li><li class="L9"><span class="pln">cp mytest </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mypackage</span><span class="pun">/</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pun">%</span><span class="pln">files</span></li><li class="L2"><span class="pfunc">#安裝時:</span><span class="pun">設定預設的檔案權限</span></li><li class="L3"><span class="pun">%</span><span class="pln">defattr</span><span class="pun">(</span><span class="pln">755</span><span class="pun">,</span><span class="pln">root</span><span class="pun">,</span><span class="pln">root</span><span class="pun">)</span></li><li class="L4"><span class="pfunc">#安裝時:</span><span class="pun">設定檔案的屬性</span><span class="pln"> chmod</span><span class="pun">,</span><span class="pln">chown</span><span class="pun">,</span><span class="pln">chgrp</span></li><li class="L5"><span class="pun">%</span><span class="pln">attr</span><span class="pun">(</span><span class="pln">755</span><span class="pun">,</span><span class="pln">root</span><span class="pun">,</span><span class="pln">root</span><span class="pun">)</span><span class="pln"> </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mypackage</span><span class="pun">/</span><span class="pln">mytest</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">%</span><span class="pln">clean</span></li><li class="L8"><span class="pln">rm </span><span class="pun">-</span><span class="pln">rf </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span></li><li class="L9"><span class="pln">&nbsp;</span></li></ol></pre></div><a name="vj-t5"></a><h2 class="vj-sub-title vj-lv1"> SPEC 說明</h2><ul class="vj-ul"><li class="vj-lv2"> %prep : prepare的意思，安裝前執行的語法</li><li class="vj-lv2"> %setup -q : 解開打包的 tar檔 (mypackage.tar.gz)</li><li class="vj-lv2"> %install : 建立 RPM 時，執行的內容</li><ul class="vj-ul"><li class="vj-lv3"> install -d %{BuildRoot}/home/mypackage/ : 建立資料夾   </li><li class="vj-lv3"> cp mytest %{BuildRoot}/home/mypackage/ : 將檔案搬到指定的路徑</li><li class="vj-lv3"> 這裡的路徑，都要指定 RPM 建立的暫存根目錄 (BuildRoot)，根目錄後面就是直實的系統資料，未來安裝時會自動去掉前面的根目錄。</li></ul><li class="vj-lv2"> %files : 設定要搬移的檔案與權限</li><ul class="vj-ul"><li class="vj-lv3"> /home/mypackage/mytest :指定要安裝這個檔案</li></ul><li class="vj-lv2"> %clean : 時束後，清除沒用的檔案</li></ul><a name="vj-t6"></a><h2 class="vj-sub-title vj-lv1.75"> 建立自已的 PRM</h2><ul class="vj-ul"><li class="vj-lv2"> cd /home/software/myrpm/SPECS</li><li class="vj-lv2"> rpmbuild -bb example.spec</li></ul><p class="vj-quote" >如果沒發生錯誤的話，檔案就會建立在 RPM/i386/mypackage-1.0-1.i386.rpm (OS版本不同，有可能出現 i686 之類的)</p><a name="vj-t7"></a><h2 class="vj-sub-title"> 安裝我們建立的 RPM</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> cd /home/software/myrpm/</li><li class="vj-lv2"> sudo rpm -ivh RPMS/i386/mypackage-1.0-1.i386.rpm</li></ul><p class="vj-quote" >執行結果如下：</p><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="str">[puritys]</span><span class="pln">myrpm</span><span class="PR_KEYWORD2">$ sudo rpm -ivh RPMS/i386/mypackage-1.0-1.i386.rpm</span></li><li class="L1"><span class="pln">Preparing</span><span class="pun">...</span><span class="pln">                </span><span class="pun">###########################################</span><span class="pln"> </span><span class="pun">[</span><span class="pln">100</span><span class="pun">%]</span></li><li class="L2"><span class="pln">   </span><span class="pfunc">1:</span><span class="pln">mypackage              </span><span class="pun">###########################################</span><span class="pln"> </span><span class="pun">[</span><span class="pln">100</span><span class="pun">%]</span></li><li class="L3"><span class="pln">&nbsp;</span></li></ol></pre></div><p class="vj-amazing vj-lv2">測試看看是否正常安裝成功</p><ul class="vj-ul"><li class="vj-lv2"> cd /home/mypackage</li><li class="vj-lv2"> sh mytest</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="str">[puritys]</span><span class="pln">mypackage</span><span class="PR_KEYWORD2">$ sh mytest</span></li><li class="L1"><span class="pln">Auto install New File </span><span class="pun">,</span><span class="pln"> sucess</span><span class="pun">!</span></li></ol></pre></div><a name="vj-t8"></a><h2 class="vj-sub-title">自動打包，建立RPM</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >上面的步驟還是有點多，要先打包tar ，然後再建立package，感覺就很怪，為什麼要做兩次，我就寫個 Shell script來簡化一下作業程序。</p><ul class="vj-ul"><li class="vj-lv2"> 先在 /home/software/myrpm/ 建立一個 mkMyCron.sh 的 shell script</li></ul>File:mkMyCron.sh<br /><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-sh_my linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pln">VERSION</span><span class="pun">=</span><span class="pln">1</span><span class="pun">.</span><span class="pln">0</span></li><li class="L1"><span class="pln">ROOT</span><span class="pun">=/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">software</span><span class="pun">/</span><span class="pln">myrpm</span></li><li class="L2"><span class="pln">NAME</span><span class="pun">=</span><span class="pln">MyCron</span></li><li class="L3"><span class="pln">SOURCE_DIR</span><span class="pun">=$</span><span class="pln">ROOT</span><span class="pun">/</span><span class="pln">SOURCES</span><span class="pun">/$</span><span class="pln">NAME</span><span class="pun">-$</span><span class="pln">VERSION</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">#自動建立</span><span class="pln"> tar ball</span></li><li class="L6"><span class="pln">mkdir </span><span class="PR_KEYWORD2">$SOURCE_DIR</span></li><li class="L7"><span class="pln">cp </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">crontab </span><span class="PR_KEYWORD2">$SOURCE_DIR/</span></li><li class="L8"><span class="pln">cd SOURCES </span><span class="pun">&amp;&amp;</span><span class="pln"> tar </span><span class="pun">-</span><span class="pln">zcvf </span><span class="PR_KEYWORD2">$ROOT/SOURCES/$NAME.tar.gz $NAME-$VERSION</span></li><li class="L9"><span class="pln">cd </span><span class="pun">../</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pun">#建立</span><span class="pln"> SPEC file</span></li><li class="L2"><span class="pln">cat </span><span class="pun">&gt;</span><span class="pln"> SPECS</span><span class="pun">/$</span><span class="pln">NAME</span><span class="pun">.</span><span class="pln">spec </span><span class="pun">&lt;&lt;</span><span class="pln"> EOF</span></li><li class="L3"><span class="pun">%</span><span class="pln">define _topdir </span><span class="PR_KEYWORD2">$ROOT</span></li><li class="L4"><span class="pun">%</span><span class="pln">define Version 1</span><span class="pun">.</span><span class="pln">0</span></li><li class="L5"><span class="pun">%</span><span class="pln">define RPM_BUILD_ROOT _topdir</span></li><li class="L6"><span class="pun">%</span><span class="pln">define Name </span><span class="PR_KEYWORD2">$NAME</span></li><li class="L7"><span class="pun">%</span><span class="pln">define BuildRoot </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/%{</span><span class="pln">Name</span><span class="pun">}-</span><span class="pln">buildroot</span></li><li class="L8"><span class="pfunc">Summary:</span><span class="pln">        My First RPM Package</span></li><li class="L9"><span class="pfunc">Name:</span><span class="pln">           </span><span class="pun">%{</span><span class="pln">Name</span><span class="pun">}</span></li><li class="L0"><span class="pfunc">Version:</span><span class="pln">        </span><span class="pun">%{</span><span class="pln">Version</span><span class="pun">}</span></li><li class="L1"><span class="pfunc">Release:</span><span class="pln">        1</span></li><li class="L2"><span class="pfunc">Vendor:</span><span class="pln">         no </span><span class="pun">&lt;</span><span class="pln">cxx</span><span class="kwd">and</span><span class="pun">@</span><span class="pln">gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span></li><li class="L3"><span class="pfunc">Packager:</span><span class="pln">       myName </span><span class="pun">&lt;</span><span class="pln">mail</span><span class="pun">@</span><span class="pln">gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span></li><li class="L4"><span class="pfunc">License:</span><span class="pln">        GPL</span></li><li class="L5"><span class="pfunc">Group:</span><span class="pln">          develope</span></li><li class="L6"><span class="pfunc">Source :</span><span class="pln">        </span><span class="PR_KEYWORD2">$NAME.tar.gz</span></li><li class="L7"><span class="pfunc">BuildRoot:</span><span class="pln">      </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pun">%</span><span class="pln">description</span></li><li class="L0"><span class="pun">其他相關說明</span></li><li class="L1"><span class="pun">%</span><span class="pln">prep</span></li><li class="L2"><span class="pun">%</span><span class="pln">setup </span><span class="pun">-</span><span class="pln">q</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pun">%</span><span class="pln">build</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">%</span><span class="pln">install</span></li><li class="L7"><span class="pun">#設定安裝的實際路徑與檔案</span></li><li class="L8"><span class="pln">install </span><span class="pun">-</span><span class="pln">d </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mycron</span><span class="pun">/</span></li><li class="L9"><span class="pln">cp crontab </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mycron</span><span class="pun">/</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pun">%</span><span class="pln">files</span></li><li class="L2"><span class="pfunc">#安裝時:</span><span class="pun">設定預設的檔案權限</span></li><li class="L3"><span class="pun">%</span><span class="pln">defattr</span><span class="pun">(</span><span class="pln">755</span><span class="pun">,</span><span class="pln">root</span><span class="pun">,</span><span class="pln">root</span><span class="pun">)</span></li><li class="L4"><span class="pfunc">#安裝時:</span><span class="pun">設定檔案的屬性</span></li><li class="L5"><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">mycron</span><span class="pun">/</span><span class="pln">crontab</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">%</span><span class="pln">clean</span></li><li class="L8"><span class="pln">rm </span><span class="pun">-</span><span class="pln">rf </span><span class="pun">%{</span><span class="pln">BuildRoot</span><span class="pun">}/</span></li><li class="L9"><span class="pln">EOF</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">rpmbuild </span><span class="pun">-</span><span class="pln">bb SPECS</span><span class="pun">/$</span><span class="pln">NAME</span><span class="pun">.</span><span class="pln">spec</span></li><li class="L3"><span class="pln">&nbsp;</span></li></ol></pre></div><ul class="vj-ul"><li class="vj-lv2"> sh mkMyCron.sh : 執行他，只要寫好script，一步就完成RPM Build囉!有空趕快把你的程式、設定檔建立成Package，以後安裝就方便多了。</li></ul><a name="vj-t9"></a><h2 class="vj-sub-title"> RPM使用方式</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> rpm -ivh example.rpm : 安裝</li><li class="vj-lv2"> rpm -e example : 刪除安裝檔，會自動移除相關的檔案</li><li class="vj-lv2"> rpm -qa | grep example : 查詢系統安裝的package</li><li class="vj-lv2"> rpm -qi rpmName：查詢 RPM Info</li><li class="vj-lv2"> rpm -q --filesbypkg rpmName： 搜尋 RPM 中安裝的所有檔案</li><li class="vj-lv2"> rpm -qid packagename ： 取得 RPM 說明</li><li class="vj-lv2"> rpm -qf filename： 查詢某個檔案所屬的 package 名稱</li></ul><a name="vj-t10"></a><h2 class="vj-sub-title"> RPM 相關文件</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://fedora.linuxsir.org/fedoradocs/rpm-guide/en/"  target="_blank"> http://fedora.linuxsir.org/fedoradocs/rpm-guide/en/</a></li></ul><p class="vj-quote" >線上的tutorial ．寫的很詳盡，不過我覺得算是很爛的文件，範例給的少，文字描述又多，英文不好的人真的很難看懂...。</p><ul class="vj-ul"><li class="vj-lv2"> <a href=" http://www.logiqwest.com/TechnicalPapers/rpmScriptInstall.html"  target="_blank"> http://www.logiqwest.com/TechnicalPapers/rpmScriptInstall.html</a></li></ul><p class="vj-quote" >這個也是英文的教學，不過範例算是很ok了. </p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-04-04T12:00:48+08:00" class="article-modify-time">2013/04/04</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-71" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-71" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-448-Use-AWS-Dynamodb-to-generate-a-sequential-id.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="/docs-blog/article-447-How-to-link-ssh-agent-into-docker-container.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="/docs-blog/article-439-RedHat-6-&amp;-7-安裝-Docker-Enginer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="/docs-blog/article-432-Docker-Machine---kernel-panic:-unable-to-mount-root-fs-on-unknown-block.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="/docs-blog/article-431-How-to-customize-your-terminal-style.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="/docs-blog/article-426-解決-SSH-登入很慢、很久的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-422-RHEL-CentOs-如何安裝-Python-3.3-,-pip-3-，以及與-python-2-共存.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

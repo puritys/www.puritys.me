@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Win8 修改系統預設字型</title>
+    <meta name="keywords" content="Windows" />
+    <meta name="description" content="原生的 Windows 8 沒有提供 UI 來修改預設字型， 但是我們可以透過修改 Registry 變更系統的預設字型，修改 Registry 的動作很危險，可能會弄壞 windows ，沒有把握的人請盡速離開。Win8 的預設字型為 Microsft JhengHei UI，而我想要使用的字型是 Noto Sans CJK TC Medium，所以接下來我會說明如何取代初始" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-314-Win8-修改系統預設字型.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-314-Win8-修改系统预设字型.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-314-Win8-修改系統預設字型.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-314-Win8-修改系統預設字型.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-314">
+                    <em><span>Win8 修改系統預設字型</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-314-Win8-\u4fee\u6539\u7cfb\u7d71\u9810\u8a2d\u5b57\u578b.html"},"headline":"Win8 \u4fee\u6539\u7cfb\u7d71\u9810\u8a2d\u5b57\u578b","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_188.png","datePublished":"2015-05-31T22:54:53+08:00","dateModified":"2015-12-17T22:32:33+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u539f\u751f\u7684 Windows 8 \u6c92\u6709\u63d0\u4f9b UI \u4f86\u4fee\u6539\u9810\u8a2d\u5b57\u578b\uff0c \u4f46\u662f\u6211\u5011\u53ef\u4ee5\u900f\u904e\u4fee\u6539  Registry \u8b8a\u66f4\u7cfb\u7d71\u7684\u9810\u8a2d\u5b57\u578b\uff0c\u4fee\u6539 Registry \u7684\u52d5\u4f5c\u5f88\u5371\u96aa\uff0c\u53ef\u80fd\u6703\u5f04\u58de windows \uff0c\u6c92\u6709\u628a\u63e1"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">May</div>
+            <div class="day">31</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-314-Win8-修改系統預設字型.html"><span>Win8 修改系統預設字型</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Windows">Windows</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-314-Win8-修改系统预设字型.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>原生的 Windows 8 沒有提供 UI 來修改預設字型， 但是我們可以透過修改  Registry 變更系統的預設字型，修改 Registry 的動作很危險，可能會弄壞 windows ，沒有把握的人請盡速離開。</p><p>Win8 的預設字型為  "<b>Microsft JhengHei UI</b>"，而我想要使用的字型是 "Noto Sans CJK TC Medium"，所以接下來我會說明如何取代初始的字型。</p><p>請在開始 -> 執行 輸入 "<b>regedit</b>" ，Windows 就會打開 Registry 列表，而    Registry 字型的設定路徑為： HKEY_CURRENT_USER&#92;Control Panel&#92;Desktop&#92;WindowMetrics</p><p>點擊  IconFont 後，就可以看到原始的設定如下：</p><img src="/filemanage/blog_files/file_188.png"   /><p>中間顯示的是 16 進位 hex code ，右邊顯示的則是 ASCII 對應的英文字，可以清楚的看到 "4D 00" 對應到 M ， "69 00" 對應到 i ，每個英文字有二個  bytes 的儲存空間。</p><p>接著我們對著 "WindowMetrics" 這個目錄點右鍵，將他的資料匯出成  Font.reg 。</p><p>儲存成功後，你可以用 Notepad++ 或是 Notepad 將 Font.reg 打開，並移除 IconFont 以外的資料，例如下圖顯示：</p><div class="codeBlock"><span class="title"> 原始的 IconFont 檔案</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">[HKEY_CURRENT_USER&#92;Control Panel&#92;Desktop&#92;WindowMetrics]</span></li><li class="L1"><span class="pln">"IconFont"=hex:f4,ff,ff,ff,00,00,00,00,00,00,00,00,00,00,00,00,90,01,00,00,00,&#92;</span></li><li class="L2"><span class="pln">  00,00,01,00,00,00,00,4d,00,69,00,63,00,72,00,6f,00,73,00,6f,00,66,00,74,00,&#92;</span></li><li class="L3"><span class="pln">  20,00,4a,00,68,00,65,00,6e,00,67,00,48,00,65,00,69,00,20,00,55,00,49,00,00,&#92;</span></li><li class="L4"><span class="pln">  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00</span></li></ol></pre></div><p>我們的目地就是將 "4d,00,69,00,63,00,72, ... " 這一部份的所有文字改成  "Noto Sans CJK TC Medium"，當然你不需要直接修改 Registry 原始檔，透過 Registry UI 介面就可以修改數值。</p><h2>字型名稱</h2><p>你可能還不知道每一個字型的英文名稱，我們得先找出字型的全名，先進入 c:&#92;Windows&#92;Fonts 這個目錄，裡面會有全部的字型檔，找出你要的字型，點擊兩下就能看到字型名稱 "Noto Sans CJK TC Medium"。</p><img src="/filemanage/blog_files/file_190.png"   /><img src="/filemanage/blog_files/file_189.png"   /><p>最後修改 Registry UI 中右邊欄位的英文，請小心一個字一個字的填入，每個字後面都會接一個  "." 而這個點代表的是 ASCII Code "00"，如果你要填 "00" 請在 Registry UI 中間欄填寫，修改的時候請注意，總字串長度不能變長或變短，必須與原始長度一樣。</p> <br /><p>修改完成後，如下圖</p><img src="/filemanage/blog_files/file_191.png"   /><p>最後重新登入 Windows 就能看到新的字型設定。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-12-17T22:32:33+08:00" class="article-modify-time">2015/12/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-314" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-314" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Windows 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_399&quot;}'>如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統 </a></li>
+    
+        <li><a href="/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="/docs-blog/article-382-Win-10-光碟機無法打開.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_382&quot;}'>Win 10 光碟機無法打開 </a></li>
+    
+        <li><a href="/docs-blog/article-372-加速-Windows-10-WIN-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_372&quot;}'>加速 Windows 10 /  WIN 10 </a></li>
+    
+        <li><a href="/docs-blog/article-290-Cygwin-:-在-windows-環境上使用-Linux-指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="/docs-blog/article-235-解決讀卡機偵測不到.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_235&quot;}'>解決讀卡機偵測不到 </a></li>
+    
+        <li><a href="/docs-blog/article-34-USB-插插拔拔，造成-USB-無法讀取.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_34&quot;}'>USB 插插拔拔，造成 USB 無法讀取 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-434-為什麼要-Code-Review.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="/docs-blog/article-433-Code-Review-小重點.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="/docs-blog/article-425-MacBook-Sierra-使用-Chrome-瀏覽器慢慢卡卡的，游標消失.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="/docs-blog/article-415-Splunk-語法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="/docs-blog/article-413-Win10-如何用自然人憑證登入財政部電子發票整合服務平台.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="/docs-blog/article-411-使用-command-控制-VirtualBox-Instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="/docs-blog/article-410-破解痞客邦-pixnet-複製-貼上-鎖右鍵.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

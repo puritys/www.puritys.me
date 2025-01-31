@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>php.ini 設定詳解</title>
+    <meta name="keywords" content="PHP" />
+    <meta name="description" content="php.ini 是php程式的設定檔，其中包含不少安全性設定，我們就一一來看分別代表什麼意思吧圖片上傳必改 file_uploads = on : [on] 代表允許上傳檔案 upload_max_filesize = 2M : [2M] 代表允許上傳的檔案最大 size upload_tmp_dir = : 指定上傳檔案時的暫存資料夾，如果不指定的說，預設會存在 /tmp 裡" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-50-php.ini-設定詳解.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-50-php.ini-设定详解.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-50-php.ini-設定詳解.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-50-php.ini-設定詳解.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-50">
+                    <em><span>php.ini 設定詳解</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-50-php.ini-\u8a2d\u5b9a\u8a73\u89e3.html"},"headline":"php.ini \u8a2d\u5b9a\u8a73\u89e3","image":"","datePublished":"2011-10-23T15:25:12+08:00","dateModified":"2015-03-23T12:47:52+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"php.ini \u662fphp\u7a0b\u5f0f\u7684\u8a2d\u5b9a\u6a94\uff0c\u5176\u4e2d\u5305\u542b\u4e0d\u5c11\u5b89\u5168\u6027\u8a2d\u5b9a\uff0c\u6211\u5011\u5c31\u4e00\u4e00\u4f86\u770b\u5206\u5225\u4ee3\u8868\u4ec0\u9ebc\u610f\u601d\u5427\r\u5716\u7247\u4e0a\u50b3\u5fc5\u6539\r\r  file_uploads = on :\r   \r     [on] \u4ee3\u8868\u5141\u8a31\u4e0a\u50b3\u6a94\u6848"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Oct</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-50-php.ini-設定詳解.html"><span>php.ini 設定詳解</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=PHP">PHP</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-50-php.ini-设定详解.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>php.ini 是php程式的設定檔，其中包含不少安全性設定，我們就一一來看分別代表什麼意思吧</p><h2>圖片上傳必改</h2><ul class="list">  <li>file_uploads = on :</li>   <ul class="list">     <li class="indent2">[on] 代表允許上傳檔案</li>   </ul>  <li>upload_max_filesize = 2M :</li>   <ul class="list">     <li class="indent2">[2M] 代表允許上傳的檔案最大 size</li>   </ul>  <li>upload_tmp_dir = "" : 指定上傳檔案時的暫存資料夾，如果不指定的說，預設會存在 /tmp 裡</li>  <li>max_file_uploads = 20 ; 指定一次可以上傳的最大檔案數。</li>  <li>post_max_size = 8M ;</li>  <ul class="list">    <li class="indent1">[8M] 代表使用POST上傳的最大資料量。</li>    <li class="indent1">如果你只改了 upload_max_filesize 到 8M， 而忘了改 post_max_size，在你上傳檔案時，檔案的內容會超過 post_max_size，接著就被伺服器給中斷掉了，所以要記得改!</li>  </ul></ul><h2>錯誤記錄( error log)</h2><p>php 內建就有記錄程式錯誤的功能，方便工程師 debug。</p><ul class="list">  <li>error_reporting = E_ALL : 指定哪些錯誤類型須要php記錄</li>  <ul class="list">    <li class="indent1">E_ALL : 是指全部的 error 訊息都要記錄</li>    <li class="indent1">E_ERROR: 嚴重錯誤，會使得程式當掉的才記錄下來</li>    <li class="indent1">E_WARNING : warning 記錄下來</li>    <li class="indent1">E_PARSE : 編譯錯誤記錄下來</li>    <li class="indent1">E_NOTICE : 提醒工程師，可能會出錯的訊息</li>    <li class="indent1">error_reporting = E_ERROR & E_WARNING :只記錄這兩種錯誤</li>    <li class="indent1">error_reporting = E_ALL & ~E_NOTICE :除了 Notice以外的錯誤都記錄下來</li>  </ul>  <li>display_errors = On</li>   <ul class="list">     <li class="indent2">[On] : 在網頁顯示錯誤訊息，</li>   </ul></ul><div class="notice" label="notice">如果打開這個功能，當程式發生錯誤時，user會立即在網頁上看到錯誤訊息，除了會讓user以為看到亂碼之外，還有安全性上的風險。</div>  <ul class="list">    <li class="indent1">[Off] : 不在網頁上顯示錯誤訊息，</li>  </ul><ul class="list">  <li>display_startup_errors</li>  <ul class="list">    <li class="indent1">[On] : php 起始錯誤會記錄下來，如module載入失敗等等訊息。</li>    <li class="indent1">[Off] : 建議關閉，預設也是關閉的</li>  </ul>  <li>log_errors = On</li>  <ul class="list">    <li class="indent1">[On] : 將錯誤訊息記錄在檔案裡。</li>    <li class="indent1">[Off] : 關閉記錄錯誤訊息在檔案的功能。</li>  </ul>  <li>log_errors_max_len = 1024 : log檔案的最大size</li>  <li>error_log = "/logs/error_log" :指定log的檔案名稱</li>  <li>ignore_repeated_errors : 同一個檔案，同一行，忽略重覆的錯誤訊息。</li>  <li>ignore_repeated_source : 當同一個錯誤，是執行在不同的檔案時産生，忽略此錯誤訊息。</li>  <li>report_memleaks = On : 記錄 memory leak (E_WARNING)</li>  <li>track_errors :將誤錯訊息存在變數 $php_errormsg</li></ul><h2>Paths and Directories</h2><ul class="list">  <li>include_path :php自動載入的根目錄</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="com">//如果include_path="/home/php/lib/"</span></li><li class="L1"><span class="pln">require</span><span class="pun">(</span><span class="str">&#39;zip.php&#39;</span><span class="pun">);</span></li><li class="L2"><span class="com">/*</span></li><li class="L3"><span class="com">會自動去搜尋 /home/php/lin/zip.php 並載入</span></li><li class="L4"><span class="com">如果有同檔名的檔案 zip.php存在，會以include_path的為主</span></li><li class="L5"><span class="com">&nbsp;</span></li><li class="L6"><span class="com">*/</span></li></ol></pre></div><ul class="list">  <li>extension_dir: php extension 載入的目錄</li>  <li>enable_dl : 是否允許動態載入 php extension</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">dl</span><span class="pun">(</span><span class="str">&#39;mbstring.so&#39;</span><span class="pun">);</span></li></ol></pre></div><ul class="list">  <li>open_basedir : php 允許可以讀取的目錄 ， 使用 file_get_contents 這個 function 時，有時會有權限不足的訊息，可以修改這個設定打開權限。</li></ul><h2>date.timezone 時區設定</h2><p>一般PHP設定檔中 php.ini ，預設的時間是用國際標準時間(UTC)，而台灣時間是國際標準時間 +8 。</p><ul class="list">  <li>改成台北時間的話可以使用語法 ：date.timezone = "Asia/Taipei"</li></ul><p>另一種設定 timezone 的方式，可以在 PHP Script 中直接指定 timezone 。</p><blockquote>date_default_timezone_set("Asia/Taipei");</blockquote></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-03-23T12:47:52+08:00" class="article-modify-time">2015/03/23</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-50" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-50" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">PHP 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_352&quot;}'>強迫 PHP Curl  使用  IPv4 ， 忽略 IPv6 </a></li>
+    
+        <li><a href="/docs-blog/article-111-php-APC-&amp;-Memcache-extension.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_111&quot;}'>php APC &amp; Memcache extension </a></li>
+    
+        <li><a href="/docs-blog/article-49-測試用文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_49&quot;}'>測試用文章 </a></li>
+    
+        <li><a href="/docs-blog/article-46-PHP-輸入密碼，但不顯示密碼在螢幕上.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_46&quot;}'>PHP 輸入密碼，但不顯示密碼在螢幕上 </a></li>
+    
+        <li><a href="/docs-blog/article-33-PHP-輸出-Excel-，使用PHPExcel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_33&quot;}'>PHP 輸出 Excel ，使用PHPExcel </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

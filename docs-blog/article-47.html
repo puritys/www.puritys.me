@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>桌面圖片拖曳上傳 HTML5  File Api</title>
+    <meta name="keywords" content="dragJS" />
+    <meta name="description" content=" Example UI Example" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-47-桌面圖片拖曳上傳-HTML5-File-Api.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-47-桌面图片拖曳上传-HTML5-File-Api.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-47-桌面圖片拖曳上傳-HTML5-File-Api.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-47-桌面圖片拖曳上傳-HTML5-File-Api.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-47">
+                    <em><span>桌面圖片拖曳上傳 HTML5  File Api</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-47-\u684c\u9762\u5716\u7247\u62d6\u66f3\u4e0a\u50b3-HTML5-File-Api.html"},"headline":"\u684c\u9762\u5716\u7247\u62d6\u66f3\u4e0a\u50b3 HTML5  File Api","image":"","datePublished":"2011-10-23T03:56:45+08:00","dateModified":"2013-04-14T02:18:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\r\u4f7f\u7528 JQuery \u5c0ddiv\u7d81\u4e8b\u4ef6 , ondragenter, ondragover, ondrop\rEvent : onDragEnter\rEvent : onDragLeave\rEvent"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Oct</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-47-桌面圖片拖曳上傳-HTML5-File-Api.html"><span>桌面圖片拖曳上傳 HTML5  File Api</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=dragJS">dragJS</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-47-桌面图片拖曳上传-HTML5-File-Api.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><div class="target_box"><ul><li ><a href="#vj-t0">使用 JQuery 對div綁事件 , ondragenter, ondragover, ondrop</a></li><li ><a href="#vj-t1">Event : onDragEnter</a></li><li ><a href="#vj-t2">Event : onDragLeave</a></li><li ><a href="#vj-t3">Event : onDragOver</a></li><li ><a href="#vj-t4">Event : onDrop</a></li><li ><a href="#vj-t5">載入user拖拉進來的圖片</a></li><li ><a href="#vj-t6">Example</a></li></ul></div><p class="vj-quote" >HTML5 支援拖拉圖片到網頁，上傳圖片。(drag)</p><p class="vj-quote" >假設一個 div ，是我們要拖拉圖片進入的tag。</p><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"dragBox"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="kwd">height</span><span class="pun">:</span><span class="lit">100px</span><span class="pun">;</span><span class="kwd">width</span><span class="pun">:</span><span class="lit">200px</span><span class="pun">;</span><span class="kwd">border</span><span class="pun">:</span><span class="lit">1px</span><span class="pln"> solid </span><span class="lit">#a00</span><span class="pun">;</span><span class="kwd">padding</span><span class="pun">:</span><span class="lit">10px</span><span class="pun">;</span><span class="atv">"</span><span class="pln"> </span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">   請拖曳圖片至此</span></li><li class="L2"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><a name="vj-t0"></a><h2 class="vj-sub-title">使用 JQuery 對div綁事件 , ondragenter, ondragover, ondrop</h2><a href="#top" class="vj-btn_top2"></a><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function bindEvent</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">){</span></li><li class="L1"><span class="pln">   </span><span class="pun">$(</span><span class="pln">obj</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">"dragover"</span><span class="pun">,</span><span class="pln">ondragover</span><span class="pun">);</span></li><li class="L2"><span class="pln">   </span><span class="pun">$(</span><span class="pln">obj</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">"dragenter"</span><span class="pun">,</span><span class="pln">ondragenter</span><span class="pun">);</span></li><li class="L3"><span class="pln">   </span><span class="pun">$(</span><span class="pln">obj</span><span class="pun">).</span><span class="pln">bind</span><span class="pun">(</span><span class="str">"dragleave"</span><span class="pun">,</span><span class="pln">ondragleave</span><span class="pun">);</span></li><li class="L4"><span class="pln">   </span><span class="pun">$(</span><span class="pln">obj</span><span class="pun">).</span><span class="pln">get</span><span class="pun">(</span><span class="lit">0</span><span class="pun">).</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">"drop"</span><span class="pun">,</span><span class="pln"> ondragdrop</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></li><li class="L5"><span class="pln">   </span><span class="com">//這裡不能用 JQuery bind drop event , 否則 event.dataTransfer 會抓不到</span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div><a name="vj-t1"></a><h2 class="vj-sub-title">Event : onDragEnter</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 拖拉圖片進 div 時，觸發ondragenter 事件。</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function ondragenter</span><span class="pun">(){</span></li><li class="L1"><span class="pln">   </span><span class="com">//變更div css 效果</span></li><li class="L2"><span class="pln">   event</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L3"><span class="pln">   event</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><a name="vj-t2"></a><h2 class="vj-sub-title">Event : onDragLeave</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 拖拉圖片離開 div 時，觸發ondragleave 事件</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function ondragenter</span><span class="pun">(){</span></li><li class="L1"><span class="pln">   </span><span class="com">//變更div css 效果</span></li><li class="L2"><span class="pln">   event</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L3"><span class="pln">   event</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title">Event : onDragOver</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 拖拉圖片在 div上移動時，觸發事件</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function ondragover</span><span class="pun">(){</span></li><li class="L1"><span class="pln">   event</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L2"><span class="pln">   event</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title">Event : onDrop</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 拖拉圖片在 div上放開時，觸發事件</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function ondrop</span><span class="pun">(</span><span class="pln">event</span><span class="pun">){</span></li><li class="L1"><span class="pln">   event</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L2"><span class="pln">   event</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L3"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> dt </span><span class="pun">=</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> files </span><span class="pun">=</span><span class="pln"> dt</span><span class="pun">.</span><span class="pln">files</span><span class="pun">;</span></li><li class="L5"><span class="pln">   </span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div><a name="vj-t5"></a><h2 class="vj-sub-title">載入user拖拉進來的圖片</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 使用HTML5 中的dataTransfer物件。</li><li class="vj-lv2"> 使用Filelist來取得檔案名稱，以及檔案尺寸。</li><li class="vj-lv2"> 從Filelist取得 file後，其屬性如下</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">size </span><span class="pun">=</span><span class="pln"> </span><span class="lit">71189</span></li><li class="L1"><span class="pln">type </span><span class="pun">=</span><span class="pln"> image</span><span class="pun">/</span><span class="pln">jpeg</span></li><li class="L2"><span class="com">//切割檔案 mozSlice(start,end);</span></li><li class="L3"><span class="pln">mozSlice </span><span class="pun">=</span><span class="pln"> </span><span class="pfunc">function mozSlice</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="pun">[</span><span class="pln">native code</span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span></li><li class="L4"><span class="pln">name </span><span class="pun">=</span><span class="pln"> Sunset</span><span class="pun">.</span><span class="pln">jpg</span></li><li class="L5"><span class="pln">mozFullPath </span><span class="pun">=</span></li></ol></pre></div><ul class="vj-ul"><li class="vj-lv2"> 使用 FileReader 來讀取user local端的圖片，FileReader會回傳base64編碼後的檔案格式 (data uri)。</li></ul><ul class="vj-ul"><li class="vj-lv2"> 格式大概是長這樣，它不是亂碼XD</li></ul><p class="vj-quote" >data:image/jpeg;base64,/9j/4AAQSkZJRgABA....</p><ul class="vj-ul"><li class="vj-lv2"> 範例程式</li></ul><div class="codeBlock"><span class="title"></span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pfunc">function getFiles</span><span class="pun">(</span><span class="pln">event</span><span class="pun">){</span></li><li class="L1"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> dt </span><span class="pun">=</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">;</span></li><li class="L2"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> files </span><span class="pun">=</span><span class="pln"> dt</span><span class="pun">.</span><span class="pln">files</span><span class="pun">;</span></li><li class="L3"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> n </span><span class="pun">=</span><span class="pln"> files</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span></li><li class="L4"><span class="pln">   </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> n</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> files</span><span class="pun">[</span><span class="pln">i</span><span class="pun">];</span></li><li class="L6"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> fileName</span><span class="pun">=</span><span class="pln">file</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span></li><li class="L7"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> reader </span><span class="pun">=</span><span class="pln"> new FileReader</span><span class="pun">();</span></li><li class="L8"><span class="pln">        reader</span><span class="pun">.</span><span class="pln">readAsDataURL</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span></li><li class="L9"><span class="pln">        reader</span><span class="pun">.</span><span class="pln">onloadend </span><span class="pun">=</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">event</span><span class="pun">){</span></li><li class="L0"><span class="pln">            </span><span class="kwd">var</span><span class="pln"> filedata </span><span class="pun">=</span><span class="pln"> event</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">result</span><span class="pun">;</span></li><li class="L1"><span class="pln">            </span><span class="pun">$(</span><span class="PR_KEYWORD2">document</span><span class="pun">.</span><span class="PR_KEYWORD2">body</span><span class="pun">).</span><span class="pln">append</span><span class="pun">(</span><span class="str">"&lt;img src=&#39;"</span><span class="pun">+</span><span class="pln">filedata</span><span class="pun">+</span><span class="str">"&#39; /&gt;"</span><span class="pun">)</span></li><li class="L2"><span class="pln">        </span><span class="pun">}</span></li><li class="L3"><span class="pln">   </span><span class="pun">}</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><a name="vj-t6"></a><h2 class="vj-sub-title">Example</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> <a href="/teach/jsui/fileUpload/1.0/example.html"  target="_blank">Example</a></li><li class="vj-lv2"> <a href="/UI_DESIGN_detail/article-48"  target="_blank">UI Example</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2013-04-14T02:18:10+08:00" class="article-modify-time">2013/04/14</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-47" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-47" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">dragJS 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-48-拖拉圖片至瀏覽器上傳-Example.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_48&quot;}'>拖拉圖片至瀏覽器上傳 Example </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="/docs-blog/article-273-自定義-AngularJS-service.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="/docs-blog/article-270-AngularJS.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="/docs-blog/article-247-Javascript-ECMA-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

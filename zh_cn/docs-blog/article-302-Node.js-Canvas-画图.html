@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Node.js Canvas 画图</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="PHP 用來畫圖的 Library 叫做 PHP GD ，而 Javascript 有個　library 叫 canvas ，也是用來畫圖的，有人已經在 Node.js 開發出 Node.js Canvas ，我們只要安裝這個 Package ，就能在 Server 端寫程式來畫圖。Node.js 也有 GD 的版本可以用來畫圖，但是我不建議做用 GD ，原因為若我們使用 Ca" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-302-Node.js-Canvas-画图.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-302-Node.js-Canvas-画图.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-302-Node.js-Canvas-畫圖.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-302-Node.js-Canvas-畫圖.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/node.js" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">node.js</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-302">
+                    <em><span>Node.js Canvas 画图</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-302-Node.js-Canvas-\u756b\u5716.html"},"headline":"Node.js Canvas \u756b\u5716","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_175.png","datePublished":"2015-03-07T16:09:53+08:00","dateModified":"2016-09-03T16:22:40+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"PHP \u7528\u4f86\u756b\u5716\u7684 Library \u53eb\u505a PHP GD \uff0c\u800c Javascript \u6709\u500b\u3000library \u53eb canvas \uff0c\u4e5f\u662f\u7528\u4f86\u756b\u5716\u7684\uff0c\u6709\u4eba\u5df2\u7d93\u5728 Node.js \u958b\u767c\u51fa Node.js Can"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Mar</div>
+            <div class="day">07</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-302-Node.js-Canvas-畫圖.html"><span>Node.js Canvas 画图</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-302-Node.js-Canvas-畫圖.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>PHP 用来画图的 Library 叫做 PHP GD ，而 Javascript 有个　library 叫 canvas ，也是用来画图的，有人已经在 Node.js 开发出 Node.js Canvas ，我们只要安装这个 Package ，就能在 Server 端写程式来画图。</p><p>Node.js 也有 GD 的版本可以用来画图，但是我不建议做用 GD ，原因为若我们使用 Canvas 来画图，那么也同时可以学会在 Browser 里使用 Canvas ，一次学会 Web Server 端与 Client 端的画图方式。</p><p>下面这个网址有一些简单的使用范本</p><ul class="list">  <li><a href="http://thechangelog.com/node-canvas-render-and-stream-html5-canvas-using-node-js/"  target="_blank">http://thechangelog.com/node-canvas-render-and-stream-html5-canvas-using-node-js/</a></li>  <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5c2ccd1e5c2ccd1cdd0c78bc6cac8">[email&#160;protected]</a>:Automattic/node-canvas.git</li></ul> <br /> <br /><p>Node.js Canvas 有用到其它的　Open Source ，所以我们也得安装这些　library　，我的系统是 CentOS ，平常都是使用 yum 来安装　Package。</p><ul class="list">  <li>sudo yum install pango-devel</li>  <li>sudo yum install cairo-devel</li>  <li>sudo yum install giflib-devel</li>  <li>sudo yum install libpng-devel</li></ul><p>安装好以上 Package 后，再来就用 npm install 来装上　　canvas</p><ul class="list">  <li>npm install canvas</li></ul><p>来画一张 Canvas Hello World 吧</p><img src="/filemanage/blog_files/file_175.png"   /><div class="codeBlock js"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> </span><span class="typ">Canvas</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">&#39;canvas&#39;</span><span class="pun">),</span></li><li class="L1"><span class="pln">    canvas </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Canvas</span><span class="pun">(</span><span class="lit">150</span><span class="pun">,</span><span class="pln"> </span><span class="lit">150</span><span class="pun">),</span></li><li class="L2"><span class="pln">    ctx </span><span class="pun">=</span><span class="pln"> canvas</span><span class="pun">.</span><span class="pln">getContext</span><span class="pun">(</span><span class="str">&#39;2d&#39;</span><span class="pun">),</span></li><li class="L3"><span class="pln">    fs </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">&#39;fs&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="kwd">var</span><span class="pln"> out </span><span class="pun">=</span><span class="pln"> fs</span><span class="pun">.</span><span class="pln">createWriteStream</span><span class="pun">(</span><span class="pln">__dirname </span><span class="pun">+</span><span class="pln"> </span><span class="str">&#39;/image.png&#39;</span><span class="pun">)</span></li><li class="L6"><span class="pln">  </span><span class="pun">,</span><span class="pln"> stream </span><span class="pun">=</span><span class="pln"> canvas</span><span class="pun">.</span><span class="pln">createPNGStream</span><span class="pun">();</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">stream</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">&#39;data&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">chunk</span><span class="pun">){</span></li><li class="L9"><span class="pln">  out</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">chunk</span><span class="pun">);</span></li><li class="L0"><span class="pun">});</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="com">//在左边画正方形</span></li><li class="L3"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillStyle </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;#A00&#39;</span><span class="pln">    </span></li><li class="L4"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillRect</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">30</span><span class="pun">,</span><span class="lit">50</span><span class="pun">,</span><span class="lit">50</span><span class="pun">);</span><span class="pln">   </span></li><li class="L5"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">save</span><span class="pun">();</span><span class="pln">    </span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">//在右边画正方形</span></li><li class="L8"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillStyle </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;#aaa&#39;</span><span class="pln">    </span></li><li class="L9"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillRect</span><span class="pun">(</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">30</span><span class="pun">,</span><span class="pln"> </span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">50</span><span class="pun">);</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">//画文字</span></li><li class="L2"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillStyle </span><span class="pun">=</span><span class="pln"> </span><span class="str">"#000"</span><span class="pun">;</span></li><li class="L3"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">font </span><span class="pun">=</span><span class="pln"> </span><span class="str">"20px Arial"</span><span class="pun">;</span></li><li class="L4"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillText</span><span class="pun">(</span><span class="str">"Hello World"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="com">//画一个圆</span></li><li class="L7"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">beginPath</span><span class="pun">();</span></li><li class="L8"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">arc</span><span class="pun">(</span><span class="lit">30</span><span class="pun">,</span><span class="pln"> </span><span class="lit">110</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">*</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">);</span></li><li class="L9"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">stroke</span><span class="pun">();</span></li><li class="L0"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fillStyle </span><span class="pun">=</span><span class="pln"> </span><span class="str">"green"</span><span class="pun">;</span><span class="pln">                                                                                                                          </span></li><li class="L1"><span class="pln">ctx</span><span class="pun">.</span><span class="pln">fill</span><span class="pun">();</span></li></ol></pre></div><h2>相关资料</h2><ul class="list">  <li><a href="http://thechangelog.com/node-canvas-render-and-stream-html5-canvas-using-node-js/"  target="_blank">http://thechangelog.com/node-canvas-render-and-stream-html5-canvas-using-node-js/</a></li>  <li><a href="http://www.w3schools.com/html/html5_canvas.asp"  target="_blank">http://www.w3schools.com/html/html5_canvas.asp</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-03T16:22:40+08:00" class="article-modify-time">2016/09/03</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-302" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-302" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 node.js</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-454-Node.js-big5-utf8-字串轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_454&quot;}'>Node.js  big5 / utf8 字串轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-302-Node.js-Canvas-畫圖.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_302&quot;}'>Node.js Canvas 畫圖 </a></li>
+    
+        <li><a href="/docs-blog/article-201-Node.js-使用-php-function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_201&quot;}'>Node.js 使用 php function </a></li>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-158-Node.js-mime-type-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-144-第二篇-Node.js-搭配-Apache---Header-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-142-第一篇-Node.js-搭配-Apache-CGI.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="/docs-blog/article-117-Yahoo!-Mojito.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>如何在 React-Native 使用迴圈來 Render</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="React render HTML 方式，是把 JS 與 HTML , CSS Style 混在一起寫，所以剛開始使用的時候常常用方式，造成程式錯誤，這篇文章會說明 React Render 部分的寫法。Single ForLoop先來介紹如何用單層迴圈來 Render 一個列表，方法很簡單，去 React 官網也可以找到很多範例，只要用大括號 {} 就能完成這個功能。{lis" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-328-如何在-React-Native-使用迴圈來-Render.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-328-如何在-React-Native-使用回圈来-Render.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-328-如何在-React-Native-使用迴圈來-Render.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-328-如何在-React-Native-使用迴圈來-Render.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/ReactNative" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">React-Native</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-328">
+                    <em><span>如何在 React-Native 使用迴...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-328-\u5982\u4f55\u5728-React-Native-\u4f7f\u7528\u8ff4\u5708\u4f86-Render.html"},"headline":"\u5982\u4f55\u5728 React-Native \u4f7f\u7528\u8ff4\u5708\u4f86 Render","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_201.png","datePublished":"2015-09-25T17:27:25+08:00","dateModified":"2015-10-25T14:39:34+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"React render HTML \u65b9\u5f0f\uff0c\u662f\u628a JS \u8207 HTML , CSS Style \u6df7\u5728\u4e00\u8d77\u5beb\uff0c\u6240\u4ee5\u525b\u958b\u59cb\u4f7f\u7528\u7684\u6642\u5019\u5e38\u5e38\u7528\u65b9\u5f0f\uff0c\u9020\u6210\u7a0b\u5f0f\u932f\u8aa4\uff0c\u9019\u7bc7\u6587\u7ae0\u6703\u8aaa\u660e React Render \u90e8\u5206\u7684\u5beb"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Sep</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-328-如何在-React-Native-使用迴圈來-Render.html"><span>如何在 React-Native 使用迴圈來 Render</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-328-如何在-React-Native-使用回圈来-Render.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>React render HTML 方式，是把 JS 與 HTML , CSS Style 混在一起寫，所以剛開始使用的時候常常用方式，造成程式錯誤，這篇文章會說明 React Render 部分的寫法。</p><h2>Single ForLoop</h2><p>先來介紹如何用單層迴圈來 Render  一個列表，方法很簡單，去 React 官網也可以找到很多範例，只要用大括號 "{}" 就能完成這個功能。</p><blockquote>{list.map(function (val, index) { ... } }</blockquote><p>來寫一段 React 程式碼，我希望能夠水平顯示出一排圖片，就像下面這個 Demo 頁。</p><img src="/filemanage/blog_files/file_201.png"   /><br /><p>以下是實作的原始碼：</p><div class="codeBlock"><span class="title"> Single for loop render</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> img </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/10390028_10102210419817761_5871103530921178170_n.jpg?oh=2250e4b8512bcdb3cd20675cd0fc7c76&amp;oe=569E6D23&amp;__gda__=1453290568_8a1813e8716960d2912d543217bbf197"</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[{},{},{},{},{},{},{},{},{},{}];</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Mark Zuckerberg"</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L5"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">500</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">with</span><span class="pun">:</span><span class="pln"> </span><span class="lit">500</span><span class="pun">,</span><span class="pln"> flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> alignItems</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;center&#39;</span><span class="pun">,</span><span class="pln"> justifyContent</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;flex-start&#39;</span><span class="pun">,</span><span class="pln"> flexDirection</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;row&#39;</span><span class="pun">,</span><span class="pln"> flexWrap</span><span class="pun">:</span><span class="pln"> </span><span class="str">"wrap"</span><span class="pun">,</span><span class="pln"> marginTop</span><span class="pun">:</span><span class="pln"> </span><span class="lit">180</span><span class="pun">,</span><span class="pln"> marginLeft</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pun">}}&gt;</span></li><li class="L6"><span class="pln">          </span><span class="pun">{</span><span class="pln">list</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">              </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">name</span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">                  name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">.</span><span class="pln">substr</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">);</span></li><li class="L9"><span class="pln">              </span><span class="pun">}</span></li><li class="L0"><span class="pln">              </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">49</span><span class="pun">,</span><span class="pln"> borderWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> borderColor</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#000"</span><span class="pun">,</span><span class="pln"> borderStyle</span><span class="pun">:</span><span class="pln"> </span><span class="str">"solid"</span><span class="pun">}}&gt;</span></li><li class="L1"><span class="pln">                         </span><span class="pun">&lt;</span><span class="typ">Image</span></li><li class="L2"><span class="pln">                             source</span><span class="pun">={{</span><span class="pln">uri</span><span class="pun">:</span><span class="pln"> img</span><span class="pun">}}</span></li><li class="L3"><span class="pln">                             style</span><span class="pun">={{</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">}}</span></li><li class="L4"><span class="pln">                         </span><span class="pun">/&gt;</span></li><li class="L5"><span class="pln">                         </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> fontSize</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> weight</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bold"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#aaaa00"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">49</span><span class="pun">}}&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">name</span><span class="pun">}</span><span class="pln"> </span><span class="pun">{</span><span class="pln">index</span><span class="pun">}</span><span class="pln"> </span><span class="pun">&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                     </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">          </span><span class="pun">})}</span></li><li class="L8"><span class="pln">        </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L9"><span class="pln">    </span><span class="pun">);</span></li><li class="L0"><span class="pln">  </span><span class="pun">}</span></li></ol></pre></div><h2>Double Forloop</h2><p>上一個範例中只有單純的一排圖片，當圖片超過螢幕的寬度時，圖片會自動換到下一行，如果我希望一排最多只放五張圖片，這時就可以改用  Double Forloop 來實現。</p><p>Demo 圖：</p><img src="/filemanage/blog_files/file_202.png"   /><p>這個範例我多加了一些 CSS ，美化一下排版，以下是實作的原始碼：</p><div class="codeBlock"><span class="title"> Double Forloop</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> movie </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L1"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> img </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/10390028_10102210419817761_5871103530921178170_n.jpg?oh=2250e4b8512bcdb3cd20675cd0fc7c76&amp;oe=569E6D23&amp;__gda__=1453290568_8a1813e8716960d2912d543217bbf197"</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span></li><li class="L4"><span class="pln">    list</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([{},{},{},{},{}]);</span></li><li class="L5"><span class="pln">    list</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([{},{},{},{},{}]);</span></li><li class="L6"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Mark Zuckerberg"</span><span class="pun">,</span><span class="pln"> template</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L8"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">marginTop</span><span class="pun">:</span><span class="pln"> </span><span class="lit">80</span><span class="pun">,</span><span class="pln"> flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">}}&gt;</span></li><li class="L9"><span class="pln">          </span><span class="pun">{</span><span class="pln">list</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">              </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L1"><span class="pln">                </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">70</span><span class="pun">,</span><span class="pln"> justifyContent</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;space-around&#39;</span><span class="pun">,</span><span class="pln"> flexDirection</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;row&#39;</span><span class="pun">,</span><span class="pln"> flexWrap</span><span class="pun">:</span><span class="pln"> </span><span class="str">"wrap"</span><span class="pun">,</span><span class="pln"> marginBottom</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pun">}}&gt;</span></li><li class="L2"><span class="pln">                    </span><span class="pun">{</span><span class="pln">l</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> index2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">                      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">name</span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">                          name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">.</span><span class="pln">substr</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">);</span></li><li class="L5"><span class="pln">                      </span><span class="pun">}</span></li><li class="L6"><span class="pln">                      </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> borderWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> borderColor</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#066"</span><span class="pun">,</span><span class="pln"> borderStyle</span><span class="pun">:</span><span class="pln"> </span><span class="str">"solid"</span><span class="pun">}}&gt;</span></li><li class="L7"><span class="pln">                                 </span><span class="pun">&lt;</span><span class="typ">Image</span></li><li class="L8"><span class="pln">                                     source</span><span class="pun">={{</span><span class="pln">uri</span><span class="pun">:</span><span class="pln"> img</span><span class="pun">}}</span></li><li class="L9"><span class="pln">                                     style</span><span class="pun">={{</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">}}</span></li><li class="L0"><span class="pln">                                 </span><span class="pun">/&gt;</span></li><li class="L1"><span class="pln">                                 </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> fontSize</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> weight</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bold"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#aaaa00"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">}}&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">name</span><span class="pun">}</span><span class="pln"> </span><span class="pun">{</span><span class="pln">index</span><span class="pun">}</span><span class="pln"> </span><span class="pun">{</span><span class="pln">index2</span><span class="pun">}</span><span class="pln"> </span><span class="pun">&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">                             </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">                    </span><span class="pun">})}</span></li><li class="L4"><span class="pln">                </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">              </span><span class="pun">);</span></li><li class="L6"><span class="pln">          </span><span class="pun">})}</span></li><li class="L7"><span class="pln">        </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L8"><span class="pln">    </span><span class="pun">);</span></li><li class="L9"><span class="pln">  </span><span class="pun">}</span></li><li class="L0"><span class="pun">});</span></li></ol></pre></div><h2>Multi function render</h2><p>上面的範例中，render function 的程式碼很長，因為每個 Forloop 程式都塞到同一個 function 裡，這樣降低了程式的可讀性，所以我再把一個 render function ，切出兩個 renderList 與 renderPerson function。</p><p>實作程式碼如下：</p><div class="codeBlock"><span class="title"> Multi function render</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="com">/** Render **/</span></li><li class="L1"><span class="pln">    render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> self </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span></li><li class="L3"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> img </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfp1/v/t1.0-1/p50x50/10390028_10102210419817761_5871103530921178170_n.jpg?oh=2250e4b8512bcdb3cd20675cd0fc7c76&amp;oe=569E6D23&amp;__gda__=1453290568_8a1813e8716960d2912d543217bbf197"</span><span class="pun">;</span></li><li class="L4"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span></li><li class="L5"><span class="pln">        list</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([{},{},{},{},{}]);</span></li><li class="L6"><span class="pln">        list</span><span class="pun">.</span><span class="pln">push</span><span class="pun">([{},{},{},{},{}]);</span></li><li class="L7"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Mark Zuckerberg"</span><span class="pun">;</span></li><li class="L8"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L9"><span class="pln">            </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">marginTop</span><span class="pun">:</span><span class="pln"> </span><span class="lit">80</span><span class="pun">,</span><span class="pln"> flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">}}&gt;</span></li><li class="L0"><span class="pln">              </span><span class="pun">{</span><span class="pln">list</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">                 </span><span class="kwd">return</span><span class="pln"> self</span><span class="pun">.</span><span class="pln">renderList</span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln"> img</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">);</span></li><li class="L2"><span class="pln">              </span><span class="pun">})}</span></li><li class="L3"><span class="pln">            </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">        </span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="pun">},</span></li><li class="L6"><span class="pln">    renderList</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln"> img</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> self </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span></li><li class="L8"><span class="pln">      </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L9"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">70</span><span class="pun">,</span><span class="pln"> justifyContent</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;space-around&#39;</span><span class="pun">,</span><span class="pln"> flexDirection</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;row&#39;</span><span class="pun">,</span><span class="pln"> flexWrap</span><span class="pun">:</span><span class="pln"> </span><span class="str">"wrap"</span><span class="pun">,</span><span class="pln"> marginBottom</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pun">}}&gt;</span></li><li class="L0"><span class="pln">            </span><span class="pun">{</span><span class="pln">l</span><span class="pun">.</span><span class="pln">map</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">val</span><span class="pun">,</span><span class="pln"> index2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">              </span><span class="kwd">return</span><span class="pln"> self</span><span class="pun">.</span><span class="pln">renderPerson</span><span class="pun">(</span><span class="pln">img</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">,</span><span class="pln"> index2</span><span class="pun">);</span></li><li class="L2"><span class="pln">            </span><span class="pun">})}</span></li><li class="L3"><span class="pln">        </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">      </span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="pun">},</span></li><li class="L6"><span class="pln">    renderPerson</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">img</span><span class="pun">,</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">,</span><span class="pln"> index2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">          </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">name</span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">              name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">.</span><span class="pln">substr</span><span class="pun">(</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">);</span></li><li class="L9"><span class="pln">          </span><span class="pun">}</span></li><li class="L0"><span class="pln">          </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> borderWidth</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> borderColor</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#066"</span><span class="pun">,</span><span class="pln"> borderStyle</span><span class="pun">:</span><span class="pln"> </span><span class="str">"solid"</span><span class="pun">}}&gt;</span></li><li class="L1"><span class="pln">                     </span><span class="pun">&lt;</span><span class="typ">Image</span></li><li class="L2"><span class="pln">                         source</span><span class="pun">={{</span><span class="pln">uri</span><span class="pun">:</span><span class="pln"> img</span><span class="pun">}}</span></li><li class="L3"><span class="pln">                         style</span><span class="pun">={{</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">,</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">}}</span></li><li class="L4"><span class="pln">                     </span><span class="pun">/&gt;</span></li><li class="L5"><span class="pln">                     </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={{</span><span class="pln">textAlign</span><span class="pun">:</span><span class="pln"> </span><span class="str">"center"</span><span class="pun">,</span><span class="pln"> fontSize</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> weight</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bold"</span><span class="pun">,</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"#aaaa00"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">45</span><span class="pun">}}&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">name</span><span class="pun">}</span><span class="pln"> </span><span class="pun">{</span><span class="pln">index</span><span class="pun">}</span><span class="pln"> </span><span class="pun">{</span><span class="pln">index2</span><span class="pun">}</span><span class="pln"> </span><span class="pun">&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">                 </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">    </span><span class="pun">}</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-10-25T14:39:34+08:00" class="article-modify-time">2015/10/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-328" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-328" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 React-Native</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-328-如何在-React-Native-使用迴圈來-Render.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_328&quot;}'>如何在 React-Native 使用迴圈來 Render </a></li>
+    
+        <li><a href="/docs-blog/article-327-React-Native-基本元件.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_327&quot;}'>React-Native 基本元件 </a></li>
+    
+        <li><a href="/docs-blog/article-319-我的第一個-React-Native-IOS-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_319&quot;}'>我的第一個 React-Native IOS App </a></li>
+    
+        <li><a href="/docs-blog/article-297-React-Native.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_297&quot;}'>React Native </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

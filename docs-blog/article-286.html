@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="en" />
+    <meta name="author" content="Puritys" />
+    <title>How to pass the paramater of Node.js or io.js into native C/C++ function.</title>
+    <meta name="keywords" content="Node.js, v8 engine" />
+    <meta name="description" content="In order to be compatible for any version of Node.js and io.js. We can use the Nan library: https://github.com/nodejs/nan If you have used the old version of Nan and want to upgrade it, you " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html"/>
+    
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-286">
+                    <em><span>How to pass the para...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html"},"headline":"How to pass the paramater of Node.js or io.js into native C\/C++ function.","image":"","datePublished":"2014-11-25T02:02:26+08:00","dateModified":"2015-10-16T12:39:38+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"In order to be compatible for any version of Node.js and io.js. We can use the Nan library: \" https:"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Nov</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html"><span>How to pass the paramater of Node.js or io.js into native C/C++ function.</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Node.js">Node.js</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=v8 engine">v8 engine</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>In order to be compatible for any version of Node.js and io.js. We can use the Nan library: " <a href="https://github.com/nodejs/nan"  target="_blank">https://github.com/nodejs/nan</a> "</p><p>If you have used the old version of Nan and want to upgrade it, you should do the following changes.</p><div class="codeBlock"><span class="title"> Nan Conversion</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="com">// The Legacy Nan example</span></li><li class="L1"><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> microSeconds </span><span class="pun">=</span><span class="pln"> args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span></li><li class="L2"><span class="typ">NanReturnValue</span><span class="pun">(</span><span class="typ">NanNew</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="str">"text"</span><span class="pun">));</span></li><li class="L3"><span class="typ">NanReturnThis</span><span class="pun">();</span></li><li class="L4"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> key </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="str">"DOMDocument"</span><span class="pun">);</span></li><li class="L5"><span class="pln">NODE_SET_PROTOTYPE_METHOD</span><span class="pun">(</span><span class="pln">constructor</span><span class="pun">,</span><span class="pln"> </span><span class="str">"load"</span><span class="pun">,</span><span class="pln"> load</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">// The latest Nan example</span></li><li class="L8"><span class="kwd">unsigned</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> microSeconds </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span></li><li class="L9"><span class="pln">info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="str">"text"</span><span class="pun">));</span></li><li class="L0"><span class="pln">info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="pln">info</span><span class="pun">.</span><span class="typ">This</span><span class="pun">());</span></li><li class="L1"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> key </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="str">"DOMDocument"</span><span class="pun">).</span><span class="typ">ToLocalChecked</span><span class="pun">();</span></li><li class="L2"><span class="typ">Nan</span><span class="pun">::</span><span class="typ">SetPrototypeMethod</span><span class="pun">(</span><span class="pln">constructor</span><span class="pun">,</span><span class="pln"> </span><span class="str">"load"</span><span class="pun">,</span><span class="pln"> load</span><span class="pun">);</span></li></ol></pre></div> <br /><p>After that here has more variable conversions for you.</p><div class="codeBlock"><span class="title"> Brief</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pln"> cmd</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L1"><span class="kwd">unsigned</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> len </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span></li><li class="L2"><span class="kwd">bool</span><span class="pln"> isBinary </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">BooleanValue</span><span class="pun">();</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> bufferObj </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]-&gt;</span><span class="typ">ToObject</span><span class="pun">();</span></li><li class="L5"><span class="kwd">char</span><span class="pun">*</span><span class="pln"> msg </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Buffer</span><span class="pun">::</span><span class="typ">Data</span><span class="pun">(</span><span class="pln">bufferObj</span><span class="pun">);</span></li></ol></pre></div><h2>Pass a JavaScript string into native C/C++ with Nan library</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;node.h&gt;</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;nan.h&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> nan</span><span class="pun">;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">NAN_METHOD</span><span class="pun">(</span><span class="pln">name</span><span class="pun">)</span></li><li class="L8"><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">HandleScope</span><span class="pln"> scope</span><span class="pun">;</span></li><li class="L0"><span class="pln">    </span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pln"> cmd</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L1"><span class="pln">    string s </span><span class="pun">=</span><span class="pln"> string</span><span class="pun">(*</span><span class="pln">cmd</span><span class="pun">);</span></li><li class="L2"><span class="pln">    info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="pln">s</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">()).</span><span class="typ">ToLocalChecked</span><span class="pun">());</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript integer into native C/C++ with Nan library</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;node.h&gt;</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;nan.h&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> nan</span><span class="pun">;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">NAN_METHOD</span><span class="pun">(</span><span class="pln">name</span><span class="pun">)</span></li><li class="L8"><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">HandleScope</span><span class="pln"> scope</span><span class="pun">;</span></li><li class="L0"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> len </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span></li><li class="L1"><span class="pln">    info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;(</span><span class="pln">len</span><span class="pun">).</span><span class="typ">ToLocalChecked</span><span class="pun">());</span></li><li class="L2"><span class="pun">}</span></li></ol></pre></div><h2>Pass a Node.js binary string into native C/C++ with Nan library</h2><p>When you have Unicode String which include some un-English letters. Then you must pass the value in a binary format.</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;node.h&gt;</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;nan.h&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> nan</span><span class="pun">;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">NAN_METHOD</span><span class="pun">(</span><span class="pln">sendData</span><span class="pun">)</span></li><li class="L8"><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> bufferObj </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">ToObject</span><span class="pun">();</span></li><li class="L0"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> len </span><span class="pun">=</span><span class="pln"> info</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span></li><li class="L1"><span class="pln">    </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> msg </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Buffer</span><span class="pun">::</span><span class="typ">Data</span><span class="pun">(</span><span class="pln">bufferObj</span><span class="pun">);</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="pln">msg</span><span class="pun">,</span><span class="pln"> len</span><span class="pun">).</span><span class="typ">ToLocalChecked</span><span class="pun">());</span></li><li class="L4"><span class="pln">    </span><span class="com">// You can not use strlen(msg). Because it is a binary not a string. The end of  string is a null byte and  the end of binary data is not null.</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><div class="codeBlock"><span class="title"> Node.js call native function.</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="com">//</span></li><li class="L1"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> </span><span class="str">"The data include some UTF8 encoding string."</span><span class="pun">;</span></li><li class="L2"><span class="pln">    length </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Buffer</span><span class="pun">.</span><span class="pln">byteLength</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln"> </span><span class="com">//UTF8 length</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> buf </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Buffer</span><span class="pun">(</span><span class="pln">length</span><span class="pun">);</span></li><li class="L4"><span class="pln">    buf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">data</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;UTF8&#39;</span><span class="pun">);</span></li><li class="L5"><span class="pln">    native</span><span class="pun">.</span><span class="pln">sendData</span><span class="pun">(</span><span class="pln">buf</span><span class="pun">,</span><span class="pln"> length</span><span class="pun">);</span></li></ol></pre></div><h2>Pass a JavaScript array into native C/C++ with Nan library</h2><div class="codeBlock"><span class="title"> Pass array and return array</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">NAN_METHOD</span><span class="pun">(</span><span class="pln">passArray</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">HandleScope</span><span class="pln"> scope</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="typ">vector</span><span class="str">&lt;string&gt;</span><span class="pln"> result</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> val</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;</span><span class="pln"> arr </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">New</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;();</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">IsArray</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">      </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;</span><span class="pln"> jsArray </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L8"><span class="pln">      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">unsigned</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> jsArray</span><span class="pun">-&gt;</span><span class="typ">Length</span><span class="pun">();</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">        val </span><span class="pun">=</span><span class="pln"> jsArray</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span></li><li class="L0"><span class="pln">        result</span><span class="pun">.</span><span class="pln">push_back</span><span class="pun">(</span><span class="pln">string</span><span class="pun">(*</span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pun">(</span><span class="pln">val</span><span class="pun">)));</span></li><li class="L1"><span class="pln">        </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">Set</span><span class="pun">(</span><span class="pln">arr</span><span class="pun">,</span><span class="pln"> i</span><span class="pun">,</span><span class="pln"> val</span><span class="pun">);</span></li><li class="L2"><span class="pln">      </span><span class="pun">}</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span></li><li class="L4"><span class="pln">    info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="pln">arr</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><h2>Pass a function into native C/C++ with Nan library</h2><div class="codeBlock"><span class="title"> callback.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;node.h&gt;</span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;nan.h&gt;</span></li><li class="L2"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> node</span><span class="pun">;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">NAN_METHOD</span><span class="pun">(</span><span class="pln">runCallback</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">HandleScope</span><span class="pln"> scope</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> context </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L8"><span class="pln">    </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> param1 </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]);</span></li><li class="L9"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="pln">v8</span><span class="pun">::</span><span class="typ">Function</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> callback_handle </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="pln">v8</span><span class="pun">::</span><span class="typ">Function</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">info</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]);</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> argv</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> param1 </span><span class="pun">};</span></li><li class="L2"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">MakeCallback</span><span class="pun">(</span><span class="pln">context</span><span class="pun">,</span><span class="pln"> callback_handle</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> argv</span><span class="pun">);</span></li><li class="L3"><span class="pln">    info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">SetUndefined</span><span class="pun">();</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">void</span><span class="pln">  init </span><span class="pun">(</span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> target</span><span class="pun">){</span></li><li class="L7"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">HandleScope</span><span class="pln"> scope</span><span class="pun">;</span></li><li class="L8"><span class="pln">    </span><span class="typ">Nan</span><span class="pun">::</span><span class="typ">SetMethod</span><span class="pun">(</span><span class="pln">target</span><span class="pun">,</span><span class="pln"> </span><span class="str">"runCallback"</span><span class="pun">,</span><span class="pln"> runCallback</span><span class="pun">);</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">NODE_MODULE</span><span class="pun">(</span><span class="pln">obj</span><span class="pun">,</span><span class="pln"> init</span><span class="pun">)</span></li></ol></pre></div><p>After the success of compiling, then you can write a Node.js code to test the native shared object.</p><div class="codeBlock"><span class="title"> call.js</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> native </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">&#39;./build/Release/callback.node&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">function</span><span class="pln"> person</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> </span><span class="lit">18</span><span class="pun">;</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">person</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">run </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"My age is "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">age</span><span class="pun">);};</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="kwd">var</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> person</span><span class="pun">();</span></li><li class="L9"><span class="pln">p</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> </span><span class="lit">20</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">native</span><span class="pun">.</span><span class="pln">runCallback</span><span class="pun">(</span></li><li class="L2"><span class="pln">    p</span><span class="pun">,</span><span class="pln"> </span><span class="str">"the value"</span><span class="pun">,</span></li><li class="L3"><span class="pln">    </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">param1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">run</span><span class="pun">();</span></li><li class="L5"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"param1 = "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> param1</span><span class="pun">);</span></li><li class="L6"><span class="pln">    </span><span class="pun">}</span></li><li class="L7"><span class="pun">);</span></li></ol></pre></div><h2>How to return "this" context</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">info</span><span class="pun">.</span><span class="typ">GetReturnValue</span><span class="pun">().</span><span class="typ">Set</span><span class="pun">(</span><span class="pln">info</span><span class="pun">.</span><span class="typ">This</span><span class="pun">());</span></li></ol></pre></div><h2>Examples</h2><p>You can see more examples at my Node.js library called phplike.</p><ul class="list">  <li><a href="https://github.com/puritys/nodejs-phplike/tree/master/src/nodeExt"  target="_blank">https://github.com/puritys/nodejs-phplike/tree/master/src/nodeExt</a></li></ul><br /><br /><h2>Old Version of Nan library</h2><div class="notice" label="!">Please migrate your legacy code to support the latest version of Nan library as soon as possibile.</div><p>The following is only used for the old version of Node.js 0.10.x.  Node.js have already upgrade the latest JavaScript V8 engine.  And we will used the new code to write a Node.js addon as stated previous paragraph.</p> <br /><h2>Pass a JavaScript string into C/C++</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passString</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span></li><li class="L7"><span class="pun">{</span></li><li class="L8"><span class="pln">    </span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pln"> cmd</span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L9"><span class="pln">    string s </span><span class="pun">=</span><span class="pln"> string</span><span class="pun">(*</span><span class="pln">cmd</span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">String</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="pln">s</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">());</span></li><li class="L1"><span class="pln">   </span><span class="com">//Integer::New(1)</span></li><li class="L2"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript integer into C/C++</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passInt</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span></li><li class="L6"><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="kwd">unsigned</span><span class="pln"> </span><span class="typ">int</span><span class="pln"> microSeconds </span><span class="pun">=</span><span class="pln"> args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">Uint32Value</span><span class="pun">();</span><span class="pln"> </span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">True</span><span class="pun">();</span></li><li class="L0"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript array into C/C++</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">"node.h"</span></li><li class="L3"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L4"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;vector&gt;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L6"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L7"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> node</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passArray</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">    </span><span class="typ">vector</span><span class="str">&lt;string&gt;</span><span class="pln"> result</span><span class="pun">;</span></li><li class="L1"><span class="pln">    </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> val</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">IsArray</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">      </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;</span><span class="pln"> jsArray </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Array</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">arg</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L4"><span class="pln">      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="typ">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> jsArray</span><span class="pun">-&gt;</span><span class="typ">Length</span><span class="pun">();</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">        val </span><span class="pun">=</span><span class="pln"> jsArray</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="pln">i</span><span class="pun">));</span><span class="pln"> </span></li><li class="L6"><span class="pln">        result</span><span class="pun">.</span><span class="pln">push_back</span><span class="pun">(</span><span class="pln">string</span><span class="pun">(*</span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pun">(</span><span class="pln">val</span><span class="pun">)));</span></li><li class="L7"><span class="pln">      </span><span class="pun">}</span></li><li class="L8"><span class="pln">    </span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    </span><span class="kwd">return</span><span class="pln">  </span><span class="typ">String</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="str">"success"</span><span class="pun">);</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript object into C/C++</h2><p>Here is a example to get the value from a specific keyname and if this value is a function ,  we convert it into  the variable type of v8 function Handle.</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">"node.h"</span></li><li class="L3"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L6"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> node</span><span class="pun">;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passObject</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">IsObject</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">      </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> object </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L2"><span class="pln">      </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> fieldValue </span><span class="pun">=</span><span class="pln"> object</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="typ">String</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="str">"key1"</span><span class="pun">));</span></li><li class="L3"><span class="pln">      </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> callback </span><span class="pun">=</span><span class="pln"> object</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="typ">String</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="str">"callback"</span><span class="pun">));</span></li><li class="L4"><span class="pln">      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">callback</span><span class="pun">-&gt;</span><span class="typ">IsFunction</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">          </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Function</span><span class="pun">&gt;</span><span class="pln"> fn </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Function</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">);</span></li><li class="L6"><span class="pln">      </span><span class="pun">}</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><br /><br /><p>Using the forloop to get every key and value from the object.</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">"node.h"</span></li><li class="L3"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L4"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;map&gt;</span></li><li class="L5"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L6"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L7"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> node</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passObject</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">  </span><span class="typ">map</span><span class="pun">&lt;</span><span class="pln">string</span><span class="pun">,</span><span class="pln"> string</span><span class="pun">&gt;</span><span class="pln"> options</span><span class="pun">;</span></li><li class="L1"><span class="pln">  </span><span class="typ">int</span><span class="pln"> i</span><span class="pun">,</span><span class="pln">n</span><span class="pun">;</span></li><li class="L2"><span class="pln">   </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">IsObject</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">        jsOptions </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;::</span><span class="typ">Cast</span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span></li><li class="L4"><span class="pln">        propertyNames </span><span class="pun">=</span><span class="pln"> jsOptions</span><span class="pun">-&gt;</span><span class="typ">GetPropertyNames</span><span class="pun">();</span></li><li class="L5"><span class="pln">        n </span><span class="pun">=</span><span class="pln"> propertyNames</span><span class="pun">-&gt;</span><span class="typ">Length</span><span class="pun">();</span></li><li class="L6"><span class="pln">        </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> n </span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">            </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln">  b </span><span class="pun">=</span><span class="pln"> propertyNames</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="typ">Integer</span><span class="pun">::</span><span class="typ">New</span><span class="pun">(</span><span class="pln">i</span><span class="pun">));</span></li><li class="L8"><span class="pln">            string c </span><span class="pun">=</span><span class="pln"> string</span><span class="pun">(*</span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pun">(</span><span class="pln">b</span><span class="pun">));</span></li><li class="L9"><span class="pln">            </span><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln">  v </span><span class="pun">=</span><span class="pln"> jsOptions</span><span class="pun">-&gt;</span><span class="typ">Get</span><span class="pun">(</span><span class="pln">b</span><span class="pun">);</span></li><li class="L0"><span class="pln">            options</span><span class="pun">[</span><span class="pln">c</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> string</span><span class="pun">(*</span><span class="typ">String</span><span class="pun">::</span><span class="typ">Utf8Value</span><span class="pun">(</span><span class="pln">v</span><span class="pun">));</span></li><li class="L1"><span class="pln">        </span><span class="pun">}</span><span class="pln">   </span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="pun">}</span><span class="pln">  </span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript boolean into C/C++</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passInt</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span></li><li class="L6"><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="kwd">bool</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]-&gt;</span><span class="typ">BooleanValue</span><span class="pun">();</span><span class="pln"> </span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">bool</span><span class="pun">;</span></li><li class="L0"><span class="pun">}</span></li></ol></pre></div><h2>Pass a JavaScript binary into C/C++ char*</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;iostream&gt;</span><span class="pln">                                                                                                                                 </span></li><li class="L1"><span class="com">#include</span><span class="pln"> </span><span class="str">"v8.h"</span></li><li class="L2"><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;string&gt;</span></li><li class="L3"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> std</span><span class="pun">;</span></li><li class="L4"><span class="kwd">using</span><span class="pln"> </span><span class="kwd">namespace</span><span class="pln"> v8</span><span class="pun">;</span></li><li class="L5"><span class="typ">Handle</span><span class="pun">&lt;</span><span class="typ">Value</span><span class="pun">&gt;</span><span class="pln"> passBinary</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="typ">Arguments</span><span class="pun">&amp;</span><span class="pln"> args</span><span class="pun">)</span></li><li class="L6"><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="typ">Local</span><span class="pun">&lt;</span><span class="typ">Object</span><span class="pun">&gt;</span><span class="pln"> bufferObj </span><span class="pun">=</span><span class="pln"> args</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]-&gt;</span><span class="typ">ToObject</span><span class="pun">();</span></li><li class="L8"><span class="pln">    </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> msg </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Buffer</span><span class="pun">::</span><span class="typ">Data</span><span class="pun">(</span><span class="pln">bufferObj</span><span class="pun">);</span></li><li class="L9"><span class="pln">    </span></li><li class="L0"><span class="pun">}</span></li></ol></pre></div><h2>Reference</h2><ul class="list">  <li><a href="http://izs.me/v8-docs/main.html"  target="_blank">http://izs.me/v8-docs/main.html</a></li>  <li><a href="http://thlorenz.com/v8-dox/build/v8-3.14.5/html/d8/d0f/classv8_1_1_external.html"  target="_blank">http://thlorenz.com/v8-dox/build/v8-3.14.5/html/d8/d0f/classv8_1_1_external.html</a></li>  <li><a href="http://luismreis.github.io/node-bindings-guide/docs/arguments.html"  target="_blank">http://luismreis.github.io/node-bindings-guide/docs/arguments.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-10-16T12:39:38+08:00" class="article-modify-time">2015/10/16</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-286" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-286" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Node.js 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-158-Node.js-mime-type-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-144-第二篇-Node.js-搭配-Apache---Header-處理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="/docs-blog/article-142-第一篇-Node.js-搭配-Apache-CGI.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-118-Yahoo!-Mojito-MVC.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="/docs-blog/article-117-Yahoo!-Mojito.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+        <li><a href="/docs-blog/article-42-Node.js-第一課.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_42&quot;}'>Node.js 第一課 </a></li>
+    
+        <li><a href="/docs-blog/article-37-Node.js-addon-實作-(Node.js-version-0.10.x).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_37&quot;}'>Node.js addon 實作 (Node.js version 0.10.x) </a></li>
+    
+        <li><a href="/docs-blog/article-36-安裝-node.js.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_36&quot;}'>安裝 node.js </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">v8 engine 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-189-安裝與編譯-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="/docs-blog/article-138-V8cgi-make-Socket-Extension.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_138&quot;}'>V8cgi make Socket Extension </a></li>
+    
+        <li><a href="/docs-blog/article-137-安裝-v8cgi-搭配-apache.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_137&quot;}'>安裝 v8cgi 搭配 apache </a></li>
+    
+        <li><a href="/docs-blog/article-92-V8-JavaScript-Engine-Context-Scope.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_92&quot;}'>V8 JavaScript Engine Context Scope </a></li>
+    
+        <li><a href="/docs-blog/article-91-Javascript-connect-mysql-use-c++.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_91&quot;}'>Javascript  connect mysql use c++ </a></li>
+    
+        <li><a href="/docs-blog/article-88-Google-V8-Engine-file-handle.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_88&quot;}'>Google V8 Engine file handle </a></li>
+    
+        <li><a href="/docs-blog/article-86-Google-V8-Engine-FunctionTemplate-And-ObjectTemplate.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_86&quot;}'>Google V8 Engine  FunctionTemplate And ObjectTemplate </a></li>
+    
+        <li><a href="/docs-blog/article-83-Google-V8-Engine-Add-Javascript-New-Function.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="/docs-blog/article-82-Google-V8-Engine-Script-Run.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="/docs-blog/article-52-Google-V8-Engine-Tutorial-1.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_52&quot;}'>Google V8 Engine Tutorial 1 </a></li>
+    
+        <li><a href="/docs-blog/article-55-安裝-Javascript-V8-Engine.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Golang 筆記</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Golang 的線上文件跟網路上的資料，實在是寫得很爛，而且文章又少，官方文件喜歡寫一堆 function definition ，卻只給少少範例，或是給不完整的範例，以下是我使用 golang 的過程中，記錄下來實做過的 golang 範例。Request 中帶 cookie Cookieimport fmtimport net/httpimport strconvimpor" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-344-Golang-筆記.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-344-Golang-笔记.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-344-Golang-筆記.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-344-Golang-筆記.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-344">
+                    <em><span>Golang 筆記</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-344-Golang-\u7b46\u8a18.html"},"headline":"Golang \u7b46\u8a18","image":"","datePublished":"2016-03-11T00:58:10+08:00","dateModified":"2016-11-15T01:02:12+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Golang \u7684\u7dda\u4e0a\u6587\u4ef6\u8ddf\u7db2\u8def\u4e0a\u7684\u8cc7\u6599\uff0c\u5be6\u5728\u662f\u5beb\u5f97\u5f88\u721b\uff0c\u800c\u4e14\u6587\u7ae0\u53c8\u5c11\uff0c\u5b98\u65b9\u6587\u4ef6\u559c\u6b61\u5beb\u4e00\u5806 function definition \uff0c\u537b\u53ea\u7d66\u5c11\u5c11\u7bc4\u4f8b\uff0c\u6216\u662f\u7d66\u4e0d\u5b8c\u6574\u7684\u7bc4\u4f8b\uff0c\u4ee5\u4e0b\u662f\u6211\u4f7f\u7528 golang  \u7684"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Mar</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-344-Golang-筆記.html"><span>Golang 筆記</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-344-Golang-笔记.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Golang 的線上文件跟網路上的資料，實在是寫得很爛，而且文章又少，官方文件喜歡寫一堆 function definition ，卻只給少少範例，或是給不完整的範例，以下是我使用 golang  的過程中，記錄下來實做過的 golang 範例。</p><h2>Request 中帶 cookie</h2><div class="codeBlock js"><span class="title"> Cookie</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">import</span><span class="pln"> </span><span class="str">"fmt"</span></li><li class="L1"><span class="kwd">import</span><span class="pln"> </span><span class="str">"net/http"</span></li><li class="L2"><span class="kwd">import</span><span class="pln"> </span><span class="str">"strconv"</span></li><li class="L3"><span class="kwd">import</span><span class="pln"> </span><span class="str">"io/ioutil"</span></li><li class="L4"><span class="pln">func main</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> userId </span><span class="kwd">int</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    </span><span class="com">// Declare http client</span></li><li class="L8"><span class="pln">    client </span><span class="pun">:=</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">http</span><span class="pun">.</span><span class="typ">Client</span><span class="pun">{}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">    </span><span class="com">// Declare HTTP Method and Url</span></li><li class="L1"><span class="pln">    req</span><span class="pun">,</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> http</span><span class="pun">.</span><span class="typ">NewRequest</span><span class="pun">(</span><span class="str">"GET"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"http://localhost"</span><span class="pun">,</span><span class="pln"> nil</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="com">// Set cookie</span></li><li class="L4"><span class="pln">    req</span><span class="pun">.</span><span class="typ">Header</span><span class="pun">.</span><span class="typ">Set</span><span class="pun">(</span><span class="str">"Cookie"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"stockId="</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> strconv</span><span class="pun">.</span><span class="typ">Itoa</span><span class="pun">(</span><span class="pln">userId</span><span class="pun">))</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    </span><span class="com">// Send request</span></li><li class="L7"><span class="pln">    resp</span><span class="pun">,</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> client</span><span class="pun">.</span><span class="typ">Do</span><span class="pun">(</span><span class="pln">req</span><span class="pun">)</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">    </span><span class="com">// Read response</span></li><li class="L0"><span class="pln">    data</span><span class="pun">,</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> ioutil</span><span class="pun">.</span><span class="typ">ReadAll</span><span class="pun">(</span><span class="pln">resp</span><span class="pun">.</span><span class="typ">Body</span><span class="pun">)</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">    </span><span class="com">// error handle</span></li><li class="L3"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> err </span><span class="pun">!=</span><span class="pln"> nil </span><span class="pun">{</span></li><li class="L4"><span class="pln">        fmt</span><span class="pun">.</span><span class="typ">Printf</span><span class="pun">(</span><span class="str">"error = %s &#92;n"</span><span class="pun">,</span><span class="pln"> err</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="pun">}</span><span class="pln">   </span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">    </span><span class="com">// Print response</span></li><li class="L8"><span class="pln">    fmt</span><span class="pun">.</span><span class="typ">Printf</span><span class="pun">(</span><span class="str">"Response = %s"</span><span class="pun">,</span><span class="pln"> string</span><span class="pun">(</span><span class="pln">data</span><span class="pun">));</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><h2>Query MySql</h2><p>Query MySql 前，要先安裝 <a href="https://github.com/go-sql-driver/mysql" target="_blank">MySql driver</a> ，安裝指令如下：</p><blockquote>go get github.com/go-sql-driver/mysql</blockquote><div class="codeBlock js"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">import</span><span class="pln"> _ </span><span class="str">"github.com/go-sql-driver/mysql"</span></li><li class="L1"><span class="kwd">import</span><span class="pln"> </span><span class="str">"database/sql"</span></li><li class="L2"><span class="kwd">import</span><span class="pln"> </span><span class="str">"fmt"</span></li><li class="L3"><span class="kwd">import</span><span class="pln"> </span><span class="str">"os"</span></li><li class="L4"><span class="kwd">import</span><span class="pln"> </span><span class="str">"log"</span></li><li class="L5"><span class="pln">func main </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    db</span><span class="pun">,</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> sql</span><span class="pun">.</span><span class="typ">Open</span><span class="pun">(</span><span class="str">"mysql"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"user:password@/dbName?charset=utf8"</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> err </span><span class="pun">!=</span><span class="pln"> nil </span><span class="pun">{</span></li><li class="L8"><span class="pln">        fmt</span><span class="pun">.</span><span class="typ">Println</span><span class="pun">(</span><span class="str">"error = %s"</span><span class="pun">,</span><span class="pln"> err</span><span class="pun">);</span></li><li class="L9"><span class="pln">        os</span><span class="pun">.</span><span class="typ">Exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="pun">}</span></li><li class="L1"><span class="pln">    ret</span><span class="pun">,</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> db</span><span class="pun">.</span><span class="typ">Query</span><span class="pun">(</span><span class="str">"select * from Person"</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> err </span><span class="pun">!=</span><span class="pln"> nil </span><span class="pun">{</span><span class="pln">                                                                                       </span></li><li class="L3"><span class="pln">        log</span><span class="pun">.</span><span class="typ">Fatal</span><span class="pun">(</span><span class="pln">err</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="pun">}</span></li><li class="L5"><span class="pln">    </span><span class="kwd">for</span><span class="pln"> ret</span><span class="pun">.</span><span class="typ">Next</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> id </span><span class="kwd">int</span></li><li class="L7"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> email string</span></li><li class="L8"><span class="pln">        </span><span class="kwd">if</span><span class="pln"> err </span><span class="pun">:=</span><span class="pln"> ret</span><span class="pun">.</span><span class="typ">Scan</span><span class="pun">(&amp;</span><span class="pln">id</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">email</span><span class="pun">);</span><span class="pln"> err </span><span class="pun">!=</span><span class="pln"> nil </span><span class="pun">{</span></li><li class="L9"><span class="pln">            log</span><span class="pun">.</span><span class="typ">Fatal</span><span class="pun">(</span><span class="pln">err</span><span class="pun">);</span></li><li class="L0"><span class="pln">        </span><span class="pun">}</span></li><li class="L1"><span class="pln">        fmt</span><span class="pun">.</span><span class="typ">Printf</span><span class="pun">(</span><span class="str">"id=%d email=%s&#92;n"</span><span class="pun">,</span><span class="pln">id</span><span class="pun">,</span><span class="pln"> email</span><span class="pun">);</span></li><li class="L2"><span class="pln">    </span><span class="pun">}</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div><h2>import local package / library</h2><p>如果我要寫一個稍大一點的功能，共有 A, B 兩個檔案，A 要去 include B ，golang  的檔案結構很像 Java ， 當 B 是一個 library 的話，那麼我們一定要建一個資料夾 B ，並在程式中定義 "package B"，範例如下。</p><div class="codeBlock go"><span class="title"> example/B/B.go</span><pre class="prettyprint lang-go linenums" ><ol class="linenums"><li class="L0"><span class="pln">package B</span></li><li class="L1"><span class="pln"> </span></li><li class="L2"><span class="pln">func Sum(a int, b int) (int) {                                                                            </span></li><li class="L3"><span class="pln">  return a + b </span></li><li class="L4"><span class="pln">}</span></li></ol></pre></div><div class="codeBlock go"><span class="title"> example/A.go</span><pre class="prettyprint lang-go linenums" ><ol class="linenums"><li class="L0"><span class="pln">package main</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">import "fmt"</span></li><li class="L3"><span class="pln">import "./B"</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">func main() {</span></li><li class="L6"><span class="pln">  ret := B.Sum(1, 2); </span></li><li class="L7"><span class="pln">  fmt.Printf("sum = %d &#92;n&#92;n", ret);                                                                       </span></li><li class="L8"><span class="pln">}</span></li></ol></pre></div><h2>Big5 UTF8 編碼轉換</h2><p>先用 go get 自動從 github 上安裝 iconv 。</p> <br /><blockquote>go get github.com/qiniu/iconv</blockquote><div class="codeBlock go"><span class="title">Example</span><pre class="prettyprint lang-go linenums" ><ol class="linenums"><li class="L0"><span class="pln">package main </span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">import "github.com/qiniu/iconv"</span></li><li class="L3"><span class="pln">import "fmt"</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">func main() {</span></li><li class="L6"><span class="pln">    cd, _ := iconv.Open("UTF-8", "Big5");</span></li><li class="L7"><span class="pln">    c := cd.ConvString("&#92;xa6&#92;x72");</span></li><li class="L8"><span class="pln">    fmt.Printf("content = %s", c);</span></li></ol></pre></div><h2>相關網站</h2><p>下面幾個網站，都可以用來查詢 golang 語法。</p><ul class="list">  <li><a href="https://gobyexample.com/"  target="_blank">https://gobyexample.com/</a></li>  <li><a href="http://www.tutorialspoint.com/go/"  target="_blank">http://www.tutorialspoint.com/go/</a></li>  <li><a href="https://godoc.org/?q=header"  target="_blank">https://godoc.org/?q=header</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-15T01:02:12+08:00" class="article-modify-time">2016/11/15</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-344" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-344" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

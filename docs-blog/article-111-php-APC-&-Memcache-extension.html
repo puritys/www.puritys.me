@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>php APC &amp; Memcache extension</title>
+    <meta name="keywords" content="PHP, cache" />
+    <meta name="description" content="" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-111-php-APC-&-Memcache-extension.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-111-php-APC-&amp;-Memcache-extension.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-111-php-APC-&amp;-Memcache-extension.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-111-php-APC-&-Memcache-extension.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-111">
+                    <em><span>php APC &amp; Memcache e...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-111-php-APC-&-Memcache-extension.html"},"headline":"php APC & Memcache extension","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_28.png","datePublished":"2012-03-15T14:31:02+08:00","dateModified":"2014-01-18T20:52:55+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\r\rAPC Extension \u5b89\u88dd\r re2c \u5b89\u88dd\r apc\rapc php.ini \u8a2d\u5b9a\r\u554f\u984c\uff1a PHP Warning:  Unknown: apc failed to locate ap"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Mar</div>
+            <div class="day">15</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-111-php-APC-&-Memcache-extension.html"><span>php APC &amp; Memcache extension</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=PHP">PHP</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=cache">cache</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-111-php-APC-&amp;-Memcache-extension.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><div class="target_box"><ul><li ><a href="#vj-t0">APC Extension 安裝</a></li><li class="vj-lv1"><a href="#vj-t1"> re2c 安裝</a></li><li class="vj-lv1"><a href="#vj-t2"> apc</a></li><li ><a href="#vj-t3">apc php.ini 設定</a></li><li class="vj-lv1"><a href="#vj-t4">問題： PHP Warning:  Unknown: apc failed to locate apc_set.php - bailing in Unknown on line 0</a></li><li ><a href="#vj-t5">APC 監控工具</a></li><li ><a href="#vj-t6">Memcache Extension</a></li><li class="vj-lv1"><a href="#vj-t7">安裝 libevent</a></li><li class="vj-lv1"><a href="#vj-t8">安裝 Memcached Server</a></li><li class="vj-lv1"><a href="#vj-t9">安裝 Memcache php client extension</a></li><li class="vj-lv1"><a href="#vj-t10"> 如何儲存一個值到 memcached server</a></li><li class="vj-lv1"><a href="#vj-t11"> 如何擷取一個 memcached server cache 的值</a></li><li class="vj-lv1"><a href="#vj-t12">使用 telnet 抓 memcached server 的資料</a></li></ul></div><p class="vj-quote" >執行 PHP 程式碼流程，首先系統會先讀取 PHP 的原始碼，再來會將 PHP code 編譯成opcode ，最後就是執行 opcode，如果我們可以將 opcode 暫存下來，那麼下一次執行同一個 PHP 時，就能省掉編譯的時間，這也是 APC Extension 要做的事，APC 可以將 include php 的 php 原始碼，編譯好的 opcode 儲存下來，等下一次再include 時，就可以直接執行，不需要再編譯一次。</p><ul class="vj-ul"><li class="vj-lv2"> <a href="http://www.php.net/manual/en/internals2.opcodes.php" target="_blank">zend opcode 說明</a></li></ul>    <br /><a name="vj-t0"></a><h2 class="vj-sub-title">APC Extension 安裝</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >安裝 APC 時，如果發生這個錯誤訊息 「configure: WARNING: You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.」，代表你的系統還沒有安裝 re2c 這個工具，所以我們必須先安裝 re2c。</p><a name="vj-t1"></a><h2 class="vj-sub-title vj-lv1"> re2c 安裝</h2><p class="vj-quote" >這裡只要下載 rpm 檔回來安裝就行了，我的系統是 32 Bit ，所以我選擇下載 32 Bit 的re2c 。</p><ul class="vj-ul"><li class="vj-lv2"> re2c 下載路徑：</li><ul class="vj-ul"><li class="vj-lv3"> ftp://195.220.108.108/linux/dag/redhat/el4/en/i386/dag/RPMS/re2c-0.12.3-1.el4.rf.i386.rpm</li></ul><li class="vj-lv2"> sudo rpm -ivh re2c-0.12.3-1.el4.rf.i386.rpm</li></ul><a name="vj-t2"></a><h2 class="vj-sub-title vj-lv1"> apc</h2><ul class="vj-ul"><li class="vj-lv2"> 下載 : <a href=" http://pecl.php.net/package/APC"  target="_blank"> http://pecl.php.net/package/APC</a></li><li class="vj-lv2"> 解壓縮並進入該目錄</li><li class="vj-lv2"> phpize</li><li class="vj-lv2"> ./configure --enable-apc-sem  -enable-apc</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo cp module/apc.so /php_extension/ (copy 到php extension 目錄)</li><li class="vj-lv2"> 修改 php.ini 加入 extension apc.so</li><li class="vj-lv2"> restart apache</li></ul><a name="vj-t3"></a><h2 class="vj-sub-title">apc php.ini 設定</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> apc.stat : 0 代表不檢查 php 檔案是否有修改過，1 代表若是 php 檔有修改過，則重新 cache</li><li class="vj-lv2"> apc.shm_segments : 固定 =1</li><li class="vj-lv2"> apc.shm_size : 20M (M = MB , G=GB)，單位一定要加，否則會有 error</li><li class="vj-lv2"> apc.mmap_file_mask </li><li class="vj-lv2"> apc.enable_cli : 設定 php command line 執行時，是否要有 APC 的功能，如果你想用 command line 的方式測式 APC 功能，記得設定這個值 = 1 </li><li class="vj-lv2"> apc.mmap_file_mask : 設定為 /tmp/apc.xxx 就行了，APC會自動建立檔案</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">[apc]</span></li><li class="L1"><span class="pln">apc.enabled=1</span></li><li class="L2"><span class="pln">apc.shm_segments=1</span></li><li class="L3"><span class="pln">apc.shm_size=20M</span></li><li class="L4"><span class="pln">apc.ttl=3600</span></li><li class="L5"><span class="pln">apc.user_ttl=3600</span></li><li class="L6"><span class="pln">apc.num_files_hint=1024</span></li><li class="L7"><span class="pln">apc.mmap_file_mask=/tmp/apc.XXXXXX</span></li><li class="L8"><span class="pln">apc.enable_cli=0 ;取消 php command 的 APC 功能</span></li><li class="L9"><span class="pln">apc.stat=0 ;不檢查php異動</span></li><li class="L0"><span class="pln">&nbsp;</span></li></ol></pre></div>   <br /><a name="vj-t4"></a><h2 class="vj-sub-title vj-lv1">問題： PHP Warning:  Unknown: apc failed to locate apc_set.php - bailing in Unknown on line 0</h2><p class="vj-amazing vj-lv2">解法：設定 apc.stat=1</p><ul class="vj-ul"><li class="vj-lv2"> APC 其它設定說明：http://php.net/manual/en/apc.configuration.php</li></ul><ul class="vj-ul"><li class="vj-lv2"> 要使用 APC 的話， php.ini 要開啟 auto_globals_jit。</li><ul class="vj-ul"><li class="vj-lv3"> 「 auto_globals_jit = On」</li></ul></ul><a name="vj-t5"></a><h2 class="vj-sub-title">APC 監控工具</h2><a href="#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> 在 apc extension 的檔案夾裡有一個檔案 apc.php ，這個檔案有監控APC 的各動統計結果。</li></ul><p class="vj-quote" >apc.php 這個檔案可以顯示目前系統中已 cache 的 php file，並且計算載入次數。</p><div ><img src="/filemanage/blog_files/file_28.png" alt="apc" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="500"/></div><a name="vj-t6"></a><h2 class="vj-sub-title">Memcache Extension</h2><a href="#top" class="vj-btn_top2"></a><p class="vj-quote" >Memcache 是一套 cache 的機制，分成 server 端與client 端，透過 UDP Protocol 來傳輸資料，你可以將資料暫存在 memcached server，等到下一次要使用時，再從 Memcached server 抓回來，Memcache 要能運做，需要兩個Package，一個是 memcached server，另一個是 memcache client，程式是使用 UDP Protocol 來溝通，並非使用常見的 TCP ，不過 UDP也是需要指定 Port ，透過 Port 來傳送訊息，另一個特別的功能時，memcached server 可以有很多台機器，並一起組成一個 Group，在對付大型系統時非常的有幫助，接下來我們先來安裝 Memcache的相關 packages。</p><a name="vj-t7"></a><h2 class="vj-sub-title vj-lv1">安裝 libevent</h2><p class="vj-quote" >問題: <span style="color:#a00">「configure: error: libevent is required 」</span></p><p class="vj-quote" >這個 Error 訊息是指系統尚未安裝 libevent 。</p><ul class="vj-ul"><li class="vj-lv2"> 下載點</li><ul class="vj-ul"><li class="vj-lv3"> <a href=" https://github.com/downloads/libevent/libevent/libevent-1.4.14b-stable.tar.gz"  target="_blank"> https://github.com/downloads/libevent/libevent/libevent-1.4.14b-stable.tar.gz</a></li></ul><li class="vj-lv2"> ./configure --prefix=/usr/local/libevent-1.4</li><li class="vj-lv2"> make && sudo make install</li></ul><a name="vj-t8"></a><h2 class="vj-sub-title vj-lv1">安裝 Memcached Server</h2><ul class="vj-ul"><li class="vj-lv2"> 下載點</li><ul class="vj-ul"><li class="vj-lv3"> <a href=" http://memcached.googlecode.com/files/memcached-1.4.13.tar.gz"  target="_blank"> http://memcached.googlecode.com/files/memcached-1.4.13.tar.gz</a> memcache server</li></ul><li class="vj-lv2"> ./configure --with-libevent=/usr/local/libevent-1.4</li><li class="vj-lv2"> make</li><li class="vj-lv2"> sudo make install</li></ul><p class="vj-amazing vj-lv2">啟動 memcache server command : <span style="color:#a00;">「memcached -d -u nobody -m 512 127.0.0.1 -p 1200」</span> (-m 是指最多使用 512 MB 記憶體， -u 是指執行的user ，-p 是指 listen port)</p><a name="vj-t9"></a><h2 class="vj-sub-title vj-lv1">安裝 Memcache php client extension</h2><ul class="vj-ul"><li class="vj-lv2"> 下載點</li><ul class="vj-ul"><li class="vj-lv3"> <a href=" http://pecl.php.net/get/memcache-2.2.6.tgz"  target="_blank"> http://pecl.php.net/get/memcache-2.2.6.tgz</a> memcache client for php</li></ul><li class="vj-lv2"> phpize</li><li class="vj-lv2"> ./configure --enable-memcache</li><li class="vj-lv2"> make </li><li class="vj-lv2"> sudo cp module/memcache.so /php_extension/ (copy 到php extension 目錄)</li></ul><a name="vj-t10"></a><h2 class="vj-sub-title vj-lv1"> 如何儲存一個值到 memcached server</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$me </span><span class="pun">=</span><span class="pln"> memcache_connect</span><span class="pun">(</span><span class="str">&#39;localhost&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="lit">81</span><span class="pun">);</span></li><li class="L1"><span class="pln">$me</span><span class="pun">-&gt;</span><span class="kwd">set</span><span class="pun">(</span><span class="pln"> </span><span class="str">"key"</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> </span><span class="str">"value"</span><span class="pln"> </span><span class="pun">,</span><span class="pln">MEMCACHE_COMPRESSED</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">);</span></li><li class="L2"><span class="com">//第三個參數是壓縮方式，第四個參數是 expired second</span></li></ol></pre></div><a name="vj-t11"></a><h2 class="vj-sub-title vj-lv1"> 如何擷取一個 memcached server cache 的值</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$me </span><span class="pun">=</span><span class="pln"> memcache_connect</span><span class="pun">(</span><span class="str">&#39;localhost&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="lit">81</span><span class="pun">);</span></li><li class="L1"><span class="pln">$me</span><span class="pun">-&gt;</span><span class="kwd">get</span><span class="pun">(</span><span class="pln"> </span><span class="str">"key"</span><span class="pun">);</span></li></ol></pre></div>   <br /><a name="vj-t12"></a><h2 class="vj-sub-title vj-lv1">使用 telnet 抓 memcached server 的資料</h2><p class="vj-quote" >memcache 是使用 UDP 來溝通，所以可以很簡單的透過 telnet 來傳輸指令，只輸入 get [keyname] ，這樣就能抓到 memcached server 的資料。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">developer</span><span class="pun">]</span><span class="pln"> $ telnet localhost </span><span class="lit">1200</span></li><li class="L1"><span class="typ">Trying</span><span class="pln"> </span><span class="lit">127.0</span><span class="pun">.</span><span class="lit">0.1</span><span class="pun">...</span></li><li class="L2"><span class="typ">Connected</span><span class="pln"> to localhost</span><span class="pun">.</span><span class="pln">localdomain </span><span class="pun">(</span><span class="lit">127.0</span><span class="pun">.</span><span class="lit">0.1</span><span class="pun">).</span></li><li class="L3"><span class="typ">Escape</span><span class="pln"> character </span><span class="kwd">is</span><span class="pln"> </span><span class="str">&#39;^]&#39;</span><span class="pun">.</span></li><li class="L4"><span class="kwd">get</span><span class="pln"> key2</span></li><li class="L5"><span class="pln">VALUE key2 </span><span class="lit">0</span><span class="pln"> </span><span class="lit">4</span></li><li class="L6"><span class="pln">test</span></li><li class="L7"><span class="kwd">END</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-01-18T20:52:55+08:00" class="article-modify-time">2014/01/18</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-111" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-111" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">PHP 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_352&quot;}'>強迫 PHP Curl  使用  IPv4 ， 忽略 IPv6 </a></li>
+    
+        <li><a href="/docs-blog/article-50-php.ini-設定詳解.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_50&quot;}'>php.ini 設定詳解 </a></li>
+    
+        <li><a href="/docs-blog/article-49-測試用文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_49&quot;}'>測試用文章 </a></li>
+    
+        <li><a href="/docs-blog/article-46-PHP-輸入密碼，但不顯示密碼在螢幕上.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_46&quot;}'>PHP 輸入密碼，但不顯示密碼在螢幕上 </a></li>
+    
+        <li><a href="/docs-blog/article-33-PHP-輸出-Excel-，使用PHPExcel.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_33&quot;}'>PHP 輸出 Excel ，使用PHPExcel </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">cache 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-112-Google-LevelDB-試玩.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_112&quot;}'>Google LevelDB 試玩 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

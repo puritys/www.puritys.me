@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>CSS  語法，文字換行，強迫不換行。</title>
+    <meta name="keywords" content="css" />
+    <meta name="description" content=" CSS 文字換行的 style 為 word-wrap ，透過這個屬性可以指定換行的方式，並可以強制文字不換行。而 CSS 還有個空白長度的設定，透過 white-space 可以移除連續空白。 文字強迫換行，英文字會被切一半 word-break: break-all; 依單字換行 word-wrap:break-word; 死都不換行 white-space:nowrap" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-31-CSS-語法，文字換行，強迫不換行。.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-31-CSS-语法，文字换行，强迫不换行。.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-31-CSS-語法，文字換行，強迫不換行。.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-31-CSS-語法，文字換行，強迫不換行。.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/css" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">CSS</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-31">
+                    <em><span>CSS  語法，文字換行，強迫不換行。</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-31-CSS-\u8a9e\u6cd5\uff0c\u6587\u5b57\u63db\u884c\uff0c\u5f37\u8feb\u4e0d\u63db\u884c\u3002.html"},"headline":"CSS  \u8a9e\u6cd5\uff0c\u6587\u5b57\u63db\u884c\uff0c\u5f37\u8feb\u4e0d\u63db\u884c\u3002","image":"","datePublished":"2011-09-03T01:57:26+08:00","dateModified":"2019-06-09T17:37:39+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rCSS \u6587\u5b57\u63db\u884c\u7684 style \u70ba word-wrap \uff0c\u900f\u904e\u9019\u500b\u5c6c\u6027\u53ef\u4ee5\u6307\u5b9a\u63db\u884c\u7684\u65b9\u5f0f\uff0c\u4e26\u53ef\u4ee5\u5f37\u5236\u6587\u5b57\u4e0d\u63db\u884c\u3002\r\u800c CSS \u9084\u6709\u500b\u7a7a\u767d\u9577\u5ea6\u7684\u8a2d\u5b9a\uff0c\u900f\u904e white-space \u53ef\u4ee5\u79fb\u9664\u9023\u7e8c\u7a7a\u767d\u3002"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Sep</div>
+            <div class="day">03</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-31-CSS-語法，文字換行，強迫不換行。.html"><span>CSS  語法，文字換行，強迫不換行。</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=css">css</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-31-CSS-语法，文字换行，强迫不换行。.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>CSS 文字換行的 style 為 word-wrap ，透過這個屬性可以指定換行的方式，並可以強制文字不換行。</p><p>而 CSS 還有個空白長度的設定，透過 white-space 可以移除連續空白。</p><ul class="list">  <li>文字強迫換行，英文字會被切一半 word-break: break-all;</li>  <li>依單字換行  word-wrap:break-word;</li>  <li>死都不換行  white-space:nowrap;</li></ul><h2>換行設定， word-wrap & word-break</h2><b> 文字強迫換行，太長的英文字，會自動切成兩半。</b><ul class="list">  <li><span class="vj-cmd">word-break: break-all;</span> 若一個單字過長，超過畫面的寬度，則將單字切斷，並換行。</li></ul><br/><div class="notice" label="DEMO">word-break: break-all;</div>    <div class="s1-css1">Before Moammar Long <em>language</em> string  Long language string  Long language string Long language string, there were the Phoenicians.</div><p>從上面的 DEMO 中可以看到 language 這個單字被切成兩斷。</p><h2>文字自動換行，長英文字不切斷</h2><ul class="list">  <li><span class="vj-cmd">word-wrap:break-word;</span> 若一個單字過長，超過畫面的寬度，則將單字換行(不切斷單字)。</li></ul><br/><div class="notice" label="DEMO">word-wrap:break-word;</div><div class="s1-css2">Before Moammar Long language string  Long language string  Long language string Long language string, there were the Phoenicians.<br /></div><p>不切斷英字單字對於一般的讀者是比較好懂的，唯一的缺點是右邊會出現很大的一塊空白。</p><h2>空白設定 ： white-space</h2><b> 保留原始空白與換行</b><ul class="list">  <li>white-space:pre; 保留原始資料的空白與換行，功能與 HTML tag 中的 ＜pre> 相同。</li></ul><div class="notice" label="DEMO">white-space:pre;</div>    <div class="s2-css3">Before             Moammar          Gadhafi, there were the Phoenicians. And the Greeks.<br /></div><h2>強迫文字不換行</h2><ul class="list">  <li>white-space:nowrap; 移除連續空白，移除換行符號(n r)， 強迫文字不換行。</li></ul><div class="notice" label="DEMO">white-space:nowrap;</div>    <div class="s2-css4">Before             Moammar          Gadhafi, there were the Phoenicians. And the Greeks. <br /></div><h2>保留原始空白，但文字自動換行</h2><ul class="list">  <li>white-space:pre-wrap;  保留所有空白，自動換行。</li></ul><div class="notice" label="DEMO">white-space:pre-wrap;</div>    <div class="s2-css5">Before      Moammar      Gadhafi, there were the Phoenicians. And the Greeks. The Romans.<br /></div><h2>連續空白，取代成一個空白。</h2><ul class="list">  <li>white-space: pre-line ，這個語法可以會自動將多個空白轉換成一個空白</li></ul><div class="notice" label="DEMO">white-space: pre-line;</div>    <div class="s2-css6">Before             Moammar          Gadhafi, there were the Phoenicians. And the Greeks. The Romans. <br /></div><style>.s1-css1{   padding:0px 10px 10px 10px;  width:240px;  border:1px solid pink;  word-break:break-all;  white-space:pre-wrap;  color:#555;  margin: 20px auto;}.s1-css2{    padding:10px;  width:240px;  border:1px solid pink;  word-wrap:break-word; color:#555;   margin: 20px auto;} .s2-css3{  width:240px;  border:1px solid pink;  white-space:pre;  color:#555;   margin: 20px auto;}.s2-css4{   padding:10px;  width:240px;  height:50px;  border:1px solid pink;  white-space:nowrap;  color:#555;   margin: 20px auto;}.s2-css5{   padding:10px;  width:240px;  border:1px solid pink;  white-space:pre-wrap;  color:#555;   margin: 20px auto;}.s2-css6{   padding:10px;  width:240px;  border:1px solid pink;  white-space:pre-line;  color:#555;   margin: 20px auto;}</style></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2019-06-09T17:37:39+08:00" class="article-modify-time">2019/06/09</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-31" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-31" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">css 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-159-css-style-testing.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_159&quot;}'>css style testing </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 CSS</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-354-CSS-實做-3D-立體正方形.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_354&quot;}'>CSS 實做  3D 立體正方形 </a></li>
+    
+        <li><a href="/docs-blog/article-353-CSS-3D-旋轉-rotate3d-與-translate3d.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_353&quot;}'>CSS 3D 旋轉 rotate3d 與 translate3d </a></li>
+    
+        <li><a href="/docs-blog/article-340-CSS-Transitions-動態展開圖層.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_340&quot;}'>CSS Transitions 動態展開圖層 </a></li>
+    
+        <li><a href="/docs-blog/article-322-Browser-Reflow-&amp;-Repaint.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_322&quot;}'>Browser Reflow &amp; Repaint </a></li>
+    
+        <li><a href="/docs-blog/article-274-Chrome-do-not-allow-Cross-origin-resource-sharing-for-webfonts.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_274&quot;}'>Chrome do not allow  Cross-origin resource sharing for webfonts </a></li>
+    
+        <li><a href="/docs-blog/article-259-移除-CSS-inline-block-空白.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_259&quot;}'>移除 CSS inline-block 空白 </a></li>
+    
+        <li><a href="/docs-blog/article-208-CSS-font-size-about-pt,-px-,-em-and-percent.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_208&quot;}'>CSS font size about pt, px , em and percent </a></li>
+    
+        <li><a href="/docs-blog/article-207-CSS-特殊用法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_207&quot;}'>CSS 特殊用法 </a></li>
+    
+        <li><a href="/docs-blog/article-203-CSS-Selector.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_203&quot;}'>CSS Selector </a></li>
+    
+        <li><a href="/docs-blog/article-159-css-style-testing.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_159&quot;}'>css style testing </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

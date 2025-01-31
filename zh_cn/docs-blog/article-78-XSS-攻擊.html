@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>XSS 攻击</title>
+    <meta name="keywords" content="骇客" />
+    <meta name="description" content=" XSS 全名是 Cross Site Scripting ，也就是跨網站腳本攻擊，就是在第三方的網站中植入有轉址的語法，將被害人導至有毒的網頁，或是將有害的程式，殖入第三方的網頁中，再讓受害人不知不覺的進入該網頁，盜取其個人資料，如照片、隱私、信用卡等等，下圖是一個簡單的 XSS 攻擊範例。很多網頁都會有使用者上傳資料，最常見的就是部落格，如果網站管理員沒有對上傳的文章做檢查" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-78-XSS-攻击.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-78-XSS-攻击.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-78-XSS-攻擊.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-78-XSS-攻擊.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-78">
+                    <em><span>XSS 攻击</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-78-XSS-\u653b\u64ca.html"},"headline":"XSS \u653b\u64ca","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_84.png","datePublished":"2011-12-17T14:50:33+08:00","dateModified":"2015-05-16T22:02:18+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rXSS \u5168\u540d\u662f Cross Site Scripting \uff0c\u4e5f\u5c31\u662f\u8de8\u7db2\u7ad9\u8173\u672c\u653b\u64ca\uff0c\u5c31\u662f\u5728\u7b2c\u4e09\u65b9\u7684\u7db2\u7ad9\u4e2d\u690d\u5165\u6709\u8f49\u5740\u7684\u8a9e\u6cd5\uff0c\u5c07\u88ab\u5bb3\u4eba\u5c0e\u81f3\u6709\u6bd2\u7684\u7db2\u9801\uff0c\u6216\u662f\u5c07\u6709\u5bb3\u7684\u7a0b\u5f0f\uff0c\u6b96\u5165\u7b2c\u4e09\u65b9\u7684\u7db2\u9801\u4e2d\uff0c\u518d\u8b93\u53d7\u5bb3\u4eba\u4e0d\u77e5"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-78-XSS-攻擊.html"><span>XSS 攻击</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=駭客">駭客</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-78-XSS-攻擊.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>XSS 全名是 Cross Site Scripting ，也就是<b>跨网站脚本攻击</b>，就是在第三方的网站中植入有转址的语法，将被害人导至有毒的网页，或是将有害的程式，殖入第三方的网页中，再让受害人不知不觉的进入该网页，盗取其个人资料，如照片、隐私、信用卡等等，下图是一个简单的 XSS 攻击范例。</p><a href="/filemanage/blog_files/file_84.png" target="_blank" ><img src="/filemanage/blog_files/file_84.png"   class="XSS" alt=", XSS Attack" link="me"  style="width: 650px;"/></a><p>很多网页都会有使用者上传资料，最常见的就是部落格，如果网站管理员没有对上传的文章做检查，就会出现XSS 跨网域功击的漏洞。</p><p>例如：文章内容包含下列语法：这个语法，会直接将网页导向有病毒的网址，凡是连到这个网页的使用者，都有中毒的风险。</p><div class="codeBlock"><span class="title"> hack.html</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;script&gt;</span></li><li class="L1"><span class="pln">   window</span><span class="pun">.</span><span class="pln">location</span><span class="pun">.</span><span class="pln">href</span><span class="pun">=</span><span class="str">"有病毒网址"</span><span class="pun">;</span></li><li class="L2"><span class="tag">&lt;/script&gt;</span></li><li class="L3"><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"javascript:alert(1)"</span><span class="pln"> </span><span class="atn">onclick</span><span class="pun">=</span><span class="atv">"</span><span class="pln">alert</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">XSS</span><span class="tag">&lt;/a&gt;</span></li><li class="L4"><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">""</span><span class="pln"> </span><span class="atn">onerror</span><span class="pun">=</span><span class="atv">"</span><span class="pln">alert</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="atv">"</span><span class="tag">&gt;</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">PHP 处理方式1： 禁示使用 html 语法</li>   </ul><div class="codeBlock"><span class="title"> solution1.php</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">c</span><span class="pun">=</span><span class="pln">explode</span><span class="pun">(</span><span class="str">"&#92;r&#92;n"</span><span class="pun">,$</span><span class="pln">c</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 断行  </span></li><li class="L1"><span class="pun">$</span><span class="pln">n</span><span class="pun">=</span><span class="pln">sizeof</span><span class="pun">($</span><span class="pln">c</span><span class="pun">);</span><span class="pln">  </span></li><li class="L2"><span class="pun">$</span><span class="pln">newc</span><span class="pun">=</span><span class="str">&#39;&#39;</span><span class="pun">;</span><span class="pln">  </span></li><li class="L3"><span class="kwd">for</span><span class="pun">($</span><span class="pln">i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> </span><span class="pun">$</span><span class="pln">i</span><span class="pun">&lt;$</span><span class="pln">n</span><span class="pun">;$</span><span class="pln">i</span><span class="pun">++){</span><span class="pln">  </span></li><li class="L4"><span class="pln">    </span><span class="kwd">if</span><span class="pun">($</span><span class="pln">i</span><span class="pun">!=</span><span class="lit">0</span><span class="pun">){$</span><span class="pln">newc</span><span class="pun">.=</span><span class="str">&#39;&lt;br /&gt;&#39;</span><span class="pun">;}</span><span class="pln">  </span></li><li class="L5"><span class="pln">    </span><span class="pun">$</span><span class="pln">newc</span><span class="pun">.=</span><span class="pln">strip_tags</span><span class="pun">($</span><span class="pln">c</span><span class="pun">);</span><span class="pln">  </span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">PHP 处理方式2： 转换 html 语法</li>   </ul><div class="codeBlock"><span class="title"> solution2.php (＆ 请自行换成 &)</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">c</span><span class="pun">=</span><span class="pln">explode</span><span class="pun">(</span><span class="str">"&#92;r&#92;n"</span><span class="pun">,$</span><span class="pln">c</span><span class="pun">);</span><span class="pln">  </span></li><li class="L1"><span class="pun">$</span><span class="pln">newc</span><span class="pun">=</span><span class="str">&#39;&#39;</span><span class="pun">;</span><span class="pln">  </span></li><li class="L2"><span class="pun">$</span><span class="pln">n</span><span class="pun">=</span><span class="pln">sizeof</span><span class="pun">($</span><span class="pln">s</span><span class="pun">);</span><span class="pln">  </span></li><li class="L3"><span class="pun">$</span><span class="pln">re</span><span class="pun">=</span><span class="pln">array</span><span class="pun">(</span><span class="str">&#39;&lt;&#39;</span><span class="pun">=&gt;</span><span class="str">&#39;＆#60;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;&gt;&#39;</span><span class="pun">=&gt;</span><span class="str">&#39;＆#62;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;%&#39;</span><span class="pun">=&gt;</span><span class="str">&#39;＆#37;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;&#39;&#39;=&gt;&#39;</span><span class="pun">＆#</span><span class="lit">39</span><span class="pun">;</span><span class="str">&#39;,&#39;"&#39;=&gt;&#39;＆#34;&#39;);  </span></li><li class="L4"><span class="str">for($i=0; $i&lt;$n;$i++){  </span></li><li class="L5"><span class="str">    if($i!=0){$newc.=&#39;&lt;br /&gt;&#39;;}  </span></li><li class="L6"><span class="str">       $newc.=strtr($c[$i],$re);  </span></li><li class="L7"><span class="str">    }  </span></li><li class="L8"><span class="str">}</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">PHP 内建的 function :  htmlentities($html);</li>   </ul><p>这个 function 可以将 & < > " 等等转成 ＆amp; ＆lt; ＆gt; ＆quot;</p><h2>防止cookie被 Javascript 盗取</h2><p>如果网站受到 XSS 攻击，用户的 Cookie 资料就会被 Javascript 的语法读取，再回传到骇客手中的机器，所以 Cookie 资料也是需要被防护的。</p><div class="notice" label="I">setcookie，这个 function 的最后一个参数是指定 HttpOnly ，代表cookie不能够被 Javascript 存取，不过这个功能必需要浏览器支援才有效，目前大部分的浏览器皆有支援，如 IE6 sp1, IE 7~ , Firefox 2.2~, Chrome, safari 4~, opera 等等。</div><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">setCookie</span><span class="pun">(</span><span class="str">"name"</span><span class="pun">,</span><span class="str">"value"</span><span class="pun">,</span><span class="pln">time</span><span class="pun">()</span><span class="lit">+86400</span><span class="pun">,</span><span class="str">"/"</span><span class="pun">,</span><span class="str">"domain"</span><span class="pun">,</span><span class="kwd">false</span><span class="pun">,</span><span class="kwd">true</span><span class="pun">);</span></li></ol></pre></div><p>Google, Yahoo 等大公司，都已经在使用  <b>HttpOnly</b> 的设定，想要用 XSS 偷他们的网站的 Cookie 资料，基本上是很困难的。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-05-16T22:02:18+08:00" class="article-modify-time">2015/05/16</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-78" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-78" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-11">SQL Injection 常見的駭客攻擊方式</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-184">XSS Attack of Wordpress in SWFUpload</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

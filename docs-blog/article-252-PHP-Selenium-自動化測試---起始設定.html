@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>PHP Selenium 自動化測試 - 起始設定</title>
+    <meta name="keywords" content="Selenium, Webdriver" />
+    <meta name="description" content="當你在開發一個大型的專案時，往往會因為需求復雜，或是年代久遠，沒有人記得當初某些功能是怎麼完成的，而造成新人不敢修改，老人一改就把舊功能改壞掉，一個好的自動化測試工具在這種狀態就非常的重要，除了程式必需撰寫的 Unit test 之外 ，通常我們還要加上 E2E 測試，例如使用 Selenium。Selenium 是一個用來模擬真人的自動化測試工具，它可以操作網頁瀏覽器，自動連" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-252-PHP-Selenium-自动化测试---起始设定.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-252-PHP-Selenium-自動化測試---起始設定.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-252">
+                    <em><span>PHP Selenium 自動化測試 - 起始設定</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-252-PHP-Selenium-\u81ea\u52d5\u5316\u6e2c\u8a66---\u8d77\u59cb\u8a2d\u5b9a.html"},"headline":"PHP Selenium \u81ea\u52d5\u5316\u6e2c\u8a66 - \u8d77\u59cb\u8a2d\u5b9a","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_133.jpg","datePublished":"2014-04-12T22:31:28+08:00","dateModified":"2017-11-11T22:25:59+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u7576\u4f60\u5728\u958b\u767c\u4e00\u500b\u5927\u578b\u7684\u5c08\u6848\u6642\uff0c\u5f80\u5f80\u6703\u56e0\u70ba\u9700\u6c42\u5fa9\u96dc\uff0c\u6216\u662f\u5e74\u4ee3\u4e45\u9060\uff0c\u6c92\u6709\u4eba\u8a18\u5f97\u7576\u521d\u67d0\u4e9b\u529f\u80fd\u662f\u600e\u9ebc\u5b8c\u6210\u7684\uff0c\u800c\u9020\u6210\u65b0\u4eba\u4e0d\u6562\u4fee\u6539\uff0c\u8001\u4eba\u4e00\u6539\u5c31\u628a\u820a\u529f\u80fd\u6539\u58de\u6389\uff0c\u4e00\u500b\u597d\u7684\u81ea\u52d5\u5316\u6e2c\u8a66\u5de5\u5177\u5728\u9019\u7a2e\u72c0\u614b\u5c31\u975e\u5e38\u7684\u91cd\u8981\uff0c\u9664\u4e86\u7a0b\u5f0f\u5fc5"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Apr</div>
+            <div class="day">12</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html"><span>PHP Selenium 自動化測試 - 起始設定</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Selenium">Selenium</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Webdriver">Webdriver</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-252-PHP-Selenium-自动化测试---起始设定.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>當你在開發一個大型的專案時，往往會因為需求復雜，或是年代久遠，沒有人記得當初某些功能是怎麼完成的，而造成新人不敢修改，老人一改就把舊功能改壞掉，一個好的自動化測試工具在這種狀態就非常的重要，除了程式必需撰寫的 Unit test 之外 ，通常我們還要加上 E2E 測試，例如使用 Selenium。</p><p>Selenium 是一個用來模擬真人的自動化測試工具，它可以操作網頁瀏覽器，自動連結網頁，輸入資料，然後自動點擊 Form Post 按鈕等等各種強大的功能，另外他們支援多個瀏覽器，能夠幫前端工程師抓到  CSS/JS Error。</p><p>Selenium 是 Server 端的工具，另外我們還必需使用一個 Client 端來傳送指令給 Selenium ，這個工具我們統稱為 WebDriver。</p><h2>如何使用 Selenium 與 WebDriver</h2><p>接下來我會一步一步教你如何安裝  Selenium ，並且寫一段簡單的 PHP 來進行測試。</p><h3>安裝 Java</h3><p>Selenium 是用 Java 寫成的，所以你一定要在你的作業系統中安裝 Java，請先至下面這個 Java 官網下載 Java 並安裝。</p><ul class="list">  <li><a href="https://www.java.com/zh_TW/download/help/windows_manual_download.xml"  target="_blank">https://www.java.com/zh_TW/download/help/windows_manual_download.xml</a></li></ul><h3>啟動 Seleniun</h3><p>首先我們得先下載 Selenium 這套軟體，你可以從這個網址下載 <a href="http://docs.seleniumhq.org/download/"  target="_blank">http://docs.seleniumhq.org/download/</a> ，下載回來是一個  Java Jar 檔，啟動的指令如： <code>java -jar selenium-server-standalone-2.39.0.jar</code>。</p><blockquote>另一個下載點 <a href="https://selenium-release.storage.googleapis.com/index.html" target="_blank">http://selenium-release.storage.googleapis.com/index.html</a></blockquote> <br /><p>成功啟動 Selenium 後，你可以使用  telnet localhost 4444 , 或是打開  Browser 連上這個網址  <a href="http://127.0.0.1:4444/wd/hub"  target="_blank">http://127.0.0.1:4444/wd/hub</a> ，Selenium 預設會使用 4444 Port 來接收指令，如果你看到的畫面如下，就代表  Selenium 已經啟動成功!</p><img src="/filemanage/blog_files/file_133.jpg"   /><h3>Facebook WebDriver</h3><p>WebDriver 就是一個用來控制 Selenium 動作的 Library ，稱之為 Driver 因為他就像網卡一樣，網卡是用來控制網路傳輸，而 WebDriver 是用來控制  Selenium，這裡我使用的 WebDriver 是從 Facebook Git 上抓來下的，你可以在  <a href="https://github.com/facebook/php-webdriver"  target="_blank">https://github.com/facebook/php-webdriver</a>  這裡下載得到。</p><p>接著我們寫一小段程式，呼叫 Selenium 打開  Firefox Browser 並且連上 Google 首頁</p><div class="codeBlock php"><span class="title"> Selenium HelloWorld</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">require_once </span><span class="str">"./php-webdriver/lib/__init__.php"</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">capabilities </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L3"><span class="pln">    WebDriverCapabilityType</span><span class="pun">::</span><span class="pln">BROWSER_NAME </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">&#39;firefox&#39;</span></li><li class="L4"><span class="pun">);</span></li><li class="L5"><span class="pun">$</span><span class="pln">seleniumUrl </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;http://localhost:4444/wd/hub&#39;</span><span class="pun">;</span></li><li class="L6"><span class="pun">$</span><span class="pln">driver </span><span class="pun">=</span><span class="pln"> RemoteWebDriver</span><span class="pun">::</span><span class="pln">create</span><span class="pun">($</span><span class="pln">seleniumUrl</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">capabilities</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5000</span><span class="pun">);</span></li><li class="L7"><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">get</span><span class="pun">(</span><span class="str">"http://www.google.com.tw/"</span><span class="pun">);</span></li><li class="L8"><span class="pln">sleep</span><span class="pun">(</span><span class="lit">5</span><span class="pun">);</span></li><li class="L9"><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">close</span><span class="pun">();</span></li></ol></pre></div><p>程式有正確執行的話，你應該會看到你的電腦打開了  Firefox ，並連上Google 首面  ，我有故意在程式中加上 sleep 5 秒，這是怕 selenium 一執行完畢，就會自動關閉  Browser ，這樣會來不及確認是否有連到 Google。</p><p>"<b>capabilities</b>" 這個參數是用來指定基本設定，例如上面的範例中我指定了  Browser  = firefox 。</p><h2>自動打動網頁，並點擊連結的範例</h2><p>這是稍復雜一點的範例，功能是連上我開發好的頁面，並且點擊一個連結，然後等待 Browser 載入頁面完成後，再繼續執行接下來的指令。</p><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">capabilities </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="pln">WebDriverCapabilityType</span><span class="pun">::</span><span class="pln">BROWSER_NAME </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">&#39;firefox&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pun">$</span><span class="pln">seleniumUrl </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;http://localhost:4444/wd/hub&#39;</span><span class="pun">;</span></li><li class="L2"><span class="pun">$</span><span class="pln">host </span><span class="pun">=</span><span class="pln"> </span><span class="str">"http://www.puritys.me"</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pun">$</span><span class="pln">driver </span><span class="pun">=</span><span class="pln"> RemoteWebDriver</span><span class="pun">::</span><span class="pln">create</span><span class="pun">($</span><span class="pln">seleniumUrl</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">capabilities</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5000</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">get</span><span class="pun">($</span><span class="pln">host </span><span class="pun">.</span><span class="pln"> </span><span class="str">"/docs-blog/article-49"</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">$</span><span class="pln">url </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">getCurrentUrl</span><span class="pun">();</span></li><li class="L9"><span class="pln">error_log</span><span class="pun">(</span><span class="pln"> </span><span class="str">"url = "</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">url</span><span class="pun">);</span></li><li class="L0"><span class="com">//change url and wait</span></li><li class="L1"><span class="pun">$</span><span class="pln">elm </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">findElement</span><span class="pun">(</span></li><li class="L2"><span class="pln">  WebDriverBy</span><span class="pun">::</span><span class="pln">cssSelector</span><span class="pun">(</span><span class="str">&#39;.nav-box a:nth-of-type(1)&#39;</span><span class="pun">)</span></li><li class="L3"><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">$</span><span class="pln">elm</span><span class="pun">-&gt;</span><span class="pln">click</span><span class="pun">();</span></li><li class="L6"><span class="com">// wait for at most 10 seconds until the URL is &#39;http://example.com/&#39;.</span></li><li class="L7"><span class="com">// check again 500ms after the previous attempt.</span></li><li class="L8"><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">wait</span><span class="pun">(</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">500</span><span class="pun">)-&gt;</span><span class="kwd">until</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">($</span><span class="pln">driver</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">($</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">getCurrentURL</span><span class="pun">()</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> </span><span class="str">&#39;http://www.puritys.me/news&#39;</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">        error_log</span><span class="pun">(</span><span class="str">"Document is complete"</span><span class="pun">);</span></li><li class="L1"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="pun">}</span></li><li class="L5"><span class="pun">});</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">error_log</span><span class="pun">(</span><span class="str">"test"</span><span class="pun">);</span></li><li class="L8"><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">close</span><span class="pun">();</span></li></ol></pre></div><h2>設定視窗的尺寸，長寬</h2><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">driver </span><span class="pun">=</span><span class="pln"> RemoteWebDriver</span><span class="pun">::</span><span class="pln">create</span><span class="pun">($</span><span class="pln">seleniumUrl</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">capabilities</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5000</span><span class="pun">);</span></li><li class="L1"><span class="pun">$</span><span class="pln">manage </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">manage</span><span class="pun">();</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pun">$</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">manage</span><span class="pun">-&gt;</span><span class="pln">window</span><span class="pun">();</span></li><li class="L4"><span class="pun">$</span><span class="pln">dimension </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">window</span><span class="pun">-&gt;</span><span class="pln">getSize</span><span class="pun">();</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pun">$</span><span class="pln">height </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">dimension</span><span class="pun">-&gt;</span><span class="pln">getHeight</span><span class="pun">();</span><span class="pln"> </span><span class="com">//取得視窗的高 </span></li><li class="L7"><span class="pun">$</span><span class="pln">width </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">dimension</span><span class="pun">-&gt;</span><span class="pln">getWidth</span><span class="pun">();</span><span class="pln"> </span><span class="com">//取得視窗的寬</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pun">$</span><span class="pln">newSize </span><span class="pun">=</span><span class="pln"> new WebDriverDimension</span><span class="pun">(</span><span class="lit">100</span><span class="pun">,</span><span class="lit">200</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 設定視窗的寬高  = 100x200</span></li><li class="L0"><span class="pun">$</span><span class="pln">window</span><span class="pun">-&gt;</span><span class="pln">setSize</span><span class="pun">($</span><span class="pln">newSize</span><span class="pun">);</span></li></ol></pre></div><h3>如何將視窗最大化</h3><p>平常我們在使用 Selenium 時，最好都將 Window 視窗調成最大化，避免 Selenium 因為 Element 不在畫面上而選不到，最大化的方式很簡單，使用 maximize 即可。</p><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">manage </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">driver</span><span class="pun">-&gt;</span><span class="pln">manage</span><span class="pun">();</span></li><li class="L1"><span class="pun">$</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">manage</span><span class="pun">-&gt;</span><span class="pln">window</span><span class="pun">();</span></li><li class="L2"><span class="pun">$</span><span class="pln">window</span><span class="pun">-&gt;</span><span class="pln">maximize</span><span class="pun">();</span></li></ol></pre></div><h2>取得視窗位置與移動</h2><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">position </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">window</span><span class="pun">-&gt;</span><span class="pln">getPosition</span><span class="pun">();</span></li><li class="L1"><span class="pln">echo  </span><span class="pun">$</span><span class="pln">position</span><span class="pun">-&gt;</span><span class="pln">getX</span><span class="pun">();</span></li><li class="L2"><span class="pln">echo  </span><span class="pun">$</span><span class="pln">position</span><span class="pun">-&gt;</span><span class="pln">getY</span><span class="pun">();</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="com">//移動視窗</span></li><li class="L5"><span class="pun">$</span><span class="pln">position</span><span class="pun">-&gt;</span><span class="pln">move</span><span class="pun">(</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span></li><li class="L6"><span class="pun">$</span><span class="pln">window</span><span class="pun">-&gt;</span><span class="pln">setPosition</span><span class="pun">($</span><span class="pln">position</span><span class="pun">);</span></li></ol></pre></div><h2>Selenium Protocol</h2><ul class="list">  <li><a href="https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol"  target="_blank">https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol</a></li></ul><p>WebDriver 不管開發者是誰，功能如何強力，他的 Server 一定還是 Selenium ，所以你只要了解 Selenium 所支援的功能，就能猜出 WebDriver 大概要怎麼使用了，也可以知道 Selenium 所支援的 API 有哪一些。</p><h2>其它相關</h2><p>driver 能夠使用的 method ，可以在 php-webdriver/lib/remote/RemoteWebDriver.php 中找到，例如 findElement 這個 Method 。</p><ul class="list">  <li><a href="https://github.com/facebook/php-webdriver/blob/master/lib/remote/RemoteWebDriver.php"  target="_blank">https://github.com/facebook/php-webdriver/blob/master/lib/remote/RemoteWebDriver.php</a></li></ul><p>下面這個連結是 Selenium 如何操作 Browser 的 source code ，有一大部分的程式是用 JavaScript 寫成的，可以看這邊的程式，去了解 selenium 的實作方式。</p> <br /><ul class="list">  <li><a href="https://github.com/SeleniumHQ/selenium/"  target="_blank">https://github.com/SeleniumHQ/selenium/</a></li></ul><h2>相關文件</h2><ul class="list">  <li><a href="https://phpunit.de/manual/3.7/en/selenium.html" target="_blank">http://phpunit.de/manual/3.7/en/selenium.html</a></li>  <li><a href="http://phptest.club/"  target="_blank">http://phptest.club/</a></li></ul> <br /><!--<br /><h3>php unit test</h3><p>下載 php unit <a href="http://pear.phpunit.de/"  target="_blank">http://pear.phpunit.de/</a></p>--><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-11-11T22:25:59+08:00" class="article-modify-time">2017/11/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-252" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-252" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-266">php-webdriver 基本功能</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Selenium 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Webdriver 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-445-PHP7-zend-變數結構.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="/docs-blog/article-412-Curl-SSLv1-SSLv2-NSS-error--5938.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="/docs-blog/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="/docs-blog/article-313-Facebook-php-webdriver-設定-Firefox-Profile.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="/docs-blog/article-266-php-webdriver-基本功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="/docs-blog/article-258-PHP-正確分割中文與英文字數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="/docs-blog/article-257-如何讓-PHP-取得-Command-Line-的參數.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="/docs-blog/article-252-PHP-Selenium-自動化測試---起始設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

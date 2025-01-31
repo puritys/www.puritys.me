@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我为什么爱用 VIM 编辑器来写程式</title>
+    <meta name="keywords" content="Vim, IDE" />
+    <meta name="description" content="編輯器 - 又稱 IDE ，這東西一直都是百家爭鳴的狀態，每一種編輯器都有眾多的支持者，而作者我本身目前最愛用的程式編輯器是「Vim」，沒錯! 就是這個傳說中石器時代的工具，但我可不是一開始就喜歡上 Vim 的呢，當我還在朦朧不懂大學生時代，第一次學習在 Linux 上安裝網頁伺服器，PHP、 MySql Server 等等各種軟體，偶爾也要改一些系統設定檔，不管是 Apach" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-303-我为什么爱用-VIM-编辑器来写程式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-303-我为什么爱用-VIM-编辑器来写程式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-303-我為什麼愛用-VIM-編輯器來寫程式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/software" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">實用軟體</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-303">
+                    <em><span>我为什么爱用 VIM 编辑器来写程式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-303-\u6211\u70ba\u4ec0\u9ebc\u611b\u7528-VIM-\u7de8\u8f2f\u5668\u4f86\u5beb\u7a0b\u5f0f.html"},"headline":"\u6211\u70ba\u4ec0\u9ebc\u611b\u7528 VIM \u7de8\u8f2f\u5668\u4f86\u5beb\u7a0b\u5f0f","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_178.png","datePublished":"2015-03-08T22:00:37+08:00","dateModified":"2019-07-09T14:09:17+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u7de8\u8f2f\u5668 - \u53c8\u7a31  IDE  \uff0c\u9019\u6771\u897f\u4e00\u76f4\u90fd\u662f\u767e\u5bb6\u722d\u9cf4\u7684\u72c0\u614b\uff0c\u6bcf\u4e00\u7a2e\u7de8\u8f2f\u5668\u90fd\u6709\u773e\u591a\u7684\u652f\u6301\u8005\uff0c\u800c\u4f5c\u8005\u6211\u672c\u8eab\u76ee\u524d\u6700\u611b\u7528\u7684\u7a0b\u5f0f\u7de8\u8f2f\u5668\u662f\u300cVim\u300d\uff0c\u6c92\u932f! \u5c31\u662f\u9019\u500b\u50b3\u8aaa\u4e2d\u77f3\u5668\u6642\u4ee3\u7684\u5de5\u5177\uff0c\u4f46\u6211\u53ef\u4e0d\u662f\u4e00\u958b\u59cb\u5c31\u559c\u6b61"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Mar</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html"><span>我为什么爱用 VIM 编辑器来写程式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Vim">Vim</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=IDE">IDE</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>編輯器 - 又稱 <b> IDE </b> ，這東西一直都是百家爭鳴的狀態，每一種編輯器都有眾多的支持者，而作者我本身目前最愛用的程式編輯器是「<b>Vim</b>」，沒錯! 就是這個傳說中石器時代的工具，但我可不是一開始就喜歡上 Vim 的呢，當我還在朦朧不懂大學生時代，第一次學習在 Linux 上安裝網頁伺服器，PHP、 MySql Server 等等各種軟體，偶爾也要改一些系統設定檔，不管是 Apache conf, my.cnf, php.ini, 甚至是 /etc/passwd，總是需要有一個編輯器來用， 而 Linux 系統上就有個內建的編輯器，那就是 Vi 與 Vim (Vim 是 Vi 的加強版) 這兩個，於是我踏進了 Vim 的第一步，我第一次在 Terminal 輸入了 <code>vim /var/www/httpd.conf</code>，想當然爾，我想要修改 Apache 設定檔，一定會使用方向鍵來移動游標，先移動到想修改的地方，所以我按下方向鍵「<span style="color:#a00;">←</span>」，但這時 Vim 卻幫我輸入了個英文字母大寫「<span style="color:#a00;">D</span>」，然後再順便幫我斷了個行，我不解的再多按了幾下「↑」、「↓」，「←」，「→」，螢幕上竟然出現了一堆「ABCD」，就在這個 Moment，心中出現了一堆「???」，到底是發生什麼事了呢，為什麼我輸入「←」，會出現大寫 D ，當時我只是猜著說 Vim 好像不認識鍵盤方向鍵，而心裡想著「這編輯器根本是原始人設計的吧」 Orz !  過不了多久我就改用 Nano ，這套也支援 Linux 的編輯器，而且長達 6 年的時間，不再使用 Vim 這種鬼東西。</p><img src="/filemanage/blog_files/file_178.png"   class="keyboard" alt="vim  keyboard l become a word D" /><h2>逃離 Vim</h2><p>當年我不喜歡在 Terminal 上編輯程式或是修改設定檔，所以我會在每一台 Linux 系統裝上 Samba 這個網芳軟體，再把根目錄「/」全部共享出來，透過 Windows 的網芳功能，使用 Notepad++ 來編輯 Linux 上所有的檔案，這個方式，讓我完全脫離了 Linux 上的編輯器，不用再面對難用的 Vi / Vim，而這個方式只有一個小小的缺點，就是當我們儲存檔案的時候，會有 1 至 2 秒的檔案同步延遲時間，不過總比在 Vim 上為了方向鍵，一直不斷的切換「Insert」，「View」模式好多了；持續六年，我最喜歡的編輯器是 「Notepad++」，我喜歡他小巧，乾淨，簡單使用。</p><h2>2011 年，再次碰上 Vim</h2><p>2011 年末，我換了個新的工作，在新的辦公室，看到旁邊資深同事們正在使用 Vim 來開發程式，雖然心中有不好的預感，但是我這個菜鳥也只能入境隨俗的重新打開了 Vim ，看著新人手冊上的 Linux, Vim 設定，一步一步的建構起開發環境，這時我才發現，原來 Vim 可以很彈性的設定各種熱鍵，外掛，配色，原來有了正確的設定檔，方向鍵「↑」、「↓」，「←」，「→」　它們又重新活了過來!!　原來 Vim 也可以那麼的強大 ~~~</p><h2>回顧</h2><p>我喜歡簡單的介面來寫程式，我人生中的第一個編輯器，就是 Windows  Notepad，當時我用來寫 HTML，CSS，Javascript 等網頁相關程式，那個年代 Debug 真的會想哭 ... ，後來接觸了 UltraEdit, EmEditor，以及 Notepad++， 很快的，我就愛上了 Notepad++ 當我最主要的編輯器，並且一用就是六年。</p><p>我不只是用 Notepad++ 來寫網頁程式，我還拿它來寫 C/C++ 與 Java 程式，我也曾寫過<a href="/docs-blog/article-16-如何在Notepad++編譯-c-&-c++-語言.html" target="_blank">一篇文章</a>來介紹如何在 Notepad++ 上編譯 C/C++ 。</p><h3>Notepad++ 特色</h3><ul class="list">  <li>分割視窗</li>  <li>分頁切換</li></ul><p>寫這麼多年的程式，我發現我要的編輯器，一定要有分割視窗與分頁切換，這兩個功能對我來說非常重要，分頁切換可以讓我一次打開多個檔案同時編輯，例如我會打開 CSS, JS 與 HTML ，這三個檔案很容易會同時被修改，而分割視窗則是讓我可以將同一個檔案分成兩個視窗，一邊看被呼叫的 Function，一邊看呼叫別人的 Script。</p><a href="/filemanage/blog_files/file_179.png" target="_blank" ><img src="/filemanage/blog_files/file_179.png"   alt="Notepad++" link="me"  style="width: 500px;height: 300px;"/></a><h2>為何 Vim 成為我的最愛</h2><p>Vim 內建於每一台 Linux 系統，只要透過 SSH Client ，就能連到 Linux 然後使用 vim 開始程式開發，也就是說我能夠任何有網路的地方，直接遠端連線到自已家的伺服器寫程式，而且不用事先安裝任何編輯器，唯一要做的就是下載 SSH Client (如 putty)，隨著時代的進步，瀏覽器 Chrome 現在也開發了一套 <a href="/docs-blog/article-151-Chrome-SSH-Client-取代-putty.html" target="_blank">SSH Client Extension </a> ，只要在 Chrome 上安裝這個 Extension ，就能取代 Putty 的所有功能。</p><p>我在家裡架了一台 Linux 伺服器，並且把所有會用到的工具全部裝上這台機器，這樣不管我到那裡，只要我手上有電腦，就能隨時遠端連回我的伺服器，立刻開始作事，不管是 PHP, Node.js C/C++, Apache, Mysql, DNS Server, Wordpress, Proxy 等等，應有盡有，讓我不用再煩惱去安裝每台電腦的軟體，我只要確定伺服器上安裝了正確的軟體即可。</p><p>如果你想用其它先進的編輯器 (如 Eclipse, Visual Studio) 來遠端開發程式，那麼你必需在每一台電腦先裝好編輯器，然後再裝上 SFTP 程式，將程式下載回本地端 (Eclipse 內建有類似 SFTP Sync 功能)，再來就要面對電腦效能問題，現今我們常常會帶著筆電到處跑，而筆電的效能又比桌機稍差了一點，若是你的電腦配備又不佳 ，在這些編輯器上寫程式時，切換檔案時會頓頓的，或是搜尋字串時卡卡的，用這種環境開發，心情會非常的糟糕，寫出來的程式也不會太好。</p><h2>神器  -  Linux 搭配 Vim</h2><blockquote>Linux - screen + vim + vsplit + Terminal tab</blockquote><p>在 Linux 系統用 Vim 開發程式，到底有多好用呢 ? 首先我一定會使用 screen 這個 multiple console 的工具 (也有人用 tmux )，screen 可以讓我在同一個 Terminal 同時開啟好多個 console，每個 console 都是一個獨立的 process ，假如我建立了三個 console ，那麼我就會第一個 console 用來編輯程式，第二個 console 用來執行 unit test，最後第三個 console 用來操作 Linux 指令，如 grep 檔案， top 檢查系統狀況；在來當我們一天的開發到一個段落後(下班)，登出 Linux 時，並不會中斷 screen 的程序，當下打開的所有檔案，或是執行中的程序，仍然正常的運作著，等下一次我們再次登入 Linux ，立刻又回到昨天的畫面，馬上又能夠接上進度。</p><p>Vim , 現今我喜歡簡單的編輯器，有些強大的編輯器，會幫你修正各種拼字錯誤，或是自動載入 Header File ，自動文字補完，這些功能都會造成工程師無法了解程式的全貌，想想一個對程式，系統底層非常了解的工程師，與一位不了解底層，靠強大編輯器來寫程式的工程師，那一位 Debug 會比較快呢 ?  ,  我寫程式的時候，會試著去了解每一行 Code 代表意義，每一個 Method ，每一個 Function，每一個 Header ，分別做了什麼事，唯一清楚的知道每一行程式 ，才能有自信的說，我寫的程式沒問題了! 如果編輯器太過強大，整天幫我修正設定檔，那麼我就很難更深入的了解它。</p><p>以下列出 Linux VIM 上開發的優點</p><ul class="list">  <li>支援各種類型程式，如 Python, PHP, Perl, Javascript, Node.js, Java, C/C++</li>  <li>遠端編輯 - 可以在任何有網路的地方，遠端連線到伺服器上使用 Vim 開發</li>  <li>完美配合 Linux 指令</li>  <ul class="list">    <li class="indent1">Grep, Find 快速搜尋檔案</li>    <li class="indent1">可搭配 Linux 軟體使用，如 Screen</li>    <li class="indent1">執行 unit test</li>    <li class="indent1">執行各種 Script</li>  </ul>  <li>Screen 保留編輯中狀態，以及目前開啟的檔案。</li>  <li>速度快，沒有多餘的功能，單純就文字編輯，不會有時間延遲。</li>  <li>完全自定義熱鍵，沒有 IDE 的限制，99 % 熱鍵都可以自已設定。</li></ul><div class="notice" label="Cygwin">Windows 也有個仿 Linux 軟體叫 Cygwin ，讓你也可以在 Windows 使用  Linux 指令與 Vim</div><p>當然 VIM 也不是沒有缺點，像是我打字很慢，又常常會打錯字 (沒有拼字檢查)，Function 名稱也常打錯，或是我常忘記 function 的第一個參數要帶什麼型態的數值，Array 格式打錯，多了逗號，少了逗號等等問題，以上問題當然也可以安裝 vim plugin 來解決，不過我選擇了「人工處理」，為什麼呢 ?  因為我覺得程式開發最重要的項目是確保邏輯的正確性，效能，安全性，可讀性，而不是在追求打字可以有多快，我大部分的時間是花在思考，而不是打字。</p><ul class="list">  <li>逗號多打、少打，符號打錯的問題：這是習慣問題，只要習慣用正確且一致的語法寫程式，這個問題就不太會發生。</li>  <li>打錯字、拼字檢查：若你打錯字，造成變數名稱不一致時，只要透過 Unit test 就能發現這些問題，而 Unit test 本來就是必寫的!。</li>  <li>Array, Json 格式打錯：程式會直接當掉，開發時很容易發現的問題，不太會 Release 到 Production 。</li>  <li>Function 的參數格式：有些編輯器可以提示你 function 要帶哪些參數，這個功能的確是非常的好用，Vim 也有類似的外掛，不過這個功能會讓編輯器的速度變慢，我不能忍受打字時有 Lag 的情形發生，而我也很感謝  Google ，當我不確定 Function 的參數時，只要在詢問 Google 大神 ，通常不到 30 秒就找到解答了，所以我也不需要使用 Function 提示的功能。</li></ul><p>上面這些問題可以透過安裝 Vim plugin 來解決，例如 syntax checker plugin: "vim-syntastic/syntastic"， Java 程式則可以安裝 "<a href="http://eclim.org/index.html" target="_blank">eclim</a>"。</p><div class="notice" label="Notice">這篇文章只是分享我使用 Vim 的心得，你仍然可以使用自已喜歡的編輯器來寫程式。</div><br /><p>最後來個簡單的 Vim 搭配 Linux 操作 Demo</p><iframe style="width: 100%; margin: 0 auto" height=675 frameborder="0" src="https://www.youtube.com/embed/-rVmVleNOv4" frameborder="0"></iframe><p><a href="/docs-blog/article-110" target="_blank">Vim 配色參考</a></p><p><a href="https://github.com/puritys/unix_environment/blob/master/basic/.vimrc" target="_blank">Vim.rc 設定參考</a></p><h2>其它編輯器參考</h2><ul class="list">  <li>Eclipse</li>  <li>webstorm</li>  <li>netbeans</li>  <li>IntelliJ IDEA</li></ul><ul class="list">  <li>Notepad++</li>  <li>UltraEdit</li>  <li>EmEditor</li>  <li>gedit</li>  <li>sublime</li></ul><ul class="list">  <li>Vim</li>  <li>gVim</li>  <li>Nano</li>  <li>emacs</li></ul><h2>其它相關資料</h2><p>why-you-should-use-an-ide-instead-of-vim-or-emacs</p><ul class="list">  <li><a href="http://codecraft.co/2014/05/13/why-you-should-use-an-ide-instead-of-vim-or-emacs/"  target="_blank">http://codecraft.co/2014/05/13/why-you-should-use-an-ide-instead-of-vim-or-emacs/</a></li></ul><p>从 Vim 与 IDE 的讨论说起</p><ul class="list">  <li><a href="https://github.com/lifesinger/lifesinger.github.com/issues/104"  target="_blank">https://github.com/lifesinger/lifesinger.github.com/issues/104</a></li></ul><p>Vim 中文教學</p><ul class="list">  <li><a href="https://github.com/yangyangwithgnu/use_vim_as_ide/blob/master/README.md#"  target="_blank">https://github.com/yangyangwithgnu/use_vim_as_ide/blob/master/README.md#</a></li></ul><p>Vim Docker Image</p><ul class="list">  <li><a href="https://hub.docker.com/r/puritys/vim"  target="_blank">https://hub.docker.com/r/puritys/vim</a></li>  <li>docker pull puritys/vim:stable</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2019-07-09T14:09:17+08:00" class="article-modify-time">2019/07/09</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-303" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-303" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-114">VIM 16進位 , .vimrc 設定</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-290">Cygwin : 在 windows 環境上使用 Linux 指令</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Vim 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-168-如何在-Win-,-Mac-,-Chrome-設定實用的-.screenrc.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_168&quot;}'>如何在 Win , Mac , Chrome 設定實用的 .screenrc </a></li>
+    
+        <li><a href="/docs-blog/article-114-VIM-16進位-,-.vimrc-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_114&quot;}'>VIM 16進位 , .vimrc 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-110-vim-配色.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_110&quot;}'>vim 配色 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">IDE 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="/docs-blog/article-436-免費影片編輯工具-ffmpeg-on-docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 實用軟體</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-455-Gboard-好用的-Android-輸入法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_455&quot;}'>Gboard 好用的 Android 輸入法 </a></li>
+    
+        <li><a href="/docs-blog/article-450-Mac-+-Chrome-解決健保卡讀不到的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_450&quot;}'>Mac + Chrome 解決健保卡讀不到的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-435-下載舊版-Google-Chrome-(保證無毒).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_435&quot;}'>下載舊版 Google Chrome (保證無毒) </a></li>
+    
+        <li><a href="/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="/docs-blog/article-396-Sublime-前端工程師必裝外掛-:-Browser-Refresh.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_396&quot;}'>Sublime 前端工程師必裝外掛 : Browser Refresh </a></li>
+    
+        <li><a href="/docs-blog/article-395-別再找破解版了，免費下載-Win-10-Windows-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_395&quot;}'>別再找破解版了，免費下載  Win 10 / Windows 10 </a></li>
+    
+        <li><a href="/docs-blog/article-326-FFMPEG-:-免費影音轉檔工具.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_326&quot;}'>FFMPEG : 免費影音轉檔工具 </a></li>
+    
+        <li><a href="/docs-blog/article-309-在-Mac-中使用-Docker.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+        <li><a href="/docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_303&quot;}'>我為什麼愛用 VIM 編輯器來寫程式 </a></li>
+    
+        <li><a href="/docs-blog/article-291-USB，硬碟救援，檔案刪除還原.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_291&quot;}'>USB，硬碟救援，檔案刪除還原 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

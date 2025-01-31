@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>如何使用  GDB  Debug</title>
+    <meta name="keywords" content="GDB" />
+    <meta name="description" content="GDB 全名為 Global Project DeBug，它可以用來檢視系統執行檔所執行的語法，以及記憶體地址所存的資料，可以用來 Debug ，反組譯，Hack 執行檔等等，Linux 與 Windows 系統皆可以使用這套軟體。GDB 有以下數種功用 Debug 反組譯 Hack 執行檔對於一個已經編譯好的執行檔，因為我們沒有他的原始程式碼，無法直接參透程式的內容，而 GD" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-329-如何使用-GDB-Debug.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-329-如何使用-GDB-Debug.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-329-如何使用-GDB-Debug.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-329-如何使用-GDB-Debug.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/c++" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">c++</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-329">
+                    <em><span>如何使用  GDB  Debug</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-329-\u5982\u4f55\u4f7f\u7528-GDB-Debug.html"},"headline":"\u5982\u4f55\u4f7f\u7528  GDB  Debug","image":"","datePublished":"2015-10-01T17:36:08+08:00","dateModified":"2016-09-03T15:23:44+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"GDB \u5168\u540d\u70ba  Global Project DeBug\uff0c\u5b83\u53ef\u4ee5\u7528\u4f86\u6aa2\u8996\u7cfb\u7d71\u57f7\u884c\u6a94\u6240\u57f7\u884c\u7684\u8a9e\u6cd5\uff0c\u4ee5\u53ca\u8a18\u61b6\u9ad4\u5730\u5740\u6240\u5b58\u7684\u8cc7\u6599\uff0c\u53ef\u4ee5\u7528\u4f86 Debug \uff0c\u53cd\u7d44\u8b6f\uff0cHack \u57f7\u884c\u6a94\u7b49\u7b49\uff0cLinux \u8207 Win"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Oct</div>
+            <div class="day">01</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-329-如何使用-GDB-Debug.html"><span>如何使用  GDB  Debug</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=GDB">GDB</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-329-如何使用-GDB-Debug.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>GDB 全名为  Global Project DeBug，它可以用来检视系统执行档所执行的语法，以及记忆体地址所存的资料，可以用来 Debug ，反组译，Hack 执行档等等，Linux 与 Windows 系统皆可以使用这套软体。</p><h3>GDB 有以下数种功用</h3><ul class="list">  <li>Debug</li>  <li>反组译</li>  <li>Hack 执行档</li></ul><p>对於一个已经编译好的执行档，因为我们没有他的原始程式码，无法直接参透程式的内容，而 GDB 能够将执行档的程式转成组语 (assemble) ，只要你看得懂组语，就能够猜出原始的程式码大约会是什么。</p><h3>如何开始使用 GDB</h3><p>首先，我们先写一段简单的 c 语言，并正确的编译 <code>g++ -g main.cc</code>，请注意一定要加  -g 这个参数， -g 代表 debug 模式，使用 GDB 时会更加好用。</p><div class="codeBlock cpp"><span class="title"> g++ main.cc</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#include</span><span class="pln"> </span><span class="str">"stdio.h"</span></li><li class="L1"><span class="typ">int</span><span class="pln"> main </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">char</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="pun">*</span><span class="pln">message </span><span class="pun">=</span><span class="pln"> </span><span class="str">"How are you?"</span><span class="pun">;</span><span class="pln">                                                                                                        </span></li><li class="L3"><span class="pln">    printf</span><span class="pun">(</span><span class="str">"%s"</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L6"><span class="pun">}</span></li></ol></pre></div><p>编译完成后，会产生一个叫 a.out  的档案，接著我们用  gdb a.out 就可以开始使用 GDB 罗，下面有执行的范例。</p><div class="codeBlock html"><span class="title"> 范例</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln"># gdb a.out </span></li><li class="L1"><span class="pln">GNU gdb (GDB) Red Hat Enterprise Linux 7.6.1-64.el7</span></li><li class="L2"><span class="pln">Copyright (C) 2013 Free Software Foundation, Inc.</span></li><li class="L3"><span class="pln">License GPLv3+: GNU GPL version 3 or later </span><span class="tag">&lt;http</span><span class="pln">:</span><span class="pun">//</span><span class="atn">gnu</span><span class="pln">.</span><span class="atn">org</span><span class="pun">/</span><span class="atn">licenses</span><span class="pun">/</span><span class="atn">gpl</span><span class="pln">.</span><span class="atn">html</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">This is free software: you are free to change and redistribute it.</span></li><li class="L5"><span class="pln">There is NO WARRANTY, to the extent permitted by law.  Type "show copying"</span></li><li class="L6"><span class="pln">and "show warranty" for details.</span></li><li class="L7"><span class="pln">This GDB was configured as "x86_64-redhat-linux-gnu".</span></li><li class="L8"><span class="pln">For bug reporting instructions, please see:</span></li><li class="L9"><span class="tag">&lt;http</span><span class="pln">:</span><span class="pun">//</span><span class="atn">www</span><span class="pln">.</span><span class="atn">gnu</span><span class="pln">.</span><span class="atn">org</span><span class="pun">/</span><span class="atn">software</span><span class="pun">/</span><span class="atn">gdb</span><span class="pun">/</span><span class="atn">bugs</span><span class="tag">/&gt;</span><span class="pln">...</span></li><li class="L0"><span class="pln">Reading symbols from a.out...(no debugging symbols found)...done.</span></li><li class="L1"><span class="pln">(gdb)</span></li></ol></pre></div><h2>GDB 基本指令</h2><h3>[disass] display assemble 列印出组语程式码</h3><ul class="list">  <li>disass main</li>  <li>disass /r main</li>  <li>disass 0x400530,0x400550  (disass start,end)</li></ul><p>disass 后面可以接 function 的名称，当然你要知道有什么程式里面有什么 function  名称，一般来说 C 语言里面都会有个 main function ，所以我们可以输入 disass main 来检视 main 底下的组语内容。</p><p><code>disass -r</code>，加上 -r 这个参数，可以把组语的内容用 hex 的方式印出来。</p><p><code>disass -m</code>，加上 -m 这个参数，可以印出程式原始码内容，如果你想要这个功能，就得在编译时先加上 debug 的参数。</p><p><code> disass 0x400530,0x400550</code>，如果你看某一个区间的组语内容，可以用 disass start address,end address ， GDB 就会自动印出两段 memory address 之间的所有组语内容。</p><p>来看一下 disass 执行的结果：</p><div class="codeBlock shell"><span class="title"> disass example</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> disass main</span></li><li class="L1"><span class="typ">Dump</span><span class="pln"> of assembler code </span><span class="kwd">for</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> main</span><span class="pun">():</span></li><li class="L2"><span class="pln">   </span><span class="lit">0x00000000004005f0</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">0</span><span class="pun">&gt;:</span><span class="pln">     push   </span><span class="pun">%</span><span class="pln">rbp</span></li><li class="L3"><span class="pln">   </span><span class="lit">0x00000000004005f1</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">1</span><span class="pun">&gt;:</span><span class="pln">     mov    </span><span class="pun">%</span><span class="pln">rsp</span><span class="pun">,%</span><span class="pln">rbp</span></li><li class="L4"><span class="pln">   </span><span class="lit">0x00000000004005f4</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">4</span><span class="pun">&gt;:</span><span class="pln">     </span><span class="kwd">sub</span><span class="pln">    $0x10</span><span class="pun">,%</span><span class="pln">rsp</span></li><li class="L5"><span class="pln">   </span><span class="lit">0x00000000004005f8</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">8</span><span class="pun">&gt;:</span><span class="pln">     movq   $0x4006b0</span><span class="pun">,-</span><span class="lit">0x8</span><span class="pun">(%</span><span class="pln">rbp</span><span class="pun">)</span></li><li class="L6"><span class="pln">   </span><span class="lit">0x0000000000400600</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">16</span><span class="pun">&gt;:</span><span class="pln">    mov    </span><span class="pun">-</span><span class="lit">0x8</span><span class="pun">(%</span><span class="pln">rbp</span><span class="pun">),%</span><span class="pln">rax</span></li><li class="L7"><span class="pln">   </span><span class="lit">0x0000000000400604</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">20</span><span class="pun">&gt;:</span><span class="pln">    mov    </span><span class="pun">%</span><span class="pln">rax</span><span class="pun">,%</span><span class="pln">rsi</span></li><li class="L8"><span class="pln">   </span><span class="lit">0x0000000000400607</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">23</span><span class="pun">&gt;:</span><span class="pln">    mov    $0x4006bd</span><span class="pun">,%</span><span class="pln">edi</span></li><li class="L9"><span class="pln">   </span><span class="lit">0x000000000040060c</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">28</span><span class="pun">&gt;:</span><span class="pln">    mov    $0x0</span><span class="pun">,%</span><span class="pln">eax</span></li><li class="L0"><span class="pln">   </span><span class="lit">0x0000000000400611</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">33</span><span class="pun">&gt;:</span><span class="pln">    callq  </span><span class="lit">0x4004d0</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">printf@plt</span><span class="pun">&gt;</span></li><li class="L1"><span class="pln">   </span><span class="lit">0x0000000000400616</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">38</span><span class="pun">&gt;:</span><span class="pln">    mov    $0x0</span><span class="pun">,%</span><span class="pln">eax</span></li><li class="L2"><span class="pln">   </span><span class="lit">0x000000000040061b</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">43</span><span class="pun">&gt;:</span><span class="pln">    leaveq</span></li><li class="L3"><span class="pln">   </span><span class="lit">0x000000000040061c</span><span class="pln"> </span><span class="pun">&lt;+</span><span class="lit">44</span><span class="pun">&gt;:</span><span class="pln">    retq</span></li><li class="L4"><span class="typ">End</span><span class="pln"> of assembler </span><span class="kwd">dump</span><span class="pun">.</span></li></ol></pre></div><h3>[b] breakpoint 设定程式暂停点</h3><p>breakpoint 可以任何设定暂停点，通常我们会在文字比较 (<b>strncmp</b>) 的时候，暂停程式，检查两个文字的内容，分别是什么，breakpoint 有两种缩写可以使用， [break] & [b]。</p><p><code>b main</code> ， 当程式执行到 main 这个 function 时，程式会暂停</p><p><code>b *0x00000000004005f0</code> ， 当程式执行到这个记忆体 address 时，程式会暂停</p><p><code>info b </code> ， 列出所有设定过的 breakpoint</p><p><code>delete 1 </code> ， 移除第一个 breakpoint ，你必需先用 info b 来看看目前有哪些  breakpoint ，然后再用  delete 1 2 3 来移除 breakpoint 。</p><p>来看看 breakpoint 的执行过程：</p><div class="codeBlock cpp"><span class="title"> breakpoint example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> b main</span></li><li class="L1"><span class="typ">Breakpoint</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> at </span><span class="lit">0x4005f8</span><span class="pun">:</span><span class="pln"> file main</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">,</span><span class="pln"> line </span><span class="lit">5.</span></li><li class="L2"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> b </span><span class="pun">*</span><span class="lit">0x00000000004005f0</span></li><li class="L3"><span class="typ">Breakpoint</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> at </span><span class="lit">0x4005f0</span><span class="pun">:</span><span class="pln"> file main</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">,</span><span class="pln"> line </span><span class="lit">4.</span></li><li class="L4"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> info b</span></li><li class="L5"><span class="typ">Num</span><span class="pln">     </span><span class="typ">Type</span><span class="pln">           </span><span class="typ">Disp</span><span class="pln"> </span><span class="typ">Enb</span><span class="pln"> </span><span class="typ">Address</span><span class="pln">            </span><span class="typ">What</span></li><li class="L6"><span class="lit">5</span><span class="pln">       breakpoint     keep y   </span><span class="lit">0x00000000004005f8</span><span class="pln"> in main</span><span class="pun">()</span><span class="pln"> at main</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">:</span><span class="lit">5</span></li><li class="L7"><span class="lit">6</span><span class="pln">       breakpoint     keep y   </span><span class="lit">0x00000000004005f0</span><span class="pln"> in main</span><span class="pun">()</span><span class="pln"> at main</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">:</span><span class="lit">4</span></li><li class="L8"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">delete</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> </span><span class="lit">6</span></li></ol></pre></div><h3>[si] stepi 执行一行组语</h3><p>stepi 的缩写是  si ， stepi 代表只执行一行组语指令，每执行一行就会自动暂停。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> b main</span></li><li class="L1"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> run</span></li><li class="L2"><span class="pun">.</span></li><li class="L3"><span class="pun">.</span></li><li class="L4"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> si</span></li><li class="L5"><span class="lit">0x000000000040060c</span><span class="pln"> in main </span><span class="pun">()</span></li><li class="L6"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> si</span></li><li class="L7"><span class="lit">0x0000000000400611</span><span class="pln"> in main </span><span class="pun">()</span></li><li class="L8"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> si</span></li><li class="L9"><span class="lit">0x00000000004004d0</span><span class="pln"> in printf@plt </span><span class="pun">()</span></li></ol></pre></div><h3>[ni] nexti 执行一行组语</h3><p>nexti 的缩写是 [ni] ， next 跟 stepi 很像，也是执行一行组语，但不同的是 ，如果 nexti 遇到要 call 另外一个 function ，那么它会直接执行到该 function 结束，也就是说 nexti 不会暂停在其它的  function 。</p><h3>[n] next 执行到下一行 source code</h3><p>next 的缩写为 n ，程式码中的每一行都可以对应到组语中的其中一段程式，有可能一行程式码对到十行组语，如果你使用 [si] 或 [ni] 都只能一行执行一行组语，而若是我们想直接执行一个程式码，就可以使用 next ，有一点要特别注意的是，当你 compile 程式码的时候要使用 <code> g++ -g </code>，开始  debug mode 才能用这个功能 。</p><div class="codeBlock cpp"><span class="title"> next example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> b main</span></li><li class="L1"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> run</span></li><li class="L2"><span class="pun">.</span></li><li class="L3"><span class="pun">.</span></li><li class="L4"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> n</span></li><li class="L5"><span class="lit">5</span><span class="pln">           </span><span class="kwd">char</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="pun">*</span><span class="pln">message </span><span class="pun">=</span><span class="pln"> </span><span class="str">"How are you?"</span><span class="pun">;</span></li><li class="L6"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> n</span></li><li class="L7"><span class="lit">6</span><span class="pln">           printf</span><span class="pun">(</span><span class="str">"%s"</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">);</span></li></ol></pre></div><h3>[c] continue 执行到下一行 breakpoint</h3><p>continue 的缩写是 c ，功能很容易懂，就会直接执行直到下一个 breakpoint ，当然你要记得先设定 breakpoint ，例如 b *0x00000450400</p><h3>watch 观察特定变数</h3><p>watch 可以用来侦测那个变数的值有被修改，当指定的变数被更改时，程式会暂停，并印出更改前后的数值，这个功能一样要打开 debug 模式才能使用 (g++ -g)。</p><p><code>watch str</code> ， 观察变数 str</p><p><code>watch (t > 10)</code> ， 观察变数 t 是否大於  10</p><p>来看看 watch 的执行过程：</p><div class="codeBlock cpp"><span class="title"> watch example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> b main</span></li><li class="L1"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> run</span></li><li class="L2"><span class="pun">.</span></li><li class="L3"><span class="pun">.</span></li><li class="L4"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> watch message</span></li><li class="L5"><span class="typ">Hardware</span><span class="pln"> watchpoint </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> message</span></li><li class="L6"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> c</span></li><li class="L7"><span class="typ">Continuing</span><span class="pun">.</span></li><li class="L8"><span class="typ">Hardware</span><span class="pln"> watchpoint </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> message</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="typ">Old</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x0</span></li><li class="L1"><span class="typ">New</span><span class="pln"> value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x4006f4</span><span class="pln"> </span><span class="str">"How are you?"</span></li><li class="L2"><span class="pln">main </span><span class="pun">()</span><span class="pln"> at main2</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">:</span><span class="lit">13</span></li><li class="L3"><span class="lit">13</span><span class="pln">          printf</span><span class="pun">(</span><span class="str">"%s"</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">);</span></li></ol></pre></div><h3>frame</h3><p>所有的程式，每一个 function 都会被分配到一个 frame ，每个 frame 都是一个 组语 stack ，存放所有组语指令，然后再一行一行的执行，例如当程式执行到 printf 这个 function 的时候，就会进入该 printf frame 。</p><p><code>frame 1</code>， 进入 frame 1</p><p><code>up </code> ， 进入上一个 frame</p><p><code>down </code>， 进入下一个 frame</p><p><code>bt </code>， backtrace , 列出目前所有的 frame</p><p>来看看 frame 的执行过程：</p><div class="codeBlock cpp"><span class="title"> frame example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> bt</span></li><li class="L1"><span class="com">#0  0x00000000004004d0 in printf@plt ()</span></li><li class="L2"><span class="com">#1  0x0000000000400616 in showPassword () at main2.cc:5</span></li><li class="L3"><span class="com">#2  0x0000000000400625 in main () at main2.cc:11</span></li><li class="L4"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> frame </span><span class="lit">1</span></li><li class="L5"><span class="com">#1  0x0000000000400616 in showPassword () at main2.cc:5</span></li><li class="L6"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> down</span></li><li class="L7"><span class="com">#0  0x00000000004004d0 in printf@plt ()</span></li><li class="L8"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> up</span></li><li class="L9"><span class="com">#1  0x0000000000400616 in showPassword () at main2.cc:5</span></li></ol></pre></div><h3>print : 印出某个变数或 memory address  的数值</h3><div class="codeBlock cpp"><span class="title"> print example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> print x</span></li><li class="L1"><span class="pln">$1 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span></li></ol></pre></div><h3>printf : 一次印出两个以上的变数</h3><div class="codeBlock cpp"><span class="title"> printf example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> print </span><span class="str">"%d,%d&#92;n"</span><span class="pun">,</span><span class="pln">x</span><span class="pun">,</span><span class="pln">y</span></li><li class="L1"><span class="lit">5</span><span class="pun">,</span><span class="lit">2</span></li></ol></pre></div><h3>list 显示目前程式执行到那一行</h3><p>要使用这个功能的前提是你必须在编译的时候，带 <span style="color:#a00;"> -g </span>这个参数，</p><div class="codeBlock cpp"><span class="title"> list example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pun">(</span><span class="pln">gdb</span><span class="pun">)</span><span class="pln"> </span><span class="typ">list</span></li><li class="L1"><span class="lit">1</span><span class="pln">       </span><span class="com">#include</span><span class="pln"> </span><span class="str">"stdio.h"</span></li><li class="L2"><span class="lit">2</span><span class="pln">       </span><span class="typ">int</span><span class="pln"> main </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="lit">3</span><span class="pln">           </span><span class="kwd">char</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="pun">*</span><span class="pln">message </span><span class="pun">=</span><span class="pln"> </span><span class="str">"How are you?"</span><span class="pun">;</span></li><li class="L4"><span class="lit">4</span><span class="pln">           printf</span><span class="pun">(</span><span class="str">"%s"</span><span class="pun">,</span><span class="pln"> message</span><span class="pun">);</span></li><li class="L5"><span class="lit">5</span></li><li class="L6"><span class="lit">6</span><span class="pln">           </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L7"><span class="lit">7</span><span class="pln">       </span><span class="pun">}</span></li></ol></pre></div><h3>display : 当碰到  breakpoint 就印出某些个变数或 memory address  的数值</h3><h3>until : 执行完当前的回圈</h3><h3>finish : 执行完当前的 function</h3><h2>GDB test specific process</h2><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo gdb </span><span class="pun">-</span><span class="pln">p </span><span class="lit">21611</span><span class="pun">(</span><span class="pln">process id</span><span class="pun">)</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">b file</span><span class="pun">.</span><span class="pln">cc</span><span class="pun">:</span><span class="lit">277</span><span class="pln">  </span><span class="pun">(</span><span class="kwd">break</span><span class="pln"> point</span><span class="pun">)</span></li><li class="L3"><span class="pln">c </span><span class="pun">(</span><span class="kwd">continue</span><span class="pun">)</span></li><li class="L4"><span class="pln">bt </span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="com">///usr/bin/strace -Ttt -s 1000 -p  6</span></li></ol></pre></div><h1>dump void *</h1><p>x/20c (*r->useragent_addr)->ipaddr_ptr</p><p>使用 nm 查询 function 在哪一个 shared object 里：</p><blockquote>nm -C -A *.so | grep xxx_function</blockquote><h1>其它</h1><ul class="list">  <li>x/i $pc 用 hex 印出目前位置</li>  <li>x/20c $pc</li>  <li>set $pc=0x0804852b : 修改当前的 memory address ，可以在 call xxx 时使用。</li>  <li>info frame</li>  <li>info stack</li>  <li>info functions 列出所有 function</li>  <li>set {int}0x8048667=32 : 修改 memory value</li></ul><h2>相关文章</h2><ul class="list">  <li>GDB online documentation : <a href="https://sourceware.org/gdb/onlinedocs/gdb/"  target="_blank">https://sourceware.org/gdb/onlinedocs/gdb/</a></li>  <li>disass : <a href="https://sourceware.org/gdb/onlinedocs/gdb/Machine-Code.html"  target="_blank">https://sourceware.org/gdb/onlinedocs/gdb/Machine-Code.html</a></li>  <li>GDB Project : <a href="https://www.gnu.org/software/gdb/"  target="_blank">https://www.gnu.org/software/gdb/</a></li>  <li>Reverse Debugging: <a href="https://www.gnu.org/software/gdb/news/reversible.html"  target="_blank">https://www.gnu.org/software/gdb/news/reversible.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-03T15:23:44+08:00" class="article-modify-time">2016/09/03</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-329" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-329" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">GDB 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 c++</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-358-解決-Client-Server-在-32-64-Bit-中的不相容.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_358&quot;}'>解決 Client/Server 在 32/64 Bit 中的不相容 </a></li>
+    
+        <li><a href="/docs-blog/article-356-Apache-process-segmentation-fault-at-exit:-std-list-destructor.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_356&quot;}'>Apache process segmentation fault at exit: std list destructor </a></li>
+    
+        <li><a href="/docs-blog/article-329-如何使用-GDB-Debug.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_329&quot;}'>如何使用  GDB  Debug </a></li>
+    
+        <li><a href="/docs-blog/article-286-How-to-pass-the-paramater-of-Node.js-or-io.js-into-native-C-C++-function..html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="/docs-blog/article-136-C-C++-常用-function-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_136&quot;}'>C/C++ 常用 function 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-16-如何在Notepad++編譯-c-&amp;-c++-語言.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>如何在Notepad++編譯 c &amp; c++ 語言 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

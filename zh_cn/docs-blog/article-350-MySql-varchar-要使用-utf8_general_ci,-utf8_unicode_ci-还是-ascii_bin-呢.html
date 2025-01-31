@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 还是 ascii_bin 呢</title>
+    <meta name="keywords" content="MySql, varchar" />
+    <meta name="description" content="本篇文章的內容適用於 MySql 5.x 以上版本Varchar 在 MySql 中是一個很普通的欄位，幾乎每個 Table 都會被使用到，但是你知道 varchar(10) 這個設定到底可以存幾個字嗎，是 10 個英文字，還是 10 個中文字呢，一個 UTF8 編碼的中文字是需要 三個 bytes 的空間儲存，如果我們需要存 10 個中文字，那麼 Mysql 欄位至少要有 3" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/zh_cn/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-还是-ascii_bin-呢.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-还是-ascii_bin-呢.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/zh_cn/docs-blog-amp/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/Mysql" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Mysql</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-350">
+                    <em><span>MySql  varchar  要使用 ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-350-MySql-varchar-\u8981\u4f7f\u7528-utf8_general_ci,-utf8_unicode_ci-\u9084\u662f-ascii_bin-\u5462.html"},"headline":"MySql  varchar  \u8981\u4f7f\u7528  utf8_general_ci, utf8_unicode_ci \u9084\u662f ascii_bin \u5462","image":"","datePublished":"2016-04-07T13:23:19+08:00","dateModified":"2016-04-10T12:20:37+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u672c\u7bc7\u6587\u7ae0\u7684\u5167\u5bb9\u9069\u7528\u65bc MySql 5.x \u4ee5\u4e0a\u7248\u672c\rVarchar \u5728 MySql \u4e2d\u662f\u4e00\u500b\u5f88\u666e\u901a\u7684\u6b04\u4f4d\uff0c\u5e7e\u4e4e\u6bcf\u500b Table \u90fd\u6703\u88ab\u4f7f\u7528\u5230\uff0c\u4f46\u662f\u4f60\u77e5\u9053 varchar(10) \u9019\u500b\u8a2d\u5b9a\u5230\u5e95\u53ef\u4ee5\u5b58\u5e7e\u500b"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Apr</div>
+            <div class="day">07</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/zh_cn/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html"><span>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 还是 ascii_bin 呢</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=MySql">MySql</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=varchar">varchar</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><div class="notice" label="!">本篇文章的內容適用於 MySql 5.x 以上版本</div><p>Varchar 在 MySql 中是一個很普通的欄位，幾乎每個 Table 都會被使用到，但是你知道 <code>varchar(10)</code> 這個設定到底可以存幾個字嗎，是 10 個英文字，還是 10 個中文字呢，一個 UTF8 編碼的中文字是需要 三個 bytes 的空間儲存，如果我們需要存 10 個中文字，那麼 Mysql 欄位至少要有 30 Bytes 的空間，那問題就來了， <code>varchar(10)</code> 到底是 10 bytes 還是 30 bytes ?</p><p>如果 <code>varchar(10)</code>代表 30 bytes 空間，那麼我們可以存 10 個中文字或是 30 個英文字，若  <code>varchar(10)</code>代表 10 bytes 的空間，那麼我們只能存 3 個中文字或 10 個英文字，這樣聽起來是非常的不合理，有些 Table Field 例如 username ，這個欄位通常會被設計成固定字串長度，也就是說不管中英文字，我們希望他的最大字數是固定的。</p><p>其實 MySql varchar 中的 char 代表一個字元，不管是中文字或英文字都算一個，所以你定義了  <code>varchar(10)</code>代表你只能存放 10 個英文字或 10 個中文字，這樣還不算解決問題，因為剛剛有說 10 個中文字需要 30 Bytes 的空間，假如我只需要存 10 個英文字，那麼我總共只需要 10 Bytes 的空間，那另外多出來的  20 Bytes 不就浪費了嗎?</p><h2>utf8_unicode_ci vs ascii_bin</h2><p>好在 MySql 有定義很多種 collations 來處理 varchar，如果我們的 varchar 欄位只需要存放英文跟特殊符號，可以使用 <code> ascii_bin </code> 這個 collations， 如果 varchar 欄位需要存放中文字，那麼我們就要使用 <code> utf8_unicode_ci </code> 或是 <code> utf8_general_ci </code>。</p><p>例如我先建立一個 Table，分別定義了 <code> varchar(10) ascii_bin</code> 與 <code> varchar(10) utf8_unicode_ci</code>：</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sql linenums" ><ol class="linenums"><li class="L0"><span class="pln">CREATE TABLE </span><span class="str">`test`</span><span class="pln"> </span><span class="pun">(</span></li><li class="L1"><span class="pln">  </span><span class="str">`ename`</span><span class="pln"> varchar</span><span class="pun">(</span><span class="lit">10</span><span class="pun">)</span><span class="pln"> CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL</span><span class="pun">,</span></li><li class="L2"><span class="pln">  </span><span class="str">`cname`</span><span class="pln"> varchar</span><span class="pun">(</span><span class="lit">10</span><span class="pun">)</span><span class="pln"> COLLATE utf8_unicode_ci DEFAULT NULL</span></li><li class="L3"><span class="pun">)</span><span class="pln"> ENGINE</span><span class="pun">=</span><span class="typ">MyISAM</span><span class="pln"> DEFAULT CHARSET</span><span class="pun">=</span><span class="pln">utf8 COLLATE</span><span class="pun">=</span><span class="pln">utf8_unicode_ci</span></li></ol></pre></div><h3>varchar(10) ascii_bin</h3><p>接著我在 ename 這個欄位插入兩筆資料，分別是 10 個英文字 與 1 個中文字，英文字的部分可以正確的存入，但是中文字就會被阻擋下來，請看下面的 demo。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sql linenums" ><ol class="linenums"><li class="L0"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> insert </span><span class="kwd">into</span><span class="pln"> test</span><span class="pun">(</span><span class="pln">ename</span><span class="pun">)</span><span class="pln"> values</span><span class="pun">(</span><span class="str">&#39;0123456789&#39;</span><span class="pun">);</span></li><li class="L1"><span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.00</span><span class="pln"> sec</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> insert </span><span class="kwd">into</span><span class="pln"> test</span><span class="pun">(</span><span class="pln">ename</span><span class="pun">)</span><span class="pln"> values</span><span class="pun">(</span><span class="str">&#39;中&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">ERROR </span><span class="lit">1366</span><span class="pln"> </span><span class="pun">(</span><span class="pln">HY000</span><span class="pun">):</span><span class="pln"> </span><span class="typ">Incorrect</span><span class="pln"> </span><span class="kwd">string</span><span class="pln"> value</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;&#92;xE4&#92;xB8&#92;xAD&#39;</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> column </span><span class="str">&#39;ename&#39;</span><span class="pln"> at row </span><span class="lit">1</span></li></ol></pre></div><h3>varchar(10) utf8_unicode_ci</h3><p>再來我要在 cname 這個欄位插入兩筆資料，分別是 10 個中文字與 11 個中文字，第二筆資料會因為長度過長而被擋下。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sql linenums" ><ol class="linenums"><li class="L0"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> insert </span><span class="kwd">into</span><span class="pln"> test</span><span class="pun">(</span><span class="pln">cname</span><span class="pun">)</span><span class="pln"> values</span><span class="pun">(</span><span class="str">&#39;一二三四五六七八九十&#39;</span><span class="pun">);</span></li><li class="L1"><span class="typ">Query</span><span class="pln"> OK</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> row affected </span><span class="pun">(</span><span class="lit">0.00</span><span class="pln"> sec</span><span class="pun">)</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">mysql</span><span class="pun">&gt;</span><span class="pln"> insert </span><span class="kwd">into</span><span class="pln"> test</span><span class="pun">(</span><span class="pln">cname</span><span class="pun">)</span><span class="pln"> values</span><span class="pun">(</span><span class="str">&#39;一二三四五六七八九十一&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">ERROR </span><span class="lit">1406</span><span class="pln"> </span><span class="pun">(</span><span class="lit">22001</span><span class="pun">):</span><span class="pln"> </span><span class="typ">Data</span><span class="pln"> too </span><span class="kwd">long</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> column </span><span class="str">&#39;cname&#39;</span><span class="pln"> at row </span><span class="lit">1</span></li></ol></pre></div><p>對 MySql 來說 <code>varchar(10) collate ascii_bin</code> 這種欄位只佔了 10  Bytes ，而且只能儲存英文字與符號，<code>varchar(10) collate utf8_unicode_ci</code> 與  <code>varchar(10) collate utf8_general_ci</code> 則是佔了 30 Bytes ，可以儲存英文字，符號，跟中文字，如果你的欄位只需要儲存英文，那麼請使用 <code>ascii_bin</code>就好。</p><table class="table"><tr><th>field</th><th>collate</th><th>value</th><th>valid</th></tr><tr><td>varchar(10)</td><td>ascii_bin</td><td>10個英文</td><td>O</td></tr><tr><td>varchar(10)</td><td>ascii_bin</td><td>11個英文</td><td>X</td></tr><tr><td>varchar(10)</td><td>ascii_bin</td><td>1個中文</td><td>X</td></tr><tr><td>varchar(10)</td><td>utf8_unicode_ci</td><td>10個英文</td><td>O</td></tr><tr><td>varchar(10)</td><td>utf8_unicode_ci</td><td>11個英文</td><td>X</td></tr><tr><td>varchar(10)</td><td>utf8_unicode_ci</td><td>10個中文</td><td>O</td></tr><tr><td>varchar(10)</td><td>utf8_unicode_ci</td><td>11個中文</td><td>X</td></tr></table><h2>utf8_general_ci vs utf8_unicode_ci</h2><h3>精準度</h3><p>utf8_unicode_ci 在對文字排序上會比 utf8_general_ci 更精準，utf8_general_ci 是一種簡易化的排序規則，這個規則會把一些相似文字的定義成同一層排序，所以文字排序上無法像 utf8_unicode_ci 這麼精準。</p><p>例如有一些拉丁字母  "ÀÁÅåāă" ，在 utf8_general_ci 的排序規則下，是等同於英文字母 "A"。</p> <br /> <br /><h3>效能</h3><p>utf8_general_ci 的效能會比 utf8_unicode_ci 好一些，不過影響的效能很小，很難感受出差別，除非你真的很在意這種微小的效能差異，否則建議使用 utf8_unicode_ci 就可以了。</p> <br /><h2>相關文章</h2><ul class="list">  <li><a href="https://forums.mysql.com/read.php?103,187048,188748"  target="_blank">https://forums.mysql.com/read.php?103,187048,188748</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-04-10T12:20:37+08:00" class="article-modify-time">2016/04/10</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-350" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-350" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">MySql 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Mysql</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-269-Oracle-語法記錄.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_269&quot;}'>Oracle 語法記錄 </a></li>
+    
+        <li><a href="/docs-blog/article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_229&quot;}'>Mysql 啟動失敗： Can not open the mysql.plugin table </a></li>
+    
+        <li><a href="/docs-blog/article-76-Mysql-語法-基礎篇.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+        <li><a href="/docs-blog/article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>20萬筆資料，Mysql資料庫就跑不動囉! (排序相關) </a></li>
+    
+        <li><a href="/docs-blog/article-13-Mysql-Index,-Unique-效能提升.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>Mysql Index, Unique 效能提升 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>
