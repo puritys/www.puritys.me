@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>如何用 Dockerfile 自制一个 Docker image / Container</title>
+    <meta name="keywords" content="Docker, centos" />
+    <meta name="description" content="這篇文章將會帶你一步一步的建立 Docker Container 並裝好一個網頁伺服器 (apache) ，如果你還沒安裝過 docker ，那麼你可以先讀文章 https://www.puritys.me/docs-blog/article-309 。首先我使用的是 Mac 環境，如果你不是用 Mac 也不用擔心，操作步驟是一樣的，一開始要建立一個檔案叫 Dockerfile" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-362-如何用-Dockerfile-自制一个-Docker-image-Container.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-362-如何用-Dockerfile-自制一个-Docker-image-Container.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-362.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-362.html">
+                    <em><span>如何用 Dockerfile 自制一个 ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-362-\u5982\u4f55\u7528-Dockerfile-\u81ea\u88fd\u4e00\u500b-Docker-image-Container.html"},"headline":"\u5982\u4f55\u7528 Dockerfile \u81ea\u88fd\u4e00\u500b Docker image \/ Container","image":"","datePublished":"2016-06-27T23:24:39+08:00","dateModified":"2016-11-28T00:25:32+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u9019\u7bc7\u6587\u7ae0\u5c07\u6703\u5e36\u4f60\u4e00\u6b65\u4e00\u6b65\u7684\u5efa\u7acb Docker Container \u4e26\u88dd\u597d\u4e00\u500b\u7db2\u9801\u4f3a\u670d\u5668 (apache) \uff0c\u5982\u679c\u4f60\u9084\u6c92\u5b89\u88dd\u904e  docker  \uff0c\u90a3\u9ebc\u4f60\u53ef\u4ee5\u5148\u8b80\u6587\u7ae0 https:\/\/www.purit"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Jun</div>
+            <div class="day">27</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-362-如何用-Dockerfile-自製一個-Docker-image-Container.html"><span>如何用 Dockerfile 自制一个 Docker image / Container</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Docker">Docker</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=centos">centos</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-362.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>这篇文章将会带你一步一步的建立 Docker Container 并装好一个网页伺服器 (apache) ，如果你还没安装过  docker  ，那么你可以先读文章 <a href="../../docs-blog/article-309.html"  target="_blank">https://www.puritys.me/docs-blog/article-309</a> 。</p><p>首先我使用的是 Mac 环境，如果你不是用 Mac 也不用担心，操作步骤是一样的，一开始要建立一个档案叫 <b>Dockerfile</b>，我想要安装的 OS  是最新版的 Centos ，所以第一行我要写 FROM centos ，如果你想指定 OS  版本，那么你也可以写 FROM centos:7，预设没有指定版号的话， Docker 会去抓最新版。</p><div class="codeBlock html"><span class="title"> dockerfile init</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM centos</span></li><li class="L1"><span class="pln">MAINTAINER <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa2a2a29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a></span></li></ol></pre></div><p>建好 Dockerfile 之后，我们输入指令 "<b>docker build . </b>" ，这时 docker 会自动帮我们下载 Centos image 然后安装在机器上，成功后，输入 docker images 就会看到安装好的 images 如下，整个 OS 只有 196.8 MB 是不是非常小巧的 Linux 系统呢，如果你的 Docker 设定档不是命名为 Dockerfile ，那么你可以自已指定 Dockerfile 名称： <b> docker build -f myDockerfile </b>。</p><div class="codeBlock term"><span class="title"> docker images</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span></li><li class="L1"><span class="pln">centos              latest              </span><span class="lit">904d6c400333</span><span class="pln">        </span><span class="lit">4</span><span class="pln"> weeks ago         </span><span class="lit">196.8</span><span class="pln"> MB</span></li></ol></pre></div><h2>安装网页伺服器： Apache web service</h2><p>上一步只是装好一个简单的 OS 系统，接著我们要装上一些必备软体， dockerfile 中可以使用  <em>RUN</em> 来执行 Linux 指令，所以我们用 RUN 加上 yum 就可以安装各种软体，一开始一定要先执行 yum update -y  先更新软体清单，再来使用 yum install -y  ... 来安装我们需要的软体，这里我安装了 httpd (Web service) 与 PHP，MySQL 资料库 ，还有一些常用的小工具，方便我们测试如 vim, net-tool, telnet。</p><p>请在 dockerfile 中加下以下四行。</p><div class="codeBlock html"><span class="title"> </span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">RUN yum update -y</span></li><li class="L1"><span class="pln">RUN yum install -y httpd vim net-tools</span></li><li class="L2"><span class="pln">RUN yum install -y php-mysql php </span></li><li class="L3"><span class="pln">RUN yum install -y mariadb-server mariadb telnet</span></li></ol></pre></div><p>再执行一次 "<b>docker build .</b>" 这个指令，docker 会再建立一个 Centos image ，并且在这个 image 中，已经安装好我所指定的那些软体，这时我再输入一次 docker images 就会看到一个新的 image ，它的 ID 是 7513cc650b6f。</p><div class="codeBlock term"><span class="title"> </span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pln">docker images</span></li><li class="L1"><span class="pln">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span></li><li class="L2"><span class="str">&lt;none&gt;</span><span class="pln">              </span><span class="str">&lt;none&gt;</span><span class="pln">              </span><span class="lit">7513cc650b6f</span><span class="pln">        </span><span class="lit">16</span><span class="pln"> minutes ago      </span><span class="lit">801.2</span><span class="pln"> MB</span></li><li class="L3"><span class="pln">centos              latest              </span><span class="lit">904d6c400333</span><span class="pln">        </span><span class="lit">4</span><span class="pln"> weeks ago         </span><span class="lit">196.8</span><span class="pln"> MB</span></li></ol></pre></div><h3>启动 Apache server</h3><p>这个新的 image 已经安装好 web service 了，我们就可以启动它，但是我们得先用 "<b>docker run -t -i 7513cc650b6f /bin/bash</b>" 这个指定开启 Centos Container 并且登入 ，然后再输入指令 "/usr/sbin/httpd -f /etc/httpd/conf/httpd.conf &" 来启动 Apache Server。</p><p>完成后，必须先确认 web server 80 port 是否有开启，这时我们刚刚安装的小工具就派上用场了，输入 telnet localhost 80 看看是否有连线成功。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www@ </span><span class="pun">/]#</span><span class="pln"> docker run </span><span class="pun">-</span><span class="pln">t </span><span class="pun">-</span><span class="pln">i </span><span class="lit">7513cc650b6f</span><span class="pln"> </span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">bash</span></li><li class="L1"><span class="pun">[</span><span class="pln">root@828e8782d60d </span><span class="pun">/]#</span><span class="pln"> </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">sbin</span><span class="pun">/</span><span class="pln">httpd </span><span class="pun">-</span><span class="pln">f </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">httpd</span><span class="pun">/</span><span class="pln">conf</span><span class="pun">/</span><span class="pln">httpd</span><span class="pun">.</span><span class="pln">conf </span><span class="pun">&amp;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln"> AH00558</span><span class="pun">:</span><span class="pln"> httpd</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Could</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> reliably determine the server</span><span class="str">&#39;s fully qualified domain name, using 172.17.0.2. Set the &#39;</span><span class="typ">ServerName</span><span class="str">&#39; directive globally to suppress this message</span></li><li class="L4"><span class="str">&nbsp;</span></li><li class="L5"><span class="str">[1]+  Done                    /usr/sbin/httpd -f /etc/httpd/conf/httpd.conf</span></li><li class="L6"><span class="str">&nbsp;</span></li><li class="L7"><span class="str">[root@828e8782d60d /]# telnet localhost 80</span></li><li class="L8"><span class="str">Trying ::1...</span></li><li class="L9"><span class="str">Connected to localhost.</span></li><li class="L0"><span class="str">Escape character is &#39;</span><span class="pun">^]</span><span class="str">&#39;.</span></li></ol></pre></div><p>这个 container 的 web server 已经启动，但是如果我想要从外部的机器连到 container  的 web server ，这是不允许的，Docker 预设是不允许任何外面的机器直接连线进 container 。</p><p>例如我在 Mac terminal 中先用  docker-machine ip 找出 docker host 的 IP，再用 telnet 192.168.99.100 80 ，会发现根本就无法连进这台机器，使用  "curl -k <a href="http://192.168.99.100" 也是无效。"  target="_blank">http://192.168.99.100" 也是无效。</a></p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www</span><span class="pun">]@</span><span class="pln"> </span><span class="pun">~</span><span class="pln"> $ docker</span><span class="pun">-</span><span class="pln">machine ip</span></li><li class="L1"><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pun">[</span><span class="pln">www</span><span class="pun">]@</span><span class="pln"> </span><span class="pun">~</span><span class="pln"> $ telnet </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pln"> </span><span class="lit">80</span></li><li class="L4"><span class="typ">Trying</span><span class="pln"> </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pun">...</span></li><li class="L5"><span class="pln">telnet</span><span class="pun">:</span><span class="pln"> connect to address </span><span class="lit">192.168</span><span class="pun">.</span><span class="lit">99.100</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Connection</span><span class="pln"> refused</span></li><li class="L6"><span class="pln">telnet</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Unable</span><span class="pln"> to connect to remote host</span></li></ol></pre></div><h2>如何打开 container port</h2><p>打开 container 80 port  的方式很简单，使用 "-p 80:80" 即可，这句话是告诉 docker host ，host 的 80 port 会直接连进这个 container 80 port 。</p><p>所以我们用 exit 把 container 关掉，重新再启动一次 container 并指定打开 80 port 。</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www@ </span><span class="pun">/]#</span><span class="pln"> docker run </span><span class="pun">-</span><span class="pln">t </span><span class="pun">-</span><span class="pln">i </span><span class="pun">-</span><span class="pln">p </span><span class="lit">80</span><span class="pun">:</span><span class="lit">80</span><span class="pln"> </span><span class="lit">7513cc650b6f</span><span class="pln"> </span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">bash</span></li><li class="L1"><span class="pun">[</span><span class="pln">root@6629dcac3090 </span><span class="pun">/]#</span><span class="pln">  </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">sbin</span><span class="pun">/</span><span class="pln">httpd </span><span class="pun">-</span><span class="pln">f </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">httpd</span><span class="pun">/</span><span class="pln">conf</span><span class="pun">/</span><span class="pln">httpd</span><span class="pun">.</span><span class="pln">conf </span><span class="pun">&amp;</span></li></ol></pre></div><p>这时你在 Mac 用 "curl -k <a href="http://192.168.99.100/"  target="_blank">http://192.168.99.100/</a>" 是不是就能顺利的收到 Container apache server 的 Response 了。</p><h2>执行 PHP</h2><p>再来我想要执行一个简单的 PHP 档，我写了一个 test.php ，内容只写一句简单的 echo "My first docker"; 。</p><p>建好这个档案之后，我们把 test.php 与 Dockerfile 放在同一个目录下，接著我想要把这个档案 copy 进 image 里面，并且自动 commit 。</p><p>我们只要在 Dockerfile 加入下面这行，然后再次执行 "<b>docker build .</b>"，Docker 就会帮我们把这个档案  commit 到 7513cc650b6f 这个 image 里，而且更改 IMAGE ID 成 d95cd1ef50dc</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">COPY test.php /var/www/html/</span></li></ol></pre></div><p>查看新的 images 列表如下：</p><div class="codeBlock term"><span class="title">Example</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">www@ </span><span class="pun">]</span><span class="pln"> $ docker images</span></li><li class="L1"><span class="pln">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span></li><li class="L2"><span class="str">&lt;none&gt;</span><span class="pln">              </span><span class="str">&lt;none&gt;</span><span class="pln">              d95cd1ef50dc        </span><span class="lit">15</span><span class="pln"> minutes ago      </span><span class="lit">801.2</span><span class="pln"> MB</span></li><li class="L3"><span class="pln">centos              latest              </span><span class="lit">904d6c400333</span><span class="pln">        </span><span class="lit">4</span><span class="pln"> weeks ago         </span><span class="lit">196.8</span><span class="pln"> MB</span></li></ol></pre></div><p>你再重新启动一次新的 container，检查一下 /var/www/html 这个目录是不是已经存在 test.php 了呢。</p><p>在 container 中启动 apache server ， 测试一下 PHP 是否也可以正确运作。</p><div class="codeBlock html"><span class="title"> 整个 Dockerfile 如下</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM centos</span></li><li class="L1"><span class="pln">MAINTAINER <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="79010101391e14181015571a1614">[email&#160;protected]</a></span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">RUN yum update -y</span></li><li class="L4"><span class="pln">RUN yum install -y httpd vim net-tools</span></li><li class="L5"><span class="pln">RUN yum install -y php-mysql php </span></li><li class="L6"><span class="pln">RUN yum install -y mariadb-server mariadb telnet</span></li></ol></pre></div><h3>Docker images list</h3><ul class="list">  <li><a href="https://hub.docker.com/explore/"  target="_blank">https://hub.docker.com/explore/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-28T00:25:32+08:00" class="article-modify-time">2016/11/28</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-362" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-362" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-309.html">在 Mac 中使用 Docker</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-393.html">用 Docker 取代 VirtualBox - 建立  Linux 環境</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="https://www.puritys.me/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Docker 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-403.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="../../docs-blog/article-393.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_393&quot;}'>用 Docker 取代 VirtualBox - 建立  Linux 環境 </a></li>
+    
+        <li><a href="../../docs-blog/article-363.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_363&quot;}'>Docker vs Virtual Machine </a></li>
+    
+        <li><a href="../../docs-blog/article-309.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">centos 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-393.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_393&quot;}'>用 Docker 取代 VirtualBox - 建立  Linux 環境 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

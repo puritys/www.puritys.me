@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Mysql 启动失败： Can not open the mysql.plugin table</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 最近將伺服器搬家，於是將原機器所裝的軟體改裝到新機器，並且 OS 從 CentOS 5.8 升到 CentOS 6.5，結果其中一個軟體 Mysql 一直有問題。 Mysql Error 140216 13:56:04 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid endednbsp;140216 13" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-229-Mysql-启动失败：-Can-not-open-the-mysql.plugin-table.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-229-Mysql-启动失败：-Can-not-open-the-mysql.plugin-table.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-229.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Mysql" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Mysql</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-229.html">
+                    <em><span>Mysql 启动失败： Can not ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-229-Mysql-\u555f\u52d5\u5931\u6557\uff1a-Can-not-open-the-mysql.plugin-table.html"},"headline":"Mysql \u555f\u52d5\u5931\u6557\uff1a Can not open the mysql.plugin table","image":"","datePublished":"2014-02-16T14:09:07+08:00","dateModified":"2016-06-28T18:13:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u6700\u8fd1\u5c07\u4f3a\u670d\u5668\u642c\u5bb6\uff0c\u65bc\u662f\u5c07\u539f\u6a5f\u5668\u6240\u88dd\u7684\u8edf\u9ad4\u6539\u88dd\u5230\u65b0\u6a5f\u5668\uff0c\u4e26\u4e14 OS \u5f9e CentOS 5.8 \u5347\u5230 CentOS 6.5\uff0c\u7d50\u679c\u5176\u4e2d\u4e00\u500b\u8edf\u9ad4 Mysql \u4e00\u76f4\u6709\u554f\u984c\u3002\r Mysql Error \r14"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Feb</div>
+            <div class="day">16</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-229-Mysql-啟動失敗：-Can-not-open-the-mysql.plugin-table.html"><span>Mysql 启动失败： Can not open the mysql.plugin table</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-229.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>最近将伺服器搬家，於是将原机器所装的软体改装到新机器，并且 OS 从 CentOS 5.8 升到 CentOS 6.5，结果其中一个软体 Mysql 一直有问题。</p><div class="codeBlock shell"><span class="title"> Mysql Error </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="lit">140216</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">56</span><span class="pun">:</span><span class="lit">04</span><span class="pln"> mysqld_safe mysqld </span><span class="kwd">from</span><span class="pln"> pid file </span><span class="pun">/</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">run</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">.</span><span class="pln">pid ended</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="lit">140216</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">56</span><span class="pun">:</span><span class="lit">05</span><span class="pln"> mysqld_safe </span><span class="typ">Starting</span><span class="pln"> mysqld daemon </span><span class="kwd">with</span><span class="pln"> databases </span><span class="kwd">from</span><span class="pln"> </span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span><span class="pln">data</span><span class="pun">/</span><span class="pln">mysqldata</span><span class="pun">/</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="str">/usr/</span><span class="pln">mysql</span><span class="pun">/</span><span class="pln">libexec</span><span class="pun">/</span><span class="pln">mysqld</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Table</span><span class="pln"> </span><span class="str">&#39;mysql.plugin&#39;</span><span class="pln"> doesn</span><span class="str">&#39;t exist</span></li><li class="L5"><span class="str">&nbsp;</span></li><li class="L6"><span class="str">140216 13:56:05 [ERROR] Can&#39;</span><span class="pln">t open the mysql</span><span class="pun">.</span><span class="pln">plugin table</span><span class="pun">.</span><span class="pln"> </span><span class="typ">Please</span><span class="pln"> run mysql_upgrade to create it</span><span class="pun">.</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="lit">140216</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">56</span><span class="pun">:</span><span class="lit">05</span><span class="pln"> </span><span class="pun">[</span><span class="pln">ERROR</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Can</span><span class="str">&#39;t open and lock privilege tables: Table &#39;</span><span class="pln">mysql</span><span class="pun">.</span><span class="pln">servers</span><span class="str">&#39; doesn&#39;</span><span class="pln">t exist</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="lit">140216</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">56</span><span class="pun">:</span><span class="lit">05</span><span class="pln"> </span><span class="pun">[</span><span class="pln">ERROR</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Column</span><span class="pln"> count of mysql</span><span class="pun">.</span><span class="pln">db </span><span class="kwd">is</span><span class="pln"> wrong</span><span class="pun">.</span><span class="pln"> </span><span class="typ">Expected</span><span class="pln"> </span><span class="lit">22</span><span class="pun">,</span><span class="pln"> found </span><span class="lit">20.</span><span class="pln"> </span><span class="typ">Created</span><span class="pln"> </span><span class="kwd">with</span><span class="pln"> </span><span class="typ">MySQL</span><span class="pln"> </span><span class="lit">50024</span><span class="pun">,</span><span class="pln"> now running </span><span class="lit">50170.</span><span class="pln"> </span><span class="typ">Please</span><span class="pln"> </span><span class="kwd">use</span><span class="pln"> mysql_upgrade to fix </span><span class="kwd">this</span><span class="pln"> error</span><span class="pun">.</span></li></ol></pre></div><p>首先我使用 mysql_upgrade 更新资料库看看，结果如下：</p><div class="codeBlock shell"><span class="title"> mysql_upgrade</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="typ">Looking</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> </span><span class="str">&#39;mysql&#39;</span><span class="pln"> </span><span class="kwd">as</span><span class="pun">:</span><span class="pln"> mysql</span></li><li class="L1"><span class="typ">Looking</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> </span><span class="str">&#39;mysqlcheck&#39;</span><span class="pln"> </span><span class="kwd">as</span><span class="pun">:</span><span class="pln"> mysqlcheck</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="typ">Running</span><span class="pln"> </span><span class="str">&#39;mysqlcheck with default connection arguments</span></li><li class="L4"><span class="str">&nbsp;</span></li><li class="L5"><span class="str">mysqlcheck: Got error: 2002: Can&#39;</span><span class="pln">t connect to </span><span class="kwd">local</span><span class="pln"> </span><span class="typ">MySQL</span><span class="pln"> server through socket </span><span class="str">&#39;/tmp/mysql.sock&#39;</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">when</span><span class="pln"> trying to connect</span></li><li class="L6"><span class="pln">FATAL ERROR</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Upgrade</span><span class="pln"> failed</span></li></ol></pre></div><p>在这里有看到一个 error 2002 ，去 Mysql 官网查询后，发现是  <b>Permission Deny</b> ，一开始想说可能是我的资料库 owner 并不是 「<b>mysql</b>」这个帐号，但是我启动 mysql 时，有指定 <em>--user=mysql</em>， 接著我使用指令</p><div class="notice" label="notice"><b>sudo chown -R  mysql:mysql /mysqldata</b></div><p>将资料库档案的 owner , group 全部改掉，都改成 Mysql。</p><p>但是改完之后，问题仍然存在，后来追查下发现  <em>/etc/my.cnf </em>这个 Mysql config  的设定没有更新到，於是我更新这个档案，加入如下的设定后， Mysql 就能正常的启动罗</p><div class="codeBlock shell"><span class="title"> my.cnf</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">mysqld</span><span class="pun">]</span><span class="pln"> </span></li><li class="L1"><span class="pln">datadir</span><span class="pun">=/</span><span class="pln">mysqldata </span></li><li class="L2"><span class="pln">socket</span><span class="pun">=</span><span class="str">/tmp/</span><span class="pln">mysql</span><span class="pun">.</span><span class="pln">sock </span></li><li class="L3"><span class="pun">[</span><span class="pln">client</span><span class="pun">]</span><span class="pln"> </span></li><li class="L4"><span class="pln">socket</span><span class="pun">=</span><span class="str">/tmp/</span><span class="pln">mysql</span><span class="pun">.</span><span class="pln">sock</span></li></ol></pre></div><h2>问题 2 : mariadb.pid</h2><p>Mysql 不知为何，突然说无法建立这个档案 /var/run/mariadb/mariadb.pid</p><div class="codeBlock html"><span class="title"> log file: /var/log/mariadb/mariadb.log</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">160226 16:10:27 mysqld_safe Starting mysqld daemon with databases from /var/MysqlData/</span></li><li class="L1"><span class="pln">160226 16:10:27 [ERROR] /usr/local/share/mysql/libexec/mysqld: Can&#39;t create/write to file &#39;/var/run/mariadb/mariadb.pid&#39; (Errcode: 13)</span></li><li class="L2"><span class="pln">160226 16:10:27 [ERROR] Can&#39;t start server: can&#39;t create PID file: Permission denied</span></li><li class="L3"><span class="pln">160226 16:10:27 mysqld_safe mysqld from pid file /var/run/mariadb/mariadb.pid ended</span></li></ol></pre></div><p>解决方式为建立 /var/log/mariadb/, /var/run/mariadb/ 资料夹 ，并将这个资料夹的权限改成 777 或是 owner 改成 mysql 。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-06-28T18:13:10+08:00" class="article-modify-time">2016/06/28</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-229" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-229" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Mysql</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-350.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="../../docs-blog/article-304.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="../../docs-blog/article-269.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_269&quot;}'>Oracle 語法記錄 </a></li>
+    
+        <li><a href="../../docs-blog/article-229.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_229&quot;}'>Mysql 啟動失敗： Can not open the mysql.plugin table </a></li>
+    
+        <li><a href="../../docs-blog/article-76.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+        <li><a href="../../docs-blog/article-17.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>20萬筆資料，Mysql資料庫就跑不動囉! (排序相關) </a></li>
+    
+        <li><a href="../../docs-blog/article-13.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>Mysql Index, Unique 效能提升 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

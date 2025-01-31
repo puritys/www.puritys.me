@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第三天 Node  Plugin</title>
+    <meta name="keywords" content="YUI3 ,  Javascript" />
+    <meta name="description" content="前言: Node Plugin這篇本章會介紹如何製作 YUI Plugin ，使用 YUI Plugin ，Plugin 到底是什麼呢? 相信這個字眼大家都很常見，Plugin就是外掛，在YUI3 中，他可以掛在 node(html tag object) 身上的，所以要先取得 node 物件，再把 plugin 功能掛上去，在開始使用之前呢，要記得載入 plugin 喔 (Y" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-84-我讨厌-YUI-3-.....第三天-Node-Plugin.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-84-我讨厌-YUI-3-.....第三天-Node-Plugin.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-84.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-84.html">
+                    <em><span>我讨厌 YUI 3 .....第三天 N...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-84-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u4e09\u5929-Node-Plugin.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u4e09\u5929 Node  Plugin","image":"","datePublished":"2011-12-23T02:57:14+08:00","dateModified":"2016-09-25T17:18:46+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u524d\u8a00: Node Plugin\r\u9019\u7bc7\u672c\u7ae0\u6703\u4ecb\u7d39\u5982\u4f55\u88fd\u4f5c YUI Plugin \uff0c\u4f7f\u7528 YUI Plugin \uff0cPlugin \u5230\u5e95\u662f\u4ec0\u9ebc\u5462? \u76f8\u4fe1\u9019\u500b\u5b57\u773c\u5927\u5bb6\u90fd\u5f88\u5e38\u898b\uff0cPlugin\u5c31\u662f\u5916\u639b\uff0c\u5728YUI3 "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-84-我討厭-YUI-3-.....第三天-Node-Plugin.html"><span>我讨厌 YUI 3 .....第三天 Node  Plugin</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Javascript">Javascript</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-84.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>前言: Node Plugin</h2><p>这篇本章会介绍如何制作 YUI Plugin ，使用 YUI Plugin ，Plugin 到底是什么呢? 相信这个字眼大家都很常见，Plugin就是外挂，在YUI3 中，他可以挂在 node(html tag object) 身上的，所以要先取得 node 物件，再把 plugin 功能挂上去，在开始使用之前呢，要记得载入 plugin 喔 (YUI().use(&#39;plugin&#39;) )。</p><h2>YUI Node Plugin 属性</h2><ul class="list">  <li>NS : namespace , 命名空间，简单说就是取一个不会跟别人冲到的名称</li>  <li>NAME : Plugin 名称</li>  <li>ATTRS : 一些相关的属性? 待补充</li></ul><h2>YUI Node Plugin Prototype</h2><p>Node Plugin 的使用非常的简单，只要使用 Javascript 一般的 prototype 功能，将新的 function 写进 prototype 即可完成一个简单的 node plugin。</p><p>现在就写一个简单的 Javascript，指定将所有的 anchor 变成<b>灰色</b>，首先定义一个 function Object (<em>在 Javascript 的世界里 ， function = object , object = function</em>) ， 接著给他一个 Namespace ，之后要使用这个 Plugin 时，都要用这个 Namespace 来呼叫，最后再写一段将 anchor 变成灰色的语法。</p><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">YUI</span><span class="pun">().</span><span class="kwd">use</span><span class="pun">(</span><span class="str">&#39;node&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">Y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> </span><span class="typ">NewMethod</span><span class="pun">(</span><span class="pln">config</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">_node </span><span class="pun">=</span><span class="pln"> config</span><span class="pun">.</span><span class="pln">host</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="typ">NewMethod</span><span class="pun">.</span><span class="pln">NS </span><span class="pun">=</span><span class="pln"> </span><span class="str">"proto"</span></li><li class="L5"><span class="typ">NewMethod</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">.</span><span class="pln">disable </span><span class="pun">=</span><span class="kwd">function</span><span class="pun">(){</span></li><li class="L6"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> node </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">_node</span><span class="pun">;</span></li><li class="L7"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> nodes </span><span class="pun">=</span><span class="pln"> node</span><span class="pun">.</span><span class="pln">all</span><span class="pun">(</span><span class="str">"a"</span><span class="pun">);</span></li><li class="L8"><span class="pln">   nodes</span><span class="pun">.</span><span class="pln">setStyles</span><span class="pun">({</span><span class="pln">color</span><span class="pun">:</span><span class="str">"#cecece"</span><span class="pun">});</span><span class="pln"> </span><span class="com">//Give gray color to  node&#39;s font.</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pun">}</span></li></ol></pre></div><h2>把 Plugin 绑进 Node 里</h2><p>上一段已经把 Plugin 都写好了，这里就直接把 Plugin 挂上Node，挂上去之后 Node就可以透过刚刚给定的 Namespace 来操作新的功能。</p><ul class="list">  <li>node.plug : 绑定 plugin 语法</li>  <li>node.unplug : 拿掉 plugin 语法，这个语法只会拿掉 plugin 的 method，不会将颜色变回来，unplug 会执行 destroy method ，如果你要把颜色变回来，就得实做 destroy method，以及继承 YUI 的 Y.Plugin.Base ，这里只介绍最简单的 Node Plugin ，并没有继承 Y.Plugin.Base。</li></ul><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> container </span><span class="pun">=</span><span class="pln"> Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">".box"</span><span class="pun">);</span></li><li class="L1"><span class="pln">container</span><span class="pun">.</span><span class="pln">plug</span><span class="pun">(</span><span class="typ">NewMethod</span><span class="pun">);</span></li></ol></pre></div><p>执行 disable，如果你想要使用 Plugin ，必须先知道 Plugin 的 Namespace ，上一段已经定义 plugin namespce = proto ，所以我们使用 proto.disable() 来操作 plugin。</p><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">container</span><span class="pun">.</span><span class="pln">proto</span><span class="pun">.</span><span class="pln">disable</span><span class="pun">();</span></li></ol></pre></div><h2>Example Demo</h2><div style="text-align:center">   <br /><a class="demo-link ezHTML-popup"  href="https://www.puritys.me/filemanage/blog/node_plugin.html" data-info="%7B%22width%22%3A400%2C%22height%22%3A200%7D"><i class="glyphicon glyphicon-file"></i>范例 Demo</a></div><h2>多个plugin应用</h2><p>YUI 可以针对同一个 Node，绑上无限个 plugin，你想要什么功能，就绑上什么功能即可，非常的实用，如果发现 plugin 的功能不够，你可以选择自已开发新的 plugin ，或是使用 extend 的方式，强化 plugin的功能 ，接下来要实作绑上「缩放」和「拖拉」 的 plugin。</p> <ul class="list">   <li class="indent1">拖拉 ：library 需载入 dd-plugin</li> </ul><ul class="list">  <li>缩放 ：library 需载入 resize-plugin</li></ul><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">YUI</span><span class="pun">().</span><span class="kwd">use</span><span class="pun">(</span><span class="str">"node"</span><span class="pun">,</span><span class="str">"resize"</span><span class="pun">,</span><span class="str">"resize-plugin"</span><span class="pun">,</span><span class="str">"dd-plugin"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">){</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> s</span><span class="pun">=</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Node</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="str">"&lt;div&gt;测试使用外挂功能，挂上拖拉与缩放&lt;/div&gt;"</span><span class="pun">);</span><span class="pln"> </span><span class="com">//建立一个新的 Node</span></li><li class="L3"><span class="pln">   s</span><span class="pun">.</span><span class="pln">setStyles</span><span class="pun">({</span><span class="str">&#39;background&#39;</span><span class="pun">:</span><span class="str">&#39;#EEEEEE&#39;</span><span class="pun">,</span><span class="pln">width</span><span class="pun">:</span><span class="str">"200px"</span><span class="pun">,</span><span class="pln">height</span><span class="pun">:</span><span class="str">"150px"</span><span class="pun">,</span><span class="pln">padding</span><span class="pun">:</span><span class="str">"10px"</span><span class="pun">,</span><span class="pln">position</span><span class="pun">:</span><span class="pln"> </span><span class="str">"absolute"</span><span class="pun">,</span><span class="pln">border</span><span class="pun">:</span><span class="pln"> </span><span class="str">"2px solid #A2A2A2"</span><span class="pun">});</span></li><li class="L4"><span class="pln">   s</span><span class="pun">.</span><span class="pln">plug</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">.</span><span class="typ">Plugin</span><span class="pun">.</span><span class="typ">Resize</span><span class="pun">);</span><span class="pln"> </span><span class="com">//绑缩放 plugin</span></li><li class="L5"><span class="pln">   </span></li><li class="L6"><span class="pln">   s</span><span class="pun">.</span><span class="pln">plug</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">.</span><span class="typ">Plugin</span><span class="pun">.</span><span class="typ">Drag</span><span class="pun">);</span><span class="pln"> </span><span class="com">//绑拖拉 plugin</span></li><li class="L7"><span class="pln">   s</span><span class="pun">.</span><span class="pln">appendTo</span><span class="pun">(</span><span class="str">"body"</span><span class="pun">);</span></li><li class="L8"><span class="pln">        </span><span class="com">//固定比例缩放</span></li><li class="L9"><span class="pln">   </span><span class="kwd">var</span><span class="pln"> re</span><span class="pun">=</span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Resize</span><span class="pun">({</span><span class="pln">node</span><span class="pun">:</span><span class="str">"#result"</span><span class="pun">});</span></li><li class="L0"><span class="pln">   re</span><span class="pun">.</span><span class="pln">plug</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">.</span><span class="typ">Plugin</span><span class="pun">.</span><span class="typ">ResizeConstrained</span><span class="pun">,{</span><span class="pln">preserveRatio</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">wrap</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">maxHeight</span><span class="pun">:</span><span class="lit">670</span><span class="pun">,</span><span class="pln">maxWidth</span><span class="pun">:</span><span class="lit">800</span><span class="pun">});</span></li><li class="L1"><span class="pln">   re</span><span class="pun">.</span><span class="pln">render</span><span class="pun">();</span></li><li class="L2"><span class="pun">});</span></li></ol></pre></div><div style="text-align:center;margin:10px;">   <br /><a class="demo-link ezHTML-popup"  href="https://www.puritys.me/filemanage/blog_files/file_12.html" data-info="%7B%22width%22%3A400%2C%22height%22%3A500%7D"><i class="glyphicon glyphicon-file"></i> 绑多个 plugin Demo</a></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T17:18:46+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-84" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-84" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-100.html">我討厭 YUI 3  .....第四天 Skin</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-101.html">我討厭 YUI 3 .....第五天 Ajax IO</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-198.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="../../docs-blog/article-196.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="../../docs-blog/article-177.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-170.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="../../docs-blog/article-162.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="../../docs-blog/article-161.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="../../docs-blog/article-153.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="../../docs-blog/article-150.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="../../docs-blog/article-102.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="../../docs-blog/article-101.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="../../docs-blog/article-100.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="../../docs-blog/article-81.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="../../docs-blog/article-73.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Javascript 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog-amp/article-189.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="../../docs-blog/article-160.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_160&quot;}'>Sync &amp; Async of JavaScript loading </a></li>
+    
+        <li><a href="../../docs-blog/article-130.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="../../docs-blog/article-123.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="../../docs-blog/article-101.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="../../docs-blog/article-100.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="../../docs-blog/article-83.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="../../docs-blog/article-82.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="../../docs-blog/article-81.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="../../docs-blog/article-79.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="../../docs-blog/article-73.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="../../docs-blog/article-66.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="../../docs-blog/article-64.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="../../docs-blog/article-55.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="../../docs-blog/article-39.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="../../docs-blog/article-30.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="../../docs-blog/article-14.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-347.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="../../docs-blog/article-338.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog/article-275.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="../../docs-blog/article-273.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="../../docs-blog/article-270.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="../../docs-blog/article-247.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="../../docs-blog/article-242.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="../../docs-blog/article-237.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="../../docs-blog/article-202.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

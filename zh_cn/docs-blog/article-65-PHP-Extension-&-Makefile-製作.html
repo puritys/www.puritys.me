@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>PHP Extension  &amp; Makefile 制作</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-65-PHP-Extension-&amp;-Makefile-制作.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-65-PHP-Extension-&amp;-Makefile-制作.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-65.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-65-PHP-Extension-&amp;-Makefile-製作.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-65-PHP-Extension-&amp;-Makefile-製作.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-65.html">
+                    <em><span>PHP Extension  &amp; Mak...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-65-PHP-Extension-&-Makefile-\u88fd\u4f5c.html"},"headline":"PHP Extension  & Makefile \u88fd\u4f5c","image":"","datePublished":"2011-11-17T00:25:01+08:00","dateModified":"2014-01-18T20:53:43+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\r\r\r\u7de8\u8b6f PHP Extension \u57fa\u672c\u6307\u4ee4\r \u88fd\u4f5c php extension Makefile\r \u7c21\u5316\u904e\u5f8c\u7684 Makefile\r php zend_module_entry \u8aaa\u660e\r php z"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Nov</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html"><span>PHP Extension  &amp; Makefile 制作</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-65.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><div class="target_box"><ul><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t0">編譯 PHP Extension 基本指令</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t1"> 製作 php extension Makefile</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t2"> 簡化過後的 Makefile</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t3"> php zend_module_entry 說明</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t4"> php zend_function_entry 說明</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t5"> php extension 基本function說明</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t6">建立一個 php extension function</a></li><li ><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t7"> 相關問題</a></li><li class="vj-lv1"><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t8"> warning: deprecated conversion from string constant to &#39;char*&#39;</a></li><li class="vj-lv1"><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t9"> undefined symbol:__gxx_personality_v0</a></li><li class="vj-lv1"><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t10">錯誤： Invalid library (maybe not a PHP library)的處理</a></li><li class="vj-lv1"><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#vj-t11"> 為何要加 extern "C" 呢?</a></li></ul></div><a name="vj-t0"></a><h2 class="vj-sub-title">編譯 PHP Extension 基本指令</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >PHP Extension 是什麼呢?很多寫PHP的工程師，或許不知道 PHP Extension是怎麼做出來的，其實 PHP 的最底層是使用 c 語言，每一句 PHP 的語法，都是透過 c 語言來實現，所以我們可以藉由 c ，去加強 PHP 的功能，讓PHP 更方便使用，一個正常的PHP Extension製作時，要先編寫 config.m4 這個檔案，雖然這個檔案不難寫，不過他與 Makefile的格式落差很大，這裡就介紹如何使用 Makefile 來編譯 PHP Extension ，先介紹一下正常的 PHP Extension編譯 流程，phpize會建立 Makefile檔案， ./configure 這個指令會自動檢查相關package 是否安裝</p><ul class="vj-ul"><li class="vj-lv2"> 建立 c code 與 config.m4</li><li class="vj-lv2"> phpize (下 Linux 指令 phpize)</li><li class="vj-lv2"> ./configure</li><li class="vj-lv2"> make</li><li class="vj-lv2"> mv modules/xxx.so /extension : 將編譯出來的so檔，搬到extension目錄下，這樣就算完成一個 PHP Extension</li></ul>  <br /><a name="vj-t1"></a><h2 class="vj-sub-title"> 製作 php extension Makefile</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >基實 phpize的行為就是建立 Makefile, libtool 等等工具，./configure就是檢查一些設定是否正常，以及路徑設定，即然我都要自已寫 php extension了，那就跳過這兩個過程吧，自已寫 Makefile。</p><ul class="vj-ul"><li class="vj-lv2"> 首先我們先使用phpize ，自動生出一個 Makefile，然後再把他改成我們想要的格式。</li><li class="vj-lv2"> phpize & mv Makefile  Makefile.global : 把Makefile改成Makefile.global</li></ul><p class="vj-quote" >修改 Makefile.global 成我們要的樣子 <a href="../../filemanage/files/Makefile.global.html" target="_blank">Makefile.global範例</a></p><ul class="vj-ul"><li class="vj-lv2"> 加入php 安裝的目錄 PHP_DIR = /home/program/php (路徑自已修改吧)</li><li class="vj-lv2"> 將部分變數的值改到 PHP_DIR ，如  prefix = $(PHP_DIR),phpincludedir = $(PHP_DIR)/include/php</li><li class="vj-lv2"> phplibdir = $(SRC_PATH)/modules :指定編譯完成後，so檔的路徑</li><li class="vj-lv2"> PHP_PECL_EXTENSION = extension name //(注意名稱不要重覆)</li><li class="vj-lv2"> srcdir , builddir , top_srcdir , top_builddir ，修改至當前目錄，要用絕對目錄</li></ul><a name="vj-t2"></a><h2 class="vj-sub-title"> 簡化過後的 Makefile</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >Makefile.global弄半天，最後終於簡化完成，以後要編譯php extension就方便多了，正式寫一個要用來編譯程式的 Makefile ，你看! 下面的 PHP Makefile 多麼簡短。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">SRC_PATH </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="pln">shell pwd</span><span class="pun">)</span></li><li class="L1"><span class="pln">LDEF </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-</span><span class="pln">DCOMPILE_DL_MyExtension</span></li><li class="L2"><span class="pln">CXXFILE </span><span class="pun">=</span><span class="pln">myClass</span><span class="pun">.</span><span class="pln">cc extension</span><span class="pun">.</span><span class="pln">cc</span></li><li class="L3"><span class="pln">EXTRA_CXXFLAGS</span><span class="pun">=</span></li><li class="L4"><span class="pln">CXXOUTPUT </span><span class="pun">=</span><span class="pln"> </span><span class="typ">MyExtension</span></li><li class="L5"><span class="pln">include </span><span class="typ">Makefile</span><span class="pun">.</span><span class="kwd">global</span></li><li class="L6"><span class="pln">cp</span><span class="pun">:</span></li><li class="L7"><span class="pln">   sudo cp </span><span class="pun">./</span><span class="pln">modules</span><span class="pun">/</span><span class="pln">$</span><span class="pun">(</span><span class="pln">CXXOUTPUT</span><span class="pun">).</span><span class="pln">so </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">php_extension</span><span class="pun">/</span></li></ol></pre></div><p class="vj-quote" >make 的結果</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">create myClass</span><span class="pun">.</span><span class="pln">lo</span></li><li class="L1"><span class="pln">create myClass</span><span class="pun">.</span><span class="pln">o</span></li><li class="L2"><span class="pln">create extension</span><span class="pun">.</span><span class="pln">lo</span></li><li class="L3"><span class="pln">create extension</span><span class="pun">.</span><span class="pln">o</span></li><li class="L4"><span class="pln">create </span><span class="typ">MyExtension</span><span class="pun">.</span><span class="pln">la</span></li><li class="L5"><span class="pln">create </span><span class="typ">MyExtension</span><span class="pun">.</span><span class="pln">so</span></li><li class="L6"><span class="com">//最後産生 MyExtension.so 成功 </span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title"> php zend_module_entry 說明</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >php extension的程序入口，在這裡需要指定 Extension 名稱，program Functions ，init function ,shutdown function等等</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pln">zend_module_entry myClass_module_entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="com">#if ZEND_MODULE_API_NO &gt;= 20010901</span></li><li class="L2"><span class="pln">    STANDARD_MODULE_HEADER</span><span class="pun">,</span><span class="pln"> </span><span class="com">//如果是php 5.3以上版本才會用到</span></li><li class="L3"><span class="com">#endif</span></li><li class="L4"><span class="pln">    PHP_MY_CLASS_EXTNAME</span><span class="pun">,</span><span class="pln">   </span><span class="com">// 我的Extension名稱</span></li><li class="L5"><span class="pln">    my_function</span><span class="pun">,</span><span class="pln">        </span><span class="com">/* Function的定義，要先指定有那些function可以給php呼叫 */</span></li><li class="L6"><span class="pln">    PHP_MINIT</span><span class="pun">(</span><span class="pln">myClass</span><span class="pun">),</span></li><li class="L7"><span class="pln">    NULL</span><span class="pun">,</span><span class="pln">                  </span><span class="com">/* MSHUTDOWN */</span></li><li class="L8"><span class="pln">    NULL</span><span class="pun">,</span><span class="pln">                  </span><span class="com">/* RINIT */</span></li><li class="L9"><span class="pln">    NULL</span><span class="pun">,</span><span class="pln">                  </span><span class="com">/* RSHUTDOWN */</span></li><li class="L0"><span class="pln">    PHP_MINFO</span><span class="pun">(</span><span class="pln">myClass</span><span class="pun">),</span><span class="pln">                  </span><span class="com">/* MINFO */</span></li><li class="L1"><span class="com">#if ZEND_MODULE_API_NO &gt;= 20010901</span></li><li class="L2"><span class="pln">    PHP_MY_CLASS_EXTVER</span><span class="pun">,</span></li><li class="L3"><span class="com">#endif</span></li><li class="L4"><span class="pln">    STANDARD_MODULE_PROPERTIES</span></li><li class="L5"><span class="pun">};</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title"> php zend_function_entry 說明</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >上一步第二個參數(my_function)，定義了 function entry 的名稱，所以我在這裡要去定義 function entry 的內容，指定給 php 有哪些 function 可以呼叫，範例中我加入兩個 function ，分別是 simple 與 add ， 定義一個 function 要使用 PHP_FE，若是要定義一個 class 的 method ，則必須使用 PHP_ME。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">zend_function_entry my_function</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    PHP_FE</span><span class="pun">(</span><span class="pln">simple</span><span class="pun">,</span><span class="pln"> NULL</span><span class="pun">)</span></li><li class="L2"><span class="pln">    PHP_FE</span><span class="pun">(</span><span class="pln">add</span><span class="pun">,</span><span class="pln">NULL</span><span class="pun">)</span></li><li class="L3"><span class="pln">    </span><span class="pun">{</span><span class="pln">NULL</span><span class="pun">,</span><span class="pln"> NULL</span><span class="pun">,</span><span class="pln"> NULL</span><span class="pun">}</span></li><li class="L4"><span class="pun">};</span></li></ol></pre></div><a name="vj-t5"></a><h2 class="vj-sub-title"> php extension 基本function說明</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> PHP_MINIT_FUNCTION : 每一次執行php時，會先載入 extension，這時須要執行的程式寫在這裡。</li><li class="vj-lv2"> PHP_MSHUTDOWN_FUNCTION : PHP執行結束時，會執行的程式。</li><li class="vj-lv2"> PHP_MINFO_FUNCTION : extension說明資料，會出現在 phpinfo</li></ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">PHP_MINFO_FUNCTION</span><span class="pun">(</span><span class="typ">MyExtension</span><span class="pun">)</span></li><li class="L2"><span class="pun">{</span></li><li class="L3"><span class="pln">    php_info_print_table_start</span><span class="pun">();</span></li><li class="L4"><span class="pln">    php_info_print_table_header</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="str">"jk function , remove the same value in array"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"enabled"</span><span class="pun">);</span></li><li class="L5"><span class="pln">    php_info_print_table_row</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="str">"first line"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Available"</span><span class="pun">);</span></li><li class="L6"><span class="pln">    php_info_print_table_end</span><span class="pun">();</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">&nbsp;</span></li></ol></pre></div><p class="vj-quote" >接收php 傳進來的變數的方式，使用 zend_parse的function，有下列兩種，其中 [sal,lsl]代表要接放的變數型態。</p><ul class="vj-ul"><li class="vj-lv2"> zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC,"sal",xxx,xx)</li><li class="vj-lv2"> zend_parse_parameters_ex(ZEND_PARSE_PARAMS_QUIET,num_args TSRMLS_CC,"lsl", xx,xx,xx,xx)</li><ul class="vj-ul"><li class="vj-lv3"> l : 代表 long</li><li class="vj-lv3"> s : string</li><li class="vj-lv3"> a : array</li><li class="vj-lv3"> b : boolean</li><li class="vj-lv3"> d : double </li></ul></ul><ul class="vj-ul"><li class="vj-lv2"> 回傳result 給php的方式有下列幾種</li><ul class="vj-ul"><li class="vj-lv3"> RETURN_LONG : 回傳 long</li><li class="vj-lv3"> RETURN_STRING : 回傳字串</li><li class="vj-lv3"> RETURN_DOUBLE : 回傳倍精數</li><li class="vj-lv3"> RETURN_BOOL : 回傳 boolean (true or false)</li></ul></ul><a name="vj-t6"></a><h2 class="vj-sub-title">建立一個 php extension function</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><p class="vj-quote" >要寫一個 extension function ，就是使用 PHP_FUNCTION 這個 function ，而傳進去的第一個參數，就是 function 名稱，寫好之後，就可以在 php 裡使用 simple("xxx");</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pln">PHP_FUNCTION</span><span class="pun">(</span><span class="pln">simple</span><span class="pun">)</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> NULL</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span><span class="kwd">char</span><span class="pun">*</span><span class="pln"> tmp </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span></li><li class="L4"><span class="pln">    string result </span><span class="pun">=</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span></li><li class="L5"><span class="pln">    </span><span class="typ">int</span><span class="pln"> str_len </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">zend_parse_parameters</span><span class="pun">(</span><span class="pln">ZEND_NUM_ARGS</span><span class="pun">()</span><span class="pln"> TSRMLS_CC</span><span class="pun">,</span></li><li class="L7"><span class="pln">                </span><span class="str">"s"</span><span class="pun">,</span></li><li class="L8"><span class="pln">                </span><span class="pun">&amp;</span><span class="pln">str</span><span class="pun">,&amp;</span><span class="pln">str_len</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> FAILURE</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">        RETURN_NULL</span><span class="pun">();</span></li><li class="L0"><span class="pln">    </span><span class="pun">}</span></li><li class="L1"><span class="pln">    sprintf</span><span class="pun">(</span><span class="pln">tmp </span><span class="pun">,</span><span class="pln"> </span><span class="str">"Your input string is [%s]"</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> str</span><span class="pun">);</span></li><li class="L2"><span class="pln">    result </span><span class="pun">=</span><span class="pln"> tmp</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">    </span><span class="kwd">delete</span><span class="pun">[]</span><span class="pln"> tmp</span><span class="pun">;</span></li><li class="L5"><span class="pln">    RETURN_STRING</span><span class="pun">(</span><span class="kwd">const_cast</span><span class="pun">&lt;</span><span class="kwd">char</span><span class="pun">*&gt;(</span><span class="pln">result</span><span class="pun">.</span><span class="pln">c_str</span><span class="pun">()),</span><span class="lit">1</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">}</span></li></ol></pre></div><p class="vj-quote" >第二個範例是 function entry 中定義的 add ，主要功能是將第一個參數與第二個參數做加總的功能，在 php extension 中，所有的數字回僨都是使用 RETURN_LONG，不需要依 int ,long,float 去判斷回傳值，這是由於 php 變數型態很自由，不用區分得這麼細。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pln">PHP_FUNCTION</span><span class="pun">(</span><span class="pln">add</span><span class="pun">)</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="typ">int</span><span class="pln"> num_args </span><span class="pun">=</span><span class="pln"> ZEND_NUM_ARGS</span><span class="pun">();</span></li><li class="L3"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">num_args </span><span class="pun">!=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">        RETURN_LONG</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="pun">}</span></li><li class="L6"><span class="pln">    </span><span class="typ">int</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="typ">int1</span><span class="pun">,</span><span class="typ">int2</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">zend_parse_parameters</span><span class="pun">(</span><span class="pln">ZEND_NUM_ARGS</span><span class="pun">()</span><span class="pln"> TSRMLS_CC</span><span class="pun">,</span></li><li class="L8"><span class="pln">                </span><span class="str">"ll"</span><span class="pun">,</span></li><li class="L9"><span class="pln">                </span><span class="pun">&amp;</span><span class="typ">int1</span><span class="pun">,&amp;</span><span class="typ">int2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> FAILURE</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">        RETURN_NULL</span><span class="pun">();</span></li><li class="L1"><span class="pln">    </span><span class="pun">}</span></li><li class="L2"><span class="pln">    result </span><span class="pun">=</span><span class="pln"> </span><span class="typ">int1</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="typ">int2</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    RETURN_LONG</span><span class="pun">(</span><span class="pln">result</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pln">&nbsp;</span></li></ol></pre></div><a name="vj-t7"></a><h2 class="vj-sub-title"> 相關問題</h2><a href="article-65-PHP-Extension-&amp;-Makefile-製作.html#top" class="vj-btn_top2"></a><a name="vj-t8"></a><h2 class="vj-sub-title vj-lv1"> warning: deprecated conversion from string constant to &#39;char*&#39;</h2><p class="vj-amazing vj-lv2">我升級  gcc 4.2.0 後，編譯就會出現這個 Warning，使用 gcc 3.4.6 就沒事了。</p><p class="vj-amazing vj-lv2">第二招，碰到 Warning不要停掉，在 Makefile檔案中，將 -Werror 這個屬性拿掉吧</p><a name="vj-t9"></a><h2 class="vj-sub-title vj-lv1"> undefined symbol:__gxx_personality_v0</h2><p class="vj-quote" >因為你使用 c++ 語法，但是卻沒有載入 c++ 的 library</p><p class="vj-amazing vj-lv2">解法：將 Makefile 的 CC 加上 -lstdc++ ，加上這句後，編譯時，會自動載入 /usr/lib/libstdc++.so。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">CC </span><span class="pun">=</span><span class="pln"> cc </span><span class="pun">-</span><span class="pln">lstdc</span><span class="pun">++</span></li></ol></pre></div>   <br /><a name="vj-t10"></a><h2 class="vj-sub-title vj-lv1">錯誤： Invalid library (maybe not a PHP library)的處理</h2><p class="vj-quote" >這代表，php在載入 so檔時，找不到程序入口，c & c++的程序入口是 main ，而 php extension的程序入口是 zend_module_entry ，但是因為我有使用到c++ 語法，c++有個特性，在編譯時，會自動亂改變數及function名稱。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">zend_module_entry </span><span class="typ">MyExtension_module_entry</span></li></ol></pre></div><p class="vj-quote" >像這句語法，經過 c++ 編譯後，就可能變成 MyExtension_module_entryii，結果造成找不到程序入口而報錯。</p><p class="vj-amazing vj-lv2">解法就是多加一句 extern "C"</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">zend_module_entry </span><span class="typ">MyExtension_module_entry</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">   </span><span class="pun">.</span></li><li class="L2"><span class="pln">   </span><span class="pun">.</span></li><li class="L3"><span class="pln">   </span><span class="pun">.</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">extern</span><span class="pln"> </span><span class="str">"C"</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">    ZEND_GET_MODULE</span><span class="pun">(</span><span class="typ">MyExtension</span><span class="pun">)</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><a name="vj-t11"></a><h2 class="vj-sub-title vj-lv1"> 為何要加 extern "C" 呢?</h2><p class="vj-quote" >我們知道C++ 有 overloading 的功能，一個 function 可以有多種不同的參數數量，可是 c++ 是怎麼辦到的呢，其實他在編譯程式的時候，就會自動做 function name 的 mapping ，例如下面的例子，可是單純的 c 語言並不懂這個東西，所以當 c 語言要去讀取 c++ 的function 時，就必需加上 extern "C" ，強迫 c++ 不要亂改名稱，這樣 c語言才能正確的執行 function 。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="typ">int</span><span class="pln">  test</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> a</span><span class="pun">){}</span></li><li class="L1"><span class="typ">int</span><span class="pln">  test</span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> b</span><span class="pun">,</span><span class="kwd">char</span><span class="pln"> c</span><span class="pun">){}</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="com">//編譯後</span></li><li class="L4"><span class="pln">test</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> a</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> test_1</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> a</span><span class="pun">)</span></li><li class="L5"><span class="pln">test</span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> b </span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> c</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> test_2</span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> b </span><span class="pun">,</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> c</span><span class="pun">)</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-01-18T20:53:43+08:00" class="article-modify-time">2014/01/18</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-65" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-65" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-445.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="../../docs-blog/article-412.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="../../docs-blog/article-378.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="../../docs-blog/article-313.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="../../docs-blog/article-295.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="../../docs-blog/article-268.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="../../docs-blog/article-266.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-258.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="../../docs-blog/article-257.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="../../docs-blog/article-252.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

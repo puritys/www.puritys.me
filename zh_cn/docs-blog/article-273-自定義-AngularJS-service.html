@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>自定义 AngularJS service</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="Angularjs Service在 Angularjs 裡， Service 就像是一個 Object ，這個 Object 把相關功能包裝起來，當你需要使用某些功能時，就能直接呼叫他，例如我們常常會用到 AJAX , 你可以使用 $http 這個 Angularjs 內建的 service ，來發出 AJAX Request 。如何寫一個 Angularjs Service" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-273-自定义-AngularJS-service.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-273-自定义-AngularJS-service.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-273.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-273-自定義-AngularJS-service.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-273-自定義-AngularJS-service.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-273.html">
+                    <em><span>自定义 AngularJS service</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-273-\u81ea\u5b9a\u7fa9-AngularJS-service.html"},"headline":"\u81ea\u5b9a\u7fa9 AngularJS service","image":"","datePublished":"2014-07-30T00:24:36+08:00","dateModified":"2014-08-17T00:15:49+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Angularjs Service\r\u5728 Angularjs \u88e1\uff0c  Service \u5c31\u50cf\u662f\u4e00\u500b Object \uff0c\u9019\u500b Object \u628a\u76f8\u95dc\u529f\u80fd\u5305\u88dd\u8d77\u4f86\uff0c\u7576\u4f60\u9700\u8981\u4f7f\u7528\u67d0\u4e9b\u529f\u80fd\u6642\uff0c\u5c31\u80fd\u76f4\u63a5\u547c\u53eb\u4ed6\uff0c\u4f8b\u5982\u6211\u5011"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jul</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-273-自定義-AngularJS-service.html"><span>自定义 AngularJS service</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-273.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>Angularjs Service</h2><p>在 Angularjs 里，  Service 就像是一个 Object ，这个 Object 把相关功能包装起来，当你需要使用某些功能时，就能直接呼叫他，例如我们常常会用到 AJAX ,  你可以使用 $http 这个 Angularjs 内建的 service ，来发出 AJAX Request 。</p><h3>如何写一个  Angularjs Service</h3><p>写一个 Service 非常的简单，这里我先建立一个新的 module 叫 myService ，然后我定义一个新的 service 叫做 serviceSample，再来写一个 Method run ，这个  function 会回传一行文字，看看下面的范例，只要简单的五行程式码，就能够建立一个客制化的 service。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myService"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li><li class="L1"><span class="pln">m</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="str">&#39;serviceSample&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">run </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"Hello World! &lt;br /&gt;This text is rendered by angularjs service."</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="pun">};</span></li><li class="L5"><span class="pun">});</span></li></ol></pre></div><h3>如何使用客制化的 Angularjs Service</h3><p>首先我们要先载入刚刚写好的 Angularjs Module 「myService」，只要在宣告 主 Module 时的第二个参数，填上我要载入的 Module 名称即可，接著在 controller function 中的参数写上要使用的  service 名称，这个范例中我写了三个  services ，其中  $scope 与 $sce 是 Angularjs 内建的，  serviceSample 则是我刚刚载入的  service ，只要载入成功，我们就能直接使用刚刚定义好的 Method。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> myapp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">&#39;myService&#39;</span><span class="pun">]);</span></li><li class="L1"><span class="pln">myapp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">&#39;ct&#39;</span><span class="pun">,</span><span class="pln">  </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">,</span><span class="pln"> $sce</span><span class="pun">,</span><span class="pln"> serviceSample</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    $scope</span><span class="pun">.</span><span class="pln">text </span><span class="pun">=</span><span class="pln"> $sce</span><span class="pun">.</span><span class="pln">trustAsHtml</span><span class="pun">(</span><span class="pln">serviceSample</span><span class="pun">.</span><span class="pln">run</span><span class="pun">());</span></li><li class="L3"><span class="pun">});</span></li></ol></pre></div><h2>全部的程式码</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="dec">&lt;!doctype html&gt;</span></li><li class="L1"><span class="tag">&lt;html</span><span class="pln"> </span><span class="tag">&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;head&gt;</span></li><li class="L3"><span class="pln">    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></li><li class="L4"><span class="pln">   </span><span class="tag">&lt;script&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="kwd">var</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myService"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[]);</span></li><li class="L7"><span class="pln">m</span><span class="pun">.</span><span class="pln">service</span><span class="pun">(</span><span class="str">&#39;serviceSample&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L8"><span class="pln">    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">run </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"Hello World! &lt;br /&gt;This text is rendered by angularjs service."</span><span class="pun">;</span></li><li class="L0"><span class="pln">    </span><span class="pun">};</span></li><li class="L1"><span class="pun">});</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="kwd">var</span><span class="pln"> myapp </span><span class="pun">=</span><span class="pln"> angular</span><span class="pun">.</span><span class="pln">module</span><span class="pun">(</span><span class="str">"myapp"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">&#39;myService&#39;</span><span class="pun">]);</span></li><li class="L4"><span class="pln">myapp</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">(</span><span class="str">&#39;ct&#39;</span><span class="pun">,</span><span class="pln">  </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">$scope</span><span class="pun">,</span><span class="pln"> $sce</span><span class="pun">,</span><span class="pln"> serviceSample</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">    $scope</span><span class="pun">.</span><span class="pln">text </span><span class="pun">=</span><span class="pln"> $sce</span><span class="pun">.</span><span class="pln">trustAsHtml</span><span class="pun">(</span><span class="pln">serviceSample</span><span class="pun">.</span><span class="pln">run</span><span class="pun">());</span></li><li class="L6"><span class="pun">});</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">  </span><span class="tag">&lt;/script&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;/head&gt;</span></li><li class="L3"><span class="pln">  </span><span class="tag">&lt;body</span><span class="pln"> </span><span class="atn">ng-app</span><span class="pun">=</span><span class="atv">"myapp"</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span><span class="tag">&lt;div</span><span class="pln">  </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"sample-wrap"</span><span class="pln"> </span><span class="atn">ng-controller</span><span class="pun">=</span><span class="atv">"ct"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">      </span><span class="tag">&lt;h2</span><span class="pln"> </span><span class="atn">ng-bind-html</span><span class="pun">=</span><span class="atv">"text"</span><span class="tag">&gt;&lt;/h2&gt;</span></li><li class="L7"><span class="pln">    </span><span class="tag">&lt;/div&gt;</span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;/body&gt;</span></li><li class="L2"><span class="tag">&lt;/html&gt;</span></li></ol></pre></div><!--<br />myApp.factory(&#39;helloWorldFromFactory&#39;, function() {<br />    return {<br />        sayHello: function() {<br />            return "Hello, World!"<br />        }<br />    };<br />});<br />//provider style, full blown, configurable version     <br />myApp.provider(&#39;helloWorld&#39;, function() {<br />    this.name = &#39;Default&#39;;<br />    this.$get = function() {<br />        var name = this.name;<br />        return {<br />            sayHello: function() {<br />                return "Hello, " + name + "!"<br />            }<br />        }<br />    };<br />    this.setName = function(name) {<br />        this.name = name;<br />    };<br />});<br />//hey, we can configure a provider!            <br />myApp.config(function(helloWorldProvider){<br />    helloWorldProvider.setName(&#39;World&#39;);<br />});<br />function MyCtrl($scope, helloWorld, helloWorldFromFactory, helloWorldFromService) {<br />    $scope.hellos = [<br />        helloWorld.sayHello(),<br />        helloWorldFromFactory.sayHello(),<br />        helloWorldFromService.sayHello()];<br />}<br />--><br /></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-17T00:15:49+08:00" class="article-modify-time">2014/08/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-273" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-273" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-270.html">AngularJS</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-347.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="../../docs-blog/article-338.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog/article-275.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="../../docs-blog/article-273.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="../../docs-blog/article-270.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="../../docs-blog/article-247.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="../../docs-blog/article-242.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="../../docs-blog/article-237.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="../../docs-blog/article-202.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

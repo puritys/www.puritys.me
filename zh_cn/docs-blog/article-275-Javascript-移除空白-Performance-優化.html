@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Javascript 移除空白 Performance 优化</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="有那麼很無聊的一天，我看著公司裡不知名「阿豆仔」寫的一支舊程式，發現有一段很奇怪地方，為什麼他只不過是要移除個空白，卻寫了好幾行 code，若看著下面這三個程式，你是否也會覺得有點詭異? indexOf: Remove spacewhile(e.indexOf( ) gt;= 0) { e=e.replace( , );}這段程式會先掃出第一個空白的位置，接著移除找到的空白，移" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-275-Javascript-移除空白-Performance-优化.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-275-Javascript-移除空白-Performance-优化.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-275.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-275-Javascript-移除空白-Performance-優化.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-275-Javascript-移除空白-Performance-優化.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-275.html">
+                    <em><span>Javascript 移除空白 Perf...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-275-Javascript-\u79fb\u9664\u7a7a\u767d-Performance-\u512a\u5316.html"},"headline":"Javascript \u79fb\u9664\u7a7a\u767d Performance \u512a\u5316","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_137.png","datePublished":"2014-09-05T15:29:55+08:00","dateModified":"2014-09-21T01:04:06+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u6709\u90a3\u9ebc\u5f88\u7121\u804a\u7684\u4e00\u5929\uff0c\u6211\u770b\u8457\u516c\u53f8\u88e1\u4e0d\u77e5\u540d\u300c\u963f\u8c46\u4ed4\u300d\u5beb\u7684\u4e00\u652f\u820a\u7a0b\u5f0f\uff0c\u767c\u73fe\u6709\u4e00\u6bb5\u5f88\u5947\u602a\u5730\u65b9\uff0c\u70ba\u4ec0\u9ebc\u4ed6\u53ea\u4e0d\u904e\u662f\u8981\u79fb\u9664\u500b\u7a7a\u767d\uff0c\u537b\u5beb\u4e86\u597d\u5e7e\u884c code\uff0c\u82e5\u770b\u8457\u4e0b\u9762\u9019\u4e09\u500b\u7a0b\u5f0f\uff0c\u4f60\u662f\u5426\u4e5f\u6703\u89ba\u5f97\u6709\u9ede\u8a6d\u7570?\r index"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Sep</div>
+            <div class="day">05</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-275-Javascript-移除空白-Performance-優化.html"><span>Javascript 移除空白 Performance 优化</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-275.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>有那么很无聊的一天，我看著公司里不知名「阿豆仔」写的一支旧程式，发现有一段很奇怪地方，为什么他只不过是要移除个空白，却写了好几行 code，若看著下面这三个程式，你是否也会觉得有点诡异?</p><div class="codeBlock"><span class="title"> indexOf: Remove space</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">while</span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">indexOf</span><span class="pun">(</span><span class="str">" "</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    e</span><span class="pun">=</span><span class="pln">e</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="str">" "</span><span class="pun">,</span><span class="pln"> </span><span class="str">""</span><span class="pun">);</span></li><li class="L2"><span class="pun">}</span></li></ol></pre></div><p>这段程式会先扫出第一个空白的位置，接著移除找到的空白，移除成功后，会再继续寻找下一个空白，然后重覆刚刚的行为。</p><p>一看到这段 code ，我想到的是，为什么不直接用「greedy replace」，这样写 「<code> e = e.replace(/[&#92;s]+/g, ""); </code>」 ，一行就可以搞定了，也比较容易看得懂。</p><p>不过阿豆仔没事应该也不致於会乱搞，写这样的 code 一定有他的原因，我想比较有可能的原因，就是为了 Performance 的优化。</p><p>接著我做了一些 Performance测试，分成有四种。</p><h3>第一种: 当字串没有任何空白时，先用 indexOf 来检查字串是否存在空白</h3><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> e</span><span class="pun">=</span><span class="str">"aa"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">while</span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">indexOf</span><span class="pun">(</span><span class="str">" "</span><span class="pun">)&gt;=</span><span class="lit">0</span><span class="pun">){</span><span class="pln">e</span><span class="pun">=</span><span class="pln">e</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="str">" "</span><span class="pun">,</span><span class="str">""</span><span class="pun">);}</span></li></ol></pre></div><h3>第二种: 当字串存在著空白时，先用 indexOf 来检查字串是否存在空白</h3><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> e</span><span class="pun">=</span><span class="str">"a a"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">while</span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">indexOf</span><span class="pun">(</span><span class="str">" "</span><span class="pun">)&gt;=</span><span class="lit">0</span><span class="pun">){</span><span class="pln">e</span><span class="pun">=</span><span class="pln">e</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="str">" "</span><span class="pun">,</span><span class="str">""</span><span class="pun">);}</span></li></ol></pre></div><h3>第三种: 当字串没有任何空白时，使用 regular expression 直接取代空白</h3><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> e</span><span class="pun">=</span><span class="str">"aa"</span><span class="pun">;</span></li><li class="L1"><span class="pln">e</span><span class="pun">=</span><span class="pln">e</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="str">/[s]+/</span><span class="pln">g</span><span class="pun">,</span><span class="str">""</span><span class="pun">);</span></li></ol></pre></div><h3>第四种: 当字串存在著空白时，使用 regular expression 直接取代空白</h3><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> e</span><span class="pun">=</span><span class="str">"a a"</span><span class="pun">;</span></li><li class="L1"><span class="pln">e</span><span class="pun">=</span><span class="pln">e</span><span class="pun">.</span><span class="pln">replace</span><span class="pun">(</span><span class="str">/[s]+/</span><span class="pln">g</span><span class="pun">,</span><span class="str">""</span><span class="pun">);</span></li></ol></pre></div><p>你可以从 jsperf 中看到我测试的过程。</p><a href="http://jsperf.com/test-reg-replace-empty/2"  target="_blank">http://jsperf.com/test-reg-replace-empty/2</a><br /><p>或是直接看测试结果图</p><img src="../../filemanage/blog_files/file_137.png"   /><p>果然不出我所料，当文字里没有任何空白时，这时的 Performance 最好，但是如果文字里面有空白，用 indexOf 的方式，就不如直接用 greedy replace。</p><p>通常当你需要移除空白文字时，代表大部分的情形下，文字里面是不会有空白的，例如输入帐号的 Form 表单，或许偶尔 User 会打错字而留下空白并送出表单，但是这发生的情形不会太高，所以先用 indexOf 扫出「空白」的位置再移除他，是比较优的写法。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-09-21T01:04:06+08:00" class="article-modify-time">2014/09/21</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-275" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-275" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-347.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="../../docs-blog/article-338.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog/article-275.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="../../docs-blog/article-273.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="../../docs-blog/article-270.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="../../docs-blog/article-247.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="../../docs-blog/article-242.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="../../docs-blog/article-237.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="../../docs-blog/article-202.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

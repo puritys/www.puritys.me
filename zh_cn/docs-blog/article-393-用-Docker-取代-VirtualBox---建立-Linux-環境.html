@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>用 Docker 取代 VirtualBox - 建立  Linux 环境</title>
+    <meta name="keywords" content="Docker, centos" />
+    <meta name="description" content="如何使用 Docker 建立一個 Linux Server (CentOS 7) 呢 ，我要用 Docker 建一個 Linux container ，並且讓我可以從遠端登入這個 container ，把它當作一台 Linux Server 開發機。如果你還不知道 Docker 是什麼，請先閱讀以下文章： 在 Mac 中使用 Docker 如何用 Dockerfile 自製一個" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-393-用-Docker-取代-VirtualBox---建立-Linux-环境.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-393-用-Docker-取代-VirtualBox---建立-Linux-环境.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-393.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-393.html">
+                    <em><span>用 Docker 取代 VirtualB...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-393-\u7528-Docker-\u53d6\u4ee3-VirtualBox---\u5efa\u7acb-Linux-\u74b0\u5883.html"},"headline":"\u7528 Docker \u53d6\u4ee3 VirtualBox - \u5efa\u7acb  Linux \u74b0\u5883","image":"","datePublished":"2016-11-27T23:06:27+08:00","dateModified":"2016-11-28T00:40:45+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u5982\u4f55\u4f7f\u7528 Docker \u5efa\u7acb\u4e00\u500b Linux Server (CentOS 7) \u5462 \uff0c\u6211\u8981\u7528 Docker \u5efa\u4e00\u500b Linux container \uff0c\u4e26\u4e14\u8b93\u6211\u53ef\u4ee5\u5f9e\u9060\u7aef\u767b\u5165\u9019\u500b container "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Nov</div>
+            <div class="day">27</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-393-用-Docker-取代-VirtualBox---建立-Linux-環境.html"><span>用 Docker 取代 VirtualBox - 建立  Linux 环境</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Docker">Docker</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=centos">centos</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-393.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>如何使用 Docker 建立一个 Linux Server (CentOS 7) 呢 ，我要用 Docker 建一个 Linux container ，并且让我可以从远端登入这个 container ，把它当作一台 Linux Server 开发机。</p><p>如果你还不知道 Docker 是什么，请先阅读以下文章：</p><ul class="list">  <li><a href="../../docs-blog/article-309.html" target="_blank">在 Mac 中使用 Docker</a></li>  <li><a href="../../docs-blog/article-362.html" target="_blank">如何用 Dockerfile 自制一个 Docker image / Container</a></li></ul><p>在没有 Docker 以前，我时常用 VirtualBox 装一台Linux Server 拿来当做开发机，甚至我曾经用 VirtualBox 的机器当线上环境使用，会使用 VirtualBox 最重要的原因是很容易还原整个环境，假如今天我的机器硬碟坏掉了，那么我只要再买一颗硬碟，装上 OS 与 VirtualBox ，再把备份的 VirtualBox Image 复制过来就完成了系统还原。</p><p>新技术 Docker 现在已经可以取代 VirtualBox 大部分的功能，而且效能比 VirtualBox 好，最棒的是 Docker 可以用 Terminal 来操作，完全不需要使用到 GUI 介面，我只要用 SSH client 登入 OS ，就能单靠指令来完成 Docker container 任何作业， VirtualBox 理论上也可以用指令来完成所有作业，只是 VirtualBox 的指令有点难懂，而且网路上的文件很少。</p> <br /><h2>建立 Centos 7 Contatiner</h2><p>我们要先建立一个 Dockerfile ，这支 Dockerfile 会执行以下指令：</p><div class="codeBlock html"><span class="title"> Dockerfile for logining linux</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM centos</span></li><li class="L1"><span class="pln">                                                                                                                   </span></li><li class="L2"><span class="pln">RUN yum install -y sudo wget telnet openssh-server vim git </span></li><li class="L3"><span class="pln">RUN useradd puritys</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">COPY files/authorized_keys /home/puritys/.ssh/</span></li><li class="L6"><span class="pln">COPY files/start.sh /root/</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln"># Enable sshd</span></li><li class="L9"><span class="pln">COPY files/sshd_config /etc/ssh/</span></li><li class="L0"><span class="pln">RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N &#39;&#39; -t rsa </span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln"># Add account into sudoers and this account don&#39;t need to type password</span></li><li class="L3"><span class="pln">COPY files/sudoers /etc/</span></li></ol></pre></div><ul class="list">  <li>第 1 行：安装 Centos 。</li>  <li>第 3 行：用 yum 安装常用的软体 。</li>  <li>第 4 行：建立一个帐号，我的帐号是 "puritys" ，你要改成你自已的帐号 。</li>  <li>第 6 行：复制 authorized_keys 这个档案，这个档案主要是用来给 ssh private key 登入</li>  <li>第 7 行：复制 /root/start.sh ，这个 script 主要是写下 container 开机时要启动的 command ，因为 Docker 预设开机是不会执行任何程式，我们必须要手动执行写好的 script ，还记得我们需要 Remote Login 的功能吗， Remote Login 的功能需要启动 sshd 这个程式，后面会说明 start.sh 要写些什么。</li>  <li>第 10 行：复制 /etc/sshd_config ，这个档案是 sshd 的设定档。</li>  <li>第 11 行： 产生一组 sshd 专用的 rsa private key 。</li>  <li>第 14 行： 复制 /etc/sudoers ， 这个档案是 sudo 的设定档，登入 container 后，我们会需要用到 sudo 的功能，所以要修改 /etc/sudoers 的设定。</li></ul><h2>authorized_keys</h2><p>第 6 行的 authorized_keys 这个档案存的资料是 public key ，你可以用 <code> ssh-keygen -t rsa -b 4096  </code> 这个指令建立 private/public key ，成功建立后，你会看到两个档案，分别是 id_rsa, id_rsa.pub ，而  authorized_keys 就是 id_rsa.pub 。</p><div class="codeBlock term"><span class="title"> ssh-keygen</span><pre class="prettyprint lang-term linenums" ><ol class="linenums"><li class="L0"><span class="pun">&gt;</span><span class="pln"> ssh</span><span class="pun">-</span><span class="pln">keygen </span><span class="pun">-</span><span class="pln">t rsa </span><span class="pun">-</span><span class="pln">b </span><span class="lit">4096</span></li><li class="L1"><span class="typ">Generating</span><span class="pln"> </span><span class="kwd">public</span><span class="pun">/</span><span class="kwd">private</span><span class="pln"> rsa key pair</span><span class="pun">.</span></li><li class="L2"><span class="typ">Enter</span><span class="pln"> file </span><span class="kwd">in</span><span class="pln"> which to save the key </span><span class="pun">(</span><span class="str">/Users/</span><span class="pln">account</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">):</span></li><li class="L3"><span class="typ">Enter</span><span class="pln"> passphrase </span><span class="pun">(</span><span class="pln">empty </span><span class="kwd">for</span><span class="pln"> </span><span class="kwd">no</span><span class="pln"> passphrase</span><span class="pun">):</span></li><li class="L4"><span class="typ">Enter</span><span class="pln"> same passphrase again</span><span class="pun">:</span></li><li class="L5"><span class="typ">Your</span><span class="pln"> identification has been saved </span><span class="kwd">in</span><span class="pln"> id_rsa</span><span class="pun">.</span></li><li class="L6"><span class="typ">Your</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> key has been saved </span><span class="kwd">in</span><span class="pln"> id_rsa</span><span class="pun">.</span><span class="pln">pub</span><span class="pun">.</span></li><li class="L7"><span class="typ">The</span><span class="pln"> key fingerprint </span><span class="kwd">is</span><span class="pun">:</span></li><li class="L8"><span class="pun">---</span></li><li class="L9"><span class="typ">The</span><span class="pln"> key</span><span class="str">&#39;s randomart image is:</span></li><li class="L0"><span class="str">+--[ RSA 4096]----+</span></li><li class="L1"><span class="str">|   .oo. +        |</span></li><li class="L2"><span class="str">|   o =.*         |</span></li><li class="L3"><span class="str">|  z..oB +        |</span></li><li class="L4"><span class="str">|   ..o = .       |</span></li><li class="L5"><span class="str">|  z.   o c       |</span></li><li class="L6"><span class="str">| . .   +         |</span></li><li class="L7"><span class="str">|  . S            |</span></li><li class="L8"><span class="str">|                 |</span></li><li class="L9"><span class="str">|                 |</span></li><li class="L0"><span class="str">+-----------------+</span></li></ol></pre></div><h2>sshd_config</h2><p>还记得第 3 行 yum 安装的软体吗，其中一个 openssh-server 就是 sshd 的软体，必需先安装这个软体，我们才能远端登入 container 。</p><p>我建立的 container 不希望有 "登入打密码" 的功能，只要开放 ssh private key 登入功能即可，所以我要覆写原有的 sshd_config ，把 ChallengeResponseAuthentication, PasswordAuthentication, PermitEmptyPasswords 这三个值设成 no 。</p><div class="codeBlock html"><span class="title"> sshd_config</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">HostKey /etc/ssh/ssh_host_rsa_key</span></li><li class="L1"><span class="pln">SyslogFacility AUTHPRIV</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">RSAAuthentication yes </span></li><li class="L4"><span class="pln">PubkeyAuthentication yes </span></li><li class="L5"><span class="pln">AuthorizedKeysFile      .ssh/authorized_keys</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">ChallengeResponseAuthentication no</span></li><li class="L8"><span class="pln">PasswordAuthentication no</span></li><li class="L9"><span class="pln">PermitEmptyPasswords no</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">UsePAM yes </span></li><li class="L2"><span class="pln">X11Forwarding yes </span></li><li class="L3"><span class="pln">UsePrivilegeSeparation sandbox </span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES</span></li><li class="L6"><span class="pln">AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT                                                  </span></li><li class="L7"><span class="pln">AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE</span></li><li class="L8"><span class="pln">AcceptEnv XMODIFIERS</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln"># override default of no subsystems</span></li><li class="L1"><span class="pln">Subsystem       sftp    /usr/libexec/openssh/sftp-server</span></li></ol></pre></div><h2>sudoers</h2><p>第 14 行的 COPY sudoers ，如何要使用 sudo 的功能，就要安装 sudo 这个软体，所以 Dockerfile 第 3 行的  yum 指令就已经包含了 yum install sudo ，另一个问题是，一般我们在使用 sudo 的时候，系统会要求我们输入密码，但是我们新建的帐号并没有密码，所以我要在  sudoers 档案里加入一行   "<code>puritys ALL=(ALL) NOPASSWD:ALL</code>"，让我的帐号在执行 sudo 时，可以不用输入密码 (记得把 puritys 改成你的帐号)。</p><div class="codeBlock html"><span class="title"> /etc/sudoers</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">Defaults    requiretty</span></li><li class="L1"><span class="pln">Defaults   !visiblepw</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">Defaults    always_set_home</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">Defaults    !env_reset</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin</span></li><li class="L8"><span class="pln">root    ALL=(ALL)       ALL </span></li><li class="L9"><span class="pln">%wheel  ALL=(ALL)       ALL </span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">puritys ALL=(ALL) NOPASSWD:ALL</span></li></ol></pre></div><h2>start.sh</h2><p>第 7 行的 start.sh ，这是指开机启动要执行的程式，因为我只需要启动 sshd ，所以加入 "/usr/sbin/sshd -D&" 就行罗。</p><div class="codeBlock html"><span class="title"> start.sh</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">#!/bin/bash</span></li><li class="L1"><span class="pln">                                                                                                                   </span></li><li class="L2"><span class="pln">/usr/sbin/sshd -D&amp;</span></li></ol></pre></div><p>把上述的档案都放都 files/ 这个资料夹下即可，请比对下图的档案结构，是否每个档案都存在，再来就要建立我们设定的这台 docker image。</p><div class="codeBlock html"><span class="title"> tree</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">├―― centos7</span></li><li class="L1"><span class="pln">│   ├―― Dockerfile</span></li><li class="L2"><span class="pln">│   ├―― files</span></li><li class="L3"><span class="pln">│   │   ├―― authorized_keys</span></li><li class="L4"><span class="pln">│   │   ├―― sshd_config</span></li><li class="L5"><span class="pln">│   │   ├―― start.sh</span></li><li class="L6"><span class="pln">│   │   └―― sudoers</span></li></ol></pre></div><h2>建立 Docker Image</h2><p>完成上述的档案建置后，我们要 build Docker Image ，再启动 Docker ，执行 start.sh ，然后用另一个帐号登入 container 。</p><p>首先我要设定两个变数，一个是 image name ，另一个是 container name ，因为接下来的指令都会一直用到这两个名字，所以习惯上我要建设定好变数。</p><div class="codeBlock html"><span class="title"> Image/Container</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">imageName=my/my-centos7</span></li><li class="L1"><span class="pln">containerName=my-centos7</span></li></ol></pre></div><br /><p>使用 docker build 建立 Image。</p><ul class="list">  <li>docker build -t $(imageName) .</li></ul><p>使用 docker run -d ，启动 container 并放在背景执行，再用 docker exec 执行开机启动档。</p><ul class="list">  <li>docker run -d -t -p 8001:22 --name $(containerName) $(imageName) /bin/bash</li>  <li>docker exec -d $(containerName) bash -c "sh /root/start.sh"</li></ul><p>这两步做完之后，我们就成功启动了一台 Linux 环境，里面有我的帐号 puritys ，以及可以用来登入的 public key ，另外我用 "<code>-p 8001:22</code>" ，将Docker Host  8001 port 转到 container 22 port ，所以你只要知道 Docker Host 的 IP ，就可以用 8001 登入 container ，例如我会用下面这个 ssh 登入我的 container 。</p><blockquote>ssh 192.168.99.100 -p8001</blockquote><br /><p>我习惯把所有的指令写在 Makefile ，这样不但可以避免忘记指令，也方便我组合各种不同的 Linux 指令，下面提供给大家参考：</p><div class="codeBlock html"><span class="title"> Makefile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">imageName=my/my-centos7</span></li><li class="L1"><span class="pln">containerName=my-centos7</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">build:</span></li><li class="L4"><span class="pln">    docker build -t $(imageName) .</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">stop:</span></li><li class="L7"><span class="pln">    docker stop -f $(containerName) || true</span></li><li class="L8"><span class="pln">    docker rm -f $(containerName) || true</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">start:</span></li><li class="L1"><span class="pln">    make stop</span></li><li class="L2"><span class="pln">    docker run -d -t -p 8001:22 --name $(containerName) $(imageName) /bin/bash</span></li><li class="L3"><span class="pln">    docker exec -d $(containerName) bash -c "sh /root/start.sh"</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">root:</span></li><li class="L6"><span class="pln">    make stop</span></li><li class="L7"><span class="pln">    docker run -t -i -p 8001:22 --name $(containerName) $(imageName)  /bin/bash </span></li><li class="L8"><span class="pln">&nbsp;</span></li><li class="L9"><span class="pln">login:</span></li><li class="L0"><span class="pln">    ssh  <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="225257504b565b5162131b100c13141a0c1b1b0c131212">[email&#160;protected]</a> -p8001</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-28T00:40:45+08:00" class="article-modify-time">2016/11/28</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-393" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-393" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-362.html">如何用 Dockerfile 自製一個 Docker image / Container</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="https://www.puritys.me/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Docker 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-403.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_403&quot;}'>使用 Docker 執行 Maven - mvn compile </a></li>
+    
+        <li><a href="../../docs-blog/article-363.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_363&quot;}'>Docker vs Virtual Machine </a></li>
+    
+        <li><a href="../../docs-blog/article-362.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_362&quot;}'>如何用 Dockerfile 自製一個 Docker image / Container </a></li>
+    
+        <li><a href="../../docs-blog/article-309.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_309&quot;}'>在 Mac 中使用 Docker </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">centos 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-362.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_362&quot;}'>如何用 Dockerfile 自製一個 Docker image / Container </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

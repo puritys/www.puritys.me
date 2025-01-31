@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Linux 系统维护指令</title>
+    <meta name="keywords" content="Linux" />
+    <meta name="description" content=" 檢查系統 PCI 介面的各項裝置lspci -vExample[puritys]home$ lspci -v00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC [Natoma] (rev 02) Flags: fast devselnbsp;00:01.0 ISA bridge: Intel Corporati" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-58-Linux-系统维护指令.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-58-Linux-系统维护指令.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-58.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-58-Linux-系統維護指令.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-58-Linux-系統維護指令.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-58.html">
+                    <em><span>Linux 系统维护指令</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-58-Linux-\u7cfb\u7d71\u7dad\u8b77\u6307\u4ee4.html"},"headline":"Linux \u7cfb\u7d71\u7dad\u8b77\u6307\u4ee4","image":"","datePublished":"2011-11-02T01:28:03+08:00","dateModified":"2015-01-11T03:06:54+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u6aa2\u67e5\u7cfb\u7d71 PCI \u4ecb\u9762\u7684\u5404\u9805\u88dd\u7f6e\rlspci -v\rExample\r[puritys]home$ lspci -v00:00.0 Host bridge: Intel Corporation 44"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Nov</div>
+            <div class="day">02</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-58-Linux-系統維護指令.html"><span>Linux 系统维护指令</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Linux">Linux</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-58.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <h2>检查系统 PCI 介面的各项装置</h2><p>lspci -v</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ lspci </span><span class="pun">-</span><span class="pln">v</span></li><li class="L1"><span class="lit">00</span><span class="pun">:</span><span class="lit">00.0</span><span class="pln"> </span><span class="typ">Host</span><span class="pln"> bridge</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Intel</span><span class="pln"> </span><span class="typ">Corporation</span><span class="pln"> </span><span class="lit">440FX</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">82441FX</span><span class="pln"> PMC </span><span class="pun">[</span><span class="typ">Natoma</span><span class="pun">]</span><span class="pln"> </span><span class="pun">(</span><span class="pln">rev </span><span class="lit">02</span><span class="pun">)</span></li><li class="L2"><span class="pln">        </span><span class="typ">Flags</span><span class="pun">:</span><span class="pln"> fast devsel</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="lit">00</span><span class="pun">:</span><span class="lit">01.0</span><span class="pln"> ISA bridge</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Intel</span><span class="pln"> </span><span class="typ">Corporation</span><span class="pln"> </span><span class="lit">82371SB</span><span class="pln"> PIIX3 ISA </span><span class="pun">[</span><span class="typ">Natoma</span><span class="pun">/</span><span class="typ">Triton</span><span class="pln"> II</span><span class="pun">]</span></li><li class="L5"><span class="pln">        </span><span class="typ">Flags</span><span class="pun">:</span><span class="pln"> bus master</span><span class="pun">,</span><span class="pln"> medium devsel</span><span class="pun">,</span><span class="pln"> latency </span><span class="lit">0</span></li></ol></pre></div><h2>检查系统USB介面的装置</h2><p>lsusb</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ lsusb</span></li><li class="L1"><span class="typ">Bus</span><span class="pln"> </span><span class="lit">001</span><span class="pln"> </span><span class="typ">Device</span><span class="pln"> </span><span class="lit">012</span><span class="pun">:</span><span class="pln"> ID </span><span class="lit">80ee</span><span class="pun">:</span><span class="lit">0021</span><span class="pln"> </span><span class="typ">VirtualBox</span><span class="pln"> USB </span><span class="typ">Tablet</span></li><li class="L2"><span class="typ">Bus</span><span class="pln"> </span><span class="lit">001</span><span class="pln"> </span><span class="typ">Device</span><span class="pln"> </span><span class="lit">001</span><span class="pun">:</span><span class="pln"> ID </span><span class="lit">0000</span><span class="pun">:</span><span class="lit">0000</span></li></ol></pre></div><h2>显示CPU的资讯</h2><p>cat /proc/cpuinfo</p><p>赫然发现在 Amazon 租最烂的主机，CPU还比我的电脑好 XD....</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ cat </span><span class="pun">/</span><span class="pln">proc</span><span class="pun">/</span><span class="pln">cpuinfo</span></li><li class="L1"><span class="pln">processor       </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span></li><li class="L2"><span class="pln">vendor_id       </span><span class="pun">:</span><span class="pln"> </span><span class="typ">GenuineIntel</span></li><li class="L3"><span class="pln">cpu family      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">6</span></li><li class="L4"><span class="pln">model           </span><span class="pun">:</span><span class="pln"> </span><span class="lit">15</span></li><li class="L5"><span class="pln">model name      </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Intel</span><span class="pun">(</span><span class="pln">R</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Core</span><span class="pun">(</span><span class="pln">TM</span><span class="pun">)</span><span class="lit">2</span><span class="pln"> </span><span class="typ">Quad</span><span class="pln"> CPU    Q6600  </span><span class="pun">@</span><span class="pln"> </span><span class="lit">2.40GHz</span></li><li class="L6"><span class="pln">stepping        </span><span class="pun">:</span><span class="pln"> </span><span class="lit">11</span></li><li class="L7"><span class="pln">cpu </span><span class="typ">MHz</span><span class="pln">         </span><span class="pun">:</span><span class="pln"> </span><span class="lit">2402.021</span></li><li class="L8"><span class="pln">cache size      </span><span class="pun">:</span><span class="pln"> </span><span class="lit">6144</span><span class="pln"> KB</span></li><li class="L9"><span class="pln">fdiv_bug        </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span></li><li class="L0"><span class="pln">hlt_bug         </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span></li><li class="L1"><span class="pln">f00f_bug        </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span></li><li class="L2"><span class="pln">coma_bug        </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span></li><li class="L3"><span class="pln">fpu             </span><span class="pun">:</span><span class="pln"> yes</span></li><li class="L4"><span class="pln">fpu_exception   </span><span class="pun">:</span><span class="pln"> yes</span></li><li class="L5"><span class="pln">cpuid level     </span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span></li><li class="L6"><span class="pln">wp              </span><span class="pun">:</span><span class="pln"> yes</span></li><li class="L7"><span class="pln">flags           </span><span class="pun">:</span><span class="pln"> fpu vme de pse tsc msr mce cx8 apic mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 constant_tsc pni monitor</span></li></ol></pre></div><h2>显示记忆体的相关资讯</h2><p>free</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ free</span></li><li class="L1"><span class="pln">       total       used       free     shared    buffers     cached</span></li><li class="L2"><span class="typ">Mem</span><span class="pun">:</span><span class="pln">    </span><span class="lit">255792</span><span class="pln">     </span><span class="lit">241656</span><span class="pln">    </span><span class="lit">14136</span><span class="pln">     </span><span class="lit">0</span><span class="pln">      </span><span class="lit">49104</span><span class="pln">     </span><span class="lit">105744</span></li><li class="L3"><span class="pun">-</span><span class="str">/+ buffers/</span><span class="pln">cache</span><span class="pun">:</span><span class="pln">  </span><span class="lit">86808</span><span class="pln">   </span><span class="lit">168984</span></li><li class="L4"><span class="typ">Swap</span><span class="pun">:</span><span class="pln">   </span><span class="lit">622584</span><span class="pln">        </span><span class="lit">192</span><span class="pln">   </span><span class="lit">622392</span></li></ol></pre></div><h2>查看硬体的相关资讯</h2><p>sudo dmidecode</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ sudo dmidecode</span></li><li class="L1"><span class="com"># dmidecode 2.9</span></li><li class="L2"><span class="pln">SMBIOS </span><span class="lit">2.5</span><span class="pln"> present</span><span class="pun">.</span></li><li class="L3"><span class="lit">5</span><span class="pln"> structures occupying </span><span class="lit">352</span><span class="pln"> bytes</span><span class="pun">.</span></li><li class="L4"><span class="typ">Table</span><span class="pln"> at </span><span class="lit">0x000E1000</span><span class="pun">.</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="typ">Handle</span><span class="pln"> </span><span class="lit">0x0000</span><span class="pun">,</span><span class="pln"> DMI type </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pln"> bytes</span></li><li class="L7"><span class="pln">BIOS </span><span class="typ">Information</span></li><li class="L8"><span class="pln">        </span><span class="typ">Vendor</span><span class="pun">:</span><span class="pln"> innotek </span><span class="typ">GmbH</span></li><li class="L9"><span class="pln">        </span><span class="typ">Version</span><span class="pun">:</span><span class="pln"> </span><span class="typ">VirtualBox</span></li><li class="L0"><span class="pln">        </span><span class="typ">Release</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12</span><span class="pun">/</span><span class="lit">01</span><span class="pun">/</span><span class="lit">2006</span></li><li class="L1"><span class="pln">        </span><span class="typ">Address</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xE0000</span></li><li class="L2"><span class="pln">        </span><span class="typ">Runtime</span><span class="pln"> </span><span class="typ">Size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">128</span><span class="pln"> kB</span></li><li class="L3"><span class="pln">        ROM </span><span class="typ">Size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">128</span><span class="pln"> kB</span></li><li class="L4"><span class="pln">        </span><span class="typ">Characteristics</span><span class="pun">:</span></li></ol></pre></div><h2>查看 Kernel 版本</h2><p>cat /etc/issue</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ cat </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">issue</span></li><li class="L1"><span class="typ">CentOS</span><span class="pln"> release </span><span class="lit">4.9</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Final</span><span class="pun">)</span></li><li class="L2"><span class="typ">Kernel</span><span class="pln"> r on an m</span></li><li class="L3"><span class="pln">NOTICE</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Support</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> </span><span class="typ">CentOS</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> ends on </span><span class="typ">Feb</span><span class="pln"> </span><span class="lit">29th</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2012</span></li></ol></pre></div><h2>查看 OS 版本</h2><p>cat /proc/version</p><p>more /proc/version</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ more </span><span class="pun">/</span><span class="pln">proc</span><span class="pun">/</span><span class="pln">version</span></li><li class="L1"><span class="typ">Linux</span><span class="pln"> version x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">-</span><span class="pln">xx </span><span class="pun">(</span><span class="pln">mockbuild@builderxx</span><span class="pun">.</span><span class="pln">centos</span><span class="pun">.</span><span class="pln">org</span><span class="pun">)</span><span class="pln"> </span><span class="pun">(</span><span class="pln">gcc version </span><span class="lit">3.4</span><span class="pun">.</span><span class="lit">6</span><span class="pln"> </span><span class="lit">20060404</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Red</span><span class="pln"> </span><span class="typ">Hat</span><span class="pln"> x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">-</span><span class="lit">1</span></li><li class="L2"><span class="lit">1</span><span class="pun">))</span><span class="pln"> </span><span class="com">#1 Thu Jul 21 17:12:08 EDT 2011</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ uname </span><span class="pun">-</span><span class="pln">a</span></li><li class="L5"><span class="typ">Linux</span><span class="pln"> www</span><span class="pun">.</span><span class="pln">yahoo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">.</span><span class="pln">tw x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">x</span><span class="pun">-</span><span class="pln">xxx </span><span class="com">#1 Thu Jul 21 17:12:08 EDT 2011 i686 i686 i386 GNU/Linux</span></li></ol></pre></div><h2>查看硬碟的各项资讯</h2><p>sudo hdparm -i /dev/hda</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ sudo hdparm </span><span class="pun">-</span><span class="pln">i </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">hda</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">hda</span><span class="pun">:</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln"> </span><span class="typ">Model</span><span class="pun">=</span><span class="pln">VBOX HARDDISK</span><span class="pun">,</span><span class="pln"> </span><span class="typ">FwRev</span><span class="pun">=</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="typ">SerialNo</span><span class="pun">=</span><span class="typ">VBb9b3eddb</span><span class="pun">-</span><span class="lit">80cc9845</span></li><li class="L5"><span class="pln"> </span><span class="typ">Config</span><span class="pun">={</span><span class="pln"> </span><span class="typ">Fixed</span><span class="pln"> </span><span class="pun">}</span></li><li class="L6"><span class="pln"> </span><span class="typ">RawCHS</span><span class="pun">=</span><span class="lit">16383</span><span class="pun">/</span><span class="lit">16</span><span class="pun">/</span><span class="lit">63</span><span class="pun">,</span><span class="pln"> </span><span class="typ">TrkSize</span><span class="pun">=</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="typ">SectSize</span><span class="pun">=</span><span class="lit">512</span><span class="pun">,</span><span class="pln"> </span><span class="typ">ECCbytes</span><span class="pun">=</span><span class="lit">0</span></li><li class="L7"><span class="pln"> </span><span class="typ">BuffType</span><span class="pun">=</span><span class="typ">DualPortCache</span><span class="pun">,</span><span class="pln"> </span><span class="typ">BuffSize</span><span class="pun">=</span><span class="lit">256kB</span><span class="pun">,</span><span class="pln"> </span><span class="typ">MaxMultSect</span><span class="pun">=</span><span class="lit">128</span><span class="pun">,</span><span class="pln"> </span><span class="typ">MultSect</span><span class="pun">=</span><span class="lit">128</span></li><li class="L8"><span class="pln"> </span><span class="typ">CurCHS</span><span class="pun">=</span><span class="lit">16383</span><span class="pun">/</span><span class="lit">16</span><span class="pun">/</span><span class="lit">63</span><span class="pun">,</span><span class="pln"> </span><span class="typ">CurSects</span><span class="pun">=</span><span class="lit">16514064</span><span class="pun">,</span><span class="pln"> LBA</span><span class="pun">=</span><span class="pln">yes</span><span class="pun">,</span><span class="pln"> </span><span class="typ">LBAsects</span><span class="pun">=</span><span class="lit">31457280</span></li><li class="L9"><span class="pln"> IORDY</span><span class="pun">=</span><span class="pln">yes</span><span class="pun">,</span><span class="pln"> tPIO</span><span class="pun">={</span><span class="pln">min</span><span class="pun">:</span><span class="lit">120</span><span class="pun">,</span><span class="pln">w</span><span class="pun">/</span><span class="pln">IORDY</span><span class="pun">:</span><span class="lit">120</span><span class="pun">},</span><span class="pln"> tDMA</span><span class="pun">={</span><span class="pln">min</span><span class="pun">:</span><span class="lit">120</span><span class="pun">,</span><span class="pln">rec</span><span class="pun">:</span><span class="lit">120</span><span class="pun">}</span></li><li class="L0"><span class="pln"> PIO modes</span><span class="pun">:</span><span class="pln">  pio0 pio3 pio4</span></li><li class="L1"><span class="pln"> DMA modes</span><span class="pun">:</span><span class="pln">  mdma0 mdma1 mdma2</span></li><li class="L2"><span class="pln"> UDMA modes</span><span class="pun">:</span><span class="pln"> udma0 udma1 </span><span class="pun">*</span><span class="pln">udma2 udma3 udma4 udma5 udma6</span></li><li class="L3"><span class="pln"> </span><span class="typ">AdvancedPM</span><span class="pun">=</span><span class="kwd">no</span><span class="pln"> </span><span class="typ">WriteCache</span><span class="pun">=</span><span class="pln">enabled</span></li><li class="L4"><span class="pln"> </span><span class="typ">Drive</span><span class="pln"> conforms to</span><span class="pun">:</span><span class="pln"> unknown</span><span class="pun">:</span></li><li class="L5"><span class="pun">*</span><span class="pln"> signifies the current active mode</span></li></ol></pre></div><h2>查看硬碟详细资讯及型号</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ df</span></li><li class="L1"><span class="typ">Filesystem</span><span class="pln">             </span><span class="lit">1K</span><span class="pun">-区段</span><span class="pln">      </span><span class="pun">已用</span><span class="pln">     </span><span class="pun">可用</span><span class="pln"> </span><span class="pun">已用%</span><span class="pln"> </span><span class="pun">挂载点</span></li><li class="L2"><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">mapper</span><span class="pun">/</span><span class="typ">VolGroup00</span><span class="pun">-</span><span class="typ">LogVol00</span></li><li class="L3"><span class="pln">                      xxxxxxxx   xxxxxxx   xxxxxxx  x7</span><span class="pun">%</span><span class="pln"> </span><span class="pun">/</span></li><li class="L4"><span class="str">/dev/</span><span class="pln">hda1               </span><span class="lit">101086</span><span class="pln">     </span><span class="lit">12574</span><span class="pln">     </span><span class="lit">83293</span><span class="pln">  </span><span class="lit">14</span><span class="pun">%</span><span class="pln"> </span><span class="pun">/</span><span class="pln">boot</span></li><li class="L5"><span class="pln">none                    </span><span class="lit">127896</span><span class="pln">         </span><span class="lit">0</span><span class="pln">    </span><span class="lit">127896</span><span class="pln">   </span><span class="lit">0</span><span class="pun">%</span><span class="pln"> </span><span class="str">/dev/</span><span class="pln">shm</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ sudo smartctl </span><span class="pun">-</span><span class="pln">a </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="pln">hda1</span></li><li class="L9"><span class="pln">smartctl version </span><span class="lit">5.33</span><span class="pln"> </span><span class="pun">[</span><span class="pln">i686</span><span class="pun">-</span><span class="pln">redhat</span><span class="pun">-</span><span class="pln">linux</span><span class="pun">-</span><span class="pln">gnu</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Copyright</span><span class="pln"> </span><span class="pun">(</span><span class="pln">C</span><span class="pun">)</span><span class="pln"> </span><span class="lit">2002</span><span class="pun">-</span><span class="lit">4</span><span class="pln"> </span><span class="typ">Bruce</span><span class="pln"> </span><span class="typ">Allen</span></li><li class="L0"><span class="typ">Home</span><span class="pln"> page </span><span class="kwd">is</span><span class="pln"> http</span><span class="pun">:</span><span class="com">//smartmontools.sourceforge.net/</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">===</span><span class="pln"> START OF INFORMATION SECTION </span><span class="pun">===</span></li><li class="L3"><span class="typ">Device</span><span class="pln"> </span><span class="typ">Model</span><span class="pun">:</span><span class="pln">     VBOX HARDDISK</span></li><li class="L4"><span class="typ">Serial</span><span class="pln"> </span><span class="typ">Number</span><span class="pun">:</span><span class="pln">    </span><span class="typ">Vxxxxxx</span><span class="pun">-</span><span class="lit">80ccxx45</span></li><li class="L5"><span class="pun">.</span></li><li class="L6"><span class="pun">.</span></li><li class="L7"><span class="pun">.</span></li></ol></pre></div><h2>Linux Kernel 运作过程当中所显示的各项讯息记录</h2><p>sudo dmesg</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">home$ sudo dmesg </span><span class="pun">|</span><span class="pln"> more</span></li><li class="L1"><span class="typ">Linux</span><span class="pln"> version </span><span class="lit">2.6</span><span class="pun">.</span><span class="lit">9</span><span class="pun">-</span><span class="lit">101.EL</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mockbuild@builder10</span><span class="pun">.</span><span class="pln">centos</span><span class="pun">.</span><span class="pln">org</span><span class="pun">)</span><span class="pln"> </span><span class="pun">(</span><span class="pln">gcc version </span><span class="lit">3.4</span><span class="pun">.</span><span class="lit">6</span><span class="pln"> </span><span class="lit">20060404</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Red</span><span class="pln"> </span><span class="typ">Hat</span><span class="pln"> </span><span class="lit">3.4</span><span class="pun">.</span><span class="lit">6</span><span class="pun">-</span><span class="lit">1</span></li><li class="L2"><span class="lit">1</span><span class="pun">))</span><span class="pln"> </span><span class="com">#1 Thu Jul 21 17:12:08 EDT 2011</span></li><li class="L3"><span class="pln">BIOS</span><span class="pun">-</span><span class="pln">provided physical RAM map</span><span class="pun">:</span></li><li class="L4"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0000000000000000</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">000000000009fc00</span><span class="pln"> </span><span class="pun">(</span><span class="pln">usable</span><span class="pun">)</span></li><li class="L5"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">000000000009fc00</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">00000000000a0000</span><span class="pln"> </span><span class="pun">(</span><span class="pln">reserved</span><span class="pun">)</span></li><li class="L6"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">00000000000f0000</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">0000000000100000</span><span class="pln"> </span><span class="pun">(</span><span class="pln">reserved</span><span class="pun">)</span></li><li class="L7"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0000000000100000</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">000000000fff0000</span><span class="pln"> </span><span class="pun">(</span><span class="pln">usable</span><span class="pun">)</span></li><li class="L8"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">000000000fff0000</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">0000000010000000</span><span class="pln"> </span><span class="pun">(</span><span class="pln">ACPI data</span><span class="pun">)</span></li><li class="L9"><span class="pln"> BIOS</span><span class="pun">-</span><span class="pln">e820</span><span class="pun">:</span><span class="pln"> </span><span class="lit">00000000fffc0000</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">0000000100000000</span><span class="pln"> </span><span class="pun">(</span><span class="pln">reserved</span><span class="pun">)</span></li><li class="L0"><span class="pun">.</span></li><li class="L1"><span class="pun">.</span></li><li class="L2"><span class="pun">.</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-01-11T03:06:54+08:00" class="article-modify-time">2015/01/11</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-58" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-58" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Linux 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-392.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_392&quot;}'>sudo  造成環境變數消失 :  sudo -E </a></li>
+    
+        <li><a href="../../docs-blog/article-290.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="../../docs-blog/article-191.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_191&quot;}'>FreeBsd 安裝與設定 </a></li>
+    
+        <li><a href="../../docs-blog/article-186.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_186&quot;}'>SSH Tunnel </a></li>
+    
+        <li><a href="../../docs-blog/article-133.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_133&quot;}'>apache .htaccess 登入帳號，密碼機制 </a></li>
+    
+        <li><a href="../../docs-blog/article-69.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_69&quot;}'>Linux 指令筆記 </a></li>
+    
+        <li><a href="../../docs-blog/article-63.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_63&quot;}'>Linux 系統負荷量檢查程式 </a></li>
+    
+        <li><a href="../../docs-blog/article-29.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_29&quot;}'>DNS  簡易架設 </a></li>
+    
+        <li><a href="../../docs-blog/article-28.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_28&quot;}'>Linux 系統安裝 apache + mysql + php </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第二天 Event</title>
+    <meta name="keywords" content="YUI3 ,  Javascript" />
+    <meta name="description" content="事件處理 ，Event Binding這篇文章將介紹如何綁定事件，觸發事件，禁止瀏覽器的預設事件，以及刪除事件的語法。假設 node 代表 html tag object, eventHandle 代表自已寫的事件，event 代表 browser event object。YUI3 Event Binding node.on(#39;click#39;,) : 綁定事件 ev" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-81-我讨厌-YUI-3-.....第二天-Event.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-81-我讨厌-YUI-3-.....第二天-Event.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-81.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-81-我討厭-YUI-3-.....第二天-Event.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-81-我討厭-YUI-3-.....第二天-Event.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-81.html">
+                    <em><span>我讨厌 YUI 3 .....第二天 Event</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-81-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u4e8c\u5929-Event.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u4e8c\u5929 Event","image":"","datePublished":"2011-12-19T01:41:06+08:00","dateModified":"2016-09-25T17:19:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u4e8b\u4ef6\u8655\u7406 \uff0cEvent Binding\r\u9019\u7bc7\u6587\u7ae0\u5c07\u4ecb\u7d39\u5982\u4f55\u7d81\u5b9a\u4e8b\u4ef6\uff0c\u89f8\u767c\u4e8b\u4ef6\uff0c\u7981\u6b62\u700f\u89bd\u5668\u7684\u9810\u8a2d\u4e8b\u4ef6\uff0c\u4ee5\u53ca\u522a\u9664\u4e8b\u4ef6\u7684\u8a9e\u6cd5\u3002\u5047\u8a2d node \u4ee3\u8868 html tag object, eventHandle "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-81-我討厭-YUI-3-.....第二天-Event.html"><span>我讨厌 YUI 3 .....第二天 Event</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Javascript">Javascript</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-81.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>事件处理 ，Event Binding</h2><p>这篇文章将介绍如何绑定事件，触发事件，禁止浏览器的预设事件，以及删除事件的语法。假设 node 代表 html tag object, eventHandle 代表自已写的事件，event 代表 browser event object。</p><h2>YUI3 Event Binding</h2><ul class="list">  <li>node.on(&#39;click&#39;,) :  绑定事件</li>  <li>eventHandle.detach : 移除 eventHandle 这个事件</li>  <li>event.preventDefault : 禁示预设的 Event 触发， 举例来说， a (anchor) 这个 tag 本身点击后，会导到指定的网址，如果我们不想要这个转址>的功能，可以在我们自已的 eventHandle function 中加入 event.preventDefault();</li>  <li>event.stopPropagation() : 禁止多个 tag事件同时触发，当 anchor 以及他的上一层，同时绑定了 click 事件，这时，两个事件就会依序执行，但是通常我们不须上一层的事件也同时执行，这时就可以使用 stopPropagation 去停此上一层的事件。</li></ul><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">//if box1 is a1&#39;s parent</span></li><li class="L1"><span class="pln">YUI</span><span class="pun">().</span><span class="kwd">use</span><span class="pun">(</span><span class="str">&#39;node&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;event&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">Y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">&#39;#box1&#39;</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">        alert</span><span class="pun">(</span><span class="str">&#39;Hello World!&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">    </span><span class="pun">});</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">    Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">&#39;.a1&#39;</span><span class="pun">).</span><span class="pln">on</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">       e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="com">//取消预设，连结的功能</span></li><li class="L8"><span class="pln">       e</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L9"><span class="com">//当你点到 a1时，因为a1也在box1里面，所以box1的click事件也会触发，stopPropagation可以取消,div click的功能 (cancel Bubbling)</span></li><li class="L0"><span class="pln">       alert</span><span class="pun">(</span><span class="str">&#39;Hello World2!&#39;</span><span class="pun">);</span></li><li class="L1"><span class="pln">       </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">detach</span><span class="pun">();</span><span class="pln"> </span><span class="com">//移除此事件</span></li><li class="L2"><span class="pln">    </span><span class="pun">});</span></li><li class="L3"><span class="pun">});</span></li></ol></pre></div><p>YUI 有个 delegate 的功能，这个功能可以将 Event 绑定在 parent tag 上，例如 anchor，与 button 的事件触发可以一起绑定在他们的 Parent div 上，范例如下。</p><div class="codeBlock html"><span class="title"> delegate</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"parent"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">  </span><span class="tag">&lt;a</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"xxx"</span><span class="tag">&gt;</span><span class="pln">anchor</span><span class="tag">&lt;/a&gt;</span></li><li class="L2"><span class="pln">  </span><span class="tag">&lt;button&gt;</span><span class="pln"> button</span><span class="tag">&lt;/button&gt;</span></li><li class="L3"><span class="tag">&lt;/div&gt;</span></li><li class="L4"><span class="tag">&lt;script&gt;</span></li><li class="L5"><span class="pln">YUI</span><span class="pun">().</span><span class="pln">use</span><span class="pun">(</span><span class="str">&#39;node&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;event&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">Y</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> bind </span><span class="pun">=</span><span class="pln"> Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">&#39;.parent&#39;</span><span class="pun">).</span><span class="pln">delegate</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">E</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{},</span><span class="pln"> </span><span class="str">&#39;a, button&#39;</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="com">// bind.detach();</span></li><li class="L8"><span class="pun">});</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="tag">&lt;/script&gt;</span></li></ol></pre></div><p>想要取消 delegate 的事件时，也可以使用 detach ，但是必需先将 event 回传值存下来，例如上一个范例是存在变数 "<b>bind</b>"，然后再透过 <code>bind.detach(); </code>，将这个事件移除。</p><h2>JQuery binding</h2><p>JQuery 一样也可以很简单的做到 event binding .</p><ul class="list">  <li>bind : JQuery 可以使用 bind 来绑定事件，如 $(&#39;.a&#39;).bind(&#39;click&#39;,function) ,也可以用更简短的方式，如 $(&#39;.a&#39;).click(function) 。</li>  <li>event.preventDefault() : 禁止 Browser 预设的事件</li>  <li>event.stopPropagation() : 禁止多个 tag事件同时触发</li></ul><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="com">//if box2 is a2&#39;s parent</span></li><li class="L1"><span class="pln">$</span><span class="pun">(</span><span class="str">"#box2"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L2"><span class="pln">     alert</span><span class="pun">(</span><span class="str">&#39;Hello World!&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pun">});</span></li><li class="L4"><span class="pln">$</span><span class="pun">(</span><span class="str">".a2"</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L5"><span class="pln">    e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L6"><span class="pln">    e</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L7"><span class="pln">    alert</span><span class="pun">(</span><span class="str">&#39;Hello World2!&#39;</span><span class="pun">);</span></li><li class="L8"><span class="pln">    $</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">).</span><span class="pln">unbind</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">);</span></li><li class="L9"><span class="pun">});</span></li></ol></pre></div><h2>Javascrip event binding</h2><ul class="list">  <li>addEventListener , attachEvent : 纯 JS 绑定事件，要先判定浏览器，所以会用到这两个 function</li>  <li>detachEvent : 移除事件</li>  <li>event.preventDefault() , event.returnValue=false : 要禁止预设的事件触发，也要同时设定这两个值</li>  <li>event.stopPropagation()  , event.cancelBubble=true ，要停止多个 tag 事件同时触发，也要同时指定这两个值</li></ul><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> eventHandle</span><span class="pun">=</span><span class="str">""</span><span class="pun">;</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">){</span></li><li class="L2"><span class="pln">    eventHandle</span><span class="pun">=</span><span class="pln">js_click</span><span class="pun">;</span></li><li class="L3"><span class="pln">    document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">&#39;a_js&#39;</span><span class="pun">).</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln">eventHandle</span><span class="pun">,</span><span class="kwd">false</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">attachEvent</span><span class="pun">){</span></li><li class="L7"><span class="pln">    eventHandle</span><span class="pun">=</span><span class="pln">js_click</span><span class="pun">;</span></li><li class="L8"><span class="pln">    document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">&#39;a_js&#39;</span><span class="pun">).</span><span class="pln">attachEvent</span><span class="pun">(</span><span class="str">&#39;onclick&#39;</span><span class="pun">,</span><span class="pln">eventHandle</span><span class="pun">);</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> js_click</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L2"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">preventDefault </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">        </span><span class="com">//Firefox</span></li><li class="L4"><span class="pln">        e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L5"><span class="pln">    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">        </span><span class="com">//IE</span></li><li class="L7"><span class="pln">        e</span><span class="pun">.</span><span class="pln">returnValue </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></li><li class="L8"><span class="pln">    </span><span class="pun">}</span></li><li class="L9"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">stopPropagation </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">        e</span><span class="pun">.</span><span class="pln">stopPropagation</span><span class="pun">();</span></li><li class="L1"><span class="pln">    </span><span class="pun">}</span></li><li class="L2"><span class="pln">    e</span><span class="pun">.</span><span class="pln">cancelBubble</span><span class="pun">=</span><span class="kwd">true</span><span class="pun">;</span></li><li class="L3"><span class="pln">    alert</span><span class="pun">(</span><span class="str">&#39;t_js&#39;</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">removeEventListener</span><span class="pun">){</span></li><li class="L6"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">removeEventListener</span><span class="pun">(</span><span class="str">&#39;click&#39;</span><span class="pun">,</span><span class="pln">eventHandle</span><span class="pun">,</span><span class="kwd">false</span><span class="pun">);</span></li><li class="L7"><span class="pln">    </span><span class="pun">}</span></li><li class="L8"><span class="pln">    </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">detachEvent</span><span class="pun">){</span></li><li class="L9"><span class="pln">        </span><span class="com">//function执行中，不能移除自已 ，所以使用 setTimeout</span></li><li class="L0"><span class="pln">        setTimeout</span><span class="pun">(</span><span class="str">&#39;removeEvent()&#39;</span><span class="pun">,</span><span class="lit">100</span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="pun">}</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="kwd">function</span><span class="pln"> removeEvent</span><span class="pun">(){</span></li><li class="L4"><span class="pln">    document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">&#39;a_js&#39;</span><span class="pun">).</span><span class="pln">detachEvent</span><span class="pun">(</span><span class="str">&#39;onclick&#39;</span><span class="pun">,</span><span class="pln">eventHandle</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><a class="demo-link ezHTML-popup"  href="https://www.puritys.me/filemanage/blog/bindEvent.html" data-info="%7B%22width%22%3A270%2C%22height%22%3A500%7D"><i class="glyphicon glyphicon-file"></i>范例程式</a></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T17:19:10+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-81" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-81" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-73.html">我討厭 YUI 3  .....第一天 Node</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-100.html">我討厭 YUI 3  .....第四天 Skin</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-198.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="../../docs-blog/article-196.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="../../docs-blog/article-177.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-170.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="../../docs-blog/article-162.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="../../docs-blog/article-161.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="../../docs-blog/article-153.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="../../docs-blog/article-150.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="../../docs-blog/article-102.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_102&quot;}'>我討厭 YUI 3 .....第六天  Slider </a></li>
+    
+        <li><a href="../../docs-blog/article-101.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="../../docs-blog/article-100.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="../../docs-blog/article-84.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-73.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Javascript 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog-amp/article-189.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="../../docs-blog/article-160.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_160&quot;}'>Sync &amp; Async of JavaScript loading </a></li>
+    
+        <li><a href="../../docs-blog/article-130.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_130&quot;}'>安裝 v8 Javascript  engine in window </a></li>
+    
+        <li><a href="../../docs-blog/article-123.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_123&quot;}'>Javascript setTimeout  執行時間錯亂 </a></li>
+    
+        <li><a href="../../docs-blog/article-101.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="../../docs-blog/article-100.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="../../docs-blog/article-84.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-83.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_83&quot;}'>Google V8 Engine Add Javascript New Function </a></li>
+    
+        <li><a href="../../docs-blog/article-82.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_82&quot;}'>Google V8 Engine Script Run </a></li>
+    
+        <li><a href="../../docs-blog/article-79.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_79&quot;}'>Javascript 指標物件 </a></li>
+    
+        <li><a href="../../docs-blog/article-73.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+        <li><a href="../../docs-blog/article-66.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_66&quot;}'>Javascript 變數型態剖析 </a></li>
+    
+        <li><a href="../../docs-blog/article-64.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_64&quot;}'>Json to Array 格式轉換 </a></li>
+    
+        <li><a href="../../docs-blog/article-55.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_55&quot;}'>安裝 Javascript V8 Engine </a></li>
+    
+        <li><a href="../../docs-blog/article-39.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_39&quot;}'>Javascript 換行字符 </a></li>
+    
+        <li><a href="../../docs-blog/article-30.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_30&quot;}'>Javascript Regular Expressions , 表示法 </a></li>
+    
+        <li><a href="../../docs-blog/article-14.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>JS 時間與日期運算 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-347.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="../../docs-blog/article-338.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog/article-275.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="../../docs-blog/article-273.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="../../docs-blog/article-270.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="../../docs-blog/article-247.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="../../docs-blog/article-242.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="../../docs-blog/article-237.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="../../docs-blog/article-202.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>常见的登入逻辑错误漏洞</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 一個網站的最基本功能，通常會是會員系統，而會員系統也算是一項重要的功能，因為這裡面包含的個人隱私與帳號、密碼，一旦會員系統被駭客入侵，User 對網站的信任度也就會大幅下降，接著這篇文章將會介紹一些「登入程式邏輯」上的錯誤，造成系統的漏洞。登入驗證順序錯誤登入驗證一定要在程式的最開端進行，而不能放在程式的中段，或是後段，曾經看過有工程師，將修改會員資料的邏輯處理，寫在登入驗證" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-147-常见的登入逻辑错误漏洞.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-147-常见的登入逻辑错误漏洞.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-147.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-147-常見的登入邏輯錯誤漏洞.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-147-常見的登入邏輯錯誤漏洞.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-147.html">
+                    <em><span>常见的登入逻辑错误漏洞</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-147-\u5e38\u898b\u7684\u767b\u5165\u908f\u8f2f\u932f\u8aa4\u6f0f\u6d1e.html"},"headline":"\u5e38\u898b\u7684\u767b\u5165\u908f\u8f2f\u932f\u8aa4\u6f0f\u6d1e","image":"","datePublished":"2012-11-13T13:21:48+08:00","dateModified":"2014-08-24T03:47:25+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u4e00\u500b\u7db2\u7ad9\u7684\u6700\u57fa\u672c\u529f\u80fd\uff0c\u901a\u5e38\u6703\u662f\u6703\u54e1\u7cfb\u7d71\uff0c\u800c\u6703\u54e1\u7cfb\u7d71\u4e5f\u7b97\u662f\u4e00\u9805\u91cd\u8981\u7684\u529f\u80fd\uff0c\u56e0\u70ba\u9019\u88e1\u9762\u5305\u542b\u7684\u500b\u4eba\u96b1\u79c1\u8207\u5e33\u865f\u3001\u5bc6\u78bc\uff0c\u4e00\u65e6\u6703\u54e1\u7cfb\u7d71\u88ab\u99ed\u5ba2\u5165\u4fb5\uff0cUser \u5c0d\u7db2\u7ad9\u7684\u4fe1\u4efb\u5ea6\u4e5f\u5c31\u6703\u5927\u5e45\u4e0b\u964d\uff0c\u63a5\u8457\u9019\u7bc7\u6587\u7ae0\u5c07\u6703\u4ecb\u7d39\u4e00"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Nov</div>
+            <div class="day">13</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-147-常見的登入邏輯錯誤漏洞.html"><span>常见的登入逻辑错误漏洞</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-147.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>一个网站的最基本功能，通常会是会员系统，而会员系统也算是一项重要的功能，因为这里面包含的个人隐私与帐号、密码，一旦会员系统被骇客入侵，User 对网站的信任度也就会大幅下降，接著这篇文章将会介绍一些「登入程式逻辑」上的错误，造成系统的漏洞。</p><h2>登入验证顺序错误</h2><p>登入验证一定要在程式的最开端进行，而不能放在程式的中段，或是后段，曾经看过有工程师，将修改会员资料的逻辑处理，写在登入验证的前面。</p><div class="codeBlock"><span class="title">updateMember.php 有问题的登入验证范例</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">updateMember</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">]);</span></li><li class="L2"><span class="kwd">if</span><span class="pun">(!</span><span class="pln">login</span><span class="pun">()){</span></li><li class="L3"><span class="pln">   echo </span><span class="str">&#39;&lt;script&gt;alert("您尚未登入")&lt;/script&gt;&#39;</span><span class="pun">;</span></li><li class="L4"><span class="pln">   exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pun">?&gt;</span></li></ol></pre></div><p>上述的程式中，会先更新会员资料，然后再去验证会员是否有登入，而骇客只要将 data post updateMember.php ， Php 程式就会先更新会员资料，接著弹出错误讯息给 User，因为顺序上的错误，造成<em>骇客</em>可以修改会员资料，甚至修改管理员的密码，而入侵整个网站。</p><h2>登入验证失败后，未中断程式</h2><p>当会员登入验证失败后，必需重导页面到登入画面，并且中断程式的运行，否则程式会继续执行，直到结束。</p><div class="codeBlock"><span class="title">updateMember2-1.php 未中断程式运行范例</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(!</span><span class="pln">login</span><span class="pun">($</span><span class="pln">account</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">passwd</span><span class="pun">)){</span></li><li class="L2"><span class="pln">   echo </span><span class="str">&#39;&lt;script&gt;confirm("你并非管理员，不可修改会员资料")&lt;/script&gt;&#39;</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">updateMember</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">]);</span></li><li class="L5"><span class="pun">?&gt;</span></li></ol></pre></div><p>在范例 2-1 中，当验证登入失败后，会回传一段 javascript ，告知 user 并非登入中。</p><div class="codeBlock"><span class="title">updateMember2-2.php 未中断程式运行范例</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(!</span><span class="pln">login</span><span class="pun">($</span><span class="pln">account</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">passwd</span><span class="pun">)){</span></li><li class="L2"><span class="pln">   header</span><span class="pun">(</span><span class="str">"location:login.php"</span><span class="pun">);</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">updateMember</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">]);</span></li><li class="L5"><span class="pun">?&gt;</span></li></ol></pre></div><p>在范例 2-2 中，当验证登入失败后，会直接回传 http header ，告知 Browser重导到登入页。</p><p>这两个范例，虽然都有回传讯息给 user，告知无法修改会员资料，但是却漏掉 「<em>exit(1)</em>」中断程式的运行，<em>骇客</em>就可以不需要登入，而修改会员 or 管理员资料，入侵系统。</p><h2>未对所有功能进行登入验证</h2><p>「所有需要会员登入才能运作的功能，都要加上登入验证」，这句话看起没有大不了，大家也都知道，但是没有网路安全观念的工程师们，还是常常会写出漏掉验证的程式码。</p><div class="codeBlock"><span class="title">index3-1.php 网站全部功能的入口页</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(!</span><span class="pln">login</span><span class="pun">($</span><span class="pln">account</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">passwd</span><span class="pun">)){</span></li><li class="L2"><span class="pln">   header</span><span class="pun">(</span><span class="str">"location:login.php"</span><span class="pun">);</span></li><li class="L3"><span class="pln">   exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L4"><span class="pun">}</span></li><li class="L5"><span class="kwd">if</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;action&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="str">"updateMember"</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">   require </span><span class="str">"updateMember3-2.php"</span><span class="pun">;</span><span class="pln"> </span><span class="com">//更新会员资料</span></li><li class="L7"><span class="pun">}</span></li><li class="L8"><span class="pun">?&gt;</span></li></ol></pre></div><div class="codeBlock"><span class="title">updateMember3-2.php 更新会员资料的 php file</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pln">updateMember</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">]);</span></li><li class="L2"><span class="pun">?&gt;</span></li></ol></pre></div><p>有些工程师会将网站功能的入口都作在同一个 url 上，例如透过 index3-1.php 这一个页面，当传入的参数 <em>action = updateMember</em> ，就自动载入 updateMember3-2.php 并且完成会员更新的行为，因为 index3-1.php 这个档案的开头就已经先验证会员登入状态，所以工程师就会以为这个程式非常安全。</p><p>其实<em>骇客</em>只要直接将参数传给 <b>updateMember3-2.php</b> 这个 url ，跳过 index3-1.php ，就能轻易的再一次修改会员资料。</p><h2>会员登入使用的 cookie 需加密</h2><p>一般在会员登入之后，网站会建立一个代表这位会员已经登入过的 cookie 记录，有了这个记录，网站才知道这位会员不用再登入第二次，他可以执行会员应有的功能。</p><p>因为 cookie 是直接存在 Browser 里面，骇客可以轻易的看到 cookie 的格式是什么，所以我们还必需对 cookie 加密。</p><div class="codeBlock"><span class="title">login4-1.php 会员登入页，错误的储存 cookie </span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(</span><span class="pln">login</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;account&#39;</span><span class="pun">],</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;password&#39;</span><span class="pun">]){</span></li><li class="L2"><span class="pln">   setcookie</span><span class="pun">(</span><span class="str">"member"</span><span class="pun">,</span><span class="pln"> base64_encode</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;account&#39;</span><span class="pun">]));</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">?&gt;</span></li></ol></pre></div><p>有不少工程师只会简单的对 cookie 做 <b>base64 encode</b>，这个加密出来的格式，很容易被骇客看出来，解密也相对简单，例如 「password」 base64 encode 过后的代码是 「cGFzc3dvcmQ=」，只要使用 base64_decode ，就能马上破解出来。</p><p>另外登入的 cookie 最好要加上<em>后端程式</em>能够判定的使用期限，再经过一段时间后，cookie 就不能再被使用，就算有骇客故意使用过期的 cookie，程式也要能过泸掉，为了这个功能，通常会在 cookie 的内容加入登入时间。</p><p>一个最基本的登入 cookie ，至少要会员密码，加上一个网站专用的固定 key，组合这二个数值，并且使用 <em>md5</em> 加密储存，而 key 也要三不五时的变换一下。</p><div class="codeBlock"><span class="title">login4-2.php 一种正确的 cookie 加密方式</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pun">(</span><span class="pln">login</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;account&#39;</span><span class="pun">],</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;password&#39;</span><span class="pun">]){</span></li><li class="L2"><span class="pln">   </span><span class="pun">$</span><span class="pln">val </span><span class="pun">=</span><span class="pln"> mcrypt_encrypt</span><span class="pun">($</span><span class="pln">cipher</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">key</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;account&#39;</span><span class="pun">].$</span><span class="pln">expiredTime</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">mode</span><span class="pun">);</span></li><li class="L3"><span class="pln">   </span><span class="pun">$</span><span class="pln">val </span><span class="pun">.=</span><span class="pln"> md5</span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;password&#39;</span><span class="pun">].$</span><span class="pln">key</span><span class="pun">);</span></li><li class="L4"><span class="pln">   setcookie</span><span class="pun">(</span><span class="str">"member"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">val</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">?&gt;</span></li></ol></pre></div><div class="notice" label="!">md5 只能算是最普通的加密方式，如果想要更好的安全机制，可以考虑其他的 Encrypt Library。</div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-24T03:47:25+08:00" class="article-modify-time">2014/08/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-147" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-147" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-149.html">投票系統中常見的灌票漏洞</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-376.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-367.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="../../docs-blog/article-346.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-276.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="../../docs-blog/article-251.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="../../docs-blog/article-249.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="../../docs-blog/article-236.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="../../docs-blog/article-226.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="../../docs-blog/article-212.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-205.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

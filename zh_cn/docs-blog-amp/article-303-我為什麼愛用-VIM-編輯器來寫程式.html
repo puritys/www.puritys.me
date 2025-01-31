@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(https://www.puritys.me/zh_cn/images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot.html');src:url('fonts/glyphicons-halflings-regular.eot%3F.html') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff.html') format('woff'),url('fonts/glyphicons-halflings-regular.ttf.html') format('truetype'),url('fonts/glyphicons-halflings-regular.svg.html') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot');
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot?') format('embedded-opentype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.woff') format('woff'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.svg') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(https://www.puritys.me/zh_cn/fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="../docs-blog/article-303-我为什么爱用-VIM-编辑器来写程式.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/software" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">實用軟體</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="../../docs-blog/article-303.html" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">我为什么爱用 VIM 编辑器来写程式</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-303-\u6211\u70ba\u4ec0\u9ebc\u611b\u7528-VIM-\u7de8\u8f2f\u5668\u4f86\u5beb\u7a0b\u5f0f.html"},"headline":"\u6211\u70ba\u4ec0\u9ebc\u611b\u7528 VIM \u7de8\u8f2f\u5668\u4f86\u5beb\u7a0b\u5f0f","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_178.png","datePublished":"2015-03-08T22:00:37+08:00","dateModified":"2019-07-09T14:09:17+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u7de8\u8f2f\u5668 - \u53c8\u7a31  IDE  \uff0c\u9019\u6771\u897f\u4e00\u76f4\u90fd\u662f\u767e\u5bb6\u722d\u9cf4\u7684\u72c0\u614b\uff0c\u6bcf\u4e00\u7a2e\u7de8\u8f2f\u5668\u90fd\u6709\u773e\u591a\u7684\u652f\u6301\u8005\uff0c\u800c\u4f5c\u8005\u6211\u672c\u8eab\u76ee\u524d\u6700\u611b\u7528\u7684\u7a0b\u5f0f\u7de8\u8f2f\u5668\u662f\u300cVim\u300d\uff0c\u6c92\u932f! \u5c31\u662f\u9019\u500b\u50b3\u8aaa\u4e2d\u77f3\u5668\u6642\u4ee3\u7684\u5de5\u5177\uff0c\u4f46\u6211\u53ef\u4e0d\u662f\u4e00\u958b\u59cb\u5c31\u559c\u6b61"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Mar</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="../docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html"><span>我为什么爱用 VIM 编辑器来写程式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Vim">Vim</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=IDE">IDE</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-303.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="../docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html">網頁好讀版</a></p><div class="ezHTML-content"><p>編輯器 - 又稱 <b> IDE </b> ，這東西一直都是百家爭鳴的狀態，每一種編輯器都有眾多的支持者，而作者我本身目前最愛用的程式編輯器是「<b>Vim</b>」，沒錯! 就是這個傳說中石器時代的工具，但我可不是一開始就喜歡上 Vim 的呢，當我還在朦朧不懂大學生時代，第一次學習在 Linux 上安裝網頁伺服器，PHP、 MySql Server 等等各種軟體，偶爾也要改一些系統設定檔，不管是 Apache conf, my.cnf, php.ini, 甚至是 /etc/passwd，總是需要有一個編輯器來用， 而 Linux 系統上就有個內建的編輯器，那就是 Vi 與 Vim (Vim 是 Vi 的加強版) 這兩個，於是我踏進了 Vim 的第一步，我第一次在 Terminal 輸入了 <code>vim /var/www/httpd.conf</code>，想當然爾，我想要修改 Apache 設定檔，一定會使用方向鍵來移動游標，先移動到想修改的地方，所以我按下方向鍵「<span >←</span>」，但這時 Vim 卻幫我輸入了個英文字母大寫「<span >D</span>」，然後再順便幫我斷了個行，我不解的再多按了幾下「↑」、「↓」，「←」，「→」，螢幕上竟然出現了一堆「ABCD」，就在這個 Moment，心中出現了一堆「???」，到底是發生什麼事了呢，為什麼我輸入「←」，會出現大寫 D ，當時我只是猜著說 Vim 好像不認識鍵盤方向鍵，而心裡想著「這編輯器根本是原始人設計的吧」 Orz !  過不了多久我就改用 Nano ，這套也支援 Linux 的編輯器，而且長達 6 年的時間，不再使用 Vim 這種鬼東西。</p>
+<amp-img layout="responsive" src="/filemanage/blog_files/file_178.png"  alt="vim  keyboard l become a word D" width="200" height="200" ></amp-img><h2>逃離 Vim</h2><p>當年我不喜歡在 Terminal 上編輯程式或是修改設定檔，所以我會在每一台 Linux 系統裝上 Samba 這個網芳軟體，再把根目錄「/」全部共享出來，透過 Windows 的網芳功能，使用 Notepad++ 來編輯 Linux 上所有的檔案，這個方式，讓我完全脫離了 Linux 上的編輯器，不用再面對難用的 Vi / Vim，而這個方式只有一個小小的缺點，就是當我們儲存檔案的時候，會有 1 至 2 秒的檔案同步延遲時間，不過總比在 Vim 上為了方向鍵，一直不斷的切換「Insert」，「View」模式好多了；持續六年，我最喜歡的編輯器是 「Notepad++」，我喜歡他小巧，乾淨，簡單使用。</p><h2>2011 年，再次碰上 Vim</h2><p>2011 年末，我換了個新的工作，在新的辦公室，看到旁邊資深同事們正在使用 Vim 來開發程式，雖然心中有不好的預感，但是我這個菜鳥也只能入境隨俗的重新打開了 Vim ，看著新人手冊上的 Linux, Vim 設定，一步一步的建構起開發環境，這時我才發現，原來 Vim 可以很彈性的設定各種熱鍵，外掛，配色，原來有了正確的設定檔，方向鍵「↑」、「↓」，「←」，「→」　它們又重新活了過來!!　原來 Vim 也可以那麼的強大 ~~~</p><h2>回顧</h2><p>我喜歡簡單的介面來寫程式，我人生中的第一個編輯器，就是 Windows  Notepad，當時我用來寫 HTML，CSS，Javascript 等網頁相關程式，那個年代 Debug 真的會想哭 ... ，後來接觸了 UltraEdit, EmEditor，以及 Notepad++， 很快的，我就愛上了 Notepad++ 當我最主要的編輯器，並且一用就是六年。</p><p>我不只是用 Notepad++ 來寫網頁程式，我還拿它來寫 C/C++ 與 Java 程式，我也曾寫過<a href="../../docs-blog/article-16.html" target="_blank">一篇文章</a>來介紹如何在 Notepad++ 上編譯 C/C++ 。</p><h3>Notepad++ 特色</h3><ul class="list">  <li>分割視窗</li>  <li>分頁切換</li></ul><p>寫這麼多年的程式，我發現我要的編輯器，一定要有分割視窗與分頁切換，這兩個功能對我來說非常重要，分頁切換可以讓我一次打開多個檔案同時編輯，例如我會打開 CSS, JS 與 HTML ，這三個檔案很容易會同時被修改，而分割視窗則是讓我可以將同一個檔案分成兩個視窗，一邊看被呼叫的 Function，一邊看呼叫別人的 Script。</p><a href="https://www.puritys.me/filemanage/blog_files/file_179.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_179.png"  alt="Notepad++" width="200" height="200" ></amp-img></a><h2>為何 Vim 成為我的最愛</h2><p>Vim 內建於每一台 Linux 系統，只要透過 SSH Client ，就能連到 Linux 然後使用 vim 開始程式開發，也就是說我能夠任何有網路的地方，直接遠端連線到自已家的伺服器寫程式，而且不用事先安裝任何編輯器，唯一要做的就是下載 SSH Client (如 putty)，隨著時代的進步，瀏覽器 Chrome 現在也開發了一套 <a href="../../docs-blog/article-151.html" target="_blank">SSH Client Extension </a> ，只要在 Chrome 上安裝這個 Extension ，就能取代 Putty 的所有功能。</p><p>我在家裡架了一台 Linux 伺服器，並且把所有會用到的工具全部裝上這台機器，這樣不管我到那裡，只要我手上有電腦，就能隨時遠端連回我的伺服器，立刻開始作事，不管是 PHP, Node.js C/C++, Apache, Mysql, DNS Server, Wordpress, Proxy 等等，應有盡有，讓我不用再煩惱去安裝每台電腦的軟體，我只要確定伺服器上安裝了正確的軟體即可。</p><p>如果你想用其它先進的編輯器 (如 Eclipse, Visual Studio) 來遠端開發程式，那麼你必需在每一台電腦先裝好編輯器，然後再裝上 SFTP 程式，將程式下載回本地端 (Eclipse 內建有類似 SFTP Sync 功能)，再來就要面對電腦效能問題，現今我們常常會帶著筆電到處跑，而筆電的效能又比桌機稍差了一點，若是你的電腦配備又不佳 ，在這些編輯器上寫程式時，切換檔案時會頓頓的，或是搜尋字串時卡卡的，用這種環境開發，心情會非常的糟糕，寫出來的程式也不會太好。</p><h2>神器  -  Linux 搭配 Vim</h2><blockquote>Linux - screen + vim + vsplit + Terminal tab</blockquote><p>在 Linux 系統用 Vim 開發程式，到底有多好用呢 ? 首先我一定會使用 screen 這個 multiple console 的工具 (也有人用 tmux )，screen 可以讓我在同一個 Terminal 同時開啟好多個 console，每個 console 都是一個獨立的 process ，假如我建立了三個 console ，那麼我就會第一個 console 用來編輯程式，第二個 console 用來執行 unit test，最後第三個 console 用來操作 Linux 指令，如 grep 檔案， top 檢查系統狀況；在來當我們一天的開發到一個段落後(下班)，登出 Linux 時，並不會中斷 screen 的程序，當下打開的所有檔案，或是執行中的程序，仍然正常的運作著，等下一次我們再次登入 Linux ，立刻又回到昨天的畫面，馬上又能夠接上進度。</p><p>Vim , 現今我喜歡簡單的編輯器，有些強大的編輯器，會幫你修正各種拼字錯誤，或是自動載入 Header File ，自動文字補完，這些功能都會造成工程師無法了解程式的全貌，想想一個對程式，系統底層非常了解的工程師，與一位不了解底層，靠強大編輯器來寫程式的工程師，那一位 Debug 會比較快呢 ?  ,  我寫程式的時候，會試著去了解每一行 Code 代表意義，每一個 Method ，每一個 Function，每一個 Header ，分別做了什麼事，唯一清楚的知道每一行程式 ，才能有自信的說，我寫的程式沒問題了! 如果編輯器太過強大，整天幫我修正設定檔，那麼我就很難更深入的了解它。</p><p>以下列出 Linux VIM 上開發的優點</p><ul class="list">  <li>支援各種類型程式，如 Python, PHP, Perl, Javascript, Node.js, Java, C/C++</li>  <li>遠端編輯 - 可以在任何有網路的地方，遠端連線到伺服器上使用 Vim 開發</li>  <li>完美配合 Linux 指令</li>  <ul class="list">    <li class="indent1">Grep, Find 快速搜尋檔案</li>    <li class="indent1">可搭配 Linux 軟體使用，如 Screen</li>    <li class="indent1">執行 unit test</li>    <li class="indent1">執行各種 Script</li>  </ul>  <li>Screen 保留編輯中狀態，以及目前開啟的檔案。</li>  <li>速度快，沒有多餘的功能，單純就文字編輯，不會有時間延遲。</li>  <li>完全自定義熱鍵，沒有 IDE 的限制，99 % 熱鍵都可以自已設定。</li></ul><div class="notice" >Windows 也有個仿 Linux 軟體叫 Cygwin ，讓你也可以在 Windows 使用  Linux 指令與 Vim</div><p>當然 VIM 也不是沒有缺點，像是我打字很慢，又常常會打錯字 (沒有拼字檢查)，Function 名稱也常打錯，或是我常忘記 function 的第一個參數要帶什麼型態的數值，Array 格式打錯，多了逗號，少了逗號等等問題，以上問題當然也可以安裝 vim plugin 來解決，不過我選擇了「人工處理」，為什麼呢 ?  因為我覺得程式開發最重要的項目是確保邏輯的正確性，效能，安全性，可讀性，而不是在追求打字可以有多快，我大部分的時間是花在思考，而不是打字。</p><ul class="list">  <li>逗號多打、少打，符號打錯的問題：這是習慣問題，只要習慣用正確且一致的語法寫程式，這個問題就不太會發生。</li>  <li>打錯字、拼字檢查：若你打錯字，造成變數名稱不一致時，只要透過 Unit test 就能發現這些問題，而 Unit test 本來就是必寫的!。</li>  <li>Array, Json 格式打錯：程式會直接當掉，開發時很容易發現的問題，不太會 Release 到 Production 。</li>  <li>Function 的參數格式：有些編輯器可以提示你 function 要帶哪些參數，這個功能的確是非常的好用，Vim 也有類似的外掛，不過這個功能會讓編輯器的速度變慢，我不能忍受打字時有 Lag 的情形發生，而我也很感謝  Google ，當我不確定 Function 的參數時，只要在詢問 Google 大神 ，通常不到 30 秒就找到解答了，所以我也不需要使用 Function 提示的功能。</li></ul><p>上面這些問題可以透過安裝 Vim plugin 來解決，例如 syntax checker plugin: "vim-syntastic/syntastic"， Java 程式則可以安裝 "<a href="http://eclim.org/index.html" target="_blank">eclim</a>"。</p><div class="notice" >這篇文章只是分享我使用 Vim 的心得，你仍然可以使用自已喜歡的編輯器來寫程式。</div><br><p>最後來個簡單的 Vim 搭配 Linux 操作 Demo</p><amp-iframe width="200" height="100"
+               sandbox="allow-scripts allow-same-origin"
+               layout="responsive"
+          height=675 frameborder="0" src="https://www.youtube.com/embed/-rVmVleNOv4" frameborder="0"></amp-iframe><p><a href="../../docs-blog/article-110.html" target="_blank">Vim 配色參考</a></p><p><a href="https://github.com/puritys/unix_environment/blob/master/basic/.vimrc" target="_blank">Vim.rc 設定參考</a></p><h2>其它編輯器參考</h2><ul class="list">  <li>Eclipse</li>  <li>webstorm</li>  <li>netbeans</li>  <li>IntelliJ IDEA</li></ul><ul class="list">  <li>Notepad++</li>  <li>UltraEdit</li>  <li>EmEditor</li>  <li>gedit</li>  <li>sublime</li></ul><ul class="list">  <li>Vim</li>  <li>gVim</li>  <li>Nano</li>  <li>emacs</li></ul><h2>其它相關資料</h2><p>why-you-should-use-an-ide-instead-of-vim-or-emacs</p><ul class="list">  <li><a href="http://codecraft.co/2014/05/13/why-you-should-use-an-ide-instead-of-vim-or-emacs/"  target="_blank">http://codecraft.co/2014/05/13/why-you-should-use-an-ide-instead-of-vim-or-emacs/</a></li></ul><p>从 Vim 与 IDE 的讨论说起</p><ul class="list">  <li><a href="https://github.com/lifesinger/lifesinger.github.com/issues/104"  target="_blank">https://github.com/lifesinger/lifesinger.github.com/issues/104</a></li></ul><p>Vim 中文教學</p><ul class="list">  <li><a href="https://github.com/yangyangwithgnu/use_vim_as_ide/blob/master/README.md#"  target="_blank">https://github.com/yangyangwithgnu/use_vim_as_ide/blob/master/README.md#</a></li></ul><p>Vim Docker Image</p><ul class="list">  <li><a href="https://hub.docker.com/r/puritys/vim"  target="_blank">https://hub.docker.com/r/puritys/vim</a></li>  <li>docker pull puritys/vim:stable</li></ul></div><p class="amp-desktop-version"><a href="../docs-blog/article-303-我為什麼愛用-VIM-編輯器來寫程式.html">網頁好讀版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2019-07-09T14:09:17+08:00" class="article-modify-time">2019/07/09</time>
+        </p>
+
+        
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-114.html">VIM 16進位 , .vimrc 設定</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-290.html">Cygwin : 在 windows 環境上使用 Linux 指令</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="../../index.html">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

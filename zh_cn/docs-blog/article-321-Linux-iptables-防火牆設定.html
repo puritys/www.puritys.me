@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Linux iptables 防火墙设定</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="iptables 是 Linux 系統內建的防火牆設定 ，專門用來過瀘網路封包，正確的設定 iptables 規則可以有效提升 linux 網路安全，例如網管人員需要設定開放哪些 IP 與哪些 Port，來阻擋駭客們的 IP ，防止 DDos 攻擊。iptables 的設計結構可以分三層， Table -&gt; Chains -&gt; Rules ， iptables 中可以包含多個 " />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-321-Linux-iptables-防火墙设定.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-321-Linux-iptables-防火墙设定.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-321.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-321-Linux-iptables-防火牆設定.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-321-Linux-iptables-防火牆設定.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-321.html">
+                    <em><span>Linux iptables 防火墙设定</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-321-Linux-iptables-\u9632\u706b\u7246\u8a2d\u5b9a.html"},"headline":"Linux iptables \u9632\u706b\u7246\u8a2d\u5b9a","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_195.png","datePublished":"2015-07-11T15:31:52+08:00","dateModified":"2018-01-22T00:00:04+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"iptables \u662f Linux \u7cfb\u7d71\u5167\u5efa\u7684\u9632\u706b\u7246\u8a2d\u5b9a \uff0c\u5c08\u9580\u7528\u4f86\u904e\u7018\u7db2\u8def\u5c01\u5305\uff0c\u6b63\u78ba\u7684\u8a2d\u5b9a iptables \u898f\u5247\u53ef\u4ee5\u6709\u6548\u63d0\u5347 linux \u7db2\u8def\u5b89\u5168\uff0c\u4f8b\u5982\u7db2\u7ba1\u4eba\u54e1\u9700\u8981\u8a2d\u5b9a\u958b\u653e\u54ea\u4e9b IP \u8207\u54ea\u4e9b Por"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Jul</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-321-Linux-iptables-防火牆設定.html"><span>Linux iptables 防火墙设定</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-321.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>iptables 是 Linux 系统内建的防火墙设定 ，专门用来过泸网路封包，正确的设定 iptables 规则可以有效提升 linux 网路安全，例如网管人员需要设定开放哪些 IP 与哪些 Port，来阻挡骇客们的 IP ，防止  DDos 攻击。</p><p>iptables 的设计结构可以分三层， Table -> Chains -> Rules ， iptables 中可以包含多个 Table ，而一个  Table 又可以包含多个 Chain ，一个 Chain 也可以包含多个 Rule 。</p><ul class="list">  <li>Table ：防火墙规则群组。</li>  <li>Chain：防火墙规则链。</li>  <li>Rule：防火墙规则。</li></ul><br /><img src="../../filemanage/blog_files/file_195.png"   /><p>上面中  Table A 里设定了两个 Chain 分别是  Chain A 与  Chain B ，而这两个 Chain 又分别设定了两个 Rule ，一个是记录封包资讯，然后第二个  Rule 再来决定是否要丢弃这个封包。</p> <br /><h2>Chains & Tables</h2><p>iptables 内建有五个 Tables ， 分别是  Filter Table, NAT Table, Mangle Table, Raw Table, Security Table。</p><h3>Filter Table :</h3><p>Filter Table 是 iptables 中预设的 table，如果你没有新增自订的 Table ，那么 iptable 会使用 Filter Table 里的设定来处理网路封包。</p><p>Filter Table 预设有三个 Chain :  INPUT, OUTPUT, FORWARD， 分别用来处理三种不同的网路封包。</p><ul class="list">  <li>INPUT chain：处理由外部机器传过来的封包。</li>  <li>OUTPUT Chain：处理本机传出去给别台机器的封包。</li>  <li>FORWARD Chain：处理外部机器透过本机，要传给第三方机器的封包，如果你的机器是一台  Router  or Proxy，才会存在这种封包。</li></ul><h3>NAT Table : Network Address Translation</h3><p>NAT Table 预设有二个 Chain ： PREROUTING, POSTROUTING  。</p><ul class="list">  <li>PREROUTING chain :  再 Routing 之前转换封包来源 IP 资讯，例如。</li>  <li>POSTROUTING chain :  再 Routing 之后转换封包本机  IP 资讯，例如本机 IP 会写成  127.0.0.1 ，但是传送出去后，会转换回对外开放的 IP 如 10.99.82.1。</li></ul> <br /> <br /><h2>Rule & Target</h2> <br /><p>iptables 预设有三种 Target ，分别是  ACCEPT, REJECT, LOG 。</p><ul class="list">  <li>ACCEPT：接受这个封包</li>  <li>REJECT：拒绝这个封包</li>  <li>LOG： 记录下这个封包， Log 写入档案 /var/log/message</li></ul> <br /><h2>如何使用 iptables</h2><p>使用 iptables 前，前先确定你的系统有安装以下两个套件。</p><ul class="list">  <li>iptables</li>  <li>iptables-services</li></ul><p>安装方式如下：</p><blockquote>sudo yum install iptables-services  iptables</blockquote><h2>iptables 自订 Chain</h2><p>除了上述提到的三个基本的 Chain 之外，iptables 还可以自订其他的 Chain ， chain 是锁链的意思，代表各种不同的 chain 可以串接在一起，合成多种组合。</p><p>自定义一个新的 chain</p><blockquote>iptables -N LOG_REJECT</blockquote><p>新增一个 rule  ， 这个 chain 的所有封包会写入 LOG。</p><blockquote>iptables -A LOG_REJECT -j LOG --log-prefix "Reject this packet : " --log-level 6</blockquote><p>新增一个 rule  ， 这个 chain 的所有封包会被拒绝处理。</p><blockquote>iptables -A LOG_REJECT -j REJECT</blockquote><p>上面三个 rule 就能组合出一个简单的封包阻档规则，凡是所有进入 "LOG_REJECT" 这个 chain  的封包，都会先写一个 log 到 /var/log/message 这个档案，然后这个封包会被丢弃，完全不处理。</p><p>最后我们只要再指定那些 IP 会进入这个 LOG_REJECT Chain ，便可以轻松的阻挡他们。</p><h2>iptables 参数</h2><ul class="list">  <li>-I, --insert chain [rulenum] rule-specification ： -I 代表 insert 的意思，新增一个 rule ，</li>  <ul class="list">    <li class="indent1">第一个参数会 chain  的名称</li>    <li class="indent1">第二个参数为 rule 的顺序，预设值为 1 ，如果你指定为  1 ，那么新的 rule 会放在列表的最上头。</li>    <li class="indent1">范例：  sudo iptables -I INPUT 1  -j ACCEPT</li>  </ul></ul><ul class="list">  <li>-j, --jump target ：当封包符合这个 rule ，透过 -j 的指示，将这个封包丢到指定的 chain 去决定下一个行为。</li></ul><p>我们可以使用指令 " sudo iptables -N newChain "，来建立一新的 chain 叫 "newChain" ，再透过  -j newChain ，将封包下一步的行为传到这个新的 chain 来决定，例如下面这个范例，我将 80 port 的所有封包丢给 newChain 来决定要怎么处理，"newChain"  里面再指定 "-j REJECT"， REJECT 是一个预设的 Rule Target ，代表拒绝这个封包。</p><div class="codeBlock js"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">iptables </span><span class="pun">-</span><span class="pln">N newChain</span></li><li class="L1"><span class="pln">iptables </span><span class="pun">-</span><span class="pln">A newChain  </span><span class="pun">-</span><span class="pln">j REJECT</span></li><li class="L2"><span class="pln">iptables </span><span class="pun">-</span><span class="pln">I INPUT </span><span class="lit">1</span><span class="pln"> </span><span class="pun">--</span><span class="pln">dport </span><span class="lit">80</span><span class="pln">  </span><span class="pun">-</span><span class="pln">j newChain</span></li></ol></pre></div> <br /><ul class="list">  <li>-i, --in-interface name : 指定网卡代号，可以用  any 代表全部的网卡</li></ul> <br /><ul class="list">  <li>-D, 删除一条 iptables 规则，"INPUT 1" 代表 iptables list 中的第一条规格。</li></ul><blockquote>sudo iptables -D INPUT 1</blockquote><p>restart iptables 会重新 initialize 所有的 iptable rule ，预设的 rule 会从 /etc/sysconfig/iptables 这个档案取得，所以当每次 restart iptables 后，一定要记得重新增加自订的 rule 。</p><blockquote>sudo service iptables restart</blockquote><br /><p>使用 -F 参数可以清除 iptables 所有的 rule 。</p><blockquote>sudo iptables -F</blockquote><br /><p>使用 iptables-save 参数可以储存所有的 chain & rule 。</p><blockquote>sudo iptables-save > myIptables</blockquote><br /><h3>如何阻挡某一段 IP 访问 80 Port，并将阻挡的记录写入 /var/log/message</h3><p>如果你的电脑常常且持续的被某一些固定 IP 攻击，那么你可以试著用下列这个方式来阻挡骇客攻击。</p><div class="codeBlock js"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">sudo iptables </span><span class="pun">-</span><span class="pln">N LOG_REJECT</span></li><li class="L1"><span class="pln">sudo iptables </span><span class="pun">-</span><span class="pln">A LOG_REJECT </span><span class="pun">-</span><span class="pln">j LOG </span><span class="pun">--</span><span class="pln">log</span><span class="pun">-</span><span class="pln">prefix </span><span class="str">"INPUT:REJECT: "</span><span class="pln"> </span><span class="pun">--</span><span class="pln">log</span><span class="pun">-</span><span class="pln">level </span><span class="lit">6</span></li><li class="L2"><span class="pln">sudo iptables </span><span class="pun">-</span><span class="pln">A LOG_REJECT </span><span class="pun">-</span><span class="pln">j REJECT</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">sudo iptables </span><span class="pun">-</span><span class="pln">I INPUT </span><span class="pun">-</span><span class="pln">p tcp </span><span class="pun">--</span><span class="pln">dport </span><span class="lit">80</span><span class="pln"> </span><span class="pun">-</span><span class="pln">j ACCEPT  </span></li><li class="L5"><span class="pln">sudo iptables </span><span class="pun">-</span><span class="pln">I INPUT </span><span class="pun">-</span><span class="pln">s </span><span class="lit">11.123</span><span class="pun">.</span><span class="lit">0.0</span><span class="pun">/</span><span class="lit">16</span><span class="pln"> </span><span class="pun">-</span><span class="pln">p tcp </span><span class="pun">--</span><span class="pln">dport </span><span class="lit">80</span><span class="pln">  </span><span class="pun">-</span><span class="pln">j LOG_REJECT</span></li></ol></pre></div><h2>Forward port to others</h2><ul class="list">  <li>iptables -P FORWARD ACCEPT</li>  <li>iptables -t nat -A PREROUTING -i eth0 -s 192.168.1.0/24 -p tcp --dport 80 -j DNAT --to 127.0.0.1:443</li></ul><h2>防止 DDoS  攻击</h2><p>网路上有很多坏人，会用程式不断的再我们的网站上留言，所以我写了一个简单的小工具叫 DDoS Defender，用来阻挡这个坏人的 IP。</p><ul class="list">  <li><a href="https://github.com/puritys/ddos-defender"  target="_blank">https://github.com/puritys/ddos-defender</a></li></ul><p>这个工具主要是用来防止坏人不断的用 POST 来写资料，预设的规则是若是该 user 五分钟内有超过五次 POST ，DDoS Defender 就会将该 IP 写入 Linux iptables 的 Reject 名单，如此这个 IP 就再来不能进到我们的网站。</p><h2>相关资料</h2><ul class="list">  <li><a href="https://wiki.archlinux.org/index.php/Iptables"  target="_blank">https://wiki.archlinux.org/index.php/Iptables</a></li>  <li><a href="http://www.thegeekstuff.com/2011/01/iptables-fundamentals/"  target="_blank">http://www.thegeekstuff.com/2011/01/iptables-fundamentals/</a></li>  <li>NAT : <a href="http://www.firewall.cx/networking-topics/network-address-translation-nat/228-nat-table.html"  target="_blank">http://www.firewall.cx/networking-topics/network-address-translation-nat/228-nat-table.html</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2018-01-22T00:00:04+08:00" class="article-modify-time">2018/01/22</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-321" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-321" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

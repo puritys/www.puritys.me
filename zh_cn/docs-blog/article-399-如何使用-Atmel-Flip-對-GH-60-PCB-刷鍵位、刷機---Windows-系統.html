@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>如何使用  Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</title>
+    <meta name="keywords" content="Windows, GH60" />
+    <meta name="description" content="組裝完 GH60 鍵盤之後，下一步就是要自已刷鍵位囉，裝 GH60 鍵盤除了可以把鍵盤弄成自已要的風格，另外最重要的就是自定每一個按鍵的輸出值，這篇文章我會先介紹如何用軟體重刷鍵位，下次再來介紹如何修改 tmk keyboad 的鍵位設定。如果你是使用 Mac 系統，那麼請參考我的另一篇文章 Mac 刷鍵位教學。網路上有不少刷鍵位教學的文章，不過很多都過時了，軟體已經不能下載或" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-399-如何使用-Atmel-Flip-对-GH-60-PCB-刷键位、刷机---Windows-系统.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-399-如何使用-Atmel-Flip-对-GH-60-PCB-刷键位、刷机---Windows-系统.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-399.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-399.html">
+                    <em><span>如何使用  Atmel Flip 对 G...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-399-\u5982\u4f55\u4f7f\u7528-Atmel-Flip-\u5c0d-GH-60-PCB-\u5237\u9375\u4f4d\u3001\u5237\u6a5f---Windows-\u7cfb\u7d71.html"},"headline":"\u5982\u4f55\u4f7f\u7528  Atmel Flip \u5c0d GH 60 PCB \u5237\u9375\u4f4d\u3001\u5237\u6a5f - Windows \u7cfb\u7d71","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_326.png","datePublished":"2017-01-02T12:56:37+08:00","dateModified":"2017-01-29T00:12:25+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u7d44\u88dd\u5b8c GH60  \u9375\u76e4\u4e4b\u5f8c\uff0c\u4e0b\u4e00\u6b65\u5c31\u662f\u8981\u81ea\u5df2\u5237\u9375\u4f4d\u56c9\uff0c\u88dd GH60 \u9375\u76e4\u9664\u4e86\u53ef\u4ee5\u628a\u9375\u76e4\u5f04\u6210\u81ea\u5df2\u8981\u7684\u98a8\u683c\uff0c\u53e6\u5916\u6700\u91cd\u8981\u7684\u5c31\u662f\u81ea\u5b9a\u6bcf\u4e00\u500b\u6309\u9375\u7684\u8f38\u51fa\u503c\uff0c\u9019\u7bc7\u6587\u7ae0\u6211\u6703\u5148\u4ecb\u7d39\u5982\u4f55\u7528\u8edf\u9ad4\u91cd\u5237\u9375\u4f4d\uff0c\u4e0b\u6b21\u518d\u4f86\u4ecb\u7d39\u5982\u4f55"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Jan</div>
+            <div class="day">02</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html"><span>如何使用  Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Windows">Windows</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=GH60.html">GH60</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-399.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>组装完 GH60  键盘之后，下一步就是要自已刷键位罗，装 GH60 键盘除了可以把键盘弄成自已要的风格，另外最重要的就是自定每一个按键的输出值，这篇文章我会先介绍如何用软体重刷键位，下次再来介绍如何修改 tmk keyboad 的键位设定。</p><p>如果你是使用 Mac 系统，那么请参考我的另一篇文章 <a href="docs-blog/article-401-如何使用对-GH-60-PCB-刷键位、刷机---Mac-系统.html"> Mac 刷键位教学</a>。</p><p>网路上有不少刷键位教学的文章，不过很多都过时了，软体已经不能下载或安装，不然就是技术狂人写出来很难懂的神奇教学，我记录下我的刷键位方式，希望大家都能够轻松刷机，本篇文章只介绍如何在 Windows 系统刷键位喔! (Mac <a href="docs-blog/article-401-如何使用对-GH-60-PCB-刷键位、刷机---Mac-系统.html"> 请右转</a>)</p><h2>刷键位软体</h2><p>网路上可以找到好几种刷键位软体，其中 UI 介面的有 Atmel Flip 与 Teensy ， 这里我要使用的软体是 <b> Atmel Flip</b> ，我翻开看我的 GH60 PCB 板，背面黑黑的主控件上面写著 Atmel Atmega32U4，所以我当然是选用 Atmel Flip 来刷机，其实我也试过 Teensy ，但是 Teensy 没办法侦侧到我的板子，如果你刷键位软体没办法载入你的板子，记得翻开背面看看大大一块，黑色的主控件上面写著什么牌子。</p><p>你可以从下面这个连结下载 Atmel Flip，官方的下载连结有提供三种档案，一个是内建 Java ，一个没有内建 Java，最后一个是给 Linux 用的，如果你要下载无内建 Java ，那么你要记得自已安装 Java。</p><ul class="list">  <li>官方载点： <a href="http://www.atmel.com/tools/FLIP.aspx"  target="_blank">http://www.atmel.com/tools/FLIP.aspx</a></li>  <li>本地下载 (无内建 Java 版本)： <a href="https://download.puritys.me/Flip%20Installer%20-%203.4.7.112.exe"  target="_blank">https://download.puritys.me/Flip%20Installer%20-%203.4.7.112.exe</a></li></ul><div class="media media-image"><div class="pull-left"><a href="https://www.puritys.me/filemanage/blog_files/file_326.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_326.png"   class="left" link="me" left="true"  style="width: 250px;"/></a></div><div class="media-body"><div>Flip 是一个 Windows UI 介面的软体，我们可以用他来更新各种装置的韧体，例如键盘，废话 ~ 键盘是我今天的重点 ! 而今天我就是要使用 Flip 来更新机械式键盘的键位设定，这个软体的安装方式很简单，在 Windows 介面中就是一直点下一步就安装完成了，安装完成后就可以直接打开 Flip 程式如左图。</div></div></div><p>接下就我们要选 device <span class="flow-item">Device</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Select</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Atmega32U4</span> ，如下图示 。</p><a href="https://www.puritys.me/filemanage/blog_files/file_327.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_327.png"   link="me" /></a><p>选好 Device 后，下一步是要选 <span class="flow-item">Settings</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Communication</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">USB</span> ，这一步是指我们要选择需要被刷键的键盘，大部份的机械式键盘都是用 USB 连到电脑，所以一般来说就选 USB 就可以了。</p><h3>Driver 没有安装 libusb-win32</h3><a href="https://www.puritys.me/filemanage/blog_files/file_329.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_329.png"   link="me"  style="width: 500px;"/></a><p>上一步选完 Communication ，你会得到一个错误讯息，说你的电脑"遗失 libusb0.dll" ，我的 Windows 是装英文版的，错误讯息是说 "libusb0.dll not found" ，问题就是我们没有安装 libusb0.dll 这个程式库，安装方式可以参考下面这个网站：</p><ul class="list">  <li><a href="http://imgur.com/a/bnwzy"  target="_blank">http://imgur.com/a/bnwzy</a> 参考这里安装 libusb</li></ul><p>安装 libusb ： 简单说就是新增一个硬体，然后选择自已驱动程式，寻找这个路径 C:&#92;Program Files (x86)&#92;Atmel&#92;Flip 3.4.7 ， 硬体类型我选择 Atmega16U4  ，这样 Windows 就会帮你自动安装  好 libusb0.dll 。</p><a href="https://www.puritys.me/filemanage/blog_files/file_332.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_332.png"   link="me"  style="width: 450px;"/></a> <br /><p>确认是否安装成功，先打开装置管理员，确定是否有 libusb-win32 devices ，如果已经有了，你会看到下面这个图示：</p><a href="https://www.puritys.me/filemanage/blog_files/file_328.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_328.png"   link="me" /></a><h3>下载键位设定档</h3><p>好了，接下来我们就可以刷键位了，但是我们得先有一个键位设定档，可以自已编译程式产生设定档，或是下载别人编译好的，这里先用简单的方式，就是去下载别人的设定档，下面我提供两个设定档给大家下载，gh60-0.2_rc2_std_layout 这个是 geekhack <a href="https://geekhack.org/index.php?topic=37570.0"  target="_blank">https://geekhack.org/index.php?topic=37570.0</a> 有人提供的，另一个 gh60_lufa.hex 是我自已编译的。</p><ul class="list">  <li>gh60-0.2_rc2_std_layout： <a href="https://geekhack.org/index.php?action=dlattach;topic=37570.0;attach=15860"  target="_blank">https://geekhack.org/index.php?action=dlattach;topic=37570.0;attach=15860</a></li>  <ul class="list">    <li class="indent1">本地备份： <a href="https://download.puritys.me/ukbdc_gh60-0.2_rc2_std_layout.hex"  target="_blank">https://download.puritys.me/ukbdc_gh60-0.2_rc2_std_layout.hex</a></li>  </ul>  <li>gh60_lufa : <a href="https://download.puritys.me/gh60_lufa.hex"  target="_blank">https://download.puritys.me/gh60_lufa.hex</a></li>  <li>gh60_lufa_v2 : <a href="https://download.puritys.me/gh60_lufa_v2.hex"  target="_blank">https://download.puritys.me/gh60_lufa_v2.hex</a> ，加入我自已习惯的键盘设定， Ctrl+ FN + i  = 方向键上， Ctrl+ FN + j  = 左， Ctrl+ FN + k  = 下， Ctrl+ FN + l  = 右。</li></ul><h3>开始刷键位</h3><p>先回到 Flip 软体的画面，记得要选 <span class="flow-item">Settings</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Comunication</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">USB</span></p><a href="https://www.puritys.me/filemanage/blog_files/file_333.png" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_333.png"   link="me" /></a><p>接著你要按一下 PCB 版 背面右边的一颗按钮，按下去听到喀一声， PCB 就会进入刷机模式，如果按钮太小按不太到的话，就用摄子压一下，在刷机模式中 Caps 键的灯会一直闪动，看到灯在闪就是已经进入刷机模式了。</p><p>这时点击 Flip UI 上的 Open ，Flip 会自动载入键盘，这时你会看 UI 左边的 Erase, Black Check , Program , Verify 变成可以勾选，记得全部打勾，然后再点击  <span class="flow-item">File</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">Load</span> HEX File ，选择你刚刚下载的 Hex 键位设定档，选完按左下角的 Run ，等大约  10 秒就刷机完毕了，最后再按一下 Flip 右边按钮的 Start Application ，新刷好的键位会立刻生效，不用拔 USB 插头，打开 notepad 或是 sublime  试一下键盘每个按键是否正常输出。</p><a href="https://www.puritys.me/filemanage/blog_files/file_334.jpg" target="_blank" ><img src="https://www.puritys.me/filemanage/blog_files/file_334.jpg"   link="me" /></a><p>恭喜你 ! 你已经学会刷键盘键位罗，下一步就是自已产生键位设定档，这个档案的副档名为 .hex ，只要你懂得如何产生 .hex ，那么你就可以自定键盘的所有热键、组合键罗，我自已编译的 gh60_lua 是使用 tmk_keyboard 来编译的。</p><p>下面这两个是键盘韧体的原始码，第一个是原创，支援  PCB 板子 Rev. A , Rec. B ，你可以翻到板子背面，看看你的板子是 Rev 多少，第二个连结是有人拿 tmk 来改的，改成支援 Rev. C ，建议使用第二个连结的档案来编译，问题会比较少。</p><ul class="list">  <li><a href="https://github.com/tmk/tmk_keyboard"  target="_blank">https://github.com/tmk/tmk_keyboard</a></li>  <li><a href="https://github.com/kairyu/tmk_keyboard_custom"  target="_blank">https://github.com/kairyu/tmk_keyboard_custom</a></li></ul><br /><br /><ul class="list">  <li><a href="../../docs-blog/article-398.html">DIY 组装 GH60 机械式键盘</a></li>  <li><a href="../../docs-blog/article-401.html">如何使用对 GH 60 PCB 刷键位、刷机 - Mac 系统</a></li>  <li><a href="../../docs-blog/article-399.html">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</a></li>  <li><a href="../../docs-blog/article-402.html">如何在 Windows 编译 GH60 键位程式 - 使用 Docker</a></li>  <li><a href="../../docs-blog/article-400.html">gh60 刷键位 - tmk 如何设定三组合键 Remap</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-01-29T00:12:25+08:00" class="article-modify-time">2017/01/29</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-399" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-399" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-398.html">DIY 組裝 GH60 機械式鍵盤</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-400.html">gh60 刷鍵位  - tmk 如何設定三組合鍵 Remap</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Windows 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-397.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="../../docs-blog/article-382.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_382&quot;}'>Win 10 光碟機無法打開 </a></li>
+    
+        <li><a href="../../docs-blog/article-372.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_372&quot;}'>加速 Windows 10 /  WIN 10 </a></li>
+    
+        <li><a href="../../docs-blog/article-314.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_314&quot;}'>Win8 修改系統預設字型 </a></li>
+    
+        <li><a href="../../docs-blog/article-290.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="../../docs-blog/article-235.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_235&quot;}'>解決讀卡機偵測不到 </a></li>
+    
+        <li><a href="../../docs-blog/article-34.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_34&quot;}'>USB 插插拔拔，造成 USB 無法讀取 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">GH60 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-402.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_402&quot;}'>如何在 Windows 編譯 GH60 鍵位程式 - 使用 Docker </a></li>
+    
+        <li><a href="../../docs-blog/article-401.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_401&quot;}'>GH60  如何刷鍵位、刷機 - Mac 系統 </a></li>
+    
+        <li><a href="../../docs-blog/article-400.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_400&quot;}'>gh60 刷鍵位  - tmk 如何設定三組合鍵 Remap </a></li>
+    
+        <li><a href="../../docs-blog/article-398.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_398&quot;}'>DIY 組裝 GH60 機械式鍵盤 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-461.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="../../docs-blog/article-460.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="../../docs-blog/article-436.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="../../docs-blog/article-434.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="../../docs-blog/article-433.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="../../docs-blog/article-425.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="../../docs-blog/article-415.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="../../docs-blog/article-413.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="../../docs-blog/article-411.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="../../docs-blog/article-410.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

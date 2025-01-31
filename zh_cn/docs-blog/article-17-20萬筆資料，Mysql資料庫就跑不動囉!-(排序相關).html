@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>20万笔资料，Mysql资料库就跑不动罗! (排序相关)</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 這篇文章將介紹因為 order by 與 limit offset，而造成 Mysql 資料庫搜尋時間過久的問題 - Slow Query。首先假設有一個資料表 news ，共有20萬筆資料 ， 排序的欄位為 sort，primary key 為 id 這時當我們要查詢第19999頁的資料時，會用這樣的語法select * from news order By sort DE" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-17-20万笔资料，Mysql资料库就跑不动罗!-(排序相关).html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-17-20万笔资料，Mysql资料库就跑不动罗!-(排序相关).html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-17.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Mysql" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Mysql</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-17.html">
+                    <em><span>20万笔资料，Mysql资料库就跑不动罗...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-17-20\u842c\u7b46\u8cc7\u6599\uff0cMysql\u8cc7\u6599\u5eab\u5c31\u8dd1\u4e0d\u52d5\u56c9!-(\u6392\u5e8f\u76f8\u95dc).html"},"headline":"20\u842c\u7b46\u8cc7\u6599\uff0cMysql\u8cc7\u6599\u5eab\u5c31\u8dd1\u4e0d\u52d5\u56c9! (\u6392\u5e8f\u76f8\u95dc)","image":"","datePublished":"2011-03-23T22:47:57+08:00","dateModified":"2015-11-26T11:46:42+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u9019\u7bc7\u6587\u7ae0\u5c07\u4ecb\u7d39\u56e0\u70ba order by \u8207 limit offset\uff0c\u800c\u9020\u6210 Mysql \u8cc7\u6599\u5eab\u641c\u5c0b\u6642\u9593\u904e\u4e45\u7684\u554f\u984c - Slow Query\u3002\r\u9996\u5148\u5047\u8a2d\u6709\u4e00\u500b\u8cc7\u6599\u8868 news \uff0c\u5171\u670920\u842c\u7b46\u8cc7\u6599 \uff0c"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Mar</div>
+            <div class="day">23</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-17-20萬筆資料，Mysql資料庫就跑不動囉!-(排序相關).html"><span>20万笔资料，Mysql资料库就跑不动罗! (排序相关)</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-17.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><div class="notice" label="notice">这篇文章将介绍因为 order by 与 limit offset，而造成 Mysql 资料库搜寻时间过久的问题 - Slow Query。</div><p>首先假设有一个资料表 news ，共有20万笔资料 ， 排序的栏位为 <em>sort</em>，<em>primary key 为 id </em></p><p>这时当我们要查询第19999页的资料时，会用这样的语法</p><p><em>select * from news order By sort DESC  limit  199990,10;</em></p><p>结果 Mysql 资料库却跑了2秒钟，这真的太吓人了</p><p>接著我们用语法</p><p><em>explain select * from news order By sort DESC  limit  10000,10;</em></p><p>发现 <em>possible_keys = null , extra = Using filesort </em> 所以在order By sort时，mysql使用 filesort ，并没有用index方式排序，不过这并不是最大的问题。</p><p>再试看看不加排序的语法:</p><p><em> select  *  from news    limit  10000,10; </em></p><p>执行0.5秒，也就是说拿掉排序后，SQL 语法的执行时间就正常了，也就是说当资料量过大时，排序会影响到SQL的效能。</p><p>我们再试试下列两句语法:</p><p><em>select *  from news order By sort DESC  limit  199990,10; </em> 执行2秒</p><p><em>select id  from news order By sort DESC  limit  199990,10;</em>  执行0.5秒</p><p>从这里我们可以看出来 MySql 在排序的时间，读取的栏位也会影响排序的效能，而且影响的程度，远大於 Index。</p><p>最后我们使用下列的语法，来解决排序而造成搜寻时间过久的问题，方法是用 inner join 的方式，先 select primary key ，再用  primary key 去取得其它栏位的资料。</p><p><em>select * from news as t  inner join ( select  id from news  order by sort  DESC limit 140000,10 )  as k  where t.id=k.id</em></p><h2>Mysql performance 测试</h2><p>现在再做一些详细的测试，来比较各种状况的SQL语法。</p><p>假设资料表 : book 栏位如下，并且资料表中有20万笔资料。</p><table class="table_nm"><tbody><tr><td>book_name 书名</td><td>price 价格</td><td>author_id 作者</td>  </tr>  </tbody></table><div class="codeBlock"><span class="title">DB schema</span><pre class="prettyprint lang-sql linenums" ><ol class="linenums"><li class="L0"><span class="pln">create    table book</span><span class="pun">(</span></li><li class="L1"><span class="pln">   id </span><span class="kwd">int</span><span class="pln"> auto_increment</span><span class="pun">,</span></li><li class="L2"><span class="pln">   book_name varchar</span><span class="pun">(</span><span class="lit">255</span><span class="pun">),</span></li><li class="L3"><span class="pln">   price </span><span class="kwd">int</span><span class="pun">,</span></li><li class="L4"><span class="pln">   author_id </span><span class="kwd">int</span><span class="pun">,</span></li><li class="L5"><span class="pln">   sort </span><span class="kwd">int</span><span class="pun">,</span></li><li class="L6"><span class="pln">   sort_index </span><span class="kwd">int</span><span class="pun">,</span></li><li class="L7"><span class="pln">   sort_unique </span><span class="kwd">int</span><span class="pun">,</span></li><li class="L8"><span class="pln">   primary key </span><span class="pun">(</span><span class="pln">id</span><span class="pun">),</span></li><li class="L9"><span class="pln">   index </span><span class="pun">(</span><span class="pln">sort_index</span><span class="pun">),</span></li><li class="L0"><span class="pln">   unique </span><span class="pun">(</span><span class="pln">sort_unique</span><span class="pun">)</span></li><li class="L1"><span class="pun">)</span><span class="pln">engine</span><span class="pun">=</span><span class="typ">MyISAM</span><span class="pln"> DEFAULT CHARSET</span><span class="pun">=</span><span class="pln">utf8 </span><span class="pun">;</span></li></ol></pre></div><table class="table_nm" style="margin: 15px">  <tbody>  <tr class="title">    <td>搜寻栏位</td><td>SQL语法</td><td>执行时间(秒)</td>  </tr>  <tr>    <td>抓最前10笔资料<br />并指定排序sort<br /></td>    <td><span>select * from book order by sort ASC limit 0,10</span></td>    <td><span>0.07</span></td>  </tr>  <br />  <tr>    <td>抓最后10笔资料<br />并指定排序sort<br /></td><td>select * from book order by sort ASC limit 199990,10</td><td style="color: rgb(231, 100, 19);">2.16</td>  </tr>  <tr>    <td>抓book最后10笔资料，<br />以sort为排序，只取栏位ID</td>    <td>select id from book order by sort limit 199990,10 </td>    <td>0.1</td>  </tr>   <tr>    <td>抓最后10笔资料，<br />以sort(index)为排序</td>    <td>select * from book order by sort_index ASC limit 199990,10</td>    <td style="color: rgb(231, 100, 19);">1.85</td>  </tr>  <br />  <tr>    <td>抓最后10笔资料，<br />以sort(require)为排序</td>    <td>select * from book order by sort_unique ASC limit 199990,10</td>    <td style="color: rgb(231, 100, 19);">1.775</td>  </tr>  <br />  <tr>    <td>抓最后10笔资料，<br />以sort为排序，并优先取得id<br /><span style="color: red;">(优化语法)</span></td>    <td>select * from `book` as t inner join (select id from book order by sort ASC limit 199990,10) as b on t.id=b.id <span style="color: rgb(91, 86, 230);">order by t.sort</span> ASC</td>    <td>0.13</td>  </tr>   <br />  <tr>    <td>抓最后10笔资料，<br />以id为排序，并优先取得id<br /><span style="color: red;">(优化语法)</span></td>    <td>select * from `book` as t inner join (select id from book order by id ASC limit 199990,10) as b on t.id=b.id <span style="color: rgb(91, 86, 230);">order by t.id</span> ASC</td>    <td><span>0.065</span></td>  </tr>  <tr>    <td>排序id抓最后10笔资料，取栏位id,author_id book_name有文字后</td>    <td>select id,<span style="color: red;">book_name</span>,author_id from book order by id limit 199990,10 <br />    有读取文字时，速度会特别慢<br />    </td>    <td style="color: rgb(231, 100, 19);">1.8</td>  </tr>   </tbody></table><div > </div><p><span style="color: rgb(231, 100, 19);">橘色的SQL语法</span>，代表执行速度过慢，应修改为优化后的语法，结论是：如果资料量很大，又加上 select 的栏位有文字，以及使用 order 排序时，SQL执行时间就会爆表 ( 含文字的栏位，资料越长，速度就越慢)。</p><p>这里有一篇文章，在说明 limit offset 过大时，为什么会造成 slow query 。</p><ul class="list">  <li><a href="http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/"  target="_blank">http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-11-26T11:46:42+08:00" class="article-modify-time">2015/11/26</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-17" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-17" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Mysql</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-350.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="../../docs-blog/article-304.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="../../docs-blog/article-269.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_269&quot;}'>Oracle 語法記錄 </a></li>
+    
+        <li><a href="../../docs-blog/article-229.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_229&quot;}'>Mysql 啟動失敗： Can not open the mysql.plugin table </a></li>
+    
+        <li><a href="../../docs-blog/article-76.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+        <li><a href="../../docs-blog/article-17.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>20萬筆資料，Mysql資料庫就跑不動囉! (排序相關) </a></li>
+    
+        <li><a href="../../docs-blog/article-13.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>Mysql Index, Unique 效能提升 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

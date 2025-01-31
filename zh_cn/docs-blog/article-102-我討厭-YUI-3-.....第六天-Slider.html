@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="../../templates/static/js/files%3Fyui-3.13%252Fyui%252Fyui-min.js" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我讨厌 YUI 3 .....第六天  Slider</title>
+    <meta name="keywords" content="YUI3" />
+    <meta name="description" content=" YUI Input Slider 是一個可以使用滑鼠拖拉，來改變數值的功能，像是輸入年齡、身高、體重等等，這個方式就還蠻好用的，而且 YUI Slider 的使用方式很簡單，短短的幾行 code 就搞定了，先來個範例吧，下面的捲軸是可以拖拉的。 請輸入年齡 YUI Slider html範例lt;div class=slideface yui3-skin-samgt; 請輸入" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-102-我讨厌-YUI-3-.....第六天-Slider.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-102-我讨厌-YUI-3-.....第六天-Slider.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-102.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-102-我討厭-YUI-3-.....第六天-Slider.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-102-我討厭-YUI-3-.....第六天-Slider.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Javascript" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-102.html">
+                    <em><span>我讨厌 YUI 3 .....第六天  ...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-102-\u6211\u8a0e\u53ad-YUI-3-.....\u7b2c\u516d\u5929-Slider.html"},"headline":"\u6211\u8a0e\u53ad YUI 3 .....\u7b2c\u516d\u5929  Slider","image":"","datePublished":"2012-01-10T19:44:22+08:00","dateModified":"2016-09-25T17:08:20+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rYUI Input Slider \u662f\u4e00\u500b\u53ef\u4ee5\u4f7f\u7528\u6ed1\u9f20\u62d6\u62c9\uff0c\u4f86\u6539\u8b8a\u6578\u503c\u7684\u529f\u80fd\uff0c\u50cf\u662f\u8f38\u5165\u5e74\u9f61\u3001\u8eab\u9ad8\u3001\u9ad4\u91cd\u7b49\u7b49\uff0c\u9019\u500b\u65b9\u5f0f\u5c31\u9084\u883b\u597d\u7528\u7684\uff0c\u800c\u4e14 YUI Slider \u7684\u4f7f\u7528\u65b9\u5f0f\u5f88\u7c21\u55ae\uff0c\u77ed\u77ed\u7684\u5e7e\u884c code "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Jan</div>
+            <div class="day">10</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-102-我討厭-YUI-3-.....第六天-Slider.html"><span>我讨厌 YUI 3 .....第六天  Slider</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=YUI3">YUI3</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-102.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>YUI Input Slider 是一个可以使用滑鼠拖拉，来改变数值的功能，像是输入年龄、身高、体重等等，这个方式就还蛮好用的，而且 YUI Slider 的使用方式很简单，短短的几行 code  就搞定了，先来个范例吧，下面的卷轴是可以拖拉的。</p><div class="slideface yui3-skin-sam">    请输入年龄 <input type=="text" id="data" value="50" size="2" /></div><h2>YUI Slider html</h2><div class="codeBlock html"><span class="title">范例</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"slideface yui3-skin-sam"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">    请输入年龄 </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="atv">=</span><span class="pun">=</span><span class="atv">"text"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"data"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"50"</span><span class="pln"> </span><span class="atn">size</span><span class="pun">=</span><span class="atv">"2"</span><span class="pln"> </span><span class="tag">/&gt;</span></li><li class="L2"><span class="tag">&lt;/div&gt;</span></li></ol></pre></div><p>这里我使用的样版是 sam ，所以 class 加入了 yui3-skin-same，并给一个初始的值 value=50 ，下一步我再用 Javascript 去抓初始值，并指定给 yui。</p><h2>YUI Slider  Code</h2><div class="codeBlock js_my"><span class="title">范例</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">YUI</span><span class="pun">().</span><span class="kwd">use</span><span class="pun">(</span><span class="str">"node"</span><span class="pun">,</span><span class="str">"slider"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">Y</span><span class="pun">){</span></li><li class="L1"><span class="pln">   </span><span class="kwd">function</span><span class="pln"> bindSlider</span><span class="pun">(){</span></li><li class="L2"><span class="pln">      Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">".slideface"</span><span class="pun">).</span><span class="pln">setStyles</span><span class="pun">({</span><span class="pln">textAlign</span><span class="pun">:</span><span class="str">"center"</span><span class="pun">});</span></li><li class="L3"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> v</span><span class="pun">=</span><span class="pln">Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">"#data"</span><span class="pun">).</span><span class="kwd">get</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">);</span></li><li class="L4"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> slider</span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> Y</span><span class="pun">.</span><span class="typ">Slider</span><span class="pun">({</span></li><li class="L5"><span class="pln">         value</span><span class="pun">:</span><span class="pln">v</span><span class="pun">,</span><span class="pln">  </span><span class="com">// 设定初始值</span></li><li class="L6"><span class="pln">         axis  </span><span class="pun">:</span><span class="pln"> </span><span class="str">"y"</span><span class="pun">,</span><span class="pln"> </span><span class="com">// x 为横向拖拉， y为纵向拖拉</span></li><li class="L7"><span class="pln">         min  </span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="com">//设定最小值</span></li><li class="L8"><span class="pln">         max</span><span class="pun">:</span><span class="lit">100</span><span class="pln"> </span><span class="com">//设定最大值</span></li><li class="L9"><span class="pln">         </span><span class="pun">});</span></li><li class="L0"><span class="pln">      </span><span class="kwd">function</span><span class="pln"> update</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span></li><li class="L1"><span class="pln">         Y</span><span class="pun">.</span><span class="pln">one</span><span class="pun">(</span><span class="str">"#data"</span><span class="pun">).</span><span class="kwd">set</span><span class="pun">(</span><span class="str">"value"</span><span class="pun">,</span><span class="pln">e</span><span class="pun">.</span><span class="pln">newVal</span><span class="pun">);</span></li><li class="L2"><span class="pln">      </span><span class="pun">}</span></li><li class="L3"><span class="pln">      slider</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"valueChange"</span><span class="pun">,</span><span class="pln">update</span><span class="pun">,</span><span class="pln">Y</span><span class="pun">);</span></li><li class="L4"><span class="pln">      slider</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="str">".slideface"</span><span class="pun">);</span></li><li class="L5"><span class="pln">   </span><span class="pun">}</span></li><li class="L6"><span class="pln">   Y</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">"domready"</span><span class="pun">,</span><span class="pln">  bindSlider</span><span class="pun">());</span><span class="pln"> </span><span class="com">// 当 html 载入完毕后，才执行 yui 语法</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">});</span></li></ol></pre></div><div class="notice" label="notice">valueChange 是 Slider 的一个事件，当数值改变的时候，才会触发此事件，这里我有指定 valueChange function ，当用户拖拉卷轴后， function会自动去修改 input 的 Value。</div><h2>结束罗</h2><div class="notice" label="notice">自已去试试 YUI Slider 吧</div> <script>YUI().use("node","slider",function(Y){	function bindSlider(){		Y.one(".slideface").setStyles({textAlign:"center"});		var v=Y.one("#data").get("value");		var slider= new Y.Slider({			value:v,			axis  : "y",			min  : 10,			max:100			});		function update(e){			Y.one("#data").set("value",e.newVal);		}		slider.on("valueChange",update,Y);		slider.render(".slideface");	}   Y.on("domready",  bindSlider());       });</script></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-09-25T17:08:20+08:00" class="article-modify-time">2016/09/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-102" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-102" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-153.html">我討厭 YUI 3 .....第八天 Widget</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-150.html">我討厭 YUI 3 .....第七天 FileUploader</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">YUI3 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-198.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_198&quot;}'>我討厭 YUI 3 .....第十三天 Radio </a></li>
+    
+        <li><a href="../../docs-blog/article-196.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_196&quot;}'>我討厭 YUI 3 .....第十二天 Panel </a></li>
+    
+        <li><a href="../../docs-blog/article-177.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_177&quot;}'>我討厭 YUI 3 .....第十一天 Node Rotate Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-170.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_170&quot;}'>我討厭 YUI 3 .....第十天 attribute event </a></li>
+    
+        <li><a href="../../docs-blog/article-162.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_162&quot;}'>我討厭 YUI 3 .....第九天 Config </a></li>
+    
+        <li><a href="../../docs-blog/article-161.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_161&quot;}'>YUI3 yogi </a></li>
+    
+        <li><a href="../../docs-blog/article-153.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_153&quot;}'>我討厭 YUI 3 .....第八天 Widget </a></li>
+    
+        <li><a href="../../docs-blog/article-150.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_150&quot;}'>我討厭 YUI 3 .....第七天 FileUploader </a></li>
+    
+        <li><a href="../../docs-blog/article-101.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_101&quot;}'>我討厭 YUI 3 .....第五天 Ajax IO </a></li>
+    
+        <li><a href="../../docs-blog/article-100.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_100&quot;}'>我討厭 YUI 3  .....第四天 Skin </a></li>
+    
+        <li><a href="../../docs-blog/article-84.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_84&quot;}'>我討厭 YUI 3 .....第三天 Node  Plugin </a></li>
+    
+        <li><a href="../../docs-blog/article-81.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_81&quot;}'>我討厭 YUI 3 .....第二天 Event </a></li>
+    
+        <li><a href="../../docs-blog/article-73.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_73&quot;}'>我討厭 YUI 3  .....第一天 Node </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Javascript</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-347.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_347&quot;}'>JavaScript : 呼叫 Function 可以省略括號 </a></li>
+    
+        <li><a href="../../docs-blog/article-338.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_338&quot;}'>Node.js/JavaScript is a wonderful programming language. </a></li>
+    
+        <li><a href="../../docs-blog/article-294.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_294&quot;}'>Javascript 處理 Binary 資料 - ArrayBuffer </a></li>
+    
+        <li><a href="../../docs-blog/article-275.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_275&quot;}'>Javascript 移除空白 Performance 優化 </a></li>
+    
+        <li><a href="../../docs-blog/article-273.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_273&quot;}'>自定義 AngularJS service </a></li>
+    
+        <li><a href="../../docs-blog/article-270.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_270&quot;}'>AngularJS </a></li>
+    
+        <li><a href="../../docs-blog/article-247.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_247&quot;}'>Javascript ECMA 1 </a></li>
+    
+        <li><a href="../../docs-blog/article-242.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_242&quot;}'>Javascript Hoisting 與 Closure </a></li>
+    
+        <li><a href="../../docs-blog/article-237.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_237&quot;}'>什麼是程式語言定義的 Currying </a></li>
+    
+        <li><a href="../../docs-blog/article-202.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_202&quot;}'>Javascript 將字串轉成 binary 與 binary to string </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

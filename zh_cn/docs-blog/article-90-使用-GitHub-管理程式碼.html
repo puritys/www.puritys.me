@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>使用 GitHub 管理程式码</title>
+    <meta name="keywords" content="Git" />
+    <meta name="description" content=" Git 是一個很好用的程式碼版本管理工具，不管是前端，後端工程師，都應該要學會 Git 。安裝 Git Ubuntu: sudo apt-get install git CentOS, RedHat : sudo yum install gitGitHub設定接著去 GitHub 申請帳號，並 create Repository ，然後按照網站給的教學來設定吧!! git c" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-90-使用-GitHub-管理程式码.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-90-使用-GitHub-管理程式码.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-90.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-90-使用-GitHub-管理程式碼.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-90-使用-GitHub-管理程式碼.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-90.html">
+                    <em><span>使用 GitHub 管理程式码</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-90-\u4f7f\u7528-GitHub-\u7ba1\u7406\u7a0b\u5f0f\u78bc.html"},"headline":"\u4f7f\u7528 GitHub \u7ba1\u7406\u7a0b\u5f0f\u78bc","image":"","datePublished":"2011-12-30T23:35:48+08:00","dateModified":"2017-02-19T02:13:06+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rGit \u662f\u4e00\u500b\u5f88\u597d\u7528\u7684\u7a0b\u5f0f\u78bc\u7248\u672c\u7ba1\u7406\u5de5\u5177\uff0c\u4e0d\u7ba1\u662f\u524d\u7aef\uff0c\u5f8c\u7aef\u5de5\u7a0b\u5e2b\uff0c\u90fd\u61c9\u8a72\u8981\u5b78\u6703 Git \u3002\r\u5b89\u88dd Git\r\r  Ubuntu:   sudo apt-get install git\r  CentO"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Dec</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-90-使用-GitHub-管理程式碼.html"><span>使用 GitHub 管理程式码</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=Git.html">Git</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-90.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>Git 是一个很好用的程式码版本管理工具，不管是前端，后端工程师，都应该要学会 Git 。</p><h2>安装 Git</h2><ul class="list">  <li>Ubuntu:   sudo apt-get install git</li>  <li>CentOS, RedHat : sudo yum install git</li></ul><h2>GitHub设定</h2><p>接著去 GitHub 申请帐号，并 create Repository ，然后按照网站给的教学来设定吧!!</p><ul class="list">  <li>git config --global user.name "Your Name"</li>  <li>git config --global user.email <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ef6f6f6cee3efe7e2a0ede1e3">[email&#160;protected]</a></li>  <li>建立 private/public key : 就是建立一对密码，把 private 存到自已电脑的 /home/name/.ssh/id_rsa , 另外一个 public key 存到 github。</li>  <ul class="list">    <li class="indent1">建立key方式 : ssh-keygen -t rsa -C "xxxm"</li>    <li class="indent1">测试进线 ssh -T <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f7909e83b7909e839f8295d994989a">[email&#160;protected]</a> : 若收到讯息「Hi xxxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access.」这样就算成功罗。</li>  </ul>  <li>接著回到你要管理的程式目录</li>  <li>git init : 初始化 git，git 会自动建立资料夹 .git/ ，之后的档案是否有更新，都会从这边去比对。</li></ul><p>再来还是跟著网站说明，上传一个 <b>README </b>档案</p><ul class="list">  <li>touch README :建立 README</li>  <li>git add README : 将 README 增入至 git</li>  <li>git commit -m &#39;first commit&#39;  : commit 至 local git</li>  <li>git remote add origin <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="85e2ecf1c5e2ecf1edf0e7abe6eae8">[email&#160;protected]</a>:xxxx/MyProgram.git 指定我要 commit 到 github server 路径，以及设定一个 Local branch -> origin</li>  <li>git push -u origin master ：  commit local branch origin 到远端的 master</li>  <li>最后回到 GitHub 网站点一下 continue 就完工罗</li></ul><h2>clone 一份全新的 branch 回来</h2><ul class="list">  <li>git clone <a href="https://github.com/puritys/MyProgram.git"  target="_blank">https://github.com/puritys/MyProgram.git</a></li></ul><h2>如何取消尚未  commit 的 code</h2><p>在 GIT 中要取消修改，不像 svn 这么简单，以前用 svn 都会直接 rm 删除档案，然后再重新执行 svn update ，但是在 git 中，如果你直接用 rm 删除档案， git 会认定你不要这个档案了，然后就会出现 deleted file 的状态。</p><p>取消方式是，先用 git status 来检查有那个档案被修改过。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln"># On branch master</span></li><li class="L1"><span class="pln"># Changes not staged for commit:</span></li><li class="L2"><span class="pln">#   (use "git add </span><span class="tag">&lt;file&gt;</span><span class="pln">..." to update what will be committed)</span></li><li class="L3"><span class="pln">#   (use "git checkout -- </span><span class="tag">&lt;file&gt;</span><span class="pln">..." to discard changes in working directory)</span></li><li class="L4"><span class="pln">#</span></li><li class="L5"><span class="pln">#       modified:  xxx.php</span></li></ol></pre></div><p>再来使用  git checkout 取消这次的修改，注意指令中间要多加 -- 的符号，如果你要回复到特定的版号，那么就要补上 vesrion 。</p><blockquote>git checkout -- xxx.php</blockquote><blockquote>git checkout (version) xxx.php</blockquote><p>如果要取消全部的档案，可以使用下面这句语法，将全部的修改取消掉。</p><blockquote>git checkout $(git ls-files --modified)</blockquote><h2>回复 commit 的 code</h2><p>先输入 git log 看看目前 commit 的进度，然后选择你要回复的 log id ，最后使用 git revert 将程式回复。</p><ul class="list">  <li>git revert 508bbac0f9f92b971xxxf852c1bb7191d7a62722</li></ul><p>如果你已经将 code , add 并 commit 到 local repository  ，这时你可以用  git reset 的方式，将程式还原。</p><ul class="list">  <li>git reset --hard 3d5575f8e4c97ddab8ad5d540fee4664c04db75d</li></ul><p>碰到 git auto merged files 有  conflict 时，如果不想处理  conflict，也可以直接用  reset   的方式还原，但要注意你刚刚所修改的程式就不见罗。</p><blockquote>GIT merge error “commit is not possible because you have unmerged files”</blockquote><h2>Merge 其他人的 commit code 回来测试</h2><p>Github 有一个不错的功能，就是每个人都能 Fork 一份最新的 code 回去修改，比如现在有 A ,B  两个人，各有一个 Code Branch ， 当 A 修改了一部分 Code 之后， B 可以直接将 A 修改的部分拉回来自已的 Branch 做 Merge，然后等到 B 也测试完毕，再 commit 到 master branch， Merge 的方式是使用 <b>Pull</b>。</p><ul class="list">  <li>git pull <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="294e405d694e405d415c4b074a4644">[email&#160;protected]</a>:A/project.git master</li></ul><h2>其它指令</h2><ul class="list">  <li>git remote update : 更新本地端的档案</li>  <li>git remote rm origin ： 删除本地端 branch origin</li>  <li>git diff : 将新改的档案与本地端的 branch 做 diff</li>  <li>git diff origin/master:  与 github 上的 code 做 diff</li>  <li>git branch : 查看目前有多少个 branch</li></ul><h3>Git Sub Module</h3><p>Git 还有一个 Sub Module 的功能，这是指一个  Git Project 中用到了第三方的  Git Source Code ，我们可不想把第三方的程式上传到我们的 Git Project，这时你可以使用，submodule 的方式，将第三方程式码下载回来。</p><p>增加一个 Sub Module</p><ul class="list">  <li>git submodule add <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71161805311618051904135f121e1c">[email&#160;protected]</a>:user/third-party-project.git ./lib/third-party</li></ul> <br /><p>Git clone 时，连Sub Module 也一并下载</p><ul class="list">  <li>git clone --recursive git://github.com/user/myProject.git</li></ul><p>更新 Sub Module</p><ul class="list">  <li>git submodule update --init --recursive</li></ul><p>Git conflict</p><blockquote>Please, commit your changes or stash them before you can merge. git</blockquote><ul class="list">  <li>git stash</li>  <li>git pull</li>  <li>git stash pop</li></ul><p>diff 本机已 commit 的程式和 git server 上的程式。</p><ul class="list">  <li>git diff HEAD origin/master</li>  <li>git log  -p -3 (查询 commit log)</li></ul><h2>Pull Remote Branch</h2><p>我 Local 端的 code = <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80e7e9f4c0e7e9f4e8f5e2aee3efed">[email&#160;protected]</a>:myname/source.git (master)</p><ul class="list">  <li>git pull <a href="https://www.puritys.me/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f68667b4f68667b677a6d216c6062">[email&#160;protected]</a>:group/source.git branchName</li></ul><h2>branch 操作</h2><ul class="list">  <li>删除远端 branch : git push origin --delete dev</li>  <li>删除本地端 branch : git branch -d xxbranch</li>  <li>切换 branch: git checkout xxxbranch</li></ul><h2>清除 git .log</h2><p>当 git 越用越久，git log 的资料会越来越大，最后造成  git clone 的时间会很长，这时可以用以下指令清除没用的 log</p><ul class="list">  <li><a href="https://www.kernel.org/pub/software/scm/git/docs/git-gc.html"  target="_blank">https://www.kernel.org/pub/software/scm/git/docs/git-gc.html</a></li></ul><div class="codeBlock hmtl"><span class="title">Example</span><pre class="prettyprint lang-hmtl linenums" ><ol class="linenums"><li class="L0"><span class="pln">git reflog expire </span><span class="pun">--</span><span class="pln">expire</span><span class="pun">=</span><span class="pln">now </span><span class="pun">--</span><span class="pln">all</span></li><li class="L1"><span class="pln">git gc </span><span class="pun">--</span><span class="pln">aggressive </span><span class="pun">--</span><span class="pln">prune</span><span class="pun">=</span><span class="pln">now</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">git push origin master </span><span class="pun">--</span><span class="pln">force</span></li></ol></pre></div><h2>如何自已当一个 git server</h2><p>git 的程式，本身就内建可以当一个 git server ，所以你不用额外安装其它的程式。</p><p>首先我们在 server 上先建立一个新的 repository。</p><ul class="list">  <li>cd /repository/</li>  <li>git init --bare new_repo</li></ul><p>接著回到开发目录，随便写一个 README 档，然后用类似在 github 上的指令，将档案  push 到我们自已的伺服器。</p><ul class="list">  <li>cd /xxx/xx/new_repo</li>  <li>touch README</li>  <li>git init</li>  <li>git add README</li>  <li>git commit -m "initial commit"</li>  <li>git remote add origin account@host:/repository/new_repo</li>  <li>git push origin master</li></ul><p>做完之后，再检查 /repository/new_repo 是不是多了一个 README  的档案呢。</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-02-19T02:13:06+08:00" class="article-modify-time">2017/02/19</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-90" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-90" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script data-cfasync="false" src="https://www.puritys.me/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Git 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-300.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_300&quot;}'>什麼是  Git Submodule </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-446.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="../../docs-blog/article-344.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="../../docs-blog/article-333.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="../../docs-blog/article-330.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="../../docs-blog/article-320.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="../../docs-blog/article-317.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="../../docs-blog/article-292.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="../../docs-blog/article-262.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-248.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="../../docs-blog/article-246.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

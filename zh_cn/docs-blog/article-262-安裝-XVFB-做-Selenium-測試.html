@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>安装 XVFB 做 Selenium 测试</title>
+    <meta name="keywords" content="Selenium" />
+    <meta name="description" content="Xvfb 是什麼呢，他的名稱是 virtual framebuffer X server for X Version 11， Xvfb 可以直接處理 Window 的圖形化功能，並且不會把圖像輸出到螢幕上，也就是說，就算你的電腦沒有啟動 Xwindow ， 你仍然可以執行任何圖形程式。這頁文章就是要介紹如何在 Terminal Linux 中使用 Xvfb 打開 Firefox" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-262-安装-XVFB-做-Selenium-测试.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-262-安装-XVFB-做-Selenium-测试.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-262.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-262-安裝-XVFB-做-Selenium-測試.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-262-安裝-XVFB-做-Selenium-測試.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-262.html">
+                    <em><span>安装 XVFB 做 Selenium 测试</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-262-\u5b89\u88dd-XVFB-\u505a-Selenium-\u6e2c\u8a66.html"},"headline":"\u5b89\u88dd XVFB \u505a Selenium \u6e2c\u8a66","image":"","datePublished":"2014-06-08T23:27:39+08:00","dateModified":"2017-01-27T15:49:16+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"Xvfb \u662f\u4ec0\u9ebc\u5462\uff0c\u4ed6\u7684\u540d\u7a31\u662f virtual framebuffer X server for X Version 11\uff0c Xvfb \u53ef\u4ee5\u76f4\u63a5\u8655\u7406 Window \u7684\u5716\u5f62\u5316\u529f\u80fd\uff0c\u4e26\u4e14\u4e0d\u6703\u628a\u5716\u50cf\u8f38\u51fa\u5230\u87a2"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jun</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-262-安裝-XVFB-做-Selenium-測試.html"><span>安装 XVFB 做 Selenium 测试</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Selenium">Selenium</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-262.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>Xvfb 是什么呢，他的名称是 virtual framebuffer X server for X Version 11， Xvfb 可以直接处理 Window 的图形化功能，并且不会把图像输出到萤幕上，也就是说，就算你的电脑没有启动 Xwindow ， 你仍然可以执行任何图形程式。</p><p>这页文章就是要介绍如何在  Terminal Linux 中使用 Xvfb 打开 Firefox Browser。</p><h2>为何要安装 Xvfb</h2><p>一开始试用  Xvfb ，只是单纯的因为我的 Linux 是 <b>CentOS</b> ，并且没有装  <b>Xwindow </b>，所以在使用 Selenium 测试的时候，没办法 Local 打开  Browser，后来我发现可以使用 Xvfb ，这个虚拟 window 的程式来假装  Xwindow。</p><p>不用还好，一用就爱上他了，平常使用 Selenium 测试的时候，会在本机端打开 Browser ，这时萤幕就会自动 Focus 在 Browser 上，但是我并不想眼睛一直叮著 Browser 看，而用了 Xvfb，就没有这个问题，所有的视窗操作都在虚拟框架中，我可以一边写我的程式，一边等待执行结果，另外 Selenium 执行的速度也比没有用  Xvfb 快很多。</p><p>安装 xvfb</p><blockquote>sudo yum install xorg-x11-server-Xvfb</blockquote><p>启动 Xvfb</p><blockquote>Xvfb :2 -screen 0 1024x768x16</blockquote><p>系统环境变数的设定。</p><p>上一句指令中有个  「<em>:2</em>」，这是指说我要  X11 这个程序将显示图像输出的结果丢到 2 号萤幕上，接著我们再定义 2 号萤幕是什么，我要输入指令 <code>export DISPLAY=:2</code>，指定我的 Terminal 是 2 号萤幕，为了以后执行方便，我直接将这个设定写到 .bash_profile 中。</p> <br /><div class="codeBlock shell"><span class="title"> .bash_profile</span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="kwd">export</span><span class="pln"> DISPLAY</span><span class="pun">=:</span><span class="lit">2</span></li><li class="L1"><span class="kwd">export</span><span class="pln"> BROWSER_PATH</span><span class="pun">=</span><span class="str">/home/</span><span class="pln">username</span><span class="pun">/</span><span class="pln">firefox</span><span class="pun">/</span></li><li class="L2"><span class="pln">PATH</span><span class="pun">=</span><span class="pln">$PATH</span><span class="pun">:</span><span class="pln">$BROWSER_PATH</span></li></ol></pre></div><p>下载firefox</p><ul class="list">  <li>download 32 bit:</li></ul><blockquote><a href="http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/21.0/linux-i686/en-US/firefox-21.0.tar.bz2"  target="_blank">http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/21.0/linux-i686/en-US/firefox-21.0.tar.bz2</a></blockquote><ul class="list">  <li>64 bit</li></ul><blockquote><a href="http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/39.0/linux-x86_64/zh-TW/firefox-39.0.tar.bz2"  target="_blank">http://download.cdn.mozilla.net/pub/mozilla.org/firefox/releases/39.0/linux-x86_64/zh-TW/firefox-39.0.tar.bz2</a></blockquote><p>将 Firefox 解压缩后 <code>tar -jxvf firefox-21.0.tar.bz2</code>，并将目录设定在  /home/username/firefox/，请先确定一下 firefox 的执行档是否存在，路径会是： /home/username/firefox/firefox。</p><p>接著你就可以启动 Selenium ，来测看看 Selenium 有没有正常运作了。</p><p>Selenium 有正确执行并且收到打开 Browser 的指令时，你就会看到下面这些讯息。</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">14:18:33.346 INFO - Started SocketListener on 0.0.0.0:4444</span></li><li class="L1"><span class="pln">14:18:33.352 INFO - Started org.openqa.jetty.jetty.Server@ee1aeb</span></li><li class="L2"><span class="pln">14:18:42.492 INFO - Executing: [new session: Capabilities [{browserName=firefox}]])</span></li><li class="L3"><span class="pln">14:18:42.817 INFO - Creating a new session for Capabilities [{browserName=firefox}]</span></li></ol></pre></div><h2>Linux Browser 支援中文</h2><p>完成上述的流程后，你应该会发现，Browser 的撷图里，中文字都变成乱码了，下载下面这两个  RPM ，并安装就可以解决中文的问题。</p><ul class="list">  <li>下载: <a href="http://rpmfind.net/linux/rpm2html/search.php?query=%2Fusr%2Fsbin%2Fchkfontpath"  target="_blank">http://rpmfind.net/linux/rpm2html/search.php?query=%2Fusr%2Fsbin%2Fchkfontpath</a></li></ul><blockquote>sudo rpm -ivh chkfontpath-1.9.7-1.i386.rpm --nodeps --force</blockquote><ul class="list">  <li>下载 rpm : <a href="http://rpmfind.net/linux/rpm2html/search.php?query=fonts-chinese"  target="_blank">http://rpmfind.net/linux/rpm2html/search.php?query=fonts-chinese</a></li></ul><blockquote>sudo rpm -ivh fonts-chinese-3.02-12.el5.noarch.rpm --nodeps --force</blockquote><p>DEMO Video</p><iframe style="width:100%" height="515" src="https://www.youtube.com/embed/8SJ29Ljw-NE" frameborder="0" allowfullscreen></iframe><h2>XF86AudioMicMute error</h2><blockquote>Eclipse: Fatal IO error 11 (资源暂时无法取得) on X server :2.<br />The XKEYBOARD keymap compiler (xkbcomp) reports: <br />Internal error:   Could not resolve keysym XF86AudioMicMute <br />Errors from xkbcomp are not fatal to the X server</blockquote><p>打开 /usr/share/X11/xkb/symbols/inet 这个档案，把 XF86AudioMicMute 这一行注解</p><h2>相关资料</h2><ul class="list">  <li><a href="https://en.wikipedia.org/wiki/Xvfb" target="_blank">http://en.wikipedia.org/wiki/Xvfb</a></li>  <li><a href="https://code.google.com/p/selenium/wiki/ChromeDriver"  target="_blank">https://code.google.com/p/selenium/wiki/ChromeDriver</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-01-27T15:49:16+08:00" class="article-modify-time">2017/01/27</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-262" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-262" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-252.html">PHP Selenium 自動化測試 - 起始設定</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Selenium 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-252.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-446.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="../../docs-blog/article-344.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="../../docs-blog/article-333.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="../../docs-blog/article-330.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="../../docs-blog/article-320.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="../../docs-blog/article-317.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="../../docs-blog/article-292.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="../../docs-blog/article-262.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-248.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="../../docs-blog/article-246.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

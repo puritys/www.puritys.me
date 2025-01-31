@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(https://www.puritys.me/zh_cn/images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot.html');src:url('fonts/glyphicons-halflings-regular.eot%3F.html') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff.html') format('woff'),url('fonts/glyphicons-halflings-regular.ttf.html') format('truetype'),url('fonts/glyphicons-halflings-regular.svg.html') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot');
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot?') format('embedded-opentype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.woff') format('woff'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.svg') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(https://www.puritys.me/zh_cn/fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="../docs-blog/article-402-如何在-Windows-编译-GH60-键位程式---使用-Docker.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="../../docs-blog/article-402.html" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">如何在 Windows 编译 GH60 ...</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-402-\u5982\u4f55\u5728-Windows-\u7de8\u8b6f-GH60-\u9375\u4f4d\u7a0b\u5f0f---\u4f7f\u7528-Docker.html"},"headline":"\u5982\u4f55\u5728 Windows \u7de8\u8b6f GH60 \u9375\u4f4d\u7a0b\u5f0f - \u4f7f\u7528 Docker","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_336.png","datePublished":"2017-01-13T00:54:05+08:00","dateModified":"2017-02-06T23:58:23+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u9019\u7bc7\u6587\u7ae0\u6703\u4ecb\u7d39\u5982\u4f55\u7de8\u8b6f GH60 \u9375\u4f4d\u7a0b\u5f0f\uff0c\u81f3\u65bc\u5982\u4f55\u5237\u9375\u4f4d\u53ef\u4ee5\u53c3\u8003\u6211\u7684\u4e0a\u4e00\u7bc7\u6587\u7ae0 \u3002\r\u7de8\u8b6f\u9375\u4f4d\u7a0b\u5f0f\uff1a\u662f\u6307\u81ea\u5df2\u4fee\u6539\u9375\u76e4\u6bcf\u500b\u6309\u9375\u8a2d\u5b9a\u5f8c\uff0c\u518d\u7de8\u8b6f\u6210\u9375\u4f4d\u6a94 Hex \u683c\u5f0f\uff0c\u9019\u500b\u6a94\u6848\u53ef\u4ee5\u7528\u4f86\u66f4\u65b0\u9375\u76e4\u97cc\u9ad4\uff0c\u9054\u5230\u81ea\u8a02"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Jan</div>
+            <div class="day">13</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="../docs-blog/article-402-如何在-Windows-編譯-GH60-鍵位程式---使用-Docker.html"><span>如何在 Windows 编译 GH60 键位程式 - 使用 Docker</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=GH60.html">GH60</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=機械式鍵盤.html">機械式鍵盤</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-402.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="../docs-blog/article-402-如何在-Windows-编译-GH60-键位程式---使用-Docker.html">网页好读版</a></p><div class="ezHTML-content"><p>这篇文章会介绍如何编译 GH60 键位程式，至於如何刷键位可以参考我的<a href="../../docs-blog/article-399.html" target="_blank">上一篇文章 </a>。</p><p>编译键位程式：是指自已修改键盘每个按键设定后，再编译成键位档 Hex 格式，这个档案可以用来更新键盘韧体，达到自订热键的功能，这个动作英文叫 "Build Firmware"。</p><p>刷键位也可以叫刷机，中国用语叫"刷固件"，英文叫 Program Controller：是指将键位档写入键盘的主控板，主控板就是电子用品背面常常看到扁扁黑黑的那一块东西。</p><p>之所以要提各国 GH60 相关的名词，是因为如果你在编译的过程中有任何问题，也可以用英文或简中去网路上搜寻看看有没有解法，毕竟台湾在玩 GH60 DIY 键盘的人真的不多，所以繁体中文的文章会比较少。</p><p>这篇文章会提到很多跟程式相关的行为，如果你不是软体工程师，看这篇文章可能会有一点辛苦，不过我会尽量将编译 GH60 键位方式写得白话一点。</p><p>首先 GH60 韧体开发已经是很开放的 open source ，每个人都可以下载回来自已修改使用，它的名称叫 tmk_keyboard ，下面两个都是 tmk keyboard ，其中 tmk_keyboard_custom 支援 GH60 较新的板子 REV. C ，功能也比较强，我个人就是使用 tmk_keyboard_custom 来改。</p><ul class="list">  <li><a href="https://github.com/tmk/tmk_keyboard"  target="_blank">https://github.com/tmk/tmk_keyboard</a></li>  <li><a href="https://github.com/kairyu/tmk_keyboard_custom"  target="_blank">https://github.com/kairyu/tmk_keyboard_custom</a></li></ul><h2>安装编译环境 - Docker</h2><p>先教大家如何编译程式码，要编译程式码之前，我们得先安装编译的环境，但是这个动作太麻烦了，就连我本身是软体工程师，安装一堆有的没的，就只是为了编译程式码，所以我使用 Docker 这个虚拟环境来安装我们的编译用虚拟机。</p><p>请下载 docker toolbar 并安装</p><ul class="list">  <li><a href="https://docs.docker.com/docker-for-windows/"  target="_blank">https://docs.docker.com/docker-for-windows/</a></li></ul><p>安装的过程中请勾选 VirtualBox, Kitematic (Alpha) 跟 git gui  ，如果你对 GIT 很熟，也请一定要勾选 git gui ，不然会无法启动 Docker quickstart  terminal.</p><a href="https://www.puritys.me/filemanage/blog_files/file_336.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_336.png"  width="200" height="200" ></amp-img></a><p>安装完成后，点两下 Docker Quickstart terminal ，它会自动安装一个虚拟的 Unix 环境，安装的过程大约 1 分钟，请等他跑完，跑完后会留下一个黑色的 terminal，这个就是我们等一下要输入指令的地方，</p><a href="https://www.puritys.me/filemanage/blog_files/file_337.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_337.png"  width="200" height="200" ></amp-img></a><p>跑完如下图所示，你会进入 Docker Terminal ，这个 Terminal 让你可以输入指令操控 Docker 虚拟机。</p><a href="https://www.puritys.me/filemanage/blog_files/file_338.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_338.png"  width="200" height="200" ></amp-img></a><p>请你在 D 槽建一个目录叫  Docker ，然后在这个目录建一个档案叫 Dockerfile  -  D:&#92;Docker&#92;Dockerfile ，这个档案的内容如下：</p><div class="codeBlock html"><span class="title"> Dockerfile</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">FROM debian</span></li><li class="L1"><span class="pln">LABEL Description="This image is used to be a simple linux machine" </span></li><li class="L2"><span class="pln">RUN apt-get update &amp;&amp; apt-get install -y sudo wget telnet  vim git ncurses-term                     </span></li><li class="L3"><span class="pln">RUN apt-get install make &amp;&amp; ln -sf /usr/bin/make /usr/bin/gmake</span></li><li class="L4"><span class="pln">RUN apt-get install -y gcc-avr binutils-avr gdb-avr avr-libc avrdude dfu-programmer</span></li><li class="L5"><span class="pln">VOLUME ["/test"]</span></li></ol></pre></div><p>这个 Dockerfile 定义我们编译环境的所有软体 ，请一定要复制一模一样的内容，接著回到 Docker terminal ，输入以下指令：</p><ul class="list">  <li>cd /d/Docker</li>  <li>docker build -t keyboard .</li></ul><p>这时 docker 就会开始安装虚拟的 debian OS ，并自动安装所有的软体，大约 1 ~ 2 分钟就安装完毕， Docker 可是非常的快速，安装好的 debian OS 会有一个名字叫 "keyboard"。</p><a href="https://www.puritys.me/filemanage/blog_files/file_339.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_339.png"  width="200" height="200" ></amp-img></a><p>下图为安装完成的画面</p><a href="https://www.puritys.me/filemanage/blog_files/file_340.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_340.png"  width="200" height="200" ></amp-img></a><p>Debian 安装完成后，你可以输入 docker images ，有看到 Images 资料的话，这样就代表安装成功罗。</p><h2>下载与挂载刷键位原始码</h2><p>下一步是要把 windows 资料夹挂载到 Docker machine 上，因为 Docker 本身是装在 VirtualBox 上的一台 unix 系统，这台系统没有 Windows 上的档案资料，为了让 Docker 可以顺利的读到  Windows 上的档案，我们要先打开  virtualBox ，点两下 VirtualBox 程式，在 VirtualBox 介面会看到一个叫 default  的机器名称，点它<span class="flow-item">按右键</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">选择设定值，再挂载</span> D:/Docker 这个目录。</p><p>你可以参考下图的设定方式，先选择<span class="flow-item">共用资料夹</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">右上角的增加</span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item">选取</span> D:&#92;Docker 这个资料夹。</p><a href="https://www.puritys.me/filemanage/blog_files/file_341.jpg" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_341.jpg"  width="200" height="200" ></amp-img></a><p>挂载好之后在 Docker terminal  输入下面这个指令，Docker OS 就会重启，资料夹才会正确挂载上去， 如果你有使用 cygwin 的话，那么你也可以用这个指令来挂载目录 <code>/cygdrive/c/Program&#92; Files/Oracle/VirtualBox/VBoxManage sharedfolder add default --name aaa--hostpath c:/cygwin64/aaa --automount </code>。</p><ul class="list">  <li>docker-machine restart</li></ul><p>输入下面这个指令，你应该要看到一个 Dockerfile 的档案。</p><ul class="list">  <li>docker run  -ti -v /Docker:/Docker  -w /test keyboard ls /</li></ul><p>再来先下载我的 tmk_keyboard_custom 版本，因为我的 tml_keyboard_custom 没事不会改版，所以编译一定会过，另补充说明我的 win10 有碰到 permission denied 的错误，这是因为 Docker 这个资料夹预设只有管理员可以修改，如果你也遇到这个问题，就先去修改资料夹权限即可。</p><p>下载方式，先在 Docker terminal 输入这个指令：</p><ul class="list">  <li>git clone --recursive  <a href="https://github.com/puritys/tmk_keyboard_custom"  target="_blank">https://github.com/puritys/tmk_keyboard_custom</a> pure_gh60 -b pure_gh60</li></ul><p>接下来就可以编译看看是否可以产生 hex 键位设定档，请依序执行下列二个指令，第一个指令是为了进入 gh60 资料夹，第二个指令则是在 Docker 虚拟机中编译程式。</p><ul class="list">  <li>cd tmk_keyboard_custom/keyboard/gh60/</li>  <li>docker run  -ti -v /Docker:/Docker  -w /Docker/tmk_keyboard_custom/keyboard/gh60 keyboard gmake</li></ul><br><a href="https://www.puritys.me/filemanage/blog_files/file_342.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_342.png"  width="200" height="200" ></amp-img></a><br><br><a href="https://www.puritys.me/filemanage/blog_files/file_343.png" target="_blank" >
+<amp-img layout="responsive" src="/filemanage/blog_files/file_343.png"  width="200" height="200" ></amp-img></a><p>顺序跑完的话 ， D:/Docker/tmk_keyboard_custom/keyboard/gh6 会产生这个档案 gh60_lufa.hex ，这个档案就可以拿来刷键盘韧体罗，刷韧体可以参考这篇文章：<a href="../../docs-blog/article-399.html" target="_blank">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统 </a>。</p><br><br><br><ul class="list">  <li><a href="../../docs-blog/article-398.html">DIY 组装 GH60 机械式键盘</a></li>  <li><a href="../../docs-blog/article-401.html">如何使用对 GH 60 PCB 刷键位、刷机 - Mac 系统</a></li>  <li><a href="../../docs-blog/article-399.html">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</a></li>  <li><a href="../../docs-blog/article-402.html">如何在 Windows 编译 GH60 键位程式 - 使用 Docker</a></li>  <li><a href="../../docs-blog/article-400.html">gh60 刷键位 - tmk 如何设定三组合键 Remap</a></li></ul></div><p class="amp-desktop-version"><a href="../docs-blog/article-402-如何在-Windows-编译-GH60-键位程式---使用-Docker.html">网页好读版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-02-06T23:58:23+08:00" class="article-modify-time">2017/02/06</time>
+        </p>
+
+        
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-399.html">如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-400.html">gh60 刷鍵位  - tmk 如何設定三組合鍵 Remap</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="../../index.html">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

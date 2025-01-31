@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>投票系统中常见的灌票漏洞</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 有不少公司，都會舉辦「選美女」、「選廣告詞」等等的活動，為了不花費太多的成本，通常會做一些小型的投票網站，這些網站若沒有做好 Security 的工作，駭客便可以輕鬆的進行灌票，由駭客來選出第一名。建議小公司還是使用線上的免費投票系統，沒有足能夠人力就不要自已做了。下列會介紹一些常見的破解投票系統的方式沒有使用 CaptchaCaptcha 是一種簡單的防止駭客使用程式快速灌" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-149-投票系统中常见的灌票漏洞.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-149-投票系统中常见的灌票漏洞.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-149.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-149-投票系統中常見的灌票漏洞.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-149-投票系統中常見的灌票漏洞.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-149.html">
+                    <em><span>投票系统中常见的灌票漏洞</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-149-\u6295\u7968\u7cfb\u7d71\u4e2d\u5e38\u898b\u7684\u704c\u7968\u6f0f\u6d1e.html"},"headline":"\u6295\u7968\u7cfb\u7d71\u4e2d\u5e38\u898b\u7684\u704c\u7968\u6f0f\u6d1e","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_72.png","datePublished":"2012-11-19T13:33:55+08:00","dateModified":"2014-08-24T03:44:41+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u6709\u4e0d\u5c11\u516c\u53f8\uff0c\u90fd\u6703\u8209\u8fa6\u300c\u9078\u7f8e\u5973\u300d\u3001\u300c\u9078\u5ee3\u544a\u8a5e\u300d\u7b49\u7b49\u7684\u6d3b\u52d5\uff0c\u70ba\u4e86\u4e0d\u82b1\u8cbb\u592a\u591a\u7684\u6210\u672c\uff0c\u901a\u5e38\u6703\u505a\u4e00\u4e9b\u5c0f\u578b\u7684\u6295\u7968\u7db2\u7ad9\uff0c\u9019\u4e9b\u7db2\u7ad9\u82e5\u6c92\u6709\u505a\u597d Security \u7684\u5de5\u4f5c\uff0c\u99ed\u5ba2\u4fbf\u53ef\u4ee5\u8f15\u9b06\u7684\u9032\u884c\u704c\u7968\uff0c\u7531\u99ed\u5ba2\u4f86\u9078\u51fa\u7b2c\u4e00\u540d"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Nov</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-149-投票系統中常見的灌票漏洞.html"><span>投票系统中常见的灌票漏洞</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-149.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>有不少公司，都会举办「选美女」、「选广告词」等等的活动，为了不花费太多的成本，通常会做一些小型的投票网站，这些网站若没有做好 Security 的工作，骇客便可以轻松的进行灌票，由骇客来选出第一名。</p><p>建议小公司还是使用线上的免费<em>投票</em>系统，没有足能够人力就不要自已做了。</p><p>下列会介绍一些常见的破解投票系统的方式</p><h2>没有使用 Captcha</h2><p>Captcha 是一种简单的防止骇客使用程式快速灌票的工具，Captcha 可以用图形画出一段文字，并强迫 User 要填入这文字的内容，只要图形文字上做一点混淆和变形，就能防止文字被程式破解。</p><p>而没有使用 Capcha 的票选系统，是最容易被骇客灌票，只要简单的写个 Post or Curl 就可以无止尽的疯狂灌票了。</p><p>一个 Captcha code 的范例</p><a href="../../filemanage/blog_files/file_72.png" target="_blank" ><img src="../../filemanage/blog_files/file_72.png"   alt="Captcha" link="me" /></a><h2>Captcha Code 是空值</h2><p>Captcha Code 会在 User 载入图片的时候产生，并且记录一个值在 session or 其他储存方式，骇客只要野止浏览器自动载入图片，这样伺服器就不会产生一组 Captcha Code，接著骇客就在 Form 表单中，故意不填 Captcha，就可以绕过 Captcha 的检查。</p><p>这个漏洞的关键在於，工程师在开发票选系统的时候，没有过泸空值。</p><div class="codeBlock"><span class="title">vote1-1.php 没检查 Captcha 空值的范例</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">if</span><span class="pln"> </span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_SESSION</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">])</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">   vote</span><span class="pun">();</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="pun">?&gt;</span></li></ol></pre></div><p>看 「vote1-1.php 」这个范例就知道，如果 $_SESSION[&#39;Captcha&#39;]是空值，那只要骇客输入的 $_POST[&#39;Captcha&#39;] 也是空值，投票就成功了。</p><div class="codeBlock"><span class="title">vote1-2.php 正确的写法</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pun">$</span><span class="pln">REG </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;/^[a-z0-9]{4,8}$/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="kwd">if</span><span class="pun">(!</span><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">REG </span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]))</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">   </span><span class="com">//return fail</span></li><li class="L4"><span class="pln">   exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="kwd">if</span><span class="pln"> </span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_SESSION</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">])</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">   vote</span><span class="pun">();</span></li><li class="L8"><span class="pun">}</span></li><li class="L9"><span class="pun">?&gt;</span></li></ol></pre></div><h2>Captcha Code 未清除成 init 状态</h2><p>就算工程师知道要过泸空的 <em>Captcha</em> Code，不过漏洞可能还是会存在，在比对完 User 从 Form 表单填入的 Captcha Code 之后，还要记得将 Captcha 清空，否则骇客只要人工辨识一次 Captcha 图形的值，然后再一次的关掉浏览器自动载入图片的设定，就能保证 Captcha 永远不会更新。</p><p>在 vote1-1.php 的范例中，因为  $_SESSION[&#39;Captcha&#39;] 在投票结束后，没有被清除，导致骇客可以重覆使用同一个 Captcha 。</p><div class="codeBlock"><span class="title">vote2-1.php 有清除 Captcha 的范例 (第八行 unset)</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pun">$</span><span class="pln">REG </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;/^[a-z0-9]{4,8}$/i&#39;</span><span class="pun">;</span></li><li class="L2"><span class="kwd">if</span><span class="pun">(!</span><span class="kwd">preg_match</span><span class="pun">($</span><span class="pln">REG </span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]))</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">   </span><span class="com">//return fail</span></li><li class="L4"><span class="pln">   exit</span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="kwd">if</span><span class="pln"> </span><span class="pun">($</span><span class="pln">_POST</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">_SESSION</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">])</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">   unset</span><span class="pun">($</span><span class="pln">_SESSION</span><span class="pun">[</span><span class="str">&#39;Captcha&#39;</span><span class="pun">]);</span></li><li class="L8"><span class="pln">   vote</span><span class="pun">();</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pun">?&gt;</span></li></ol></pre></div><p>从这个例子来看，可以知道程式的逻辑大致可以分成三个阶段。</p><ul class="list">  <li>1. initial</li>  <li>2. process</li>  <li>3. clear (initial again)</li></ul><p>确保这三道手续都有完成，可以让程式的 「Bug」 Or 「漏洞」少一点</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-24T03:44:41+08:00" class="article-modify-time">2014/08/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-149" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-149" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-11.html">SQL Injection 常見的駭客攻擊方式</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-251.html">OpenSSL CVE-2014-0160 Heartbleed  漏洞</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-376.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-367.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="../../docs-blog/article-346.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-276.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="../../docs-blog/article-251.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="../../docs-blog/article-249.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="../../docs-blog/article-236.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="../../docs-blog/article-226.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="../../docs-blog/article-212.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-205.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

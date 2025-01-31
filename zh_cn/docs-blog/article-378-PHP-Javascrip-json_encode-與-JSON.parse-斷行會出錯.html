@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>PHP /Javascrip   json_encode  与 JSON.parse 断行会出错</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="JavaScript JSON.parse 不支援斷行，TAB等字元，例如 #92;n, #92;r, #92;t, #92;b 這些特殊字元，如果你的 json string 有使用到這些字元， JavsScript 就會吐出錯誤訊息，例如下面這個 JS 程式碼，我先宣告一個含有斷行符號的字串 #92;n，再用 JSON.parse 將字串轉成 JSON ，這個 sample" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-378-PHP-Javascrip-json_encode-与-JSON.parse-断行会出错.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-378-PHP-Javascrip-json_encode-与-JSON.parse-断行会出错.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-378.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/php" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">PHP</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-378.html">
+                    <em><span>PHP /Javascrip   jso...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-378-PHP-Javascrip-json_encode-\u8207-JSON.parse-\u65b7\u884c\u6703\u51fa\u932f.html"},"headline":"PHP \/Javascrip   json_encode  \u8207 JSON.parse \u65b7\u884c\u6703\u51fa\u932f","image":"","datePublished":"2016-10-17T15:35:51+08:00","dateModified":"2016-11-06T18:46:04+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"JavaScript JSON.parse \u4e0d\u652f\u63f4\u65b7\u884c\uff0cTAB\u7b49\u5b57\u5143\uff0c\u4f8b\u5982 &#92;n, &#92;r, &#92;t, &#92;b \u9019\u4e9b\u7279\u6b8a\u5b57\u5143\uff0c\u5982\u679c\u4f60\u7684 json string \u6709\u4f7f\u7528\u5230\u9019\u4e9b\u5b57"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Oct</div>
+            <div class="day">17</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-378-PHP-Javascrip-json_encode-與-JSON.parse-斷行會出錯.html"><span>PHP /Javascrip   json_encode  与 JSON.parse 断行会出错</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-378.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>JavaScript JSON.parse 不支援断行，TAB等字元，例如 &#92;n, &#92;r, &#92;t, &#92;b 这些特殊字元，如果你的 json string 有使用到这些字元， JavsScript 就会吐出错误讯息，例如下面这个 JS 程式码，我先宣告一个含有断行符号的字串 "&#92;n"，再用 JSON.parse 将字串转成 JSON ，这个 sample code 在浏览器下执行会出现 error : SyntaxError: Unexpected token 。</p><div class="codeBlock js"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;</span><span class="pln">script</span><span class="pun">&gt;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="str">&#39;{"test": "a&#92;nb"}&#39;</span><span class="pun">;</span><span class="pln">                                                            </span></li><li class="L2"><span class="kwd">var</span><span class="pln"> ret </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">s</span><span class="pun">);</span></li><li class="L3"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">ret</span><span class="pun">);</span></li><li class="L4"><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></li></ol></pre></div><p>当然前端很少会直接宣告一个字串，然后又对他做 JSON.parse ，这个问题会发生在后端回传一个 JSON string ，交给前端做 JSON.parse ，例如 PHP 可能会这样做：</p><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pun">$</span><span class="pln">res </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L2"><span class="pln">        </span><span class="str">"message"</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"Got a error,&#92;n error message: unknown"</span><span class="pun">,</span></li><li class="L3"><span class="pln">       </span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">echo json_encode</span><span class="pun">($</span><span class="pln">res</span><span class="pun">);</span><span class="pln"> </span></li><li class="L6"><span class="com">// Output: {"message":"Got a error,&#92;n error message: unknown"</span></li></ol></pre></div><p>这个范例拿到的 JSON string 含有 "&#92;n"，只要 JavaScript 对这个 string 做 JSON.parse 马上就会中 JS Error。</p> <br /><h2>解决方案</h2><p>1. 写 JavaScript 时最好有个习惯，只要用到 JSON.parse 就一定要加上 try catch 机制，我常常遇到特殊字元，造成 JSON.parse fail 的情形，未知的问题比我们想像中的还要多，所以一定要有 parse fail 的处理方式。</p><p>2. PHP 对 array 做两次 json_encode，第二次的 json_encode 会把所有的符号加上跳脱字元，这样 JavaScript 再做 json parse 时就能够正确处理断行，TAB 等符号，要注意，两次 json_encode 之后所得到的结果会是一个被双引号括起来的 "string" ，只要先把字串左右两边的双引号移除，JavaScript 只对它做一次 JSON.parse 就能得到 JSON format，不用 JSON.parse 两次。</p><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="pun">$</span><span class="pln">res </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L2"><span class="pln">        </span><span class="str">"message"</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"Got a error,&#92;n error message: unknown"</span><span class="pun">,</span></li><li class="L3"><span class="pln">       </span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">$</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> json_encode</span><span class="pun">(</span><span class="pln">json_encode</span><span class="pun">($</span><span class="pln">res</span><span class="pun">));</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">//Output : "{&#92;"message&#92;":&#92;"Got a error,&#92;&#92;n error message: unknown&#92;"}"</span></li></ol></pre></div><p>3. 第三种解法是手动把有问题的符号加上跳脱字元</p><div class="codeBlock php"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">php</span></li><li class="L1"><span class="kwd">function</span><span class="pln"> json_stringify</span><span class="pun">($</span><span class="pln">json</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">is_array</span><span class="pun">($</span><span class="pln">json</span><span class="pun">))</span><span class="pln"> </span><span class="pun">$</span><span class="pln">json </span><span class="pun">=</span><span class="pln"> json_encode</span><span class="pun">($</span><span class="pln">json</span><span class="pun">);</span></li><li class="L3"><span class="pln">    </span><span class="pun">$</span><span class="pln">search </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">&#39;&#92;&#92;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;n"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;r"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;f"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;t"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;b"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#39;"</span><span class="pun">)</span><span class="pln"> </span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="pun">$</span><span class="pln">replace </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">&#39;&#92;&#92;&#92;&#92;&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;&#92;n"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;&#92;r"</span><span class="pun">,</span><span class="str">"&#92;&#92;f"</span><span class="pun">,</span><span class="str">"&#92;&#92;t"</span><span class="pun">,</span><span class="str">"&#92;&#92;b"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#39;"</span><span class="pun">);</span></li><li class="L5"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> str_replace</span><span class="pun">($</span><span class="pln">search</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">replace</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">json</span><span class="pun">);</span></li><li class="L6"><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pun">$</span><span class="pln">res </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span></li><li class="L9"><span class="pln">        </span><span class="str">"message"</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"Got a error,&#92;n error message: unknown"</span><span class="pun">,</span></li><li class="L0"><span class="pln">       </span><span class="pun">);</span></li><li class="L1"><span class="pun">$</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> json_stringify</span><span class="pun">($</span><span class="pln">res</span><span class="pun">);</span><span class="pln"> </span></li><li class="L2"><span class="pln">echo </span><span class="pun">&lt;&lt;&lt;</span><span class="pln">HTML</span></li><li class="L3"><span class="pln">    </span><span class="pun">&lt;</span><span class="pln">script</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="str">&#39;$a&#39;</span><span class="pun">);</span><span class="pln">                                                      </span></li><li class="L5"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">s</span><span class="pun">);</span></li><li class="L6"><span class="pln">    </span><span class="pun">&lt;/</span><span class="pln">script</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">HTML</span><span class="pun">;</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-06T18:46:04+08:00" class="article-modify-time">2016/11/06</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-378" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-378" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 PHP</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-445.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_445&quot;}'>PHP7 zend 變數結構 </a></li>
+    
+        <li><a href="../../docs-blog/article-412.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_412&quot;}'>Curl SSLv1 SSLv2 NSS error -5938 </a></li>
+    
+        <li><a href="../../docs-blog/article-378.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_378&quot;}'>PHP /Javascrip   json_encode  與 JSON.parse 斷行會出錯 </a></li>
+    
+        <li><a href="../../docs-blog/article-313.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_313&quot;}'>Facebook php-webdriver  設定  Firefox Profile </a></li>
+    
+        <li><a href="../../docs-blog/article-295.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="../../docs-blog/article-268.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+        <li><a href="../../docs-blog/article-266.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_266&quot;}'>php-webdriver 基本功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-258.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_258&quot;}'>PHP 正確分割中文與英文字數 </a></li>
+    
+        <li><a href="../../docs-blog/article-257.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_257&quot;}'>如何讓 PHP 取得 Command Line 的參數 </a></li>
+    
+        <li><a href="../../docs-blog/article-252.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_252&quot;}'>PHP Selenium 自動化測試 - 起始設定 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

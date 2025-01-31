@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>gh60 刷键位  - tmk 如何设定三组合键 Remap</title>
+    <meta name="keywords" content="GH60, 机械式键盘" />
+    <meta name="description" content="60% 鍵盤，我的使用習慣是 Fn + ijkl 來操作方向鍵，Ctrl + Fn + ijkl 控制 上一頁，下一頁， Home, End 等等，而 Ctrl + Fn + ? 需要使用到三個鍵，我在網路上看了很多英文跟中文的文章，但都找不太到可以設定三組合鍵 Remap 的範例，後來我自已研究 tmk_keyboard 原始檔，成功找到一個解法方式。 利用 get_mods" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-400-gh60-刷键位---tmk-如何设定三组合键-Remap.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-400-gh60-刷键位---tmk-如何设定三组合键-Remap.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-400.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-400-gh60-刷鍵位---tmk-如何設定三組合鍵-Remap.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-400-gh60-刷鍵位---tmk-如何設定三組合鍵-Remap.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/other" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">其它</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-400.html">
+                    <em><span>gh60 刷键位  - tmk 如何设定...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-400-gh60-\u5237\u9375\u4f4d---tmk-\u5982\u4f55\u8a2d\u5b9a\u4e09\u7d44\u5408\u9375-Remap.html"},"headline":"gh60 \u5237\u9375\u4f4d  - tmk \u5982\u4f55\u8a2d\u5b9a\u4e09\u7d44\u5408\u9375 Remap","image":"","datePublished":"2017-01-08T18:02:35+08:00","dateModified":"2017-01-29T00:12:42+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"60% \u9375\u76e4\uff0c\u6211\u7684\u4f7f\u7528\u7fd2\u6163\u662f Fn + ijkl \u4f86\u64cd\u4f5c\u65b9\u5411\u9375\uff0cCtrl + Fn + ijkl \u63a7\u5236 \u4e0a\u4e00\u9801\uff0c\u4e0b\u4e00\u9801\uff0c Home, End \u7b49\u7b49\uff0c\u800c Ctrl + Fn  + ?  \u9700\u8981\u4f7f\u7528\u5230\u4e09\u500b\u9375"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2017</div>
+            <div class="month">Jan</div>
+            <div class="day">08</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-400-gh60-刷鍵位---tmk-如何設定三組合鍵-Remap.html"><span>gh60 刷键位  - tmk 如何设定三组合键 Remap</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=GH60.html">GH60</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=機械式鍵盤.html">機械式鍵盤</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-400.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>60% 键盘，我的使用习惯是 Fn + ijkl 来操作方向键，Ctrl + Fn + ijkl 控制 上一页，下一页， Home, End 等等，而 Ctrl + Fn  + ?  需要使用到三个键，我在网路上看了很多英文跟中文的文章，但都找不太到可以设定三组合键 Remap 的范例，后来我自已研究 tmk_keyboard 原始档，成功找到一个解法方式。</p> <br /><h2>利用 get_mods 来侦测是否有按 Ctrl 键</h2><p>我用的方法很简单，tmk 有支援一个 Method 叫 "get_mods"，利用这个 Method 可以用来检查 Ctrl 键是否有被点击，如果你有改过 Fn + ? 这种双组合键 Remap 的 Case ，那么你只要会写一点 C 语言，加上 get_mods 就能达到三个组合键 Remap 。</p><p>接下来我一步一步的教你怎么修改， 首先 tmk 还有另一个功能叫 ACTION_LAYER_MOMENTARY  ， 这个功能可以让我按下 Fn 键时，切换到指定的 key layout ，双组合键 Remap 就是这样实做的。</p><p>举个例子，我指定 <span class="flow-item">Fn </span><span class="glyphicon glyphicon-chevron-right"></span><span class="flow-item"></span> ACTION_LAYER_MOMENTARY (2); ， 代表让我按下 Fn 键后，key Layout 会切换到 Layout 2，若这时我再按下 "i" 这个键 (Fn 不放开)， 键盘就会送出 Layout 2  "i" 键设定的值。</p><p>点击 Fn 会转换成  Layout 2 ，这个 Layout 我习惯叫他 Fn Layout ， 来看看 Fn Layout 的设定，请注意 i j k l 这几个键的位置，我分别设定给 FN12, FN13, FN14, FN15 这四个值，如果你设定成 UP, DOWN, LEFT, RGHT，那么当你按下 Fn + i 就会直接送出方向键 "上"。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="pln">KEYMAP_ANSI</span><span class="pun">(</span></li><li class="L1"><span class="pln">        GRV</span><span class="pun">,</span><span class="pln"> F1</span><span class="pun">,</span><span class="pln">  F2</span><span class="pun">,</span><span class="pln">  F3</span><span class="pun">,</span><span class="pln">  F4</span><span class="pun">,</span><span class="pln">  F5</span><span class="pun">,</span><span class="pln">  F6</span><span class="pun">,</span><span class="pln">  F7</span><span class="pun">,</span><span class="pln">  F8</span><span class="pun">,</span><span class="pln">  F9</span><span class="pun">,</span><span class="pln">  F10</span><span class="pun">,</span><span class="pln"> F11</span><span class="pun">,</span><span class="pln"> F12</span><span class="pun">,</span><span class="pln"> DEL</span><span class="pun">,</span><span class="pln"> &#92;</span></li><li class="L2"><span class="pln">        CAPS</span><span class="pun">,</span><span class="pln">FN16</span><span class="pun">,</span><span class="pln"> FN17</span><span class="pun">,</span><span class="pln"> FN18</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">PGUP</span><span class="pun">,</span><span class="pln">FN12</span><span class="pun">,</span><span class="pln">PGDN</span><span class="pun">,</span><span class="pln">PSCR</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">INS</span><span class="pun">,</span><span class="pln"> TRNS</span><span class="pun">,</span><span class="pln">  &#92;</span></li><li class="L3"><span class="pln">        FN0</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">HOME</span><span class="pun">,</span><span class="pln">FN14</span><span class="pun">,</span><span class="pln">FN13</span><span class="pun">,</span><span class="pln">FN15</span><span class="pun">,</span><span class="pln">END</span><span class="pun">,</span><span class="pln"> TRNS</span><span class="pun">,</span><span class="pln">     TRNS</span><span class="pun">,</span><span class="pln"> &#92;</span></li><li class="L4"><span class="pln">        TRNS</span><span class="pun">,</span><span class="pln">FN1</span><span class="pun">,</span><span class="pln"> FN2</span><span class="pun">,</span><span class="pln">FN3</span><span class="pun">,</span><span class="pln">FN6</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">PGUP</span><span class="pun">,</span><span class="pln">PGDN</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">         TRNS</span><span class="pun">,</span><span class="pln"> &#92;</span></li><li class="L5"><span class="pln">        TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">          TRNS</span><span class="pun">,</span><span class="pln">                     TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">,</span><span class="pln">TRNS</span><span class="pun">),</span></li></ol></pre></div><p>还记得这篇文章的一开始说的吗，我还要用 Ctrl 键来改变键盘输出值，所以我设定 FN12 ~ 15 ，而不是 UP, DOWN ...，接著我还要设定 FN12 ~ 15 分别要做什么事，写法如下。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">const</span><span class="pln"> </span><span class="typ">uint16_t</span><span class="pln"> PROGMEM fn_actions</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">  </span><span class="pun">.</span></li><li class="L2"><span class="pln">  </span><span class="pun">.</span></li><li class="L3"><span class="pln">  </span><span class="pun">.</span></li><li class="L4"><span class="pln">  </span><span class="pun">[</span><span class="lit">12</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> ACTION_FUNCTION_OPT</span><span class="pun">(</span><span class="pln">MY_PG_CONTROL</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">),</span></li><li class="L5"><span class="pln">  </span><span class="pun">[</span><span class="lit">13</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> ACTION_FUNCTION_OPT</span><span class="pun">(</span><span class="pln">MY_PG_CONTROL</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">),</span></li><li class="L6"><span class="pln">  </span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> ACTION_FUNCTION_OPT</span><span class="pun">(</span><span class="pln">MY_PG_CONTROL</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">),</span></li><li class="L7"><span class="pln">  </span><span class="pun">[</span><span class="lit">15</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> ACTION_FUNCTION_OPT</span><span class="pun">(</span><span class="pln">MY_PG_CONTROL</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">),</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><p>这样写完，当我按下 Fn + i ，键盘会先去执行  action_function ，接著我要在  action_function 里用 get_mods 来判断 Ctrl 键是否有被点击，如果有被点击我就送出 PageUp ，若是 Ctrl 没有被点击，我就送出 Up 。</p><div class="codeBlock cpp"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">#define</span><span class="pln"> MODS_CTRL_MASK   </span><span class="pun">(</span><span class="pln">MOD_BIT</span><span class="pun">(</span><span class="pln">KC_LCTRL</span><span class="pun">)|</span><span class="pln">MOD_BIT</span><span class="pun">(</span><span class="pln">KC_RCTRL</span><span class="pun">))</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">void</span><span class="pln"> action_function</span><span class="pun">(</span><span class="typ">keyrecord_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">record</span><span class="pun">,</span><span class="pln"> </span><span class="typ">uint8_t</span><span class="pln"> id</span><span class="pun">,</span><span class="pln"> </span><span class="typ">uint8_t</span><span class="pln"> opt</span><span class="pun">)</span></li><li class="L3"><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">uint8_t</span><span class="pln"> mod </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></li><li class="L5"><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">uint8_t</span><span class="pln"> key</span><span class="pun">;</span></li><li class="L6"><span class="pln">    </span><span class="kwd">switch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">id</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">       </span><span class="kwd">case</span><span class="pln"> MY_PG_CONTROL</span><span class="pun">:</span></li><li class="L8"><span class="pln">            mod </span><span class="pun">=</span><span class="pln"> get_mods</span><span class="pun">();</span></li><li class="L9"><span class="pln">            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">record</span><span class="pun">-&gt;</span><span class="pln">event</span><span class="pun">.</span><span class="pln">pressed</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">                </span><span class="kwd">switch</span><span class="pln"> </span><span class="pun">(</span><span class="pln">opt</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">                    </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span></li><li class="L2"><span class="pln">                        key </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mod </span><span class="pun">&amp;</span><span class="pln"> MODS_CTRL_MASK</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> KC_PGUP </span><span class="pun">:</span><span class="pln"> KC_UP</span><span class="pun">;</span></li><li class="L3"><span class="pln">                        </span><span class="kwd">break</span><span class="pun">;</span></li><li class="L4"><span class="pln">                    </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">2</span><span class="pun">:</span></li><li class="L5"><span class="pln">                        key </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mod </span><span class="pun">&amp;</span><span class="pln"> MODS_CTRL_MASK</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> KC_PGDN </span><span class="pun">:</span><span class="pln"> KC_DOWN</span><span class="pun">;</span></li><li class="L6"><span class="pln">                        </span><span class="kwd">break</span><span class="pun">;</span></li><li class="L7"><span class="pln">                    </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">3</span><span class="pun">:</span></li><li class="L8"><span class="pln">                        key </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mod </span><span class="pun">&amp;</span><span class="pln"> MODS_CTRL_MASK</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> KC_HOME </span><span class="pun">:</span><span class="pln"> KC_LEFT</span><span class="pun">;</span></li><li class="L9"><span class="pln">                        </span><span class="kwd">break</span><span class="pun">;</span></li><li class="L0"><span class="pln">                    </span><span class="kwd">case</span><span class="pln"> </span><span class="lit">4</span><span class="pun">:</span></li><li class="L1"><span class="pln">                        key </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mod </span><span class="pun">&amp;</span><span class="pln"> MODS_CTRL_MASK</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> KC_END </span><span class="pun">:</span><span class="pln"> KC_RIGHT</span><span class="pun">;</span></li><li class="L2"><span class="pln">                        </span><span class="kwd">break</span><span class="pun">;</span></li><li class="L3"><span class="pln">                </span><span class="pun">}</span></li><li class="L4"><span class="pln">                </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">mod </span><span class="pun">&amp;</span><span class="pln"> MODS_CTRL_MASK</span><span class="pun">)</span><span class="pln">  </span><span class="pun">{</span></li><li class="L5"><span class="pln">                    del_mods</span><span class="pun">(</span><span class="pln">mod</span><span class="pun">);</span></li><li class="L6"><span class="pln">                    add_key</span><span class="pun">(</span><span class="pln">key</span><span class="pun">);</span></li><li class="L7"><span class="pln">                    send_keyboard_report</span><span class="pun">();</span></li><li class="L8"><span class="pln">                    add_mods</span><span class="pun">(</span><span class="pln">mod</span><span class="pun">);</span><span class="pln">   </span><span class="com">// return Ctrl but not sent</span></li><li class="L9"><span class="pln">                </span><span class="pun">}</span><span class="pln">  </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">                    add_key</span><span class="pun">(</span><span class="pln">key</span><span class="pun">);</span></li><li class="L1"><span class="pln">                    send_keyboard_report</span><span class="pun">();</span></li><li class="L2"><span class="pln">                </span><span class="pun">}</span></li><li class="L3"><span class="pln">            </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">                del_key</span><span class="pun">(</span><span class="pln">key</span><span class="pun">);</span></li><li class="L5"><span class="pln">                send_keyboard_report</span><span class="pun">();</span></li><li class="L6"><span class="pln">            </span><span class="pun">}</span></li><li class="L7"><span class="pln">            </span><span class="kwd">break</span><span class="pun">;</span></li><li class="L8"><span class="pln">    </span><span class="pun">}</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><div class="notice" label="Good Luck !">这样就完成罗，重新 Compile 一次再重刷键位</div><p>这里有我修改 keymap 的全部原始吗： <a href="https://github.com/puritys/tmk_keyboard_custom/blob/master/keyboard/gh60/keymap_puritys.c"  target="_blank">https://github.com/puritys/tmk_keyboard_custom/blob/master/keyboard/gh60/keymap_puritys.c</a></p><br /><br /><ul class="list">  <li><a href="../../docs-blog/article-398.html">DIY 组装 GH60 机械式键盘</a></li>  <li><a href="../../docs-blog/article-401.html">如何使用对 GH 60 PCB 刷键位、刷机 - Mac 系统</a></li>  <li><a href="../../docs-blog/article-399.html">如何使用 Atmel Flip 对 GH 60 PCB 刷键位、刷机 - Windows 系统</a></li>  <li><a href="../../docs-blog/article-402.html">如何在 Windows 编译 GH60 键位程式 - 使用 Docker</a></li>  <li><a href="../../docs-blog/article-400.html">gh60 刷键位 - tmk 如何设定三组合键 Remap</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2017-01-29T00:12:42+08:00" class="article-modify-time">2017/01/29</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-400" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-400" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-401.html">GH60  如何刷鍵位、刷機 - Mac 系統</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">GH60 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-402.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_402&quot;}'>如何在 Windows 編譯 GH60 鍵位程式 - 使用 Docker </a></li>
+    
+        <li><a href="../../docs-blog/article-401.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_401&quot;}'>GH60  如何刷鍵位、刷機 - Mac 系統 </a></li>
+    
+        <li><a href="../../docs-blog/article-399.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_399&quot;}'>如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統 </a></li>
+    
+        <li><a href="../../docs-blog/article-398.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_398&quot;}'>DIY 組裝 GH60 機械式鍵盤 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 其它</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-461.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="../../docs-blog/article-460.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="../../docs-blog/article-436.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_436&quot;}'>免費影片編輯工具 ffmpeg on docker </a></li>
+    
+        <li><a href="../../docs-blog/article-434.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_434&quot;}'>為什麼要  Code Review </a></li>
+    
+        <li><a href="../../docs-blog/article-433.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_433&quot;}'>Code Review  小重點 </a></li>
+    
+        <li><a href="../../docs-blog/article-425.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_425&quot;}'>MacBook Sierra 使用  Chrome 瀏覽器慢慢卡卡的，游標消失 </a></li>
+    
+        <li><a href="../../docs-blog/article-415.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_415&quot;}'>Splunk 語法 </a></li>
+    
+        <li><a href="../../docs-blog/article-413.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_413&quot;}'>Win10 如何用自然人憑證登入財政部電子發票整合服務平台 </a></li>
+    
+        <li><a href="../../docs-blog/article-411.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_411&quot;}'>使用 command 控制 VirtualBox Instance </a></li>
+    
+        <li><a href="../../docs-blog/article-410.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_410&quot;}'>破解痞客邦 pixnet 複製/貼上/鎖右鍵 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

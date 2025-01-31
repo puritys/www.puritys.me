@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>强迫 PHP Curl  使用  IPv4 ， 忽略 IPv6</title>
+    <meta name="keywords" content="Network, Curl, IPv6, PHP" />
+    <meta name="description" content="最近將 OS 升級到 Red Hat Enterprise Linux 6.x，結果有一個功能就莫名的壞掉了，該功能很普通，就只是將 A 機器上的圖片用 Curl (PUT) 的方式，丟到 B 機器上，但是它一執行就會收到 Error 500，於是我查看了 A 機器上的 Error log ，發現一個錯誤訊息： Failed to connect to 800:c:f1:806" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-352-强迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-352-强迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-352.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-352.html">
+                    <em><span>强迫 PHP Curl  使用  IPv...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-352-\u5f37\u8feb-PHP-Curl-\u4f7f\u7528-IPv4-\uff0c-\u5ffd\u7565-IPv6.html"},"headline":"\u5f37\u8feb PHP Curl  \u4f7f\u7528  IPv4 \uff0c \u5ffd\u7565 IPv6","image":"","datePublished":"2016-04-13T22:32:27+08:00","dateModified":"2016-04-13T23:31:50+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u6700\u8fd1\u5c07 OS \u5347\u7d1a\u5230 Red Hat Enterprise Linux  6.x\uff0c\u7d50\u679c\u6709\u4e00\u500b\u529f\u80fd\u5c31\u83ab\u540d\u7684\u58de\u6389\u4e86\uff0c\u8a72\u529f\u80fd\u5f88\u666e\u901a\uff0c\u5c31\u53ea\u662f\u5c07 A \u6a5f\u5668\u4e0a\u7684\u5716\u7247\u7528 Curl (PUT) \u7684\u65b9\u5f0f\uff0c\u4e1f\u5230  B \u6a5f"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Apr</div>
+            <div class="day">13</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-352-強迫-PHP-Curl-使用-IPv4-，-忽略-IPv6.html"><span>强迫 PHP Curl  使用  IPv4 ， 忽略 IPv6</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=Network.html">Network</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=Curl.html">Curl</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=IPv6.html">IPv6</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=PHP.html">PHP</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-352.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>最近将 OS 升级到 Red Hat Enterprise Linux  6.x，结果有一个功能就莫名的坏掉了，该功能很普通，就只是将 A 机器上的图片用 Curl (PUT) 的方式，丢到  B 机器上，但是它一执行就会收到 Error 500，於是我查看了 A 机器上的  Error log ，发现一个错误讯息： <code>Failed to connect to 800:c:f1:806:2001:a  Network is unreachable</code></p><p>我尝试在 A 机器上手动执行  <code>curl "http://B/xxx/xxx" -X PUT ...</code> ，直接用 curl 方式来上传图片，而这个方式是可以正常运做的，图片有被传到 B 机器上，但是这个结果反而让我很困扰，Curl 指令可以运作，但是 PHP 的 curl 却没办法动。</p><p>第一时间，我就先用指令 <code> host B </code> 来查机器 B 的 IP，看看他的 IP 是否正常，而我得到下面这个结果，该 domain 同时存在 IPv4 与 IPv6，看来这就是问题的所在，但是为什么程式会使用 IPv6 ，而不使用 IPv4 呢 ?</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">host B</span></li><li class="L1"><span class="pln">B has address x4.2x3.x89.106</span></li><li class="L2"><span class="pln">B IPv6 address 800:c:f1:806:2001:a</span></li></ol></pre></div><p>虽然我在 A 机器中可以取得 B 机器的 IPv6 ，但是当 A 要 connect 至 B  的时候， A 会先将 Request 丢给 Router ，而那台 Router 没办法正确的处理 IPv6 格式，造成连线中断，所以我们必须强迫程式使用 IPv4 ，而不要用 IPv6 。</p><p>我们可以使用 network 这个指令，来分辨出 Router 是否可以正确的解析出 IPv6 格式，看下面这个范例 ， IP 变成很奇怪的格式，代表它不支援 IPv6。</p><div class="codeBlock"><span class="title"> nslookup</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">$ nslookup 800:c:f1:806:2001:a </span></li><li class="L1"><span class="pln">Server:         192.168.0.20</span></li><li class="L2"><span class="pln">Address:       192.168.0.20#53</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">Non-authoritative answer:</span></li><li class="L5"><span class="pln">8.6.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2.0.z.0.1.0.0.4.0.0.8.6.4.0.1.2.ip6.arpa        name = tx-xn-x6a.2e101.net.</span></li></ol></pre></div><h2>Solve IPv6 Problem</h2><p>PHP Curl 内建就有提供一个 option ，可以强迫系统的 Domain Name resolution 使用 IPv4，方法很简单，只要多一行语法就搞定了，加了下面这句程式后， PHP Curl 就可以正确的将 domain 转到 IPv4 ，功能也就正常了。</p><div class="codeBlock"><span class="title"> Force curl using IPv4 </span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">curl_setopt</span><span class="pun">($</span><span class="pln">ch</span><span class="pun">,</span><span class="pln"> CURLOPT_IPRESOLVE</span><span class="pun">,</span><span class="pln"> CURL_IPRESOLVE_V4</span><span class="pun">);</span></li></ol></pre></div><h2>ifconfig 移除 IPv6</h2><p>跟同事讨论后，同事也提出另一个方法，就是将 B 机器的 IPv6 下掉，因为我们的系统还不需要使用 IPv6 ，自然也不用支援 IPv6 这种 IP。</p><p>我们先检查 B 机器上的网路设定，下指令 ifconfig 后会看到 inet6 相关设定，有这个设定就是指这台机器的 IP 支援 IPv6 。</p><div class="codeBlock"><span class="title"> ifconfig</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">enp0s8: flags=4163</span><span class="tag">&lt;UP</span><span class="pln">,</span><span class="atn">BROADCAST</span><span class="pln">,</span><span class="atn">RUNNING</span><span class="pln">,</span><span class="atn">MULTICAST</span><span class="tag">&gt;</span><span class="pln">  mtu 1500</span></li><li class="L1"><span class="pln">        inet 192.168.0.4  netmask 255.255.255.0  broadcast 192.168.56.255</span></li><li class="L2"><span class="pln">        inet6 fe10::a20:27ff:fec:22ae  prefixlen 64  scopeid 0x20</span><span class="tag">&lt;link&gt;</span></li><li class="L3"><span class="pln">        ether 01:00:17:0c:a2:0e  txqueuelen 1000  (Ethernet)</span></li><li class="L4"><span class="pln">        RX packets 7483810  bytes 849228602 (809.8 MiB)</span></li><li class="L5"><span class="pln">        RX errors 0  dropped 0  overruns 0  frame 0</span></li><li class="L6"><span class="pln">        TX packets 21513200  bytes 50057076506 (46.6 GiB)</span></li><li class="L7"><span class="pln">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span></li></ol></pre></div><p>接著用以下方式来移除 inet6 IPv6 ：</p><ul class="list">  <li>编辑 /etc/sysconfig/network 加入以下两个设定</li>  <ul class="list">    <li class="indent1">NETWORKING_IPV6=no</li>    <li class="indent1">IPV6_AUTOCONF=no</li>  </ul>  <li>编辑 /etc/sysctl.conf 加入以下设定</li>  <ul class="list">    <li class="indent1">net.ipv6.conf.eth0.disable_ipv6 = 1</li>  </ul>  <li>sudo reboot 重开机</li></ul><p>重开机后，再用 <code>ifconfig</code> 检查 inet6 是否已经被移除。</p><div class="codeBlock"><span class="title"> ifconfig inet6 不见了</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">enp0s8: flags=4163</span><span class="tag">&lt;UP</span><span class="pln">,</span><span class="atn">BROADCAST</span><span class="pln">,</span><span class="atn">RUNNING</span><span class="pln">,</span><span class="atn">MULTICAST</span><span class="tag">&gt;</span><span class="pln">  mtu 1500</span></li><li class="L1"><span class="pln">        inet 192.168.0.4  netmask 255.255.255.0  broadcast 192.168.56.255</span></li><li class="L2"><span class="pln">        ether 01:00:17:0c:a2:0e  txqueuelen 1000  (Ethernet)</span></li><li class="L3"><span class="pln">        RX packets 7483810  bytes 849228602 (809.8 MiB)</span></li><li class="L4"><span class="pln">        RX errors 0  dropped 0  overruns 0  frame 0</span></li><li class="L5"><span class="pln">        TX packets 21513200  bytes 50057076506 (46.6 GiB)</span></li><li class="L6"><span class="pln">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span></li></ol></pre></div></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-04-13T23:31:50+08:00" class="article-modify-time">2016/04/13</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-352" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-352" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Network 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-29.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_29&quot;}'>DNS  簡易架設 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">PHP 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-111.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_111&quot;}'>php APC &amp; Memcache extension </a></li>
+    
+        <li><a href="../../docs-blog/article-50.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_50&quot;}'>php.ini 設定詳解 </a></li>
+    
+        <li><a href="../../docs-blog/article-49.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_49&quot;}'>測試用文章 </a></li>
+    
+        <li><a href="../../docs-blog/article-46.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_46&quot;}'>PHP 輸入密碼，但不顯示密碼在螢幕上 </a></li>
+    
+        <li><a href="../../docs-blog/article-33.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_33&quot;}'>PHP 輸出 Excel ，使用PHPExcel </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>我的第一个 React-Native IOS App</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="安裝 React-Native目前 react-native 只能在 Mac 的機器上開發，請先買一台 Mac 吧， 這裡有官方的安裝說明 http://facebook.github.io/react-native/docs/getting-started.html 。以下是開發 React-Native 的必備軟體，其中雖然官方說要安裝 Homebrew 這套只能在 Mac" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-319-我的第一个-React-Native-IOS-App.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-319-我的第一个-React-Native-IOS-App.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-319.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-319-我的第一個-React-Native-IOS-App.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-319-我的第一個-React-Native-IOS-App.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/ReactNative" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">React-Native</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-319.html">
+                    <em><span>我的第一个 React-Native I...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-319-\u6211\u7684\u7b2c\u4e00\u500b-React-Native-IOS-App.html"},"headline":"\u6211\u7684\u7b2c\u4e00\u500b React-Native IOS App","image":"","datePublished":"2015-06-26T22:46:10+08:00","dateModified":"2015-09-29T13:45:42+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u5b89\u88dd React-Native\r\u76ee\u524d react-native \u53ea\u80fd\u5728 Mac \u7684\u6a5f\u5668\u4e0a\u958b\u767c\uff0c\u8acb\u5148\u8cb7\u4e00\u53f0 Mac \u5427\uff0c \u9019\u88e1\u6709\u5b98\u65b9\u7684\u5b89\u88dd\u8aaa\u660e  http:\/\/facebook.github.io\/re"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2015</div>
+            <div class="month">Jun</div>
+            <div class="day">26</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-319-我的第一個-React-Native-IOS-App.html"><span>我的第一个 React-Native IOS App</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-319.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>安装 React-Native</h2><p>目前 react-native 只能在 Mac 的机器上开发，请先买一台 Mac 吧， 这里有官方的安装说明  <a href="http://facebook.github.io/react-native/docs/getting-started.html"  target="_blank">http://facebook.github.io/react-native/docs/getting-started.html</a> 。</p><p>以下是开发 React-Native 的必备软体，其中虽然官方说要安装 Homebrew 这套只能在 Mac 运作的软体，但实际上如果你没用到相关功能，是不需要装这些东西的。</p> <br /><ul class="list">  <li>自行安装 Xcode 6.3 版本以上，你可以透过 App Store 安装 Xcode。</li>  <li>自行安装 Node.js 4.0.0 以上 & NPM</li>  <li>自行安装 Homebrew</li>  <li>执行安装指令 brew install watchman</li>  <li>执行安装指令 brew install flow</li>  <li>执行安装指令 npm install -g react-native-cli</li></ul><p>最后输入下面这个指令来建立一个新的 xcode project，成功后，你就可以打开 Xcode 找到 helloWorldApp 这个 Project ，然后执行这个 Project ， React-Native 会自动打开 terminal 并建立一个 Local Server，以及会自动开启 App 模拟器。</p><blockquote>react-native init helloWorldApp</blockquote><h2>Require 与宣告 React-Native UI Component</h2><p>React-Native 写法很像 Nodejs ，你所写的每一个档案都会是一个新的 module ，你必须使用 require 的方式来载入它们，而第一个，一定要载入的 module 就是 <b>react-native</b>。</p><p>再来你还得宣告 react-native 内建的 UI 元件， React-Native 提供的 UI 元件有很多，如 View, Text, Image, ListView 等等，如果你要使用这些元件，你必须在档案的最上头，宣告他们，宣告的方式很诡异，请看下面范例，我宣告了  Text (文字), Image (图片), AlertIOS (弹跳视窗)。</p> <br /><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="str">&#39;use strict&#39;</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">var</span><span class="pln"> </span><span class="typ">React</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">&#39;react-native&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> </span><span class="pun">{</span></li><li class="L5"><span class="pln">  </span><span class="typ">AppRegistry</span><span class="pun">,</span></li><li class="L6"><span class="pln">  </span><span class="typ">StyleSheet</span><span class="pun">,</span></li><li class="L7"><span class="pln">  </span><span class="typ">AlertIOS</span><span class="pun">,</span></li><li class="L8"><span class="pln">  </span><span class="typ">Image</span><span class="pun">,</span></li><li class="L9"><span class="pln">  </span><span class="typ">Text</span><span class="pun">,</span></li><li class="L0"><span class="pln">  </span><span class="typ">TouchableHighlight</span><span class="pun">,</span></li><li class="L1"><span class="pln">  </span><span class="typ">NavigatorIOS</span><span class="pun">,</span></li><li class="L2"><span class="pun">}</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">;</span></li></ol></pre></div><h2>输出 Hello World 文字</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> </span><span class="typ">HelloWorld</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L1"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L3"><span class="pln">      </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pun">&gt;</span><span class="typ">Hello</span><span class="pln"> </span><span class="typ">World</span><span class="pun">!&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">      </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">    </span><span class="pun">);</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pun">});</span></li></ol></pre></div><h2>设定 UI 样式</h2><p>React-Naive 使用 CSS 的样式设定，但是只支援部分的 CSS ，所以使用前可以先去查查 React-Native 文件，一些基本的属性如  color, size, backgroundColor, paddingTop, marginTop, marginLeft, borderWidth, borderColor 等等都可以使用。</p><p>这里我要设定 App 的背景色为黑色，文字为白色。</p><div class="codeBlock"><span class="title"> style</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> styles </span><span class="pun">=</span><span class="pln"> </span><span class="typ">StyleSheet</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span></li><li class="L1"><span class="pln">    container</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">        color</span><span class="pun">:</span><span class="pln"> </span><span class="str">"white"</span><span class="pun">,</span></li><li class="L3"><span class="pln">        backgroundColor</span><span class="pun">:</span><span class="pln"> </span><span class="str">&#39;#000&#39;</span><span class="pun">,</span></li><li class="L4"><span class="pln">    </span><span class="pun">},</span><span class="pln">  </span></li><li class="L5"><span class="pun">};</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="kwd">var</span><span class="pln"> </span><span class="typ">HelloWorld</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L8"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L0"><span class="pln">      </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">container</span><span class="pun">}&gt;</span></li><li class="L1"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pun">&gt;</span><span class="typ">Hello</span><span class="pln"> </span><span class="typ">World</span><span class="pun">!&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L2"><span class="pln">      </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">    </span><span class="pun">);</span></li><li class="L4"><span class="pln">  </span><span class="pun">}</span></li><li class="L5"><span class="pun">});</span></li></ol></pre></div><h2>使用 flexbox 排版</h2><p>React-Native 已经实作了 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank"> flexbox  </a> 排版方式，我们只要设定  flexDirection = "row"，就能将两个元件以水平并排的方式呈现。</p><div class="codeBlock"><span class="title"> flexDirection row 范例 </span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> styles </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">  container</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    flex</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span></li><li class="L3"><span class="pln">    flexDirection</span><span class="pun">:</span><span class="pln"> </span><span class="str">"row"</span><span class="pun">,</span></li><li class="L4"><span class="pln">  </span><span class="pun">},</span></li><li class="L5"><span class="pln">  list</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">40</span><span class="pun">,</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pun">};</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="kwd">var</span><span class="pln"> </span><span class="typ">HelloWorld</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L1"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L2"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L3"><span class="pln">      </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">container</span><span class="pun">}&gt;</span></li><li class="L4"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">list</span><span class="pun">}&gt;</span><span class="typ">List1</span><span class="pun">&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L5"><span class="pln">        </span><span class="pun">&lt;</span><span class="typ">Text</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">list</span><span class="pun">}&gt;</span><span class="typ">List2</span><span class="pun">&lt;/</span><span class="typ">Text</span><span class="pun">&gt;</span></li><li class="L6"><span class="pln">      </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L7"><span class="pln">    </span><span class="pun">);</span></li><li class="L8"><span class="pln">  </span><span class="pun">}</span></li><li class="L9"><span class="pun">});</span></li></ol></pre></div><h2>载入本机图片</h2><p>首先你要先将图片用拖拉的方式，拉进  Xcode Images.xcassets ，拉好之后一定要将 Terminal 与 iPhone 摸拟器通通关掉，再全部重新 Compile 一次，这样你就可以使用  Image  这个元件来载入图片罗， 在程式码的最开头，记得一定要先宣告 Image 这个元件，再使用  Image 的属性 source 载入图片，图片的路径为 "<span style="color:#a00">image!</span>图档名称"</p><ul class="list">  <li>官方的<a href="https://facebook.github.io/react-native/docs/image.html#content" target="_blank"> Image 使用文件React-Native Image</a></li></ul><div class="codeBlock"><span class="title"> 载入本机图片范例</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> </span><span class="pun">{</span><span class="pln">   </span></li><li class="L1"><span class="pln">  </span><span class="typ">View</span><span class="pun">,</span><span class="pln"> </span></li><li class="L2"><span class="pln">  </span><span class="typ">Image</span><span class="pun">,</span><span class="pln">                                                     </span></li><li class="L3"><span class="pun">}</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln"> </span></li><li class="L8"><span class="kwd">var</span><span class="pln"> </span><span class="typ">HelloWorld</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">React</span><span class="pun">.</span><span class="pln">createClass</span><span class="pun">({</span></li><li class="L9"><span class="pln">  render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L0"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L1"><span class="pln">      </span><span class="pun">&lt;</span><span class="typ">View</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">container</span><span class="pun">}&gt;</span></li><li class="L2"><span class="pln">         </span><span class="pun">&lt;</span><span class="typ">Image</span><span class="pln"> source</span><span class="pun">={</span><span class="pln">require</span><span class="pun">(</span><span class="str">&#39;image!xxx&#39;</span><span class="pun">)}</span><span class="pln"> </span><span class="pun">/&gt;</span></li><li class="L3"><span class="pln">      </span><span class="pun">&lt;/</span><span class="typ">View</span><span class="pun">&gt;</span></li><li class="L4"><span class="pln">    </span><span class="pun">);</span></li><li class="L5"><span class="pln">  </span><span class="pun">}</span></li><li class="L6"><span class="pun">});</span></li></ol></pre></div><h2>如何控制 render 取得的物件</h2><p>React-Native 的 function render ，它可以让你用类似 HTML 的方式来快速制作 UI，在 HTML 中我们会使用 document.getElementById(&#39;mainView&#39;) 来取得 Element，何 React-Native 也有个类似 id 的东西，它命名会 ref ，我们必须先给予 element 一个 ref 值，这样就能透过 this.refs.xxx 来取得该 element，例如下面这个程式中，我定义一个 ScrollView 的物件，并定义 ref = "mainView"。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="pln">render</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">(</span></li><li class="L2"><span class="pln">    </span><span class="pun">&lt;</span><span class="typ">ScrollView</span><span class="pln"> alwaysBounceVertical</span><span class="pun">=</span><span class="str">"true"</span><span class="pln"> style</span><span class="pun">={</span><span class="pln">styles</span><span class="pun">.</span><span class="pln">container</span><span class="pun">}</span><span class="pln"> ref</span><span class="pun">=</span><span class="str">"mainView"</span><span class="pun">&gt;</span></li><li class="L3"><span class="pln">  </span><span class="pun">);</span></li><li class="L4"><span class="pun">},</span></li><li class="L5"><span class="pln">scrollToTop</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">refs</span><span class="pun">.</span><span class="pln">mainView</span><span class="pun">.</span><span class="pln">scrollTo</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span></li><li class="L7"><span class="pun">},</span></li></ol></pre></div><h3>如何 Scroll to top</h3><p>使用 ScrollView 这个元件时，如果使用者向下滑动至底部，然后切换到下一页，这个情况下， ScrollView 不会回复到最顶端，反而会停留在下一页的底部，我们可以透过 refs 去取得 ScrollView ，再用内建的 Method  scrollTo ，回到最顶端。</p> <br /><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">this</span><span class="pun">.</span><span class="pln">refs</span><span class="pun">.</span><span class="pln">mainView</span><span class="pun">.</span><span class="pln">scrollTo</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span></li></ol></pre></div><h2>在 Device Iphone 上测试</h2><p>在 Mac 中测试完  React Native 开发的程式后，下一步就是要将程式传到 iphone 上测试，但是当我们用 xcode 将 Compile 完成的程式传到 iphone 上，却没办法直接执行，而出现错误讯息 「<b> not <a href="http://localhost:8081/index.ios.bundle"  target="_blank">http://localhost:8081/index.ios.bundle</a> </b>」。</p><p>解法方式如下：</p><p>打开档案 AppDelegate.m</p><p>注解掉这一行  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];</p><p>并移除这一行前面的注解   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];</p><p>最后再用这个指令将全有的 JS 合并到 main.jsbundle，这样就完成了，在手机  iphone 上就能够正常的测试刚开发的 App 。</p><ul class="list">  <li>react-native bundle --minify</li></ul><h2>相关文件</h2><ul class="list">  <li>官方文件 <a href="http://facebook.github.io/react-native/"  target="_blank">http://facebook.github.io/react-native/</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-09-29T13:45:42+08:00" class="article-modify-time">2015/09/29</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-319" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-319" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-297.html">React Native</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 React-Native</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-328.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_328&quot;}'>如何在 React-Native 使用迴圈來 Render </a></li>
+    
+        <li><a href="../../docs-blog/article-327.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_327&quot;}'>React-Native 基本元件 </a></li>
+    
+        <li><a href="../../docs-blog/article-319.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_319&quot;}'>我的第一個 React-Native IOS App </a></li>
+    
+        <li><a href="../../docs-blog/article-297.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_297&quot;}'>React Native </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

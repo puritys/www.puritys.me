@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html amp>
+<head>
+    <style amp-custom>
+.prettyprint .com{color:#93a1a1}.prettyprint .lit{color:#195f91}.prettyprint .pun,.prettyprint .opn,.prettyprint .clo{color:#93a1a1}.prettyprint .fun{color:#dc322f}.prettyprint .str,.prettyprint .atv{color:#D14}.prettyprint .kwd,.prettyprint .linenums .tag{color:#1e347b}.prettyprint .typ,.prettyprint .atn,.prettyprint .dec,.prettyprint .var{color:teal}.prettyprint .pln{color:#48484c}.comment-content pre.prettyprint code,.post-content pre.prettyprint code,pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}pre.prettyprint,code.prettyprint,.post-content pre.prettyprint,.post-content code.prettyprint,.comment-content pre.prettyprint,.comment-content code.prettyprint{overflow:auto;word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2}.prettyprint{padding:8px;background-color:#f7f7f9;border:1px solid #e1e1e8}.prettyprint.linenums{padding:0}.prettyprint ol.linenums{padding:8px 8px 8px 41px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.prettyprint ol.linenums li{padding-left:12px;color:#bebec5;line-height:18px;text-shadow:0 1px 0 #fff}code.prettyprint{display:block}.share-btn-wrap{margin:30px 0 30px 0;padding:0}.share-btn-wrap li{display:block;float:left;width:60px;height:21px;margin-right:10px;cursor:pointer}.share-btn-wrap:after{content:" ";clear:both}.shareBtn{background:#ebf3fb;background-image:url(https://www.puritys.me/zh_cn/images/btn/fbShare.png);display:block;width:60px;height:21px}.ezHTML-content ul{list-style-position:inside}.ezHTML-content img{max-width:100%}.downloadBox{text-align:center;margin:10px 0}.downloadBox a{background:#f5f5f5;width:300px;color:#d53f57;font-weight:bold;border:#cecece 1px solid;padding:5px 10px;margin:0 auto;display:block}.table_nm{border-bottom:1px solid #cecece;border-right:1px solid #cecece}.table_nm .title{font-weight:bold}.table_nm td{border-top:1px solid #cecece;border-left:1px solid #cecece;padding:5px}.next-article-box{padding:40px 10px 30px 10px;width:100%;clear:both}.next-article-box .next-article,.next-article-box .prev-article{width:46%;margin:0 1%;float:left;overflow:hidden}.next-article-box .next-article{text-align:right}.next-article-box .prev-article a,.next-article-box .next-article a{vertical-align:top;font-size:18px}.next-article-box .prev-article a:before{content:"";display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:6px solid #508b88;margin:5px 10px 0 0}.next-article-box .next-article a:after{content:"";font-weight:bold;display:inline-block;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:6px solid #508b88;margin:5px 0 0 10px}.fb-like,.fb-comments{margin:0 0 0 12px}.ezHTML-content{font-size:16px}.ezHTML-content quote{color:#555;line-height:24px;font-size:18px;text-align:justify;text-justify:inter-ideograph;margin:20px auto;line-height:30px}.ezHTML-content quoteblock,.ezHTML-content blockquote{padding:0 0 0 15px;margin:10px 0 10px 0;border-left:5px solid #eee;background:white;color:#666;font-size:1em;display:block}.ezHTML-content .img{box-shadow:3px 3px 30px #c3c2c2;padding:2px;text-align:center;margin:0 auto;display:block;border-radius:5px}.ezHTML-content .media-image:after{content:"";display:block;clear:both}.ezHTML-content .pull-left{float:left;margin-right:10px}.ezHTML-content .pull-right{float:right;margin-left:10px}.ezHTML-content .indent1{margin-left:40px}.ezHTML-content .indent2{margin-left:60px}.ezHTML-content .indent3{margin-left:80px}.ezHTML-content .codeBlock{margin:12px auto;color:black;-webkit-font-smoothing:antialiased}.ezHTML-content .codeBlock .title{padding:5px 0 5px 12px;margin:0;background:#f7f7f9;display:block;color:#666;font-size:1em;font-weight:bold;border:1px solid #ececf0;border-bottom:0;padding:10px;border-top-left-radius:8px;border-top-right-radius:8px}.ezHTML-content .codeBlock .title:empty:before{content:"Example"}.ezHTML-content .codeBlock pre{border-bottom-left-radius:8px;border-bottom-right-radius:8px}.ezHTML-content .codeBlock.term{background:transparent;color:#dfdfdf}.ezHTML-content .codeBlock.term .title{color:white;background:white;height:25px;overflow:hidden;border-color:#2f2f2f;text-indent:-9999px;border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:0;border-bottom-right-radius:0;padding:0;background:linear-gradient(#fff,#ccc)}.ezHTML-content .codeBlock.term .title:before{content:"Shell";display:block;margin:5px 0 0 10px;color:#4e4d4d;text-indent:0}.ezHTML-content .codeBlock.term .prettyprint{border:1px solid #2f2f2f;background:#333;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums{padding-left:0;box-shadow:none}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li{text-shadow:none;color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li:hover{background:#333}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pln,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .lit,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .typ,.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .kwd{color:#dfdfdf}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .str{color:#ffbaba}.ezHTML-content .codeBlock.term .prettyprint ol.linenums li .pun{color:#999}.ezHTML-content .ez-iframe{border-radius:4px;border:1px solid #cecece}.ezHTML-content .prettyprint .com{color:#93a1a1}.ezHTML-content .prettyprint .lit{color:#195f91}.ezHTML-content .prettyprint .pun,.ezHTML-content .prettyprint .opn,.ezHTML-content .prettyprint .clo{color:#3b593a}.ezHTML-content .prettyprint .fun{color:#dc322f}.ezHTML-content .prettyprint .str,.ezHTML-content .prettyprint .atv{color:#D14}.ezHTML-content .prettyprint .kwd,.ezHTML-content .prettyprint .linenums .tag{color:#1e347b}.ezHTML-content .prettyprint .typ,.ezHTML-content .prettyprint .atn,.ezHTML-content .prettyprint .dec,.ezHTML-content .prettyprint .var{color:teal}.ezHTML-content .prettyprint .pln{color:#48484c}.ezHTML-content .comment-content pre.prettyprint code,.ezHTML-content .post-content pre.prettyprint code,.ezHTML-content pre.prettyprint code{padding:0;margin:0;border:0;display:block;white-space:pre}.ezHTML-content pre.prettyprint,.ezHTML-content code.prettyprint,.ezHTML-content .post-content pre.prettyprint,.ezHTML-content .post-content code.prettyprint,.ezHTML-content .comment-content pre.prettyprint,.ezHTML-content .comment-content code.prettyprint{word-wrap:normal;-moz-tab-size:2;-o-tab-size:2;tab-size:2;max-height:450px;overflow:auto}.ezHTML-content .prettyprint{padding:8px;margin-top:0;background-color:#f7f7f9;border:1px solid #e1e1e8}.ezHTML-content .prettyprint.linenums{padding:0}.ezHTML-content .prettyprint ol.linenums{display:block;padding:8px 8px 8px 50px;margin:0;-webkit-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;-moz-box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0;box-shadow:inset 40px 0 0 #fbfbfc,inset 41px 0 0 #ececf0}.ezHTML-content .prettyprint ol.linenums li{padding-left:12px;color:#00595b;line-height:18px;text-shadow:0 1px 0 #fff}.ezHTML-content .prettyprint ol.linenums li:hover{background:#eee}.ezHTML-content code.prettyprint{display:block}.ezHTML-content code{border:1px solid #cecece;border-radiu:3px;padding:2px 5px}.ezHTML-content .table{width:100%;margin-bottom:1em;word-wrap:break-word;border-collapse:collapse;border-spacing:0}.ezHTML-content .table th{background:#222;color:#FFF;padding:10px;font-weight:600;border:1px solid #CCC;text-align:center}.ezHTML-content .table td{border:1px solid #CCC;color:black;padding:5px;text-align:center}.ezHTML-content .notice{border-left:0;border-right:0;border-top:1px dotted #59b200;border-bottom:1px dotted #59b200;background:#fcfffa;margin:2em 0 1.5em 0;padding:.8em .7em .8em 40px;color:#333;font-style:italic}.ezHTML-content .notice:before{content:attr(label);position:absolute;margin:-35px 0 0 -30px;padding:5px 10px;-webkit-transform:rotate(-5deg) translateX(-10px);background:#f15757;box-shadow:0 2px 4px rgba(0,0,0,0.2);border-radius:2px;color:white;font-weight:bold}.ezHTML-content .demo-link{display:block;font-size:1em;height:45px;padding:8px 0 8px 60px;position:relative;width:50px;word-break:normal;word-wrap:break-word}@font-face{font-family:'Glyphicons Halflings';src:url('fonts/glyphicons-halflings-regular.eot.html');src:url('fonts/glyphicons-halflings-regular.eot%3F.html') format('embedded-opentype'),url('fonts/glyphicons-halflings-regular.woff.html') format('woff'),url('fonts/glyphicons-halflings-regular.ttf.html') format('truetype'),url('fonts/glyphicons-halflings-regular.svg.html') format('svg')}.ezHTML-content .glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ezHTML-content .glyphicon-file{color:#c50900;font-size:3.8em;left:0;position:absolute;top:0}.ezHTML-content .glyphicon-file:before{content:"\e022"}.ezHTML-content .glyphicon-new-window{color:#c50900;font-size:15px;margin:0 0 0 3px}.ezHTML-content .glyphicon-new-window:before{content:"\e164"}@media(min-width:320px) and (max-width:767px){.ezHTML-content{font-size:14px}.ezHTML-content .demo-link{padding-left:55px}}
+
+/********************
+Color Swatches
+********************/
+/********************
+Variables
+********************/
+/********************
+Mixins
+********************/
+ {
+  font-family: 'Glyphicons Halflings';
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot');
+  src: url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.eot?') format('embedded-opentype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.woff') format('woff'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('https://www.puritys.me/zh_cn/fonts/glyphicons-halflings-regular.svg') format('svg');
+}
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/rFGHhFPYIVvC08PGjJIN1_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+/* cyrillic */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/CaVdAWGUSxTocbxGJLiki_Y6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/eEAdzx7eU---nbdfQm1E0fY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+ {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Mono'), local('PTMono-Regular'), url(https://fonts.gstatic.com/s/ptmono/v4/h6kfiL-5Ady2K9sB3hOqcw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/*SF */
+ {
+  font-family: 'SF-Pro-Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local('SF-Pro-Display-Regular'), url(https://www.puritys.me/zh_cn/fonts/SF-Pro-Display-Regular.woff2) format('woff2');
+}
+html {
+  height: 100%;
+}
+body {
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  font-family: "Arial", "微軟正黑體", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "sans-serif";
+  letter-spacing: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #0063e0;
+  text-decoration: none;
+}
+a:hover {
+  color: #004192;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding: 20px 0;
+}
+h2 {
+  font-size: 1.63em;
+  margin: 0;
+  padding: 20px 0;
+}
+h3 {
+  font-size: 1.38em;
+  margin: 0;
+  padding: 20px 0;
+}
+h4 {
+  font-size: 1.15em;
+  margin: 0;
+  padding: 20px 0;
+}
+p {
+  font-size: 1em;
+  line-height: 24px;
+  margin: 0;
+  padding: 20px 0;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+input,
+select,
+textarea {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #333;
+  font-size: 1em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.pull-left {
+  float: left;
+  margin-right: 10px;
+}
+.pull-right {
+  float: right;
+  margin-left: 10px;
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-book:before {
+  content: "\e043";
+}
+.glyphicon-globe:before {
+  content: "\e135";
+}
+.glyphicon-search:before {
+  content: "\e003";
+}
+/********************
+Layout
+********************/
+.wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.top-header {
+  height: auto;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.top-header > .main {
+  background: #000;
+  border-bottom: 5px solid #c50900;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+.top-header > .main:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.top-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  border-top: 5px solid #c50900;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  top: -260px;
+  width: 100%;
+  z-index: 3;
+}
+.bottom-footer:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.bottom-footer p {
+  font-size: 14px;
+}
+.body-content {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100%;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+}
+.body-content:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.body-content > .main {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.body-content > .sidebar {
+  display: none;
+}
+.logo {
+  float: left;
+  margin: 0 0 0 10px;
+  max-height: 125px;
+  max-width: 250px;
+}
+.logo > img {
+  height: 100%;
+  width: 100%;
+}
+.navbar-btn {
+  background: #c50900;
+  border: none;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  bottom: 6px;
+  display: none;
+  height: 32px;
+  padding: 6px;
+  position: absolute;
+  right: 10px;
+  text-decoration: none;
+  width: 32px;
+}
+.navbar-btn .icon {
+  background: #fff;
+  display: block;
+  height: 3px;
+}
+.navbar-btn:before,
+.navbar-btn:after {
+  background: #fff;
+  content: "";
+  display: block;
+  height: 3px;
+  left: 6px;
+  position: absolute;
+  top: 15px;
+  width: 65%;
+}
+.navbar-btn:after {
+  top: 23px;
+}
+/********************
+Components
+********************/
+.btn {
+  background: #0063e0;
+  border: none;
+  border-bottom: 2px solid #004192;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  font-size: 1em;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.btn:disabled {
+  background: #6a9ddf;
+  border-bottom-color: #496e9c;
+  color: #dae6f8;
+}
+.btn.btn-large {
+  border-bottom-width: 3px;
+  font-size: 1.1em;
+  padding: 12px 18px;
+}
+.btn.btn-small {
+  font-size: 0.9em;
+  padding: 5px 10px 3px 10px;
+}
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+.nav a {
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.9em;
+  padding: 8px 10px;
+}
+.nav a:hover {
+  background: #888;
+  color: #000;
+}
+.navbar {
+  background: #000;
+  bottom: 5px;
+  color: #fff;
+  float: left;
+  left: 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+.navbar:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.navbar.is-show {
+  margin-right: 0;
+}
+.navbar > li {
+  float: left;
+  margin-right: 2px;
+  position: relative;
+}
+.navbar > li > a {
+  background-color: #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  color: #333;
+  display: block;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 17px 22px 13px 22px;
+  position: relative;
+  text-decoration: none;
+}
+.navbar > li > a:hover {
+  background-color: #888;
+  color: #000;
+}
+.navbar > li > a > .caret {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  border-bottom: 0 solid #000;
+  position: absolute;
+  right: 7px;
+  top: 22px;
+}
+.navbar > li.active > a,
+.navbar > li.active > a:hover {
+  background-color: #c50900;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.navbar > li.active > a > .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+.navbar > li > ul {
+  display: none;
+}
+.navbar > li:hover > a > .caret {
+  border-top-width: 0;
+  border-bottom-width: 4px;
+}
+.navbar > li:hover > ul {
+  display: block;
+}
+.navbar.navbar-intl > li > a {
+  font-size: 12px;
+  padding: 8px 22px;
+}
+.navbar.navbar-intl > li > a > b {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+.navbar.navbar-intl > li.active > a {
+  font-weight: normal;
+}
+.dropdown-menu {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  list-style: none;
+  float: left;
+  min-width: 180px;
+  margin: 0;
+  padding: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+}
+.dropdown-menu > li > a {
+  background: #000;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+}
+.dropdown-menu > li > a:hover {
+  background: #888;
+  color: #000;
+}
+.dropdown-menu.dropdown-menu-upper-left {
+  left: 0;
+}
+.dropdown-menu.dropdown-menu-upper-right {
+  right: 0;
+}
+.dropdown-menu.dropdown-menu-upper-left.dropdown-menu-caret:after {
+  left: 8px;
+}
+.dropdown-menu.dropdown-menu-upper-right.dropdown-menu-caret:after {
+  right: 8px;
+}
+.dropdown-menu.dropdown-menu-caret:after {
+  border-bottom: 6px solid #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+}
+.navbar-form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23%;
+}
+.navbar-form input[type="text"] {
+  border: 2px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 12px;
+  padding: 6px 25px 6px 6px;
+  width: 100%;
+}
+.navbar-form input[type="text"]:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.navbar-form .glyphicon-search {
+  color: #ccc;
+  font-size: 12px;
+  position: absolute;
+  right: 8px;
+  top: 12px;
+}
+.list {
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 0;
+  padding: 0;
+}
+.list li {
+  line-height: 24px;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.list-group {
+  padding: 0 0 20px 0;
+}
+.list-group .list-group-heading {
+  background: #000;
+  border-bottom: 4px solid #c50900;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+.list-group ul {
+  background: #000;
+  border-bottom: 2px solid #ccc;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-bottom-left-radius: 5px;
+  -moz-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  list-style: none;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.list-group a {
+  background: #eee;
+  color: #000;
+  display: block;
+  font-size: 0.9em;
+  margin: 1px 0 0 0;
+  padding: 8px 10px;
+  position: relative;
+}
+.list-group a:hover {
+  background: #ccc;
+  color: #000;
+}
+.list-group li {
+  margin: 0;
+  padding: 0;
+}
+.list-group li:first-child a {
+  margin-top: 0;
+}
+.label {
+  float: left;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+.label .label-item {
+  background: #0063e0;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 0.8em;
+  margin: 0 0 0 10px;
+  padding: 5px 10px 5px 18px;
+  position: relative;
+  text-decoration: none;
+}
+.label .label-item:hover {
+  background: #0057c5;
+  color: #fff;
+}
+.label .label-item:before {
+  content: "";
+  border-right: 5px solid #0063e0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  position: absolute;
+  left: -4px;
+  top: 8px;
+}
+.label .label-item:after {
+  background: #fff;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  content: "";
+  height: 5px;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  width: 5px;
+}
+.label .label-item:hover:before {
+  border-right-color: #0057c5;
+}
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.labels:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+.table th {
+  background: #eee;
+  padding: 8px;
+}
+.table td {
+  background: #f7f7f9;
+  padding: 8px;
+}
+.table tr:nth-child(odd) td {
+  background: #fff;
+}
+.thumbnails {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumbnails:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.thumbnails .thumbnail {
+  border: 1px solid #ccc;
+  float: left;
+  margin: 0 5px 5px 0;
+  padding: 2px;
+  text-decoration: none;
+}
+.thumbnails .thumbnail img {
+  display: block;
+}
+.media-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.media-list .media {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.media-list .media:first-child {
+  margin-top: 0;
+}
+.media-list .media:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-thumb {
+  border: 1px solid #ccc;
+}
+.media-list .media-object {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.media-list .media-body:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.media-list .media-heading {
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  padding: 5px 0 10px 0;
+  position: relative;
+}
+.media-list p {
+  font-size: 1em;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+.pagination:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.pagination li {
+  margin: 0;
+  padding: 0;
+}
+.pagination li a {
+  background: #000;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  float: left;
+  font-size: 1em;
+  height: 30px;
+  margin: 0 2px 2px 0;
+  padding: 6px 8px;
+  position: relative;
+}
+.pagination li a:hover {
+  background: #888;
+  color: #000;
+}
+.pagination li.active a,
+.pagination li.active a:hover {
+  background: #0063e0;
+  color: #fff;
+  cursor: default;
+  font-weight: bold;
+}
+.pagination li.prev a {
+  padding-right: 16px;
+}
+.pagination li.prev a:after {
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  left: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.prev a:hover:after {
+  border-right-color: #000;
+}
+.pagination li.next a {
+  padding-left: 16px;
+}
+.pagination li.next a:after {
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  content: "";
+  right: 8px;
+  position: absolute;
+  top: 10px;
+}
+.pagination li.next a:hover:after {
+  border-left-color: #000;
+}
+.form .form-row {
+  margin: 0 0 15px 0;
+}
+.form .form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form .form-row .form-label {
+  float: left;
+  font-size: 1em;
+  margin: 5px 0 0 0;
+}
+.form .form-row .form-input {
+  margin: 0 0 0 90px;
+}
+.form .form-row .form-control {
+  border: 2px solid #ccc;
+  font-size: 16px;
+  padding: 8px;
+  width: 95%;
+}
+.form .form-row .form-control:focus {
+  border-color: #0063e0;
+  outline: 0;
+  -webkit-box-shadow: 0 0 6px #0063e0;
+  -moz-box-shadow: 0 0 6px #0063e0;
+  box-shadow: 0 0 6px #0063e0;
+}
+.form .form-row .form-control:disabled {
+  background: #eee;
+  color: #888;
+}
+.form .form-row textarea.form-control {
+  height: 100px;
+}
+.form .form-row .form-message {
+  margin: 5px 0 0 5px;
+}
+.form .form-row.form-error .form-control {
+  border-color: #c50900;
+  color: #c50900;
+}
+.form .form-row.form-error .form-control:focus {
+  border-color: #c50900;
+  -webkit-box-shadow: 0 0 6px #c50900;
+  -moz-box-shadow: 0 0 6px #c50900;
+  box-shadow: 0 0 6px #c50900;
+}
+.form .form-row.form-error .form-message {
+  color: #c50900;
+  display: block;
+  margin: 5px 0 0 0;
+}
+.form .form-action {
+  padding: 0 0 0 90px;
+}
+/********************
+Entry
+********************/
+.entry {
+  padding: 0 0 30px 0;
+}
+.entry .entry-header:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .entry-footer {
+  padding: 30px 0;
+}
+.entry .title {
+  position: relative;
+}
+.entry .sub {
+  background: #f7f7f9;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #888;
+  font-size: 0.9em;
+  height: 35px;
+  padding: 8px 5px;
+}
+.entry .sub:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.entry .sub .labels {
+  margin-right: 110px;
+  left: 38px;
+  position: relative;
+  top: -20px;
+}
+.entry h1 {
+  padding-top: 0;
+}
+.entry h1 a {
+  color: #333;
+}
+.entry h1 a:hover {
+  color: #666;
+}
+.entry .glyphicon-globe:before {
+  margin-right: 4px;
+}
+.entry .date {
+  float: left;
+  font-size: 0.9em;
+  position: relative;
+  width: 60px;
+}
+.entry .date .year {
+  background: #c50900;
+  color: #fff;
+  margin: 0 0 1px 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .month {
+  background: #c50900;
+  color: #fff;
+  margin: 0;
+  padding: 3px 8px;
+  text-align: center;
+}
+.entry .date .day {
+  background: #c50900;
+  color: #fff;
+  padding: 0 8px 35px 8px;
+  position: relative;
+  text-align: center;
+}
+.entry .date .day:after {
+  border-bottom: 30px solid #fff;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+}
+.entry h2 {
+  padding-top: 40px;
+  padding-bottom: 25px;
+}
+.entry h3 {
+  font-weight: normal;
+}
+.entry h4 {
+  color: #c50900;
+  padding-bottom: 0;
+}
+.entry p code {
+  background: #fff5f5;
+  color: #c50900;
+  padding: 2px 5px;
+}
+.entry .list {
+  padding: 15px 0;
+}
+.entry .table {
+  margin: 5px 0 30px 0;
+}
+.entry .thumbnails {
+  padding: 15px 0;
+}
+.entry .media-list {
+  padding: 15px 0;
+}
+.entry-list .entry {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+.entry-list .entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.entry-list .entry .entry-footer {
+  padding: 0;
+}
+.entry-list .pagination {
+  padding: 30px 0;
+}
+.demo {
+  padding: 15px 0;
+}
+.demo .demo-heading {
+  background: #eee;
+  color: #666;
+  font-size: 16px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+.demo .demo-body {
+  background: #fff;
+  border: 5px dotted #ccc;
+  border-top: none;
+  padding: 10px 10px 15px 10px;
+}
+.comment-group {
+  padding: 20px 0;
+}
+.comment-group:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.comment-group h2 {
+  padding-bottom: 30px;
+}
+.comment-group h2 em {
+  color: #888;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0 0 0 10px;
+}
+.media-list-comment {
+  padding: 0;
+}
+.media-list-comment .media-thumb {
+  background: #eee;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px 8px 0 8px;
+}
+.media-list-comment .media-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.media-list-comment .media-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.media-list-comment .media-heading {
+  padding-top: 0;
+}
+.media-list-comment .media-sub {
+  color: #888;
+  font-size: 0.75em;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.media-list-comment .btn {
+  margin: 10px 0 0 0;
+}
+.media-list-comment .media .media .media-body {
+  background: #fff;
+}
+.media-list-comment .media .media .media-body:before {
+  background: #fff;
+}
+.form-comment:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.form-comment .form-thumb {
+  background: #eee;
+  border: 1px solid #ccc;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  max-height: 65px;
+  max-width: 60px;
+  padding: 8px;
+}
+.form-comment .form-thumb > img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.form-comment .form-body {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  /* Firefox 1-3.6 */
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 0 0 74px;
+  padding: 10px;
+  position: relative;
+}
+.form-comment .form-body:before {
+  background: #f7f7f9;
+  border: 1px solid #ccc;
+  border-width: 1px 0 0 1px;
+  content: "";
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 12px;
+  width: 8px;
+}
+.breadcrumb,
+.entry-header .date,
+.bottom-footer {
+  display: none;
+}
+.amp-desktop-version {
+  font-size: 18px;
+  padding: 3px;
+  outline: 1px solid #cecece;
+  margin: 5px 0;
+  text-align: center;
+}
+.amp-desktop-version a {
+  text-decoration: none;
+}
+.article-modify-author {
+  padding: 0;
+  opacity: 0.3;
+  text-align: right;
+}
+.GL-block {
+  margin: 10px 0;
+}
+.GL {
+  margin: 0 auto;
+  width: 280px;
+  overflow: hidden;
+}
+.GL a {
+  color: #666;
+}
+.GL .desc {
+  margin: 0 0 5px 0;
+}
+.lang-wrap {
+  text-align: right;
+}
+.lang-wrap a {
+  background: #f7f7f9;
+  border: 1px solid #e2e2e2;
+  border-top: 0;
+  padding: 2px 4px;
+  display: inline-block;
+}
+.em {
+  color: #b00;
+}
+    
+
+</style>
+
+    
+<meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width,minimum-scale=1" />
+    <link rel="canonical" href="../docs-blog/article-154-Readable-Code-浅显易懂的程式.html" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>  
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+    
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>                                                                                                   
+    <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+
+</head>
+<body>
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="../../docs-blog/article-154.html" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Readable Code 浅显易懂的程式</span></em>
+                </a>
+                <meta itemprop="position" content="4" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "UA-2887357-7"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-154-Readable-Code-\u6dfa\u986f\u6613\u61c2\u7684\u7a0b\u5f0f.html"},"headline":"Readable Code \u6dfa\u986f\u6613\u61c2\u7684\u7a0b\u5f0f","image":"","datePublished":"2012-12-25T23:44:53+08:00","dateModified":"2016-01-17T16:11:36+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5982\u4f55\u5beb\u4e00\u500b\u5927\u5bb6\u90fd\u770b\u5f97\u61c2\u7684\u7a0b\u5f0f\u5462? \u6700\u8fd1\u8b80\u4e86 \u300cThe Art of Readable Code \u300d\u8207\u300cClean Code A Handbook of Agile Software Craftsm"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2012</div>
+            <div class="month">Dec</div>
+            <div class="day">25</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="../docs-blog/article-154-Readable-Code-淺顯易懂的程式.html"><span>Readable Code 浅显易懂的程式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=Development">Development</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-154.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <p class="amp-desktop-version"><a href="../docs-blog/article-154-Readable-Code-浅显易懂的程式.html">网页好读版</a></p><div class="ezHTML-content"> <br><p>如何写一个大家都看得懂的程式呢? 最近读了 「<a href="http://shop.oreilly.com/product/9780596802301.do" target="_blank">The Art of Readable Code </a>」与「<a href="http://my.safaribooksonline.com/book/software-engineering-and-development/agile-development/9780136083238" target="_blank">Clean Code A Handbook of Agile Software Craftsmanshi</a>」这本书，将书中提到的，整合我平常写 Code 的习惯，记录下程式的规范。</p><h2>Easy to Read, 如何让整体的 Code 容易阅读</h2><ul class="list">  <li>复杂的 Function, method 请增加注解，但是注意注解不要影响程式的阅读</li>  <li>适当的空白，空行。</li>  <li>不要过度使用文字的缩写，如果不确定缩写是否其他人看得懂，就宁愿用很长的英文单字，也不要用没有人看得懂的缩写。</li>  <li>一个 function 的行数不要太多，大约 「 50 行」上限，并且保持 function 简单容易阅读。</li>  <li>不要用  小写 L ,  大小写 O, o 开头的字母</li>  <li>使用 IDE 摺叠功能，将 function 摺起来缩成一行，如 vim 内建就有 folder 的功能。</li></ul><p>写注解的时候要小心，透过修改变数 or function 命名来达到容易阅读的方式为最佳，若不是万不得以，不要写注解。</p><h2>程式排版</h2><p>程式的排版非常的重要，一个好的排版，读者才能顺畅的看懂程式。</p><h3>条列式</h3><p>条列式的排版，比较适合大部分人的阅读方式，举个例好，下面这个程式就是没有经过排版，程式码的变数指定呈现巨齿状，不容易阅读。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">nickname </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;nickname&#39;</span><span class="pun">];</span></li><li class="L1"><span class="pun">$</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">erson</span><span class="pun">[</span><span class="str">&#39;age&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pun">$</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L3"><span class="pun">$</span><span class="pln">address </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;zipCode&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;address&#39;</span><span class="pun">];</span></li></ol></pre></div><p>上面那段程式你是否有注意到 第二行的变数 <b>erson </b>打错字了，接下来我们来帮程式码好好的排版。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pun">$</span><span class="pln">nickname </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;nickname&#39;</span><span class="pun">];</span></li><li class="L1"><span class="pun">$</span><span class="pln">age      </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">erson</span><span class="pun">[</span><span class="str">&#39;age&#39;</span><span class="pun">];</span></li><li class="L2"><span class="pun">$</span><span class="pln">name     </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;name&#39;</span><span class="pun">];</span></li><li class="L3"><span class="pun">$</span><span class="pln">address  </span><span class="pun">=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;zipCode&#39;</span><span class="pun">]</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">person</span><span class="pun">[</span><span class="str">&#39;address&#39;</span><span class="pun">];</span></li></ol></pre></div><p>经过排版后，第二行的错字就可以很容易的被发现，因为程式码的可读性变高。</p><h3>程式码区块</h3><p>一个 function 的程式码行数大约会在 10 ~ 50 行之间，读懂 50 行程式码也不算是一个简单的事，如果我们将程式码分成多个区块，再对每一个区块写下一行简短的注解，这样读程式码就更容易了，区块注解还有另一个功能，一般人没办法记住每一个区块的程式码逻辑，而注解能提醒读者每个段落的内容，例如下面这个例子。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> request</span><span class="pun">($</span><span class="pln">url</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">params</span><span class="pun">,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">header</span><span class="pun">)</span><span class="pln"> </span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">  </span><span class="com">// Handle http request.</span></li><li class="L3"><span class="pln">  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">preg_match</span><span class="pun">(/&#92;?/,</span><span class="pln"> </span><span class="pun">$</span><span class="pln">url</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span></li><li class="L4"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="str">"&amp;"</span><span class="pun">;</span></li><li class="L5"><span class="pln">  </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span></li><li class="L6"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="str">"?"</span><span class="pun">;</span></li><li class="L7"><span class="pln">  </span><span class="pun">}</span></li><li class="L8"><span class="pln">  foreach </span><span class="pun">($</span><span class="pln">params as </span><span class="pun">$</span><span class="pln">key </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">$</span><span class="pln">val</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L9"><span class="pln">    </span><span class="pun">$</span><span class="pln">url </span><span class="pun">.=</span><span class="pln"> </span><span class="pun">$</span><span class="pln">key </span><span class="pun">.</span><span class="pln"> </span><span class="str">"="</span><span class="pln"> </span><span class="pun">.</span><span class="pln"> </span><span class="pun">$</span><span class="pln">val</span><span class="pun">;</span></li><li class="L0"><span class="pln">  </span><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">  </span><span class="com">// Handle Curl</span></li><li class="L3"><span class="pln">  </span><span class="pun">$</span><span class="pln">tuCurl </span><span class="pun">=</span><span class="pln"> curl_init</span><span class="pun">();</span><span class="pln"> </span></li><li class="L4"><span class="pln">  curl_setopt</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">,</span><span class="pln"> CURLOPT_URL</span><span class="pun">,</span><span class="pln"> </span><span class="str">"https://example.com/xx/"</span><span class="pun">);</span><span class="pln"> </span></li><li class="L5"><span class="pln">  curl_setopt</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">,</span><span class="pln"> CURLOPT_PORT </span><span class="pun">,</span><span class="pln"> </span><span class="lit">443</span><span class="pun">);</span><span class="pln"> </span></li><li class="L6"><span class="pln">  </span><span class="pun">$</span><span class="pln">tuData </span><span class="pun">=</span><span class="pln"> curl_exec</span><span class="pun">($</span><span class="pln">tuCurl</span><span class="pun">);</span><span class="pln"> </span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">  </span><span class="com">//Handle response</span></li><li class="L9"><span class="pln">  </span><span class="pun">$</span><span class="pln">response </span><span class="pun">=</span><span class="pln"> json_decode</span><span class="pun">($</span><span class="pln">tuData</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">);</span></li><li class="L0"><span class="pln">  </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">$</span><span class="pln">response</span><span class="pun">;</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>tmp 暂存的变数</h2><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> tmp </span><span class="pun">=</span><span class="pln"> </span><span class="str">"file_"</span><span class="pun">;</span></li><li class="L1"><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">,</span><span class="pln"> </span><span class="lit">20</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln">  </span><span class="pun">{</span></li><li class="L2"><span class="pln">   tmp </span><span class="pun">+=</span><span class="pln"> i</span><span class="pun">;</span></li><li class="L3"><span class="pun">}</span></li><li class="L4"><span class="kwd">var</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> tmp </span><span class="pun">+</span><span class="pln"> </span><span class="str">".txt"</span><span class="pun">;</span></li></ol></pre></div><ul class="list">  <li>tmp_file</li>  <li>tmp_username</li></ul><h2>暂存的变数命名</h2><p>若是真的有些变数无法命名，那就用一般的变数方式来命名。</p><ul class="list">  <li>tmp    : 不知道如何命名的暂存变数，都用 tmp</li>  <li>retval :  return value，用途回传值</li>  <li>it     :  iterator ， 用在 for each 的每一个 item。</li></ul><h2>明确的变数命名</h2><ul class="list">  <li>runLocal -->  useLocalDatabase</li>  <li>disallowMethod --> disallowCopyAndPaste</li>  <li>id = "2" , encodeId = "abefcbad****"</li>  <li>size -->sizeMB</li>  <li>time --> timeMS (Million Second)</li>  <li>length --> lenBytes  ,</li>  <li>mb_strlen(&#39;&#39;,&#39;&#39;, &#39;UTF8&#39;)   lenUTF8 ，当使用 UTF8 编码来计算文字长度，一个中文字代表长度 1 ，一个英文字也代表长度 1</li>  <li>maxChars : 最大容纳的字元</li>  <li>maxBytes : 最大 byte 数</li>  <li>maxMultipleBytes :  最多中文数</li>  <li>MAX_ITEMS_IN_BOX : 这个 box 的最大值</li></ul><h2>停止事件 , stop , pause, kill</h2><ul class="list">  <li>stop, start : 停止某一个行为，并可以使用 start 重新启动一个全新的事件。</li>  <li>pause, resume : 暂停某个行为，但是可以重新恢复，继续先前的进度。</li>  <li>kill : 强迫结束，不管是否会造成任何问题。</li></ul><h2>常用的缩写单字</h2><p>除了一些常用的，大家都懂的缩写单字之外，尽量不要使用其他的缩写单字，使用过多的缩写单字，会造成程式阅读的困难，再加上每个人英文程度不同，很容易造成误解。</p><ul class="list">  <li>str : string</li>  <li>len : length</li>  <li>eval : evaluation</li>  <li>doc : document</li>  <li>db : database</li>  <li>util : utility</li>  <li>ms : million second</li>  <li>us : 微秒</li>  <li>addr : address</li>  <li>来源 src ，目的地  dest</li></ul><h2>不好的范例</h2><ul class="list">  <li>backendManager => BEManager  ,  BEManager 很难看得懂</li>  <li>googleTranslator => GT</li>  <li>color: clr</li></ul><h2>不要使用反向意思,  un , dis, anti</h2><ul class="list">  <li>例如我曾经碰过有人命名 unFold = true ，代表打开这个节点 , unFold = false 代表关闭节点 ，那  if (empty($unFold)) 到底是开还是关呢?</li>  <li>use_encode , disable_encode</li></ul><h2>is, has, can,  should , use</h2><ul class="list">  <li>isAdmin = true ，代表 User 是 Admin</li>  <li>hasOrder = false  ，代表这个 User 有订单，不好的写法是使用 notEmpty 这种反意。</li>  <li>useMysql = true</li></ul><h2>Front-End 相关</h2><ul class="list">  <li>nodeName: 代表 div, span, body 等等。</li>  <li>elm:  element 的缩写 ，代表 html 中某一个 node 的物件。</li></ul><h2>与他人合作</h2><p>如果你是单兵作战部队，那你想怎么写 code 都不会有人理你，但是当你在一个团队中时，你写的程式，未来将会有很多人帮你维护，修改，解 Bug ，所以写 Code 的时候，必须想到接手的人是否能够快速的理解你写程式。</p><p>变数的名称要能发音，请使用念得出来的英文字母来当变数，当我们必须使用缩写或是自创文字，这时尽量组成一个容易发音的单字，这样与其他工程师讨论时会比较容易，或是对新人教学时也会方便很多。</p><p>重要变数的数值必须要可以被搜寻到 ，例如我定义订单的 status = 5 时，代表这是一笔成功的订单，并且我要更新订单资讯 ,  我可以先定义一个常数变数 STATUS_OPEN = 5 , 这样当我想查询 status = 5 ，程式会执行那几行  Code 时，这时我可以搜寻 STATUS_OPEN 这个字母，而不是搜寻 「5」这个数字 (你如果搜寻 5 的话，会搜寻到相当多的垃圾)。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-my_js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">var</span><span class="pln"> STATUS_CLOSE </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pun">;</span></li><li class="L1"><span class="kwd">var</span><span class="pln"> STATUS_OPEN </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span></li><li class="L2"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">status </span><span class="pun">==</span><span class="pln"> STATUS_SUCCESS</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pln">      updateOrder</span><span class="pun">();</span></li><li class="L4"><span class="pun">}</span></li></ol></pre></div><h2>其他相关</h2><ul class="list">  <li>begin , end  =>  first, last  ， end 代表最后一个，但是没办法说明是否包含最后一个，</li></ul><div class="codeBlock"><span class="title"> 一行不要太长，可以断行就断行</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">aaaaaaaa </span><span class="pun">==</span><span class="pln"> </span><span class="str">"bbbbbbbbb"</span><span class="pln"> </span><span class="pun">&amp;&amp;</span></li><li class="L1"><span class="pln">    ccccccc  </span><span class="pun">==</span><span class="pln"> </span><span class="str">"adddddddd"</span><span class="pln"> </span></li><li class="L2"><span class="pln">   </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L3"><span class="pun">}</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">物件分类，类似的功能的 function 放在一起。</li>   </ul><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="kwd">class</span><span class="pln"> xx</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">   </span><span class="com">//fetch data</span></li><li class="L3"><span class="pln">   function fetchJS</span><span class="pun">(){}</span></li><li class="L4"><span class="pln">   function fetchCSS</span><span class="pun">(){}</span></li><li class="L5"><span class="pln">   </span><span class="com">//save </span></li><li class="L6"><span class="pln">   function saveJS</span><span class="pun">(){}</span></li><li class="L7"><span class="pln">   function saveCSS</span><span class="pun">(){}</span></li><li class="L8"><span class="pln">   </span><span class="com">//convert encoding</span></li><li class="L9"><span class="pln">   function convertToUTF8</span><span class="pun">(){}</span></li><li class="L0"><span class="pln">   function convertToBig5</span><span class="pun">(){}</span></li><li class="L1"><span class="pun">}</span></li></ol></pre></div><h2>Function 的开头与结尾括号</h2><p>不管那一种语言， function 都会有一个开头与结尾大括号 "{}" ，建议括号都能自已独立一行，例如下面这个范例，好处是，当我们使用 IDE 将 function 做折叠功能时，function 名称与参数最好不要被折叠，这样程式码可读性比较高。</p><div class="codeBlock"><span class="title">Example</span><pre class="prettyprint lang-cpp linenums" ><ol class="linenums"><li class="L0"><span class="com">// 折叠前</span></li><li class="L1"><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span></li><li class="L2"><span class="pun">{</span></li><li class="L3"><span class="pln">     ret </span><span class="pun">=</span><span class="pln"> db</span><span class="pun">.</span><span class="pln">query</span><span class="pun">(</span><span class="str">"xxx"</span><span class="pun">);</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pun">}</span><span class="pln">  </span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="com">// 好读的折叠结果</span></li><li class="L8"><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span></li><li class="L9"><span class="pun">+--</span><span class="pln">  </span><span class="lit">4</span><span class="pln"> lines</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{--------------------------------------------------------------------------------------------------------------</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">// 括号不断行的话，程式码会折叠成一行</span></li><li class="L2"><span class="pun">+--</span><span class="pln">  </span><span class="lit">4</span><span class="pln"> lines</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> fetchUser</span><span class="pun">(</span><span class="typ">int</span><span class="pln"> userId</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">bool</span><span class="pln"> isAdmin</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{------------------</span></li></ol></pre></div></div><p class="amp-desktop-version"><a href="../docs-blog/article-154-Readable-Code-浅显易懂的程式.html">网页好读版</a></p>
+<amp-ad
+    layout="responsive"
+    width=300
+    height=250
+    type="adsense"
+    data-ad-client="ca-pub-1449650742587459"
+    data-ad-slot="3722150185"
+    data-ad-format="auto">
+</amp-ad>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-01-17T16:11:36+08:00" class="article-modify-time">2016/01/17</time>
+        </p>
+
+        
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-157.html">程式變數命名方式</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+
+</div>
+
+        
+            
+    </div>
+    
+        
+</div>
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="../../index.html">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<amp-auto-ads type="adsense"
+              data-ad-client="ca-pub-1449650742587459">
+</amp-auto-ads>
+
+
+        
+</body>
+</html>

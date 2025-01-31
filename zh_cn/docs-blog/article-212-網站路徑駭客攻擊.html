@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>网站路径骇客攻击</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content=" 路徑攻擊又稱為 Directory Transversal，這是個很普遍的攻擊方式，一個正常網站都是裝在網頁伺服器裡面，而一個伺服器除了網頁會用的 html 之外，還會存著各種資料庫，管理員的帳號、密碼，若是網站存在路徑漏洞，駭客就能透過給予特定的路徑，試圖去瀏覽網站儲存帳密的檔案。例如我們平常看的網頁 URL 是這樣 http://www.yahoo.com/text.ht" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-212-网站路径骇客攻击.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-212-网站路径骇客攻击.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-212.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-212-網站路徑駭客攻擊.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-212-網站路徑駭客攻擊.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-212.html">
+                    <em><span>网站路径骇客攻击</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-212-\u7db2\u7ad9\u8def\u5f91\u99ed\u5ba2\u653b\u64ca.html"},"headline":"\u7db2\u7ad9\u8def\u5f91\u99ed\u5ba2\u653b\u64ca","image":"","datePublished":"2014-01-19T20:06:41+08:00","dateModified":"2014-08-24T03:41:47+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u8def\u5f91\u653b\u64ca\u53c8\u7a31\u70ba Directory Transversal\uff0c\u9019\u662f\u500b\u5f88\u666e\u904d\u7684\u653b\u64ca\u65b9\u5f0f\uff0c\u4e00\u500b\u6b63\u5e38\u7db2\u7ad9\u90fd\u662f\u88dd\u5728\u7db2\u9801\u4f3a\u670d\u5668\u88e1\u9762\uff0c\u800c\u4e00\u500b\u4f3a\u670d\u5668\u9664\u4e86\u7db2\u9801\u6703\u7528\u7684 html \u4e4b\u5916\uff0c\u9084\u6703\u5b58\u8457\u5404\u7a2e\u8cc7\u6599\u5eab\uff0c\u7ba1\u7406\u54e1\u7684\u5e33\u865f"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jan</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-212-網站路徑駭客攻擊.html"><span>网站路径骇客攻击</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-212.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>路径攻击又称为 <b>Directory Transversal</b>，这是个很普遍的攻击方式，一个正常网站都是装在网页伺服器里面，而一个伺服器除了网页会用的 html 之外，还会存著各种资料库，管理员的帐号、密码，若是网站存在路径漏洞，骇客就能透过给予特定的路径，试图去浏览网站储存帐密的档案。</p><p>例如我们平常看的网页 URL 是这样</p><ul class="list">  <li><a href="http://www.yahoo.com/text.html"  target="_blank">http://www.yahoo.com/text.html</a></li></ul><p>若是我们故意将 URL 改成</p><ul class="list">  <li><a href="http://www.yahoo.com/../../../C:/windows/user.db"  target="_blank">http://www.yahoo.com/../../../C:/windows/user.db</a></li></ul><p>那么伺服器是否会将 C:/windows/user.db 这个档案印出来呢? 当然不是这么简单，目前市面上的浏览器以及网页伺服器都会自动阻挡这种攻击。</p><p>虽然伺服器已经有了基本的防护，但市面上的程式是由世界各地工程师写的，每个工程师能力不同，有些地方仍然会存在著相关的漏洞，接下来就开始介绍网站常见的路径漏洞。</p><h2>页面程式档案切换漏洞</h2><ul class="list">  <li><a href="https://wordpress.com/index.php?page=news" target="_blank">http://wordpress.com/index.php?page=news</a></li></ul><p>上面这个网址是很常见的程式写法，当 <b>page = news</b> 时，网站就会去执行 news.php 这个档案，若是 page = guestbook 时，网站就会去执行 guestbook.php 这个档案。</p><p>看起来是一个很正常的逻辑，但是骇客却可以输入 page = <b>../../data/users.db</b>，如果网站刚好有 data/users.db 这个档案，这样骇客就可以读取资料库里的内容了。</p><p>你一定会想说，可是我的网站不会有 data/users.db 这种档案，骇客要怎么知道我的网站资料夹结构会是什么呢?  其实这不是什么大问题，因为大部分人用的网站伺服器都是 apache, IIS, nginx, appserver, xampp 等，而作业系统不是 windows 就是 Linux ，  Framework 有 wordpress, drupal, CodeIgniter, smarty , cakephp，只要骇客对这些软体有足够的认识，那么骇客就能轻易的猜出系统重要的档案路径。</p><p>例如 Linux 系统会将 OS 帐号资料存在 /etc/passwd 这个档案中，所以骇客利用下列这个路径就能取得帐号资料。</p><ul class="list">  <li><a href="https://wordpress.com/index.php?page=../../../../../../../etc/passwd" target="_blank">http://wordpress.com/index.php?page=../../../../../../../etc/passwd</a></li></ul><h2>Cookie 读取档案</h2><p>有些网站提供了 theme 的切换功能，也就是让 user 可以将网页切换到不同的 style，如经典风，乡村风等等。</p><p>有些工程师为了操作简单，就会使用 Cookie 来记录 User 选择的 theme， 当 <b>theme=classic </b>时，程式就会载入 classic 风格的档案，当然这样的写法也有一样漏洞。</p><p>骇客可以设定 Cookie，将 theme 这个 key 写入 「../../etc/passwd」，就能再度 Hack 成功。</p><h2>Url Encode & Decode</h2><p>「/」 这个符号有可能会被程式给过泸掉，如果说我们将  「/」 转成 HEX 编码 「<b>%2f</b>」，就能绕过某些程式检查。</p><p>Encode 过后的结果： ../../ => ..%2f..%2f</p><p>另一个 Encode 的原因，大部分的浏览器会将 <a href="http://xx/a/b/../../../"  target="_blank">http://xx/a/b/../../../</a>  转成 http://xx/ ，这样就失去跳上一层目录的功能，所以我们先对 Url 编码，Url 就会变成   http://xx/a/b/..%2f..%2f..%2f ，若是伺服器的 <b>Rewrite Rule</b> 语法写得不好，骇客就有机会能够读取到上一层的目录，或是读取 PHP 程式原始码。</p> <ul class="list">   <li class="indent1">windows 的档案目录结尾是使用「&#92;」，与 Linux 系统的 「/」不同，所以 encode 过后的值也不同，「&#92;」 => 「%5C」</li> </ul><div class="codeBlock"><span class="title"> urlencode</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">echo urlencode</span><span class="pun">(</span><span class="str">"/  "</span><span class="pun">);</span></li><li class="L1"><span class="com">//输出 = %2F %5C</span></li></ol></pre></div><p>IIS 伺服器有额外支援 Unicode 的路径，所以可以使用 Unicode encode 「/」 => 「<b>%c1%1c</b>」，「&#92;」=> 「<b>%c0%af</b>」</p></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-08-24T03:41:47+08:00" class="article-modify-time">2014/08/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-212" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-212" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-181.html">PHP Remote File Inclusion</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-78.html">XSS 攻擊</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-376.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-367.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="../../docs-blog/article-346.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-276.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="../../docs-blog/article-251.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="../../docs-blog/article-249.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="../../docs-blog/article-236.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="../../docs-blog/article-226.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="../../docs-blog/article-212.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="../../docs-blog/article-205.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

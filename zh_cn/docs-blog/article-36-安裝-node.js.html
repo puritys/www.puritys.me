@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>安装 node.js</title>
+    <meta name="keywords" content="node.js" />
+    <meta name="description" content="使用 yum 安裝 nodejs如果你的環境是 RedHat, CentOS ，要先安裝這個 nodejs 團隊維護的 RPM Repository rpm -Uvh https://rpm.nodesource.com/pub_5.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm再用 yum 安裝 nodejs sudo yu" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-36-安装-node.js.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-36-安装-node.js.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-36.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-36-安裝-node.js.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-36-安裝-node.js.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/node.js" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">node.js</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-36.html">
+                    <em><span>安装 node.js</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-36-\u5b89\u88dd-node.js.html"},"headline":"\u5b89\u88dd node.js","image":"","datePublished":"2011-09-21T02:17:58+08:00","dateModified":"2016-07-24T19:13:14+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u4f7f\u7528 yum \u5b89\u88dd nodejs\r\u5982\u679c\u4f60\u7684\u74b0\u5883\u662f RedHat, CentOS \uff0c\u8981\u5148\u5b89\u88dd\u9019\u500b nodejs \u5718\u968a\u7dad\u8b77\u7684 RPM Repository\r\r  rpm -Uvh https:\/\/rpm."}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Sep</div>
+            <div class="day">21</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-36-安裝-node.js.html"><span>安装 node.js</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="https://www.puritys.me/docs-cate?tag=node.js">node.js</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-36.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><h2>使用 yum 安装 nodejs</h2><p>如果你的环境是 RedHat, CentOS ，要先安装这个 nodejs 团队维护的 RPM Repository</p><ul class="list">  <li>rpm -Uvh <a href="https://rpm.nodesource.com/pub_5.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm"  target="_blank">https://rpm.nodesource.com/pub_5.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm</a></li></ul><p>再用 yum 安装 nodejs</p><ul class="list">  <li>sudo yum install nodejs -y</li></ul> <br /><h2>自行编译 nodejs 安装</h2><p>安装 Node.js 时，他会自动帮你安装 V8 engine ，若是 V8 engine 有问题，装不起来的话，可以参考「<a href="../../docs-blog/article-189.html">安装 Google V8 Engine</a>」</p><ul class="list">  <li>载点： <a href="http://nodejs.org/dist/v0.10.17/node-v0.10.17.tar.gz"  target="_blank">http://nodejs.org/dist/v0.10.17/node-v0.10.17.tar.gz</a></li>  <ul class="list">    <li class="indent1">其它版本的  node.js <a href="http://nodejs.org/dist/"  target="_blank">http://nodejs.org/dist/</a></li>  </ul>  <li>./configure</li>  <li>make</li>  <li>sudo make install</li>  <li>sudo make fullinstall</li></ul><h2>将 V8 与 UV 分开安装</h2><p>Node.js 会使用到 V8 , UV 这两个 library ，一般来说，下载 Node.js 时，就已经含有这两个软体，不过我们也可以自已分开安装 v8 与 UV，安装方式如下。</p><h2>Install uv library</h2><ul class="list">  <li>git clone <a href="https://github.com/joyent/libuv.git"  target="_blank">https://github.com/joyent/libuv.git</a></li>  <li>/bin/sh autogen.sh</li>  <li>./configure --prefix=/usr/local/uv  --bindir=/usr/local/bin --libdir=/usr/local/lib --includedir=/usr/local/include --mandir /usr/local/share/man/man1</li>  <li>make</li>  <li>sudo make install</li></ul><h2>Install v8 library</h2><ul class="list">  <li><a href="article-189.html">v8 安装方式</a></li></ul><h2>Install Node.js</h2><ul class="list">  <li>./configure --shared-libuv  --shared-v8 --shared-v8-libpath=/usr/local/lib --shared-v8-includes=/usr/local/include/v8 --shared-libuv-includes=/usr/local/include/ --shared-libuv-libpath=/usr/local/lib</li></ul><p>分开安装的好处是，每一个软体都独立编译，一步一步安装，哪一个软体出错，都可以很快的知道问题，如果一次编译全部的软体，光是编译可能就花掉半小时以上，而且失败又要重来。</p>   ! PS: libtool, autoconf 这两个 library 版本不能太低，分别最少都要 2.4, 2.5 以上<br /><h2>安装问题</h2><h2>「NameError: name &#39;set&#39; is not defined」</h2>   ! python版本要在 <span class="vj-cmd">2.6~2.99 </span>之间，太新或太旧都不行<h2>「deps/v8/src/platform-linux.cc:587: error:PR_SET_NAME&#39; was not declared」</h2>   ! 这个问题主要是因为这句语法 prctl(PR_SET_NAME)，这是为旧的linux核心用的，一般来说是用不到的，直接注解掉就好了。<br /><h2>「  File "./configure", line 436     fpu = &#39;vfpv3&#39; if armv7 else &#39;vfpv2&#39;」</h2>   ! python 升到 2.7 以上版本即可<br /><h2>简易测试</h2><ul class="list">  <li>testing.js</li></ul><div class="codeBlock js_my"><span class="title">Example</span><pre class="prettyprint lang-js_my linenums" ><ol class="linenums"><li class="L0"><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"testing"</span><span class="pun">);</span></li></ol></pre></div>   <ul class="list">     <li class="indent2">执行</li>   </ul><div class="codeBlock sh_my"><span class="title">Example</span><pre class="prettyprint lang-sh_my linenums" ><ol class="linenums"><li class="L0"><span class="pun">[</span><span class="pln">puritys</span><span class="pun">]</span><span class="pln">node</span><span class="com"># node testing.js</span></li><li class="L1"><span class="pln">testing</span></li></ol></pre></div><h2>载入JS档</h2><ul class="list">  <li>require(&#39;./xxx.js&#39;); 用「点」开头，代表以目前的目录为路径，载入 xxx.js</li>  <li>require(&#39;xxx.js&#39;); 这种写法，预设会以 NODE_PATH 为路径，来寻找 xxx.js ，可以用 export NODE_PATH="/home/xxx/node"来设定路径</li></ul><h2>安装 Package 管理工具 NPM</h2><p>NPM 全名是 Node.js Package Manager，目的是用来安装 node.js 相关的 Package ，安装 NPM 之后，就可以用指令的方式，去安装别人上传到 npm 的 Library。</p><p>安装方式</p><ul class="list">  <li>sudo bash -c "curl <a href="https://www.npmjs.com/install.sh"  target="_blank">https://www.npmjs.com/install.sh</a>  | sh"</li></ul> <br /><p>如果 npm 安装失败的话，可以用另外一个方式</p><ul class="list">  <li>curl -k <a href="https://www.npmjs.com/install.sh"  target="_blank">https://www.npmjs.com/install.sh</a> > install.sh</li>  <li>sudo -E sh install.sh</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-07-24T19:13:14+08:00" class="article-modify-time">2016/07/24</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-36" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-36" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="../../docs-blog/article-189.html">安裝與編譯 Javascript V8 Engine</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-42.html">Node.js 第一課</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">node.js 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-286.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_286&quot;}'>How to pass the paramater of Node.js or io.js into native C/C++ function. </a></li>
+    
+        <li><a href="../../docs-blog/article-158.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="../../docs-blog/article-144.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="../../docs-blog/article-142.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="../../docs-blog/article-121.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-118.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="../../docs-blog/article-117.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+        <li><a href="../../docs-blog/article-42.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_42&quot;}'>Node.js 第一課 </a></li>
+    
+        <li><a href="../../docs-blog/article-37.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_37&quot;}'>Node.js addon 實作 (Node.js version 0.10.x) </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 node.js</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-454.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_454&quot;}'>Node.js  big5 / utf8 字串轉換 </a></li>
+    
+        <li><a href="../../docs-blog/article-302.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_302&quot;}'>Node.js Canvas 畫圖 </a></li>
+    
+        <li><a href="../../docs-blog/article-201.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_201&quot;}'>Node.js 使用 php function </a></li>
+    
+        <li><a href="../../docs-blog-amp/article-189.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_189&quot;}'>安裝與編譯 Javascript V8 Engine </a></li>
+    
+        <li><a href="../../docs-blog/article-158.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_158&quot;}'>Node.js mime type 處理 </a></li>
+    
+        <li><a href="../../docs-blog/article-144.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_144&quot;}'>第二篇  Node.js 搭配 Apache  - Header 處理 </a></li>
+    
+        <li><a href="../../docs-blog/article-142.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_142&quot;}'>第一篇  Node.js 搭配 Apache CGI </a></li>
+    
+        <li><a href="../../docs-blog/article-121.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-118.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_118&quot;}'>Yahoo! Mojito MVC </a></li>
+    
+        <li><a href="../../docs-blog/article-117.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_117&quot;}'>Yahoo! Mojito </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

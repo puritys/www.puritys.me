@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>CSS Transitions 动态展开图层</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="CSS Transitions 是 CSS 3 中的一個新的屬性，可以讓前端開發者輕易的做出動態效果，例如淡入，淡出，展開，縮合等等。一些比較舊的瀏覽器目前不支援 CSS Transitions ，下圖列出了各種瀏覽器的支援程度：IE 10, IE 11, Firefox, Chrome 等等都有支援 Transitions 。用 Transitions 實作展開/縮合功能Di" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-340-CSS-Transitions-动态展开图层.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-340-CSS-Transitions-动态展开图层.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-340.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-340-CSS-Transitions-動態展開圖層.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-340-CSS-Transitions-動態展開圖層.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/css" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">CSS</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-340.html">
+                    <em><span>CSS Transitions 动态展开图层</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-340-CSS-Transitions-\u52d5\u614b\u5c55\u958b\u5716\u5c64.html"},"headline":"CSS Transitions \u52d5\u614b\u5c55\u958b\u5716\u5c64","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_207.png","datePublished":"2016-01-03T11:25:25+08:00","dateModified":"2016-01-03T22:04:51+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"CSS Transitions \u662f CSS 3 \u4e2d\u7684\u4e00\u500b\u65b0\u7684\u5c6c\u6027\uff0c\u53ef\u4ee5\u8b93\u524d\u7aef\u958b\u767c\u8005\u8f15\u6613\u7684\u505a\u51fa\u52d5\u614b\u6548\u679c\uff0c\u4f8b\u5982\u6de1\u5165\uff0c\u6de1\u51fa\uff0c\u5c55\u958b\uff0c\u7e2e\u5408\u7b49\u7b49\u3002\r\u4e00\u4e9b\u6bd4\u8f03\u820a\u7684\u700f\u89bd\u5668\u76ee\u524d\u4e0d\u652f\u63f4 CSS Transitions \uff0c"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2016</div>
+            <div class="month">Jan</div>
+            <div class="day">03</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-340-CSS-Transitions-動態展開圖層.html"><span>CSS Transitions 动态展开图层</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-340.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><p>CSS Transitions 是 CSS 3 中的一个新的属性，可以让前端开发者轻易的做出动态效果，例如淡入，淡出，展开，缩合等等。</p><p>一些比较旧的浏览器目前不支援 CSS Transitions ，下图列出了各种浏览器的支援程度：</p><img src="https://www.puritys.me/filemanage/blog_files/file_207.png"   /><p>IE 10, IE 11, Firefox, Chrome 等等都有支援 Transitions 。</p><h2>用 Transitions 实作展开/缩合功能</h2><p>Div 展开与缩合是一个很常见的功能，而我们可以用 Transitions 作出慢慢展开的  Animation 效果。</p><p>"<span style=&#39;color: #a00;&#39;>transition: height 2s;</span>" : 先说明这个属性的功能，height 2s 代表当 Element 的高度有改变时，在 2 秒内，高度会慢慢的改变到最终值，所以我们必须给两个值，一个起始值(O)，一个最终值(E) ，每秒改变值为 (E-O) / 2。</p><p>例如原本的高度为 100 px ，而我要改成 400 px ，transitions 则会每秒增加 200 px ，总共变化 2 秒， CSS 范例如下。</p><div class="codeBlock"><span class="title"> CSS transition </span><pre class="prettyprint lang-css linenums" ><ol class="linenums"><li class="L0"><span class="pun">.</span><span class="pln">box </span><span class="pun">{</span></li><li class="L1"><span class="pln">    transition</span><span class="pun">:</span><span class="pln"> height </span><span class="lit">2s</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">close </span><span class="pun">{</span></li><li class="L4"><span class="pln">    height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100px</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">open </span><span class="pun">{</span></li><li class="L8"><span class="pln">    height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">480px</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><p>CSS 实际执行结果如下，点击"展开按钮"就会有动态展开的效果。</p><iframe src="https://www.puritys.me/filemanage/files/transitionHeight.html"  style="width: 100%;height: 480px;"  class="ez-iframe"></iframe><div><a href="https://www.puritys.me/filemanage/files/transitionHeight.html" target="_blank">另开视窗<i class="glyphicon glyphicon-new-window"></i></a></div> <br /><p>上面的范例我高度直接给 480 px ，但是大部分的情况是我们不知道 div 的正确高度为多少，这时可以使用 max-height 来取代 height ，这样就可以让 div 自动展开至正常的高度，而不用自已指定一个高度，缺点是要给予 max-height 一个足够大的值，至少要大於 div 的高度最终值。</p><div class="codeBlock"><span class="title"> transitions max-height</span><pre class="prettyprint lang-css linenums" ><ol class="linenums"><li class="L0"><span class="pun">.</span><span class="pln">box </span><span class="pun">{</span></li><li class="L1"><span class="pln">    transition</span><span class="pun">:</span><span class="pln"> max</span><span class="pun">-</span><span class="pln">height </span><span class="lit">0.35s</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">close </span><span class="pun">.</span><span class="pln">box </span><span class="pun">{</span></li><li class="L4"><span class="pln">    max</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">70px</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pun">.</span><span class="pln">box</span><span class="pun">-</span><span class="pln">open </span><span class="pun">.</span><span class="pln">box </span><span class="pun">{</span></li><li class="L8"><span class="pln">    max</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">400px</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li></ol></pre></div><p>CSS 实际执行结果如下，点击"展开按钮"就会有动态展开的效果。</p><iframe src="https://www.puritys.me/filemanage/files/transitionMaxHeight.html"  style="width: 100%;height: 440px;"  class="ez-iframe"></iframe><div><a href="https://www.puritys.me/filemanage/files/transitionMaxHeight.html" target="_blank">另开视窗<i class="glyphicon glyphicon-new-window"></i></a></div><h2>scrollHeight 去抓正确的高度</h2><p>上述的两个方法，都有一些缺点，算得不够精准，最正确与精准的作法是使用 scrollHeight 去取得 div 的正确高度，然后直接指定给最终值，不过这个做法必须靠 JavaScript 才能取得 scrollHeight 的值，范例如下。</p><div class="codeBlock"><span class="title"> transitions scrollHeight</span><pre class="prettyprint lang-js linenums" ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> toggleFunc</span><span class="pun">(</span><span class="pln">E</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L1"><span class="pln">    E</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span></li><li class="L2"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> box </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">querySelector</span><span class="pun">(</span><span class="str">&#39;.box&#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">    </span><span class="kwd">var</span><span class="pln"> orgHeight </span><span class="pun">=</span><span class="pln"> parseInt</span><span class="pun">(</span><span class="pln">box</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">height</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span></li><li class="L4"><span class="pln">    box</span><span class="pun">.</span><span class="pln">style</span><span class="pun">.</span><span class="pln">height </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">orgHeight </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">100</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="str">"80px"</span><span class="pun">:</span><span class="pln"> box</span><span class="pun">.</span><span class="pln">scrollHeight </span><span class="pun">+</span><span class="pln"> </span><span class="str">"px"</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><p>JS/CSS 实际执行结果如下，点击"展开按钮"就会有动态展开的效果。</p><iframe src="https://www.puritys.me/filemanage/files/transitionScrollHeight.html"  style="width: 100%;height: 410px;"  class="ez-iframe"></iframe><div><a href="https://www.puritys.me/filemanage/files/transitionScrollHeight.html" target="_blank">另开视窗<i class="glyphicon glyphicon-new-window"></i></a></div><h2>相关文章</h2><ul class="list">  <li><a href="http://caniuse.com/#feat=css-transitions"  target="_blank">http://caniuse.com/#feat=css-transitions</a></li>  <li><a href="http://www.w3schools.com/css/css3_transitions.asp"  target="_blank">http://www.w3schools.com/css/css3_transitions.asp</a></li>  <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions"  target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-01-03T22:04:51+08:00" class="article-modify-time">2016/01/03</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-340" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-340" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 CSS</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-354.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_354&quot;}'>CSS 實做  3D 立體正方形 </a></li>
+    
+        <li><a href="../../docs-blog/article-353.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_353&quot;}'>CSS 3D 旋轉 rotate3d 與 translate3d </a></li>
+    
+        <li><a href="../../docs-blog/article-340.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_340&quot;}'>CSS Transitions 動態展開圖層 </a></li>
+    
+        <li><a href="../../docs-blog/article-322.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_322&quot;}'>Browser Reflow &amp; Repaint </a></li>
+    
+        <li><a href="../../docs-blog/article-274.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_274&quot;}'>Chrome do not allow  Cross-origin resource sharing for webfonts </a></li>
+    
+        <li><a href="../../docs-blog/article-259.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_259&quot;}'>移除 CSS inline-block 空白 </a></li>
+    
+        <li><a href="../../docs-blog/article-208.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_208&quot;}'>CSS font size about pt, px , em and percent </a></li>
+    
+        <li><a href="../../docs-blog/article-207.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_207&quot;}'>CSS 特殊用法 </a></li>
+    
+        <li><a href="../../docs-blog/article-203.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_203&quot;}'>CSS Selector </a></li>
+    
+        <li><a href="../../docs-blog/article-159.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_159&quot;}'>css style testing </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

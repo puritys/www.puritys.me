@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+    <script src="https://www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>Linux 指令笔记</title>
+    <meta name="keywords" content="Linux Command" />
+    <meta name="description" content=" 列出所有目錄 ls -l | grep ^d , ls -d */列出所有目錄的容量 ls -d */ | xargs -n 1 du -sh列出所有檔案含目錄的容量 du -sh *刪除超過一天沒有更改過的目錄 find /tmp -mtime -1 -print -type d -maxdepth 1 |grep anonymous |xargs -t -n 1 rm -" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-69-Linux-指令笔记.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-69-Linux-指令笔记.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-69.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-69-Linux-指令筆記.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-69-Linux-指令筆記.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Linux" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Linux</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-69.html">
+                    <em><span>Linux 指令笔记</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-69-Linux-\u6307\u4ee4\u7b46\u8a18.html"},"headline":"Linux \u6307\u4ee4\u7b46\u8a18","image":"","datePublished":"2011-11-29T18:24:25+08:00","dateModified":"2022-06-23T17:13:03+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5217\u51fa\u6240\u6709\u76ee\u9304\r\r  ls -l | grep ^d , ls -d *\/\r\r\u5217\u51fa\u6240\u6709\u76ee\u9304\u7684\u5bb9\u91cf\r\r  ls -d *\/ | xargs  -n 1 du -sh\r\r\u5217\u51fa\u6240\u6709\u6a94\u6848\u542b\u76ee\u9304\u7684\u5bb9\u91cf\r\r  "}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Nov</div>
+            <div class="day">29</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-69-Linux-指令筆記.html"><span>Linux 指令笔记</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="../../docs-cate%3Ftag=Linux%20Command.html">Linux Command</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-69.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>列出所有目录</p><ul class="list">  <li>ls -l | grep ^d , ls -d */</li></ul><p>列出所有目录的容量</p><ul class="list">  <li>ls -d */ | xargs  -n 1 du -sh</li></ul><p>列出所有档案含目录的容量</p><ul class="list">  <li>du -sh *</li></ul><p>删除超过一天没有更改过的目录</p><ul class="list">  <li>find /tmp  -mtime -1 -print   -type d -maxdepth 1  |grep anonymous |xargs -t -n 1 rm -rf</li></ul><p>显示 timestamp 时间</p><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">date +%s  -d "2012/05/01"</span></li><li class="L1"><span class="pln">date -d @1335830400</span></li></ol></pre></div><p>设定系统时间</p><ul class="list">  <li>sudo date +%T -s "11:22:10" : 设定时分秒</li>  <li>sudo date +%Y%m%d -s "20120121" : 设定年月日</li></ul><p>取得随机数字</p><ul class="list">  <li>cat /dev/urandom|od -N2 -An -i</li>  <li>echo $RANDOM</li>  <li>取得随机数字并去掉空白 ： cat /dev/urandom|od -N2 -An -i | sed -e &#39;s/ *//&#39;</li></ul><p>帐号管理</p><ul class="list">  <li>新增帐号 sudo /usr/sbin/useradd account</li>  <li>修改密码 sudo /usr/bin/passwd   account</li>  <li>新增群组 sudo /usr/sbin/groupadd  newgroup</li>  <li>修改帐号群组  sudo  /usr/sbin/usermod -g mygroup  account</li>  <li>删除帐号 sudo /usr/sbin/userdel  xxxaccount</li></ul><h2>sed : Regular Express Replace String</h2><p>将字串 Url(&#39;aa-bb-cc-dd&#39;) 转换成  Url(&#39;aa_bb_cc_dd&#39;)</p><ul class="list">  <li>grep -Rl --no-message --exclude="*&#92;.svn*"  &#39;getUrl&#39;  path1/ path2/ | xargs sed -ri "s/Url&#92;(&#39;([^-]*)-([^-]*)-([^-]*)-([^-]*)&#39;/Url(&#39;&#92;1_&#92;2_&#92;3_&#92;4&#39;/g"  |grep Url</li></ul><ul class="list">  <li>Mac 要使用  sed -i &#39;&#39; &#39;s/xxx/yyy/&#39; file</li></ul><p>如果字串里面有 "?" ，必须使用 [?] 来比对</p><p>如果我要删除某些 pattern ，并且一次删除一整行</p><ul class="list">  <li>sed  &#39;/.*keyword.*/ d&#39;</li></ul><h2>grep 使用 OR</h2><p>使用 Linux grep 指令时，有时候会需要同时寻找两个字串，这时可以用 「|」 来做 OR 的搜寻，但是重点是要多加一个反斜线 「&#92;|」。</p><ul class="list">  <li>echo "axxxxxx" | grep &#39;a&#92;|b&#39;</li>  <li>echo "bxxxxxx" | grep &#39;a&#92;|b&#39;</li></ul><h2>grep regular 符合次数</h2><p>抓出三个 a 以上的值</p><ul class="list">  <li>echo "aacbaaab" |grep -o &#39;a&#92;{3&#92;}.*&#39;</li></ul><blockquote>result = aaab</blockquote><p>其它 grep 相关</p><ul class="list">  <li>[[:blank:]]  - grep 空白符号</li>  <li>[[:digit:]] - grep 数字</li>  <li>[[:alpha:]] - grep 英文</li></ul><h2>awk</h2><h3>使用 awk 比较执行时间</h3><p>awk 可以用使用比较时间，例如我想要取出执行时间大於 1 秒的 access log，可以用下列这种语法。</p><div class="codeBlock shell"><span class="title"> </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">cat access</span><span class="pun">.</span><span class="pln">log  </span><span class="pun">|</span><span class="pln"> awk </span><span class="str">&#39;{ print ($4 &gt; 1000)? $0: ""}</span></li></ol></pre></div><p>使用 awk 来取出长度大於 14 的字。</p><div class="codeBlock shell"><span class="title"> </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">cat xxx</span><span class="pun">.</span><span class="pln">log  </span><span class="pun">|</span><span class="pln">awk </span><span class="str">&#39;{if (length($1) == 14) print}&#39;</span></li></ol></pre></div><p>使用 awk 除以某个数字并取整数。</p><div class="codeBlock shell"><span class="title"> </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">cat xxx</span><span class="pun">.</span><span class="pln">log  </span><span class="pun">|</span><span class="pln"> awk </span><span class="str">&#39;{printf "%d&#92;n", $6/60}&#39;</span></li></ol></pre></div><p>使用 awk 将时间转成日期 (timestamp to date)。</p><div class="codeBlock shell"><span class="title"> </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">cat xxx</span><span class="pun">.</span><span class="pln">log  </span><span class="pun">|</span><span class="pln">  awk </span><span class="str">&#39;{printf "%s&#92;n", strftime("%m/%d/%y %T", int($1))}&#39;</span></li></ol></pre></div><p>Shell Script 在 awk 中传入变数 ， 必须用两个单引号加上两个双引号把变数括起来</p><div class="codeBlock shell"><span class="title"> </span><pre class="prettyprint lang-shell linenums" ><ol class="linenums"><li class="L0"><span class="pln">i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span></li><li class="L1"><span class="pln">awk </span><span class="str">&#39;{print $&#39;"$i"&#39;}&#39;</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">txt </span><span class="pun">|</span><span class="pln"> tr </span><span class="pun">-</span><span class="pln">s </span><span class="str">&#39;&#92;n&#39;</span><span class="pln"> </span><span class="str">&#39; &#39;</span></li></ol></pre></div><h2>找出使用 80 port 的 process 并删除</h2><ul class="list">  <li>sudo lsof -i:4444</li>  <li>sudo kill -9 7294 7296 7297</li></ul><div class="codeBlock html"><span class="title">Example</span><pre class="prettyprint lang-html linenums" ><ol class="linenums"><li class="L0"><span class="pln">COMMAND  PID   USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME</span></li><li class="L1"><span class="pln">httpd   7294   root    4u  IPv6 2843007      0t0  TCP *:http (LISTEN)</span></li><li class="L2"><span class="pln">httpd   7296 daemon    4u  IPv6 2843007      0t0  TCP *:http (LISTEN)</span></li><li class="L3"><span class="pln">httpd   7297 daemon    4u  IPv6 2843007      0t0  TCP *:http (LISTEN)</span></li></ol></pre></div><h2>清除 Semaphore</h2><p>重启某些  process 时，会遇到错误讯息 "No Space Left On Device" ，可以使用下面这个指令解决。</p><blockquote>sudo bash -c "ipcs -s | sed -e &#39;s/&#92;s/&#92;n/&#39; |grep -o ^[0-9]* | awk &#39;{if (length($1) > 5) print $2}&#39; | xargs -t -n 1 ipcrm -s "</blockquote><h2>清除 Linux 空间</h2><p>有时候明明 Linux 硬碟显示还有空间，而储存档案时，却有 error "No space left on device"，原因是虽然我们已经删除某一个巨型档案，但是某个 process 却还在使用那个巨型档案，造成系统显示的硬碟空间与实际不符，必需 restart 该 process 才能真正的清除硬碟空间。</p><p>使用指令 "lsof | grep deleted" 查询有哪一个 process 正在使用已清除的档案</p><h2>rsync</h2><p>使用  rsync 远端备份资料夹，参数  -r: recursive , -v: print message ， -n: dry-run 测试 ， --exclude 不包含某些档案</p><blockquote>rsync -rv --exclude "*.git*" www  hostname.com.tw:~/</blockquote><p>查询机器有没有开 80 port</p><ul class="list">  <li>netstat -ane | grep 80</li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2022-06-23T17:13:03+08:00" class="article-modify-time">2022/06/23</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-69" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-69" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Linux Command 相關</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-63.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_63&quot;}'>Linux 系統負荷量檢查程式 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Linux</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-457.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="../../docs-blog/article-452.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="../../docs-blog/article-449.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+        <li><a href="../../docs-blog/article-448.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_448&quot;}'>Use AWS Dynamodb to generate a sequential id </a></li>
+    
+        <li><a href="../../docs-blog/article-447.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_447&quot;}'>How to link ssh-agent into docker container </a></li>
+    
+        <li><a href="../../docs-blog/article-439.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_439&quot;}'>RedHat 6 &amp; 7 安裝 Docker Enginer </a></li>
+    
+        <li><a href="../../docs-blog/article-432.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_432&quot;}'>Docker Machine -  kernel panic: unable to mount root fs on unknown-block </a></li>
+    
+        <li><a href="../../docs-blog/article-431.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_431&quot;}'>How to customize your terminal style </a></li>
+    
+        <li><a href="../../docs-blog/article-426.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_426&quot;}'>解決 SSH 登入很慢、很久的問題 </a></li>
+    
+        <li><a href="../../docs-blog/article-422.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_422&quot;}'>RHEL/ CentOs 如何安裝 Python-3.3 , pip-3 ，以及與 python-2 共存 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>

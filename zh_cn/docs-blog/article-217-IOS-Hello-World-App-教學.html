@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="../../templates/static/css/files%3Fdefault.less&amp;other.less&amp;ezHTML.less&amp;%3Fv=20180416-2.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="../../templates/static/js/files%3FlightHttp-simple-min.js&amp;default.js&amp;facebookAPI.js&amp;form_check.js&amp;util.js&amp;listAutoLoadMore.js&amp;%3Fv=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta name="author" content="Puritys" />
+    <title>IOS  Hello World App 教学</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="學習寫 IOS 的第一步，如何寫一個 「 Hello World!」的 App，這篇文章會一步一步的教你建立一個 App。 Youtube 影片: http://www.youtube.com/watch?v=EidADUELWmE http://www.stanford.edu/class/cs193p/cgi-bin/drupal/ http://www.raywender" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="https://www.puritys.me/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="article-217-IOS-Hello-World-App-教学.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="article-217-IOS-Hello-World-App-教学.html">
+        <link rel="alternate" hreflang="zh-TW" href="../../docs-blog/article-217.html">
+        
+
+
+    <link rel="amphtml" href="../docs-blog-amp/article-217-IOS-Hello-World-App-教學.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com.html">
+        <link rel="dns-prefetch" href="ajax.googleapis.com.html">
+        <link rel="dns-prefetch" href="connect.facebook.net.html">
+        <link rel="dns-prefetch" href="www.google-analytics.com.html">
+        <link rel="dns-prefetch" href="www.puritys.me.html">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="https://www.puritys.me/"><img src="https://www.puritys.me/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="article-217-IOS-Hello-World-App-教學.html#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="https://www.puritys.me/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="https://www.puritys.me/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="https://www.puritys.me/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="https://www.puritys.me/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="https://www.puritys.me/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="https://www.puritys.me/docs-cate/Objective-C" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Objective-C</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="../../docs-blog/article-217.html">
+                    <em><span>IOS  Hello World App 教学</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/zh_cn\/docs-blog\/article-217-IOS-Hello-World-App-\u6559\u5b78.html"},"headline":"IOS  Hello World App \u6559\u5b78","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_88.png","datePublished":"2014-01-30T18:19:00+08:00","dateModified":"2014-02-05T23:42:56+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":"\u5b78\u7fd2\u5beb IOS  \u7684\u7b2c\u4e00\u6b65\uff0c\u5982\u4f55\u5beb\u4e00\u500b \u300c Hello World!\u300d\u7684 App\uff0c\u9019\u7bc7\u6587\u7ae0\u6703\u4e00\u6b65\u4e00\u6b65\u7684\u6559\u4f60\u5efa\u7acb\u4e00\u500b App\u3002\r\r\u5efa\u7acb IOS Project\r\u5148\u6253\u958b Xcode \u7a0b\u5f0f\uff0c\u5efa\u7acb\u4e00\u500b\u65b0\u7684 P"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Jan</div>
+            <div class="day">30</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="article-217-IOS-Hello-World-App-教學.html"><span>IOS  Hello World App 教学</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="../../docs-blog/article-217.html" rel="alternate" hreflang="zh-TW">繁中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"><a name="top"></a><p class="vj-quote vj-lv0" >学习写 IOS  的第一步，如何写一个 「 Hello World!」的 App，这篇文章会一步一步的教你建立一个 App。</p><a name="vj-t0"></a><h2 class="vj-sub-title">建立 IOS Project</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >先打开 Xcode 程式，建立一个新的 Project。</p><p class="vj-quote vj-lv0" >选择一个空的 Application</p><div ><img src="https://www.puritys.me/filemanage/blog_files/file_88.png" alt=" Create IOS Project" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="500"/></div><p class="vj-quote vj-lv0" >选择 iPhone</p><div ><img src="https://www.puritys.me/filemanage/blog_files/file_89.png" alt=" Select Device of IOS" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="500"/></div><p class="vj-quote vj-lv0" >等 Xcode 建立好 Project 之后，左上角记得要选择 iPhone Simulator ， 这样执行程式才会是使用 iPhone。</p><div ><img src="https://www.puritys.me/filemanage/blog_files/file_94.png" alt="iPhone Simulator" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="350"/></div><a name="vj-t1"></a><h2 class="vj-sub-title">建立 Window</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >在 Xcode 自动建立出 project 后，介面预设就会有个档案叫 AppDelegate.m ，这个档案就是 App 程式的入口。</p><p class="vj-quote vj-lv0" >程式预设就会有 self.window 的物件，这是 App 的第一个视窗，这里我不想要用预设的程式，所以我自已宣告 <b> UIWindow *window</b></p><p class="vj-quote vj-lv0" >第二步我要设定视窗的颜色为紫色，颜色设定方式为 <b> [UIColor purpleColor]</b></p><p class="vj-quote vj-lv0" >简单的几行程式，执行后会看到一个紫色背景视窗。</p><div class="codeBlock"><span class="title"> AppDelegate.m </span><pre class="prettyprint lang-c linenums" ><ol class="linenums"><li class="L0"><span class="pun">-</span><span class="pln"> </span><span class="pun">(</span><span class="pln">BOOL</span><span class="pun">)</span><span class="pln">application</span><span class="pun">:(</span><span class="typ">UIApplication</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">application didFinishLaunchingWithOptions</span><span class="pun">:(</span><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">launchOptions</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="typ">UIWindow</span><span class="pln"> </span><span class="pun">*</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UIWindow</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:[[</span><span class="typ">UIScreen</span><span class="pln"> mainScreen</span><span class="pun">]</span><span class="pln"> bounds</span><span class="pun">]];</span></li><li class="L4"><span class="pln">    window</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> purpleColor</span><span class="pun">];</span></li><li class="L5"><span class="pln">    </span><span class="pun">[</span><span class="pln">window makeKeyAndVisible</span><span class="pun">];</span></li><li class="L6"><span class="pln">    self</span><span class="pun">.</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> window</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> YES</span><span class="pun">;</span></li><li class="L8"><span class="pun">}</span></li></ol></pre></div><div class="vj-example vj-lv2">DEMO</div><div ><img src="https://www.puritys.me/filemanage/blog_files/file_93.png" alt=" Select Device of IOS" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width="300"/></div><a name="vj-t2"></a><h2 class="vj-sub-title">建立 View</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >有了视窗(window) 后，接著我须要一个 view，我们使用 UIView 这个物件来实作。</p><p class="vj-quote vj-lv0" >看下面的范例，第一行先建立一个 UIColor ，并设定 RGB 颜色 (255, 150,150)，第二行是取得 window 的 bound。</p><p class="vj-quote vj-lv0" >第三行建立 UIView Object ，并给予 bound 范围。</p><p class="vj-quote vj-lv0" >第四行设定背景色。</p><p class="vj-quote vj-lv0" >第五行将 view 加入 window 里。 </p><div class="codeBlock"><span class="title"> View</span><pre class="prettyprint lang-c linenums" ><ol class="linenums"><li class="L0"><span class="pln">    </span><span class="typ">UIColor</span><span class="pln"> </span><span class="pun">*</span><span class="pln">color </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> colorWithRed</span><span class="pun">:</span><span class="lit">255</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> green</span><span class="pun">:</span><span class="lit">150</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> blue</span><span class="pun">:</span><span class="lit">150</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> alpha</span><span class="pun">:</span><span class="lit">1.0</span><span class="pun">];;</span></li><li class="L1"><span class="pln">    </span><span class="typ">CGRect</span><span class="pln"> bounds </span><span class="pun">=</span><span class="pln"> self</span><span class="pun">.</span><span class="pln">window</span><span class="pun">.</span><span class="pln">bounds</span><span class="pun">;</span></li><li class="L2"><span class="pln">    </span><span class="typ">UIView</span><span class="pun">*</span><span class="pln"> view </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UIView</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:</span><span class="pln"> bounds</span><span class="pun">];</span></li><li class="L3"><span class="pln">    </span><span class="pun">[</span><span class="pln">view </span><span class="typ">setBackgroundColor</span><span class="pun">:</span><span class="pln"> color</span><span class="pun">];</span></li><li class="L4"><span class="pln">    </span><span class="pun">[</span><span class="pln">self</span><span class="pun">.</span><span class="pln">window addSubview</span><span class="pun">:</span><span class="pln"> view</span><span class="pun">];</span></li></ol></pre></div><a name="vj-t3"></a><h2 class="vj-sub-title">建立 Label</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >接著我要写入 Hello World! 这几个字到 view 里面，所以我建立一个文字物件叫 UILabel，用 UILabel 内建的 method setText ，设定文字为 Hello World! ，最后再将 Label 加入至上一步建立的 view 。</p><div class="codeBlock"><span class="title"> Label </span><pre class="prettyprint lang-c linenums" ><ol class="linenums"><li class="L0"><span class="pln">    </span><span class="typ">CGRect</span><span class="pln"> labelFrame </span><span class="pun">=</span><span class="pln"> </span><span class="typ">CGRectMake</span><span class="pun">(</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">40</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">30</span><span class="pln"> </span><span class="pun">);</span></li><li class="L1"><span class="pln">    </span><span class="typ">UILabel</span><span class="pun">*</span><span class="pln"> label </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UILabel</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:</span><span class="pln"> labelFrame</span><span class="pun">];</span></li><li class="L2"><span class="pln">    </span><span class="pun">[</span><span class="pln">label </span><span class="typ">setText</span><span class="pun">:</span><span class="pln"> </span><span class="pun">@</span><span class="str">"Hello World!"</span><span class="pun">];</span></li><li class="L3"><span class="pln">    </span><span class="pun">[</span><span class="pln">label </span><span class="typ">setTextColor</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> orangeColor</span><span class="pun">]];</span></li><li class="L4"><span class="pln">    </span><span class="pun">[</span><span class="pln">view addSubview</span><span class="pun">:</span><span class="pln"> label</span><span class="pun">];</span></li></ol></pre></div><a name="vj-t4"></a><h2 class="vj-sub-title">Hello World 范例</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><p class="vj-quote vj-lv0" >全部的程式加几来执行后，就会得到下列的结果。</p><div class="vj-example vj-lv2">DEMO</div><div ><img src="https://www.puritys.me/filemanage/blog_files/file_90.png" alt=" IOS Hello World!" onmouseover="return imageBig(this);" onmouseout="return imageSmall(this);"  class="vj-image" width=" 300"/></div><div class="codeBlock"><span class="title"> AppDelegate.m 全部的 Code</span><pre class="prettyprint lang-c linenums" style="height:280px;overflow:auto;"><ol class="linenums"><li class="L0"><span class="pun">-</span><span class="pln"> </span><span class="pun">(</span><span class="pln">BOOL</span><span class="pun">)</span><span class="pln">application</span><span class="pun">:(</span><span class="typ">UIApplication</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">application didFinishLaunchingWithOptions</span><span class="pun">:(</span><span class="typ">NSDictionary</span><span class="pln"> </span><span class="pun">*)</span><span class="pln">launchOptions</span></li><li class="L1"><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">    </span><span class="com">//Create Color</span></li><li class="L4"><span class="pln">    </span><span class="typ">UIColor</span><span class="pln"> </span><span class="pun">*</span><span class="pln">color </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> colorWithRed</span><span class="pun">:</span><span class="lit">255</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> green</span><span class="pun">:</span><span class="lit">150</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> blue</span><span class="pun">:</span><span class="lit">150</span><span class="pun">/</span><span class="lit">255.0f</span><span class="pln"> alpha</span><span class="pun">:</span><span class="lit">1.0</span><span class="pun">];</span></li><li class="L5"><span class="pln">    </span></li><li class="L6"><span class="pln">    </span><span class="typ">UIWindow</span><span class="pln"> </span><span class="pun">*</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UIWindow</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:[[</span><span class="typ">UIScreen</span><span class="pln"> mainScreen</span><span class="pun">]</span><span class="pln"> bounds</span><span class="pun">]];</span></li><li class="L7"><span class="pln">    window</span><span class="pun">.</span><span class="pln">backgroundColor </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="typ">UIColor</span><span class="pln"> purpleColor</span><span class="pun">];</span></li><li class="L8"><span class="pln">    </span><span class="pun">[</span><span class="pln">window makeKeyAndVisible</span><span class="pun">];</span></li><li class="L9"><span class="pln">    self</span><span class="pun">.</span><span class="pln">window </span><span class="pun">=</span><span class="pln"> window</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">    </span></li><li class="L2"><span class="pln">    </span><span class="typ">CGRect</span><span class="pln"> bounds </span><span class="pun">=</span><span class="pln"> self</span><span class="pun">.</span><span class="pln">window</span><span class="pun">.</span><span class="pln">bounds</span><span class="pun">;</span></li><li class="L3"><span class="pln">    </span></li><li class="L4"><span class="pln">    </span><span class="com">// Create a view and add it to the window.</span></li><li class="L5"><span class="pln">    </span><span class="typ">UIView</span><span class="pun">*</span><span class="pln"> view </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UIView</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:</span><span class="pln"> bounds</span><span class="pun">];</span></li><li class="L6"><span class="pln">    </span><span class="pun">[</span><span class="pln">view </span><span class="typ">setBackgroundColor</span><span class="pun">:</span><span class="pln"> color</span><span class="pun">];</span></li><li class="L7"><span class="pln">    </span><span class="pun">[</span><span class="pln">self</span><span class="pun">.</span><span class="pln">window addSubview</span><span class="pun">:</span><span class="pln"> view</span><span class="pun">];</span></li><li class="L8"><span class="pln">                                    </span><span class="com">//x  y   width height</span></li><li class="L9"><span class="pln">    </span><span class="typ">CGRect</span><span class="pln"> labelFrame </span><span class="pun">=</span><span class="pln"> </span><span class="typ">CGRectMake</span><span class="pun">(</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">240</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="lit">30</span><span class="pln"> </span><span class="pun">);</span></li><li class="L0"><span class="pln">    </span><span class="typ">UILabel</span><span class="pun">*</span><span class="pln"> label </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[[</span><span class="typ">UILabel</span><span class="pln"> alloc</span><span class="pun">]</span><span class="pln"> initWithFrame</span><span class="pun">:</span><span class="pln"> labelFrame</span><span class="pun">];</span></li><li class="L1"><span class="pln">    </span><span class="pun">[</span><span class="pln">label </span><span class="typ">setText</span><span class="pun">:</span><span class="pln"> </span><span class="pun">@</span><span class="str">"Hello World!"</span><span class="pun">];</span></li><li class="L2"><span class="pln">    </span><span class="pun">[</span><span class="pln">view addSubview</span><span class="pun">:</span><span class="pln"> label</span><span class="pun">];</span></li><li class="L3"><span class="pln">    </span></li><li class="L4"><span class="pln">    </span><span class="kwd">return</span><span class="pln"> YES</span><span class="pun">;</span></li><li class="L5"><span class="pun">}</span></li></ol></pre></div><a name="vj-t5"></a><h2 class="vj-sub-title">其它相关教学</h2><a href="article-217-IOS-Hello-World-App-教學.html#top" class="vj-btn_top2"></a><ul class="vj-ul"><li class="vj-lv2"> Youtube 影片: <a href=" http://www.youtube.com/watch?v=EidADUELWmE"  target="_blank"> http://www.youtube.com/watch?v=EidADUELWmE</a></li><li class="vj-lv2"> <a href=" http://www.stanford.edu/class/cs193p/cgi-bin/drupal/"  target="_blank"> http://www.stanford.edu/class/cs193p/cgi-bin/drupal/</a></li><li class="vj-lv2"> <a href=" http://www.raywenderlich.com/tutorials"  target="_blank"> http://www.raywenderlich.com/tutorials</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2014-02-05T23:42:56+08:00" class="article-modify-time">2014/02/05</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-217" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-217" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="../../docs-blog/article-221.html">Objective-C  UILabel 教學</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Objective-C</h4>
+    <ul>
+    
+        <li><a href="../../docs-blog/article-243.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_243&quot;}'>Objective-C  XML Parse </a></li>
+    
+        <li><a href="../../docs-blog/article-239.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_239&quot;}'>Objective-C  Request : NSURLConnection </a></li>
+    
+        <li><a href="../../docs-blog/article-238.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_238&quot;}'>在 IOS Xcode 中使用 c++ Library </a></li>
+    
+        <li><a href="../../docs-blog/article-232.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_232&quot;}'>Objective-C  基本 function </a></li>
+    
+        <li><a href="../../docs-blog/article-222.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_222&quot;}'>Objective-C UIView 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-221.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_221&quot;}'>Objective-C  UILabel 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-220.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_220&quot;}'>Objective-C 建立 Class 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-218.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_218&quot;}'>IOS 建立按鈕與點擊事件 </a></li>
+    
+        <li><a href="../../docs-blog/article-217.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_217&quot;}'>IOS  Hello World App 教學 </a></li>
+    
+        <li><a href="../../docs-blog/article-216.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_216&quot;}'>Objective-C  NSString 使用教學 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="https://www.puritys.me/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="https://www.puritys.me/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="https://www.puritys.me/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?64c3d3fbf3cb7871eb5a607fa05c4375";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="https://www.puritys.me/templates/static/js/files?sidebar.js&amp;ezHTML_main.js&amp;?v=20180416-2"></script>
+</html>
