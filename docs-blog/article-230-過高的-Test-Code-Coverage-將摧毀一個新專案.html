@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>過高的 Test Code Coverage 將摧毀一個新專案</title>
+    <meta name="keywords" content="Unit Test" />
+    <meta name="description" content=" 很多公司都有要求程式要寫 Unit Test，Unit Test 固然可以提升程式的品質，但是到底要寫多少 Unit Test 才夠呢? 我想沒有人可以給一個答案。Code CoverageCode Coverage 是指程式測試的涵蓋率，但涵蓋率是否要達到 100 percent 才算是好呢 ? 80 % vs 90 % vs 100%，從數據上看 100% 一定是最好的，" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-230-过高的-Test-Code-Coverage-将摧毁一个新专案.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-230">
+                    <em><span>過高的 Test Code Covera...</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-230-\u904e\u9ad8\u7684-Test-Code-Coverage-\u5c07\u6467\u6bc0\u4e00\u500b\u65b0\u5c08\u6848.html"},"headline":"\u904e\u9ad8\u7684 Test Code Coverage \u5c07\u6467\u6bc0\u4e00\u500b\u65b0\u5c08\u6848","image":"","datePublished":"2014-02-19T10:48:25+08:00","dateModified":"2015-02-17T01:42:10+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5f88\u591a\u516c\u53f8\u90fd\u6709\u8981\u6c42\u7a0b\u5f0f\u8981\u5beb Unit Test\uff0cUnit Test \u56fa\u7136\u53ef\u4ee5\u63d0\u5347\u7a0b\u5f0f\u7684\u54c1\u8cea\uff0c\u4f46\u662f\u5230\u5e95\u8981\u5beb\u591a\u5c11 Unit Test \u624d\u5920\u5462? \u6211\u60f3\u6c92\u6709\u4eba\u53ef\u4ee5\u7d66\u4e00\u500b\u7b54\u6848\u3002\rCode Coverage\rC"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2014</div>
+            <div class="month">Feb</div>
+            <div class="day">19</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-230-過高的-Test-Code-Coverage-將摧毀一個新專案.html"><span>過高的 Test Code Coverage 將摧毀一個新專案</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Unit Test">Unit Test</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-230-过高的-Test-Code-Coverage-将摧毁一个新专案.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>很多公司都有要求程式要寫 <b>Unit Test</b>，Unit Test 固然可以提升程式的品質，但是到底要寫多少 Unit Test 才夠呢? 我想沒有人可以給一個答案。</p><h2>Code Coverage</h2><p>Code Coverage 是指程式測試的<b>涵蓋率</b>，但涵蓋率是否要達到  100 percent 才算是好呢 ?  <b>80 %</b> vs <b>90 %</b> vs <b>100%</b>，從數據上看 100% 一定是最好的，程式品質最高。</p><p>先來看看 Code Coverage 的算法吧，假如我寫了一個檔案 A，檔案 A 裡面共有 <b>10 行</b>程式，然後我再寫一個 Unit Test ，這個 Test 總共有執行了檔案 A 其中 5 行的 Code ，這樣 Code Coverage  = 50% 。</p><p>從 Code Coverage 的算法來看，Unit Test 只是執行了 5 行程式，但並不代表那 5 行程式就一定會是正確無誤的，一個 function 的測試，不可能單單的靠一個 test 就能夠測試完畢的，通常我們會測試很多種不同的變數型態與區間，來保證程式的正確性。</p><p>但就連這樣還是無法保證程式是正確的，別忘了，當我們的功能越來越強大，每一樣功能之間會有關聯性，所以我們必須再花時間去測試每一種關連性，但這些爾外的測試，雖然可以提升程式的品質，卻無法提升 Code Coverage，這就產生了工程師與老闆的盲點。</p><p>一個不懂程式也沒有任何<b> sense </b>的老闆，當你問大老闆說程式 Code Coverage 的目標要多少，大老闆一定豪不疑問的說  <b>100% </b>，當然 100% 等同於完美，大老闆當然不想搞死工程師，畢竟專案還是要完成，但是又沒有一個好的方法可以保證程式的正確性，所以大老闆們就會訂出  80 ~ 90 % 之間的標準，要求每一個工程師寫出來的程式，都要完成 Code Coverage 的標準。</p><p>我覺得訂出這個標準是一個<b>不負責任</b>的想法， 工程師為了達到 90% 的 Code Coverage ，他就必須花很多的時間，為了一堆不重要的程式，補上 Unit Test ，但是反而沒辦法好好的測試主功能，如果時程上有壓力，最後就會變成程式非常的不穩定， 90% 的 Code Coverage 也只是騙人騙已。</p><p>Code Coverage <em>90 %</em> 的目標，應該要用在一個已經<b>穩定上線</b>的 Project ，對於一個上線中的 Project 來說，工程師已不用追時程、趕專案，這時才會有比較多的時間提升 Code Coverage ，另外一個上線中的專案，需求的變動也會比較小。</p><p>若是說我們正在開發一個新的專案，那麼 Code Coverage 就一點也<em>不重要</em>，開發中的專案，很容易因為一開始系統設計不良、或是需求變更、底層 Library 有 Bug 等等因素而改變程式的作法，一旦有變更， 寫過的 Unit Test 就變成了垃圾，而且新改的程式，又要再補上新的 Unit Test，所以對於新專案來說，應該先要求主功能的正確性，然後交由資深的工程師決定有那些功能必需撰寫 Unit Test ， 根據我的經驗，光是將主功能完完整整的測過一遍，  Code Coverage  就將近會有 <b>50%</b> 左右了。</p><h2>Test Code Coverage 小故事</h2><p>有一天，有一個新手工程師，跑去問大師說：</p><blockquote>Code Coverage 要完成多少才行呢?</blockquote><p>大師回答</p><blockquote>不用管 Code Coverage ，只要寫一些好的 Unit Test 就行了</blockquote><p>新人點點頭，就回去工作了。</p><br /><p>第二天，另一個工程師，也去跟大師問相同的問題，大師則問工程師說</p><blockquote>我應該往這個鍋子裡放多少米呢?</blockquote><p>工程師有點困惑，回答說</p><blockquote>我無法回答這個問題，這要看有多少人需要吃飯，他們有多餓</blockquote><p>「沒錯!」 大師這樣說道，工程師點點頭，就回去工作了。</p><br /><p>第三天，又有一個工程師，跑去問大師這個問題，大師用嚴厲的口氣回答說</p><blockquote>80 %，不多不少</blockquote><p>工程師又點點頭，就回去工作了。</p><p>後來，大師的學徒，問大師說為什麼他們問一樣的問題，可是你卻有不同的回答呢，大師站了起來，並回答</p><blockquote>第一個工程師是個新手，才剛開始學習如何寫 Unit Test ，他還有很多東西要學習，如果這個時候要求他較高的 Code Coverage 標準，他也無法做到，不如讓他只寫幾個完整的 Unit Test，以後再來想 Code Coveage 的問題；而第二個工程師已經<b>很資深</b>，能夠獨力完成 Coding 與 Unit Test，當我問工程師，鍋裡要放多少米的問題，其實我是想提醒他， Code Coverage 應該要看專案有多少個<b>功能要測試，以及專案的大小，進度</b>，我並不了解工程師正在開發的專案，所以我沒辦法給他一個答案，這個問題必需由他自已找個答案。</blockquote><p>學徒又問，即然 Code Coverage 比率是沒辦法隨便訂標準的，那為何你要跟第三個工程師講說「Code Coverage 需達到  80%」呢，大師回答說</p><blockquote>第三工程師只想要一個簡單的答案，就算是沒有答案的東西，他也要想要一個數字，而且就算我給他答案，他也不會按照答案的方式做。</blockquote></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2015-02-17T01:42:10+08:00" class="article-modify-time">2015/02/17</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-230" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-230" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+                
+
+<div class="comment-group clearfix" >
+    <h2>目前回應 Comments<em>(3 comments)</em></h2>
+    <ul class="media-list media-list-comment">
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Peter</a>
+                    <span class="media-sub">2020/06/20</span>
+                </h4>
+                <p>寫得真好，很簡單明瞭</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Kent </a>
+                    <span class="media-sub">2020/04/12</span>
+                </h4>
+                <p>写的不错啊！点赞</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">chchwy</a>
+                    <span class="media-sub">2015/01/31</span>
+                </h4>
+                <p>最後那個問答太有禪義啦...</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	這個小故事是我在網路上看到的，原版是英文寫的，你可以從這個網址看到原文。</p><p>	<a href="http://stackoverflow.com/questions/90002/what-is-a-reasonable-code-coverage-for-unit-tests-and-why">http://stackoverflow.com/questions/90002/what-is-a-reasonable-code-coverage-for-unit-tests-and-why</a></p><p>	&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+    <div class="comment-group">
+        <h2>回應 (Leave a comment)</h2>
+        <form class="form form-comment" method="post">
+            <input type="hidden" name="act" value="reply">
+            <input type="hidden" name="parentId" value="TpbpCui/Uwac9hkbVyfmxQQYyHS5tdEhcgTpkembh2r91I+FUovIzq4rtu1AU7rQjjmY5CvKDtnPCKyHOpsIOT" />
+            <a class="form-thumb" href="#"><img src="//www.puritys.me/templates/static/images/thumb_nobody.png"></a>
+            <div class="form-body">
+                <div class="form-row ">
+                    <label class="form-label" for="name">Name</label>
+                    <div class="form-input">
+                        <input id="name" class="form-control" name="name" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="email">E-mail</label>
+                    <div class="form-input">
+                        <input id="email" class="form-control" name="email" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="message">Message</label>
+                    <div class="form-input">
+                        <textarea id="message" name="message" class="form-control"></textarea>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                
+
+                
+                <div class="form-row security_codeBox">
+                    <label class="form-label">
+                    </label>
+                    <div class="form-input">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAABkD-WnGwGW7PRq"></div>
+                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                <div class="form-action">
+                    <button class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Unit Test 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-295-如何使用-PHP-Unit-Test-Mock-Object.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_295&quot;}'>如何使用 PHP Unit Test Mock Object </a></li>
+    
+        <li><a href="/docs-blog/article-268-How-to-write-a-php-unit-test-for-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_268&quot;}'>How to write a php unit test  for private method </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

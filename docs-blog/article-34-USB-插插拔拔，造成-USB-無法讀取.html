@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+    <script src="//www.puritys.me/templates/static/js/files?none" type="text/javascript" charset="utf-8"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>USB 插插拔拔，造成 USB 無法讀取</title>
+    <meta name="keywords" content="Windows" />
+    <meta name="description" content=" 平常使用 Windows XP 的時候，當把 USB 拔掉後再插上去，檔案總管 或是我的電腦 就再也不會出現 USB 磁碟區了，通常只要重開機就解決這種鳥事，有一天心血來潮，花了一點時間研究一下，解決了這個問題，因為我不想再一直重開機.....第一招： 電腦管理 - 磁碟管理 先查看一下 Windows 有沒有抓到磁碟，並試著打開它。 進入「開始」-&gt;「控制台」-&gt;「系統管理" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+    <link rel="canonical" href="https://www.puritys.me/docs-blog/article-34-USB-插插拔拔，造成-USB-無法讀取.html"/>
+    
+
+    <link rel="alternate" hreflang="zh-CN" href="https://www.puritys.me/zh_cn/docs-blog/article-34-USB-插插拔拔，造成-USB-无法读取.html">
+        <link rel="alternate" hreflang="zh-TW" href="https://www.puritys.me/docs-blog/article-34-USB-插插拔拔，造成-USB-無法讀取.html">
+        
+
+
+    <link rel="amphtml" href="https://www.puritys.me/docs-blog-amp/article-34-USB-插插拔拔，造成-USB-無法讀取.html"/>
+    
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/coding" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Program</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active">
+                <a href="//www.puritys.me/docs-blog/article-34">
+                    <em><span>USB 插插拔拔，造成 USB 無法讀取</span></em>
+                </a>
+            </li>
+        
+    
+</ul>
+
+        
+                
+
+
+<script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.puritys.me\/docs-blog\/article-34-USB-\u63d2\u63d2\u62d4\u62d4\uff0c\u9020\u6210-USB-\u7121\u6cd5\u8b80\u53d6.html"},"headline":"USB \u63d2\u63d2\u62d4\u62d4\uff0c\u9020\u6210 USB \u7121\u6cd5\u8b80\u53d6","image":"https:\/\/www.puritys.me\/filemanage\/blog_files\/file_150.png","datePublished":"2011-09-11T16:25:02+08:00","dateModified":"2021-10-06T11:19:14+08:00","author":{"@type":"Person","name":"puritys"},"publisher":{"@type":"Organization","name":"www.puritys.me","logo":{"@type":"ImageObject","url":"https:\/\/www.puritys.me\/templates\/static\/images\/favicon_puritys.ico"}},"description":" \r\u5e73\u5e38\u4f7f\u7528 Windows XP \u7684\u6642\u5019\uff0c\u7576\u628a USB \u62d4\u6389\u5f8c\u518d\u63d2\u4e0a\u53bb\uff0c\"\u6a94\u6848\u7e3d\u7ba1\" \u6216\u662f\"\u6211\u7684\u96fb\u8166\" \u5c31\u518d\u4e5f\u4e0d\u6703\u51fa\u73fe USB \u78c1\u789f\u5340\u4e86\uff0c\u901a\u5e38\u53ea\u8981\u91cd\u958b\u6a5f\u5c31\u89e3\u6c7a\u9019\u7a2e\u9ce5\u4e8b\uff0c\u6709\u4e00\u5929\u5fc3\u8840\u4f86\u6f6e\uff0c\u82b1\u4e86\u4e00\u9ede\u6642\u9593\u7814"}
+</script>
+
+
+<div class="entry">
+   <div class="entry-header">
+        
+        <div class="date">
+            <div class="year">2011</div>
+            <div class="month">Sep</div>
+            <div class="day">11</div>
+        </div>
+
+        
+        <div class="title">
+            <h1><a href="/docs-blog/article-34-USB-插插拔拔，造成-USB-無法讀取.html"><span>USB 插插拔拔，造成 USB 無法讀取</span></a></h1>
+            <div class="sub">
+                <div class="caption">Tags:</div>
+                <ul class="labels">
+                    
+                    <li class="label">
+                        <a class="label-item" target="_blank"
+                             href="/docs-cate?tag=Windows">Windows</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            
+            <div class="lang-wrap">
+            
+                <a href="https://www.puritys.me/zh_cn/docs-blog/article-34-USB-插插拔拔，造成-USB-无法读取.html" rel="alternate" hreflang="zh-CN">簡中版</a>
+            
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class="entry-body">
+        <div class="ezHTML-content"> <br /><p>平常使用 Windows XP 的時候，當把 <em>USB</em> 拔掉後再插上去，"檔案總管" 或是"我的電腦" 就再也不會出現 USB 磁碟區了，通常只要重開機就解決這種鳥事，有一天心血來潮，花了一點時間研究一下，解決了這個問題，因為我不想再一直<em>重開機</em>.....</p><h2>第一招： 電腦管理 - 磁碟管理</h2><ul class="list">  <li>先查看一下 Windows 有沒有抓到磁碟，並試著打開它。</li>  <li>進入「開始」->「控制台」->「系統管理工具」->「電腦管理」->[磁碟管理]</li></ul><a href="/filemanage/blog_files/file_150.png" target="_blank" ><img src="/filemanage/blog_files/file_150.png"   alt="usb 無法讀取 - 電腦管理" link="me"  style="width: 600px;"/></a><br /><br /><br /><a href="/filemanage/blog/udb_a1.jpg" target="_blank" ><img src="/filemanage/blog/udb_a1.jpg"   alt="usb 無法讀取 - 電腦管理" link="me"  style="width: 600px;"/></a><br /><br /><ul class="list">  <li>在這可以找到有啟動的磁碟，點新出現的 <em>USB</em> 磁碟區，按右鍵->「開啟」</li></ul><a href="/filemanage/blog/udb_a2.jpg" target="_blank" ><img src="/filemanage/blog/udb_a2.jpg"   alt="usb 無法讀取 - 磁碟管理" link="me"  style="width: 600px;"/></a><p>這個方式可以讀取到資料夾，運作上也算正常，不過當我想把檔案備份到 <em>USB</em> ，在複製檔案的時候，卻出現一些問題，沒辦法抓資料複製到 <em>USB</em> 裡，系統會一直提示檔案名稱無法使用，所以這一招只成功了一半。</p><h2>第二招： 重啟 Explorer</h2><p>上一招失敗之後，突然想到<em>檔案總管</em>是由 explorer.exe 這個程序管理的，那就試著重啟 explorer.exe 把</p><ul class="list">  <li>進入 Windows 工作管理員( 按 <em>Ctrl+Alt+Del</em> )，關掉 explorer.exe 這個 Process。</li></ul><a href="/filemanage/blog/udb_a3.jpg" target="_blank" ><img src="/filemanage/blog/udb_a3.jpg"   alt="usb 無法讀取 - 工作管理員" link="me" /></a><br /><br /><ul class="list">  <li>進入Windows工作管理員，選「檔案」->「新工作(執行..)」，啟動新的 Process。</li></ul><a href="/filemanage/blog/usb_a4.jpg" target="_blank" ><img src="/filemanage/blog/usb_a4.jpg"   alt="usb 無法讀取 - 執行" link="me" /></a><br /><br /><ul class="list">  <li>輸入「explorer」，完成建立新工作</li></ul><a href="/filemanage/blog/usb_a5.jpg" target="_blank" ><img src="/filemanage/blog/usb_a5.jpg"   alt="usb 無法讀取 - 建立新工作" link="me" /></a><p>查看一下「我的電腦」，太帥了，USB磁碟區，重新出現了，而且操作一切正常無誤。</p><p>如果以上二招都無法解決，那麼你可能要找另外一台電腦來測試一下你的 USB 是不是壞掉了</p><h2>用指令來確認 Window 是否有成功辨識 USB</h2><p>如果 Window 一直沒辦法正確的讀到 USB 這個硬體，那麼還可以使用下指令的方式來檢查，首先選 開始 -> 執行 -> 輸入 cmd -> 按 Enter。</p><img src="/filemanage/blog_files/file_205.png"   /><p>接著你就會看到一個黑黑的控制台畫面，這時輸入指令 :</p><p><code>wmic logicaldisk get deviceid,description</code></p><p>再檢查一下訊息，是否有出現 USB 的資訊，如果有看到 USB的資訊，那就是 Windows 還可以讀到 USB 裝置，這樣子的話，就可以試試 USB 還原軟體。</p><img src="/filemanage/blog_files/file_206.png"   /><p>我把指令寫在一個  Windows  執行檔， 你可以直接下載這個檔案，點擊執行檔兩下就可以看到終端機的測試結果。</p><ul class="list">  <li><a href="https://drive.google.com/file/d/0B1_zQGB-Kb7mekxCMWlaVFlvOUE/view?usp=sharing&resourcekey=0-asGN_A857Q9KEqArmTFXAg"  target="_blank">https://drive.google.com/file/d/0B1_zQGB-Kb7mekxCMWlaVFlvOUE/view?usp=sharing&resourcekey=0-asGN_A857Q9KEqArmTFXAg</a></li></ul><h2>如何從壞掉的 USB 中救回檔案</h2><p>若是確認過你的 USB 已經毀損，那麼請參考下面這篇文章，有機會可以救回 USB 中的資料。</p><ul class="list">  <li><a href="https://www.puritys.me/docs-blog/article-291" target="_blank">http://www.puritys.me/docs-blog/article-291</a></li></ul></div>
+    </div>
+    <div class="entry-footer">
+        <p class="article-modify-author">This post was last modified by
+            <span>puritys</span>
+            <time datetime="2021-10-06T11:19:14+08:00" class="article-modify-time">2021/10/06</time>
+        </p>
+
+        
+    <ul class="share-btn-wrap">
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.puritys.me/docs-blog/article-34" class="shareBtn" title="share" rel="nofollow"></a></li>
+        <li>
+            <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.puritys.me/docs-blog/article-34" scrolling="no" frameborder="0"
+                style="border:none; width:450px; height:80px"></iframe>
+        </li>
+    </ul>
+
+
+
+        
+        
+        <div class="next-article-box">
+            <div class="prev-article">
+                
+                <a href="/docs-blog/article-235">解決讀卡機偵測不到</a>
+                &nbsp;
+            </div>
+            <div class="next-article">
+                
+                <a href="/docs-blog/article-291">USB，硬碟救援，檔案刪除還原</a>
+                &nbsp;
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+        <br />
+        <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-1449650742587459"
+     data-ad-slot="2197220184"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script>
+    
+
+</div>
+
+        
+                
+
+<div class="comment-group clearfix" >
+    <h2>目前回應 Comments<em>(27 comments)</em></h2>
+    <ul class="media-list media-list-comment">
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">stephen wu</a>
+                    <span class="media-sub">2021/10/16</span>
+                </h4>
+                <p>提供方法很不錯不過要修復usb提供網站說free其實是騙人還添的一堆資料真氣人</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">123</a>
+                    <span class="media-sub">2017/10/09</span>
+                </h4>
+                <p>真是太棒了  感恩 </p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Cindy</a>
+                    <span class="media-sub">2017/08/31</span>
+                </h4>
+                <p>點開指令後，usb顯示為 removable disk<br />請問接下來該怎麼做?</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">ching</a>
+                    <span class="media-sub">2017/03/23</span>
+                </h4>
+                <p>使用方法二後USB磁碟區確實出現了，命令提示字元也有查到，但點選磁碟區卻顯示限制存取??TT</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">人土</a>
+                    <span class="media-sub">2017/03/04</span>
+                </h4>
+                <p>我的usb硬碟一直出现location is not available和access is denied。里面有重要文件，现在却无法开始，有办法留住里面的资料并开启的方法请回答，谢谢，请求助</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	先試著修改 USB 權限，</p><p>	1. 對 USB 硬碟按右鍵，選擇內容 &rarr; 安全性 &rarr; 選你的帳號，並打勾所有權限。</p><p>	2. 對 USB 硬碟按右鍵，選擇內容 &rarr; 安全性 &rarr; 進階 &nbsp;&rarr; 選你的帳號，並打勾所有權限。</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">david</a>
+                    <span class="media-sub">2016/09/26</span>
+                </h4>
+                <p>開啟檔案系統顯示RAW，是否資料已遺失，怎救隨身硬碟內的資料!</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	請試試<a href="https://www.puritys.me/docs-blog/article-291-USB&#37;EF&#37;BC&#37;8C&#37;E7&#37;A1&#37;AC&#37;E7&#37;A2&#37;9F&#37;E6&#37;95&#37;91&#37;E6&#37;8F&#37;B4&#37;EF&#37;BC&#37;8C&#37;E6&#37;AA&#37;94&#37;E6&#37;A1&#37;88&#37;E5&#37;88&#37;AA&#37;E9&#37;99&#37;A4&#37;E9&#37;82&#37;84&#37;E5&#37;8E&#37;9F.html">這篇文章</a>介紹的軟體。</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Stan</a>
+                    <span class="media-sub">2016/05/30</span>
+                </h4>
+                <p>HI<br />就在今天早上備份隨硬碟資料到一半時，複製程序一直停滯不動。<br />將程序取消之後就發現隨身碟內部的檔案再也不不到了。<br />經執行硬碟管理，目錄內有資料，只是寫著No media，且無法開啟隨身碟。<br />再執行CMD，也還是有抓到目錄，但輸入cd d:後卻跳出&quot;there is no disk in the drive. Please insert a disk into drive DeviceHarrdisk1DR10.&quot;，因此決定走硬碟救援的程序。<br />但是執行您推薦的軟體時，都是抓得到目錄，可是繼續操作下一步後也是得到上述的訊息。<br />請問是否代表隨身碟晶片已經壞了？<br />謝謝<br /><br />謝謝</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	&quot;there is no disk in the drive&quot; ，這個訊息看起來是跟你說隨身碟不存在，這代表電腦無法辨識該隨身碟，那就沒救了。</p><p>	&nbsp;</p><p>	&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">訪客</a>
+                    <span class="media-sub">2015/12/23</span>
+                </h4>
+                <p>不好意思 如果事先中毒，被刪檔案，之後連隨身碟都找不到<br />方法一也只有C和D槽 沒成功<br />方法二沒反應</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">ah sen</a>
+                    <span class="media-sub">2015/11/23</span>
+                </h4>
+                <p>正煩惱不知道怎麼辦時剛好看到這篇 <br />謝謝您!!!</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">訪客</a>
+                    <span class="media-sub">2015/08/03</span>
+                </h4>
+                <p>您好<br />我的外接硬碟之前一切使用正常都可以讀取<br /><br />今天使用時<br />插上傳輸線，硬碟的燈閃了幾下就不閃了<br />貼上硬碟可以聽見運轉的聲音<br />可是電腦右下角沒有顯示隨身碟讀取到的圖案<br />＂我的電腦＂裡也沒有硬碟的圖案顯示<br /><br />請問該怎麼處理？</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">april</a>
+                    <span class="media-sub">2015/06/15</span>
+                </h4>
+                <p>太強了 我這電腦白癡 居然成功了   謝謝你</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Sakura</a>
+                    <span class="media-sub">2015/05/26</span>
+                </h4>
+                <p>USB確定是好的 方法1只要USB插著就讀不進去 方法2試過了可是開不了=3=</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">criblove</a>
+                    <span class="media-sub">2015/05/04</span>
+                </h4>
+                <p>大大你好~~我的隨身碟也無法格式化~~而且你說的資料救援都讀取不到我的USB那該怎麼辦</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	連格式化都不行，可能是 USB 硬體的部份壞掉了，那我也幫不了你，我不會修硬體 XD。</p><p>	不如買一個新的 USB 吧 。</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">criblove</a>
+                    <span class="media-sub">2015/05/04</span>
+                </h4>
+                <p>我的兩個方式都試過了,而且別台電腦也是一樣!!!說我的USB裝置尚未就緒,而且我的USB燈一直閃爍~請問這還有救嗎?<br />而且裝置說可以使用~~但是USB都還是無法開啟~~<br />而我USB的狀況是正在複製東西到USB裡面然後之後突然就說找不到我USB路徑!!!</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	你的 USB 可能在複製資料的時候出了問題，如果你的 USB 沒有重要資料，建議你先重新格式化 USB，然後再重新複製一次。</p><p>	如果你想把 USB 內的資料救回來 ，可以試一下我文章中介紹的軟體。</p><p>	&nbsp;</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Liam</a>
+                    <span class="media-sub">2015/03/25</span>
+                </h4>
+                <p>太神奇了！困擾了好久，終於解決了！<br />謝謝！</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">小菫</a>
+                    <span class="media-sub">2014/12/02</span>
+                </h4>
+                <p>之前請人來看都找不到原因~~<br />試了第二個方法後終於好了~~(YA~)<br /><br />突然想起來我之前不小心點到了explorer的更新~~<br />之後我的隨身碟幾乎都不可以用~會沒有反應~(有些隨身碟可以有些隨身碟不行)....所以我想可能是explorer作祟~~XDDD<br />如果有跟我一樣是點到explorer更新的人可以試試看第二個方法~<br /><br />總之謝謝大大的分享啦~~</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">博雅</a>
+                    <span class="media-sub">2014/11/18</span>
+                </h4>
+                <p>我用第一個方法  但他只是有一點反應  可是連開啓都無法   他只在電腦顯示是哪一個槽但不是我取的名字  請問還能怎麼辦</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	你的 USB 應該已經毀損，請試著用硬碟救援的方式來救回 USB 內的資料。</p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">小雞</a>
+                    <span class="media-sub">2014/11/02</span>
+                </h4>
+                <p>試過了,也用過其他電腦識過確定我的USB沒問題<br />就只有這一台筆電不可以<br />請問我的筆店有什麼問題嗎?</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">阿賢</a>
+                    <span class="media-sub">2014/09/25</span>
+                </h4>
+                <p>為甚麼我的電腦差硬碟 我的電腦那甚麼東西都沒有 但是卻有退出硬碟的顯示 我用我弟的都是直接跑出資料 我的卻甚麼都沒跑出來 重開機也沒用 要怎麼辦</p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">阿嘉</a>
+                    <span class="media-sub">2014/09/12</span>
+                </h4>
+                <p>你好<br />想請問一下<br />我的隨身碟有時候也都讀取不到<br />但是也是重開機有時會好<br />而有時候是插進去有顯示出來<br />但是在插一次就又沒反應了<br />請問這是usb插槽壞掉嘛?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>你可以試一下我文章中提到的解決方式，你的 USB 沒有壞掉，只是 &nbsp;Windows 有點問題，當你拔掉 USB 後 ，再重新插入，就會讀不到</p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Ryan</a>
+                    <span class="media-sub">2014/07/30</span>
+                </h4>
+                <p>你好, 想問如果是&quot;e;USB 其實有讀到，但是資料壞掉了，必需重新格式化，這種狀態發生的話，你可以在磁碟區看到該  USB ，但是打不開。&quot;e;這個情況, 系統也顯示檔案損毀,無法存取,那我可以怎樣才看到USB的內容呢?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p><p>	如果是 USB&nbsp;檔案損毀了，你可以參考下面這篇文章，將 USB 的資料回復。</p><p>	<a href="/docs-blog/article-291-硬碟救援，檔案刪除還原.html">USB 硬碟救援</a></p></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">江江</a>
+                    <span class="media-sub">2014/07/18</span>
+                </h4>
+                <p>安安你好，我想請問的是，我把我舊電腦的資料傳到隨身碟，但新電腦要讀取時卻有兩種檔案無法開啟。<br /><br />一個是WinRAR 壓縮檔，另一個是RealPlayer 播放檔，應該有存取進去，但無法開啟檔案。<br /><br />windows media player可以讀取，記事本的文件也可以讀取，請問這是什麼情況呢？<br /><br />我的隨身碟是3.0的，舊電腦只有2.0，新電腦支援3.0。</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>請確認你的新電腦是否有安裝 &nbsp;Winrar 與 Real player 相關軟體。<div><ul><li class="">winrar 載點&nbsp;http://www.rar.com.tw/download.html<span class="SME_newbr" id="simple_newqq1"></span></li><li class="">Real Player 載點&nbsp;http://tw.real.com/windows/</li></ul></div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Ting</a>
+                    <span class="media-sub">2014/06/14</span>
+                </h4>
+                <p>請問，如果USB裡面是有檔案的<br />不過卻無法顯示出來照片和音樂<br />這該如何解決 ?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>抱歉 ! 你給的資訊太少，不夠我判斷 USB 發生什麼事情。<div><div>我只能說，請養成備份重要資料的習慣，就算 USB 壞掉，資料也還找得回來。</div><div>提供兩個備份的好地方</div><div id="simple_newqq1"><ol><li class="">Google Drive<span class="SME_newbr" id="simple_newqq1"></span></li><li class="">DropBox</li></ol></div></div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">紀字牟</a>
+                    <span class="media-sub">2014/06/13</span>
+                </h4>
+                <p>我的XP上個月也開始讀不到USB  但是了你的方法後  有效<br />但昨天開始我卻又讀不到了   我不斷的取消explorer和重開機及重新加入explorer   但還是讀不到USB<br /><br />請問您還有新方法可用嗎?  謝謝幫忙!<br /><br />紀字牟敬上<br />2014-06-13</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>讀不到 USB 的狀態，有很多種，這篇文章是單純的解決 Window 系統的小問題，是當重開機時 USB&nbsp;可以正常讀取，但是過一陣子會突然讀不到的問題。<div >&nbsp;</div><div id="simple_newqq1" >我提供幾個其它有可能的問題給你參考</div><div ><ol><li class="">USB 壞掉了或電腦中毒，判定 USB 是否壞掉或中毒的方式很簡單，去找另一台電腦來測試 (朋友或圖書館的電腦)。<span class="SME_newbr" id="simple_newqq1"></span></li><li class="">電腦 Power 的電力不夠，你是否有在電腦 USB 插上過多的讀卡機，充電器。<span class="SME_newbr" id="simple_newqq1"></span></li><li class="">USB 其實有讀到，但是資料壞掉了，必需重新格式化，這種狀態發生的話，你可以在磁碟區看到該 &nbsp;USB ，但是打不開。</li></ol></div></p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Upooer</a>
+                    <span class="media-sub">2014/06/13</span>
+                </h4>
+                <p>讚喔<br />我的隨身碟最近也很常無法使用<br />試了你的方式之後就好了<br /></p>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Mochi</a>
+                    <span class="media-sub">2014/05/20</span>
+                </h4>
+                <p>試了第一個方法磁碟管理裡只有C槽和D槽<br />第二個方法也沒有用，該怎麼辦?</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>你可以先換一台電腦試試看，先確定你的 USB 是好的。</p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+        <li class="media clearfix">
+            <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+            <div class="media-body clearfix">
+                <h4 class="media-heading">
+                    <a href="#">Moto_V7</a>
+                    <span class="media-sub">2014/04/26</span>
+                </h4>
+                <p>一定要給你按讚<br />我的XP沒事就會讀不到USB的儲存裝置<br />已經困擾很久<br />沒想到那麼簡單就可以解決<br />太感謝您啦</p>
+                
+                <a class="btn pull-right" href="#">Reply</a>
+                <div class="media">
+                    <a class="media-thumb pull-left" href="#"><img class="media-object" src="//www.puritys.me/templates/static/images/thumb_avatar.png"></a>
+                    <div class="media-body clearfix">
+                        <h4 class="media-heading">
+                            <a href="#">Admin</a>
+                            <span class="media-sub"></span>
+                        </h4>
+                        <p>我也曾經困擾很久，所以才去找解法，很高興有幫到你!</p>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+    <div class="comment-group">
+        <h2>回應 (Leave a comment)</h2>
+        <form class="form form-comment" method="post">
+            <input type="hidden" name="act" value="reply">
+            <input type="hidden" name="parentId" value="q96qt/ypS06DyydboVf9TwIrjzA+K94PDGHEdJ2OaClfBXNtp3roZgvjtLUHSVw5GMtetV3HC+wARZLQq8a3EH" />
+            <a class="form-thumb" href="#"><img src="//www.puritys.me/templates/static/images/thumb_nobody.png"></a>
+            <div class="form-body">
+                <div class="form-row ">
+                    <label class="form-label" for="name">Name</label>
+                    <div class="form-input">
+                        <input id="name" class="form-control" name="name" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="email">E-mail</label>
+                    <div class="form-input">
+                        <input id="email" class="form-control" name="email" type="text" value="">
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <label class="form-label" for="message">Message</label>
+                    <div class="form-input">
+                        <textarea id="message" name="message" class="form-control"></textarea>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                
+
+                
+                <div class="form-row security_codeBox">
+                    <label class="form-label">
+                    </label>
+                    <div class="form-input">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAABkD-WnGwGW7PRq"></div>
+                        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                        <span class="form-message">
+                            
+                        </span>
+                    </div>
+                </div>
+                
+
+                <div class="form-action">
+                    <button class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+        
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">Windows 相關</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-399-如何使用-Atmel-Flip-對-GH-60-PCB-刷鍵位、刷機---Windows-系統.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_399&quot;}'>如何使用  Atmel Flip 對 GH 60 PCB 刷鍵位、刷機 - Windows 系統 </a></li>
+    
+        <li><a href="/docs-blog/article-397-Windows-硬碟免費備份：-EaseUS-Todo-Backup.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_397&quot;}'>Windows 硬碟免費備份： EaseUS Todo Backup </a></li>
+    
+        <li><a href="/docs-blog/article-382-Win-10-光碟機無法打開.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_382&quot;}'>Win 10 光碟機無法打開 </a></li>
+    
+        <li><a href="/docs-blog/article-372-加速-Windows-10-WIN-10.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_372&quot;}'>加速 Windows 10 /  WIN 10 </a></li>
+    
+        <li><a href="/docs-blog/article-314-Win8-修改系統預設字型.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_314&quot;}'>Win8 修改系統預設字型 </a></li>
+    
+        <li><a href="/docs-blog/article-290-Cygwin-:-在-windows-環境上使用-Linux-指令.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_290&quot;}'>Cygwin : 在 windows 環境上使用 Linux 指令 </a></li>
+    
+        <li><a href="/docs-blog/article-235-解決讀卡機偵測不到.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_235&quot;}'>解決讀卡機偵測不到 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">類別 Program</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-446-使用-Splunk-觀查網站運作情況.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_446&quot;}'>使用 Splunk 觀查網站運作情況 </a></li>
+    
+        <li><a href="/docs-blog/article-344-Golang-筆記.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_344&quot;}'>Golang 筆記 </a></li>
+    
+        <li><a href="/docs-blog/article-333-解決-Ionic-無法更新-Android-App.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_333&quot;}'>解決 Ionic  無法更新 Android App </a></li>
+    
+        <li><a href="/docs-blog/article-330-Send-mail-on-google-compute-engine-instance.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_330&quot;}'>Send mail on google compute engine instance </a></li>
+    
+        <li><a href="/docs-blog/article-320-Imperative-programming-or-declarative-programming.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_320&quot;}'>Imperative programming or declarative programming </a></li>
+    
+        <li><a href="/docs-blog/article-317-Binary-Search.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_317&quot;}'>Binary Search </a></li>
+    
+        <li><a href="/docs-blog/article-292-軟體工程師必讀文章.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_292&quot;}'>軟體工程師必讀文章 </a></li>
+    
+        <li><a href="/docs-blog/article-262-安裝-XVFB-做-Selenium-測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_262&quot;}'>安裝 XVFB 做 Selenium 測試 </a></li>
+    
+        <li><a href="/docs-blog/article-248-ezHTML---純文字-HTML-編輯器.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_248&quot;}'>ezHTML - 純文字 HTML 編輯器 </a></li>
+    
+        <li><a href="/docs-blog/article-246-Makefile-的寫法與用途.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_246&quot;}'>Makefile 的寫法與用途 </a></li>
+    
+    </ul>
+</div>
+
+
+        
+                
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+    <script src="/templates/static/js/files?sidebar.js&ezHTML_main.js&?v=20180416-2"></script>
+</html>

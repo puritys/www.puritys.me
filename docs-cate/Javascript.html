@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M3BFP5');</script>
+    <!-- End Google Tag Manager -->
+
+    <link href="/templates/static/css/files?default.less&other.less&ezHTML.less&?v=20180416-2" rel="stylesheet" type="text/css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js?v=20180416-2"></script>
+    <script src="/templates/static/js/files?lightHttp-simple-min.js&default.js&facebookAPI.js&form_check.js&util.js&listAutoLoadMore.js&?v=20180416-2"></script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-language" content="zh-TW" />
+    <meta name="author" content="Puritys" />
+    <title>Javascript Puritys Blog</title>
+    <meta name="keywords" content="Internet 程式設計,  PHP, Javascript, Node.js , css, linux, " />
+    <meta name="description" content="" />
+    <meta property="fb:app_id" content="160015347378316" />
+    <meta property="fb:admins" content="1140660203"/>
+    
+
+    <link rel="shortcut icon" href="/templates/static/images/favicon_puritys.ico" /> 
+    
+
+
+
+
+    <link rel="dns-prefetch" href="apis.google.com">
+        <link rel="dns-prefetch" href="ajax.googleapis.com">
+        <link rel="dns-prefetch" href="connect.facebook.net">
+        <link rel="dns-prefetch" href="www.google-analytics.com">
+        <link rel="dns-prefetch" href="www.puritys.me">
+        
+
+<!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    
+<script type="application/ld+json">
+{
+   "@context": "http://schema.org",
+   "@type": "WebSite",
+   "url": "//www.puritys.me",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.puritys.me/search?searchText={search_term_string}",
+     "query-input": "required name=search_term_string"
+   }
+}
+    </script>
+    
+
+
+<script type="application/ld+json">
+{ "@context" : "http://schema.org",
+  "@type" : "Organization",
+  "name" : "",
+  "url" : "//www.puritys.me",
+  "sameAs" : [ 
+    
+    "https://github.com/puritys",
+    
+    "https://www.facebook.com/Puritys.Chen.5815"
+    
+  ] 
+}
+    </script>
+
+
+
+
+
+
+</head>
+<body>
+
+            
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3BFP5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+            
+<div class="settings">
+    
+        <script>var WRT="https://www.puritys.me/";</script>
+    
+</div>
+
+
+            
+<div class="header">
+    <div class="top-header">
+        <div class="main">
+        <a class="logo" href="/"><img src="/templates/static/images/logo_puritys.png" alt="Puritys Blog" title="Puritys Blog"></a>
+        <a class="navbar-btn" href="#"><span class="icon"></span></a>
+        </div>
+        <ul class="navbar">
+             
+            <li >
+                <a href="/news" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u65b0\u805e"}'>網路新聞</a>
+            </li>
+             
+            <li >
+                <a href="/life" data-ga='{"action":"menu_click","label":"\u751f\u6d3b\u65c5\u904a"}'>生活旅遊</a>
+            </li>
+             
+            <li >
+                <a href="/WEB_SECURITY" data-ga='{"action":"menu_click","label":"\u7db2\u8def\u5b89\u5168"}'>網路安全</a>
+            </li>
+             
+            <li class="active">
+                <a href="/docs-cate" data-ga='{"action":"menu_click","label":"\u7a0b\u5f0f\u96dc\u8a18"}'>程式雜記</a>
+            </li>
+            
+        </ul>
+        <form action="/search" class="navbar-form">
+            <input type="text" name="searchText" placeholder="Input your keyword" value="">
+            <i class="glyphicon glyphicon-search"></i>
+        </form>
+    </div>
+</div>
+
+
+        
+
+        
+<div class="body-content">
+    
+            
+    <div class="main">
+        
+                
+<ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList"> 
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a href="//www.puritys.me" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+            <em><span itemprop="name">Home</span></em>
+        </a>
+        <meta itemprop="position" content="1" />
+    </li>
+    
+        
+            <li  itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="/docs-cate/" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">程式雜記</span></em>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+        
+    
+        
+            <li class="active" itemprop="itemListElement" itemscope  itemtype="http://schema.org/ListItem">
+                <a href="" itemscope itemtype="http://schema.org/Thing" itemprop="item">
+                    <em><span itemprop="name">Javascript</span></em>
+                </a>
+                <meta itemprop="position" content="3" />
+            </li>
+        
+    
+</ul>
+
+        
+                
+<div class="entry-list" data="">
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2016</div>
+                <div class="month">Apr</div>
+                <div class="day">02</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html" itemprop="about">JavaScript : 呼叫 Function 可以省略括號</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>JavaScript 中使用 function 的方式為在 function 名稱後面加上大小括號： funcName() ， 但我們也可以改變成另外一種寫法，就能夠省略括號。一般來說當你想要使...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-347-JavaScript-:-呼叫-Function-可以省略括號.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2015</div>
+                <div class="month">Nov</div>
+                <div class="day">21</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html" itemprop="about">Node.js/JavaScript is a wonderful programming language.</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>JavaScript is a front-end programming language, programming engineers often use JavaScript on browser development, also called front-end development. ...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-338-Node.js-JavaScript-is-a-wonderful-programming-language..html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2015</div>
+                <div class="month">Feb</div>
+                <div class="day">02</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html" itemprop="about">Javascript 處理 Binary 資料 - ArrayBuffer</a></h1>
+                <div class="sub">
+                    
+                    <div class="caption">Tags:</div>
+                    <ul class="labels">
+                        
+                        <li class="label"><a class="label-item" href="/docs-cate?tag=Binary" target="_blank">Binary</a></li>
+                        
+                        <li class="label"><a class="label-item" href="/docs-cate?tag=Javascript" target="_blank">Javascript</a></li>
+                        
+                        <li class="label"><a class="label-item" href="/docs-cate?tag=Array" target="_blank">Array</a></li>
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>Javascript 內建已經支援二進位資料的處理，瀏覽器 Chrome, Firefox, IE 都有支援此功能，而處理二進位最重要的兩個物件是  ArrayBuffer 與 DataView ，透過這兩...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-294-Javascript-處理-Binary-資料---ArrayBuffer.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Sep</div>
+                <div class="day">05</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html" itemprop="about">Javascript 移除空白 Performance 優化</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>有那麼很無聊的一天，我看著公司裡不知名「阿豆仔」寫的一支舊程式，發現有一段很奇怪地方，為什麼他只不過是要移除個空白，卻寫了好幾行 code，若看著下面這三個...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-275-Javascript-移除空白-Performance-優化.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Jul</div>
+                <div class="day">30</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-273-自定義-AngularJS-service.html" itemprop="about">自定義 AngularJS service</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>Angularjs Service在 Angularjs 裡，  Service 就像是一個 Object ，這個 Object 把相關功能包裝起來，當你需要使用某些功能時，就能直接呼叫他，例如我們常常會...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-273-自定義-AngularJS-service.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Jul</div>
+                <div class="day">14</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-270-AngularJS.html" itemprop="about">AngularJS</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>AngularJS 是一個 client-side 的  javascript framework，由 Google 工程師開發，並分享出來變成一個 Open Source，Angular Developer 稱它為一個  MVW Framewo...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-270-AngularJS.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Mar</div>
+                <div class="day">29</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-247-Javascript-ECMA-1.html" itemprop="about">Javascript ECMA 1</a></h1>
+                <div class="sub">
+                    
+                    <div class="caption">Tags:</div>
+                    <ul class="labels">
+                        
+                        <li class="label"><a class="label-item" href="/docs-cate?tag=ECMA" target="_blank">ECMA</a></li>
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>Javascript 程式的定義是從 ECMAScript 而來的，如果想要知道 JS 核心是怎麼寫出來的，那麼就一定要看一下 ECMA 文件，接下就開始進入 ECMA。ECMAScript 基本ECM...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-247-Javascript-ECMA-1.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Mar</div>
+                <div class="day">21</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html" itemprop="about">Javascript Hoisting 與 Closure</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p> Javascript 是一個很特別的程式語言，與傳統的 C 語言有很大的落差，這篇文章會介紹兩個 Javascript 獨有的特性 Hoisting 與 Closure ， Closure 也有人翻譯成閉...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-242-Javascript-Hoisting-與-Closure.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2014</div>
+                <div class="month">Mar</div>
+                <div class="day">09</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html" itemprop="about">什麼是程式語言定義的 Currying</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>最近看到 prototype.js 中看到一個很特別的 function 叫做 curry ，本來還想說「NBA 勇士隊的咖哩」 怎麼會出現在 JS 程式中呢?當然這跟 NBA 一點關系都沒有， c...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-237-什麼是程式語言定義的-Currying.html">Read More </a> 
+        </div>
+    </div>
+       
+    <div class="entry">
+       <div class="entry-header">
+            
+            <div class="date">
+                <div class="year">2013</div>
+                <div class="month">Dec</div>
+                <div class="day">14</div>
+            </div>
+            
+
+            <div class="title">
+                <h1><a href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html" itemprop="about">Javascript 將字串轉成 binary 與 binary to string</a></h1>
+                <div class="sub">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="entry-body">
+            <p>Javascript 將字串轉成 binary,  bin to string在 Javascript 中，如何將 字串轉成 Binary ，以及將 Binary 轉成 Ascii 字串 呢?字串轉成二進位 string to binar...</p>
+        </div>
+
+        <div class="entry-footer">
+           <a class="btn" href="/docs-blog/article-202-Javascript-將字串轉成-binary-與-binary-to-string.html">Read More </a> 
+        </div>
+    </div>
+    
+</div>  
+
+        
+                
+   <ul class="pagination clearfix">                                                                                                                 
+        
+
+        
+            <li class="active"><a href="/docs-cate/Javascript?page=1" data-ga='{"action":"pagenation_click","label":"page_1"}'>1</a></li>
+        
+            <li ><a href="/docs-cate/Javascript?page=2" data-ga='{"action":"pagenation_click","label":"page_2"}'>2</a></li>
+        
+            <li ><a href="/docs-cate/Javascript?page=3" data-ga='{"action":"pagenation_click","label":"page_3"}'>3</a></li>
+        
+            <li ><a href="/docs-cate/Javascript?page=4" data-ga='{"action":"pagenation_click","label":"page_4"}'>4</a></li>
+        
+
+        
+    </ul>
+
+        
+
+
+            
+    </div>
+    
+
+            
+    <div class="sidebar">
+        
+                
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">最新文章</h4>
+    <ul>
+    
+        <li><a href="/docs-blog/article-461-什麼是-CAP-定理.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_461&quot;}'>什麼是 CAP 定理 </a></li>
+    
+        <li><a href="/docs-blog/article-460-SNI-是什麼，為什麼-https-傳輸會需要呢?.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_460&quot;}'>SNI 是什麼，為什麼 https 傳輸會需要呢? </a></li>
+    
+        <li><a href="/docs-blog/article-458-[Java]-PowerMock-單元測試-:-mock-private-method.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_458&quot;}'>[Java]  PowerMock 單元測試 : mock private method </a></li>
+    
+        <li><a href="/docs-blog/article-457-Docker-toolbox-取代方案---支援-VPN.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_457&quot;}'>Docker toolbox 取代方案 - 支援 VPN </a></li>
+    
+        <li><a href="/docs-blog/article-455-Gboard-好用的-Android-輸入法.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_455&quot;}'>Gboard 好用的 Android 輸入法 </a></li>
+    
+        <li><a href="/docs-blog/article-454-Node.js-big5-utf8-字串轉換.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_454&quot;}'>Node.js  big5 / utf8 字串轉換 </a></li>
+    
+        <li><a href="/docs-blog/article-452-shell-script-web-壓力測試.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_452&quot;}'>shell script  web 壓力測試 </a></li>
+    
+        <li><a href="/docs-blog/article-451-使用-java-h2database-測試-MySQL-unit-test.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_451&quot;}'>使用 java h2database 測試 MySQL unit test </a></li>
+    
+        <li><a href="/docs-blog/article-450-Mac-+-Chrome-解決健保卡讀不到的問題.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_450&quot;}'>Mac + Chrome 解決健保卡讀不到的問題 </a></li>
+    
+        <li><a href="/docs-blog/article-449-VIM-:-利用-Docker-Image-快速安裝完整-vim-全功能.html" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_449&quot;}'>VIM : 利用 Docker Image 快速安裝完整 vim 全功能 </a></li>
+    
+    </ul>
+</div>
+
+<div class="list-group">                                                                                                                            
+    <h4 class="list-group-heading">文章分類</h4>
+    <ul>
+    
+        <li><a href="/docs-cate/css" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_1&quot;}'>CSS (20)</a></li>
+    
+        <li><a href="/docs-cate/UI_DESIGN" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_2&quot;}'>UI_Design (8)</a></li>
+    
+        <li><a href="/docs-cate/other" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_3&quot;}'>其它 (48)</a></li>
+    
+        <li><a href="/docs-cate/WEB_SECURITY" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_5&quot;}'>網路安全 (33)</a></li>
+    
+        <li><a href="/docs-cate/Mysql" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_7&quot;}'>Mysql (8)</a></li>
+    
+        <li><a href="/docs-cate/Javascript" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_8&quot;}'>Javascript (42)</a></li>
+    
+        <li><a href="/docs-cate/coding" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_9&quot;}'>Program (52)</a></li>
+    
+        <li><a href="/docs-cate/node.js" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_12&quot;}'>node.js (29)</a></li>
+    
+        <li><a href="/docs-cate/Linux" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_11&quot;}'>Linux (54)</a></li>
+    
+        <li><a href="/docs-cate/c++" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_13&quot;}'>c++ (8)</a></li>
+    
+        <li><a href="/docs-cate/TeaJS" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_14&quot;}'>TeaJS (3)</a></li>
+    
+        <li><a href="/docs-cate/php" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_15&quot;}'>PHP (20)</a></li>
+    
+        <li><a href="/docs-cate/Objective-C" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_16&quot;}'>Objective-C (14)</a></li>
+    
+        <li><a href="/docs-cate/software" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_17&quot;}'>實用軟體 (12)</a></li>
+    
+        <li><a href="/docs-cate/ReactNative" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_18&quot;}'>React-Native (4)</a></li>
+    
+        <li><a href="/docs-cate/Java" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_19&quot;}'>Java (10)</a></li>
+    
+        <li><a href="/docs-cate/life" data-ga='{&quot;action&quot;:&quot;list_click&quot;,&quot;label&quot;:&quot;id_20&quot;}'>生活旅遊 (7)</a></li>
+    
+    </ul>
+</div>
+
+
+        
+            
+    </div>
+    
+        
+</div>
+
+
+    
+
+            
+<div class="bottom-footer">
+    <ul class="nav">
+        
+        <li >
+            <a href="/news">網路新聞</a>
+        </li>
+        
+        <li >
+            <a href="/life">生活旅遊</a>
+        </li>
+        
+        <li >
+            <a href="/WEB_SECURITY">網路安全</a>
+        </li>
+        
+        <li class="active">
+            <a href="/docs-cate">程式雜記</a>
+        </li>
+        
+
+        <li>
+            <a href="https://www.puritys.me/">puritys.me</a>
+        </li>
+        <li>
+            <a href="http://www.lingihuang.com/">VIVIAN CRAP</a>
+        </li>
+        
+    </ul>
+    <p>Copyright &amp;copy; 2014 PURITYS.COM. All rights reserved.</p>
+</div>
+
+
+            
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-1449650742587459",
+          enable_page_level_ads: true
+     });
+</script><script src="https://connect.facebook.net/en_US/all.js"></script>
+
+
+        
+</body>
+</html>
